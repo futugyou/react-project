@@ -1,0 +1,25 @@
+{
+  "name": "react-backservice-typescript",
+  "version": "1.0.0",
+  "description": "react-backservice-typescript",
+  "main": "index.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev index.ts",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.9",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "eslint": "^7.16.0",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.3"
+  }
+}
