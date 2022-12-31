@@ -1,10 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-
-function Square() {
+function Square(props) {
     return (
-        <button className="square">
-            {/* TODO */}
+        <button className="square" onClick={() => props.onClick()}>
+            {props.value}
         </button>
     )
 }

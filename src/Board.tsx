@@ -1,12 +1,23 @@
-import React from 'react'
+import { React, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import Square from './Square'
 
-function renderSquare(i) {
-    return <Square />;
-}
 function Board() {
     const status = 'Next player: X';
+
+    const [state, setState] = useState(Array(9).fill(null))
+
+    const handleClick = (i: number) => {
+        const squares = state.slice();
+        squares[i] = 'X';
+        console.log(squares);
+        setState(squares);
+    }
+
+    const renderSquare = (i: number) => {
+        return <Square value={state[i]} onClick={() => handleClick(i)} />;
+    }
+
     return (
         <div>
             <div className="status">{status}</div>
