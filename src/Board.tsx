@@ -3,19 +3,20 @@ import ReactDOM from 'react-dom/client'
 import Square from './Square'
 
 function Board() {
-    const status = 'Next player: X';
-
     const [state, setState] = useState(Array(9).fill(null))
+    const [xIsNext, setXIsNext] = useState(true)
+    const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
 
     const handleClick = (i: number) => {
         const squares = state.slice();
-        squares[i] = 'X';
+        squares[i] = xIsNext ? 'X' : 'O';
         console.log(squares);
         setState(squares);
+        setXIsNext(!xIsNext);
     }
 
     const renderSquare = (i: number) => {
-        return <Square value={state[i]} onClick={() => handleClick(i)} />;
+        return <Square value={state[i]} onSquareClick={() => handleClick(i)} />;
     }
 
     return (
