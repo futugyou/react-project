@@ -1,56 +1,12 @@
-import { useState } from 'react'
 import Square from './Square'
 
-function Board() {
-    const [state, setState] = useState(Array(9).fill(null))
-    const [xIsNext, setXIsNext] = useState(true)
-
-    const calculateWinner = (squares: any[]) => {
-        const lines = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6],
-        ];
-        for (let i = 0; i < lines.length; i++) {
-            const [a, b, c] = lines[i];
-            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                return squares[a];
-            }
-        }
-        return null;
-    }
-
-    const winner = calculateWinner(state);
-    let status;
-    if (winner) {
-        status = 'Winner: ' + winner;
-    } else {
-        status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-    }
-
-    const handleClick = (i: number) => {
-        const squares = state.slice();
-        if (calculateWinner(squares) || squares[i]) {
-            return;
-        }
-        squares[i] = xIsNext ? 'X' : 'O';
-        console.log(squares);
-        setState(squares);
-        setXIsNext(!xIsNext);
-    }
-
+function Board(props) {
     const renderSquare = (i: number) => {
-        return <Square value={state[i]} onSquareClick={() => handleClick(i)} />;
+        return <Square value={props.squares[i]} onSquareClick={() => props.onClick(i)} />;
     }
 
     return (
         <div>
-            <div className="status">{status}</div>
             <div className="board-row">
                 {renderSquare(0)}
                 {renderSquare(1)}
