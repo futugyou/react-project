@@ -1,14 +1,43 @@
-import { React, useState } from 'react'
-import ReactDOM from 'react-dom/client'
+import { useState } from 'react'
 import Square from './Square'
 
 function Board() {
     const [state, setState] = useState(Array(9).fill(null))
     const [xIsNext, setXIsNext] = useState(true)
-    const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+
+    const calculateWinner = (squares: any[]) => {
+        const lines = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+        for (let i = 0; i < lines.length; i++) {
+            const [a, b, c] = lines[i];
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a];
+            }
+        }
+        return null;
+    }
+
+    const winner = calculateWinner(state);
+    let status;
+    if (winner) {
+        status = 'Winner: ' + winner;
+    } else {
+        status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    }
 
     const handleClick = (i: number) => {
         const squares = state.slice();
+        if (calculateWinner(squares) || squares[i]) {
+            return;
+        }
         squares[i] = xIsNext ? 'X' : 'O';
         console.log(squares);
         setState(squares);
