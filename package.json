@@ -1,25 +1,22 @@
 {
-  "name": "react-backservice-typescript",
-  "version": "1.0.0",
-  "description": "react-backservice-typescript",
-  "main": "index.ts",
+  "name": "my-react-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "tsc": "tsc",
-    "dev": "ts-node-dev index.ts",
-    "lint": "eslint --ext .ts .",
-    "start": "node build/src/index.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.9",
-    "@typescript-eslint/eslint-plugin": "^4.11.0",
-    "@typescript-eslint/parser": "^4.11.0",
-    "eslint": "^7.16.0",
-    "ts-node-dev": "^1.1.1",
-    "typescript": "^4.1.3"
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
   }
 }
