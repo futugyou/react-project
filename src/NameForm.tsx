@@ -5,13 +5,17 @@ function NameForm(props: any) {
         {
             name: '',
             article: 'write a article.',
-            fruit: 'coconut'
+            fruit: 'coconut',
+            age: 18,
+            favorite: false
         })
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         alert('提交的名字: ' + state.name);
+        alert('提交的年龄: ' + state.age);
         alert('提交的文章: ' + state.article);
         alert('提交的风味: ' + state.fruit);
+        alert('提交的favorite: ' + state.favorite);
         event.preventDefault();
     }
 
@@ -30,23 +34,40 @@ function NameForm(props: any) {
         setState(newData);
     }
 
+    const handleChange = (event: any) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        var newData = Object.assign({}, state, { [name]: value });
+        setState(newData);
+    }
+
     return (
         <div className="card">
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     名字 :
-                    <input type="text" value={state.name} onChange={(e) => handleNameChange(e)} />
+                    <input type="text" name="name" value={state.name} onChange={(e) => handleChange(e)} />
+                </div>
+                <div>
+                    年龄 :
+                    <input type="number" name="age" value={state.age} onChange={(e) => handleChange(e)} />
+                </div>
+                <div>
+                    喜爱 :
+                    <input type="checkbox" name="favorite" checked={state.favorite} onChange={(e) => handleChange(e)} />
                 </div>
                 <div>
                     文章:
-                    <textarea value={state.article} onChange={(e) => handleArticleChange(e)} />
+                    <textarea name="article" value={state.article} onChange={(e) => handleChange(e)} />
                 </div>
                 <div>
                     选择你喜欢的风味:
-                    <select value={state.fruit} onChange={(e) => handleFruitChange(e)}>
+                    <select name="fruit" value={state.fruit} onChange={(e) => handleChange(e)}>
                         <option value="grapefruit">葡萄柚</option>
                         <option value="lime">酸橙</option>
-                        <option selected value="coconut">椰子</option>
+                        <option value="coconut">椰子</option>
                         <option value="mango">芒果</option>
                     </select>
                 </div>
