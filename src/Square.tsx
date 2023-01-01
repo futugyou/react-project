@@ -1,4 +1,4 @@
-function Square(props) {
+function Square(props: any) {
     return (
         <button className="square" onClick={props.onSquareClick}>
             {props.value}

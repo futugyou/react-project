@@ -1,6 +1,6 @@
 import Square from './Square'
 
-function Board(props) {
+function Board(props: any) {
     const renderSquare = (i: number) => {
         return <Square value={props.squares[i]} onSquareClick={() => props.onClick(i)} />;
     }
