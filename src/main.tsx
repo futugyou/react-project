@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import Game from './Game'
 import NameForm from './NameForm'
+import Calculator from './Calculator'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -10,5 +11,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <App />
     <NameForm />
     <Game />
+    <Calculator />
   </React.StrictMode>,
 )
