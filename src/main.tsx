@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import Game from './Game'
-import NameForm from './NameForm'
-import Calculator from './Calculator'
+import Game from './00.Tutorial/Game'
+import NameForm from './09.Forms/NameForm'
+import Calculator from './10.LiftingStateUp/Calculator'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

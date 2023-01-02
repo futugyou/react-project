@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 
-const scaleNames = {
+const scaleNames: { [key: string]: string } = {
     c: 'Celsius',
     f: 'Fahrenheit'
 }
