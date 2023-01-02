@@ -4,6 +4,8 @@ import App from './App'
 import Game from './00.Tutorial/Game'
 import NameForm from './09.Forms/NameForm'
 import Calculator from './10.LiftingStateUp/Calculator'
+import WelcomeDialog from "./11.Compose/WelcomeDialog"
+import SplitPaneApp from "./11.Compose/SplitPane"
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -12,5 +14,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <NameForm />
     <Game />
     <Calculator />
+    <WelcomeDialog />
+    <SplitPaneApp />
   </React.StrictMode>,
 )
