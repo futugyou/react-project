@@ -2,12 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-// import App from './App'
-// import Game from './00.Tutorial/Game'
-// import NameForm from './09.Forms/NameForm'
-// import Calculator from './10.LiftingStateUp/Calculator'
-// import WelcomeDialog from "./11.Compose/WelcomeDialog"
-// import SplitPaneApp from "./11.Compose/SplitPane"
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Layout from "./Layout"
 const App = lazy(() => import('./App'))
@@ -24,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index path="/App" element={<App />} />
+            <Route index element={<App />} />
             <Route path="/Game" element={<Game />} />
             <Route path="/NameForm" element={<NameForm />} />
             <Route path="/Calculator" element={<Calculator />} />
