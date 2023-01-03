@@ -1,10 +1,10 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { Navbar } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 function Layout() {
     return (
         <div className="row">
             <div className="col-sm-2">
-                <Navbar>
+                <Nav>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
                             <Link to="/">App</Link>
@@ -25,7 +25,7 @@ function Layout() {
                             <Link to="/SplitPaneApp">SplitPaneApp</Link>
                         </li>
                     </ul>
-                </Navbar>
+                </Nav>
             </div>
             <div className="col-sm-10">
                 <Outlet />
