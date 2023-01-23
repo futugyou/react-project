@@ -1,12 +1,24 @@
+const effectStack = [];
+
 function useState(value) {
-    const getter = () => value;
-    const setter = (newValue) => value = newValue;
+    const subs = new Set()
+    const getter = () => {
+        const effect = effectStack[effectStack.length - 1]
+        if (effect) {
+            subscribe(effect, subs)
+        }
+        return value;
+    }
+    const setter = (newValue) => {
+        value = newValue;
+        for (const effect of [...subs]) {
+            effect.execute();
+        }
+    }
     return [getter, setter]
 }
 
-function DoStateTest() {
-    const [count, setCount] = useState(0);
-    console.log(count());
-    setCount(1)
-    console.log(count());
+function subscribe(effect, subs) {
+    subs.add(effect)
+    effect.deps.add(subs)
 }
