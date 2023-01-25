@@ -14,28 +14,28 @@ const WelcomeDialog = lazy(() => import('./11.Compose/WelcomeDialog'))
 const SplitPaneApp = lazy(() => import('./11.Compose/SplitPane'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<App />} />
-            <Route path="/Game" element={<Game />} />
-            <Route path="/NameForm" element={<NameForm />} />
-            <Route path="/Calculator" element={<Calculator />} />
-            <Route path="/WelcomeDialog" element={<WelcomeDialog />} />
-            <Route path="/SplitPaneApp" element={<SplitPaneApp />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </Router>
-  </React.StrictMode>,
-)
-
+// ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+//   <React.StrictMode>
+//     <Router>
+//       <Suspense fallback={<div>Loading...</div>}>
+//         <Routes>
+//           <Route path="/" element={<Layout />}>
+//             <Route index element={<App />} />
+//             <Route path="/Game" element={<Game />} />
+//             <Route path="/NameForm" element={<NameForm />} />
+//             <Route path="/Calculator" element={<Calculator />} />
+//             <Route path="/WelcomeDialog" element={<WelcomeDialog />} />
+//             <Route path="/SplitPaneApp" element={<SplitPaneApp />} />
+//             <Route path="*" element={<ErrorPage />} />
+//           </Route>
+//         </Routes>
+//       </Suspense>
+//     </Router>
+//   </React.StrictMode>,
+// )
+import Apps from "./App"
 CostomRender.render(
-  <App />,
+  <Apps />,
   document.getElementById('root'),
   null
 );
