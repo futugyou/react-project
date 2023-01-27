@@ -7,6 +7,8 @@ import {
     unstable_getFirstCallbackNode as getFirstCallbackNode,
     unstable_scheduleCallback as scheduleCallback,
     unstable_cancelCallback as cancelCallback,
+    unstable_shouldYield as shouldYield,
+    CallbackNode,
 } from "scheduler";
 
 const contentBox = document.querySelector("#content") as Element;
@@ -24,8 +26,8 @@ interface Work {
 }
 
 const workList: Work[] = [];
-const prevPriority = IdlePriority;
-let curCallback;
+let prevPriority = IdlePriority;
+let curCallback: CallbackNode | null;
 
 function schedule() {
     // // 从队列末尾获取一个work
@@ -62,18 +64,52 @@ function schedule() {
     curCallback = scheduleCallback(curPriority, perform.bind(null, currwork));
 }
 
-function perform(work: Work) {
-    while (work.count) {
+function perform(work: Work, didTimeout?: boolean) {
+    // 是否需要同步执行,
+    // shouldYield()=== true，表示发生了中断，有两种情况，1工作太多，总耗时超过5ms. 2单次运行时间太长
+    // 代码模拟了第二种情况
+    // needSync === true，2个原因，1同步优先级，类比‘React的同步更新’。 2 本次调度过期（解决饥饿问题）
+    const needSync = work.priority === ImmediatePriority || didTimeout;
+    while ((needSync || !shouldYield()) && work.count) {
         work.count--;
         insertItem("");
     }
+
+    // 更新优先级
+    prevPriority = work.priority;
+
+    if (!work.count) {
+        // 移除完成的work
+        const workIndex = workList.indexOf(work);
+        workList.splice(workIndex, 1)
+        // 重置优先级
+        prevPriority = IdlePriority;
+    }
+
+    const prevCallback = curCallback;
     schedule();
+    // 如果callback发生变化，说明是新work
+    const newCallback = curCallback;
+    // 同一个work，Time Slice用尽，返回perform.bind继续给scheduler调用
+    if (newCallback && newCallback == prevCallback) {
+        return perform.bind(null, work);
+    }
+
 }
 
 const insertItem = (content: string) => {
     const ele = document.createElement('span');
     ele.innerText = `${content}`;
+    doSomeBuzyWork(10000000);
     contentBox.appendChild(ele);
+}
+
+// mock long time work
+const doSomeBuzyWork = (len: number) => {
+    let result = 0;
+    while (len--) {
+        result += len;
+    }
 }
 
 const button = document.createElement("buttoon");
