@@ -11,6 +11,7 @@ import {
     CallbackNode,
 } from "scheduler";
 
+const root = document.querySelector("#root") as Element;
 const contentBox = document.querySelector("#content") as Element;
 
 type Priority =
@@ -19,6 +20,35 @@ type Priority =
     | typeof NormalPriority
     | typeof LowPriority
     | typeof IdlePriority;
+
+const priority2UseList: Priority[] = [
+    ImmediatePriority,
+    UserBlockingPriority,
+    NormalPriority,
+    LowPriority,
+]
+
+const priority2Name = [
+    "noop",
+    "ImmediatePriority",
+    "UserBlockingPriority",
+    "NormalPriority",
+    "LowPriority",
+    "IdlePriority",
+]
+
+priority2UseList.forEach((priority) => {
+    const button = document.createElement("buttoon");
+    root.appendChild(button);
+    button.innerText = priority2Name[priority];
+    button.onclick = () => {
+        workList.unshift({
+            count: 100,
+            priority,
+        });
+        schedule();
+    };
+});
 
 interface Work {
     count: number;
@@ -64,7 +94,7 @@ function schedule() {
     curCallback = scheduleCallback(curPriority, perform.bind(null, currwork));
 }
 
-function perform(work: Work, didTimeout?: boolean) {
+function perform(work: Work, didTimeout?: boolean): any {
     // 是否需要同步执行,
     // shouldYield()=== true，表示发生了中断，有两种情况，1工作太多，总耗时超过5ms. 2单次运行时间太长
     // 代码模拟了第二种情况
@@ -112,13 +142,5 @@ const doSomeBuzyWork = (len: number) => {
     }
 }
 
-const button = document.createElement("buttoon");
-button.onclick = () => {
-    workList.unshift({
-        count: 100,
-        priority: IdlePriority,
-    });
-    schedule();
-}
 
 export { }
