@@ -29,7 +29,9 @@ interface Fiber {
     stateNode: () => { click: () => void };
 }
 
+// 调度timeout对应的ID
 let callbackNode: number | undefined = undefined;
+// 正在执行Hook
 let workInProgressHook: Hook | undefined;
 let isMount = true;
 
@@ -60,4 +62,23 @@ function schedule() {
     });
 }
 
+function dispatchSetState(queue: Queue, action: Action) {
+    // 1 创建update
+    const update: Update = {
+        action,
+        next: undefined,
+    };
+
+    // 2 将update的实例保存在queue.pending构造的环状链表中
+    if (!queue.pending) {
+        update.next = update;
+    } else {
+        update.next = queue.pending.next;
+        queue.pending.next = update;
+    }
+    queue.pending = update;
+
+    // 3. 开始调度更新
+    schedule();
+}
 export { }
