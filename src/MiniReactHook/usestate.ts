@@ -36,8 +36,13 @@ let workInProgressHook: Hook | undefined;
 let isMount = true;
 
 function APPP() {
+    const [num, updateNum] = useState(0);
+    console.log(`${isMount ? 'mount' : 'update'} num: `, num);
+
     return {
-        click() { }
+        click() {
+            updateNum(num => num + 1);
+        }
     }
 }
 
