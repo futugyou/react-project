@@ -81,4 +81,58 @@ function dispatchSetState(queue: Queue, action: Action) {
     // 3. 开始调度更新
     schedule();
 }
+
+function useState(initialState: any) {
+    // 当前useState使用的hook会被赋值给该变量
+    let hook;
+    if (isMount) {
+        // mount时，创建新的hook
+        hook = {
+            queue: {
+                pending: undefined,
+            },
+            memoizedState: initialState,
+            next: undefined,
+        };
+        // 将hook插入fiber.memoizedState链表末尾
+        if (!fiber.memoizedState) {
+            fiber.memoizedState = hook;
+        } else {
+            (workInProgressHook as Hook).next = hook;
+        }
+        // workInProgressHook指向hook
+        workInProgressHook = hook;
+    } else {
+        // update时，从workInProgressHook取出该useState对应的hook
+        hook = workInProgressHook;
+        // workInProgressHook继续指向下一个hook
+        workInProgressHook = (workInProgressHook as Hook).next;
+    }
+
+    if (!hook) {
+        throw new Error("目标hook不存在");
+    }
+
+    // update施行前的初始state
+    let baseState = hook.memoizedState;
+
+    if (hook.queue.pending) {
+        // update换装链表的第一个update
+        let firstUpdate = hook.queue.pending.next as Update;
+
+        do {
+            const action = firstUpdate.action;
+            baseState = action(baseState);
+            firstUpdate = firstUpdate.next as Update;
+        } while (firstUpdate != hook.queue.pending.next);
+
+        // 清空queue.pending
+        hook.queue.pending = undefined;
+    }
+    // 将update action执行完后的state作为memoizedState
+    hook.memoizedState = baseState;
+
+    return [baseState, dispatchSetState.bind(null, hook.queue)];
+}
+
 export { }
