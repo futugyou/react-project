@@ -32,4 +32,32 @@ interface Fiber {
 let callbackNode: number | undefined = undefined;
 let workInProgressHook: Hook | undefined;
 let isMount = true;
+
+function APPP() {
+    return {
+        click() { }
+    }
+}
+
+const fiber: Fiber = {
+    memoizedState: undefined,
+    stateNode: APPP,
+}
+
+function schedule() {
+    if (callbackNode) {
+        // 如果存在其他调度，取消他
+        clearTimeout(callbackNode);
+    }
+    // 开始调度
+    callbackNode = setTimeout(() => {
+        // 更新前将workInProgressHook重置为fiber保存的第一个hook
+        workInProgressHook = fiber.memoizedState;
+        // 触发组件
+        window.app = fiber.stateNode();
+        // 首次render为mount，以后为update
+        isMount = false;
+    });
+}
+
 export { }
