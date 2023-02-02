@@ -24,6 +24,12 @@ function Layout() {
                         <li className="nav-item">
                             <Link to="/SplitPaneApp">SplitPaneApp</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to="/Bailout">Bailout</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/WithoutBailout">WithoutBailout</Link>
+                        </li>
                     </ul>
                 </Nav>
             </div>
