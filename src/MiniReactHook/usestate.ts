@@ -41,7 +41,7 @@ function APPP() {
 
     return {
         click() {
-            updateNum(num => num + 1);
+            updateNum((num: number) => num + 1);
         }
     }
 }
@@ -61,7 +61,7 @@ function schedule() {
         // 更新前将workInProgressHook重置为fiber保存的第一个hook
         workInProgressHook = fiber.memoizedState;
         // 触发组件
-        window.app = fiber.stateNode();
+        // window.app = fiber.stateNode();
         // 首次render为mount，以后为update
         isMount = false;
     });
