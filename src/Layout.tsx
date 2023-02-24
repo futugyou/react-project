@@ -1,14 +1,18 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { Nav } from 'react-bootstrap'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar';
+
 function Layout() {
     return (
         <>
-            <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <Row className="header">
 
-            </nav>
+            </Row>
 
-            <div className="row page-body-wrapper">
-                <Nav className="col-sm-2">
+            <Row className="mid-container">
+                <Col xs={2}>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
                             <Link to="/">App</Link>
@@ -35,16 +39,26 @@ function Layout() {
                             <Link to="/WithoutBailout">WithoutBailout</Link>
                         </li>
                     </ul>
-                </Nav>
-                <div className="col-sm-10">
+                </Col>
+                <Col xs={10}>
+                    <Row >
+                        <Nav aria-label="breadcrumb">
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><Link to="/">App</Link></li>
+                                <li className="breadcrumb-item"><Link to="/Game">Game</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">Data</li>
+                            </ol>
+                        </Nav>
+                    </Row>
                     <Outlet />
-                </div>
-            </div>
 
-            <div className="footer">
+                </Col>
+            </Row>
 
-            </div>
-        </ >
+            <Row className="footer" >
+
+            </Row>
+        </>
     );
 }
 export default Layout
