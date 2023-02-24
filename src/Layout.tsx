@@ -2,9 +2,13 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { Nav } from 'react-bootstrap'
 function Layout() {
     return (
-        <div className="row">
-            <div className="col-sm-2">
-                <Nav>
+        <>
+            <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+
+            </nav>
+
+            <div className="row page-body-wrapper">
+                <Nav className="col-sm-2">
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
                             <Link to="/">App</Link>
@@ -32,11 +36,15 @@ function Layout() {
                         </li>
                     </ul>
                 </Nav>
+                <div className="col-sm-10">
+                    <Outlet />
+                </div>
             </div>
-            <div className="col-sm-10">
-                <Outlet />
+
+            <div className="footer">
+
             </div>
-        </div>
+        </ >
     );
 }
 export default Layout
