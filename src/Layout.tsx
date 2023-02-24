@@ -2,7 +2,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { Nav } from 'react-bootstrap'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Navbar from 'react-bootstrap/Navbar';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 function Layout() {
     return (
@@ -42,13 +42,11 @@ function Layout() {
                 </Col>
                 <Col xs={10}>
                     <Row >
-                        <Nav aria-label="breadcrumb">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><Link to="/">App</Link></li>
-                                <li className="breadcrumb-item"><Link to="/Game">Game</Link></li>
-                                <li className="breadcrumb-item active" aria-current="page">Data</li>
-                            </ol>
-                        </Nav>
+                        <Breadcrumb>
+                            <Breadcrumb.Item href="/">App</Breadcrumb.Item>
+                            <Breadcrumb.Item href="/Game">Game</Breadcrumb.Item>
+                            <Breadcrumb.Item active>Data</Breadcrumb.Item>
+                        </Breadcrumb>
                     </Row>
                     <Outlet />
 
