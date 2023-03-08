@@ -3,6 +3,7 @@ import './DefaultQA.css'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function DefaultQA() {
     const [state, setState] = useState(
@@ -63,14 +64,18 @@ function DefaultQA() {
     return (
         <>
             <Col xs={10}>
-                <Row>
+                <Form.Group as={Row} className="mb-3">
                     <Form.Control as="textarea" rows={30} value={state.prompt} onChange={e => handlePromptChange(e.target.value)} />
-                </Row>
-                <Row>
-
-                </Row>
+                </Form.Group>
+                <Form.Group as={Row} className="mb-3 qa-item-align">
+                    <Col>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Col>
+                </Form.Group>
             </Col>
-            <Col xs={2}>
+            <Col xs={2} className="qa-item-align" >
                 <Form.Group className="mb-3" >
                     <Form.Label>Model</Form.Label>
                     <Form.Select value={state.model} onChange={e => handleModelChange(e.target.value)} >
@@ -96,46 +101,69 @@ function DefaultQA() {
                     </Row>
                 </Form.Group>
 
-                <Form.Group as={Row}>
-                    <Col>
-                        <Form.Label>Top P</Form.Label>
-                    </Col>
-                    <Col xs="4">
-                        <Form.Control value={state.top_p} onChange={e => handleToppChange(e.target.value)} />
-                    </Col>
+                <Form.Group className="mb-3" >
+                    <Row>
+                        <Col>
+                            <Form.Label>Top P</Form.Label>
+                        </Col>
+                        <Col xs="4">
+                            <Form.Control value={state.top_p} onChange={e => handleToppChange(e.target.value)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Range min={0.0} max={1.0} step={0.01} value={state.top_p} onChange={e => handleToppChange(e.target.value)} />
+                        </Col>
+                    </Row>
                 </Form.Group>
-                <Form.Range min={0.0} max={1.0} step={0.01} value={state.top_p} onChange={e => handleToppChange(e.target.value)} />
 
-                <Form.Group as={Row}>
-                    <Col>
-                        <Form.Label>Frequency penalty</Form.Label>
-                    </Col>
-                    <Col xs="4">
-                        <Form.Control value={state.frequency_penalty} onChange={e => handleFrequencyPenaltyChange(e.target.value)} />
-                    </Col>
+                <Form.Group className="mb-3" >
+                    <Row>
+                        <Col>
+                            <Form.Label>Frequency penalty</Form.Label>
+                        </Col>
+                        <Col xs="4">
+                            <Form.Control value={state.frequency_penalty} onChange={e => handleFrequencyPenaltyChange(e.target.value)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Range min={0.0} max={2.0} step={0.01} value={state.frequency_penalty} onChange={e => handleFrequencyPenaltyChange(e.target.value)} />
+                        </Col>
+                    </Row>
                 </Form.Group>
-                <Form.Range min={0.0} max={2.0} step={0.01} value={state.frequency_penalty} onChange={e => handleFrequencyPenaltyChange(e.target.value)} />
 
-                <Form.Group as={Row}>
-                    <Col>
-                        <Form.Label>Presence penalty</Form.Label>
-                    </Col>
-                    <Col xs="4">
-                        <Form.Control value={state.presence_penalty} onChange={e => handlePresencePenaltyChange(e.target.value)} />
-                    </Col>
+                <Form.Group className="mb-3" >
+                    <Row>
+                        <Col>
+                            <Form.Label>Presence penalty</Form.Label>
+                        </Col>
+                        <Col xs="4">
+                            <Form.Control value={state.presence_penalty} onChange={e => handlePresencePenaltyChange(e.target.value)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Range min={0.0} max={2.0} step={0.01} value={state.presence_penalty} onChange={e => handlePresencePenaltyChange(e.target.value)} />
+                        </Col>
+                    </Row>
                 </Form.Group>
-                <Form.Range min={0.0} max={2.0} step={0.01} value={state.presence_penalty} onChange={e => handlePresencePenaltyChange(e.target.value)} />
 
-                <Form.Group as={Row}>
-                    <Col>
-                        <Form.Label>Best of</Form.Label>
-                    </Col>
-                    <Col xs="4">
-                        <Form.Control value={state.best_of} onChange={e => handleBestofChange(e.target.value)} />
-                    </Col>
+                <Form.Group className="mb-3" >
+                    <Row>
+                        <Col>
+                            <Form.Label>Best of</Form.Label>
+                        </Col>
+                        <Col xs="4">
+                            <Form.Control value={state.best_of} onChange={e => handleBestofChange(e.target.value)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Range min={1} max={20} step={1} value={state.best_of} onChange={e => handleBestofChange(e.target.value)} />
+                        </Col>
+                    </Row>
                 </Form.Group>
-                <Form.Range min={1} max={20} step={1} value={state.best_of} onChange={e => handleBestofChange(e.target.value)} />
-
             </Col>
         </>
     )

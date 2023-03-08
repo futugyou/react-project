@@ -1,0 +1,12 @@
+.qa-item-align {
+    text-align: left;
+}
+
+.qa-item-align .mb-3 .row {
+    align-items: center
+}
+
+.qa-item-align .mb-3 .row .form-control {
+    border: 0;
+    text-align: right;
+}
