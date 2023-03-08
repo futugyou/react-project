@@ -8,14 +8,18 @@ function Layout() {
     return (
         <>
             <Row className="header">
-
+                <Col>
+                    <h5>Header</h5>
+                </Col>
             </Row>
-
-            <Row className="mid-container">
+            <Row className="mid-container flex-grow-1 flex-fill">
                 <Col xs={2}>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
                             <Link to="/">App</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/default-qa">Q&A</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/Game">Game</Link>
@@ -54,7 +58,9 @@ function Layout() {
             </Row>
 
             <Row className="footer" >
-
+                <Col>
+                    <h5>Footer</h5>
+                </Col>
             </Row>
         </>
     );

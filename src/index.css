@@ -3,20 +3,23 @@ html,
 .container {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
   text-align: center;
   place-items: center;
   overflow-x: hidden;
 }
 
+body,
+html {
+  min-height: 100vh;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
 .header,
 .footer {
   height: 10vh;
-}
-
-.mid-container {
-  height: 80vh;
 }
 
 a {
