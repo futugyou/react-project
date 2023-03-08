@@ -1,5 +1,4 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { Nav } from 'react-bootstrap'
+import { Outlet, Link } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
@@ -12,7 +11,7 @@ function Layout() {
                     <h5>Header</h5>
                 </Col>
             </Row>
-            <Row className="mid-container flex-grow-1 flex-fill">
+            <Row className="flex-grow-1 flex-fill">
                 <Col xs={2}>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
@@ -44,7 +43,7 @@ function Layout() {
                         </li>
                     </ul>
                 </Col>
-                <Col xs={10}>
+                <Col xs={10} className="d-flex flex-column">
                     <Row >
                         <Breadcrumb>
                             <Breadcrumb.Item href="/">App</Breadcrumb.Item>
@@ -52,8 +51,9 @@ function Layout() {
                             <Breadcrumb.Item active>Data</Breadcrumb.Item>
                         </Breadcrumb>
                     </Row>
-                    <Outlet />
-
+                    <Row className="flex-grow-1 flex-fill">
+                        <Outlet />
+                    </Row>
                 </Col>
             </Row>
 
