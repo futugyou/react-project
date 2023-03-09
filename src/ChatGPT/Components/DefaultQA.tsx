@@ -9,6 +9,7 @@ import ModelSelect from './ModelSelect';
 import Temperature from './Temperature';
 import TopP from './TopP';
 import Frequency from './Frequency';
+import Presence from './Presence';
 
 function DefaultQA() {
     const [state, setState] = useState(
@@ -87,21 +88,7 @@ function DefaultQA() {
 
                 <Frequency frequency_penalty={state.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
 
-                <Form.Group className="mb-3" >
-                    <Row>
-                        <Col>
-                            <Form.Label>Presence penalty</Form.Label>
-                        </Col>
-                        <Col xs="4">
-                            <Form.Control value={state.presence_penalty} onChange={e => handlePresencePenaltyChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Range min={0.0} max={2.0} step={0.01} value={state.presence_penalty} onChange={e => handlePresencePenaltyChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                </Form.Group>
+                <Presence presence_penalty={state.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
 
                 <Form.Group className="mb-3" >
                     <Row>
