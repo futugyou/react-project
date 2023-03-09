@@ -8,6 +8,7 @@ import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
 import Temperature from './Temperature';
 import TopP from './TopP';
+import Frequency from './Frequency';
 
 function DefaultQA() {
     const [state, setState] = useState(
@@ -84,21 +85,7 @@ function DefaultQA() {
 
                 <TopP top_p={state.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
-                <Form.Group className="mb-3" >
-                    <Row>
-                        <Col>
-                            <Form.Label>Frequency penalty</Form.Label>
-                        </Col>
-                        <Col xs="4">
-                            <Form.Control value={state.frequency_penalty} onChange={e => handleFrequencyPenaltyChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Range min={0.0} max={2.0} step={0.01} value={state.frequency_penalty} onChange={e => handleFrequencyPenaltyChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                </Form.Group>
+                <Frequency frequency_penalty={state.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
 
                 <Form.Group className="mb-3" >
                     <Row>
