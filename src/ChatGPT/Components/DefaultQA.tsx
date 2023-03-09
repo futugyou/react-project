@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
 import Temperature from './Temperature';
+import TopP from './TopP';
 
 function DefaultQA() {
     const [state, setState] = useState(
@@ -81,21 +82,7 @@ function DefaultQA() {
 
                 <Temperature temperature={state.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
-                <Form.Group className="mb-3" >
-                    <Row>
-                        <Col>
-                            <Form.Label>Top P</Form.Label>
-                        </Col>
-                        <Col xs="4">
-                            <Form.Control value={state.top_p} onChange={e => handleToppChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Range min={0.0} max={1.0} step={0.01} value={state.top_p} onChange={e => handleToppChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                </Form.Group>
+                <TopP top_p={state.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
                 <Form.Group className="mb-3" >
                     <Row>
