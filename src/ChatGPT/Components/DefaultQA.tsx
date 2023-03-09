@@ -4,8 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
+import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
 
 function DefaultQA() {
@@ -67,9 +66,7 @@ function DefaultQA() {
     return (
         <>
             <Col xs={10}>
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Control as="textarea" rows={30} value={state.prompt} onChange={e => handlePromptChange(e.target.value)} />
-                </Form.Group>
+                <Prompt prompt={state.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></Prompt>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     <Col>
                         <Button variant="success" type="submit">
@@ -79,7 +76,7 @@ function DefaultQA() {
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align" >
-                <ModelSelect value={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
+                <ModelSelect model={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
 
                 <Form.Group className="mb-3" >
                     <Row>
