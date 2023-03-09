@@ -10,6 +10,7 @@ import Temperature from './Temperature';
 import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
+import Bestof from './Bestof';
 
 function DefaultQA() {
     const [state, setState] = useState(
@@ -90,21 +91,7 @@ function DefaultQA() {
 
                 <Presence presence_penalty={state.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
 
-                <Form.Group className="mb-3" >
-                    <Row>
-                        <Col>
-                            <Form.Label>Best of</Form.Label>
-                        </Col>
-                        <Col xs="4">
-                            <Form.Control value={state.best_of} onChange={e => handleBestofChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Range min={1} max={20} step={1} value={state.best_of} onChange={e => handleBestofChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                </Form.Group>
+                <Bestof best_of={state.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>
             </Col>
         </>
     )
