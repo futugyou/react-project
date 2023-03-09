@@ -9,14 +9,15 @@ function BaseRange(props: any) {
     const modelPopover = (
         <Popover id="model-popover">
             <Popover.Body>
-                props.popover
+                {props.popover}
             </Popover.Body>
         </Popover>
     );
 
     return (
         <>
-            <OverlayTrigger placement="left" overlay={modelPopover} delay={{ show: 100, hide: 3000 }} >
+            {/* <OverlayTrigger placement="left" overlay={modelPopover} delay={{ show: 100, hide: 1000 }} > */}
+            <OverlayTrigger placement="left" overlay={modelPopover}>
                 <Form.Group className="mb-3" >
                     <Row>
                         <Col>

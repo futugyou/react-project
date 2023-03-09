@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
+import Temperature from './Temperature';
 
 function DefaultQA() {
     const [state, setState] = useState(
@@ -78,21 +79,7 @@ function DefaultQA() {
             <Col xs={2} className="qa-item-align" >
                 <ModelSelect model={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
 
-                <Form.Group className="mb-3" >
-                    <Row>
-                        <Col>
-                            <Form.Label>Temperature</Form.Label>
-                        </Col>
-                        <Col xs="4">
-                            <Form.Control value={state.temperature} onChange={e => handleTemperatureChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Range min={0.0} max={1.0} step={0.01} value={state.temperature} onChange={e => handleTemperatureChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                </Form.Group>
+                <Temperature temperature={state.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
                 <Form.Group className="mb-3" >
                     <Row>

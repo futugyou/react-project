@@ -14,7 +14,7 @@ function ModelSelect(props: any) {
 
     return (
         <>
-            <OverlayTrigger placement="left" overlay={modelPopover} delay={{ show: 100, hide: 3000 }} >
+            <OverlayTrigger placement="left" overlay={modelPopover}>
                 <Form.Group className="mb-3" >
                     <Form.Label>Model</Form.Label>
                     <Form.Select value={props.model} onChange={e => props.onModelChange(e.target.value)} >
