@@ -17,7 +17,7 @@ function ModelSelect(props: any) {
             <OverlayTrigger placement="left" overlay={modelPopover} delay={{ show: 100, hide: 3000 }} >
                 <Form.Group className="mb-3" >
                     <Form.Label>Model</Form.Label>
-                    <Form.Select value={props.model} onChange={e => props.handleModelChange(e.target.value)} >
+                    <Form.Select value={props.model} onChange={e => props.onModelChange(e.target.value)} >
                         <option value="text-davinci-003">text-davinci-003</option>
                         <option value="text-davinci-002">text-davinci-002</option>
                         <option value="text-davinci-001">text-davinci-001</option>
