@@ -1,9 +1,15 @@
-import './DefaultQA.css'
+import './DefaultQA.css';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Popover from 'react-bootstrap/Popover';
+import ModelService from '../Services/Model';
 
 function ModelSelect(props: any) {
+    const [model, setModel] = useState(props.model)
+    const [models, setModels] = useState([])
+
     const modelPopover = (
         <Popover id="model-popover">
             <Popover.Body>
@@ -12,16 +18,33 @@ function ModelSelect(props: any) {
         </Popover>
     );
 
+    useEffect(() => {
+        ModelService
+            .getModelList()
+            .then(data => {
+                setModels(data)
+                console.log(data)
+            });
+    }, [model])
+
+    const dropdown_options = models.map((item, index) => {
+        return (
+            <Dropdown.Item eventKey={item} key={item}>
+                {item}
+            </Dropdown.Item>
+        );
+    });
     return (
         <>
             <OverlayTrigger placement="left" overlay={modelPopover}>
                 <Form.Group className="mb-3" >
-                    <Form.Label>Model</Form.Label>
-                    <Form.Select value={props.model} onChange={e => props.onModelChange(e.target.value)} >
-                        <option value="text-davinci-003">text-davinci-003</option>
-                        <option value="text-davinci-002">text-davinci-002</option>
-                        <option value="text-davinci-001">text-davinci-001</option>
-                    </Form.Select>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            {model}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu >{dropdown_options}</Dropdown.Menu>
+                    </Dropdown>
                 </Form.Group>
             </OverlayTrigger>
         </>
