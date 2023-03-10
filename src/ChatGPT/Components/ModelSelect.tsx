@@ -1,5 +1,5 @@
-import './DefaultQA.css';
-import React, { useState, useEffect } from 'react';
+import './ModelSelect.css';
+import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -23,9 +23,13 @@ function ModelSelect(props: any) {
             .getModelList()
             .then(data => {
                 setModels(data)
-                console.log(data)
             });
-    }, [model])
+    }, [])
+
+    const onModelChange = (value: any) => {
+        setModel(value);
+        props.onModelChange(value);
+    }
 
     const dropdown_options = models.map((item, index) => {
         return (
@@ -36,17 +40,16 @@ function ModelSelect(props: any) {
     });
     return (
         <>
-            <OverlayTrigger placement="left" overlay={modelPopover}>
-                <Form.Group className="mb-3" >
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Form.Group className="mb-3" >
+                <Dropdown onSelect={onModelChange}>
+                    <OverlayTrigger placement="left" overlay={modelPopover}>
+                        <Dropdown.Toggle variant="select" id="dropdown-basic">
                             {model}
                         </Dropdown.Toggle>
-
-                        <Dropdown.Menu >{dropdown_options}</Dropdown.Menu>
-                    </Dropdown>
-                </Form.Group>
-            </OverlayTrigger>
+                    </OverlayTrigger>
+                    <Dropdown.Menu >{dropdown_options}</Dropdown.Menu>
+                </Dropdown>
+            </Form.Group>
         </>
     )
 }
