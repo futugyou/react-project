@@ -1,9 +1,21 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
-const modelLostUrl = 'http://localhost:8080/api/v1/model/'
+const openaiserver = 'http://localhost:8080/api/'
+const modelListPath = 'v1/model/'
 
-const getModelList = () => {
-    return axios.get(modelLostUrl).then(response => response.data)
+const getModelList = async () => {
+    const options: AxiosRequestConfig = {
+        url: `${openaiserver}${modelListPath}`,
+        method: "GET",
+    };
+
+    try {
+        const { data, status } = await axios<string[]>(options);
+        return data;
+    } catch (error) {
+        console.log(error);
+        return [""];
+    }
 }
 
 export default {

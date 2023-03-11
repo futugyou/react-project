@@ -9,8 +9,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function ModelSelect(props: any) {
-    const [model, setModel] = useState(props.model)
-    const [models, setModels] = useState([])
+    const [model, setModel] = useState<string>(props.model)
+    const [models, setModels] = useState<string[]>([])
 
     const modelPopover = (display: string) => (
         <Popover id="model-popover">
@@ -29,11 +29,12 @@ function ModelSelect(props: any) {
     );
 
     useEffect(() => {
-        ModelService
-            .getModelList()
-            .then(data => {
-                setModels(data)
-            });
+        const fetchData = async () => {
+            const data = await ModelService.getModelList();
+            setModels(data)
+        };
+
+        fetchData();
     }, [])
 
     const onModelChange = (value: any) => {
@@ -43,8 +44,8 @@ function ModelSelect(props: any) {
 
     const dropdown_options = models.map((item, index) => {
         return (
-            <OverlayTrigger placement="left" overlay={modelPopover(item)}>
-                <Dropdown.Item eventKey={item} key={item}>
+            <OverlayTrigger key={item} placement="left" overlay={modelPopover(item)}>
+                <Dropdown.Item eventKey={item}>
                     {item}
                 </Dropdown.Item>
             </OverlayTrigger>

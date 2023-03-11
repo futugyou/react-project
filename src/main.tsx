@@ -1,9 +1,10 @@
-import React, { Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Layout from "./Layout"
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Layout from "./Layout";
+import Spinner from 'react-bootstrap/Spinner';
 
 const App = lazy(() => import('./App'))
 const Game = lazy(() => import('./00.Tutorial/Game'))
@@ -19,7 +20,7 @@ const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner animation="border" variant="dark" />}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<App />} />
