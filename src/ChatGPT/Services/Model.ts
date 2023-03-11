@@ -9,13 +9,19 @@ const getModelList = async () => {
         method: "GET",
     };
 
+    let result: BaseModel[] = [];
     try {
-        const { data, status } = await axios<string[]>(options);
+        const { data, status } = await axios<BaseModel[]>(options);
         return data;
     } catch (error) {
         console.log(error);
-        return [""];
+        return result;
     }
+}
+
+export interface BaseModel {
+    name: string,
+    describe: string,
 }
 
 export default {

@@ -4,13 +4,13 @@ import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Popover from 'react-bootstrap/Popover';
-import ModelService from '../Services/Model';
+import ModelService, { BaseModel } from '../Services/Model';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function ModelSelect(props: any) {
     const [model, setModel] = useState<string>(props.model)
-    const [models, setModels] = useState<string[]>([])
+    const [models, setModels] = useState<BaseModel[]>([])
 
     const modelPopover = (display: string) => (
         <Popover id="model-popover">
@@ -42,11 +42,11 @@ function ModelSelect(props: any) {
         props.onModelChange(value);
     }
 
-    const dropdown_options = models.map((item, index) => {
+    const dropdown_options = models.map((data, index) => {
         return (
-            <OverlayTrigger key={item} placement="left" overlay={modelPopover(item)}>
-                <Dropdown.Item eventKey={item}>
-                    {item}
+            <OverlayTrigger key={data.name} placement="left" overlay={modelPopover(data.describe)}>
+                <Dropdown.Item eventKey={data.name}>
+                    {data.name}
                 </Dropdown.Item>
             </OverlayTrigger>
         );
