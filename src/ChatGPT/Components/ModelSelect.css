@@ -15,3 +15,7 @@
     --bs-btn-disabled-border-color: #000000;
     width: 100%;
 }
+
+.dropdown-menu {
+    width: 100%;
+}
