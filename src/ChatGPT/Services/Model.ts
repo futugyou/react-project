@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import { openaiserver } from './Const';
 
-const openaiserver = 'http://localhost:8080/api/'
 const modelListPath = 'v1/model/'
 
 const getModelList = async () => {
