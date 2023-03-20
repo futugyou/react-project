@@ -1,7 +1,18 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 
-const settingPath = 'v1/completion/ '
+const settingPath = 'v1/completion/'
+export const defaultSetting: Setting = {
+    model: 'text-davinci-003',
+    prompt: '',
+    max_tokens: 0,
+    top_p: 0,
+    temperature: 0.5,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    stop: [],
+    best_of: 1
+};
 
 const getSetting = async (settingName: string) => {
     const options: AxiosRequestConfig = {
@@ -9,14 +20,19 @@ const getSetting = async (settingName: string) => {
         method: "GET",
     };
 
-    let result: Setting = {} as Setting;
+    let result: Setting = defaultSetting;
     try {
         const { data, status } = await axios<Setting>(options);
-        return data;
+        result = {
+            ...defaultSetting,
+            ...data,
+        }
     } catch (error) {
         console.log(error);
-        return result;
+
     }
+
+    return result;
 }
 
 export interface Setting {
@@ -28,6 +44,7 @@ export interface Setting {
     frequency_penalty: number,
     presence_penalty: number,
     stop: string[],
+    best_of: number,
 }
 
 export default {
