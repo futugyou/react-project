@@ -1,3 +1,3 @@
-const openaiserver = 'http://localhost:8080/api/'
+const openaiserver = import.meta.env.REACT_APP_OPENAI_SERVER
 
 export { openaiserver }
