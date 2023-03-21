@@ -1,7 +1,7 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 
-const modelListPath = 'v1/model/'
+const modelListPath = 'model/'
 
 const getModelList = async () => {
     const options: AxiosRequestConfig = {

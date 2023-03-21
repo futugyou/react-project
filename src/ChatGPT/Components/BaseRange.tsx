@@ -6,6 +6,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function BaseRange(props: any) {
+    let value: number = props.value
+    if (value > props.max) {
+        value = props.max
+    } else if (value < props.min) {
+        value = props.min
+    }
+
     const modelPopover = (
         <Popover id="model-popover">
             <Popover.Body>
@@ -24,12 +31,12 @@ function BaseRange(props: any) {
                             <Form.Label>{props.display}</Form.Label>
                         </Col>
                         <Col xs="4">
-                            <Form.Control value={props.value} onChange={e => props.onValueChange(e.target.value)} />
+                            <Form.Control value={value} onChange={e => props.onValueChange(e.target.value)} />
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <Form.Range min={props.min} max={props.max} step={props.step} value={props.value} onChange={e => props.onValueChange(e.target.value)} />
+                            <Form.Range min={props.min} max={props.max} step={props.step} value={value} onChange={e => props.onValueChange(e.target.value)} />
                         </Col>
                     </Row>
                 </Form.Group>

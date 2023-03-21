@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 
-const settingPath = 'v1/completion/'
+const settingPath = 'completion/'
 export const defaultSetting: Setting = {
     model: 'text-davinci-003',
     prompt: '',
