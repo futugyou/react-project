@@ -15,31 +15,31 @@ function Layout() {
                 <Col xs={2}>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
-                            <Link to="/">App</Link>
+                            <Link to="/app">App</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/default-qa">Q&A</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Game">Game</Link>
+                            <Link to="/game">Game</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/NameForm">NameForm</Link>
+                            <Link to="/from">NameForm</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Calculator">Calculator</Link>
+                            <Link to="/calculator">Calculator</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/WelcomeDialog">WelcomeDialog</Link>
+                            <Link to="/dialog">WelcomeDialog</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/SplitPaneApp">SplitPaneApp</Link>
+                            <Link to="/split">SplitPaneApp</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Bailout">Bailout</Link>
+                            <Link to="/bailout">Bailout</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/WithoutBailout">WithoutBailout</Link>
+                            <Link to="/withbailout">WithoutBailout</Link>
                         </li>
                     </ul>
                 </Col>

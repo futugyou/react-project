@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,26 +17,59 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 const Bailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.Bailout })))
 const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.WithoutBailout })))
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/app",
+        element: <App />,
+      },
+      {
+        path: "/game",
+        element: <Game />,
+      },
+      {
+        path: "/default-qa",
+        element: <QA />,
+      },
+      {
+        path: "/from",
+        element: <NameForm />,
+      },
+      {
+        path: "/calculator",
+        element: <Calculator />,
+      },
+      {
+        path: "/dialog",
+        element: <WelcomeDialog />,
+      },
+      {
+        path: "/split",
+        element: <SplitPaneApp />,
+      },
+      {
+        path: "/bailout",
+        element: <Bailout />,
+      },
+      {
+        path: "/withbailout",
+        element: <WithoutBailout />,
+      },
+    ],
+  },
+
+]);
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Router>
-      <Suspense fallback={<Spinner animation="border" variant="dark" />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<App />} />
-            <Route path="/Game" element={<Game />} />
-            <Route path="/default-qa" element={<QA />} />
-            <Route path="/NameForm" element={<NameForm />} />
-            <Route path="/Calculator" element={<Calculator />} />
-            <Route path="/WelcomeDialog" element={<WelcomeDialog />} />
-            <Route path="/SplitPaneApp" element={<SplitPaneApp />} />
-            <Route path="/Bailout" element={<Bailout />} />
-            <Route path="/WithoutBailout" element={<WithoutBailout />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </Router>
+    <Suspense fallback={<Spinner animation="border" variant="dark" />}>
+      <RouterProvider router={router} />
+    </Suspense>
   </React.StrictMode>,
 )
 
