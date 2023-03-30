@@ -1,10 +1,11 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from "./Layout";
 import Spinner from 'react-bootstrap/Spinner';
+import { qaloader } from './ChatGPT/Components/DefaultQA';
 
 const App = lazy(() => import('./App'))
 const Game = lazy(() => import('./00.Tutorial/Game'))
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/",
+        element: <App />,
+      },
+      {
         path: "/app",
         element: <App />,
       },
@@ -34,6 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/default-qa",
         element: <QA />,
+        loader: qaloader,
       },
       {
         path: "/from",

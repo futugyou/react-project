@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './DefaultQA.css'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -11,18 +11,17 @@ import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
-import set, { defaultSetting, Setting } from '../Services/Setting';
+import set from '../Services/Setting';
+import { useLoaderData } from "react-router-dom";
+
+export async function qaloader() {
+    const data = await set.getSetting("default-qa");
+    return { data };
+}
 
 function DefaultQA() {
-    const [state, setState] = useState(defaultSetting)
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await set.getSetting("default-qa");
-            setState(data)
-        };
-
-        fetchData();
-    }, [])
+    const { data } = useLoaderData();
+    const [state, setState] = useState(data)
 
     const handlePromptChange = (value: string) => {
         var newData = Object.assign({}, state, { prompt: value });

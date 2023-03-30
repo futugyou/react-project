@@ -4,7 +4,7 @@ import { openaiserver } from './Const';
 const settingPath = 'completion/'
 export const defaultSetting: Setting = {
     model: 'text-davinci-003',
-    prompt: '',
+    prompt: 'hello',
     max_tokens: 0,
     top_p: 0,
     temperature: 0.5,
