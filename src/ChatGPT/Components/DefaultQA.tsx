@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './DefaultQA.css'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -22,6 +22,9 @@ export async function qaloader() {
 function DefaultQA() {
     const data = useLoaderData() as Setting;
     const [state, setState] = useState(data)
+    useEffect(() => {
+        setState(data)
+    }, [data]);
 
     const handlePromptChange = (value: string) => {
         var newData = Object.assign({}, state, { prompt: value });

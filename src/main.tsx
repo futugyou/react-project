@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Route, createBrowserRouter, RouterProvider, createRoutesFromElements } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,6 +18,25 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 const Bailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.Bailout })))
 const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.WithoutBailout })))
 
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path="/" element={<Layout />} errorElement={<ErrorPage />}    >
+//       <Route errorElement={<ErrorPage />}>
+//         <Route index element={<App />} />
+//         <Route path="app" element={<App />} />
+//         <Route path="game" element={<Game />} />
+//         <Route path="default-qa" element={<QA />} loader={qaloader} />
+//         <Route path="from" element={<NameForm />} />
+//         <Route path="calculator" element={<Calculator />} />
+//         <Route path="dialog" element={<WelcomeDialog />} />
+//         <Route path="split" element={<SplitPaneApp />} />
+//         <Route path="bailout" element={<Bailout />} />
+//         <Route path="withoutbailout" element={<WithoutBailout />} />
+//       </Route>
+//     </Route>
+//   )
+// );
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +44,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <App />,
       },
       {
@@ -67,7 +86,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
 ]);
 
 

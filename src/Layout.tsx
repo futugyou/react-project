@@ -1,9 +1,11 @@
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigation } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 function Layout() {
+    const navigation = useNavigation();
+
     return (
         <>
             <Row className="header">
@@ -15,7 +17,7 @@ function Layout() {
                 <Col xs={2}>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
-                            <NavLink to={`app`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >app</NavLink>
+                            <NavLink to={`app`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to={`default-qa`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Q&A</NavLink>
@@ -51,7 +53,7 @@ function Layout() {
                             <Breadcrumb.Item active>Data</Breadcrumb.Item>
                         </Breadcrumb>
                     </Row>
-                    <Row className="flex-grow-1 flex-fill">
+                    <Row className={navigation.state === "loading" ? "flex-grow-1 flex-fill loading" : "flex-grow-1 flex-fill"}>
                         <Outlet />
                     </Row>
                 </Col>
