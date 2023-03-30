@@ -11,16 +11,16 @@ import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
-import set from '../Services/Setting';
+import set, { Setting } from '../Services/Setting';
 import { useLoaderData } from "react-router-dom";
 
 export async function qaloader() {
     const data = await set.getSetting("default-qa");
-    return { data };
+    return data;
 }
 
 function DefaultQA() {
-    const { data } = useLoaderData();
+    const data = useLoaderData() as Setting;
     const [state, setState] = useState(data)
 
     const handlePromptChange = (value: string) => {
