@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, NavLink } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
@@ -15,31 +15,31 @@ function Layout() {
                 <Col xs={2}>
                     <ul className="nav nav-pills flex-column mb-auto">
                         <li className="nav-item">
-                            <Link to="/app">App</Link>
+                            <NavLink to={`app`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >app</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/default-qa">Q&A</Link>
+                            <NavLink to={`default-qa`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Q&A</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/game">Game</Link>
+                            <NavLink to={`game`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Game</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/from">NameForm</Link>
+                            <NavLink to={`from`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >NameForm</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/calculator">Calculator</Link>
+                            <NavLink to={`calculator`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Calculator</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/dialog">WelcomeDialog</Link>
+                            <NavLink to={`dialog`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WelcomeDialog</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/split">SplitPaneApp</Link>
+                            <NavLink to={`split`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >SplitPaneApp</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/bailout">Bailout</Link>
+                            <NavLink to={`bailout`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Bailout</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/withbailout">WithoutBailout</Link>
+                            <NavLink to={`withbailout`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WithoutBailout</NavLink>
                         </li>
                     </ul>
                 </Col>
