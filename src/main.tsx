@@ -5,11 +5,11 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from "./Layout";
 import Spinner from 'react-bootstrap/Spinner';
-import { qaloader } from './ChatGPT/Components/DefaultQA';
+import { qaloader } from './OpenAI/Components/DefaultQA';
 
 const App = lazy(() => import('./App'))
 const Game = lazy(() => import('./00.Tutorial/Game'))
-const QA = lazy(() => import('./ChatGPT/Components/DefaultQA'))
+const QA = lazy(() => import('./OpenAI/Components/DefaultQA'))
 const NameForm = lazy(() => import('./09.Forms/NameForm'))
 const Calculator = lazy(() => import('./10.LiftingStateUp/Calculator'))
 const WelcomeDialog = lazy(() => import('./11.Compose/WelcomeDialog'))
