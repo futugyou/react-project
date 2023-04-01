@@ -1,17 +1,20 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
+import { OpenAIModel } from '../Models/OpenAIModel';
 
 const settingPath = 'completion/'
-export const defaultSetting: Setting = {
+export const defaultSetting: OpenAIModel = {
     model: 'text-davinci-003',
     prompt: 'hello',
-    max_tokens: 0,
-    top_p: 0,
-    temperature: 0.5,
+    max_tokens: 256,
+    top_p: 1,
+    temperature: 0.7,
     frequency_penalty: 0,
     presence_penalty: 0,
     stop: [],
-    best_of: 1
+    best_of: 1,
+    echo: false,
+    logprobs: 0,
 };
 
 const getSetting = async (settingName: string) => {
@@ -20,9 +23,9 @@ const getSetting = async (settingName: string) => {
         method: "GET",
     };
 
-    let result: Setting = defaultSetting;
+    let result: OpenAIModel = defaultSetting;
     try {
-        const { data, status } = await axios<Setting>(options);
+        const { data, status } = await axios<OpenAIModel>(options);
         result = {
             ...defaultSetting,
             ...data,
@@ -35,17 +38,6 @@ const getSetting = async (settingName: string) => {
     return result;
 }
 
-export interface Setting {
-    model: string,
-    prompt: string,
-    max_tokens: number,
-    top_p: number,
-    temperature: number,
-    frequency_penalty: number,
-    presence_penalty: number,
-    stop: string[],
-    best_of: number,
-}
 
 export default {
     getSetting: getSetting,
