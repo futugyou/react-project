@@ -10,3 +10,9 @@
     border: 0;
     text-align: right;
 }
+
+.dropdown-menu {
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: clip;
+}
