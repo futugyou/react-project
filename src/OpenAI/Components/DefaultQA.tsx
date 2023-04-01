@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
 import Temperature from './Temperature';
+import MaxTokens from './MaxTokens';
 import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
@@ -38,33 +39,39 @@ function DefaultQA() {
         setState(newData);
     }
 
-    const handleTemperatureChange = (value: number | string) => {
+    const handleTemperatureChange = (value: number) => {
         var newData = Object.assign({}, state, { temperature: value });
         setState(newData);
     }
 
-    const handleToppChange = (value: number | string) => {
+    const handleMaxTokensChange = (value: number) => {
+        var newData = Object.assign({}, state, { max_tokens: value });
+        setState(newData);
+    }
+
+    const handleToppChange = (value: number) => {
         var newData = Object.assign({}, state, { top_p: value });
         setState(newData);
     }
 
-    const handleFrequencyPenaltyChange = (value: number | string) => {
+    const handleFrequencyPenaltyChange = (value: number) => {
         var newData = Object.assign({}, state, { frequency_penalty: value });
         setState(newData);
     }
 
-    const handlePresencePenaltyChange = (value: number | string) => {
+    const handlePresencePenaltyChange = (value: number) => {
         var newData = Object.assign({}, state, { presence_penalty: value });
         setState(newData);
     }
 
-    const handleBestofChange = (value: number | string) => {
+    const handleBestofChange = (value: number) => {
         var newData = Object.assign({}, state, { best_of: value });
         setState(newData);
     }
 
     const handleCompletion = async () => {
-        const response = await completion.createCompletion(data)
+        console.log(state)
+        const response = await completion.createCompletion(state)
         console.log(response)
     }
 
@@ -84,6 +91,8 @@ function DefaultQA() {
                 <ModelSelect model={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
 
                 <Temperature temperature={state.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+
+                <MaxTokens max_tokens={state.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
 
                 <TopP top_p={state.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
