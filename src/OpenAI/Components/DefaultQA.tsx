@@ -40,33 +40,45 @@ function DefaultQA() {
     }
 
     const handleTemperatureChange = (value: number) => {
-        var newData = Object.assign({}, state, { temperature: value });
-        setState(newData);
+        setState({
+            ...state,
+            temperature: +value
+        })
     }
 
     const handleMaxTokensChange = (value: number) => {
-        var newData = Object.assign({}, state, { max_tokens: value });
-        setState(newData);
+        setState({
+            ...state,
+            max_tokens: +value
+        })
     }
 
     const handleToppChange = (value: number) => {
-        var newData = Object.assign({}, state, { top_p: value });
-        setState(newData);
+        setState({
+            ...state,
+            top_p: +value
+        })
     }
 
     const handleFrequencyPenaltyChange = (value: number) => {
-        var newData = Object.assign({}, state, { frequency_penalty: value });
-        setState(newData);
+        setState({
+            ...state,
+            frequency_penalty: +value
+        })
     }
 
     const handlePresencePenaltyChange = (value: number) => {
-        var newData = Object.assign({}, state, { presence_penalty: value });
-        setState(newData);
+        setState({
+            ...state,
+            presence_penalty: +value
+        })
     }
 
     const handleBestofChange = (value: number) => {
-        var newData = Object.assign({}, state, { best_of: value });
-        setState(newData);
+        setState({
+            ...state,
+            best_of: +value
+        })
     }
 
     const handleCompletion = async () => {
