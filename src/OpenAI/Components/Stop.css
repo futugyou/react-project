@@ -4,3 +4,17 @@
     line-height: 1;
     margin-top: 2px;
 }
+
+.stop-container {
+    position: relative;
+}
+
+.disabled-input {
+    margin-top: 10px !important;
+    position: absolute;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    left: 0;
+    right: 0;
+}
