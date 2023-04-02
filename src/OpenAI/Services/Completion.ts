@@ -5,7 +5,6 @@ import { OpenAIModel, CompletionModel, DefaultCompletionModel } from '../Models/
 const createCompletionPath = 'qa/'
 
 const createCompletion = async (data: OpenAIModel) => {
-    data.stop = []
     const options: AxiosRequestConfig = {
         url: `${openaiserver}${createCompletionPath}`,
         method: "POST",

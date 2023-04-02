@@ -12,6 +12,7 @@ import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
+import Stop from './Stop';
 import { OpenAIModel } from '../Models/OpenAIModel';
 import set from '../Services/Setting';
 import { useLoaderData } from "react-router-dom";
@@ -81,6 +82,15 @@ function DefaultQA() {
         })
     }
 
+    const handleStopChange = (value: string) => {
+        let stop: string[] = []
+        stop.push(value)
+        setState({
+            ...state,
+            stop: stop
+        })
+    }
+
     const handleCompletion = async () => {
         const response = await completion.createCompletion(state)
         if (response.error != '') {
@@ -118,6 +128,8 @@ function DefaultQA() {
                 <Temperature temperature={state.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
                 <MaxTokens max_tokens={state.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
+
+                <Stop stop={state.stop} onStopChange={(stop: string) => handleStopChange(stop)} ></Stop>
 
                 <TopP top_p={state.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
