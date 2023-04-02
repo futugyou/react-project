@@ -1,6 +1,6 @@
 
 import './Stop.css'
-import { useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Stop(props: any) {
+    const [stop, setStop] = useState<string[]>(props.stop)
     const [state, setState] = useState('');
     const [tip, setTip] = useState('');
     const [show, setShow] = useState(false);
@@ -36,6 +37,16 @@ function Stop(props: any) {
         }
     }
 
+    const onStopAdded = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (e.key == "Enter" && state != '') {
+            let s = stop
+            s.push(state)
+            setStop(s)
+            setTip('')
+            setState('')
+        }
+    }
+
     return (
         <>
             <OverlayTrigger placement="left" overlay={stopPopover}>
@@ -54,7 +65,7 @@ function Stop(props: any) {
                     )}
                     <Row>
                         <Col>
-                            <Form.Control type="text" onChange={e => onStopChange(e.target.value)} onClick={e => openTip()} value={state} />
+                            <Form.Control type="text" onChange={e => onStopChange(e.target.value)} onClick={e => openTip()} value={state} onKeyDown={(e) => onStopAdded(e)} />
                         </Col>
                     </Row>
                     {show && (
