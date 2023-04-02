@@ -31,7 +31,7 @@ function BaseRange(props: any) {
                             <Form.Label>{props.display}</Form.Label>
                         </Col>
                         <Col xs="4">
-                            <Form.Control value={value} onChange={e => props.onValueChange(e.target.value)} />
+                            <Form.Control value={value} className="display-value" onChange={e => props.onValueChange(e.target.value)} />
                         </Col>
                     </Row>
                     <Row>

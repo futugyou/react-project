@@ -16,6 +16,10 @@
     width: 100%;
 }
 
+.dropdown {
+    border: 1px solid #ced4da
+}
+
 .dropdown-menu {
     width: 100%;
 }

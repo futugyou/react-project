@@ -6,7 +6,7 @@
     align-items: center
 }
 
-.qa-item-align .mb-3 .row .form-control {
+.qa-item-align .mb-3 .display-value {
     border: 0;
     text-align: right;
 }
