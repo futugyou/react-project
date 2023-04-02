@@ -82,9 +82,22 @@ function DefaultQA() {
     }
 
     const handleCompletion = async () => {
-        console.log(state)
         const response = await completion.createCompletion(state)
-        console.log(response)
+        if (response.error != '') {
+            setState({
+                ...state,
+                prompt: state.prompt + response.error
+            })
+        } else {
+            let text = state.prompt
+            response.texts.forEach(t => {
+                text += t
+            });
+            setState({
+                ...state,
+                prompt: text
+            })
+        }
     }
 
     return (
