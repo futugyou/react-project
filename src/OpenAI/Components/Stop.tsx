@@ -40,6 +40,8 @@ function Stop(props: any) {
 
     const openTip = () => {
         setShow(!show);
+        setTip('')
+        setState('')
     }
 
     const removeStop = (value: string) => {
@@ -55,7 +57,8 @@ function Stop(props: any) {
 
     const onStopChange = (value: string) => {
         setState(value)
-        if (show) {
+        setShow(true)
+        if (value.length > 0) {
             setTip("Add \"" + value + "\"")
         } else {
             setTip('')
