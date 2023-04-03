@@ -76,10 +76,15 @@ function Stop(props: any) {
                         </Row>
                     )}
                     <div className='stop-sub-container'>
-                        <div className='stop-without-close'>
+                        <div className='stop-without-close' onClick={e => openTip()} >
                             {stop && (elements)}
-                            <div>
-                                <Form.Control type="text" onChange={e => onStopChange(e.target.value)} onClick={e => openTip()} value={state} onKeyDown={(e) => onStopAdded(e)} />
+                            <div className="close-container">
+                                <div className="d-i-block;">
+                                    <input className='stop-input' autoCapitalize="none" autoComplete="off" autoCorrect="off" spellCheck="false" type="text" aria-autocomplete="list" onChange={e => onStopChange(e.target.value)} value={state} onKeyDown={(e) => onStopAdded(e)} />
+                                    <div className='what-that'>
+                                        {state}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {stop.length > 0 && (

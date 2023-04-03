@@ -110,3 +110,44 @@
 .closs-indicatorContainer:hover {
     color: #acacbe;
 }
+
+.close-container {
+    margin: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    visibility: visible;
+    color: #353740;
+    box-sizing: border-box;
+}
+
+.d-i-block {
+    display: inline-block;
+}
+
+.stop-input {
+    box-sizing: content-box;
+    width: auto;
+    background: 0px center;
+    border: 0px;
+    font-size: inherit;
+    opacity: 1;
+    outline: 0px;
+    padding: 0px;
+    color: inherit;
+}
+
+.what-that {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+    height: 0px;
+    overflow: scroll;
+    white-space: pre;
+    font-size: 14px;
+    font-family: ColfaxAI, helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: none;
+}
