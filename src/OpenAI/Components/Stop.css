@@ -7,6 +7,41 @@
 
 .stop-container {
     position: relative;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.stop-sub-container {
+    box-align: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-color: var(--gray-300);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: none;
+    cursor: default;
+    display: flex;
+    flex-wrap: wrap;
+    box-pack: justify;
+    justify-content: space-between;
+    min-height: 38px;
+    position: relative;
+    transition: all 100ms ease 0s;
+    box-sizing: border-box;
+    outline: 0px !important;
+}
+
+.stop-without-close {
+    box-align: center;
+    align-items: center;
+    display: flex;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+    padding: 2px 8px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .disabled-input {
@@ -17,4 +52,61 @@
     white-space: nowrap;
     left: 0;
     right: 0;
+}
+
+.stop-multiValue {
+    background-color: #ececf1;
+    border-radius: 2px;
+    display: flex;
+    margin: 2px;
+    min-width: 0px;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+.stop-item {
+    border-radius: 2px;
+    color: #353740;
+    font-size: 85%;
+    overflow: hidden;
+    padding: 3px 3px 3px 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.stop-close {
+    box-align: center;
+    align-items: center;
+    border-radius: 2px;
+    display: flex;
+    padding-left: 4px;
+    padding-right: 4px;
+    box-sizing: border-box;
+}
+
+.stop-close:hover {
+    background-color: rgb(255, 189, 173);
+    color: rgb(222, 53, 11);
+}
+
+.closs-container {
+    box-align: center;
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.closs-indicatorContainer {
+    color: #d9d9e3;
+    display: flex;
+    padding: 8px;
+    transition: color 150ms ease 0s;
+    box-sizing: border-box;
+}
+
+.closs-indicatorContainer:hover {
+    color: #acacbe;
 }
