@@ -1,4 +1,3 @@
-
 import './Stop.css'
 import { KeyboardEvent, useState } from 'react'
 import Form from 'react-bootstrap/Form';
@@ -6,15 +5,18 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Toast from 'react-bootstrap/Toast';
+
 function Stop(props: any) {
-    const [stop, setStop] = useState<string[]>(props.stop)
+    let stops = new Set<string>(props.stop);
+    const [stop, setStop] = useState<Set<string>>(stops)
     const [state, setState] = useState('');
     const [tip, setTip] = useState('');
     const [show, setShow] = useState(false);
+
     let display = "Stop sequences"
     let subDisplay = "Enter sequence and press Tab"
     let popover = "Up to four sequences where the API will stop generating further tokens.The returned text will not contain the stop sequence."
+
     const elements: any[] = [];
     stop.forEach((item) => {
         elements.push(
@@ -52,7 +54,7 @@ function Stop(props: any) {
     const onStopAdded = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (e.key == "Enter" && state != '') {
             let s = stop
-            s.push(state)
+            s.add(state)
             setStop(s)
             setTip('')
             setState('')
@@ -87,7 +89,7 @@ function Stop(props: any) {
                                 </div>
                             </div>
                         </div>
-                        {stop.length > 0 && (
+                        {stop.size > 0 && (
                             <div className='closs-container'>
                                 <div className='closs-indicatorContainer'>
                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
