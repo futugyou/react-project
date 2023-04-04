@@ -1,6 +1,6 @@
-import './StopInput.css'
+import './ExistedStop.css'
 
-function StopInput(props: any) {
+function ExistedStop(props: any) {
     let stopKey: string = props.stopKey
     return (
         <div key={stopKey} className="stop-multiValue">
@@ -14,4 +14,4 @@ function StopInput(props: any) {
     )
 }
 
-export default StopInput
+export default ExistedStop

@@ -1,18 +1,18 @@
 import './StopInputContainer.css'
-import StopInput from './StopInput';
+import ExistedStop from './ExistedStop';
 
 function StopInputContainer(props: any) {
-    const elements: any[] = [];
+    const existedStops: any[] = [];
     props.stop.forEach((item: string) => {
-        elements.push(
-            <StopInput stopKey={item} onRemoveStop={(key: string) => props.HandleRemoveStop(key)}></StopInput>
+        existedStops.push(
+            <ExistedStop stopKey={item} onRemoveStop={(key: string) => props.HandleRemoveStop(key)}></ExistedStop>
         )
     });
 
     return (
         <div className='stop-sub-container'>
             <div className='stop-without-close' onClick={e => props.openTip()} >
-                {elements}
+                {existedStops}
                 <div className="close-container">
                     <div className="d-i-block">
                         <input className='stop-input' autoCapitalize="none" autoComplete="off" autoCorrect="off" spellCheck="false" type="text" aria-autocomplete="list"
