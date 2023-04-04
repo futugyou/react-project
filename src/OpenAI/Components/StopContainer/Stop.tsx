@@ -5,8 +5,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import StopInput from './StopInput';
 import StopDescribe from './StopDescribe';
+import StopInputContainer from './StopInputContainer';
 
 function Stop(props: any) {
     let stops = new Set<string>(props.stop);
@@ -19,12 +19,6 @@ function Stop(props: any) {
     let subDisplay = "Enter sequence and press Tab"
     let popover = "Up to four sequences where the API will stop generating further tokens.The returned text will not contain the stop sequence."
 
-    const elements: any[] = [];
-    stop.forEach((item) => {
-        elements.push(
-            <StopInput stopKey={item} onRemoveStop={(key: string) => HandleRemoveStop(key)}></StopInput>
-        )
-    });
     const stopPopover = (
         <Popover id="stop-popover">
             <Popover.Body>
@@ -76,27 +70,14 @@ function Stop(props: any) {
                 <Form.Group className="mb-3 stop-container" >
                     <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>
 
-                    <div className='stop-sub-container'>
-                        <div className='stop-without-close' onClick={e => openTip()} >
-                            {stop && (elements)}
-                            <div className="close-container">
-                                <div className="d-i-block;">
-                                    <input className='stop-input' autoCapitalize="none" autoComplete="off" autoCorrect="off" spellCheck="false" type="text" aria-autocomplete="list" onChange={e => onStopChange(e.target.value)} value={state} onKeyDown={(e) => onStopAdded(e)} />
-                                    <div className='what-that'>
-                                        {state}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {stop.size > 0 && (
-                            <div className='closs-container'>
-                                <div className='closs-indicatorContainer' onClick={e => removeAllStop()} >
-                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M8 8.707l3.646 3.647.708-.707L8.707 8l3.647-3.646-.707-.708L8 7.293 4.354 3.646l-.707.708L7.293 8l-3.646 3.646.707.708L8 8.707z"></path>
-                                    </svg>
-                                </div>
-                            </div>)}
-                    </div>
+                    <StopInputContainer stop={stop} state={state}
+                        HandleRemoveStop={(key: string) => HandleRemoveStop(key)}
+                        openTip={() => openTip()}
+                        onStopChange={(key: string) => onStopChange(key)}
+                        onStopAdded={(e: any) => onStopAdded(e)}
+                        removeAllStop={() => removeAllStop()}>
+                    </StopInputContainer>
+
                     {show && (
                         <>
                             <Row className='disabled-input' >
