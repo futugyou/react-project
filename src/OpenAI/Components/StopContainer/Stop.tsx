@@ -5,7 +5,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import StopInput from './StopInput'
+import StopInput from './StopInput';
+import StopDescribe from './StopDescribe';
 
 function Stop(props: any) {
     let stops = new Set<string>(props.stop);
@@ -73,18 +74,8 @@ function Stop(props: any) {
         <>
             <OverlayTrigger placement="left" overlay={stopPopover}>
                 <Form.Group className="mb-3 stop-container" >
-                    <Row>
-                        <Col>
-                            <Form.Label>{display}</Form.Label>
-                        </Col>
-                    </Row>
-                    {subDisplay && (
-                        <Row>
-                            <Col>
-                                <Form.Label className='control-note' >{subDisplay}</Form.Label>
-                            </Col>
-                        </Row>
-                    )}
+                    <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>
+
                     <div className='stop-sub-container'>
                         <div className='stop-without-close' onClick={e => openTip()} >
                             {stop && (elements)}
