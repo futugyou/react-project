@@ -10,25 +10,3 @@
     box-sizing: border-box;
     font-size: 14px;
 }
-
-
-
-.disabled-input {
-    margin-top: 10px !important;
-    position: absolute;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    left: 0;
-    right: 0;
-}
-
-.stop-multiValue {
-    background-color: #ececf1;
-    border-radius: 2px;
-    display: flex;
-    margin: 2px;
-    min-width: 0px;
-    box-sizing: border-box;
-    height: 30px;
-}

@@ -1,5 +1,5 @@
-import './Stop.css'
-import { KeyboardEvent, useState } from 'react'
+import './Stop.css';
+import { KeyboardEvent, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import StopDescribe from './StopDescribe';
 import StopInputContainer from './StopInputContainer';
+import StopTip from './StopTip';
 
 function Stop(props: any) {
     let stops = new Set<string>(props.stop);
@@ -78,15 +79,7 @@ function Stop(props: any) {
                         removeAllStop={() => removeAllStop()}>
                     </StopInputContainer>
 
-                    {show && (
-                        <>
-                            <Row className='disabled-input' >
-                                <Col>
-                                    <Form.Control type="text" disabled placeholder="Enter a sequence" value={tip} />
-                                </Col>
-                            </Row>
-                        </>
-                    )}
+                    <StopTip show={show} tip={tip}></StopTip>
                 </Form.Group>
             </OverlayTrigger>
         </>

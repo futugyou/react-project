@@ -1,3 +1,13 @@
+.stop-multiValue {
+    background-color: #ececf1;
+    border-radius: 2px;
+    display: flex;
+    margin: 2px;
+    min-width: 0px;
+    box-sizing: border-box;
+    height: 30px;
+}
+
 .stop-item {
     border-radius: 2px;
     color: #353740;
