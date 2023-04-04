@@ -12,7 +12,7 @@ import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
-import Stop from './Stop';
+import Stop from './StopContainer/Stop';
 import { OpenAIModel } from '../Models/OpenAIModel';
 import set from '../Services/Setting';
 import { useLoaderData } from "react-router-dom";

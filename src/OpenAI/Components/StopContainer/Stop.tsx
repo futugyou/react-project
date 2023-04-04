@@ -5,6 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import StopInput from './StopInput'
 
 function Stop(props: any) {
     let stops = new Set<string>(props.stop);
@@ -20,14 +21,7 @@ function Stop(props: any) {
     const elements: any[] = [];
     stop.forEach((item) => {
         elements.push(
-            <div key={item} className="stop-multiValue">
-                <div className="stop-item">  {item == '\n' ? '↵' : item}</div>
-
-                <div className="stop-close" onClick={e => removeStop(item)} >
-                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="14px" width="14px" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M8 8.707l3.646 3.647.708-.707L8.707 8l3.647-3.646-.707-.708L8 7.293 4.354 3.646l-.707.708L7.293 8l-3.646 3.646.707.708L8 8.707z"></path></svg>
-                </div>
-            </div>
+            <StopInput stopKey={item} onRemoveStop={(key: string) => HandleRemoveStop(key)}></StopInput>
         )
     });
     const stopPopover = (
@@ -44,7 +38,7 @@ function Stop(props: any) {
         setState('')
     }
 
-    const removeStop = (value: string) => {
+    const HandleRemoveStop = (value: string) => {
         let s = stop
         s.delete(value)
         setStop(s)

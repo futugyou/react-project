@@ -1,0 +1,25 @@
+.stop-item {
+    border-radius: 2px;
+    color: #353740;
+    font-size: 85%;
+    overflow: hidden;
+    padding: 3px 3px 3px 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.stop-close {
+    box-align: center;
+    align-items: center;
+    border-radius: 2px;
+    display: flex;
+    padding-left: 4px;
+    padding-right: 4px;
+    box-sizing: border-box;
+}
+
+.stop-close:hover {
+    background-color: rgb(255, 189, 173);
+    color: rgb(222, 53, 11);
+}
