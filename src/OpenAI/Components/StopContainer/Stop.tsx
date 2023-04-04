@@ -3,8 +3,7 @@ import { KeyboardEvent, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 import StopDescribe from './StopDescribe';
 import StopInputContainer from './StopInputContainer';
 import StopTip from './StopTip';
@@ -28,7 +27,7 @@ function Stop(props: any) {
         </Popover>
     );
 
-    const openTip = () => {
+    const HandleOpenTip = () => {
         setShow(!show);
         setTip('')
         setState('')
@@ -38,14 +37,16 @@ function Stop(props: any) {
         let s = stop
         s.delete(value)
         setStop(s)
+        props.onStopChange(Array.from(s.values()))
     }
 
-    const removeAllStop = () => {
+    const HandleRemoveAllStop = () => {
         let s = new Set<string>();
         setStop(s)
+        props.onStopChange(Array.from(s.values()))
     }
 
-    const onStopChange = (value: string) => {
+    const HandleStopChange = (value: string) => {
         setState(value)
         setShow(true)
         if (value.length > 0) {
@@ -55,13 +56,14 @@ function Stop(props: any) {
         }
     }
 
-    const onStopAdded = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const HandleStopAdded = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (e.key == "Enter" && state != '') {
             let s = stop
             s.add(state)
             setStop(s)
             setTip('')
             setState('')
+            props.onStopChange(Array.from(s.values()))
         }
     }
 
@@ -72,11 +74,11 @@ function Stop(props: any) {
                     <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>
 
                     <StopInputContainer stop={stop} state={state}
-                        HandleRemoveStop={(key: string) => HandleRemoveStop(key)}
-                        openTip={() => openTip()}
-                        onStopChange={(key: string) => onStopChange(key)}
-                        onStopAdded={(e: any) => onStopAdded(e)}
-                        removeAllStop={() => removeAllStop()}>
+                        onRemoveStop={(key: string) => HandleRemoveStop(key)}
+                        onOpenTip={() => HandleOpenTip()}
+                        onStopChange={(key: string) => HandleStopChange(key)}
+                        onStopAdded={(e: any) => HandleStopAdded(e)}
+                        onRemoveAllStop={() => HandleRemoveAllStop()}>
                     </StopInputContainer>
 
                     <StopTip show={show} tip={tip}></StopTip>

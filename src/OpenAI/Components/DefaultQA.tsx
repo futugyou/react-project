@@ -1,21 +1,25 @@
-import { useState, useEffect } from 'react'
-import './DefaultQA.css'
+import './DefaultQA.css';
+import { useState, useEffect } from 'react';
+import { useLoaderData } from "react-router-dom";
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
 import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
 import Temperature from './Temperature';
 import MaxTokens from './MaxTokens';
 import TopP from './TopP';
+
 import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
 import Stop from './StopContainer/Stop';
+
 import { OpenAIModel } from '../Models/OpenAIModel';
 import set from '../Services/Setting';
-import { useLoaderData } from "react-router-dom";
 import completion from '../Services/Completion';
 
 export async function qaloader() {
@@ -82,12 +86,10 @@ function DefaultQA() {
         })
     }
 
-    const handleStopChange = (value: string) => {
-        let stop: string[] = []
-        stop.push(value)
+    const handleStopChange = (value: string[]) => {
         setState({
             ...state,
-            stop: stop
+            stop: value
         })
     }
 
@@ -129,7 +131,7 @@ function DefaultQA() {
 
                 <MaxTokens max_tokens={state.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
 
-                <Stop stop={state.stop} onStopChange={(stop: string) => handleStopChange(stop)} ></Stop>
+                <Stop stop={state.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>
 
                 <TopP top_p={state.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 

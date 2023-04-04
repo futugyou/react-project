@@ -6,13 +6,13 @@ function StopInputContainer(props: any) {
     const existedStops: any[] = [];
     props.stop.forEach((item: string) => {
         existedStops.push(
-            <ExistedStop stopKey={item} onRemoveStop={(key: string) => props.HandleRemoveStop(key)}></ExistedStop>
+            <ExistedStop key={item} stopKey={item} onRemoveStop={(key: string) => props.onRemoveStop(key)}></ExistedStop>
         )
     });
 
     return (
         <div className='stop-sub-container'>
-            <div className='stop-without-close' onClick={e => props.openTip()} >
+            <div className='stop-without-close' onClick={e => props.onOpenTip()} >
                 {existedStops}
                 <div className="close-container">
                     <div className="d-i-block">
@@ -25,7 +25,7 @@ function StopInputContainer(props: any) {
                 </div>
             </div>
 
-            <CleanAllStop stop={props.stop} removeAllStop={() => props.removeAllStop()}></CleanAllStop>
+            <CleanAllStop stop={props.stop} onRemoveAllStop={() => props.onRemoveAllStop()}></CleanAllStop>
         </div>
     )
 }
