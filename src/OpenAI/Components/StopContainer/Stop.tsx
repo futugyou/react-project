@@ -79,7 +79,7 @@ function Stop(props: any) {
                         onOpenTip={() => HandleOpenTip()}
                         onStopChange={(key: string) => HandleStopChange(key)}
                         onStopAdded={(e: any) => HandleStopAdded(e)} >
-                        <CleanAllStop stop={stop} onRemoveAllStop={() => HandleRemoveAllStop()}></CleanAllStop>
+                        <CleanAllStop show={stop.size > 0} onRemoveAllStop={() => HandleRemoveAllStop()}></CleanAllStop>
                     </StopInputContainer>
 
                     <StopTip show={show} tip={tip}></StopTip>

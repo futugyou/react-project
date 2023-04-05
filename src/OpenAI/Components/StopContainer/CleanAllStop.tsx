@@ -1,7 +1,12 @@
 import './CleanAllStop.css';
 
-function CleanAllStop({ stop, onRemoveAllStop }: { stop: Set<string>, onRemoveAllStop: any }) {
-    if (stop == null || stop == undefined || stop.size == 0) {
+interface ICleanAllStopProps {
+    show: boolean;
+    onRemoveAllStop: () => void;
+}
+
+function CleanAllStop({ show, onRemoveAllStop }: ICleanAllStopProps) {
+    if (!show) {
         return null
     }
 
