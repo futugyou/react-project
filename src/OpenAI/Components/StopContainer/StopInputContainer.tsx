@@ -5,7 +5,7 @@ function StopInputContainer(props: any) {
     const existedStops: any[] = [];
     props.stop.forEach((item: string) => {
         existedStops.push(
-            <ExistedStop key={item} stopKey={item} onRemoveStop={(key: string) => props.onRemoveStop(key)}></ExistedStop>
+            <ExistedStop key={item} itemKey={item} onRemoveStop={(key: string) => props.onRemoveStop(key)}></ExistedStop>
         )
     });
 

@@ -13,8 +13,9 @@ function Stop(props: any) {
     let stops = new Set<string>(props.stop);
     const [stop, setStop] = useState<Set<string>>(stops)
     const [state, setState] = useState('');
-    const [tip, setTip] = useState('');
     const [show, setShow] = useState(false);
+
+    let tip = state.length > 0 ? ("Add \"" + state + "\"") : "";
 
     let display = "Stop sequences"
     let subDisplay = "Enter sequence and press Tab"
@@ -30,7 +31,6 @@ function Stop(props: any) {
 
     const HandleOpenTip = () => {
         setShow(!show);
-        setTip('')
         setState('')
     }
 
@@ -50,11 +50,6 @@ function Stop(props: any) {
     const HandleStopChange = (value: string) => {
         setState(value)
         setShow(true)
-        if (value.length > 0) {
-            setTip("Add \"" + value + "\"")
-        } else {
-            setTip('')
-        }
     }
 
     const HandleStopAdded = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -62,7 +57,7 @@ function Stop(props: any) {
             let s = stop
             s.add(state)
             setStop(s)
-            setTip('')
+            // setTip('')
             setState('')
             props.onStopChange(Array.from(s.values()))
         }
