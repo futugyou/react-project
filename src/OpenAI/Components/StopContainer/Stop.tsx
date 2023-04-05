@@ -7,6 +7,7 @@ import Popover from 'react-bootstrap/Popover';
 import StopDescribe from './StopDescribe';
 import StopInputContainer from './StopInputContainer';
 import StopTip from './StopTip';
+import CleanAllStop from './CleanAllStop';
 
 function Stop(props: any) {
     let stops = new Set<string>(props.stop);
@@ -77,8 +78,8 @@ function Stop(props: any) {
                         onRemoveStop={(key: string) => HandleRemoveStop(key)}
                         onOpenTip={() => HandleOpenTip()}
                         onStopChange={(key: string) => HandleStopChange(key)}
-                        onStopAdded={(e: any) => HandleStopAdded(e)}
-                        onRemoveAllStop={() => HandleRemoveAllStop()}>
+                        onStopAdded={(e: any) => HandleStopAdded(e)} >
+                        <CleanAllStop stop={stop} onRemoveAllStop={() => HandleRemoveAllStop()}></CleanAllStop>
                     </StopInputContainer>
 
                     <StopTip show={show} tip={tip}></StopTip>

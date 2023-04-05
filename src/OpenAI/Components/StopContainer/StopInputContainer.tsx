@@ -1,6 +1,5 @@
 import './StopInputContainer.css';
 import ExistedStop from './ExistedStop';
-import CleanAllStop from './CleanAllStop';
 
 function StopInputContainer(props: any) {
     const existedStops: any[] = [];
@@ -24,8 +23,7 @@ function StopInputContainer(props: any) {
                     </div>
                 </div>
             </div>
-
-            <CleanAllStop stop={props.stop} onRemoveAllStop={() => props.onRemoveAllStop()}></CleanAllStop>
+            {props.children}
         </div>
     )
 }
