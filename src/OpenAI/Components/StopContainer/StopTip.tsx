@@ -3,17 +3,17 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function StopTip({ show, tip }: { show: boolean, tip: string }) {
+function StopTip({ show = false, tip }: { show: boolean, tip: string }) {
+    if (!show) {
+        return null
+    }
+
     return (
-        <>
-            {show && (
-                <Row className='disabled-input'>
-                    <Col>
-                        <Form.Control type="text" disabled placeholder="Enter a sequence" value={tip} />
-                    </Col>
-                </Row>
-            )}
-        </>
+        <Row className='disabled-input'>
+            <Col>
+                <Form.Control type="text" disabled placeholder="Enter a sequence" value={tip} />
+            </Col>
+        </Row>
     )
 }
 
