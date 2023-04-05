@@ -2,10 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function StopDescribe(props: any) {
-    const display: string = props.display
-    const subDisplay: string = props.subDisplay
-
+function StopDescribe({ display, subDisplay }: { display: string, subDisplay: string }) {
     return (
         <>
             <Row>

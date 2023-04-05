@@ -3,10 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function StopTip(props: any) {
-    const show: boolean = props.show
-    const tip: string = props.tip
-
+function StopTip({ show, tip }: { show: boolean, tip: string }) {
     return (
         <>
             {show && (
