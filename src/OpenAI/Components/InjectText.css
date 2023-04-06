@@ -1,0 +1,26 @@
+.inject-text-ta-wrap {
+    position: relative;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.inject-text-ta {
+    border: 1px solid #c5c5d2;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: block;
+    font-size: 13px;
+    height: 32px;
+    line-height: 1.5em;
+    outline: none;
+    padding: 6px 12px 4px 32px;
+    resize: none;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.inject-text-cb {
+    left: 20px;
+    position: absolute;
+    top: 4px;
+}

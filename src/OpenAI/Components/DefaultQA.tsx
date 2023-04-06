@@ -146,9 +146,9 @@ function DefaultQA() {
 
                 <Bestof best_of={state.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>
 
-                <InjectText text='↵A:' label="Inject start text" descript="Text to append after the user's input to format the model for a response."></InjectText>
+                <InjectText text='↵A: ' label="Inject start text" descript="Text to append after the user's input to format the model for a response."></InjectText>
 
-                <InjectText text='↵↵Q:' label="Inject restart text" descript="Text to append after the model's generation to continue the patterned structure."></InjectText>
+                <InjectText text='↵↵Q: ' label="Inject restart text" descript="Text to append after the model's generation to continue the patterned structure."></InjectText>
             </Col>
         </>
     )

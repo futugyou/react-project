@@ -1,3 +1,4 @@
+import './InjectText.css'
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -31,10 +32,10 @@ function InjectText({ text = '', label = '', descript = '' }) {
                         </OverlayTrigger>
                     </Col>
                 </Row>
-                <Row>
+                <Row className='inject-text-ta-wrap'>
                     <Col>
-                        <Form.Check type="checkbox" checked={check} onChange={() => setCheck(!check)} />
-                        <Form.Control type="text" value={inject} onChange={() => setInject(inject)} />
+                        <Form.Check className='inject-text-cb' type="checkbox" checked={check} onChange={() => setCheck(!check)} />
+                        <input className='inject-text-ta' type="text" value={inject} onChange={(e) => setInject(e.target.value)}></input>
                     </Col>
                 </Row>
 
