@@ -127,7 +127,7 @@ function DefaultQA() {
                     </Col>
                 </Form.Group>
             </Col>
-            <Col xs={2} className="qa-item-align" >
+            <Col xs={2} className="qa-item-align opertion-container" >
                 <ModeSelect></ModeSelect>
 
                 <ModelSelect model={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>

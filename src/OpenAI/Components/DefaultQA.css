@@ -16,3 +16,8 @@
     overflow-y: auto;
     overflow-x: clip;
 }
+
+.opertion-container {
+    height: calc(80vh - 35px);
+    overflow: auto;
+}
