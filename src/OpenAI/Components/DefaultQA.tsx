@@ -17,6 +17,7 @@ import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
 import Stop from './StopContainer/Stop';
+import ModeSelect from './ModeSelect';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
 import set from '../Services/Setting';
@@ -125,6 +126,8 @@ function DefaultQA() {
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align" >
+                <ModeSelect></ModeSelect>
+
                 <ModelSelect model={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
 
                 <Temperature temperature={state.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
