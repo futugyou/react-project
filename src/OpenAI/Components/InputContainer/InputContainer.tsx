@@ -14,8 +14,8 @@ function InputContainer(props: any) {
 
     const HandleInputContainerClick = () => {
         inputRef.current!.focus();
-        if (props.onOpenTip) {
-            props.onOpenTip()
+        if (props.onInputContainerClick) {
+            props.onInputContainerClick()
         }
         inputRef.current!.style.width = "2px";
     }
