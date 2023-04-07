@@ -45,6 +45,7 @@ function Stop(props: any) {
         let s = new Set<string>();
         setStop(s)
         props.onStopChange(Array.from(s.values()))
+        setState('')
     }
 
     const HandleStopChange = (value: string) => {
@@ -52,7 +53,7 @@ function Stop(props: any) {
         setShow(true)
     }
 
-    const HandleStopAdded = (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const HandleStopAdded = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key == "Enter" && state != '') {
             let s = stop
             s.add(state)
@@ -70,10 +71,10 @@ function Stop(props: any) {
                     <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>
 
                     <StopInputContainer stop={stop} state={state}
-                        onRemoveStop={(key: string) => HandleRemoveStop(key)}
+                        onRemoveItem={(key: string) => HandleRemoveStop(key)}
                         onOpenTip={() => HandleOpenTip()}
-                        onStopChange={(key: string) => HandleStopChange(key)}
-                        onStopAdded={(e: any) => HandleStopAdded(e)} >
+                        onItemChange={(key: string) => HandleStopChange(key)}
+                        onKeyDown={(e: any) => HandleStopAdded(e)} >
                         <CleanAllStop show={stop.size > 0} onRemoveAllItem={() => HandleRemoveAllStop()}></CleanAllStop>
                     </StopInputContainer>
 

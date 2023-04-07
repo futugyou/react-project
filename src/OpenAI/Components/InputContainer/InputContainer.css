@@ -43,7 +43,7 @@
 
 .input-item {
     box-sizing: content-box;
-    width: auto;
+    width: 2px;
     background: 0px center;
     border: 0px;
     font-size: inherit;
@@ -51,20 +51,4 @@
     outline: 0px;
     padding: 0px;
     color: inherit;
-}
-
-.input-display-layer {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    visibility: hidden;
-    height: 0px;
-    overflow: scroll;
-    white-space: pre;
-    font-size: 14px;
-    font-family: ColfaxAI, helvetica, sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: normal;
-    text-transform: none;
 }
