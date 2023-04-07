@@ -1,4 +1,4 @@
-.stop-sub-container {
+.input-container-all {
     box-align: center;
     align-items: center;
     background-color: rgb(255, 255, 255);
@@ -19,7 +19,7 @@
     outline: 0px !important;
 }
 
-.stop-without-close {
+.input-container-without-closeall {
     box-align: center;
     align-items: center;
     display: flex;
@@ -31,20 +31,17 @@
     box-sizing: border-box;
 }
 
-.close-container {
+.input-container {
     margin: 2px;
     padding-bottom: 2px;
     padding-top: 2px;
     visibility: visible;
     color: #353740;
     box-sizing: border-box;
-}
-
-.d-i-block {
     display: inline-block;
 }
 
-.stop-input {
+.input-item {
     box-sizing: content-box;
     width: auto;
     background: 0px center;
@@ -56,7 +53,7 @@
     color: inherit;
 }
 
-.what-that {
+.input-display-layer {
     position: absolute;
     top: 0px;
     left: 0px;

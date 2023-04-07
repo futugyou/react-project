@@ -16,7 +16,7 @@ import TopP from './TopP';
 import Frequency from './Frequency';
 import Presence from './Presence';
 import Bestof from './Bestof';
-import Stop from './StopContainer/Stop';
+import Stop from './InputContainer/Stop';
 import ModeSelect from './ModeSelect';
 
 import InjectText from './InjectText';

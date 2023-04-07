@@ -1,4 +1,4 @@
-.stop-multiValue {
+.multiValue {
     background-color: #ececf1;
     border-radius: 2px;
     display: flex;
@@ -8,7 +8,7 @@
     height: 30px;
 }
 
-.stop-item {
+.item {
     border-radius: 2px;
     color: #353740;
     font-size: 85%;
@@ -19,7 +19,7 @@
     box-sizing: border-box;
 }
 
-.stop-close {
+.close {
     box-align: center;
     align-items: center;
     border-radius: 2px;
@@ -29,7 +29,7 @@
     box-sizing: border-box;
 }
 
-.stop-close:hover {
+.close:hover {
     background-color: rgb(255, 189, 173);
     color: rgb(222, 53, 11);
 }

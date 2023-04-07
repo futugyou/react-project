@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
-import StopDescribe from './StopDescribe';
-import StopInputContainer from './StopInputContainer';
-import StopTip from './StopTip';
-import CleanAllStop from './CleanAllStop';
+import StopDescribe from './Describe';
+import StopInputContainer from './InputContainer';
+import StopTip from './Tip';
+import CleanAllStop from './CleanAllItem';
 
 function Stop(props: any) {
     let stops = new Set<string>(props.stop);
@@ -74,7 +74,7 @@ function Stop(props: any) {
                         onOpenTip={() => HandleOpenTip()}
                         onStopChange={(key: string) => HandleStopChange(key)}
                         onStopAdded={(e: any) => HandleStopAdded(e)} >
-                        <CleanAllStop show={stop.size > 0} onRemoveAllStop={() => HandleRemoveAllStop()}></CleanAllStop>
+                        <CleanAllStop show={stop.size > 0} onRemoveAllItem={() => HandleRemoveAllStop()}></CleanAllStop>
                     </StopInputContainer>
 
                     <StopTip show={show} tip={tip}></StopTip>

@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function StopDescribe({ display, subDisplay }: { display: string, subDisplay: string }) {
+function Describe({ display, subDisplay }: { display: string, subDisplay: string }) {
     return (
         <>
             <Row>
@@ -23,4 +23,4 @@ function StopDescribe({ display, subDisplay }: { display: string, subDisplay: st
     )
 }
 
-export default StopDescribe
+export default Describe
