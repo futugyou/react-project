@@ -39,7 +39,7 @@ function InputContainer(props: any) {
 
     return (
         <div className='input-container-all'>
-            <div className='input-container-without-closeall' onClick={() => HandleInputContainerClick()} >
+            <div className='input-container-with-existed-items' onClick={() => HandleInputContainerClick()} >
                 {existedItems}
                 <div className="input-container">
                     <input className='input-item' autoCapitalize="none" autoComplete="off" autoCorrect="off" spellCheck="false" type="text" aria-autocomplete="list"

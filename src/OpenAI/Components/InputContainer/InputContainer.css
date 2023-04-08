@@ -19,7 +19,7 @@
     outline: 0px !important;
 }
 
-.input-container-without-closeall {
+.input-container-with-existed-items {
     box-align: center;
     align-items: center;
     display: flex;

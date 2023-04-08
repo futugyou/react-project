@@ -6,9 +6,19 @@ import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function InjectText({ text = '', label = '', descript = '' }) {
+interface IInjectTextProps {
+    text: string
+    label: string
+    descript: string
+    onInjectChanged: (text: string) => void
+    onCheckChanged: (checked: boolean) => void
+
+}
+
+function InjectText({ text = '', label = '', descript = '', onInjectChanged, onCheckChanged }: IInjectTextProps) {
     const [inject, setInject] = useState<string>(text)
     const [check, setCheck] = useState<boolean>(true)
+    const input_className = "inject-text-ta" + (check ? "" : " off")
 
     const injectDescriptPopover = (
         <Popover id="inject-popover">
@@ -18,8 +28,19 @@ function InjectText({ text = '', label = '', descript = '' }) {
         </Popover>
     );
 
-    const onInjectChange = (value: string) => {
+    const handleInjectChanged = (value: string) => {
         setInject(value);
+        if (onInjectChanged) {
+            onInjectChanged(value);
+        }
+    }
+
+    const handleCheckChanged = () => {
+        let c: boolean = !check
+        setCheck(c)
+        if (onCheckChanged) {
+            onCheckChanged(c)
+        }
     }
 
     return (
@@ -34,8 +55,8 @@ function InjectText({ text = '', label = '', descript = '' }) {
                 </Row>
                 <Row className='inject-text-ta-wrap'>
                     <Col>
-                        <Form.Check className='inject-text-cb' type="checkbox" checked={check} onChange={() => setCheck(!check)} />
-                        <input className='inject-text-ta' type="text" value={inject} onChange={(e) => setInject(e.target.value)}></input>
+                        <Form.Check className='inject-text-cb' type="checkbox" checked={check} onChange={() => handleCheckChanged()} />
+                        <input className={input_className} type="text" value={inject} onChange={(e) => handleInjectChanged(e.target.value)}></input>
                     </Col>
                 </Row>
 

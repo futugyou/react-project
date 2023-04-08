@@ -19,8 +19,13 @@
     width: 100%;
 }
 
+.inject-text-ta.off {
+    opacity: .5;
+}
+
 .inject-text-cb {
     left: 20px;
     position: absolute;
     top: 4px;
+    z-index: 1;
 }
