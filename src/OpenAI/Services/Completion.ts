@@ -19,8 +19,12 @@ const createCompletion = async (data: OpenAIModel) => {
             ...DefaultCompletionModel,
             ...data,
         }
-    } catch (error) {
+    } catch (error: any) {
         console.log(error);
+        result = {
+            ...result,
+            error: error.message
+        }
     }
 
     return result;
