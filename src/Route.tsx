@@ -1,11 +1,11 @@
 import { lazy } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Layout from "./Layout";
-import { qaloader } from './OpenAI/Components/DefaultQA';
+import { qaloader } from './OpenAI/Components/Playground';
 
 const App = lazy(() => import('./00.Tutorial/App'))
 const Game = lazy(() => import('./00.Tutorial/Game'))
-const QA = lazy(() => import('./OpenAI/Components/DefaultQA'))
+const Playground = lazy(() => import('./OpenAI/Components/Playground'))
 const NameForm = lazy(() => import('./09.Forms/NameForm'))
 const Calculator = lazy(() => import('./10.LiftingStateUp/Calculator'))
 const WelcomeDialog = lazy(() => import('./11.Compose/WelcomeDialog'))
@@ -52,8 +52,8 @@ const router = createBrowserRouter([
                 element: <Game />,
             },
             {
-                path: "/default-qa",
-                element: <QA />,
+                path: "/playground",
+                element: <Playground />,
                 loader: qaloader,
             },
             {

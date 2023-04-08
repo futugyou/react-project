@@ -1,4 +1,4 @@
-import './DefaultQA.css';
+import './Playground.css';
 import { useState, useEffect } from 'react';
 import { useLoaderData } from "react-router-dom";
 
@@ -30,7 +30,7 @@ export async function qaloader() {
     return data;
 }
 
-function DefaultQA() {
+function Playground() {
     const data = useLoaderData() as OpenAIModel;
     const [state, setState] = useState(data)
     useEffect(() => {
@@ -154,4 +154,4 @@ function DefaultQA() {
     )
 }
 
-export default DefaultQA
+export default Playground

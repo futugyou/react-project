@@ -20,7 +20,7 @@ function Layout() {
                             <NavLink to={`app`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to={`default-qa`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Q&A</NavLink>
+                            <NavLink to={`playground`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >OpenAI Playground</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to={`game`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Game</NavLink>

@@ -1,4 +1,3 @@
-import './DefaultQA.css';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
