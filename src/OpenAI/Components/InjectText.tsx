@@ -9,13 +9,13 @@ import Col from 'react-bootstrap/Col';
 interface IInjectTextProps {
     text: string
     label: string
-    descript: string
-    onInjectChanged: (text: string) => void
-    onCheckChanged: (checked: boolean) => void
+    descript?: string
+    onInjectChanged?: (text: string) => void
+    onCheckChanged?: (checked: boolean) => void
 
 }
 
-function InjectText({ text = '', label = '', descript = '', onInjectChanged, onCheckChanged }: IInjectTextProps) {
+function InjectText({ text = '', label = '', descript, onInjectChanged, onCheckChanged }: IInjectTextProps) {
     const [inject, setInject] = useState<string>(text)
     const [check, setCheck] = useState<boolean>(true)
     const input_className = "inject-text-ta" + (check ? "" : " off")
@@ -48,9 +48,13 @@ function InjectText({ text = '', label = '', descript = '', onInjectChanged, onC
             <Form.Group className="mb-3" >
                 <Row>
                     <Col>
-                        <OverlayTrigger placement="left" overlay={injectDescriptPopover}>
+                        {descript && (
+                            <OverlayTrigger placement="left" overlay={injectDescriptPopover}>
+                                <Form.Label>{label}</Form.Label>
+                            </OverlayTrigger>)}
+                        {!descript && (
                             <Form.Label>{label}</Form.Label>
-                        </OverlayTrigger>
+                        )}
                     </Col>
                 </Row>
                 <Row className='inject-text-ta-wrap'>

@@ -37,6 +37,11 @@ function Playground() {
         setState(data)
     }, [data]);
 
+    let enableInjectStart: boolean = false;
+    let enableInjectRestart: boolean = false;
+    let enableInjectStartText: string = '';
+    let enableInjectRestartText: string = '';
+
     const handlePromptChange = (value: string) => {
         var newData = Object.assign({}, state, { prompt: value });
         setState(newData);
@@ -97,22 +102,52 @@ function Playground() {
     }
 
     const handleCompletion = async () => {
-        const response = await completion.createCompletion(state)
+        let data: OpenAIModel = state
+        console.log(enableInjectStart, enableInjectStartText)
+        if (enableInjectStart && enableInjectStartText.length > 0) {
+            data = {
+                ...data,
+                prompt: data.prompt + enableInjectStartText
+            }
+        }
+
+        const response = await completion.createCompletion(data)
         if (response.error != '') {
             setState({
-                ...state,
-                prompt: state.prompt + response.error
+                ...data,
+                prompt: data.prompt + response.error
             })
         } else {
-            let text = state.prompt
+            let text = data.prompt
             response.texts.forEach(t => {
                 text += t
             });
+
+            if (enableInjectRestart && enableInjectRestartText.length > 0) {
+                text += enableInjectRestartText
+            }
+
             setState({
-                ...state,
+                ...data,
                 prompt: text
             })
         }
+    }
+
+    const HandleInjectStartChanged = (injectText: string) => {
+        enableInjectStartText = injectText
+    }
+
+    const HandleCheckStartChanged = (checked: boolean) => {
+        enableInjectStart = checked;
+    }
+
+    const HandleInjectRestartChanged = (injectText: string) => {
+        enableInjectRestartText = injectText
+    }
+
+    const HandleCheckRestartChanged = (checked: boolean) => {
+        enableInjectRestart = checked;
     }
 
     return (
@@ -146,9 +181,21 @@ function Playground() {
 
                 <Bestof best_of={state.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>
 
-                <InjectText text='↵A: ' label="Inject start text" descript="Text to append after the user's input to format the model for a response."></InjectText>
+                <InjectText
+                    text='↵A: '
+                    label="Inject start text"
+                    descript="Text to append after the user's input to format the model for a response."
+                    onInjectChanged={(text: string) => HandleInjectStartChanged(text)}
+                    onCheckChanged={(checked: boolean) => HandleCheckStartChanged(checked)}
+                ></InjectText>
 
-                <InjectText text='↵↵Q: ' label="Inject restart text" descript="Text to append after the model's generation to continue the patterned structure."></InjectText>
+                <InjectText
+                    text='↵↵Q: '
+                    label="Inject restart text"
+                    descript="Text to append after the model's generation to continue the patterned structure."
+                    onInjectChanged={(text: string) => HandleInjectRestartChanged(text)}
+                    onCheckChanged={(checked: boolean) => HandleCheckRestartChanged(checked)}
+                ></InjectText>
             </Col>
         </>
     )
