@@ -26,7 +26,7 @@ import set from '../Services/Example';
 import completion from '../Services/Completion';
 
 export async function qaloader() {
-    const data = await set.getExample("default-qa");
+    const data = await set.getExample("default-grammar");
     return data;
 }
 
@@ -38,12 +38,12 @@ function Playground() {
     }, [data]);
 
     const [injectStart, setInjectStart] = useState({
-        checked: true,
+        checked: false,
         text: "\nA: "
     })
 
     const [injectRestart, setInjectRestart] = useState({
-        checked: true,
+        checked: false,
         text: "\n\nQ: "
     })
 
@@ -207,6 +207,7 @@ function Playground() {
 
                 <InjectText
                     text={injectStart.text}
+                    checked={injectStart.checked}
                     label="Inject start text"
                     descript="Text to append after the user's input to format the model for a response."
                     onInjectChanged={(text: string) => HandleInjectStartChanged(text)}
@@ -215,6 +216,7 @@ function Playground() {
 
                 <InjectText
                     text={injectRestart.text}
+                    checked={injectRestart.checked}
                     label="Inject restart text"
                     descript="Text to append after the model's generation to continue the patterned structure."
                     onInjectChanged={(text: string) => HandleInjectRestartChanged(text)}

@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 interface IInjectTextProps {
     text: string
+    checked: boolean
     label: string
     descript?: string
     onInjectChanged?: (text: string) => void
@@ -15,9 +16,9 @@ interface IInjectTextProps {
 
 }
 
-function InjectText({ text = '', label = '', descript, onInjectChanged, onCheckChanged }: IInjectTextProps) {
+function InjectText({ text = '', label = '', checked = false, descript, onInjectChanged, onCheckChanged }: IInjectTextProps) {
     const [inject, setInject] = useState<string>(text)
-    const [check, setCheck] = useState<boolean>(true)
+    const [check, setCheck] = useState<boolean>(checked)
     const input_className = "inject-text-ta" + (check ? "" : " off")
 
     const injectDescriptPopover = (
