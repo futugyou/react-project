@@ -22,6 +22,7 @@ import ModeSelect from './ModeSelect';
 import InjectText from './InjectText';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
+import { ExampleModel } from '../Models/ExampleModel';
 import set from '../Services/Example';
 import completion from '../Services/Completion';
 
@@ -30,12 +31,31 @@ export async function qaloader() {
     return data;
 }
 
+const MapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
+    let result: OpenAIModel = {
+        model: data.model,
+        prompt: data.prompt,
+        max_tokens: data.max_tokens,
+        top_p: data.top_p,
+        temperature: data.temperature,
+        frequency_penalty: data.frequency_penalty,
+        presence_penalty: data.presence_penalty,
+        stop: data.stop,
+        best_of: 1,
+        echo: false,
+        logprobs: 0,
+    };
+    return result
+}
+
 function Playground() {
-    const data = useLoaderData() as OpenAIModel;
+    const exampData = useLoaderData() as ExampleModel;
+    const data: OpenAIModel = MapExampleModelToOpenAIModel(exampData)
     const [state, setState] = useState(data)
     useEffect(() => {
         setState(data)
-    }, [data]);
+    }, [exampData]);
+
 
     const [injectStart, setInjectStart] = useState({
         checked: false,
