@@ -28,10 +28,10 @@ import completion from '../Services/Completion';
 
 export async function qaloader() {
     const data = await set.getExample("default-grammar");
-    return data;
+    return mapExampleModelToOpenAIModel(data);
 }
 
-const MapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
+const mapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
     let result: OpenAIModel = {
         model: data.model,
         prompt: data.prompt,
@@ -49,12 +49,11 @@ const MapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
 }
 
 function Playground() {
-    const exampData = useLoaderData() as ExampleModel;
-    const data: OpenAIModel = MapExampleModelToOpenAIModel(exampData)
+    const data = useLoaderData() as OpenAIModel;
     const [state, setState] = useState(data)
     useEffect(() => {
         setState(data)
-    }, [exampData]);
+    }, [data]);
 
 
     const [injectStart, setInjectStart] = useState({
