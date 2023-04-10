@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 import { OpenAIModel, DefaultOpenAIModel } from '../Models/OpenAIModel';
+import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
 
 const settingPath = 'completion/'
 
@@ -17,6 +18,23 @@ const getExample = async (settingName: string) => {
             ...DefaultOpenAIModel,
             ...data,
         }
+    } catch (error) {
+        console.log(error);
+    }
+
+    return result;
+}
+
+const getAllExamples = async () => {
+    const options: AxiosRequestConfig = {
+        url: `${openaiserver}${settingPath}`,
+        method: "GET",
+    };
+
+    let result: ExampleModel[] = [];
+    try {
+        const { data, status } = await axios<ExampleModel[]>(options);
+        result = data
     } catch (error) {
         console.log(error);
     }
