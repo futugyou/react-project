@@ -4,7 +4,7 @@ import { OpenAIModel, DefaultOpenAIModel } from '../Models/OpenAIModel';
 
 const settingPath = 'completion/'
 
-const getSetting = async (settingName: string) => {
+const getExample = async (settingName: string) => {
     const options: AxiosRequestConfig = {
         url: `${openaiserver}${settingPath}${settingName}`,
         method: "GET",
@@ -26,5 +26,5 @@ const getSetting = async (settingName: string) => {
 
 
 export default {
-    getSetting: getSetting,
+    getExample: getExample,
 }

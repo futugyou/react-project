@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
-import { OpenAIModel, CompletionModel, DefaultCompletionModel } from '../Models/OpenAIModel';
+import { OpenAIModel } from '../Models/OpenAIModel';
+import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
 
 const createCompletionPath = 'qa/'
 

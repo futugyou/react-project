@@ -26,30 +26,11 @@ const DefaultOpenAIModel: OpenAIModel = {
     logprobs: 0,
 };
 
-interface CompletionModel {
-    error: string,
-    created: string,
-    prompt_tokens: number
-    completion_tokens: number
-    total_tokens: number
-    texts: string[]
-}
-
-const DefaultCompletionModel: CompletionModel = {
-    error: '',
-    created: '',
-    prompt_tokens: 0,
-    completion_tokens: 0,
-    total_tokens: 0,
-    texts: []
-};
 
 export {
     DefaultOpenAIModel,
-    DefaultCompletionModel,
 }
 
 export type {
-    CompletionModel,
     OpenAIModel,
 }

@@ -22,11 +22,11 @@ import ModeSelect from './ModeSelect';
 import InjectText from './InjectText';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
-import set from '../Services/Setting';
+import set from '../Services/Example';
 import completion from '../Services/Completion';
 
 export async function qaloader() {
-    const data = await set.getSetting("default-qa");
+    const data = await set.getExample("default-qa");
     return data;
 }
 
