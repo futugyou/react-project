@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
-import * as SSE from 'sse.js';
+import * as SSEClient from 'sse.js';
 
 const createCompletionPath = 'qa/'
 
@@ -32,10 +32,9 @@ const createCompletion = async (data: OpenAIModel) => {
     return result;
 }
 
-const createCompletionSSE = async (data: OpenAIModel) => {
+const createCompletionStream = async (data: OpenAIModel, fn: (a: any) => void) => {
     const path = 'completions/'
-    const sse = new SSE();
-    sse.connect(`${openaiserver}${path}`, {
+    const sse = SSEClient.SSE(`${openaiserver}${path}`, {
         headers: {
             "Content-Type": "application/json",
         },
@@ -44,13 +43,14 @@ const createCompletionSSE = async (data: OpenAIModel) => {
     });
 
     sse.addEventListener('message', (event: any) => {
-        console.log(event)
+        fn(event.data)
     });
 
     sse.stream();
+
 }
 
 export default {
     createCompletion: createCompletion,
-    createCompletionSSE: createCompletionSSE,
+    createCompletionStream: createCompletionStream,
 }

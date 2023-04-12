@@ -22,7 +22,7 @@
   },
   "include": [
     "src",
-    "modules/sse.d.ts"
+    "src/modules/sse.d.ts"
   ],
   "references": [
     {

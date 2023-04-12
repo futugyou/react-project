@@ -157,6 +157,37 @@ function Playground() {
         }
     }
 
+    let stateCopy: OpenAIModel
+    const handleCompletionStream = async () => {
+        let data: OpenAIModel = state
+        if (injectStart.checked && injectStart.text.length > 0) {
+            data = {
+                ...data,
+                prompt: data.prompt + injectStart.text
+            }
+        }
+
+        stateCopy = data
+        await completion.createCompletionStream(data, handleStreamResponse)
+        let text = stateCopy.prompt
+        if (injectRestart.checked && injectRestart.text.length > 0) {
+            text += injectRestart.text
+        }
+
+        setState({
+            ...stateCopy,
+            prompt: text
+        })
+    }
+
+    const handleStreamResponse = (data: any) => {
+        setState({
+            ...stateCopy,
+            prompt: stateCopy.prompt + data
+        })
+        stateCopy.prompt = stateCopy.prompt + data
+    }
+
     const HandleInjectStartChanged = (injectText: string) => {
         setInjectStart(
             {
@@ -201,6 +232,11 @@ function Playground() {
                     <Col>
                         <Button variant="success" type="submit" onClick={() => handleCompletion()}>
                             Submit
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button variant="success" onClick={() => handleCompletionStream()}>
+                            StreamSubmit
                         </Button>
                     </Col>
                 </Form.Group>
