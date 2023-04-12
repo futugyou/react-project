@@ -229,12 +229,12 @@ function Playground() {
             <Col xs={10}>
                 <Prompt prompt={state.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></Prompt>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
-                    <Col>
+                    <Col xs={1}>
                         <Button variant="success" type="submit" onClick={() => handleCompletion()}>
                             Submit
                         </Button>
                     </Col>
-                    <Col>
+                    <Col xs={1}>
                         <Button variant="success" onClick={() => handleCompletionStream()}>
                             StreamSubmit
                         </Button>
