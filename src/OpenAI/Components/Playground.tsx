@@ -168,7 +168,18 @@ function Playground() {
         }
 
         stateCopy = data
-        await completion.createCompletionStream(data, handleStreamResponse)
+        await completion.createCompletionStream(data, handleStreamProcess, handleStreamEnd)
+    }
+
+    const handleStreamProcess = (data: any) => {
+        setState({
+            ...stateCopy,
+            prompt: stateCopy.prompt + data
+        })
+        stateCopy.prompt = stateCopy.prompt + data
+    }
+
+    const handleStreamEnd = () => {
         let text = stateCopy.prompt
         if (injectRestart.checked && injectRestart.text.length > 0) {
             text += injectRestart.text
@@ -178,14 +189,6 @@ function Playground() {
             ...stateCopy,
             prompt: text
         })
-    }
-
-    const handleStreamResponse = (data: any) => {
-        setState({
-            ...stateCopy,
-            prompt: stateCopy.prompt + data
-        })
-        stateCopy.prompt = stateCopy.prompt + data
     }
 
     const HandleInjectStartChanged = (injectText: string) => {
