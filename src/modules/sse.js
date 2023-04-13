@@ -115,7 +115,7 @@ var SSE = function (url, options) {
       this.dispatchEvent(new CustomEvent('open'));
       this._setReadyState(this.OPEN);
     }
-    console.log(this.xhr.responseText)
+
     var data = this.xhr.responseText.substring(this.progress);
     this.progress += data.length;
     data.split(/(\r\n|\r|\n){2}/g).forEach(function (part) {
@@ -159,7 +159,8 @@ var SSE = function (url, options) {
         return;
       }
 
-      var value = line.substring(index + 1).trimLeft();
+      // data is like 'data: some thing'
+      var value = line.substring(index + 2);
       if (field === 'data') {
         e[field] += value;
       } else {

@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
-import * as SSEClient from '../../modules/sse.js';
+import * as SSEClient from '../../modules/sse';
 
 const createCompletionPath = 'qa/'
 
