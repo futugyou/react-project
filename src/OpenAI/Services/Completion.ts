@@ -47,7 +47,8 @@ const createCompletionStream = async (data: OpenAIModel, processfn: (a: any) => 
             sse.close();
             endfn();
         } else {
-            processfn(event.data)
+            let tmp = event.data.replace(/\+/gi, '%20')
+            processfn(decodeURIComponent(tmp))
         }
     });
 
