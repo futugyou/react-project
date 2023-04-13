@@ -1,1 +1,1 @@
-declare module 'sse.js';
+export declare const SSE: (url, options) => any
