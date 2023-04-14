@@ -28,7 +28,31 @@ const storeHistory = (model: HistoryModel) => {
     localStorage.setItem(itemkey, JSON.stringify(historyData))
 }
 
+const getHistory = (): HistoryModel[] => {
+    let result: HistoryModel[] = []
+    const historyKeys = localStorage.getItem(historyStoredKey)
+    if (historyKeys == null) {
+        return result
+    }
+
+    let historyKeyData = JSON.parse(historyKeys) as string[]
+    for (const kd of historyKeyData) {
+        const itemkey = historyStoredKeyPrefix + kd
+        const historys = localStorage.getItem(itemkey)
+        let historyData: HistoryModel[] = []
+        if (historys != null) {
+            historyData = JSON.parse(historys) as HistoryModel[]
+        }
+
+        if (historyData.length > 0) {
+            result.push(...historyData)
+        }
+    }
+
+    return result.sort((a, b) => b.createdAt - a.createdAt)
+}
 
 export default {
     storeHistory: storeHistory,
+    getHistory: getHistory,
 }
