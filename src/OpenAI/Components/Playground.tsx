@@ -22,9 +22,13 @@ import ModeSelect from './ModeSelect';
 import InjectText from './InjectText';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
+import { CompletionModel } from '../Models/CompletionModel';
 import { ExampleModel } from '../Models/ExampleModel';
 import set from '../Services/Example';
 import completion from '../Services/Completion';
+
+import { HistoryModel } from '../Models/HistoryModel';
+import historyService from '../Services/History';
 
 export async function qaloader() {
     const data = await set.getExample("default-grammar");
@@ -141,20 +145,49 @@ function Playground() {
                 prompt: data.prompt + response.error
             })
         } else {
-            let text = data.prompt
-            response.texts.forEach(t => {
-                text += t
-            });
+            let text = data.prompt + response.texts.join('')
 
             if (injectRestart.checked && injectRestart.text.length > 0) {
                 text += injectRestart.text
             }
+
+            storeHistory(response.texts.join(''))
 
             setState({
                 ...data,
                 prompt: text
             })
         }
+    }
+
+    const storeHistory = (completion: string) => {
+        // store history         
+        let history: HistoryModel = {
+            "createdAt": Date.now(),
+            "prompt": state.prompt,
+            "suffix": null,
+            "instruction": "",
+            "completion": completion,
+            "chatLog": [{
+                "role": "user",
+                "content": ""
+            }],
+            "completionMode": "freeform",
+            "stopSequence": state.stop,
+            "startSequence": injectStart.text,
+            "startSequenceEnabled": injectStart.checked,
+            "restartSequence": injectRestart.text,
+            "restartSequenceEnabled": injectRestart.checked,
+            "model": state.model,
+            "temperature": state.temperature,
+            "responseLength": state.max_tokens,
+            "topP": state.top_p,
+            "frequencyPenalty": state.frequency_penalty,
+            "presencePenalty": state.presence_penalty,
+            "bestOf": state.best_of
+        }
+
+        historyService.storeHistory(history)
     }
 
     let stateCopy: OpenAIModel
@@ -181,6 +214,7 @@ function Playground() {
 
     const handleStreamEnd = () => {
         let text = stateCopy.prompt
+        //storeHistory(text)
         if (injectRestart.checked && injectRestart.text.length > 0) {
             text += injectRestart.text
         }
