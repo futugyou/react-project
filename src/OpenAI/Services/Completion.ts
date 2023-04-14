@@ -4,11 +4,10 @@ import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
 import * as SSEClient from '../../modules/sse';
 
-const createCompletionPath = 'qa/'
-
 const createCompletion = async (data: OpenAIModel) => {
+    const path = 'completions/'
     const options: AxiosRequestConfig = {
-        url: `${openaiserver}${createCompletionPath}`,
+        url: `${openaiserver}${path}`,
         method: "POST",
         data: data,
     };
@@ -33,7 +32,7 @@ const createCompletion = async (data: OpenAIModel) => {
 }
 
 const createCompletionStream = async (data: OpenAIModel, processfn: (a: any) => void, endfn: () => void) => {
-    const path = 'completions/'
+    const path = 'completions/sse'
     const sse = SSEClient.SSE(`${openaiserver}${path}`, {
         headers: {
             "Content-Type": "application/json",
