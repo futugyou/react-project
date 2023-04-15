@@ -1,4 +1,5 @@
 import './CleanAllItem.css';
+import React from 'react';
 
 interface ICleanAllItemProps {
     show: boolean;
@@ -6,6 +7,7 @@ interface ICleanAllItemProps {
 }
 
 function CleanAllItem({ show, onRemoveAllItem }: ICleanAllItemProps) {
+    console.log("CleanAllItem")
     if (!show) {
         return null
     }
@@ -21,4 +23,4 @@ function CleanAllItem({ show, onRemoveAllItem }: ICleanAllItemProps) {
     )
 }
 
-export default CleanAllItem
+export default React.memo(CleanAllItem)

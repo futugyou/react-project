@@ -1,4 +1,5 @@
 import './Tip.css';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,6 +10,7 @@ interface ITipProps {
 }
 
 function Tip({ show = false, tip }: ITipProps) {
+    console.log("tip")
     if (!show) {
         return null
     }
@@ -22,4 +24,4 @@ function Tip({ show = false, tip }: ITipProps) {
     )
 }
 
-export default Tip
+export default React.memo(Tip) 
