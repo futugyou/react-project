@@ -25,7 +25,7 @@ import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel } from '../Models/CompletionModel';
 import { ExampleModel } from '../Models/ExampleModel';
 import set from '../Services/Example';
-import completion from '../Services/Completion';
+import completionService from '../Services/Completion';
 
 import { HistoryModel } from '../Models/HistoryModel';
 import historyService from '../Services/History';
@@ -54,9 +54,10 @@ const mapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
 
 function Playground() {
     const data = useLoaderData() as OpenAIModel;
-    const [state, setState] = useState(data)
+
+    const [openAIModel, setOpenAIModel] = useState(data)
     useEffect(() => {
-        setState(data)
+        setOpenAIModel(data)
     }, [data]);
 
 
@@ -70,67 +71,94 @@ function Playground() {
         text: "\n\nQ: "
     })
 
+    const [completion, setCompletion] = useState('')
+
+    let history: HistoryModel = {
+        "createdAt": Date.now(),
+        "prompt": openAIModel.prompt,
+        "suffix": null,
+        "instruction": "",
+        "completion": completion,
+        "chatLog": [{
+            "role": "user",
+            "content": ""
+        }],
+        "completionMode": "freeform",
+        "stopSequence": openAIModel.stop,
+        "startSequence": injectStart.text,
+        "startSequenceEnabled": injectStart.checked,
+        "restartSequence": injectRestart.text,
+        "restartSequenceEnabled": injectRestart.checked,
+        "model": openAIModel.model,
+        "temperature": openAIModel.temperature,
+        "responseLength": openAIModel.max_tokens,
+        "topP": openAIModel.top_p,
+        "frequencyPenalty": openAIModel.frequency_penalty,
+        "presencePenalty": openAIModel.presence_penalty,
+        "bestOf": openAIModel.best_of
+    }
+
     const handlePromptChange = (value: string) => {
-        var newData = Object.assign({}, state, { prompt: value });
-        setState(newData);
+        var newData = Object.assign({}, openAIModel, { prompt: value });
+        setOpenAIModel(newData);
     }
 
     const handleModelChange = (value: string) => {
-        var newData = Object.assign({}, state, { model: value });
-        setState(newData);
+        var newData = Object.assign({}, openAIModel, { model: value });
+        setOpenAIModel(newData);
     }
 
     const handleTemperatureChange = (value: number) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             temperature: +value
         })
     }
 
     const handleMaxTokensChange = (value: number) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             max_tokens: +value
         })
     }
 
     const handleToppChange = (value: number) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             top_p: +value
         })
     }
 
     const handleFrequencyPenaltyChange = (value: number) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             frequency_penalty: +value
         })
     }
 
     const handlePresencePenaltyChange = (value: number) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             presence_penalty: +value
         })
     }
 
     const handleBestofChange = (value: number) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             best_of: +value
         })
     }
 
     const handleStopChange = (value: string[]) => {
-        setState({
-            ...state,
+        setOpenAIModel({
+            ...openAIModel,
             stop: value
         })
     }
 
     const handleCompletion = async () => {
-        let data: OpenAIModel = state
+        let data: OpenAIModel = openAIModel
         if (injectStart.checked && injectStart.text.length > 0) {
             data = {
                 ...data,
@@ -138,9 +166,9 @@ function Playground() {
             }
         }
 
-        const response = await completion.createCompletion(data)
+        const response = await completionService.createCompletion(data)
         if (response.error != '') {
-            setState({
+            setOpenAIModel({
                 ...data,
                 prompt: data.prompt + response.error
             })
@@ -151,48 +179,23 @@ function Playground() {
                 text += injectRestart.text
             }
 
-            storeHistory(response.texts.join(''))
+            setCompletion(response.texts.join(''))
+            storeHistory()
 
-            setState({
+            setOpenAIModel({
                 ...data,
                 prompt: text
             })
         }
     }
 
-    const storeHistory = (completion: string) => {
-        // store history         
-        let history: HistoryModel = {
-            "createdAt": Date.now(),
-            "prompt": state.prompt,
-            "suffix": null,
-            "instruction": "",
-            "completion": completion,
-            "chatLog": [{
-                "role": "user",
-                "content": ""
-            }],
-            "completionMode": "freeform",
-            "stopSequence": state.stop,
-            "startSequence": injectStart.text,
-            "startSequenceEnabled": injectStart.checked,
-            "restartSequence": injectRestart.text,
-            "restartSequenceEnabled": injectRestart.checked,
-            "model": state.model,
-            "temperature": state.temperature,
-            "responseLength": state.max_tokens,
-            "topP": state.top_p,
-            "frequencyPenalty": state.frequency_penalty,
-            "presencePenalty": state.presence_penalty,
-            "bestOf": state.best_of
-        }
-
+    const storeHistory = () => {
         historyService.storeHistory(history)
     }
 
     let stateCopy: OpenAIModel
     const handleCompletionStream = async () => {
-        let data: OpenAIModel = state
+        let data: OpenAIModel = openAIModel
         if (injectStart.checked && injectStart.text.length > 0) {
             data = {
                 ...data,
@@ -201,25 +204,26 @@ function Playground() {
         }
 
         stateCopy = data
-        await completion.createCompletionStream(data, handleStreamProcess, handleStreamEnd)
+        await completionService.createCompletionStream(data, handleStreamProcess, handleStreamEnd)
     }
 
-    const handleStreamProcess = (data: any) => {
-        setState({
+    const handleStreamProcess = (data: string) => {
+        setOpenAIModel({
             ...stateCopy,
             prompt: stateCopy.prompt + data
         })
         stateCopy.prompt = stateCopy.prompt + data
+        setCompletion(data)
     }
 
     const handleStreamEnd = () => {
         let text = stateCopy.prompt
-        //storeHistory(text)
+        storeHistory()
         if (injectRestart.checked && injectRestart.text.length > 0) {
             text += injectRestart.text
         }
 
-        setState({
+        setOpenAIModel({
             ...stateCopy,
             prompt: text
         })
@@ -264,7 +268,7 @@ function Playground() {
     return (
         <>
             <Col xs={10}>
-                <Prompt prompt={state.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></Prompt>
+                <Prompt prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></Prompt>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     <Col xs={1}>
                         <Button variant="success" type="submit" onClick={() => handleCompletion()}>
@@ -281,21 +285,21 @@ function Playground() {
             <Col xs={2} className="qa-item-align opertion-container" >
                 <ModeSelect></ModeSelect>
 
-                <ModelSelect model={state.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
+                <ModelSelect model={openAIModel.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
 
-                <Temperature temperature={state.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+                <Temperature temperature={openAIModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
-                <MaxTokens max_tokens={state.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
+                <MaxTokens max_tokens={openAIModel.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
 
-                <Stop stop={state.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>
+                <Stop stop={openAIModel.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>
 
-                <TopP top_p={state.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
+                <TopP top_p={openAIModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
-                <Frequency frequency_penalty={state.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
+                <Frequency frequency_penalty={openAIModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
 
-                <Presence presence_penalty={state.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
+                <Presence presence_penalty={openAIModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
 
-                <Bestof best_of={state.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>
+                <Bestof best_of={openAIModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>
 
                 <InjectText
                     text={injectStart.text}
