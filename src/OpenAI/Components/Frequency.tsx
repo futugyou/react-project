@@ -4,7 +4,7 @@ function Frequency(props: any) {
     const data = {
         popover: "How much to penalize new tokens based on their existing frequency in the text so far. Decreases the model's likelihood to repeat the same line verbatim.",
         display: "Frequency penalty",
-        value: props.frequency_penalty,
+        value: props.frequency_penalty ?? 0.0,
         min: 0.0,
         max: 2.0,
         step: 0.01,

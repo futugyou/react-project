@@ -4,7 +4,7 @@ function TopP(props: any) {
     const data = {
         popover: "Controls diversity via nucleus sampling: 0.5 means half of all likelihood-weighted options are considered.",
         display: "Top P",
-        value: props.top_p,
+        value: props.top_p ?? 0.0,
         min: 0.0,
         max: 1.0,
         step: 0.01,

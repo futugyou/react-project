@@ -4,7 +4,7 @@ function Presence(props: any) {
     const data = {
         popover: "How much to penalize new tokens based on whether they appear in the text so far. Increases the model's likelihood to talk about new topics.",
         display: "Presence penalty",
-        value: props.presence_penalty,
+        value: props.presence_penalty ?? 0.0,
         min: 0.0,
         max: 2.0,
         step: 0.01,
