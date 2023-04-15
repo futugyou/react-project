@@ -173,19 +173,22 @@ function Playground() {
                 prompt: data.prompt + response.error
             })
         } else {
+            history.completion = response.texts.join('')
+
             let text = data.prompt + response.texts.join('')
 
             if (injectRestart.checked && injectRestart.text.length > 0) {
                 text += injectRestart.text
             }
 
-            setCompletion(response.texts.join(''))
             storeHistory()
 
             setOpenAIModel({
                 ...data,
                 prompt: text
             })
+
+            setCompletion('')
         }
     }
 
@@ -193,7 +196,6 @@ function Playground() {
         historyService.storeHistory(history)
     }
 
-    let stateCopy: OpenAIModel
     const handleCompletionStream = async () => {
         let data: OpenAIModel = openAIModel
         if (injectStart.checked && injectStart.text.length > 0) {
@@ -203,30 +205,27 @@ function Playground() {
             }
         }
 
-        stateCopy = data
         await completionService.createCompletionStream(data, handleStreamProcess, handleStreamEnd)
     }
 
     const handleStreamProcess = (data: string) => {
-        setOpenAIModel({
-            ...stateCopy,
-            prompt: stateCopy.prompt + data
-        })
-        stateCopy.prompt = stateCopy.prompt + data
-        setCompletion(data)
+        history.completion += data
     }
 
     const handleStreamEnd = () => {
-        let text = stateCopy.prompt
         storeHistory()
+
+        let text = openAIModel.prompt + history.completion
         if (injectRestart.checked && injectRestart.text.length > 0) {
             text += injectRestart.text
         }
 
         setOpenAIModel({
-            ...stateCopy,
+            ...openAIModel,
             prompt: text
         })
+
+        setCompletion('')
     }
 
     const HandleInjectStartChanged = (injectText: string) => {
