@@ -28,13 +28,17 @@ function ModelSelect(props: any) {
         </Popover>
     );
 
+    let didInit = false;
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await ModelService.getModelList();
-            setModels(data)
-        };
+        if (!didInit) {
+            didInit = true;
+            const fetchData = async () => {
+                const data = await ModelService.getModelList();
+                setModels(data)
+            };
 
-        fetchData();
+            fetchData();
+        }
     }, [])
 
     const onModelChange = (value: any) => {
