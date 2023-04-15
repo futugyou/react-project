@@ -1,5 +1,5 @@
 import './Stop.css';
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useState, useCallback } from 'react';
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -41,12 +41,12 @@ function Stop(props: any) {
         props.onStopChange(Array.from(s.values()))
     }
 
-    const HandleRemoveAllStop = () => {
+    const HandleRemoveAllStop = useCallback(() => {
         let s = new Set<string>();
         setStop(s)
         props.onStopChange(Array.from(s.values()))
         setState('')
-    }
+    }, [stop, state])
 
     const HandleStopChange = (value: string) => {
         setState(value)
@@ -75,7 +75,7 @@ function Stop(props: any) {
                         onInputContainerClick={() => HandleOpenTip()}
                         onItemChange={(key: string) => HandleStopChange(key)}
                         onKeyDown={(e: any) => HandleStopAdded(e)} >
-                        <CleanAllStop show={stop.size > 0} onRemoveAllItem={() => HandleRemoveAllStop()}></CleanAllStop>
+                        <CleanAllStop show={stop.size > 0} onRemoveAllItem={HandleRemoveAllStop}></CleanAllStop>
                     </StopInputContainer>
 
                     <StopTip show={show} tip={tip}></StopTip>
