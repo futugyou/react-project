@@ -9,13 +9,16 @@ const storeHistory = (model: HistoryModel) => {
 
     // store history keys
     const historyKeys = localStorage.getItem(historyStoredKey)
+    let historyKeyData = JSON.parse('[]') as string[]
     if (historyKeys != null) {
-        let historyKeyData = JSON.parse(historyKeys) as string[]
-        if (historyKeyData.indexOf(key) == -1) {
+        if (historyKeys.indexOf(key) == -1) {
             historyKeyData.push(key)
-            localStorage.setItem(historyStoredKey, JSON.stringify(historyKeyData))
         }
+    } else {
+        historyKeyData.push(key)
     }
+
+    localStorage.setItem(historyStoredKey, JSON.stringify(historyKeyData))
 
     // store histort
     const historys = localStorage.getItem(itemkey)
