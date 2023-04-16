@@ -30,7 +30,7 @@ function History() {
         let dayDisplay = <></>
 
         if (lastDate != currectDate) {
-            dayDisplay = <div style={{ textAlign: 'left' }}> {formatDate(data.createdAt)}</div >
+            dayDisplay = <div style={{ textAlign: 'left', paddingLeft: '20px', fontSize: '16px', fontWeight: 700 }}> {formatDate(data.createdAt)}</div >
         }
 
         lastDate = currectDate
@@ -38,10 +38,11 @@ function History() {
         return (
             <Fragment key={index}>
                 {dayDisplay}
-                <li className="timeline-item mb-5">
-                    <p className="text-muted mb-2 fw-bold">{formatTime(data.createdAt)}</p>
-                    <p className="text-muted">
-                        {data.prompt}
+                <li>
+                    <a href="#!" className="prompt"> {data.prompt}</a>
+                    <a href="#!" className="float-end">{formatTime(data.createdAt)}</a>
+                    <p className="completion">
+                        {data.completion}
                     </p>
                 </li>
             </Fragment>
@@ -65,11 +66,15 @@ function History() {
                     <Offcanvas.Title>History</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <section className="py-5">
-                        <ul className="timeline">
-                            {historyItems}
-                        </ul>
-                    </section>
+                    <div className="container my-5">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <ul className="timeline-3">
+                                    {historyItems}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

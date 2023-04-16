@@ -1,24 +1,54 @@
-.timeline {
-    border-left: 1px solid hsl(0, 0%, 90%);
-    position: relative;
-    list-style: none;
-}
-
-.timeline .timeline-item {
+ul.timeline-3 {
+    list-style-type: none;
     position: relative;
 }
 
-.timeline .timeline-item:after {
+ul.timeline-3:before {
+    content: " ";
+    background: #d4d9df;
+    display: inline-block;
     position: absolute;
-    display: block;
-    top: 0;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
 }
 
-.timeline .timeline-item:after {
-    background-color: hsl(0, 0%, 90%);
-    left: -38px;
+
+ul.timeline-3>li {
+    margin: 20px 0;
+    padding-left: 20px;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+ul.timeline-3>li:before {
+    content: " ";
+    background: white;
+    display: inline-block;
+    position: absolute;
     border-radius: 50%;
-    height: 11px;
-    width: 11px;
-    content: "";
+    border: 3px solid #22c0e8;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+ul.timeline-3>li:hover:before {
+    background: #22c0e8;
+    cursor: pointer;
+}
+
+ul.timeline-3>li .completion {
+    margin-top: 0.5rem !important;
+    text-align: left;
+}
+
+ul.timeline-3>li .prompt {
+    max-height: 40px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    display: block;
+    word-break: break-all;
 }
