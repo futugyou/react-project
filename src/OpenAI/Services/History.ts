@@ -10,12 +10,8 @@ const storeHistory = (model: HistoryModel) => {
 
     // store history keys
     const historyKeys = localStorage.getItem(historyStoredKey)
-    let historyKeyData = JSON.parse('[]') as string[]
-    if (historyKeys != null) {
-        if (historyKeys.indexOf(key) == -1) {
-            historyKeyData.push(key)
-        }
-    } else {
+    let historyKeyData = JSON.parse(historyKeys ?? '[]') as string[]
+    if (historyKeyData.indexOf(key) == -1) {
         historyKeyData.push(key)
     }
 

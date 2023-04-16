@@ -7,7 +7,7 @@ import { BsClockHistory } from "react-icons/bs";
 
 import { HistoryModel } from '../Models/HistoryModel';
 import historyService from '../Services/History';
-import * as moment from 'moment';
+import moment from 'moment';
 
 function History() {
     const [show, setShow] = useState(false);
@@ -23,7 +23,7 @@ function History() {
         return day.format('HH:mm')
     }
 
-    let lastDate = moment().format('YYYYMMDD');
+    let lastDate = '';
 
     const historyItems = historyList.map((data, index) => {
         let currectDate = data.Date as string;
