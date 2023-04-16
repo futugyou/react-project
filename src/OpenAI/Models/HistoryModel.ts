@@ -18,6 +18,7 @@ export interface HistoryModel {
     frequencyPenalty: number
     presencePenalty: number
     bestOf: number
+    Date?: string
 }
 
 export interface ChatLog {

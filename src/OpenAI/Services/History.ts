@@ -5,6 +5,7 @@ const historyStoredKeyPrefix: string = "playground/history/"
 
 const storeHistory = (model: HistoryModel) => {
     const key = new Date().toISOString().slice(0, 10).replace(/-/g, "")
+    model.Date = key
     const itemkey = historyStoredKeyPrefix + key
 
     // store history keys
