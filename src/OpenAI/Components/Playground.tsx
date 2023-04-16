@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { BsClockHistory } from "react-icons/bs";
 
 import Prompt from './Prompt';
 import ModelSelect from './ModelSelect';
@@ -20,6 +21,7 @@ import Stop from './Stop';
 import ModeSelect from './ModeSelect';
 
 import InjectText from './InjectText';
+import History from './History';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel } from '../Models/CompletionModel';
@@ -269,16 +271,14 @@ function Playground() {
             <Col xs={10}>
                 <Prompt prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></Prompt>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
-                    <Col xs={1}>
-                        <Button variant="success" type="submit" onClick={() => handleCompletion()}>
-                            Submit
-                        </Button>
-                    </Col>
-                    <Col xs={1}>
-                        <Button variant="success" onClick={() => handleCompletionStream()}>
-                            StreamSubmit
-                        </Button>
-                    </Col>
+                    <Button variant="success" type="submit" onClick={() => handleCompletion()}>
+                        Submit
+                    </Button>
+
+                    <Button variant="success" onClick={() => handleCompletionStream()}>
+                        StreamSubmit
+                    </Button>
+                    <History />
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align opertion-container" >
