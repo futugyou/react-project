@@ -7,15 +7,21 @@ import { BsClockHistory } from "react-icons/bs";
 
 import { HistoryModel } from '../Models/HistoryModel';
 import historyService from '../Services/History';
+import * as moment from 'moment';
 
 function History() {
     const [show, setShow] = useState(false);
     const [historyList, setHistoryList] = useState<HistoryModel[]>([]);
 
+    const formatDate = (t: number) => {
+        var day = moment(t);
+        return day.format()
+    }
+
     const historyItems = historyList.map((data, index) => {
         return (
             <li className="timeline-item mb-5" key={index}>
-                <p className="text-muted mb-2 fw-bold">{data.createdAt}</p>
+                <p className="text-muted mb-2 fw-bold">{formatDate(data.createdAt)}</p>
                 <p className="text-muted">
                     {data.prompt}
                 </p>
