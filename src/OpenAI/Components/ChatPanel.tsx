@@ -1,9 +1,20 @@
 import './ChatPanel.css'
 
+import { useRef } from 'react';
 import Form from 'react-bootstrap/Form';
 import { BsDashCircle } from "react-icons/bs";
 
 function ChatPanel(props: any) {
+    const chatpgmessageRef = useRef(null);
+    const textRef = useRef(null);
+    const HandleTextClick = () => {
+        chatpgmessageRef.current!.className = "chat-pg-message active"
+        textRef.current!.focus();
+    }
+
+    const HandleTextBlur = () => {
+        chatpgmessageRef.current!.className = "chat-pg-message"
+    }
     return (
         <div className="container-fluid chat-pg-body">
             <div className='chat-pg-instructions'>
@@ -13,15 +24,17 @@ function ChatPanel(props: any) {
                 </div>
             </div>
             <div className='chat-pg-right-wrapper'>
-                <div className='chat-pg-exchange'>
-                    <div className='chat-pg-message'>
+                <div className='chat-pg-exchange' >
+                    <div className='chat-pg-message' ref={chatpgmessageRef}>
                         <div className='chat-message-role'>
                             <div className='chat-message-subheading subheading'>
                                 <span className='chat-message-role-text'>User</span>
                             </div>
                         </div>
-                        <div className='text-input-with-focus'>
-                            <textarea className="text-input" rows={1} placeholder="Enter a user message here."></textarea>
+                        <div className='text-input-with-focus' onClick={HandleTextClick}>
+                            <textarea className="text-input" rows={1} placeholder="Enter a user message here."
+                                ref={textRef}
+                                onBlur={HandleTextBlur}></textarea>
                         </div>
                         <div className='chat-message-button-container'>
                             <BsDashCircle className='chat-message-remove-button' />

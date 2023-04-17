@@ -114,8 +114,12 @@
     opacity: .4;
 }
 
-.chat-pg-message:not(:active) .text-input {
+.chat-pg-message:not(.active) .text-input {
     pointer-events: none;
+}
+
+.chat-pg-message.active .text-input-with-focus .text-input {
+    background-color: #fff;
 }
 
 .text-input-with-focus .text-input {
