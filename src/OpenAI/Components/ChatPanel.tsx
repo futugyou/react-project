@@ -21,7 +21,7 @@ function ChatPanel(props: any) {
                             </div>
                         </div>
                         <div className='text-input-with-focus'>
-                            <Form.Control as="textarea" rows={1} />
+                            <textarea className="text-input" rows={1} placeholder="Enter a user message here."></textarea>
                         </div>
                         <div className='chat-message-button-container'>
                             <BsDashCircle className='chat-message-remove-button' />

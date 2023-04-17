@@ -63,6 +63,12 @@
     display: flex;
     flex-direction: row;
     padding: 12px 18px;
+    gap: 12px;
+    transition: max-height 2s ease-in;
+}
+
+.chat-pg-message:active {
+    background-color: #f7f7f8;
 }
 
 .chat-pg-message:hover {
@@ -106,4 +112,34 @@
 
 .chat-pg-message:hover .chat-message-button-container .chat-message-remove-button {
     opacity: .4;
+}
+
+.chat-pg-message:not(:active) .text-input {
+    pointer-events: none;
+}
+
+.text-input-with-focus .text-input {
+    width: 100%;
+    background-color: transparent;
+    border: 0 #fff;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 12px;
+    resize: none;
+    transition: padding .2s ease-out;
+    white-space: break-spaces;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #353740;
+    display: inline-block;
+    font-weight: 400;
+    vertical-align: top;
+    margin: 0;
+}
+
+.text-input:focus {
+    background-color: #fff;
+    border-color: #10a37f;
+    box-shadow: 0 0 0 0.2rem #d2f4d3;
+    outline: 0;
 }
