@@ -1,0 +1,109 @@
+.chat-pg-body {
+    height: calc(100% - 45px);
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.chat-pg-instructions {
+    display: flex;
+    flex: 1 1;
+}
+
+.chat-pg-right-wrapper {
+    display: flex;
+    flex: 3 1;
+    flex-direction: column;
+    margin-left: 24px;
+    height: 100%;
+    margin-bottom: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.text-input-header-subheading {
+    padding: 22px 16px 12px;
+    position: absolute;
+}
+
+.subheading {
+    color: #202123;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.text-input-header-wrapper {
+    padding-top: 50px;
+    width: 100%;
+    border: 1px solid #ced4da;
+}
+
+
+.text-input-header-wrapper>textarea {
+    border: none;
+    resize: none;
+    height: 100%;
+}
+
+.text-input-header-wrapper>textarea:focus {
+    box-shadow: none;
+}
+
+.chat-pg-exchange {
+    max-height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    display: block;
+}
+
+.chat-pg-message {
+    border-bottom: 1px solid #d9d9e3;
+    display: flex;
+    flex-direction: row;
+    padding: 12px 18px;
+}
+
+.chat-pg-message:hover {
+    background-color: #f7f7f8;
+    cursor: pointer;
+}
+
+.chat-message-role-text {
+    padding: 8px;
+}
+
+.chat-message-role {
+    display: inline-block;
+    min-width: 93px;
+    padding: 16px 0;
+    vertical-align: top;
+}
+
+.chat-pg-message:hover .chat-message-role .subheading .chat-message-role-text {
+    background-color: #d9d9e3;
+    border-radius: 2px;
+    padding: 8px
+}
+
+.text-input-with-focus {
+    width: 100%;
+}
+
+.chat-message-button-container {
+    display: inline-block;
+    height: 48px;
+    vertical-align: top;
+    width: 20px;
+}
+
+.chat-message-remove-button {
+    margin: 14px 0;
+    opacity: 0;
+    transition: opacity .1s ease-out;
+}
+
+.chat-pg-message:hover .chat-message-button-container .chat-message-remove-button {
+    opacity: .4;
+}
