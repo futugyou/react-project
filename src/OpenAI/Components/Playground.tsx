@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BsClockHistory } from "react-icons/bs";
 
-import Prompt from './Prompt';
+import CompletePanel from './CompletePanel';
 import ModelSelect from './ModelSelect';
 import Temperature from './Temperature';
 import MaxTokens from './MaxTokens';
@@ -269,7 +269,7 @@ function Playground() {
     return (
         <>
             <Col xs={10}>
-                <Prompt prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></Prompt>
+                <CompletePanel prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     <Button variant="success" type="submit" onClick={() => handleCompletion()}>
                         Submit

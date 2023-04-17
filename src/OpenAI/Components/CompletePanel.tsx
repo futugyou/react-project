@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-function Prompt(props: any) {
+function CompletePanel(props: any) {
     return (
         <>
             <Form.Group as={Row} className="mb-3">
@@ -11,4 +11,4 @@ function Prompt(props: any) {
     )
 }
 
-export default Prompt
+export default CompletePanel
