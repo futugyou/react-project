@@ -2,7 +2,7 @@ import './ChatPanel.css'
 
 import { useRef } from 'react';
 import Form from 'react-bootstrap/Form';
-import { BsDashCircle } from "react-icons/bs";
+import { BsDashCircle, BsPlusCircle } from "react-icons/bs";
 
 function ChatPanel(props: any) {
     const chatpgmessageRef = useRef<HTMLDivElement>(null);
@@ -50,6 +50,10 @@ function ChatPanel(props: any) {
                         <div className='chat-message-button-container'>
                             <BsDashCircle className='chat-message-remove-button' />
                         </div>
+                    </div>
+                    <div className='chat-pg-message add-message'>
+                        <BsPlusCircle />
+                        <span className="text">Add message</span>
                     </div>
                 </div>
             </div>

@@ -147,3 +147,21 @@
     box-shadow: 0 0 0 0.2rem #d2f4d3;
     outline: 0;
 }
+
+.chat-pg-exchange .add-message {
+    border-bottom: none;
+    padding: 16px 16px 16px 24px;
+}
+
+.chat-pg-exchange .add-message svg {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
+.chat-pg-exchange .add-message .text {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    vertical-align: middle
+}
