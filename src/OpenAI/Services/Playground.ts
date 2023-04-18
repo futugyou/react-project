@@ -1,9 +1,9 @@
-import { HistoryModel } from '../Models/HistoryModel';
+import { PlaygroundModel } from '../Models/PlaygroundModel';
 
 const historyStoredKey: string = "playground/history/key"
 const historyStoredKeyPrefix: string = "playground/history/"
 
-const storeHistory = (model: HistoryModel) => {
+const storePlayground = (model: PlaygroundModel) => {
     const key = new Date().toISOString().slice(0, 10).replace(/-/g, "")
     model.Date = key
     const itemkey = historyStoredKeyPrefix + key
@@ -19,17 +19,17 @@ const storeHistory = (model: HistoryModel) => {
 
     // store histort
     const historys = localStorage.getItem(itemkey)
-    let historyData: HistoryModel[] = []
+    let historyData: PlaygroundModel[] = []
     if (historys != null) {
-        historyData = JSON.parse(historys) as HistoryModel[]
+        historyData = JSON.parse(historys) as PlaygroundModel[]
     }
 
     historyData.push(model)
     localStorage.setItem(itemkey, JSON.stringify(historyData))
 }
 
-const getHistory = (): HistoryModel[] => {
-    let result: HistoryModel[] = []
+const getPlayground = (): PlaygroundModel[] => {
+    let result: PlaygroundModel[] = []
     const historyKeys = localStorage.getItem(historyStoredKey)
     if (historyKeys == null) {
         return result
@@ -39,9 +39,9 @@ const getHistory = (): HistoryModel[] => {
     for (const kd of historyKeyData) {
         const itemkey = historyStoredKeyPrefix + kd
         const historys = localStorage.getItem(itemkey)
-        let historyData: HistoryModel[] = []
+        let historyData: PlaygroundModel[] = []
         if (historys != null) {
-            historyData = JSON.parse(historys) as HistoryModel[]
+            historyData = JSON.parse(historys) as PlaygroundModel[]
         }
 
         if (historyData.length > 0) {
@@ -53,6 +53,6 @@ const getHistory = (): HistoryModel[] => {
 }
 
 export default {
-    storeHistory: storeHistory,
-    getHistory: getHistory,
+    storePlayground: storePlayground,
+    getPlayground: getPlayground,
 }

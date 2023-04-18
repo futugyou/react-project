@@ -1,9 +1,20 @@
 import './ChatMessage.css'
 
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { BsDashCircle } from "react-icons/bs";
 
-function ChatMessage(props: any) {
+interface IChatMessageProps {
+    index: number;
+    role?: string;
+    content?: string;
+    placeholder?: string;
+    onRoleChange?: () => void;
+    onContentChange?: (content: string) => void;
+    onRemoved?: (index: number) => void;
+    children?: React.ReactNode;
+}
+
+function ChatMessage(message: IChatMessageProps) {
     const chatpgmessageRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
 
@@ -18,27 +29,44 @@ function ChatMessage(props: any) {
         textRef.current!.style.height = (height) + "px";
 
         let text: string = e.target.value;
+        if (message.onContentChange) {
+            message.onContentChange(text)
+        }
     }
 
     const HandleTextBlur = () => {
         chatpgmessageRef.current!.className = "chat-pg-message"
     }
 
+    const HandleRoleChange = (e: any) => {
+        if (message.onRoleChange) {
+            message.onRoleChange()
+        }
+    }
+
+    const HandleReomved = (e: any) => {
+        if (message.onRemoved) {
+            message.onRemoved(message.index)
+        }
+    }
+
     return (
         <div className='chat-pg-message' ref={chatpgmessageRef}>
             <div className='chat-message-role'>
                 <div className='chat-message-subheading subheading'>
-                    <span className='chat-message-role-text'>User</span>
+                    <span className='chat-message-role-text' onClick={HandleRoleChange}>{message.role}</span>
                 </div>
             </div>
             <div className='text-input-with-focus' onClick={HandleTextDivClick}>
-                <textarea className="text-input" rows={1} placeholder="Enter a user message here."
+                <textarea className="text-input" rows={1}
+                    placeholder={message.placeholder}
+                    value={message.content}
                     ref={textRef}
                     onChange={HandleTextChange}
                     onBlur={HandleTextBlur}></textarea>
             </div>
             <div className='chat-message-button-container'>
-                <BsDashCircle className='chat-message-remove-button' />
+                <BsDashCircle className='chat-message-remove-button' onClick={HandleReomved} />
             </div>
         </div>
     )

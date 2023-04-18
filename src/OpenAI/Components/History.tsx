@@ -5,13 +5,13 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { BsClockHistory } from "react-icons/bs";
 
-import { HistoryModel } from '../Models/HistoryModel';
-import historyService from '../Services/History';
+import { PlaygroundModel } from '../Models/PlaygroundModel';
+import playgroundService from '../Services/Playground';
 import moment from 'moment';
 
 function History() {
     const [show, setShow] = useState(false);
-    const [historyList, setHistoryList] = useState<HistoryModel[]>([]);
+    const [historyList, setHistoryList] = useState<PlaygroundModel[]>([]);
 
     const formatDate = (t: number) => {
         var day = moment(t);
@@ -51,7 +51,7 @@ function History() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
-        const data = historyService.getHistory();
+        const data = playgroundService.getPlayground();
         setHistoryList(data)
         setShow(true);
     }

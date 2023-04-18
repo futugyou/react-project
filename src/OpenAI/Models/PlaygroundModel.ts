@@ -1,4 +1,4 @@
-export interface HistoryModel {
+export interface PlaygroundModel {
     createdAt: number
     prompt: string
     suffix: any

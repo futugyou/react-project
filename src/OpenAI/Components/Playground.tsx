@@ -30,8 +30,8 @@ import { ExampleModel } from '../Models/ExampleModel';
 import set from '../Services/Example';
 import completionService from '../Services/Completion';
 
-import { HistoryModel } from '../Models/HistoryModel';
-import historyService from '../Services/History';
+import { PlaygroundModel } from '../Models/PlaygroundModel';
+import playgroundService from '../Services/Playground';
 
 export async function qaloader() {
     const data = await set.getExample("default-grammar");
@@ -76,7 +76,7 @@ function Playground() {
 
     const [completion, setCompletion] = useState('')
 
-    let history: HistoryModel = {
+    let playground: PlaygroundModel = {
         "createdAt": Date.now(),
         "prompt": openAIModel.prompt,
         "suffix": null,
@@ -176,7 +176,7 @@ function Playground() {
                 prompt: data.prompt + response.error
             })
         } else {
-            history.completion = response.texts.join('')
+            playground.completion = response.texts.join('')
 
             let text = data.prompt + response.texts.join('')
 
@@ -196,7 +196,7 @@ function Playground() {
     }
 
     const storeHistory = () => {
-        historyService.storeHistory(history)
+        playgroundService.storePlayground(playground)
     }
 
     const handleCompletionStream = async () => {
@@ -212,13 +212,13 @@ function Playground() {
     }
 
     const handleStreamProcess = (data: string) => {
-        history.completion += data
+        playground.completion += data
     }
 
     const handleStreamEnd = () => {
         storeHistory()
 
-        let text = openAIModel.prompt + history.completion
+        let text = openAIModel.prompt + playground.completion
         if (injectRestart.checked && injectRestart.text.length > 0) {
             text += injectRestart.text
         }
