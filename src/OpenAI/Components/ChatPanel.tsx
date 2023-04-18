@@ -7,11 +7,12 @@ import ChatMessage from './ChatMessage';
 import { ChatLog } from '../Models/PlaygroundModel';
 
 function ChatPanel(props: any) {
-    const demo: ChatLog = {
+    const initChatLog: ChatLog = {
         role: "user",
         content: "",
     }
-    const [messages, setMessages] = useState<ChatLog[]>([demo])
+
+    const [messages, setMessages] = useState<any[]>([initChatLog])
 
     const handleMessageRemoved = (index: number) => {
         setMessages(oldValues => {
@@ -54,9 +55,10 @@ function ChatPanel(props: any) {
     }
 
     const handleMessageAdded = (e: any) => {
-        let newChatLog: ChatLog = {
+        let newChatLog = {
             role: "user",
             content: "",
+            focus: true,
         }
 
         let count = messages.length;
@@ -88,6 +90,7 @@ function ChatPanel(props: any) {
                                 index={index}
                                 role={message.role}
                                 content={message.content}
+                                focus={message.focus}
                                 placeholder={"Enter an " + message.role + " message here."}
                                 onRemoved={handleMessageRemoved}
                                 onRoleChange={handleRoleChange}

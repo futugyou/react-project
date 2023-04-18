@@ -11,6 +11,7 @@ interface IChatMessageProps {
     onRoleChange?: (index: number) => void;
     onContentChange?: (index: number, content: string) => void;
     onRemoved?: (index: number) => void;
+    focus?: boolean;
     children?: React.ReactNode;
 }
 
@@ -58,7 +59,7 @@ function ChatMessage(message: IChatMessageProps) {
                 </div>
             </div>
             <div className='text-input-with-focus' onClick={HandleTextDivClick}>
-                <textarea className="text-input" rows={1}
+                <textarea className="text-input" rows={1} autoFocus={message.focus}
                     placeholder={message.placeholder}
                     value={message.content}
                     ref={textRef}
