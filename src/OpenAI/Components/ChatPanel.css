@@ -25,14 +25,6 @@
     position: absolute;
 }
 
-.subheading {
-    color: #202123;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    line-height: 16px;
-    text-transform: uppercase;
-}
 
 .text-input-header-wrapper {
     padding-top: 50px;
@@ -58,99 +50,10 @@
     display: block;
 }
 
-.chat-pg-message {
-    border-bottom: 1px solid #d9d9e3;
-    display: flex;
-    flex-direction: row;
-    padding: 12px 18px;
-    gap: 12px;
-    transition: max-height 2s ease-in;
-}
-
-.chat-pg-message:active {
-    background-color: #f7f7f8;
-}
-
-.chat-pg-message:hover {
-    background-color: #f7f7f8;
-    cursor: pointer;
-}
-
-.chat-message-role-text {
-    padding: 8px;
-}
-
-.chat-message-role {
-    display: inline-block;
-    min-width: 93px;
-    padding: 16px 0;
-    vertical-align: top;
-}
-
-.chat-pg-message:hover .chat-message-role .subheading .chat-message-role-text {
-    background-color: #d9d9e3;
-    border-radius: 2px;
-    padding: 8px
-}
-
-.text-input-with-focus {
-    width: 100%;
-}
-
-.chat-message-button-container {
-    display: inline-block;
-    height: 48px;
-    vertical-align: top;
-    width: 20px;
-}
-
-.chat-message-remove-button {
-    margin: 14px 0;
-    opacity: 0;
-    transition: opacity .1s ease-out;
-}
-
-.chat-pg-message:hover .chat-message-button-container .chat-message-remove-button {
-    opacity: .4;
-}
-
-.chat-pg-message:not(.active) .text-input {
-    pointer-events: none;
-}
-
-.chat-pg-message.active .text-input-with-focus .text-input {
-    background-color: #fff;
-}
-
-.text-input-with-focus .text-input {
-    width: 100%;
-    background-color: transparent;
-    border: 0 #fff;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 12px;
-    resize: none;
-    transition: padding .2s ease-out;
-    white-space: break-spaces;
-    border-radius: 3px;
-    box-sizing: border-box;
-    color: #353740;
-    display: inline-block;
-    font-weight: 400;
-    vertical-align: top;
-    margin: 0;
-}
-
-.text-input:focus {
-    background-color: #fff;
-    border-color: #10a37f;
-    box-shadow: 0 0 0 0.2rem #d2f4d3;
-    outline: 0;
-}
 
 .chat-pg-exchange .add-message {
     border-bottom: none;
-    padding: 16px 16px 16px 24px;
+    padding: 16px 16px 16px 48px;
 }
 
 .chat-pg-exchange .add-message svg {
