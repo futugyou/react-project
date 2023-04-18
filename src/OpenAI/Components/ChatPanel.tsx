@@ -53,6 +53,24 @@ function ChatPanel(props: any) {
         setMessages(newMessageList)
     }
 
+    const handleMessageAdded = (e: any) => {
+        let newChatLog: ChatLog = {
+            role: "user",
+            content: "",
+        }
+
+        let count = messages.length;
+        if (count > 0) {
+            const lastChatLog = messages[count - 1];
+            if (lastChatLog.role === "user") {
+                newChatLog.role = "assistant"
+            }
+        }
+
+        const newMessageList = messages.concat([newChatLog])
+        setMessages(newMessageList)
+    }
+
     return (
         <div className="container-fluid chat-pg-body">
             <div className='chat-pg-instructions'>
@@ -79,7 +97,7 @@ function ChatPanel(props: any) {
                         )
                     })}
 
-                    <div className='chat-pg-message add-message'>
+                    <div className='chat-pg-message add-message' onClick={handleMessageAdded}>
                         <BsPlusCircle />
                         <span className="text">Add message</span>
                     </div>
