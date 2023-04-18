@@ -36,6 +36,23 @@ function ChatPanel(props: any) {
         setMessages(newMessageList)
     }
 
+    const handleMessageChange = (index: number, text: string) => {
+        const newMessageList = messages.map((message, ind) => {
+            if (ind === index) {
+                const updatedmessage = {
+                    ...message,
+                    content: text,
+                };
+
+                return updatedmessage;
+            }
+
+            return message;
+        });
+
+        setMessages(newMessageList)
+    }
+
     return (
         <div className="container-fluid chat-pg-body">
             <div className='chat-pg-instructions'>
@@ -56,6 +73,7 @@ function ChatPanel(props: any) {
                                 placeholder={"Enter an " + message.role + " message here."}
                                 onRemoved={handleMessageRemoved}
                                 onRoleChange={handleRoleChange}
+                                onContentChange={handleMessageChange}
                             >
                             </ChatMessage>
                         )
