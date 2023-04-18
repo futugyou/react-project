@@ -8,8 +8,8 @@ interface IChatMessageProps {
     role?: string;
     content?: string;
     placeholder?: string;
-    onRoleChange?: () => void;
-    onContentChange?: (content: string) => void;
+    onRoleChange?: (index: number) => void;
+    onContentChange?: (index: number, content: string) => void;
     onRemoved?: (index: number) => void;
     children?: React.ReactNode;
 }
@@ -30,7 +30,7 @@ function ChatMessage(message: IChatMessageProps) {
 
         let text: string = e.target.value;
         if (message.onContentChange) {
-            message.onContentChange(text)
+            message.onContentChange(message.index, text)
         }
     }
 
@@ -40,7 +40,7 @@ function ChatMessage(message: IChatMessageProps) {
 
     const HandleRoleChange = (e: any) => {
         if (message.onRoleChange) {
-            message.onRoleChange()
+            message.onRoleChange(message.index)
         }
     }
 

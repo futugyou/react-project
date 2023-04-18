@@ -8,7 +8,7 @@ import { ChatLog } from '../Models/PlaygroundModel';
 
 function ChatPanel(props: any) {
     const demo: ChatLog = {
-        role: "User",
+        role: "user",
         content: "",
     }
     const [messages, setMessages] = useState<ChatLog[]>([demo])
@@ -17,6 +17,23 @@ function ChatPanel(props: any) {
         setMessages(oldValues => {
             return oldValues.filter((_, i) => i !== index)
         })
+    }
+
+    const handleRoleChange = (index: number) => {
+        const newMessageList = messages.map((message, ind) => {
+            if (ind === index) {
+                const updatedmessage = {
+                    ...message,
+                    role: message.role === "user" ? "assistant" : "user",
+                };
+
+                return updatedmessage;
+            }
+
+            return message;
+        });
+
+        setMessages(newMessageList)
     }
 
     return (
@@ -34,10 +51,12 @@ function ChatPanel(props: any) {
                             <ChatMessage
                                 key={index}
                                 index={index}
-                                role={message.role.toUpperCase()}
+                                role={message.role}
                                 content={message.content}
-                                placeholder={"Enter an " + message.role.toLowerCase() + " message here."}
-                                onRemoved={handleMessageRemoved}>
+                                placeholder={"Enter an " + message.role + " message here."}
+                                onRemoved={handleMessageRemoved}
+                                onRoleChange={handleRoleChange}
+                            >
                             </ChatMessage>
                         )
                     })}
