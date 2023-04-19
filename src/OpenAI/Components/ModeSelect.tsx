@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -7,8 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function ModeSelect(props: any) {
-    const [mode, setMode] = useState<string>('Complete')
+    const mode = props.mode ?? 'Complete';
     const modes: string[] = ['Complete', 'Chat', 'Insert', 'Edit']
+
     const modeDescriptPopover = (
         <Popover id="mode-popover">
             <Popover.Body>
@@ -17,8 +18,10 @@ function ModeSelect(props: any) {
         </Popover>
     );
 
-    const onModeChange = (value: string) => {
-        setMode(value);
+    const HandleModeChange = (value: any) => {
+        if (props.onModeChange) {
+            props.onModeChange(value)
+        }
     }
 
     const dropdown_options = modes.map((data, index) => {
@@ -40,7 +43,7 @@ function ModeSelect(props: any) {
                 </Row>
                 <Row>
                     <Col>
-                        <Dropdown onSelect={() => onModeChange(mode)}>
+                        <Dropdown onSelect={HandleModeChange}>
                             <Dropdown.Toggle variant="select" id="dropdown-basic">
                                 {mode}
                             </Dropdown.Toggle>
