@@ -1,12 +1,14 @@
 import './ModelSelect.css';
 import { useState, useEffect } from 'react';
+
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Popover from 'react-bootstrap/Popover';
+
 import ModelService, { BaseModel } from '../Services/Model';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 function ModelSelect(props: any) {
     const [model, setModel] = useState<string>(props.model)

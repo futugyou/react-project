@@ -68,7 +68,16 @@ function Playground() {
         modeParam = searchParams.get("mode") || ""
     }
 
+    let modelParam = ""
+    if (searchParams.has("model")) {
+        modelParam = searchParams.get("model") || ""
+    }
+
     const data = useLoaderData() as OpenAIModel;
+
+    if (modelParam !== "") {
+        data.model = modelParam
+    }
 
     const [openAIModel, setOpenAIModel] = useState(data)
     const [mode, setMode] = useState('Complete')
@@ -129,6 +138,22 @@ function Playground() {
     const handleModelChange = (value: string) => {
         var newData = Object.assign({}, openAIModel, { model: value });
         setOpenAIModel(newData);
+
+        let path = location.pathname || "/";
+        let search = location.search || "";
+        let p = new URLSearchParams(search)
+
+        if (p.has("mode")) {
+            path += ("?mode=" + p.get("mode"))
+        }
+
+        if (path.indexOf("?") > 0) {
+            path += ("&model=" + value)
+        } else {
+            path += ("?model=" + value)
+        }
+
+        navigate(path, { replace: true })
     }
 
     const handleTemperatureChange = (value: number) => {
@@ -312,7 +337,6 @@ function Playground() {
 
         }
 
-        console.log(path)
         navigate(path, { replace: true })
     }
 
@@ -335,7 +359,7 @@ function Playground() {
             <Col xs={2} className="qa-item-align opertion-container" >
                 <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
 
-                <ModelSelect model={openAIModel.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
+                <ModelSelect model={openAIModel.model} onModelChange={handleModelChange} ></ModelSelect>
 
                 <Temperature temperature={openAIModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
