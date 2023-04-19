@@ -1,6 +1,6 @@
 import './Playground.css';
 import { useState, useEffect } from 'react';
-import { useLoaderData, useLocation, useNavigate, } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -291,12 +291,10 @@ function Playground() {
             path += ("?model=" + p.get("model"))
         }
 
-        if (p.has("mode")) {
-            if (path.indexOf("?") > 0) {
-                path += ("&mode=" + value.toLocaleLowerCase())
-            } else {
-                path += ("?mode=" + value.toLocaleLowerCase())
-            }
+        if (path.indexOf("?") > 0) {
+            path += ("&mode=" + value.toLocaleLowerCase())
+        } else {
+            path += ("?mode=" + value.toLocaleLowerCase())
         }
 
         console.log(path)
