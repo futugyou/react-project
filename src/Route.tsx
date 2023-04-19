@@ -55,11 +55,13 @@ const router = createBrowserRouter([
                 path: "/playground",
                 element: <Playground />,
                 loader: qaloader,
+                shouldRevalidate: () => false,
             },
             {
                 path: "/playground/p/:parameter",
                 element: <Playground />,
                 loader: qaloader,
+                shouldRevalidate: () => false,
             },
             {
                 path: "/from",

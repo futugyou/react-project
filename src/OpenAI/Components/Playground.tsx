@@ -58,8 +58,15 @@ const mapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
 }
 
 function Playground() {
-    let navigate = useNavigate();
-    let location = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    let search = location.search || "";
+    let searchParams = new URLSearchParams(search)
+    let modeParam = ""
+    if (searchParams.has("mode")) {
+        modeParam = searchParams.get("mode") || ""
+    }
 
     const data = useLoaderData() as OpenAIModel;
 
@@ -70,6 +77,12 @@ function Playground() {
         setOpenAIModel(data)
     }, [data]);
 
+    useEffect(() => {
+        if (modeParam !== "") {
+            modeParam = modeParam.charAt(0).toUpperCase() + modeParam.slice(1);
+            setMode(modeParam)
+        }
+    }, [modeParam]);
 
     const [injectStart, setInjectStart] = useState({
         checked: false,
@@ -285,20 +298,22 @@ function Playground() {
         setMode(value);
 
         let path = location.pathname || "/";
+        path += ("?mode=" + value.toLocaleLowerCase())
+
         let search = location.search || "";
         let p = new URLSearchParams(search)
-        if (p.has("model")) {
-            path += ("?model=" + p.get("model"))
-        }
 
-        if (path.indexOf("?") > 0) {
-            path += ("&mode=" + value.toLocaleLowerCase())
-        } else {
-            path += ("?mode=" + value.toLocaleLowerCase())
+        if (p.has("model")) {
+            if (path.indexOf("?") > 0) {
+                path += ("&model=" + p.get("model"))
+            } else {
+                path += ("?model=" + p.get("model"))
+            }
+
         }
 
         console.log(path)
-        navigate(path)
+        navigate(path, { replace: true })
     }
 
     return (
