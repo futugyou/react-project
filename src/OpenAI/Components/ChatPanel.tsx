@@ -15,15 +15,18 @@ function ChatPanel(props: any) {
     const [messages, setMessages] = useState<any[]>([initChatLog])
 
     const handleMessageRemoved = (index: number) => {
-        setMessages(oldValues => {
-            return oldValues.filter((_, i) => i !== index)
-        })
+        const newMessageList = messages.filter((_, i) => i !== index)
+        setMessages(newMessageList)
+
+        if (props.onMessageChange) {
+            props.onMessageChange(newMessageList)
+        }
     }
 
     const handleRoleChange = (index: number) => {
         const newMessageList = messages.map((message, ind) => {
             if (ind === index) {
-                const updatedmessage = {
+                const updatedmessage: any = {
                     ...message,
                     role: message.role === "user" ? "assistant" : "user",
                 };
@@ -35,6 +38,10 @@ function ChatPanel(props: any) {
         });
 
         setMessages(newMessageList)
+
+        if (props.onMessageChange) {
+            props.onMessageChange(newMessageList)
+        }
     }
 
     const handleMessageChange = (index: number, text: string) => {
@@ -52,6 +59,10 @@ function ChatPanel(props: any) {
         });
 
         setMessages(newMessageList)
+
+        if (props.onMessageChange) {
+            props.onMessageChange(newMessageList)
+        }
     }
 
     const handleMessageAdded = (e: any) => {
@@ -82,27 +93,29 @@ function ChatPanel(props: any) {
                 </div>
             </div>
             <div className='chat-pg-right-wrapper'>
-                <div className='chat-pg-exchange' >
-                    {messages.map((message, index) => {
-                        return (
-                            <ChatMessage
-                                key={index}
-                                index={index}
-                                role={message.role}
-                                content={message.content}
-                                focus={message.focus}
-                                placeholder={"Enter an " + message.role + " message here."}
-                                onRemoved={handleMessageRemoved}
-                                onRoleChange={handleRoleChange}
-                                onContentChange={handleMessageChange}
-                            >
-                            </ChatMessage>
-                        )
-                    })}
+                <div className="chat-pg-exchange-container">
+                    <div className='chat-pg-exchange' >
+                        {messages.map((message, index) => {
+                            return (
+                                <ChatMessage
+                                    key={index}
+                                    index={index}
+                                    role={message.role}
+                                    content={message.content}
+                                    focus={message.focus}
+                                    placeholder={"Enter an " + message.role + " message here."}
+                                    onRemoved={handleMessageRemoved}
+                                    onRoleChange={handleRoleChange}
+                                    onContentChange={handleMessageChange}
+                                >
+                                </ChatMessage>
+                            )
+                        })}
 
-                    <div className='chat-pg-message add-message' onClick={handleMessageAdded}>
-                        <BsPlusCircle />
-                        <span className="text">Add message</span>
+                        <div className='chat-pg-message add-message' onClick={handleMessageAdded}>
+                            <BsPlusCircle />
+                            <span className="text">Add message</span>
+                        </div>
                     </div>
                 </div>
             </div>

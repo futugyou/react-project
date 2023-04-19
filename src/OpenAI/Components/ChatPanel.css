@@ -20,6 +20,11 @@
     position: relative;
 }
 
+.chat-pg-exchange-container {
+    min-height: 100%;
+    overflow: auto;
+}
+
 .text-input-header-subheading {
     padding: 22px 16px 12px;
     position: absolute;

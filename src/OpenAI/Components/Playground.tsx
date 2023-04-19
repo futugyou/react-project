@@ -32,6 +32,7 @@ import completionService from '../Services/Completion';
 
 import { PlaygroundModel } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
+import { ChatLog } from '../Models/PlaygroundModel';
 
 export async function qaloader() {
     const data = await set.getExample("default-grammar");
@@ -267,10 +268,17 @@ function Playground() {
         )
     }
 
+    const HandleMessageChange = (messages: ChatLog[]) => {
+        let m: ChatLog[] = messages
+            .filter((m) => m.content != '')
+            .map((m) => { return { role: m.role, content: m.content } })
+        console.log(m)
+    }
+
     return (
         <>
             <Col xs={10}>
-                <ChatPanel></ChatPanel>
+                <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
                 {/* <CompletePanel prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel> */}
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     <Button variant="success" type="submit" onClick={() => handleCompletion()}>
