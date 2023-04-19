@@ -1,6 +1,6 @@
 import './Playground.css';
 import { useState, useEffect } from 'react';
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -34,7 +34,8 @@ import { PlaygroundModel } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
 import { ChatLog } from '../Models/PlaygroundModel';
 
-export async function qaloader() {
+export async function qaloader({ params, request }: any) {
+    console.log(params, request)
     const data = await set.getExample("default-grammar");
     return mapExampleModelToOpenAIModel(data);
 }
@@ -57,9 +58,14 @@ const mapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
 }
 
 function Playground() {
+    let navigate = useNavigate();
+    let location = useLocation();
+
     const data = useLoaderData() as OpenAIModel;
 
     const [openAIModel, setOpenAIModel] = useState(data)
+    const [mode, setMode] = useState('Complete')
+
     useEffect(() => {
         setOpenAIModel(data)
     }, [data]);
@@ -275,6 +281,28 @@ function Playground() {
         console.log(m)
     }
 
+    const HandleModeChange = (value: any) => {
+        setMode(value);
+
+        let path = location.pathname || "/";
+        let search = location.search || "";
+        let p = new URLSearchParams(search)
+        if (p.has("model")) {
+            path += ("?model=" + p.get("model"))
+        }
+
+        if (p.has("mode")) {
+            if (path.indexOf("?") > 0) {
+                path += ("&mode=" + value.toLocaleLowerCase())
+            } else {
+                path += ("?mode=" + value.toLocaleLowerCase())
+            }
+        }
+
+        console.log(path)
+        navigate(path)
+    }
+
     return (
         <>
             <Col xs={10}>
@@ -292,7 +320,7 @@ function Playground() {
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align opertion-container" >
-                <ModeSelect></ModeSelect>
+                <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
 
                 <ModelSelect model={openAIModel.model} onModelChange={(model: string) => handleModelChange(model)} ></ModelSelect>
 

@@ -57,6 +57,11 @@ const router = createBrowserRouter([
                 loader: qaloader,
             },
             {
+                path: "/playground/p/:parameter",
+                element: <Playground />,
+                loader: qaloader,
+            },
+            {
                 path: "/from",
                 element: <NameForm />,
             },
