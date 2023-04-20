@@ -375,35 +375,35 @@ function Playground() {
 
                 <Temperature temperature={openAIModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
-                <MaxTokens max_tokens={openAIModel.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
+                {(mode != "Edit") && (<MaxTokens max_tokens={openAIModel.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>)}
 
-                <Stop stop={openAIModel.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>
+                {(mode != "Chat") && (<Stop stop={openAIModel.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
 
                 <TopP top_p={openAIModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
-                <Frequency frequency_penalty={openAIModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
+                {(mode != "Edit") && (<Frequency frequency_penalty={openAIModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>)}
 
-                <Presence presence_penalty={openAIModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
+                {(mode != "Edit") && (<Presence presence_penalty={openAIModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>)}
 
-                <Bestof best_of={openAIModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>
+                {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={openAIModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>)}
 
-                <InjectText
+                {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
                     text={injectStart.text}
                     checked={injectStart.checked}
                     label="Inject start text"
                     descript="Text to append after the user's input to format the model for a response."
                     onInjectChanged={(text: string) => HandleInjectStartChanged(text)}
                     onCheckChanged={(checked: boolean) => HandleCheckStartChanged(checked)}
-                ></InjectText>
+                ></InjectText>)}
 
-                <InjectText
+                {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
                     text={injectRestart.text}
                     checked={injectRestart.checked}
                     label="Inject restart text"
                     descript="Text to append after the model's generation to continue the patterned structure."
                     onInjectChanged={(text: string) => HandleInjectRestartChanged(text)}
                     onCheckChanged={(checked: boolean) => HandleCheckRestartChanged(checked)}
-                ></InjectText>
+                ></InjectText>)}
             </Col>
         </>
     )
