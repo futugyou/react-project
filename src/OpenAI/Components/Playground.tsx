@@ -23,6 +23,8 @@ import ModeSelect from './ModeSelect';
 import InjectText from './InjectText';
 import History from './History';
 import ChatPanel from './ChatPanel';
+import EditPanel from './EditPanel';
+import InsertPanel from './InsertPanel';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel } from '../Models/CompletionModel';
@@ -343,8 +345,18 @@ function Playground() {
     return (
         <>
             <Col xs={10}>
-                <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
-                {/* <CompletePanel prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel> */}
+                {(mode == "Complete") && (
+                    <CompletePanel prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                )}
+                {(mode == "Chat") && (
+                    <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
+                )}
+                {(mode == "Insert") && (
+                    <InsertPanel></InsertPanel>
+                )}
+                {(mode == "Edit") && (
+                    <EditPanel></EditPanel>
+                )}
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     <Button variant="success" type="submit" onClick={() => handleCompletion()}>
                         Submit
