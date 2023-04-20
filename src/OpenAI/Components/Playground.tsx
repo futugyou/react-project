@@ -344,7 +344,7 @@ function Playground() {
 
     return (
         <>
-            <Col xs={10}>
+            <Col xs={10} className='text-container'>
                 {(mode == "Complete") && (
                     <CompletePanel prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}

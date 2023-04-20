@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet, NavLink, useNavigation } from "react-router-dom";
+import { Outlet, NavLink, useNavigation, useLocation } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,6 +11,10 @@ import { BsListUl } from "react-icons/bs";
 
 function Layout() {
     const navigation = useNavigation();
+    const location = useLocation();
+
+    const pathname = location.pathname;
+
     const [show, setShow] = useState(false);
 
     let popover = show ? "hide the menu" : "open the menu";
@@ -72,7 +76,7 @@ function Layout() {
                     </Col>
                 )}
                 <Col xs={show ? 10 : 12} className="d-flex flex-column">
-                    <Row >
+                    {/* <Row >
                         <div>
                             <Breadcrumb>
                                 <Breadcrumb.Item href="/">App</Breadcrumb.Item>
@@ -80,18 +84,18 @@ function Layout() {
                                 <Breadcrumb.Item active>Data</Breadcrumb.Item>
                             </Breadcrumb>
                         </div>
-                    </Row>
+                    </Row> */}
                     <Row className={navigation.state === "loading" ? "flex-grow-1 flex-fill loading" : "flex-grow-1 flex-fill"}>
                         <Outlet />
                     </Row>
                 </Col>
             </Row>
 
-            <Row className="footer" >
+            {/* <Row className="footer" >
                 <Col>
                     <h5>Footer</h5>
                 </Col>
-            </Row>
+            </Row> */}
         </>
     );
 }

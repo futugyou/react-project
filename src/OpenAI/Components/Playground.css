@@ -6,9 +6,9 @@
     align-items: center
 }
 
-.qa-item-align button {
+.mb-3.qa-item-align button {
     width: auto;
-    margin-right: 5px;
+    margin-left: calc(var(--bs-gutter-x));
 }
 
 .qa-item-align .mb-3 .display-value {
@@ -23,6 +23,11 @@
 }
 
 .opertion-container {
-    height: calc(80vh - 35px);
+    height: 100%;
     overflow: auto;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
 }

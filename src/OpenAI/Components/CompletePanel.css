@@ -1,0 +1,5 @@
+.chat-pg-body {
+    display: flex;
+    margin-bottom: 10px;
+    flex: 1;
+}
