@@ -4,6 +4,8 @@ import { Outlet, NavLink, useNavigation } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 
 import { BsListUl } from "react-icons/bs";
 
@@ -11,15 +13,25 @@ function Layout() {
     const navigation = useNavigation();
     const [show, setShow] = useState(false);
 
+    let popover = show ? "hide the menu" : "open the menu";
     const HandleShowIconClick = (e: any) => {
         setShow(s => !s)
     }
 
+    const showPopover = (
+        <Popover id="stop-popover">
+            <Popover.Body style={{ color: '#10a37f' }}>
+                {popover}
+            </Popover.Body>
+        </Popover>
+    );
     return (
         <>
-            <div className='sidebar-menu-icon' onClick={HandleShowIconClick}>
-                <BsListUl />
-            </div>
+            <OverlayTrigger placement="right" overlay={showPopover}>
+                <div className='sidebar-menu-icon' onClick={HandleShowIconClick}>
+                    <BsListUl />
+                </div>
+            </OverlayTrigger>
             <Row className="header">
                 <Col>
                     <h5>Header</h5>
