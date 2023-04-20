@@ -121,3 +121,26 @@ ul {
 .game-info {
   margin-left: 20px;
 }
+
+.sidebar-menu-icon {
+  position: absolute;
+  top: 5vh;
+  left: 1vh;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+}
+
+.sidebar-menu-icon:hover {
+  cursor: pointer;
+  background-color: #fff;
+  border-color: #10a37f;
+  box-shadow: 0 0 0 0.2rem #d2f4d3;
+  outline: 0;
+}
+
+.sidebar-menu-icon svg {
+  height: 40px;
+  width: 40px;
+  filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+}
