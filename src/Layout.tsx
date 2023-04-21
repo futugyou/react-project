@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigation, useLocation } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
@@ -13,7 +13,11 @@ function Layout() {
     const navigation = useNavigation();
     const location = useLocation();
 
-    const pathname = location.pathname;
+    useEffect(() => {
+        const pathname = location.pathname;
+        console.log(pathname)
+        setShow(false)
+    }, [location]);
 
     const [show, setShow] = useState(false);
 
