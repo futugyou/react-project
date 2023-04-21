@@ -1,5 +1,9 @@
-.chat-pg-body {
+.container-fluid.chat-pg-body {
     display: flex;
     margin-bottom: 10px;
     flex: 1;
+}
+
+.container-fluid.chat-pg-body textarea {
+    resize: none;
 }

@@ -1,12 +1,12 @@
 export interface PlaygroundModel {
     createdAt: number
     prompt: string
-    suffix: any
+    suffix?: string
     instruction: string
     completion: string
     chatLog: ChatLog[]
     completionMode: string
-    stopSequence: any[]
+    stopSequence: string[]
     startSequence: string
     startSequenceEnabled: boolean
     restartSequence: string

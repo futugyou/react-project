@@ -110,7 +110,6 @@ function Playground() {
     let playground: PlaygroundModel = {
         "createdAt": Date.now(),
         "prompt": openAIModel.prompt,
-        "suffix": null,
         "instruction": "",
         "completion": completion,
         "chatLog": [{
