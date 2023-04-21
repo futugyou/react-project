@@ -1,5 +1,50 @@
-.chat-pg-body {
+.insert-pg-body {
     display: flex;
     margin-bottom: 10px;
     flex: 1;
+}
+
+.insert-container-left {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.insert-container-left textarea {
+    flex: 1;
+    font-size: 15px;
+    line-height: 24px;
+    padding: 12px 16px;
+    white-space: pre-wrap;
+    resize: none;
+}
+
+.insert-container-right {
+    flex: 1;
+    margin-left: 10px;
+    display: flex;
+    background-color: #f7f7f8;
+    font-size: 15px;
+    line-height: 24px;
+    padding: 12px 16px;
+    white-space: pre-wrap;
+}
+
+.insert-placeholder {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    pointer-events: none;
+}
+
+.insert-placeholder .insert-placeholder-lg {
+    font-size: 20px;
+    color: #8e8ea0;
+}
+
+.insert-placeholder .insert-placeholder-md {
+    font-size: 14px;
+    color: #8e8ea0;
 }
