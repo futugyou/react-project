@@ -12,7 +12,6 @@ import { BsListUl } from "react-icons/bs";
 function Layout() {
     const navigation = useNavigation();
     const location = useLocation();
-
     useEffect(() => {
         const pathname = location.pathname;
         console.log(pathname)

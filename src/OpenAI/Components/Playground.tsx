@@ -108,7 +108,7 @@ function Playground() {
 
     useEffect(() => {
         setPlaygroundModel(data)
-    }, [data]);
+    }, [loaderdata]);
 
     useEffect(() => {
         if (modeParam !== "") {
@@ -281,6 +281,7 @@ function Playground() {
     }
 
     const HandleCheckRestartChanged = (checked: boolean) => {
+        console.log(playgroundModel)
         setPlaygroundModel(
             {
                 ...playgroundModel,
@@ -321,7 +322,7 @@ function Playground() {
         <>
             <Col xs={10} className='text-container'>
                 {(mode == "Complete") && (
-                    <CompletePanel prompt={playgroundModel.completion} a={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                    <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}
                 {(mode == "Chat") && (
                     <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
