@@ -236,6 +236,10 @@ function Playground() {
 
     const handleStreamProcess = (data: string) => {
         completion += data
+        setPlaygroundModel({
+            ...playgroundModel,
+            completion: completion,
+        })
     }
 
     const handleStreamEnd = (data: OpenAIModel) => {
@@ -329,7 +333,7 @@ function Playground() {
         <>
             <Col xs={10} className='text-container'>
                 {(mode == "Complete") && (
-                    <CompletePanel prompt={playgroundModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                    <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}
                 {(mode == "Chat") && (
                     <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
