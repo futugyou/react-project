@@ -31,7 +31,7 @@ const createCompletion = async (data: OpenAIModel) => {
     return result;
 }
 
-const createCompletionStream = async (data: OpenAIModel, processfn: (a: any) => void, endfn: () => void) => {
+const createCompletionStream = async (data: OpenAIModel, processfn: (a: any) => void, endfn: (data: OpenAIModel) => void) => {
     const path = 'completions/sse'
     const sse = SSEClient.SSE(`${openaiserver}${path}`, {
         headers: {
@@ -44,7 +44,7 @@ const createCompletionStream = async (data: OpenAIModel, processfn: (a: any) => 
     sse.addEventListener('message', (event: any) => {
         if (event.data == "[DONE]") {
             sse.close();
-            endfn();
+            endfn(data);
         } else {
             let tmp = event.data.replace(/\+/gi, '%20')
             processfn(decodeURIComponent(tmp))

@@ -10,6 +10,7 @@ interface OpenAIModel {
     echo: boolean
     logprobs: number
     stop: string[]
+    suffix: string
 }
 
 const DefaultOpenAIModel: OpenAIModel = {
@@ -24,6 +25,7 @@ const DefaultOpenAIModel: OpenAIModel = {
     best_of: 1,
     echo: false,
     logprobs: 0,
+    suffix: '',
 };
 
 

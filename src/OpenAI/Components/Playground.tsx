@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { BsClockHistory } from "react-icons/bs";
 
 import CompletePanel from './CompletePanel';
 import ModelSelect from './ModelSelect';
@@ -27,37 +26,59 @@ import EditPanel from './EditPanel';
 import InsertPanel from './InsertPanel';
 
 import { OpenAIModel } from '../Models/OpenAIModel';
-import { CompletionModel } from '../Models/CompletionModel';
 import { ExampleModel } from '../Models/ExampleModel';
 import set from '../Services/Example';
 import completionService from '../Services/Completion';
 
-import { PlaygroundModel } from '../Models/PlaygroundModel';
+import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
 import { ChatLog } from '../Models/PlaygroundModel';
 
 export async function qaloader({ params, request }: any) {
     console.log(params, request)
-    const data = await set.getExample("default-grammar");
-    return mapExampleModelToOpenAIModel(data);
+    return await set.getExample("default-grammar");
 }
 
-const mapExampleModelToOpenAIModel = (data: ExampleModel): OpenAIModel => {
-    let result: OpenAIModel = {
+const mapExampleModelToPlaygroundModel = (data: ExampleModel): PlaygroundModel => {
+    let result: PlaygroundModel = {
+        ...DefaultPlayground,
         model: data.model,
         prompt: data.prompt,
-        max_tokens: data.max_tokens,
+        responseLength: data.max_tokens,
         top_p: data.top_p,
         temperature: data.temperature,
         frequency_penalty: data.frequency_penalty,
         presence_penalty: data.presence_penalty,
-        stop: data.stop,
-        best_of: 1,
-        echo: false,
-        logprobs: 0,
-    };
+        stopSequence: data.stop,
+    }
+
     return result
 }
+
+
+const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel): OpenAIModel => {
+    let result: OpenAIModel = {
+        model: data.model,
+        prompt: data.prompt + data.completion,
+        max_tokens: data.responseLength,
+        temperature: data.temperature,
+        top_p: data.top_p,
+        frequency_penalty: data.frequency_penalty,
+        presence_penalty: data.presence_penalty,
+        best_of: data.best_of,
+        echo: false,
+        logprobs: 0,
+        stop: data.stopSequence,
+        suffix: data.suffix,
+    }
+
+    if (data.startSequenceEnabled && data.startSequence.length > 0) {
+        result.prompt = data.prompt + data.startSequence
+    }
+
+    return result
+}
+
 
 function Playground() {
     const navigate = useNavigate();
@@ -75,17 +96,18 @@ function Playground() {
         modelParam = searchParams.get("model") || ""
     }
 
-    const data = useLoaderData() as OpenAIModel;
+    const loaderdata = useLoaderData() as ExampleModel
+    const data = mapExampleModelToPlaygroundModel(loaderdata)
 
     if (modelParam !== "") {
         data.model = modelParam
     }
 
-    const [openAIModel, setOpenAIModel] = useState(data)
+    const [playgroundModel, setPlaygroundModel] = useState(data)
     const [mode, setMode] = useState('Complete')
 
     useEffect(() => {
-        setOpenAIModel(data)
+        setPlaygroundModel(data)
     }, [data]);
 
     useEffect(() => {
@@ -95,50 +117,16 @@ function Playground() {
         }
     }, [modeParam]);
 
-    const [injectStart, setInjectStart] = useState({
-        checked: false,
-        text: "\nA: "
-    })
-
-    const [injectRestart, setInjectRestart] = useState({
-        checked: false,
-        text: "\n\nQ: "
-    })
-
     const [completion, setCompletion] = useState('')
 
-    let playground: PlaygroundModel = {
-        "createdAt": Date.now(),
-        "prompt": openAIModel.prompt,
-        "instruction": "",
-        "completion": completion,
-        "chatLog": [{
-            "role": "user",
-            "content": ""
-        }],
-        "completionMode": "freeform",
-        "stopSequence": openAIModel.stop,
-        "startSequence": injectStart.text,
-        "startSequenceEnabled": injectStart.checked,
-        "restartSequence": injectRestart.text,
-        "restartSequenceEnabled": injectRestart.checked,
-        "model": openAIModel.model,
-        "temperature": openAIModel.temperature,
-        "responseLength": openAIModel.max_tokens,
-        "topP": openAIModel.top_p,
-        "frequencyPenalty": openAIModel.frequency_penalty,
-        "presencePenalty": openAIModel.presence_penalty,
-        "bestOf": openAIModel.best_of
-    }
-
     const handlePromptChange = (value: string) => {
-        var newData = Object.assign({}, openAIModel, { prompt: value });
-        setOpenAIModel(newData);
+        var newData = Object.assign({}, playgroundModel, { prompt: value });
+        setPlaygroundModel(newData);
     }
 
     const handleModelChange = (value: string) => {
-        var newData = Object.assign({}, openAIModel, { model: value });
-        setOpenAIModel(newData);
+        var newData = Object.assign({}, playgroundModel, { model: value });
+        setPlaygroundModel(newData);
 
         let path = location.pathname || "/";
         let search = location.search || "";
@@ -158,82 +146,77 @@ function Playground() {
     }
 
     const handleTemperatureChange = (value: number) => {
-        setOpenAIModel({
-            ...openAIModel,
+        setPlaygroundModel({
+            ...playgroundModel,
             temperature: +value
         })
     }
 
     const handleMaxTokensChange = (value: number) => {
-        setOpenAIModel({
-            ...openAIModel,
-            max_tokens: +value
+        setPlaygroundModel({
+            ...playgroundModel,
+            responseLength: +value
         })
     }
 
     const handleToppChange = (value: number) => {
-        setOpenAIModel({
-            ...openAIModel,
+        setPlaygroundModel({
+            ...playgroundModel,
             top_p: +value
         })
     }
 
     const handleFrequencyPenaltyChange = (value: number) => {
-        setOpenAIModel({
-            ...openAIModel,
+        setPlaygroundModel({
+            ...playgroundModel,
             frequency_penalty: +value
         })
     }
 
     const handlePresencePenaltyChange = (value: number) => {
-        setOpenAIModel({
-            ...openAIModel,
+        setPlaygroundModel({
+            ...playgroundModel,
             presence_penalty: +value
         })
     }
 
     const handleBestofChange = (value: number) => {
-        setOpenAIModel({
-            ...openAIModel,
+        setPlaygroundModel({
+            ...playgroundModel,
             best_of: +value
         })
     }
 
     const handleStopChange = (value: string[]) => {
-        setOpenAIModel({
-            ...openAIModel,
-            stop: value
+        setPlaygroundModel({
+            ...playgroundModel,
+            stopSequence: value
         })
     }
 
     const handleCompletion = async () => {
-        let data: OpenAIModel = openAIModel
-        if (injectStart.checked && injectStart.text.length > 0) {
-            data = {
-                ...data,
-                prompt: data.prompt + injectStart.text
-            }
-        }
+        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel)
 
         const response = await completionService.createCompletion(data)
         if (response.error != '') {
-            setOpenAIModel({
-                ...data,
-                prompt: data.prompt + response.error
+            setPlaygroundModel({
+                ...playgroundModel,
+                prompt: data.prompt,
+                completion: playgroundModel.prompt + response.error
             })
         } else {
-            playground.completion = response.texts.join('')
+            playgroundModel.completion = response.texts.join('')
 
             let text = data.prompt + response.texts.join('')
 
-            if (injectRestart.checked && injectRestart.text.length > 0) {
-                text += injectRestart.text
+            if (playgroundModel.restartSequenceEnabled && playgroundModel.restartSequence.length > 0) {
+                text += playgroundModel.restartSequence
             }
 
             storeHistory()
 
-            setOpenAIModel({
-                ...data,
+            setPlaygroundModel({
+                ...playgroundModel,
                 prompt: text
             })
 
@@ -242,35 +225,28 @@ function Playground() {
     }
 
     const storeHistory = () => {
-        playgroundService.storePlayground(playground)
+        playgroundService.storePlayground(playgroundModel)
     }
 
     const handleCompletionStream = async () => {
-        let data: OpenAIModel = openAIModel
-        if (injectStart.checked && injectStart.text.length > 0) {
-            data = {
-                ...data,
-                prompt: data.prompt + injectStart.text
-            }
-        }
-
+        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel)
         await completionService.createCompletionStream(data, handleStreamProcess, handleStreamEnd)
     }
 
     const handleStreamProcess = (data: string) => {
-        playground.completion += data
+        playgroundModel.completion += data
     }
 
-    const handleStreamEnd = () => {
+    const handleStreamEnd = (data: OpenAIModel) => {
         storeHistory()
 
-        let text = openAIModel.prompt + playground.completion
-        if (injectRestart.checked && injectRestart.text.length > 0) {
-            text += injectRestart.text
+        let text = data.prompt + playgroundModel.completion
+        if (playgroundModel.restartSequenceEnabled && playgroundModel.restartSequence.length > 0) {
+            text += playgroundModel.restartSequence
         }
 
-        setOpenAIModel({
-            ...openAIModel,
+        setPlaygroundModel({
+            ...playgroundModel,
             prompt: text
         })
 
@@ -278,37 +254,37 @@ function Playground() {
     }
 
     const HandleInjectStartChanged = (injectText: string) => {
-        setInjectStart(
+        setPlaygroundModel(
             {
-                ...injectStart,
-                text: injectText,
+                ...playgroundModel,
+                startSequence: injectText,
             }
         )
     }
 
     const HandleCheckStartChanged = (checked: boolean) => {
-        setInjectStart(
+        setPlaygroundModel(
             {
-                ...injectStart,
-                checked: checked,
+                ...playgroundModel,
+                startSequenceEnabled: checked,
             }
         )
     }
 
     const HandleInjectRestartChanged = (injectText: string) => {
-        setInjectRestart(
+        setPlaygroundModel(
             {
-                ...injectRestart,
-                text: injectText,
+                ...playgroundModel,
+                restartSequence: injectText,
             }
         )
     }
 
     const HandleCheckRestartChanged = (checked: boolean) => {
-        setInjectRestart(
+        setPlaygroundModel(
             {
-                ...injectRestart,
-                checked: checked,
+                ...playgroundModel,
+                restartSequenceEnabled: checked,
             }
         )
     }
@@ -345,7 +321,7 @@ function Playground() {
         <>
             <Col xs={10} className='text-container'>
                 {(mode == "Complete") && (
-                    <CompletePanel prompt={openAIModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                    <CompletePanel prompt={playgroundModel.completion} a={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}
                 {(mode == "Chat") && (
                     <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
@@ -370,25 +346,25 @@ function Playground() {
             <Col xs={2} className="qa-item-align opertion-container" >
                 <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
 
-                <ModelSelect model={openAIModel.model} onModelChange={handleModelChange} ></ModelSelect>
+                <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange} ></ModelSelect>
 
-                <Temperature temperature={openAIModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+                <Temperature temperature={playgroundModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
 
-                {(mode != "Edit") && (<MaxTokens max_tokens={openAIModel.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>)}
+                {(mode != "Edit") && (<MaxTokens max_tokens={playgroundModel.responseLength} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>)}
 
-                {(mode != "Chat") && (<Stop stop={openAIModel.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
+                {(mode != "Chat") && (<Stop stop={playgroundModel.stopSequence} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
 
-                <TopP top_p={openAIModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
+                <TopP top_p={playgroundModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
-                {(mode != "Edit") && (<Frequency frequency_penalty={openAIModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>)}
+                {(mode != "Edit") && (<Frequency frequency_penalty={playgroundModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>)}
 
-                {(mode != "Edit") && (<Presence presence_penalty={openAIModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>)}
+                {(mode != "Edit") && (<Presence presence_penalty={playgroundModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>)}
 
-                {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={openAIModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>)}
+                {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={playgroundModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>)}
 
                 {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
-                    text={injectStart.text}
-                    checked={injectStart.checked}
+                    text={playgroundModel.startSequence}
+                    checked={playgroundModel.startSequenceEnabled}
                     label="Inject start text"
                     descript="Text to append after the user's input to format the model for a response."
                     onInjectChanged={(text: string) => HandleInjectStartChanged(text)}
@@ -396,8 +372,8 @@ function Playground() {
                 ></InjectText>)}
 
                 {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
-                    text={injectRestart.text}
-                    checked={injectRestart.checked}
+                    text={playgroundModel.restartSequence}
+                    checked={playgroundModel.restartSequenceEnabled}
                     label="Inject restart text"
                     descript="Text to append after the model's generation to continue the patterned structure."
                     onInjectChanged={(text: string) => HandleInjectRestartChanged(text)}
