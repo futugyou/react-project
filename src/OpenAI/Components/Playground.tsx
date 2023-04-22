@@ -59,7 +59,7 @@ const mapExampleModelToPlaygroundModel = (data: ExampleModel): PlaygroundModel =
 const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel): OpenAIModel => {
     let result: OpenAIModel = {
         model: data.model,
-        prompt: data.prompt + data.completion,
+        prompt: data.prompt,
         max_tokens: data.responseLength,
         temperature: data.temperature,
         top_p: data.top_p,
@@ -117,7 +117,7 @@ function Playground() {
         }
     }, [modeParam]);
 
-    const [completion, setCompletion] = useState('')
+    let completion: string = playgroundModel.completion
 
     const handlePromptChange = (value: string) => {
         var newData = Object.assign({}, playgroundModel, { prompt: value });
@@ -201,11 +201,15 @@ function Playground() {
         if (response.error != '') {
             setPlaygroundModel({
                 ...playgroundModel,
-                prompt: data.prompt,
-                completion: playgroundModel.prompt + response.error
+                prompt: data.prompt + response.error
             })
         } else {
-            playgroundModel.completion = response.texts.join('')
+            let playgroundForStore: PlaygroundModel = {
+                ...playgroundModel
+            }
+
+            playgroundForStore.completion = response.texts.join('')
+            storeHistory(playgroundForStore)
 
             let text = data.prompt + response.texts.join('')
 
@@ -213,19 +217,16 @@ function Playground() {
                 text += playgroundModel.restartSequence
             }
 
-            storeHistory()
-
             setPlaygroundModel({
                 ...playgroundModel,
-                prompt: text
+                prompt: text,
+                completion: "",
             })
-
-            setCompletion('')
         }
     }
 
-    const storeHistory = () => {
-        playgroundService.storePlayground(playgroundModel)
+    const storeHistory = (playgroundForStore: PlaygroundModel) => {
+        playgroundService.storePlayground(playgroundForStore)
     }
 
     const handleCompletionStream = async () => {
@@ -234,23 +235,29 @@ function Playground() {
     }
 
     const handleStreamProcess = (data: string) => {
-        playgroundModel.completion += data
+        completion += data
     }
 
     const handleStreamEnd = (data: OpenAIModel) => {
-        storeHistory()
+        let playgroundForStore: PlaygroundModel = {
+            ...playgroundModel,
+            completion: completion,
+        }
 
-        let text = data.prompt + playgroundModel.completion
+        storeHistory(playgroundForStore)
+
+        let text = data.prompt + completion
         if (playgroundModel.restartSequenceEnabled && playgroundModel.restartSequence.length > 0) {
             text += playgroundModel.restartSequence
         }
 
         setPlaygroundModel({
             ...playgroundModel,
-            prompt: text
+            prompt: text,
+            completion: "",
         })
 
-        setCompletion('')
+        completion = ""
     }
 
     const HandleInjectStartChanged = (injectText: string) => {
@@ -322,7 +329,7 @@ function Playground() {
         <>
             <Col xs={10} className='text-container'>
                 {(mode == "Complete") && (
-                    <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                    <CompletePanel prompt={playgroundModel.prompt} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}
                 {(mode == "Chat") && (
                     <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
