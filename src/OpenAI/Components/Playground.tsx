@@ -302,12 +302,15 @@ function Playground() {
 
     const handleChatStreamEnd = () => {
         let messages = playgroundModel.chatLog
-        let chatLog: ChatLog = {
-            role: "assistant",
-            content: completion,
-        }
 
-        messages.push(chatLog)
+        if (completion.length > 0) {
+            let chatLog: ChatLog = {
+                role: "assistant",
+                content: completion,
+            }
+
+            messages.push(chatLog)
+        }
 
         let playgroundForStore: PlaygroundModel = {
             ...playgroundModel,
@@ -412,7 +415,7 @@ function Playground() {
                     <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}
                 {(mode == "Chat") && (
-                    <ChatPanel onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
+                    <ChatPanel instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
                 )}
                 {(mode == "Insert") && (
                     <InsertPanel></InsertPanel>
