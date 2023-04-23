@@ -89,7 +89,7 @@ function ChatPanel(props: any) {
             <div className='chat-pg-instructions'>
                 <div className="text-input-header-subheading subheading">System</div>
                 <div className='text-input-header-wrapper'>
-                    <Form.Control as="textarea" placeholder="You are a helpful assistant." value={props.prompt} onChange={e => props.onPromptChange(e.target.value)} />
+                    <Form.Control as="textarea" placeholder="You are a helpful assistant." value={props.instruction} onChange={e => props.onInstructionChange(e.target.value)} />
                 </div>
             </div>
             <div className='chat-pg-right-wrapper'>

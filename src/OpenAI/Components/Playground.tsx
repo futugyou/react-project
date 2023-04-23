@@ -30,6 +30,9 @@ import { ExampleModel } from '../Models/ExampleModel';
 import set from '../Services/Example';
 import completionService from '../Services/Completion';
 
+import { ChatModel, ChatMessage } from '../Models/ChatModel';
+import chatService from '../Services/Chat';
+
 import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
 import { ChatLog } from '../Models/PlaygroundModel';
@@ -79,6 +82,19 @@ const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel): OpenAIModel => 
     return result
 }
 
+const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
+    let result: ChatModel = {
+        model: data.model,
+        temperature: data.temperature,
+        top_p: data.top_p,
+        max_tokens: data.responseLength,
+        frequency_penalty: data.frequency_penalty,
+        presence_penalty: data.presence_penalty,
+        messages: data.chatLog.map(i => { return { role: i.role, content: i.content } })
+    }
+
+    return result
+}
 
 function Playground() {
     const navigate = useNavigate();
@@ -234,6 +250,10 @@ function Playground() {
         await completionService.createCompletionStream(data, handleStreamProcess, () => handleStreamEnd(data.prompt))
     }
 
+    const handleChatStream = () => {
+        let data: ChatModel = mapPlaygroundModelToChatModel(playgroundModel)
+    }
+
     const handleStreamProcess = (data: string) => {
         completion += data
         setPlaygroundModel({
@@ -305,7 +325,24 @@ function Playground() {
         let m: ChatLog[] = messages
             .filter((m) => m.content != '')
             .map((m) => { return { role: m.role, content: m.content } })
-        console.log(m)
+
+        if (m.length > 0) {
+            setPlaygroundModel(
+                {
+                    ...playgroundModel,
+                    chatLog: m,
+                }
+            )
+        }
+    }
+
+    const HandleInstructionChange = (instruction: string) => {
+        setPlaygroundModel(
+            {
+                ...playgroundModel,
+                instruction: instruction,
+            }
+        )
     }
 
     const HandleModeChange = (value: any) => {
@@ -323,7 +360,6 @@ function Playground() {
             } else {
                 path += ("?model=" + p.get("model"))
             }
-
         }
 
         navigate(path, { replace: true })
@@ -336,7 +372,7 @@ function Playground() {
                     <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
                 )}
                 {(mode == "Chat") && (
-                    <ChatPanel onMessageChange={HandleMessageChange}></ChatPanel>
+                    <ChatPanel onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
                 )}
                 {(mode == "Insert") && (
                     <InsertPanel></InsertPanel>
@@ -345,13 +381,22 @@ function Playground() {
                     <EditPanel></EditPanel>
                 )}
                 <Form.Group as={Row} className="mb-3 qa-item-align">
-                    <Button variant="success" type="submit" onClick={() => handleCompletion()}>
-                        Submit
-                    </Button>
+                    {(mode == "Complete") && (
+                        <>
+                            <Button variant="success" type="submit" onClick={() => handleCompletion()}>
+                                Submit
+                            </Button>
+                            <Button variant="success" onClick={() => handleCompletionStream()}>
+                                StreamSubmit
+                            </Button>
+                        </>
+                    )}
+                    {(mode == "Chat") && (
+                        <Button variant="success" type="submit" onClick={() => handleChatStream()}>
+                            Submit
+                        </Button>
+                    )}
 
-                    <Button variant="success" onClick={() => handleCompletionStream()}>
-                        StreamSubmit
-                    </Button>
                     <History />
                 </Form.Group>
             </Col>
