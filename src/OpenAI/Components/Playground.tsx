@@ -83,6 +83,17 @@ const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel): OpenAIModel => 
 }
 
 const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
+    let messages: ChatMessage[] = data.chatLog.map(i => { return { role: i.role, content: i.content } })
+    if (data.instruction.length > 0) {
+        let message: ChatMessage = {
+            role: "system",
+            content: data.instruction,
+        }
+
+        messages.push(message)
+    }
+
+
     let result: ChatModel = {
         model: data.model,
         temperature: data.temperature,
@@ -90,7 +101,7 @@ const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
         max_tokens: data.responseLength,
         frequency_penalty: data.frequency_penalty,
         presence_penalty: data.presence_penalty,
-        messages: data.chatLog.map(i => { return { role: i.role, content: i.content } })
+        messages: messages,
     }
 
     return result
@@ -250,10 +261,6 @@ function Playground() {
         await completionService.createCompletionStream(data, handleStreamProcess, () => handleStreamEnd(data.prompt))
     }
 
-    const handleChatStream = () => {
-        let data: ChatModel = mapPlaygroundModelToChatModel(playgroundModel)
-    }
-
     const handleStreamProcess = (data: string) => {
         completion += data
         setPlaygroundModel({
@@ -279,6 +286,39 @@ function Playground() {
             ...playgroundModel,
             prompt: text,
             completion: "",
+        })
+
+        completion = ""
+    }
+
+    const handleChatStream = async () => {
+        let data: ChatModel = mapPlaygroundModelToChatModel(playgroundModel)
+        await chatService.createChatStream(data, handleChatStreamProcess, handleChatStreamEnd)
+    }
+
+    const handleChatStreamProcess = (data: string) => {
+        completion += data
+    }
+
+    const handleChatStreamEnd = () => {
+        let messages = playgroundModel.chatLog
+        let chatLog: ChatLog = {
+            role: "assistant",
+            content: completion,
+        }
+
+        messages.push(chatLog)
+
+        let playgroundForStore: PlaygroundModel = {
+            ...playgroundModel,
+            chatLog: messages,
+        }
+
+        storeHistory(playgroundForStore)
+
+        setPlaygroundModel({
+            ...playgroundModel,
+            chatLog: messages,
         })
 
         completion = ""
