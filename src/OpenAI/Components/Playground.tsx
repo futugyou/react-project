@@ -231,7 +231,7 @@ function Playground() {
 
     const handleCompletionStream = async () => {
         let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel)
-        await completionService.createCompletionStream(data, handleStreamProcess, handleStreamEnd)
+        await completionService.createCompletionStream(data, handleStreamProcess, () => handleStreamEnd(data.prompt))
     }
 
     const handleStreamProcess = (data: string) => {
@@ -242,7 +242,7 @@ function Playground() {
         })
     }
 
-    const handleStreamEnd = (data: OpenAIModel) => {
+    const handleStreamEnd = (composePrompt: string) => {
         let playgroundForStore: PlaygroundModel = {
             ...playgroundModel,
             completion: completion,
@@ -250,7 +250,7 @@ function Playground() {
 
         storeHistory(playgroundForStore)
 
-        let text = data.prompt + completion
+        let text = composePrompt + completion
         if (playgroundModel.restartSequenceEnabled && playgroundModel.restartSequence.length > 0) {
             text += playgroundModel.restartSequence
         }
