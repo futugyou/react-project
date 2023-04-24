@@ -1,6 +1,6 @@
 import './ChatMessage.css'
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { BsDashCircle } from "react-icons/bs";
 
 interface IChatMessageProps {
@@ -18,6 +18,12 @@ interface IChatMessageProps {
 function ChatMessage(message: IChatMessageProps) {
     const chatpgmessageRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        textRef.current!.style.height = "48px";
+        let height = textRef.current!.scrollHeight
+        textRef.current!.style.height = (height) + "px";
+    }, [message.content])
 
     const HandleTextDivClick = () => {
         chatpgmessageRef.current!.className = "chat-pg-message active"
