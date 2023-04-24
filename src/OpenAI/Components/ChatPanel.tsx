@@ -1,6 +1,7 @@
 import './ChatPanel.css'
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { flushSync } from 'react-dom';
 import Form from 'react-bootstrap/Form';
 import { BsPlusCircle } from "react-icons/bs";
 import ChatMessage from './ChatMessage';
@@ -8,6 +9,7 @@ import { ChatLog } from '../Models/PlaygroundModel';
 
 function ChatPanel(props: any) {
     const [messages, setMessages] = useState<any[]>(props.chatLog)
+    const adddivRef = useRef<HTMLDivElement>(null);
 
     const handleMessageRemoved = (index: number) => {
         const newMessageList = messages.filter((_, i) => i !== index)
@@ -76,7 +78,11 @@ function ChatPanel(props: any) {
         }
 
         const newMessageList = messages.concat([newChatLog])
-        setMessages(newMessageList)
+        flushSync(() => {
+            setMessages(newMessageList)
+        })
+
+        adddivRef.current!.scrollIntoView({ behavior: 'smooth' })
     }
 
     return (
@@ -108,7 +114,7 @@ function ChatPanel(props: any) {
                                 )
                             })}
 
-                            <div className='chat-pg-message add-message' onClick={handleMessageAdded}>
+                            <div className='chat-pg-message add-message' ref={adddivRef} onClick={handleMessageAdded}>
                                 <BsPlusCircle />
                                 <span className="text">Add message</span>
                             </div>
