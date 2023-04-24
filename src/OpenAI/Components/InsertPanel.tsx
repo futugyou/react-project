@@ -22,7 +22,7 @@ function InsertPanel(props: any) {
     }
 
     return (
-        <div className="container-fluid insert-pg-body">
+        <>
             <div className="insert-container-left">
                 <Form.Control as="textarea" rows={1} onChange={HandleTextChange} />
                 {showPlaceholder && (<div className="insert-placeholder">
@@ -32,7 +32,7 @@ function InsertPanel(props: any) {
             </div>
             <div className="insert-container-right">
             </div>
-        </div>
+        </>
     )
 }
 

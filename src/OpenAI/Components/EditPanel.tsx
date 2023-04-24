@@ -1,9 +1,10 @@
 import './EditPanel.css';
 import Form from 'react-bootstrap/Form';
+import { Fragment } from 'react';
 
 function EditPanel(props: any) {
     return (
-        <div className="container-fluid edit-pg-body">
+        <div className="edit-pg-container">
             <div className="edit-text-tip">
                 <span>Input</span>
             </div>

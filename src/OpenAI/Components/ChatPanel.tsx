@@ -80,7 +80,7 @@ function ChatPanel(props: any) {
     }
 
     return (
-        <div className="container-fluid chat-pg-body">
+        <>
             <div className='chat-pg-instructions'>
                 <div className="text-input-header-subheading subheading">System</div>
                 <div className='text-input-header-wrapper'>
@@ -116,7 +116,7 @@ function ChatPanel(props: any) {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -1,9 +1,7 @@
-.edit-pg-body {
-    display: flex;
-    margin-bottom: 10px;
-    flex: 1;
+.edit-pg-container {
     flex-direction: column;
-    max-height: 85vh;
+    flex: 1;
+    display: flex;
 }
 
 .edit-text-tip {

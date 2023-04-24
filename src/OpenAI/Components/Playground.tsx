@@ -411,18 +411,20 @@ function Playground() {
     return (
         <>
             <Col xs={10} className='text-container'>
-                {(mode == "Complete") && (
-                    <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
-                )}
-                {(mode == "Chat") && (
-                    <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
-                )}
-                {(mode == "Insert") && (
-                    <InsertPanel></InsertPanel>
-                )}
-                {(mode == "Edit") && (
-                    <EditPanel></EditPanel>
-                )}
+                <div className='container-fluid pg-input-body'>
+                    {(mode == "Complete") && (
+                        <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                    )}
+                    {(mode == "Chat") && (
+                        <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
+                    )}
+                    {(mode == "Insert") && (
+                        <InsertPanel></InsertPanel>
+                    )}
+                    {(mode == "Edit") && (
+                        <EditPanel></EditPanel>
+                    )}
+                </div>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     {(mode == "Complete") && (
                         <>
