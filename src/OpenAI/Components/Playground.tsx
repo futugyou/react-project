@@ -1,5 +1,6 @@
 import './Playground.css';
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
@@ -292,38 +293,43 @@ function Playground() {
     }
 
     const handleChatStream = async () => {
+        if (playgroundModel.chatLog.length == 0 || playgroundModel.chatLog[0].content == "") {
+            return
+        }
+
         let data: ChatModel = mapPlaygroundModelToChatModel(playgroundModel)
         await chatService.createChatStream(data, handleChatStreamProcess, handleChatStreamEnd)
     }
 
     const handleChatStreamProcess = (data: string) => {
+        if (data == "") {
+            return
+        }
+
         completion += data
-    }
-
-    const handleChatStreamEnd = () => {
-        let messages = playgroundModel.chatLog
-
-        if (completion.length > 0) {
+        flushSync(() => {
+            let messages = playgroundModel.chatLog
+            let lastmessage = messages[messages.length - 1]
             let chatLog: ChatLog = {
                 role: "assistant",
                 content: completion,
             }
 
-            messages.push(chatLog)
-        }
+            if (lastmessage.role == "user") {
+                messages.push(chatLog)
+            } else {
+                messages[messages.length - 1] = chatLog
+            }
 
-        let playgroundForStore: PlaygroundModel = {
-            ...playgroundModel,
-            chatLog: messages,
-        }
-
-        storeHistory(playgroundForStore)
-
-        setPlaygroundModel({
-            ...playgroundModel,
-            chatLog: messages,
+            setPlaygroundModel({
+                ...playgroundModel,
+                chatLog: messages,
+            })
         })
+    }
 
+    const handleChatStreamEnd = () => {
+        storeHistory(playgroundModel)
         completion = ""
     }
 

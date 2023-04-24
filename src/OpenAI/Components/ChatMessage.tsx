@@ -23,7 +23,7 @@ function ChatMessage(message: IChatMessageProps) {
         textRef.current!.style.height = "48px";
         let height = textRef.current!.scrollHeight
         textRef.current!.style.height = (height) + "px";
-    }, [])
+    }, [message.content])
 
     const HandleTextDivClick = () => {
         chatpgmessageRef.current!.className = "chat-pg-message active"
