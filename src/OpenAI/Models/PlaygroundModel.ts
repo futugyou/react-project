@@ -27,7 +27,7 @@ export const DefaultPlayground: PlaygroundModel = {
     suffix: "",
     instruction: "",
     completion: "",
-    chatLog: [],
+    chatLog: [{ role: "user", content: "" }],
     completionMode: "",
     stopSequence: [],
     startSequence: "",

@@ -87,29 +87,31 @@ function ChatPanel(props: any) {
                     <Form.Control as="textarea" placeholder="You are a helpful assistant." value={props.instruction} onChange={e => props.onInstructionChange(e.target.value)} />
                 </div>
             </div>
-            <div className='chat-pg-right-wrapper'>
-                <div className="chat-pg-exchange-container">
-                    <div className='chat-pg-exchange' >
-                        {messages.map((message, index) => {
-                            return (
-                                <ChatMessage
-                                    key={index}
-                                    index={index}
-                                    role={message.role}
-                                    content={message.content}
-                                    focus={message.focus}
-                                    placeholder={"Enter an " + message.role + " message here."}
-                                    onRemoved={handleMessageRemoved}
-                                    onRoleChange={handleRoleChange}
-                                    onContentChange={handleMessageChange}
-                                >
-                                </ChatMessage>
-                            )
-                        })}
+            <div className="chat-pg-right-wrapper">
+                <div className="chat-pg-panel-wrapper">
+                    <div className="chat-pg-exchange-container">
+                        <div className='chat-pg-exchange' >
+                            {messages.map((message, index) => {
+                                return (
+                                    <ChatMessage
+                                        key={index}
+                                        index={index}
+                                        role={message.role}
+                                        content={message.content}
+                                        focus={message.focus}
+                                        placeholder={"Enter an " + message.role + " message here."}
+                                        onRemoved={handleMessageRemoved}
+                                        onRoleChange={handleRoleChange}
+                                        onContentChange={handleMessageChange}
+                                    >
+                                    </ChatMessage>
+                                )
+                            })}
 
-                        <div className='chat-pg-message add-message' onClick={handleMessageAdded}>
-                            <BsPlusCircle />
-                            <span className="text">Add message</span>
+                            <div className='chat-pg-message add-message' onClick={handleMessageAdded}>
+                                <BsPlusCircle />
+                                <span className="text">Add message</span>
+                            </div>
                         </div>
                     </div>
                 </div>

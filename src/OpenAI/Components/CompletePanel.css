@@ -1,9 +1,10 @@
-.container-fluid.chat-pg-body {
+.container-fluid.complete-pg-body {
     display: flex;
     margin-bottom: 10px;
     flex: 1;
+    max-height: 85vh;
 }
 
-.container-fluid.chat-pg-body textarea {
+.container-fluid.complete-pg-body textarea {
     resize: none;
 }
