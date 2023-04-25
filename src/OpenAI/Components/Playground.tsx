@@ -34,6 +34,9 @@ import completionService from '../Services/Completion';
 import { ChatModel, ChatMessage } from '../Models/ChatModel';
 import chatService from '../Services/Chat';
 
+import { EditModel } from '../Models/EditModel';
+import editService from '../Services/Edit';
+
 import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
 import { ChatLog } from '../Models/PlaygroundModel';
@@ -491,6 +494,53 @@ function Playground() {
 
         completion = ""
     }
+
+    const handleEdit = async () => {
+        let data: EditModel = {
+            model: playgroundModel.model,
+            input: playgroundModel.prompt,
+            instruction: playgroundModel.instruction,
+            temperature: playgroundModel.temperature,
+            n: 0,
+            top_p: playgroundModel.top_p,
+        }
+
+        const response = await editService.createEdit(data)
+        if (response.error != '') {
+            setPlaygroundModel({
+                ...playgroundModel,
+                prompt: data.input + response.error
+            })
+        } else {
+            completion = response.texts.join('')
+            let playgroundForStore: PlaygroundModel = {
+                ...playgroundModel,
+                completion: completion
+            }
+
+            storeHistory(playgroundForStore)
+
+            setPlaygroundModel({
+                ...playgroundModel,
+                completion: completion,
+            })
+        }
+    }
+
+    const HandleEditInputChange = (text: string) => {
+        setPlaygroundModel({
+            ...playgroundModel,
+            prompt: text,
+        })
+    }
+
+    const HandleEditInstructionsChange = (text: string) => {
+        setPlaygroundModel({
+            ...playgroundModel,
+            instruction: text,
+        })
+    }
+
     return (
         <>
             <Col xs={10} className='text-container'>
@@ -505,7 +555,7 @@ function Playground() {
                         <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange}></InsertPanel>
                     )}
                     {(mode == "Edit") && (
-                        <EditPanel></EditPanel>
+                        <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange}></EditPanel>
                     )}
                 </div>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
@@ -530,6 +580,11 @@ function Playground() {
                         </Button>
                     )}
 
+                    {(mode == "Edit") && (
+                        <Button variant="success" type="submit" onClick={() => handleEdit()}>
+                            Submit
+                        </Button>
+                    )}
                     <History />
                 </Form.Group>
             </Col>
