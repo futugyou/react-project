@@ -414,6 +414,15 @@ function Playground() {
         navigate(path, { replace: true })
     }
 
+    const handleInsertPromptChange = (prompt: string) => {
+        setPlaygroundModel(
+            {
+                ...playgroundModel,
+                prompt: prompt,
+            }
+        )
+    }
+
     return (
         <>
             <Col xs={10} className='text-container'>
@@ -425,7 +434,7 @@ function Playground() {
                         <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
                     )}
                     {(mode == "Insert") && (
-                        <InsertPanel></InsertPanel>
+                        <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange}></InsertPanel>
                     )}
                     {(mode == "Edit") && (
                         <EditPanel></EditPanel>
