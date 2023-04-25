@@ -367,7 +367,6 @@ function Playground() {
     }
 
     const HandleCheckRestartChanged = (checked: boolean) => {
-        console.log(playgroundModel)
         setPlaygroundModel(
             {
                 ...playgroundModel,
@@ -425,6 +424,7 @@ function Playground() {
             {
                 ...playgroundModel,
                 prompt: prompt,
+                suffix: "",
             }
         )
     }
@@ -434,7 +434,7 @@ function Playground() {
             return
         }
 
-        const promptsuffix = playgroundModel.prompt.split("[insert]")
+        const promptsuffix = (playgroundModel.prompt + playgroundModel.suffix ?? "").split("[insert]")
         let suffix = ""
         if (promptsuffix.length > 1) {
             suffix = promptsuffix[1]
@@ -455,10 +455,10 @@ function Playground() {
             suffix: suffix,
         }
 
-        await completionService.createCompletionStream(data, handleInsertStreamProcess, () => handleInsertStreamEnd(data))
+        await completionService.createCompletionStream(data, (d: string) => handleInsertStreamProcess(d, data), () => handleInsertStreamEnd(data))
     }
 
-    const handleInsertStreamProcess = (data: string) => {
+    const handleInsertStreamProcess = (data: string, m: OpenAIModel) => {
         if (data == "") {
             return
         }
@@ -467,7 +467,9 @@ function Playground() {
         flushSync(() => {
             setPlaygroundModel({
                 ...playgroundModel,
+                prompt: m.prompt,
                 completion: completion,
+                suffix: m.suffix ?? "",
             })
         })
     }
@@ -484,7 +486,7 @@ function Playground() {
 
         setPlaygroundModel({
             ...playgroundForStore,
-            completion: "",
+            prompt: data.prompt + "[insert]",
         })
 
         completion = ""
