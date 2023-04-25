@@ -60,7 +60,7 @@ const mapExampleModelToPlaygroundModel = (data: ExampleModel): PlaygroundModel =
 }
 
 
-const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel): OpenAIModel => {
+const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel, modeParam: string): OpenAIModel => {
     let result: OpenAIModel = {
         model: data.model,
         prompt: data.prompt,
@@ -76,7 +76,7 @@ const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel): OpenAIModel => 
         suffix: data.suffix,
     }
 
-    if (data.startSequenceEnabled && data.startSequence.length > 0) {
+    if ((modeParam == "Complete") && data.startSequenceEnabled && data.startSequence.length > 0) {
         result.prompt = data.prompt + data.startSequence
     }
 
@@ -223,7 +223,7 @@ function Playground() {
     }
 
     const handleCompletion = async () => {
-        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel)
+        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel, mode)
 
         const response = await completionService.createCompletion(data)
         if (response.error != '') {
@@ -258,15 +258,21 @@ function Playground() {
     }
 
     const handleCompletionStream = async () => {
-        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel)
+        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel, mode)
         await completionService.createCompletionStream(data, handleStreamProcess, () => handleStreamEnd(data.prompt))
     }
 
     const handleStreamProcess = (data: string) => {
+        if (data == "") {
+            return
+        }
+
         completion += data
-        setPlaygroundModel({
-            ...playgroundModel,
-            completion: completion,
+        flushSync(() => {
+            setPlaygroundModel({
+                ...playgroundModel,
+                completion: completion,
+            })
         })
     }
 
@@ -423,6 +429,66 @@ function Playground() {
         )
     }
 
+    const handleInsertStream = async () => {
+        if (playgroundModel.prompt.indexOf("[insert]") == -1) {
+            return
+        }
+
+        const promptsuffix = playgroundModel.prompt.split("[insert]")
+        let suffix = ""
+        if (promptsuffix.length > 1) {
+            suffix = promptsuffix[1]
+        }
+
+        let data: OpenAIModel = {
+            model: playgroundModel.model,
+            prompt: promptsuffix[0],
+            max_tokens: playgroundModel.responseLength,
+            temperature: playgroundModel.temperature,
+            top_p: playgroundModel.top_p,
+            frequency_penalty: playgroundModel.frequency_penalty,
+            presence_penalty: playgroundModel.presence_penalty,
+            best_of: playgroundModel.best_of,
+            echo: false,
+            logprobs: 0,
+            stop: playgroundModel.stopSequence,
+            suffix: suffix,
+        }
+
+        await completionService.createCompletionStream(data, handleInsertStreamProcess, () => handleInsertStreamEnd(data))
+    }
+
+    const handleInsertStreamProcess = (data: string) => {
+        if (data == "") {
+            return
+        }
+
+        completion += data
+        flushSync(() => {
+            setPlaygroundModel({
+                ...playgroundModel,
+                completion: completion,
+            })
+        })
+    }
+
+    const handleInsertStreamEnd = (data: OpenAIModel) => {
+        let playgroundForStore: PlaygroundModel = {
+            ...playgroundModel,
+            prompt: data.prompt,
+            suffix: data.suffix ?? "",
+            completion: completion,
+        }
+
+        storeHistory(playgroundForStore)
+
+        setPlaygroundModel({
+            ...playgroundForStore,
+            completion: "",
+        })
+
+        completion = ""
+    }
     return (
         <>
             <Col xs={10} className='text-container'>
@@ -453,6 +519,11 @@ function Playground() {
                     )}
                     {(mode == "Chat") && (
                         <Button variant="success" type="submit" onClick={() => handleChatStream()}>
+                            Submit
+                        </Button>
+                    )}
+                    {(mode == "Insert") && (
+                        <Button variant="success" type="submit" onClick={() => handleInsertStream()}>
                             Submit
                         </Button>
                     )}
