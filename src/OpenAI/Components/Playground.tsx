@@ -542,7 +542,7 @@ function Playground() {
 
                 {(mode != "Edit") && (<MaxTokens max_tokens={playgroundModel.responseLength} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>)}
 
-                {(mode != "Chat") && (<Stop stop={playgroundModel.stopSequence} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
+                {(mode != "Chat" && mode != "Edit") && (<Stop stop={playgroundModel.stopSequence} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
 
                 <TopP top_p={playgroundModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
 
