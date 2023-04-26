@@ -34,17 +34,17 @@ function Layout() {
     );
     return (
         <>
-            <OverlayTrigger placement="right" overlay={showPopover}>
+            {/* <OverlayTrigger placement="right" overlay={showPopover}>
                 <div className='sidebar-menu-icon' onClick={HandleShowIconClick}>
                     <BsListUl />
                 </div>
-            </OverlayTrigger>
+            </OverlayTrigger> */}
             <Row className="header">
                 <Col>
                     <Header></Header>
                 </Col>
             </Row>
-            <Row className="route-out-container">
+            {/* <Row className="route-out-container">
                 {show && (
                     <Col xs={2}>
                         <ul className="nav nav-pills flex-column mb-auto">
@@ -83,6 +83,9 @@ function Layout() {
                         <Outlet />
                     </Row>
                 </Col>
+            </Row> */}
+            <Row className="route-out-container">
+                <Outlet />
             </Row>
         </>
     );

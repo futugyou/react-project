@@ -22,3 +22,18 @@
 .header-nav div a {
     text-decoration: unset;
 }
+
+.header-dropdown-container {
+    position: "relative"
+}
+
+.header-dropdown-container ul {
+    width: 200px;
+    color: var(--bs-link-color);
+}
+
+.header-dropdown-container ul li {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+}
