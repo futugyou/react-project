@@ -543,6 +543,7 @@ function Playground() {
 
     return (
         <>
+            <div className="playground-header"><span>some</span></div>
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
                     {(mode == "Complete") && (

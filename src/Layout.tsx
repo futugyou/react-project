@@ -44,7 +44,7 @@ function Layout() {
                     <Header></Header>
                 </Col>
             </Row>
-            <Row className="flex-grow-1 flex-fill">
+            <Row className="route-out-container">
                 {show && (
                     <Col xs={2}>
                         <ul className="nav nav-pills flex-column mb-auto">
@@ -78,27 +78,12 @@ function Layout() {
                         </ul>
                     </Col>
                 )}
-                <Col xs={show ? 10 : 12} className="d-flex flex-column">
-                    {/* <Row >
-                        <div>
-                            <Breadcrumb>
-                                <Breadcrumb.Item href="/">App</Breadcrumb.Item>
-                                <Breadcrumb.Item href="/Game">Game</Breadcrumb.Item>
-                                <Breadcrumb.Item active>Data</Breadcrumb.Item>
-                            </Breadcrumb>
-                        </div>
-                    </Row> */}
-                    <Row className="flex-grow-1 flex-fill">
+                <Col xs={show ? 10 : 12} className="route-out-container">
+                    <Row className="route-out-container" >
                         <Outlet />
                     </Row>
                 </Col>
             </Row>
-
-            {/* <Row className="footer" >
-                <Col>
-                    <h5>Footer</h5>
-                </Col>
-            </Row> */}
         </>
     );
 }

@@ -1,3 +1,7 @@
+:root {
+  --app-header-height: 60px
+}
+
 body,
 html,
 .container {
@@ -10,17 +14,24 @@ html,
 
 body,
 html {
-  min-height: 100vh;
+  height: 100%;
   overflow-y: hidden;
 }
 
 .flex-fill {
   flex: 1;
+  height: calc(100% - var(--app-header-height));
 }
 
-.header,
-.footer {
-  height: 10vh;
+.route-out-container {
+  flex-grow: 1;
+  flex: 1 1 auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.header {
+  height: var(--app-header-height);
 }
 
 a {
@@ -124,11 +135,12 @@ ul {
 
 .sidebar-menu-icon {
   position: absolute;
-  top: 5vh;
+  top: 70px;
   left: 1vh;
   height: 50px;
   width: 50px;
   padding: 5px;
+  z-index: 99;
 }
 
 .sidebar-menu-icon:hover {
