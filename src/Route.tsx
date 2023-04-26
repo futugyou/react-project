@@ -1,15 +1,17 @@
-import { lazy } from 'react';
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import Layout from "./Layout";
-import { qaloader } from './OpenAI/Components/Playground';
+import { lazy } from 'react'
+import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import Layout from "./Layout"
+import { qaloader } from './OpenAI/Components/Playground'
 
-const App = lazy(() => import('./00.Tutorial/App'))
-const Game = lazy(() => import('./00.Tutorial/Game'))
+
+const DemoPanel = lazy(() => import('./ReactDemo/DemoPanel'))
+const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
+const Game = lazy(() => import('./ReactDemo/00.Tutorial/Game'))
 const Playground = lazy(() => import('./OpenAI/Components/Playground'))
-const NameForm = lazy(() => import('./09.Forms/NameForm'))
-const Calculator = lazy(() => import('./10.LiftingStateUp/Calculator'))
-const WelcomeDialog = lazy(() => import('./11.Compose/WelcomeDialog'))
-const SplitPaneApp = lazy(() => import('./11.Compose/SplitPane'))
+const NameForm = lazy(() => import('./ReactDemo/09.Forms/NameForm'))
+const Calculator = lazy(() => import('./ReactDemo/10.LiftingStateUp/Calculator'))
+const WelcomeDialog = lazy(() => import('./ReactDemo/11.Compose/WelcomeDialog'))
+const SplitPaneApp = lazy(() => import('./ReactDemo/11.Compose/SplitPane'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 const Bailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.Bailout })))
 const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.WithoutBailout })))
@@ -40,55 +42,65 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
+                path: "/demo",
+                element: <DemoPanel />,
+                children: [
+                    {
+                        index: true,
+                        element: <App />,
+                    },
+                    {
+                        path: "app",
+                        element: <App />,
+                    },
+                    {
+                        path: "game",
+                        element: <Game />,
+                    },
+                    {
+                        path: "playground/p/:parameter",
+                        element: <Playground />,
+                        loader: qaloader,
+                        shouldRevalidate: () => false,
+                    },
+                    {
+                        path: "from",
+                        element: <NameForm />,
+                    },
+                    {
+                        path: "calculator",
+                        element: <Calculator />,
+                    },
+                    {
+                        path: "dialog",
+                        element: <WelcomeDialog />,
+                    },
+                    {
+                        path: "split",
+                        element: <SplitPaneApp />,
+                    },
+                    {
+                        path: "bailout",
+                        element: <Bailout />,
+                    },
+                    {
+                        path: "withbailout",
+                        element: <WithoutBailout />,
+                    },
+                ]
+            },
+            {
                 index: true,
                 element: <App />,
-            },
-            {
-                path: "/app",
-                element: <App />,
-            },
-            {
-                path: "/game",
-                element: <Game />,
             },
             {
                 path: "/playground",
                 element: <Playground />,
                 loader: qaloader,
                 shouldRevalidate: () => false,
-            },
-            {
-                path: "/playground/p/:parameter",
-                element: <Playground />,
-                loader: qaloader,
-                shouldRevalidate: () => false,
-            },
-            {
-                path: "/from",
-                element: <NameForm />,
-            },
-            {
-                path: "/calculator",
-                element: <Calculator />,
-            },
-            {
-                path: "/dialog",
-                element: <WelcomeDialog />,
-            },
-            {
-                path: "/split",
-                element: <SplitPaneApp />,
-            },
-            {
-                path: "/bailout",
-                element: <Bailout />,
-            },
-            {
-                path: "/withbailout",
-                element: <WithoutBailout />,
-            },
+            }
         ],
     },
-]);
+])
 
 export { router }

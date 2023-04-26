@@ -15,4 +15,4 @@ CostomRender.render(
     <App />,
     document.getElementById('root1'),
     null
-);
+)

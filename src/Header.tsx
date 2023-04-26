@@ -1,7 +1,7 @@
 import './header.css'
 
-import React from "react";
-import { Outlet, NavLink, useNavigation, useLocation } from "react-router-dom";
+import React from "react"
+import { NavLink } from "react-router-dom"
 
 function Header(props: any) {
     return (
@@ -20,28 +20,28 @@ function Header(props: any) {
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">React Demo</a>
                     <ul className="dropdown-menu" >
                         <li>
-                            <NavLink to={`app`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
+                            <NavLink to="/demo/app" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`game`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Game</NavLink>
+                            <NavLink to="/demo/game" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Game</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`from`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >NameForm</NavLink>
+                            <NavLink to="/demo/from" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >NameForm</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`calculator`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Calculator</NavLink>
+                            <NavLink to="/demo/calculator" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Calculator</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`dialog`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WelcomeDialog</NavLink>
+                            <NavLink to="/demo/dialog" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WelcomeDialog</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`split`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >SplitPaneApp</NavLink>
+                            <NavLink to="/demo/split" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >SplitPaneApp</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`bailout`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Bailout</NavLink>
+                            <NavLink to="/demo/bailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Bailout</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`withbailout`} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WithoutBailout</NavLink>
+                            <NavLink to="/demo/withbailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WithoutBailout</NavLink>
                         </li>
                     </ul>
                 </div>
