@@ -3,11 +3,11 @@ import { Outlet, NavLink, useNavigation, useLocation } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-
 import { BsListUl } from "react-icons/bs";
+
+import Header from "./Header";
 
 function Layout() {
     const navigation = useNavigation();
@@ -41,7 +41,7 @@ function Layout() {
             </OverlayTrigger>
             <Row className="header">
                 <Col>
-                    <h5>Header</h5>
+                    <Header></Header>
                 </Col>
             </Row>
             <Row className="flex-grow-1 flex-fill">
@@ -88,7 +88,7 @@ function Layout() {
                             </Breadcrumb>
                         </div>
                     </Row> */}
-                    <Row className={navigation.state === "loading" ? "flex-grow-1 flex-fill loading" : "flex-grow-1 flex-fill"}>
+                    <Row className="flex-grow-1 flex-fill">
                         <Outlet />
                     </Row>
                 </Col>
