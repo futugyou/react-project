@@ -1,13 +1,11 @@
 import { lazy } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import Layout from "./Layout"
-import { qaloader } from './OpenAI/Components/Playground'
 
 import { DemoRoute } from './ReactDemo/DemoRoute'
+import { OpenAIRoute } from './OpenAI/OpenAIRoute'
 
 const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
-const Playground = lazy(() => import('./OpenAI/Components/Playground'))
-const Examples = lazy(() => import('./OpenAI/Components/Examples'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
 // const router = createBrowserRouter(
@@ -29,36 +27,22 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 //   )
 // );
 
+let childrenRoute: RouteObject[] = [
+    {
+        index: true,
+        element: <App />,
+    },
+    DemoRoute
+]
+
+childrenRoute = childrenRoute.concat(OpenAIRoute)
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
         errorElement: <ErrorPage />,
-        children: [
-            {
-                index: true,
-                element: <App />,
-            },
-            {
-                path: "/playground",
-                element: <Playground />,
-                loader: qaloader,
-                shouldRevalidate: () => false,
-            },
-            {
-                path: "playground/p/:parameter",
-                element: <Playground />,
-                loader: qaloader,
-                shouldRevalidate: () => false,
-            },
-            {
-                path: "/examples",
-                element: <Examples />,
-                shouldRevalidate: () => false,
-            },
-            DemoRoute
-        ],
+        children: childrenRoute,
     },
 ])
 
