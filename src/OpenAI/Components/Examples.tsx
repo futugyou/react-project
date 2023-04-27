@@ -1,6 +1,30 @@
 import './Examples.css'
 
+import { BsSearch } from "react-icons/bs";
+
 function Examples(props: any) {
+    let fakeList: any[] = []
+    for (let index = 0; index < 20; index++) {
+        fakeList.push({
+            key: index,
+            title: "this is title " + index,
+            description: "this is description " + index,
+            icon: ""
+        })
+    }
+
+    const exampleItems = fakeList.map(item => {
+        return (
+            <div key={item.key}>
+                <div>icon</div>
+                <div>
+                    <div>{item.title}</div>
+                    <div>{item.description}</div>
+                </div>
+            </div>
+        )
+    })
+
     return (
         <div className="example-page">
             <div className="example-container">
@@ -17,6 +41,7 @@ function Examples(props: any) {
                     </div>
                 </div>
                 <div className="example-item-container">
+                    {exampleItems}
                 </div>
             </div>
         </div>

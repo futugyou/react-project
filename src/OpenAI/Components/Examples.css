@@ -7,21 +7,19 @@
 }
 
 .example-container {
-    background-color: aqua;
-    width: 760px;
+    width: 860px;
     display: flex;
     margin: 0 auto;
     flex-direction: column;
+    padding: 50px;
 }
 
 .example-header {
-    background-color: bisque;
     margin-bottom: 48px;
     text-align: center;
 }
 
 .example-search {
-    background-color: blue;
     display: flex;
     height: 36px;
     margin-bottom: 48px;
@@ -32,6 +30,7 @@
     margin-right: 20px;
     position: relative;
 }
+
 
 .example-search-input {
     width: 100%;
@@ -66,6 +65,9 @@
 
 .example-item-container {
     background-color: violet;
+    grid-gap: 32px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .text-title {
