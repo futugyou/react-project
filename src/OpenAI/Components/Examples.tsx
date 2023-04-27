@@ -15,11 +15,13 @@ function Examples(props: any) {
 
     const exampleItems = fakeList.map(item => {
         return (
-            <div key={item.key}>
-                <div>icon</div>
-                <div>
-                    <div>{item.title}</div>
-                    <div>{item.description}</div>
+            <div key={item.key} className="example-item">
+                <div className="example-item-left">
+                    <BsSearch></BsSearch>
+                </div>
+                <div className="example-item-right">
+                    <div className="example-item-title">{item.title}</div>
+                    <div className="example-item-description">{item.description}</div>
                 </div>
             </div>
         )

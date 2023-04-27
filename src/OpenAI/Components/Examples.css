@@ -1,5 +1,4 @@
 .example-page {
-    background-color: aliceblue;
     width: 100%;
     height: 100%;
     overflow-y: auto;
@@ -73,7 +72,6 @@
 }
 
 .example-item-container {
-    background-color: violet;
     grid-gap: 32px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -89,4 +87,41 @@
     color: #565869;
     font-size: 18px;
     line-height: 24px;
+}
+
+.example-item {
+    display: flex;
+    cursor: pointer;
+}
+
+.example-item-left {
+    padding: 24px;
+    flex: 0;
+}
+
+.example-item-left svg {
+    height: 20px;
+    width: 20px;
+}
+
+.example-item-right {
+    margin-left: 20px;
+    flex: 1;
+    text-align: left;
+}
+
+.example-item-title {
+    font-weight: 700;
+    line-height: 24px;
+    font-size: 18px;
+}
+
+.example-item-description {
+    color: #6e6e80;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 }
