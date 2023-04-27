@@ -34,6 +34,7 @@ function Examples(props: any) {
                 </div>
                 <div className="example-search">
                     <div className="example-search-input-container">
+                        <BsSearch className="search-icon"></BsSearch>
                         <input className="example-search-input"></input>
                     </div>
                     <div className="example-search-categories-container">
