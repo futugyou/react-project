@@ -24,10 +24,13 @@ html {
 }
 
 .route-out-container {
-  flex-grow: 1;
-  flex: 1 1 auto;
+  flex: 1 1 99%;
   height: 100%;
   overflow: hidden;
+  align-content: flex-start;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
 }
 
 .header {
