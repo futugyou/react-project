@@ -1,6 +1,6 @@
 import './Examples.css'
 
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsChevronDown } from "react-icons/bs";
 
 function Examples(props: any) {
     let fakeList: any[] = []
@@ -39,8 +39,20 @@ function Examples(props: any) {
                         <BsSearch className="search-icon"></BsSearch>
                         <input className="example-search-input"></input>
                     </div>
-                    <div className="example-search-categories-container">
-                        <select className="example-search-categories"></select>
+                    <div className="dropdown-container">
+                        <div className="dropdown-display-container">
+                            <div className="dropdown-display" >
+                                Dropdown button
+                            </div>
+                            <div className="dropdown-icon">
+                                <BsChevronDown></BsChevronDown>
+                            </div>
+                        </div>
+                        <ul className="dropdown-menu show">
+                            <li><a className="dropdown-item" href="#">Action</a></li>
+                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div className="example-item-container">
