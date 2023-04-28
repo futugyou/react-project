@@ -1,0 +1,30 @@
+.dropdown-container {
+    flex: 1 1 50%;
+    display: flex;
+    border: 1px solid #c5c5d2;
+    border-radius: 3px;
+    position: relative;
+}
+
+.dropdown-container ul {
+    top: 40px
+}
+
+.dropdown-display-container {
+    display: flex;
+    flex: 1;
+}
+
+.dropdown-display {
+    height: 100%;
+    line-height: 24px;
+    font-size: 18px;
+    padding-top: 3px;
+    flex: 1;
+    pointer-events: none;
+}
+
+.dropdown-icon {
+    width: 40px;
+    padding-top: 5px;
+}
