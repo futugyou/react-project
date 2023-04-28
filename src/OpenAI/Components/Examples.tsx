@@ -41,7 +41,7 @@ function Examples(props: any) {
                         <BsSearch className="search-icon"></BsSearch>
                         <input className="example-search-input"></input>
                     </div>
-                    <Dropdown></Dropdown>
+                    <Dropdown items={[]}></Dropdown>
                 </div>
                 <div className="example-item-container">
                     {exampleItems}
