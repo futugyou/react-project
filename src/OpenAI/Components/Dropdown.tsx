@@ -3,10 +3,10 @@ import './Dropdown.css'
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-interface DropdownItem {
+export interface DropdownItem {
     key: string
     value: string
-    choose: boolean
+    choose?: boolean
 }
 
 interface DropdownProps {
@@ -16,27 +16,45 @@ interface DropdownProps {
 }
 
 function Dropdown(props: DropdownProps) {
+    if (props.items.length < 1) {
+        return (<></>)
+    }
+
     const [showDropdown, setShowDropdown] = useState(false)
+    const [emptyDisplay, setEmptyDisplay] = useState(props.items[0].value)
     const ulClassName = showDropdown ? "dropdown-menu show" : "dropdown-menu"
 
     const HandleContainerClick = (e: any) => {
         setShowDropdown(f => !f)
     }
 
+    const HandleDropdownClick = (key: string) => {
+        const value = props.items.find(i => i.key === key)!.value
+        setEmptyDisplay(value)
+
+        if (props.onDropdownChange) {
+            props.onDropdownChange(key)
+        }
+    }
+
+    const dropdownitems = props.items.map(i => {
+        return (
+            <li key={i.key} className="dropdown-item" onClick={() => HandleDropdownClick(i.key)}> {i.value} </li>
+        )
+    })
+
     return (
         <div className="dropdown-container" onClick={HandleContainerClick}>
             <div className="dropdown-display-container">
                 <div className="dropdown-display" >
-                    Dropdown button
+                    {emptyDisplay}
                 </div>
                 <div className="dropdown-icon">
                     <BsChevronDown></BsChevronDown>
                 </div>
             </div>
             <ul className={ulClassName}>
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                {dropdownitems}
             </ul>
         </div>
     )

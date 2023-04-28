@@ -7,7 +7,8 @@
 }
 
 .dropdown-container ul {
-    top: 40px
+    top: 40px;
+    max-height: 50vh;
 }
 
 .dropdown-display-container {
@@ -18,13 +19,19 @@
 .dropdown-display {
     height: 100%;
     line-height: 24px;
-    font-size: 18px;
-    padding-top: 3px;
+    font-size: 16px;
+    padding-top: 5px;
     flex: 1;
     pointer-events: none;
+    text-transform: capitalize;
 }
 
 .dropdown-icon {
     width: 40px;
     padding-top: 5px;
+}
+
+.dropdown-item {
+    text-transform: capitalize;
+    cursor: pointer;
 }

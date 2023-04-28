@@ -2,7 +2,7 @@ import './Examples.css'
 
 import { BsSearch, BsChevronDown } from "react-icons/bs"
 
-import Dropdown from "./Dropdown"
+import Dropdown, { DropdownItem } from "./Dropdown"
 
 function Examples(props: any) {
     let fakeList: any[] = []
@@ -14,6 +14,41 @@ function Examples(props: any) {
             icon: ""
         })
     }
+
+    const categories: DropdownItem[] = [
+        {
+            key: "chooseAll",
+            value: "All Categories",
+        },
+        {
+            key: "answers",
+            value: "answers",
+        },
+        {
+            key: "classification",
+            value: "classification",
+        },
+        {
+            key: "code",
+            value: "code",
+        },
+        {
+            key: "conversation",
+            value: "conversation",
+        },
+        {
+            key: "generation",
+            value: "generation",
+        },
+        {
+            key: "translation",
+            value: "translation",
+        },
+        {
+            key: "transformation",
+            value: "transformation",
+        },
+    ]
 
     const exampleItems = fakeList.map(item => {
         return (
@@ -41,7 +76,7 @@ function Examples(props: any) {
                         <BsSearch className="search-icon"></BsSearch>
                         <input className="example-search-input"></input>
                     </div>
-                    <Dropdown items={[]}></Dropdown>
+                    <Dropdown items={categories}></Dropdown>
                 </div>
                 <div className="example-item-container">
                     {exampleItems}
