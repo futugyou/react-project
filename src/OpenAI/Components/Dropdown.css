@@ -35,3 +35,9 @@
     text-transform: capitalize;
     cursor: pointer;
 }
+
+.dropdown-item.selected {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0dcaf0;
+}

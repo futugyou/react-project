@@ -28,6 +28,10 @@ function Dropdown(props: DropdownProps) {
         setShowDropdown(f => !f)
     }
 
+    const HandleContainerBlur = (e: any) => {
+        setShowDropdown(false)
+    }
+
     const HandleDropdownClick = (key: string) => {
         const value = props.items.find(i => i.key === key)!.value
         setEmptyDisplay(value)
@@ -39,12 +43,12 @@ function Dropdown(props: DropdownProps) {
 
     const dropdownitems = props.items.map(i => {
         return (
-            <li key={i.key} className="dropdown-item" onClick={() => HandleDropdownClick(i.key)}> {i.value} </li>
+            <li key={i.key} className={i.value == emptyDisplay ? "dropdown-item selected" : "dropdown-item"} onClick={() => HandleDropdownClick(i.key)}> {i.value} </li>
         )
     })
 
     return (
-        <div className="dropdown-container" onClick={HandleContainerClick}>
+        <div className="dropdown-container" onClick={HandleContainerClick} onBlur={HandleContainerBlur}>
             <div className="dropdown-display-container">
                 <div className="dropdown-display" >
                     {emptyDisplay}
