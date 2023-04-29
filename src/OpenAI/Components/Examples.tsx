@@ -52,7 +52,7 @@ function Examples(props: any) {
 
     const exampleItems = fakeList.map(item => {
         return (
-            <div key={item.key} className="example-item">
+            <div key={item.key} className="example-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever={item.key}>
                 <div className="example-item-left">
                     <BsSearch></BsSearch>
                 </div>
@@ -63,7 +63,22 @@ function Examples(props: any) {
             </div>
         )
     })
+    const exampleModal = document.getElementById('exampleModal')
+    if (exampleModal) {
+        exampleModal.addEventListener('show.bs.modal', event => {
+            // Button that triggered the modal
+            const button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const recipient = button.getAttribute('data-bs-whatever')
 
+            // Update the modal's content.
+            const modalTitle = exampleModal.querySelector('.modal-title')
+            const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+            modalTitle!.textContent = `New message to ${recipient}`
+            modalBodyInput!.value = recipient
+        })
+    }
     return (
         <div className="example-page">
             <div className="example-container">
@@ -80,6 +95,33 @@ function Examples(props: any) {
                 </div>
                 <div className="example-item-container">
                     {exampleItems}
+
+                </div>
+            </div>
+            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-fullscreen-lg-down">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="mb-3">
+                                    <label htmlFor="recipient-name" className="col-form-label">Recipient:</label>
+                                    <input type="text" className="form-control" id="recipient-name" />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="message-text" className="col-form-label">Message:</label>
+                                    <textarea className="form-control" id="message-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
