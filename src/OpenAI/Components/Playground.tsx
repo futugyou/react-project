@@ -41,7 +41,7 @@ import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
 import { ChatLog } from '../Models/PlaygroundModel';
 
-export async function qaloader({ params, request }: any) {
+export async function playgroundLoader({ params, request }: any) {
     console.log(params, request)
     return await set.getExample("default-grammar");
 }

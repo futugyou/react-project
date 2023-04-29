@@ -1,19 +1,22 @@
 import './Examples.css'
 
+import { useState } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { BsSearch, BsChevronDown } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "./Dropdown"
 
+import set from '../Services/Example';
+import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
+
+export async function examplesLoader({ params, request }: any) {
+    console.log(params, request)
+    return await set.getAllExamples();
+}
+
 function Examples(props: any) {
-    let fakeList: any[] = []
-    for (let index = 0; index < 20; index++) {
-        fakeList.push({
-            key: index,
-            title: "this is title " + index,
-            description: "this is description " + index,
-            icon: ""
-        })
-    }
+    const loaderdata = useLoaderData() as ExampleModel[]
+    const [exampleList, setExampleList] = useState(loaderdata)
 
     const categories: DropdownItem[] = [
         {
@@ -50,7 +53,7 @@ function Examples(props: any) {
         },
     ]
 
-    const exampleItems = fakeList.map(item => {
+    const exampleItems = exampleList.map(item => {
         return (
             <div key={item.key} className="example-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever={item.key}>
                 <div className="example-item-left">
@@ -58,14 +61,14 @@ function Examples(props: any) {
                 </div>
                 <div className="example-item-right">
                     <div className="example-item-title">{item.title}</div>
-                    <div className="example-item-description">{item.description}</div>
+                    <div className="example-item-description">{item.subTitle}</div>
                 </div>
             </div>
         )
     })
     const exampleModal = document.getElementById('exampleModal')
     if (exampleModal) {
-        exampleModal.addEventListener('show.bs.modal', event => {
+        exampleModal.addEventListener('show.bs.modal', (event: any) => {
             // Button that triggered the modal
             const button = event.relatedTarget
             // Extract info from data-bs-* attributes
@@ -73,7 +76,7 @@ function Examples(props: any) {
 
             // Update the modal's content.
             const modalTitle = exampleModal.querySelector('.modal-title')
-            const modalBodyInput = exampleModal.querySelector('.modal-body input')
+            const modalBodyInput: any = exampleModal.querySelector('.modal-body input')
 
             modalTitle!.textContent = `New message to ${recipient}`
             modalBodyInput!.value = recipient
