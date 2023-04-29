@@ -11,6 +11,7 @@
     margin: 0 auto;
     flex-direction: column;
     padding: 50px;
+    height: 100%;
 }
 
 .example-header {

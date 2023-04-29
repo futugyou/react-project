@@ -1,10 +1,11 @@
 import './Examples.css'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
-import { BsSearch, BsChevronDown } from "react-icons/bs"
+import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "./Dropdown"
+import ExampleDetail from "./ExampleDetail"
 
 import set from '../Services/Example';
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
@@ -17,6 +18,7 @@ export async function examplesLoader({ params, request }: any) {
 function Examples(props: any) {
     const loaderdata = useLoaderData() as ExampleModel[]
     const [exampleList, setExampleList] = useState(loaderdata)
+    const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
 
     const categories: DropdownItem[] = [
         {
@@ -55,7 +57,7 @@ function Examples(props: any) {
 
     const exampleItems = exampleList.map(item => {
         return (
-            <div key={item.key} className="example-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever={item.key}>
+            <div key={item.key} className="example-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-key={item.key}>
                 <div className="example-item-left">
                     <BsSearch></BsSearch>
                 </div>
@@ -66,22 +68,20 @@ function Examples(props: any) {
             </div>
         )
     })
-    const exampleModal = document.getElementById('exampleModal')
-    if (exampleModal) {
-        exampleModal.addEventListener('show.bs.modal', (event: any) => {
-            // Button that triggered the modal
-            const button = event.relatedTarget
-            // Extract info from data-bs-* attributes
-            const recipient = button.getAttribute('data-bs-whatever')
 
-            // Update the modal's content.
-            const modalTitle = exampleModal.querySelector('.modal-title')
-            const modalBodyInput: any = exampleModal.querySelector('.modal-body input')
+    useEffect(() => {
+        const exampleModal = document.getElementById("exampleModal")
+        if (exampleModal) {
+            exampleModal.addEventListener("show.bs.modal", (event: any) => {
+                const div = event.relatedTarget
+                const key = div.getAttribute("data-bs-key")
 
-            modalTitle!.textContent = `New message to ${recipient}`
-            modalBodyInput!.value = recipient
-        })
-    }
+                const data = exampleList.find(p => p.key === key) ?? DefaultExampleModel
+                setExampleData(data)
+            })
+        }
+    })
+
     return (
         <div className="example-page">
             <div className="example-container">
@@ -98,36 +98,12 @@ function Examples(props: any) {
                 </div>
                 <div className="example-item-container">
                     {exampleItems}
-
                 </div>
             </div>
-            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-fullscreen-lg-down">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form>
-                                <div className="mb-3">
-                                    <label htmlFor="recipient-name" className="col-form-label">Recipient:</label>
-                                    <input type="text" className="form-control" id="recipient-name" />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="message-text" className="col-form-label">Message:</label>
-                                    <textarea className="form-control" id="message-text"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Send message</button>
-                        </div>
-                    </div>
-                </div>
+            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-hidden="true">
+                <ExampleDetail data={exampleData}></ExampleDetail>
             </div>
-        </div>
+        </div >
     )
 }
 
