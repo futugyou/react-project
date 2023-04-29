@@ -101,8 +101,10 @@ function Examples(props: any) {
                 </div>
             </div>
             <div className="modal fade" id="exampleModal" tabIndex={-1} aria-hidden="true">
-                <ExampleDetail data={exampleData}></ExampleDetail>
-            </div>
+                <div className="modal-dialog" style={{ maxWidth: "920px" }}>
+                    <ExampleDetail data={exampleData}></ExampleDetail>
+                </div>
+            </div >
         </div >
     )
 }
