@@ -1,13 +1,24 @@
 import './ExampleDetail.css'
 
 function ExampleDetail(props: any) {
+
+    let tags = []
+    if (props.data.tags) {
+        tags = props.data.tags.map((t: string) => {
+            return (
+                <div className="detail-tag-item">
+                    {t}
+                </div>
+            )
+        })
+    }
     return (
         <div className="detail-container">
             <div className="detail-header">
                 <div className="detail-header-icon"></div>
                 <div className="detail-header-title-group">
                     <div className="detail-header-title">{props.data.title}</div>
-                    <div className="detail-header-subtitle">{props.data.subTitle}</div>
+                    <div className="detail-header-tags">{tags}</div>
                 </div>
                 <div className="detail-header-link">
                     <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model}>
