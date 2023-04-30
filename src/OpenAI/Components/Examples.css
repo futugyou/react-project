@@ -84,11 +84,19 @@
 .example-item {
     display: flex;
     cursor: pointer;
+    align-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .example-item-left {
-    padding: 24px;
-    flex: 0;
+    background-color: #dd5ce5;
+    border-radius: 4px;
+    color: #fff;
+    flex: 0 0 auto;
+    font-size: 24px;
+    line-height: 0px;
+    padding: 15px;
+    height: 54px;
 }
 
 .example-item-left:hover {
@@ -96,13 +104,15 @@
 }
 
 .example-item-left svg {
-    height: 20px;
-    width: 20px;
+    color: #fff;
+    height: 24px;
+    width: 24px;
 }
 
 .example-item-right {
     flex: 1;
     text-align: left;
+    padding-left: 10px;
 }
 
 .example-item-title {

@@ -1,5 +1,7 @@
 import './ExampleDetail.css'
 
+import { BsBinoculars } from "react-icons/bs";
+
 function ExampleDetail(props: any) {
 
     let tags = []
@@ -15,7 +17,9 @@ function ExampleDetail(props: any) {
     return (
         <div className="detail-container">
             <div className="detail-header">
-                <div className="detail-header-icon"></div>
+                <div className="detail-header-icon">
+                    <BsBinoculars></BsBinoculars>
+                </div>
                 <div className="detail-header-title-group">
                     <div className="detail-header-title">{props.data.title}</div>
                     <div className="detail-header-tags">{tags}</div>
