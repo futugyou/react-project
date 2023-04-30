@@ -9,7 +9,13 @@ function ExampleDetail(props: any) {
                     <div className="detail-header-title">{props.data.title}</div>
                     <div className="detail-header-subtitle">{props.data.subTitle}</div>
                 </div>
-                <div className="detail-header-link">Open in Playground</div>
+                <div className="detail-header-link">
+                    <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model}>
+                        <span>
+                            Open in Playground
+                        </span>
+                    </a>
+                </div>
             </div>
             <div className="detail-body">
                 <div className="detail-body-left">

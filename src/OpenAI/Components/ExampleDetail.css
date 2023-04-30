@@ -42,6 +42,18 @@
     text-align: right;
 }
 
+.detail-header-link a{
+    text-decoration: none;
+    background-color: #10a37f;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+.detail-header-link a:hover{ 
+    background-color: #32e0b5; 
+    color: white;
+}
+
 .detail-body {
     display: flex;
     flex: 1;
