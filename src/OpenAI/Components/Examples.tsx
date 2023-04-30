@@ -16,7 +16,11 @@ export async function examplesLoader({ params, request }: any) {
 }
 
 function Examples(props: any) {
-    const loaderdata = useLoaderData() as ExampleModel[]
+    let loaderdata = useLoaderData() as ExampleModel[]
+    if (loaderdata && loaderdata.length > 0) {
+        loaderdata = loaderdata.filter(p => p.title != undefined && p.title.length > 0)
+    }
+
     const [exampleList, setExampleList] = useState(loaderdata)
     const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
 

@@ -3,12 +3,11 @@ import './ExampleDetail.css'
 import { BsBinoculars } from "react-icons/bs";
 
 function ExampleDetail(props: any) {
-    console.log(props.data)
     let tags = []
     if (props.data.tags) {
         tags = props.data.tags.map((t: string) => {
             return (
-                <div className="detail-tag-item">
+                <div key={t} className="detail-tag-item">
                     {t}
                 </div>
             )
