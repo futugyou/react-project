@@ -76,7 +76,11 @@ function Examples(props: any) {
                 const div = event.relatedTarget
                 const key = div.getAttribute("data-bs-key")
 
-                const data = exampleList.find(p => p.key === key) ?? DefaultExampleModel
+                let data = exampleList.find(p => p.key === key) ?? DefaultExampleModel
+                data = {
+                    ...DefaultExampleModel,
+                    ...data,
+                }
                 setExampleData(data)
             })
         }

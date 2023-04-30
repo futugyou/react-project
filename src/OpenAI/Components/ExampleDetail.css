@@ -89,7 +89,7 @@
 .detail-body-left {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 100%;
 }
 
 .detail-description {
@@ -139,8 +139,8 @@
 .detail-body-right {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding-left: 20px;
+    flex: 1 1 65%;
+    padding-left: 48px;
 }
 
 .detail-setting-header {
@@ -148,4 +148,28 @@
     margin-bottom: 20px
 }
 
-.detail-setting-details {}
+.detail-setting-details {
+    box-sizing: border-box;
+}
+
+.detail-setting-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.detail-setting-label {
+    flex: 1 1 100%;
+    color: #6e6e80;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.detail-setting-text {
+    flex: 1 1 100%;
+    font-feature-settings: "tnum";
+    color: #202123;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    line-height: 28px;
+}

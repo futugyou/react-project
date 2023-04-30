@@ -3,7 +3,7 @@ import './ExampleDetail.css'
 import { BsBinoculars } from "react-icons/bs";
 
 function ExampleDetail(props: any) {
-
+    console.log(props.data)
     let tags = []
     if (props.data.tags) {
         tags = props.data.tags.map((t: string) => {
@@ -53,8 +53,36 @@ function ExampleDetail(props: any) {
                     </div>
                 </div>
                 <div className="detail-body-right">
-                    <div className="detail-setting-header"></div>
+                    <div className="detail-setting-header">Settings</div>
                     <div className="detail-setting-details">
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Engine</div>
+                            <div className="detail-setting-text">{props.data.model}</div>
+                        </div>
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Max tokens</div>
+                            <div className="detail-setting-text">{props.data.max_tokens}</div>
+                        </div>
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Temperature</div>
+                            <div className="detail-setting-text">{props.data.temperature}</div>
+                        </div>
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Top p</div>
+                            <div className="detail-setting-text">{props.data.top_p}</div>
+                        </div>
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Frequency penalty</div>
+                            <div className="detail-setting-text">{props.data.frequency_penalty}</div>
+                        </div>
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Presence penalty</div>
+                            <div className="detail-setting-text">{props.data.presence_penalty}</div>
+                        </div>
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Stop sequence</div>
+                            <div className="detail-setting-text">{props.data.stop}</div>
+                        </div>
                     </div>
                 </div>
             </div>
