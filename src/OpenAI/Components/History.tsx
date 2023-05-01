@@ -9,7 +9,7 @@ import { PlaygroundModel } from '../Models/PlaygroundModel';
 import playgroundService from '../Services/Playground';
 import moment from 'moment';
 
-function History() {
+function History(props: any) {
     const [show, setShow] = useState(false);
     const [historyList, setHistoryList] = useState<PlaygroundModel[]>([]);
 
@@ -25,6 +25,12 @@ function History() {
 
     let lastDate = '';
 
+    const handleRecordClick = (data: PlaygroundModel) => {
+        if (props.onHistoryRecordClick) {
+            props.onHistoryRecordClick(data)
+        }
+    }
+
     const historyItems = historyList.map((data, index) => {
         let currectDate = data.Date as string;
         let dayDisplay = <></>
@@ -38,9 +44,9 @@ function History() {
         return (
             <Fragment key={index}>
                 {dayDisplay}
-                <li>
-                    <a href="#!" className="prompt"> {data.prompt}</a>
-                    <a href="#!" className="float-end">{formatTime(data.createdAt)}</a>
+                <li onClick={() => handleRecordClick(data)}>
+                    <span className="prompt"> {data.prompt}</span>
+                    <span className="float-end">{formatTime(data.createdAt)}</span>
                     <p className="completion">
                         {data.completion}
                     </p>

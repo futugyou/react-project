@@ -540,6 +540,10 @@ function Playground() {
         })
     }
 
+    const handleHistoryRecordClick = (data: PlaygroundModel) => {
+        setPlaygroundModel(data)
+    }
+
     return (
         <>
             <div className="playground-header"><span>some</span></div>
@@ -585,7 +589,7 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History />
+                    <History onHistoryRecordClick={handleHistoryRecordClick} />
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align opertion-container" >
