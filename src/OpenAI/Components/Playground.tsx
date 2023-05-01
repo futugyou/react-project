@@ -42,8 +42,7 @@ import playgroundService from '../Services/Playground';
 import { ChatLog } from '../Models/PlaygroundModel';
 
 export async function playgroundLoader({ params, request }: any) {
-    console.log(params, request)
-    return await set.getExample("default-grammar");
+    return await set.getExample(params.parameter ?? "");
 }
 
 const mapExampleModelToPlaygroundModel = (data: ExampleModel): PlaygroundModel => {

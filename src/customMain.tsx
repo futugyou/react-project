@@ -1,5 +1,5 @@
 
-import CostomRender from './MiniReactHook/costomRender'
+import CostomRender from './ReactDemo/MiniReactHook/costomRender'
 
 function App() {
     const writelog = () => {
