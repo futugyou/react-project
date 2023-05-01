@@ -11,15 +11,22 @@ import set from '../Services/Example';
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
 
 export async function examplesLoader({ params, request }: any) {
-    console.log(params, request)
-    return await set.getAllExamples();
+    const list = await set.getAllExamples()
+    return list
+        .filter(p => p.title != undefined && p.title.length > 0)
+        .sort((a, b) => {
+            if (a.key > b.key) {
+                return 1
+            }
+            if (a.key < b.key) {
+                return -1
+            }
+            return 0
+        })
 }
 
 function Examples(props: any) {
     let loaderdata = useLoaderData() as ExampleModel[]
-    if (loaderdata && loaderdata.length > 0) {
-        loaderdata = loaderdata.filter(p => p.title != undefined && p.title.length > 0)
-    }
 
     const [exampleList, setExampleList] = useState(loaderdata)
     const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
