@@ -90,6 +90,18 @@ function Examples(props: any) {
         }
     })
 
+    const HandleCategoryChange = (categorg: string) => {
+        if (categorg === "chooseAll") {
+            setExampleList(loaderdata)
+            return
+        }
+
+        const list = loaderdata.filter(p => p.tags.findIndex(element => {
+            return element.toLowerCase() === categorg.toLowerCase();
+        }) >= 0)
+        setExampleList(list)
+    }
+
     return (
         <div className="example-page">
             <div className="example-container">
@@ -102,7 +114,7 @@ function Examples(props: any) {
                         <BsSearch className="search-icon"></BsSearch>
                         <input className="example-search-input"></input>
                     </div>
-                    <Dropdown items={categories}></Dropdown>
+                    <Dropdown items={categories} onDropdownChange={HandleCategoryChange}></Dropdown>
                 </div>
                 <div className="example-item-container">
                     {exampleItems}
