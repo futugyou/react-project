@@ -59,6 +59,7 @@ function Examples(props: any) {
         },
     ]
 
+
     const exampleItems = exampleList.map(item => {
         return (
             <div key={item.key} className="example-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-key={item.key}>
@@ -102,6 +103,17 @@ function Examples(props: any) {
         setExampleList(list)
     }
 
+    const handleKeyworkChange = (e: any) => {
+        const k: string = e.target.value;
+        if (k === "") {
+            setExampleList(loaderdata)
+            return
+        }
+
+        const list = loaderdata.filter(p => p.title.toLowerCase().includes(k.toLowerCase()) || p.description.toLowerCase().includes(k.toLowerCase()))
+        setExampleList(list)
+    }
+
     return (
         <div className="example-page">
             <div className="example-container">
@@ -112,7 +124,7 @@ function Examples(props: any) {
                 <div className="example-search">
                     <div className="example-search-input-container">
                         <BsSearch className="search-icon"></BsSearch>
-                        <input className="example-search-input"></input>
+                        <input className="example-search-input" onChange={handleKeyworkChange}></input>
                     </div>
                     <Dropdown items={categories} onDropdownChange={HandleCategoryChange}></Dropdown>
                 </div>
