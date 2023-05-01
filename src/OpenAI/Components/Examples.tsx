@@ -23,6 +23,20 @@ function Examples(props: any) {
 
     const [exampleList, setExampleList] = useState(loaderdata)
     const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
+    const [searchFilter, setSearchFilter] = useState({ key: "", category: "chooseAll" })
+
+    useEffect(() => {
+        const list = loaderdata
+            .filter(p => p.tags.findIndex(element => {
+                return element.toLowerCase() === searchFilter.category.toLowerCase()
+                    || searchFilter.category === "chooseAll";
+            }) >= 0)
+            .filter(p => searchFilter.key === ""
+                || p.title.toLowerCase().includes(searchFilter.key.toLowerCase())
+                || p.description.toLowerCase().includes(searchFilter.key.toLowerCase()))
+
+        setExampleList(list)
+    }, [searchFilter])
 
     const categories: DropdownItem[] = [
         {
@@ -91,27 +105,19 @@ function Examples(props: any) {
         }
     })
 
-    const HandleCategoryChange = (categorg: string) => {
-        if (categorg === "chooseAll") {
-            setExampleList(loaderdata)
-            return
-        }
-
-        const list = loaderdata.filter(p => p.tags.findIndex(element => {
-            return element.toLowerCase() === categorg.toLowerCase();
-        }) >= 0)
-        setExampleList(list)
+    const HandleCategoryChange = (category: string) => {
+        setSearchFilter({
+            ...searchFilter,
+            category: category,
+        })
     }
 
     const handleKeyworkChange = (e: any) => {
         const k: string = e.target.value;
-        if (k === "") {
-            setExampleList(loaderdata)
-            return
-        }
-
-        const list = loaderdata.filter(p => p.title.toLowerCase().includes(k.toLowerCase()) || p.description.toLowerCase().includes(k.toLowerCase()))
-        setExampleList(list)
+        setSearchFilter({
+            ...searchFilter,
+            key: k ?? "",
+        })
     }
 
     return (
