@@ -589,7 +589,7 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History onHistoryRecordClick={handleHistoryRecordClick} />
+                    <History onHistoryRecordClick={handleHistoryRecordClick} current={playgroundModel}/>
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align opertion-container" >

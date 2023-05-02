@@ -58,7 +58,10 @@ function History(props: any) {
 
     const handleClose = () => setShow(false)
     const handleShow = () => {
-        const data = playgroundService.getPlayground()
+        let data = playgroundService.getPlayground()
+        if (props.current != null) {
+            data.unshift(props.current)
+        }
         setHistoryList(data)
         setShow(true)
     }
