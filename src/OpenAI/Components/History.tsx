@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { BsClockHistory } from "react-icons/bs"
 
-import { PlaygroundModel } from '../Models/PlaygroundModel'
+import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 import playgroundService from '../Services/Playground'
 import moment from 'moment'
 
@@ -13,6 +13,7 @@ function History(props: any) {
     const [show, setShow] = useState(false)
     const [historyList, setHistoryList] = useState<PlaygroundModel[]>([])
     const [historySelected, setHistorySelected] = useState(-1)
+    const currentEdit: PlaygroundModel = props.current ?? DefaultPlayground
 
     const formatDate = (t: number) => {
         var day = moment(t)
@@ -24,17 +25,30 @@ function History(props: any) {
         return day.format('HH:mm')
     }
 
-    let lastDate = ''
+    let lastDate = formatDate(currentEdit.createdAt)
 
     const handleRecordClick = (data: PlaygroundModel) => {
         setHistorySelected(data.createdAt)
         if (props.onHistoryRecordClick) {
-            props.onHistoryRecordClick(data)
+            const t: PlaygroundModel = {
+                ...data,
+                createdAt: Date.now(),
+            }
+            props.onHistoryRecordClick(t)
         }
     }
 
+    const currentItems = <>
+        <li className="history-day-display"> {formatDate(currentEdit.createdAt)}</li >
+        <li className={historySelected === currentEdit.createdAt ? "history-item-wrap history-selected" : "history-item-wrap"} style={{ height: "50px" }} onClick={() => handleRecordClick(currentEdit)}>
+            <div className="history-item">
+                <div className="history-item-time">Now</div>
+                <div className="history-item-prompt">Current editor</div>
+            </div>
+        </li>
+    </>
     const historyItems = historyList.map((data, index) => {
-        let currectDate = data.Date as string
+        let currectDate = formatDate(data.createdAt)
         let dayDisplay = <></>
 
         if (lastDate != currectDate) {
@@ -59,9 +73,6 @@ function History(props: any) {
     const handleClose = () => setShow(false)
     const handleShow = () => {
         let data = playgroundService.getPlayground()
-        if (props.current != null) {
-            data.unshift(props.current)
-        }
         setHistoryList(data)
         setShow(true)
     }
@@ -78,6 +89,7 @@ function History(props: any) {
                 <Offcanvas.Body>
                     <div className="history-container" >
                         <ul className="timeline-3">
+                            {currentItems}
                             {historyItems}
                         </ul>
                     </div>

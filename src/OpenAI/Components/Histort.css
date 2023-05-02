@@ -19,7 +19,7 @@ ul.timeline-3 {
 }
 
 .history-selected {
-    background-color: #ebfaeb;
+    background-color: #ebfaeb !important;
 }
 
 .history-item-wrap:hover {
