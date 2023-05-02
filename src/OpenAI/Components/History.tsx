@@ -36,7 +36,7 @@ function History(props: any) {
         let dayDisplay = <></>
 
         if (lastDate != currectDate) {
-            dayDisplay = <div style={{ textAlign: 'left', paddingLeft: '20px', fontSize: '16px', fontWeight: 700 }}> {formatDate(data.createdAt)}</div >
+            dayDisplay = <li className="history-day-display"> {formatDate(data.createdAt)}</li >
         }
 
         lastDate = currectDate
@@ -44,12 +44,11 @@ function History(props: any) {
         return (
             <Fragment key={index}>
                 {dayDisplay}
-                <li onClick={() => handleRecordClick(data)}>
-                    <span className="prompt"> {data.prompt}</span>
-                    <span className="float-end">{formatTime(data.createdAt)}</span>
-                    <p className="completion">
-                        {data.completion}
-                    </p>
+                <li  className="history-item-wrap" onClick={() => handleRecordClick(data)}>
+                    <div className="history-item">
+                        <div className="history-item-time">{formatTime(data.createdAt)}</div>
+                        <div className="history-item-prompt"> {data.prompt}</div>
+                    </div>
                 </li>
             </Fragment>
         );
@@ -72,17 +71,13 @@ function History(props: any) {
                     <Offcanvas.Title>History</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <div className="container my-5">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <ul className="timeline-3">
-                                    {historyItems}
-                                </ul>
-                            </div>
-                        </div>
+                    <div className="history-container" >
+                        <ul className="timeline-3">
+                            {historyItems}
+                        </ul>
                     </div>
                 </Offcanvas.Body>
-            </Offcanvas>
+            </Offcanvas >
         </>
     );
 }
