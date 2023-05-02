@@ -1,0 +1,25 @@
+.restore-layer {
+    display: flex;
+}
+
+.restore-left {
+    flex: 1 1 50px;
+}
+
+.restore-center {
+    flex: 1;
+}
+
+.restore-righ {
+    flex: 1 1 100px;
+}
+
+.restore-center-date {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.restore-center-label {
+    font-size: 20px;
+    font-weight: 500;
+}

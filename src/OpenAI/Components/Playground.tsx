@@ -134,6 +134,7 @@ function Playground() {
     }
 
     const [playgroundModel, setPlaygroundModel] = useState(data)
+    const [restoreData, setRestoreData] = useState<PlaygroundModel | null>(null)
     const [mode, setMode] = useState('Complete')
 
     useEffect(() => {
@@ -541,7 +542,11 @@ function Playground() {
     }
 
     const handleHistoryRecordClick = (data: PlaygroundModel) => {
-        setPlaygroundModel(data)
+        if (data == playgroundModel) {
+            setRestoreData(null)
+        } else {
+            setRestoreData(data)
+        }
     }
 
     return (
@@ -589,7 +594,7 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History onHistoryRecordClick={handleHistoryRecordClick} current={playgroundModel}/>
+                    <History onHistoryRecordClick={handleHistoryRecordClick} current={playgroundModel} />
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align opertion-container" >
