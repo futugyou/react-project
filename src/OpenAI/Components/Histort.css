@@ -18,6 +18,10 @@ ul.timeline-3 {
     position: relative;
 }
 
+.history-selected {
+    background-color: #ebfaeb;
+}
+
 .history-item-wrap:hover {
     background-color: #f7f7f8;
 }
