@@ -137,6 +137,8 @@ function Playground() {
     const [playgroundModel, setPlaygroundModel] = useState(data)
     const [restoreData, setRestoreData] = useState<PlaygroundModel | null>(null)
     const [mode, setMode] = useState('Complete')
+    const disabled = restoreData == null ? false : true;
+    const [currentData, setCurrentData] = useState<PlaygroundModel | null>(null)
 
     useEffect(() => {
         setPlaygroundModel(data)
@@ -543,11 +545,22 @@ function Playground() {
     }
 
     const handleHistoryRecordClick = (data: PlaygroundModel) => {
-        if (data == playgroundModel) {
-            setRestoreData(null)
-        } else {
-            setRestoreData(data)
+        setPlaygroundModel(data)
+    }
+
+    const handleCurrentDataChange = () => {
+        if (currentData == null) {
+            setCurrentData({
+                ...playgroundModel,
+            })
         }
+    }
+
+    const handleRestoreClick = (data: PlaygroundModel) => {
+        setCurrentData(null)
+        setPlaygroundModel({
+            ...data,
+        })
     }
 
     return (
@@ -557,22 +570,22 @@ function Playground() {
                 <div className='container-fluid pg-input-body'>
                     {(mode == "Complete") && (
                         <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} >
-                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </CompletePanel>
                     )}
                     {(mode == "Chat") && (
                         <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}>
-                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </ChatPanel>
                     )}
                     {(mode == "Insert") && (
                         <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange}>
-                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </InsertPanel>
                     )}
                     {(mode == "Edit") && (
                         <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange}>
-                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </EditPanel>
                     )}
                 </div>
@@ -603,7 +616,7 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History onHistoryRecordClick={handleHistoryRecordClick} current={playgroundModel} />
+                    <History onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
                 </Form.Group>
             </Col>
             <Col xs={2} className="qa-item-align opertion-container" >

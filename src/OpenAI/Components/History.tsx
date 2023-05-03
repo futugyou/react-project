@@ -1,4 +1,4 @@
-import './Histort.css'
+import './History.css'
 
 import { useState, Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
@@ -14,7 +14,7 @@ function History(props: any) {
     const [historyList, setHistoryList] = useState<PlaygroundModel[]>([])
     const [historySelected, setHistorySelected] = useState(-1)
     const currentEdit: PlaygroundModel = props.current ?? DefaultPlayground
-
+    
     const formatDate = (t: number) => {
         var day = moment(t)
         return day.format('LL dddd')
@@ -40,7 +40,7 @@ function History(props: any) {
 
     const currentItems = <>
         <li className="history-day-display"> {formatDate(currentEdit.createdAt)}</li >
-        <li className={historySelected === currentEdit.createdAt ? "history-item-wrap history-selected" : "history-item-wrap"} style={{ height: "50px" }} onClick={() => handleRecordClick(currentEdit)}>
+        <li className={historySelected === currentEdit.createdAt ? "history-item-wrap history-selected history-current" : "history-item-wrap history-current"} onClick={() => handleRecordClick(currentEdit)}>
             <div className="history-item">
                 <div className="history-item-time">Now</div>
                 <div className="history-item-prompt">Current editor</div>
@@ -75,6 +75,10 @@ function History(props: any) {
         let data = playgroundService.getPlayground()
         setHistoryList(data)
         setShow(true)
+        
+        if (props.onHistoryShow) {
+            props.onHistoryShow()
+        }
     }
 
     return (
