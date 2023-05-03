@@ -557,17 +557,23 @@ function Playground() {
                 <div className='container-fluid pg-input-body'>
                     {(mode == "Complete") && (
                         <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} >
-                            <RestoreLayer></RestoreLayer>
+                            <RestoreLayer data={playgroundModel}></RestoreLayer>
                         </CompletePanel>
                     )}
                     {(mode == "Chat") && (
-                        <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
+                        <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}>
+                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                        </ChatPanel>
                     )}
                     {(mode == "Insert") && (
-                        <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange}></InsertPanel>
+                        <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange}>
+                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                        </InsertPanel>
                     )}
                     {(mode == "Edit") && (
-                        <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange}></EditPanel>
+                        <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange}>
+                            <RestoreLayer data={playgroundModel}></RestoreLayer>
+                        </EditPanel>
                     )}
                 </div>
                 <Form.Group as={Row} className="mb-3 qa-item-align">

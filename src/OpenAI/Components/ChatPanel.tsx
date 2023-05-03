@@ -121,6 +121,7 @@ function ChatPanel(props: any) {
                         </div>
                     </div>
                 </div>
+                {props.children}
             </div>
         </>
     )

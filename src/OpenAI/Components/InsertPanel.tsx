@@ -46,7 +46,10 @@ function InsertPanel(props: any) {
                 </div>)}
             </div>
             <div className="insert-container-right">
-                {completion}
+                <div className="insert-container-right-completion">
+                    {completion}
+                </div>
+                {props.children}
             </div>
         </>
     )

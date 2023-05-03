@@ -31,8 +31,11 @@ function EditPanel(props: any) {
                         <Form.Control as="textarea" rows={2} value={props.instructions} onChange={onInstructionsChange} placeholder="Fix the grammar." />
                     </div>
                 </div>
-                <div className="edit-input-container-right">
-                    {props.completion}
+                <div className="edit-container-right">
+                    <div className="edit-container-right-completion">
+                        {props.completion}
+                    </div>
+                    {props.children}
                 </div>
             </div>
         </div>
