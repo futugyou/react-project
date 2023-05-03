@@ -622,7 +622,7 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
+                    <History key={currentData?.createdAt} onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
                 </Form.Group>
             </Col>
             <Col xs={2} className={opertionContainerClassName} >

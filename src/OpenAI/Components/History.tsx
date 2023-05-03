@@ -12,9 +12,9 @@ import moment from 'moment'
 function History(props: any) {
     const [show, setShow] = useState(false)
     const [historyList, setHistoryList] = useState<PlaygroundModel[]>([])
-    const [historySelected, setHistorySelected] = useState(-1)
     const currentEdit: PlaygroundModel = props.current ?? DefaultPlayground
-    
+    const [historySelected, setHistorySelected] = useState(currentEdit.createdAt)
+
     const formatDate = (t: number) => {
         var day = moment(t)
         return day.format('LL dddd')
@@ -74,7 +74,7 @@ function History(props: any) {
         let data = playgroundService.getPlayground()
         setHistoryList(data)
         setShow(true)
-        
+
         if (props.onHistoryShow) {
             props.onHistoryShow()
         }
