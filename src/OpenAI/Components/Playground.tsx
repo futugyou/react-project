@@ -1,48 +1,49 @@
-import './Playground.css';
-import { useState, useEffect } from 'react';
-import { flushSync } from 'react-dom';
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import './Playground.css'
+import { useState, useEffect } from 'react'
+import { flushSync } from 'react-dom'
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
 
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
-import CompletePanel from './CompletePanel';
-import ModelSelect from './ModelSelect';
-import Temperature from './Temperature';
-import MaxTokens from './MaxTokens';
-import TopP from './TopP';
+import CompletePanel from './CompletePanel'
+import ModelSelect from './ModelSelect'
+import Temperature from './Temperature'
+import MaxTokens from './MaxTokens'
+import TopP from './TopP'
 
-import Frequency from './Frequency';
-import Presence from './Presence';
-import Bestof from './Bestof';
-import Stop from './Stop';
-import ModeSelect from './ModeSelect';
+import Frequency from './Frequency'
+import Presence from './Presence'
+import Bestof from './Bestof'
+import Stop from './Stop'
+import ModeSelect from './ModeSelect'
 
-import InjectText from './InjectText';
-import History from './History';
-import ChatPanel from './ChatPanel';
-import EditPanel from './EditPanel';
-import InsertPanel from './InsertPanel';
+import InjectText from './InjectText'
+import History from './History'
+import ChatPanel from './ChatPanel'
+import EditPanel from './EditPanel'
+import InsertPanel from './InsertPanel'
+import RestoreLayer from './RestoreLayer'
 
-import { OpenAIModel } from '../Models/OpenAIModel';
-import { ExampleModel } from '../Models/ExampleModel';
-import set from '../Services/Example';
-import completionService from '../Services/Completion';
+import { OpenAIModel } from '../Models/OpenAIModel'
+import { ExampleModel } from '../Models/ExampleModel'
+import set from '../Services/Example'
+import completionService from '../Services/Completion'
 
-import { ChatModel, ChatMessage } from '../Models/ChatModel';
-import chatService from '../Services/Chat';
+import { ChatModel, ChatMessage } from '../Models/ChatModel'
+import chatService from '../Services/Chat'
 
-import { EditModel } from '../Models/EditModel';
-import editService from '../Services/Edit';
+import { EditModel } from '../Models/EditModel'
+import editService from '../Services/Edit'
 
-import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel';
-import playgroundService from '../Services/Playground';
-import { ChatLog } from '../Models/PlaygroundModel';
+import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
+import playgroundService from '../Services/Playground'
+import { ChatLog } from '../Models/PlaygroundModel'
 
 export async function playgroundLoader({ params, request }: any) {
-    return await set.getExample(params.parameter ?? "");
+    return await set.getExample(params.parameter ?? "")
 }
 
 const mapExampleModelToPlaygroundModel = (data: ExampleModel): PlaygroundModel => {
@@ -111,10 +112,10 @@ const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
 }
 
 function Playground() {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate()
+    const location = useLocation()
 
-    let search = location.search || "";
+    let search = location.search || ""
     let searchParams = new URLSearchParams(search)
     let modeParam = ""
     if (searchParams.has("mode")) {
@@ -139,28 +140,28 @@ function Playground() {
 
     useEffect(() => {
         setPlaygroundModel(data)
-    }, [loaderdata]);
+    }, [loaderdata])
 
     useEffect(() => {
         if (modeParam !== "") {
-            modeParam = modeParam.charAt(0).toUpperCase() + modeParam.slice(1);
+            modeParam = modeParam.charAt(0).toUpperCase() + modeParam.slice(1)
             setMode(modeParam)
         }
-    }, [modeParam]);
+    }, [modeParam])
 
     let completion: string = playgroundModel.completion
 
     const handlePromptChange = (value: string) => {
-        var newData = Object.assign({}, playgroundModel, { prompt: value });
-        setPlaygroundModel(newData);
+        var newData = Object.assign({}, playgroundModel, { prompt: value })
+        setPlaygroundModel(newData)
     }
 
     const handleModelChange = (value: string) => {
-        var newData = Object.assign({}, playgroundModel, { model: value });
-        setPlaygroundModel(newData);
+        var newData = Object.assign({}, playgroundModel, { model: value })
+        setPlaygroundModel(newData)
 
-        let path = location.pathname || "/";
-        let search = location.search || "";
+        let path = location.pathname || "/"
+        let search = location.search || ""
         let p = new URLSearchParams(search)
 
         if (p.has("mode")) {
@@ -403,12 +404,12 @@ function Playground() {
     }
 
     const HandleModeChange = (value: any) => {
-        setMode(value);
+        setMode(value)
 
-        let path = location.pathname || "/";
+        let path = location.pathname || "/"
         path += ("?mode=" + value.toLocaleLowerCase())
 
-        let search = location.search || "";
+        let search = location.search || ""
         let p = new URLSearchParams(search)
 
         if (p.has("model")) {
@@ -555,7 +556,9 @@ function Playground() {
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
                     {(mode == "Complete") && (
-                        <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} ></CompletePanel>
+                        <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} >
+                            <RestoreLayer></RestoreLayer>
+                        </CompletePanel>
                     )}
                     {(mode == "Chat") && (
                         <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}></ChatPanel>
