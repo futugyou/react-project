@@ -10,6 +10,7 @@ import { ChatLog } from '../Models/PlaygroundModel';
 function ChatPanel(props: any) {
     const [messages, setMessages] = useState<any[]>(props.chatLog)
     const adddivRef = useRef<HTMLDivElement>(null);
+    const chatExchangeClassName = props.disabled ? "chat-pg-exchange playground-disabled" : "chat-pg-exchange"
 
     const handleMessageRemoved = (index: number) => {
         const newMessageList = messages.filter((_, i) => i !== index)
@@ -90,13 +91,13 @@ function ChatPanel(props: any) {
             <div className='chat-pg-instructions'>
                 <div className="text-input-header-subheading subheading">System</div>
                 <div className='text-input-header-wrapper'>
-                    <Form.Control as="textarea" placeholder="You are a helpful assistant." value={props.instruction} onChange={e => props.onInstructionChange(e.target.value)} />
+                    <Form.Control as="textarea" placeholder="You are a helpful assistant." value={props.instruction} onChange={e => props.onInstructionChange(e.target.value)} disabled={props.disabled} />
                 </div>
             </div>
             <div className="chat-pg-right-wrapper">
                 <div className="chat-pg-panel-wrapper">
                     <div className="chat-pg-exchange-container">
-                        <div className='chat-pg-exchange' >
+                        <div className={chatExchangeClassName} >
                             {messages.map((message, index) => {
                                 return (
                                     <ChatMessage
@@ -121,7 +122,7 @@ function ChatPanel(props: any) {
                         </div>
                     </div>
                 </div>
-                {props.children}
+                {props.disabled && props.children}
             </div>
         </>
     )

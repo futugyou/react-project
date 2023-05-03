@@ -7,9 +7,9 @@ function CompletePanel(props: any) {
         <>
             <div className="complete-panel">
                 <div className="prompt-input-layer">
-                    <Form.Control as="textarea" rows={1} value={text} onChange={e => props.onPromptChange(e.target.value)} />
+                    <Form.Control as="textarea" rows={1} value={text} onChange={e => props.onPromptChange(e.target.value)} disabled={props.disabled} />
                 </div>
-                {props.children}
+                {props.disabled && props.children}
             </div>
         </>
     )

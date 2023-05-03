@@ -135,10 +135,14 @@ function Playground() {
     }
 
     const [playgroundModel, setPlaygroundModel] = useState(data)
-    const [restoreData, setRestoreData] = useState<PlaygroundModel | null>(null)
     const [mode, setMode] = useState('Complete')
-    const disabled = restoreData == null ? false : true;
+    // const [restoreData, setRestoreData] = useState<PlaygroundModel | null>(null)
+    // const disabled = restoreData == null ? false : true;
     const [currentData, setCurrentData] = useState<PlaygroundModel | null>(null)
+    const opertionContainerClassName = currentData == null || currentData.createdAt == playgroundModel.createdAt
+        ? "qa-item-align opertion-container"
+        : "qa-item-align opertion-container playground-disabled"
+    const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true;
 
     useEffect(() => {
         setPlaygroundModel(data)
@@ -560,6 +564,8 @@ function Playground() {
         setCurrentData(null)
         setPlaygroundModel({
             ...data,
+            createdAt: Date.now(),
+            completion: "",
         })
     }
 
@@ -569,22 +575,22 @@ function Playground() {
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
                     {(mode == "Complete") && (
-                        <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} >
+                        <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} disabled={disabled}>
                             <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </CompletePanel>
                     )}
                     {(mode == "Chat") && (
-                        <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange}>
+                        <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange} disabled={disabled}>
                             <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </ChatPanel>
                     )}
                     {(mode == "Insert") && (
-                        <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange}>
+                        <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange} disabled={disabled}>
                             <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </InsertPanel>
                     )}
                     {(mode == "Edit") && (
-                        <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange}>
+                        <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange} disabled={disabled}>
                             <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
                         </EditPanel>
                     )}
@@ -592,34 +598,34 @@ function Playground() {
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     {(mode == "Complete") && (
                         <>
-                            <Button variant="success" type="submit" onClick={() => handleCompletion()}>
+                            <Button variant="success" type="submit" onClick={() => handleCompletion()} disabled={disabled}>
                                 Submit
                             </Button>
-                            <Button variant="success" onClick={() => handleCompletionStream()}>
+                            <Button variant="success" onClick={() => handleCompletionStream()} disabled={disabled}>
                                 StreamSubmit
                             </Button>
                         </>
                     )}
                     {(mode == "Chat") && (
-                        <Button variant="success" type="submit" onClick={() => handleChatStream()}>
+                        <Button variant="success" type="submit" onClick={() => handleChatStream()} disabled={disabled}>
                             Submit
                         </Button>
                     )}
                     {(mode == "Insert") && (
-                        <Button variant="success" type="submit" onClick={() => handleInsertStream()}>
+                        <Button variant="success" type="submit" onClick={() => handleInsertStream()} disabled={disabled}>
                             Submit
                         </Button>
                     )}
 
                     {(mode == "Edit") && (
-                        <Button variant="success" type="submit" onClick={() => handleEdit()}>
+                        <Button variant="success" type="submit" onClick={() => handleEdit()} disabled={disabled}>
                             Submit
                         </Button>
                     )}
                     <History onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
                 </Form.Group>
             </Col>
-            <Col xs={2} className="qa-item-align opertion-container" >
+            <Col xs={2} className={opertionContainerClassName} >
                 <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
 
                 <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange} ></ModelSelect>

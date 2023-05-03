@@ -32,7 +32,6 @@ function History(props: any) {
         if (props.onHistoryRecordClick) {
             const t: PlaygroundModel = {
                 ...data,
-                createdAt: Date.now(),
             }
             props.onHistoryRecordClick(t)
         }

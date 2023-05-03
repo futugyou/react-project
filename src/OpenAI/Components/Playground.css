@@ -57,3 +57,11 @@
 .pg-input-body textarea {
     resize: none;
 }
+
+.playground-disabled {
+    cursor: not-allowed;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: .5;
+    pointer-events: none;
+}
