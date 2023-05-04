@@ -1,6 +1,5 @@
 
-import { useState, useEffect } from "react"
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import ModeSelect from './ModeSelect'
 import ModelSelect from './ModelSelect'
@@ -17,7 +16,7 @@ import InjectText from './InjectText'
 
 import { PlaygroundModel } from '../Models/PlaygroundModel'
 
-const defaultPalygroundModelChange = (data: PlaygroundModel) => { }
+const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
 
 function ParameterPanel(props: any) {
     let playgroundModel: PlaygroundModel = props.data
@@ -25,11 +24,10 @@ function ParameterPanel(props: any) {
     let setPlaygroundModel = props.onPlaygroundModelChange ?? defaultPalygroundModelChange
 
     const navigate = useNavigate()
-    const location = useLocation()
 
     const HandleModeChange = (value: string) => {
-        if (props.onModelChange) {
-            props.onModelChange(value)
+        if (props.onModeChange) {
+            props.onModeChange(value)
         }
 
         let path = location.pathname || "/"

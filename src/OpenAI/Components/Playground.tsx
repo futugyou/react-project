@@ -1,7 +1,7 @@
 import './Playground.css'
 import { useState, useEffect } from 'react'
 import { flushSync } from 'react-dom'
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -9,23 +9,13 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import CompletePanel from './CompletePanel'
-import ModelSelect from './ModelSelect'
-import Temperature from './Temperature'
-import MaxTokens from './MaxTokens'
-import TopP from './TopP'
-
-import Frequency from './Frequency'
-import Presence from './Presence'
-import Bestof from './Bestof'
-import Stop from './Stop'
-import ModeSelect from './ModeSelect'
-
-import InjectText from './InjectText'
-import History from './History'
 import ChatPanel from './ChatPanel'
 import EditPanel from './EditPanel'
 import InsertPanel from './InsertPanel'
 import RestoreLayer from './RestoreLayer'
+
+import ParameterPanel from './ParameterPanel'
+import History from './History'
 
 import { OpenAIModel } from '../Models/OpenAIModel'
 import { ExampleModel } from '../Models/ExampleModel'
@@ -97,7 +87,6 @@ const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
         messages.push(message)
     }
 
-
     let result: ChatModel = {
         model: data.model,
         temperature: data.temperature,
@@ -112,20 +101,9 @@ const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
 }
 
 function Playground() {
-    const navigate = useNavigate()
-    const location = useLocation()
-
-    let search = location.search || ""
-    let searchParams = new URLSearchParams(search)
-    let modeParam = ""
-    if (searchParams.has("mode")) {
-        modeParam = searchParams.get("mode") || ""
-    }
-
-    let modelParam = ""
-    if (searchParams.has("model")) {
-        modelParam = searchParams.get("model") || ""
-    }
+    let searchParams = new URLSearchParams(location.search || "")
+    let modeParam = searchParams.get("mode") || ""
+    let modelParam = searchParams.get("model") || ""
 
     const loaderdata = useLoaderData() as ExampleModel
     const data = mapExampleModelToPlaygroundModel(loaderdata)
@@ -159,73 +137,13 @@ function Playground() {
         setPlaygroundModel(newData)
     }
 
-    const handleModelChange = (value: string) => {
-        var newData = Object.assign({}, playgroundModel, { model: value })
-        setPlaygroundModel(newData)
-
-        let path = location.pathname || "/"
-        let search = location.search || ""
-        let p = new URLSearchParams(search)
-
-        if (p.has("mode")) {
-            path += ("?mode=" + p.get("mode"))
-        }
-
-        if (path.indexOf("?") > 0) {
-            path += ("&model=" + value)
-        } else {
-            path += ("?model=" + value)
-        }
-
-        navigate(path, { replace: true })
+    const handleModeChange = (value: string) => {
+        setMode(value)
     }
 
-    const handleTemperatureChange = (value: number) => {
+    const handlePlaygroundModelChange = (data: PlaygroundModel) => {
         setPlaygroundModel({
-            ...playgroundModel,
-            temperature: +value
-        })
-    }
-
-    const handleMaxTokensChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            responseLength: +value
-        })
-    }
-
-    const handleToppChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            top_p: +value
-        })
-    }
-
-    const handleFrequencyPenaltyChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            frequency_penalty: +value
-        })
-    }
-
-    const handlePresencePenaltyChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            presence_penalty: +value
-        })
-    }
-
-    const handleBestofChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            best_of: +value
-        })
-    }
-
-    const handleStopChange = (value: string[]) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            stopSequence: value
+            ...data,
         })
     }
 
@@ -346,42 +264,6 @@ function Playground() {
         completion = ""
     }
 
-    const HandleInjectStartChanged = (injectText: string) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                startSequence: injectText,
-            }
-        )
-    }
-
-    const HandleCheckStartChanged = (checked: boolean) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                startSequenceEnabled: checked,
-            }
-        )
-    }
-
-    const HandleInjectRestartChanged = (injectText: string) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                restartSequence: injectText,
-            }
-        )
-    }
-
-    const HandleCheckRestartChanged = (checked: boolean) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                restartSequenceEnabled: checked,
-            }
-        )
-    }
-
     const HandleMessageChange = (messages: ChatLog[]) => {
         let m: ChatLog[] = messages
             .filter((m) => m.content != '')
@@ -404,26 +286,6 @@ function Playground() {
                 instruction: instruction,
             }
         )
-    }
-
-    const HandleModeChange = (value: any) => {
-        setMode(value)
-
-        let path = location.pathname || "/"
-        path += ("?mode=" + value.toLocaleLowerCase())
-
-        let search = location.search || ""
-        let p = new URLSearchParams(search)
-
-        if (p.has("model")) {
-            if (path.indexOf("?") > 0) {
-                path += ("&model=" + p.get("model"))
-            } else {
-                path += ("?model=" + p.get("model"))
-            }
-        }
-
-        navigate(path, { replace: true })
     }
 
     const handleInsertPromptChange = (prompt: string) => {
@@ -619,45 +481,21 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History key={currentData.createdAt} onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
+                    <History
+                        key={currentData.createdAt}
+                        onHistoryRecordClick={handleHistoryRecordClick}
+                        onHistoryShow={handleCurrentDataChange}
+                        current={currentData} >
+                    </History>
                 </Form.Group>
             </Col>
             <Col xs={2} className={opertionContainerClassName} >
-                <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
-
-                <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange} ></ModelSelect>
-
-                <Temperature temperature={playgroundModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
-
-                {(mode != "Edit") && (<MaxTokens max_tokens={playgroundModel.responseLength} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>)}
-
-                {(mode != "Chat" && mode != "Edit") && (<Stop stop={playgroundModel.stopSequence} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
-
-                <TopP top_p={playgroundModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
-
-                {(mode != "Edit") && (<Frequency frequency_penalty={playgroundModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>)}
-
-                {(mode != "Edit") && (<Presence presence_penalty={playgroundModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>)}
-
-                {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={playgroundModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>)}
-
-                {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
-                    text={playgroundModel.startSequence}
-                    checked={playgroundModel.startSequenceEnabled}
-                    label="Inject start text"
-                    descript="Text to append after the user's input to format the model for a response."
-                    onInjectChanged={(text: string) => HandleInjectStartChanged(text)}
-                    onCheckChanged={(checked: boolean) => HandleCheckStartChanged(checked)}
-                ></InjectText>)}
-
-                {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
-                    text={playgroundModel.restartSequence}
-                    checked={playgroundModel.restartSequenceEnabled}
-                    label="Inject restart text"
-                    descript="Text to append after the model's generation to continue the patterned structure."
-                    onInjectChanged={(text: string) => HandleInjectRestartChanged(text)}
-                    onCheckChanged={(checked: boolean) => HandleCheckRestartChanged(checked)}
-                ></InjectText>)}
+                <ParameterPanel
+                    data={playgroundModel}
+                    mode={mode}
+                    onModeChange={handleModeChange}
+                    onPlaygroundModelChange={handlePlaygroundModelChange}>
+                </ParameterPanel>
             </Col>
         </>
     )
