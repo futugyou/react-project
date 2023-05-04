@@ -136,13 +136,10 @@ function Playground() {
 
     const [playgroundModel, setPlaygroundModel] = useState(data)
     const [mode, setMode] = useState('Complete')
-    // const [restoreData, setRestoreData] = useState<PlaygroundModel | null>(null)
-    // const disabled = restoreData == null ? false : true;
-    const [currentData, setCurrentData] = useState<PlaygroundModel | null>(null)
-    const opertionContainerClassName = currentData == null || currentData.createdAt == playgroundModel.createdAt
-        ? "qa-item-align opertion-container"
-        : "qa-item-align opertion-container playground-disabled"
+    const [currentData, setCurrentData] = useState<PlaygroundModel>(data)
+
     const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true;
+    const opertionContainerClassName = disabled ? "qa-item-align opertion-container playground-disabled" : "qa-item-align opertion-container"
 
     useEffect(() => {
         setPlaygroundModel(data)
@@ -553,20 +550,20 @@ function Playground() {
     }
 
     const handleCurrentDataChange = () => {
-        if (currentData == null) {
-            setCurrentData({
-                ...playgroundModel,
-            })
+        if (!disabled) {
+            setCurrentData(playgroundModel)
         }
     }
 
     const handleRestoreClick = (data: PlaygroundModel) => {
-        setCurrentData(null)
-        setPlaygroundModel({
+        const newData: PlaygroundModel = {
             ...data,
             createdAt: Date.now(),
             completion: "",
-        })
+        }
+
+        setPlaygroundModel(newData)
+        setCurrentData(newData)
     }
 
     return (
@@ -622,7 +619,7 @@ function Playground() {
                             Submit
                         </Button>
                     )}
-                    <History key={currentData?.createdAt} onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
+                    <History key={currentData.createdAt} onHistoryRecordClick={handleHistoryRecordClick} onHistoryShow={handleCurrentDataChange} current={currentData} />
                 </Form.Group>
             </Col>
             <Col xs={2} className={opertionContainerClassName} >
