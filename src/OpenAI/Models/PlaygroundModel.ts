@@ -28,7 +28,7 @@ export const DefaultPlayground: PlaygroundModel = {
     instruction: "",
     completion: "",
     chatLog: [{ role: "user", content: "" }],
-    completionMode: "",
+    completionMode: "freeform",
     stopSequence: [],
     startSequence: "",
     startSequenceEnabled: false,

@@ -92,4 +92,5 @@ ul.timeline-3 {
     flex: 1 1 100%;
     margin-left: 35px;
     line-height: 20px;
+    text-align: left;
 }
