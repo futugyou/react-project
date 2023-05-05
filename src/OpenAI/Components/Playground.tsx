@@ -8,12 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import CompletePanel from './CompletePanel'
-import ChatPanel from './ChatPanel'
-import EditPanel from './EditPanel'
-import InsertPanel from './InsertPanel'
-import RestoreLayer from './RestoreLayer'
-
+import EditorContainer from './EditorContainer'
 import ParameterPanel from './ParameterPanel'
 import History from './History'
 
@@ -131,11 +126,6 @@ function Playground() {
     }, [modeParam])
 
     let completion: string = playgroundModel.completion
-
-    const handlePromptChange = (value: string) => {
-        var newData = Object.assign({}, playgroundModel, { prompt: value })
-        setPlaygroundModel(newData)
-    }
 
     const handleModeChange = (value: string) => {
         setMode(value)
@@ -264,40 +254,6 @@ function Playground() {
         completion = ""
     }
 
-    const HandleMessageChange = (messages: ChatLog[]) => {
-        let m: ChatLog[] = messages
-            .filter((m) => m.content != '')
-            .map((m) => { return { role: m.role, content: m.content } })
-
-        if (m.length > 0) {
-            setPlaygroundModel(
-                {
-                    ...playgroundModel,
-                    chatLog: m,
-                }
-            )
-        }
-    }
-
-    const HandleInstructionChange = (instruction: string) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                instruction: instruction,
-            }
-        )
-    }
-
-    const handleInsertPromptChange = (prompt: string) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                prompt: prompt,
-                suffix: "",
-            }
-        )
-    }
-
     const handleInsertStream = async () => {
         if (playgroundModel.prompt.indexOf("[insert]") == -1) {
             return
@@ -393,24 +349,6 @@ function Playground() {
         }
     }
 
-    const HandleEditInputChange = (text: string) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            prompt: text,
-        })
-    }
-
-    const HandleEditInstructionsChange = (text: string) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            instruction: text,
-        })
-    }
-
-    const handleHistoryRecordClick = (data: PlaygroundModel) => {
-        setPlaygroundModel(data)
-    }
-
     const handleCurrentDataChange = () => {
         if (!disabled) {
             setCurrentData(playgroundModel)
@@ -433,26 +371,13 @@ function Playground() {
             <div className="playground-header"><span>some</span></div>
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
-                    {(mode == "Complete") && (
-                        <CompletePanel prompt={playgroundModel.prompt} completion={playgroundModel.completion} onPromptChange={(prompt: string) => handlePromptChange(prompt)} disabled={disabled}>
-                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
-                        </CompletePanel>
-                    )}
-                    {(mode == "Chat") && (
-                        <ChatPanel key={playgroundModel.chatLog} instruction={playgroundModel.instruction} chatLog={playgroundModel.chatLog} onMessageChange={HandleMessageChange} onInstructionChange={HandleInstructionChange} disabled={disabled}>
-                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
-                        </ChatPanel>
-                    )}
-                    {(mode == "Insert") && (
-                        <InsertPanel prompt={playgroundModel.prompt} suffix={playgroundModel.suffix} completion={playgroundModel.completion} onPromptChange={handleInsertPromptChange} disabled={disabled}>
-                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
-                        </InsertPanel>
-                    )}
-                    {(mode == "Edit") && (
-                        <EditPanel input={playgroundModel.prompt} instructions={playgroundModel.instruction} completion={playgroundModel.completion} onInputChange={HandleEditInputChange} onInstructionsChange={HandleEditInstructionsChange} disabled={disabled}>
-                            <RestoreLayer data={playgroundModel} onRestoreClick={handleRestoreClick}></RestoreLayer>
-                        </EditPanel>
-                    )}
+                    <EditorContainer
+                        mode={mode}
+                        data={playgroundModel}
+                        disabled={disabled}
+                        onPlaygroundModelChange={handlePlaygroundModelChange}
+                        onRestoreClick={handleRestoreClick}>
+                    </EditorContainer>
                 </div>
                 <Form.Group as={Row} className="mb-3 qa-item-align">
                     {(mode == "Complete") && (
@@ -483,7 +408,7 @@ function Playground() {
                     )}
                     <History
                         key={currentData.createdAt}
-                        onHistoryRecordClick={handleHistoryRecordClick}
+                        onHistoryRecordClick={handlePlaygroundModelChange}
                         onHistoryShow={handleCurrentDataChange}
                         current={currentData} >
                     </History>

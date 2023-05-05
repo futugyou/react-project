@@ -12,7 +12,7 @@ const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
 
 function EditorContainer(props: any) {
     const playgroundModel: PlaygroundModel = props.data
-    const mode: string = props.data.mode
+    const mode: string = props.mode
     const disabled: boolean = props.disabled
     const setPlaygroundModel = props.onPlaygroundModelChange ?? defaultPalygroundModelChange
 
@@ -76,7 +76,7 @@ function EditorContainer(props: any) {
             instruction: text,
         })
     }
-    
+
     return (<>
         {(mode == "Complete") && (
             <CompletePanel
