@@ -1,16 +1,3 @@
-.playground-header {
-    height: var(--app-header-height);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-    align-content: center;
-    border-bottom: 1px solid #ececf1;
-    border-top: 1px solid #ececf1;
-    margin-bottom: 10px;
-    padding-left: 100px !important;
-}
-
 .qa-item-align {
     text-align: left;
 }

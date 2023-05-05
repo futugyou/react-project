@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+import HeadContainer from "./HeadContainer"
 import EditorContainer from './EditorContainer'
 import ParameterPanel from './ParameterPanel'
 import History from './History'
@@ -368,7 +369,7 @@ function Playground() {
 
     return (
         <>
-            <div className="playground-header"><span>some</span></div>
+            <HeadContainer></HeadContainer>
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
                     <EditorContainer
