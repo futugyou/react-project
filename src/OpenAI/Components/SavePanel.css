@@ -9,6 +9,13 @@
     text-align: left;
     justify-content: space-around;
     pointer-events: none;
+    position: relative;
+}
+
+.check-message {
+    position: absolute !important;
+    width: 520px;
+    top: 10px;
 }
 
 .save-title {
