@@ -43,6 +43,7 @@
 
 .playground-header-save:hover{
     background-color: #d8d8f1;
+    cursor: pointer;
 }
 
 .playground-header-save span{
