@@ -8,6 +8,7 @@
     border-radius: 10px;
     text-align: left;
     justify-content: space-around;
+    pointer-events: none;
 }
 
 .save-title {
@@ -31,6 +32,7 @@
 .save-input input {
     width: 100%;
     height: 100%;
+    pointer-events: all;
 }
 
 .save-label-option {
@@ -47,6 +49,7 @@
 .save-buttons button {
     margin-left: 10px;
     cursor: pointer;
+    pointer-events: all;
 }
 
 .save-buttons .btn.btn-secondary:hover {

@@ -1,9 +1,11 @@
 import './HeadContainer.css'
 
+import { useState } from 'react'
 import Dropdown, { DropdownItem } from "./Dropdown"
 import SavePanel from "./SavePanel"
 
 function HeadContainer(props: any) {
+
     const selects: DropdownItem[] = [
         {
             key: "default-qa",
@@ -15,6 +17,10 @@ function HeadContainer(props: any) {
         console.log(value)
     }
 
+    const handleSaveClick = (data: any) => {
+        console.log(data)
+    }
+    
     return (
         <div className="playground-header">
             <div className="playground-header-title">Playground</div>
@@ -28,7 +34,7 @@ function HeadContainer(props: any) {
             </div>
             <div className="modal fade" id="exampleSave" tabIndex={-1} aria-hidden="true">
                 <div className="modal-dialog" style={{ maxWidth: "520px" }}>
-                    <SavePanel></SavePanel>
+                    <SavePanel onSaveClick={handleSaveClick}></SavePanel>
                 </div>
             </div >
         </div>)
