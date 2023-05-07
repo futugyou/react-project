@@ -369,7 +369,7 @@ function Playground() {
 
     return (
         <>
-            <HeadContainer></HeadContainer>
+            <HeadContainer data={playgroundModel}></HeadContainer>
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
                     <EditorContainer

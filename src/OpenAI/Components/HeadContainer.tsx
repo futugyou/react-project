@@ -4,6 +4,31 @@ import { useState } from 'react'
 import Dropdown, { DropdownItem } from "./Dropdown"
 import SavePanel from "./SavePanel"
 
+import { OpenAIModel } from '../Models/OpenAIModel'
+import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
+import exampleService from '../Services/Example';
+
+const convertOpenAIToExample = (data: OpenAIModel): ExampleModel => {
+    const response: ExampleModel = {
+        key: '',
+        title: '',
+        subTitle: '',
+        model: data.model,
+        prompt: data.prompt,
+        temperature: data.temperature,
+        max_tokens: data.max_tokens,
+        top_p: data.top_p,
+        frequency_penalty: data.frequency_penalty,
+        presence_penalty: data.presence_penalty,
+        tags: [],
+        stop: data.stop,
+        description: '',
+        sample_response: ''
+    }
+
+    return response
+}
+
 function HeadContainer(props: any) {
 
     const selects: DropdownItem[] = [
@@ -17,10 +42,16 @@ function HeadContainer(props: any) {
         console.log(value)
     }
 
-    const handleSaveClick = (data: any) => {
-        console.log(data)
+    const handleSaveClick = async (data: any) => {
+        let perset: ExampleModel = convertOpenAIToExample(props.data)
+        perset.key = data.key
+        perset.title = data.key
+        perset.description = data.description
+
+        const persets: ExampleModel[] = await exampleService.createExample(perset)
+        console.log(persets.length)
     }
-    
+
     return (
         <div className="playground-header">
             <div className="playground-header-title">Playground</div>
