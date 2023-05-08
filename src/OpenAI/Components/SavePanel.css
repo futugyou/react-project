@@ -40,6 +40,23 @@
     width: 100%;
     height: 100%;
     pointer-events: all;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid #c5c5d2;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.save-input input:focus {
+    border-color: #c5c5d2;
+    box-shadow: none;
+}
+
+.save-input input:focus-visible {
+    outline-color: #c5c5d2;
+    box-shadow: none;
 }
 
 .save-label-option {
