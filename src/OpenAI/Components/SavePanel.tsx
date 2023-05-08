@@ -9,6 +9,7 @@ function SavePanel(props: any) {
         "description": "",
     })
     const [showError, setShowError] = useState(false)
+    const [showSuccess, setSuccess] = useState(false)
 
     const handleKeyChange = (e: any) => {
         const t: string = e.target.value
@@ -41,13 +42,20 @@ function SavePanel(props: any) {
             props.onSaveClick(state)
         }
 
-        document.getElementById('closeModal')!.click();
+        setSuccess(true)
+        setTimeout(function () {
+            setSuccess(false)
+            document.getElementById('closeModal')!.click();
+        }, 3000)
     }
 
     return (
         <div className="save-container">
             {showError && <div className="alert alert-danger check-message" role="alert">
                 Name can not be empty !
+            </div>}
+            {showSuccess && <div className="alert alert-success check-message" role="alert">
+                Data is already saved  !
             </div>}
             <div className="save-title">Save preset</div>
             <div className="save-subtitle">This will save the current playground state as a preset which you can access later or share with others.</div>
