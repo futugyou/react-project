@@ -34,7 +34,7 @@ function Examples(props: any) {
 
     useEffect(() => {
         const list = loaderdata
-            .filter(p => p.tags.findIndex(element => {
+            .filter(p => p.tags == undefined || p.tags.findIndex(element => {
                 return element.toLowerCase() === searchFilter.category.toLowerCase()
                     || searchFilter.category === "chooseAll";
             }) >= 0)
