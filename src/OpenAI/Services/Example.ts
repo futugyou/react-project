@@ -45,9 +45,13 @@ const getAllCustomExamples = async () => {
     return getAllExamples(customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
 }
 
-const createExample = async (data: ExampleModel) => {
+const createSystemExample = async (data: ExampleModel) => {
+    return await createExample(data, exampleKey, `${openaiserver}${settingPath}`)
+}
+
+const createExample = async (data: ExampleModel, localStoragekey: string, path: string) => {
     const options: AxiosRequestConfig = {
-        url: `${openaiserver}${settingPath}`,
+        url: path,
         method: "POST",
         data: data,
     }
@@ -56,6 +60,7 @@ const createExample = async (data: ExampleModel) => {
 
     try {
         const { data, status } = await axios<ExampleModel[]>(options)
+        localStorage.removeItem(localStoragekey)
         return data
     } catch (error: any) {
         console.log(error)
@@ -65,29 +70,13 @@ const createExample = async (data: ExampleModel) => {
 }
 
 const createCustomExample = async (data: ExampleModel) => {
-    const options: AxiosRequestConfig = {
-        url: `${openaiserver}${settingPath}?type=custom`,
-        method: "POST",
-        data: data,
-    }
-
-    console.log(options.data)
-    let result: ExampleModel[] = []
-
-    try {
-        const { data, status } = await axios<ExampleModel[]>(options)
-        return data
-    } catch (error: any) {
-        console.log(error)
-    }
-
-    return result
+    return await createExample(data, customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
 }
 
 export default {
     getExample: getExample,
     getAllExamples: getAllSystemExamples,
-    createExample: createExample,
+    createExample: createSystemExample,
     createCustomExample: createCustomExample,
     getAllCustomExamples: getAllCustomExamples,
 }
