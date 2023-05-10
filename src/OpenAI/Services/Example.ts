@@ -29,8 +29,10 @@ const getAllExamples = async (localStoragekey: string, path: string) => {
         try {
             const { data, status } = await axios<ExampleModel[]>(options)
             result = data
-            const expiraDate = new Date().setHours(new Date().getHours() + 1)
-            localStorage.setItem(localStoragekey, JSON.stringify({ date: expiraDate, data: data }))
+            if (status == 200) {
+                const expiraDate = new Date().setHours(new Date().getHours() + 1)
+                localStorage.setItem(localStoragekey, JSON.stringify({ date: expiraDate, data: data }))
+            }
         } catch (error) {
             console.log(error)
         }
@@ -60,7 +62,10 @@ const createExample = async (data: ExampleModel, localStoragekey: string, path: 
 
     try {
         const { data, status } = await axios<ExampleModel[]>(options)
-        localStorage.removeItem(localStoragekey)
+        if (status == 200) {
+            localStorage.removeItem(localStoragekey)
+        }
+        
         return data
     } catch (error: any) {
         console.log(error)
