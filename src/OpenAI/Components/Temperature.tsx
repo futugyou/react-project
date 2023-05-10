@@ -1,4 +1,4 @@
-import BaseRange from './BaseRange';
+import BaseRange from './BaseRange'
 
 function Temperature(props: any) {
     const data = {
@@ -11,7 +11,7 @@ function Temperature(props: any) {
     }
 
     return (
-        <BaseRange
+        <BaseRange key={data.value}
             popover={data.popover}
             display={data.display}
             value={data.value}

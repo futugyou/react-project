@@ -1,4 +1,4 @@
-import BaseRange from './BaseRange';
+import BaseRange from './BaseRange'
 
 function Frequency(props: any) {
     const data = {
@@ -11,7 +11,7 @@ function Frequency(props: any) {
     }
 
     return (
-        <BaseRange
+        <BaseRange key={data.value}
             popover={data.popover}
             display={data.display}
             value={data.value}

@@ -71,9 +71,7 @@ function Playground() {
     }
 
     const handlePlaygroundModelChange = (data: PlaygroundModel) => {
-        setPlaygroundModel({
-            ...data,
-        })
+        setPlaygroundModel(data)
     }
 
     const handleCompletion = async () => {
@@ -307,7 +305,7 @@ function Playground() {
 
     return (
         <>
-            <HeadContainer data={playgroundModel}></HeadContainer>
+            <HeadContainer data={playgroundModel} onPresetChange={handlePlaygroundModelChange}></HeadContainer>
             <Col xs={10} className='text-container'>
                 <div className='container-fluid pg-input-body'>
                     <EditorContainer
@@ -354,7 +352,7 @@ function Playground() {
                 </Form.Group>
             </Col>
             <Col xs={2} className={opertionContainerClassName} >
-                <ParameterPanel
+                <ParameterPanel key={playgroundModel}
                     data={playgroundModel}
                     mode={mode}
                     onModeChange={handleModeChange}

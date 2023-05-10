@@ -1,4 +1,4 @@
-import BaseRange from './BaseRange';
+import BaseRange from './BaseRange'
 
 function TopP(props: any) {
     const data = {
@@ -11,7 +11,7 @@ function TopP(props: any) {
     }
 
     return (
-        <BaseRange
+        <BaseRange key={data.value}
             popover={data.popover}
             display={data.display}
             value={data.value}

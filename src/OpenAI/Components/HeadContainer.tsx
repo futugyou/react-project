@@ -36,7 +36,15 @@ function HeadContainer(props: any) {
     })
 
     const HandleSelectChange = (value: string) => {
-        console.log(value)
+        if (value == "") {
+            return
+        }
+
+        if (props.onPresetChange) {
+            const example = examples.concat(customExamples).find(p => p.key == value)!
+            const playground = convert.mapExampleModelToPlaygroundModel(example)
+            props.onPresetChange(playground)
+        }
     }
 
     const handleSaveClick = async (data: any) => {
