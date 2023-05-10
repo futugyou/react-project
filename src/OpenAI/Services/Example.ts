@@ -27,6 +27,23 @@ const getAllExamples = async () => {
     return result
 }
 
+const getAllCustomExamples = async () => {
+    const options: AxiosRequestConfig = {
+        url: `${openaiserver}${settingPath}?type=custom`,
+        method: "GET",
+    }
+
+    let result: ExampleModel[] = []
+    try {
+        const { data, status } = await axios<ExampleModel[]>(options)
+        result = data
+    } catch (error) {
+        console.log(error)
+    }
+
+    return result
+}
+
 const createExample = async (data: ExampleModel) => {
     const options: AxiosRequestConfig = {
         url: `${openaiserver}${settingPath}`,
@@ -52,7 +69,7 @@ const createCustomExample = async (data: ExampleModel) => {
         method: "POST",
         data: data,
     }
-    
+
     console.log(options.data)
     let result: ExampleModel[] = []
 
@@ -71,4 +88,5 @@ export default {
     getAllExamples: getAllExamples,
     createExample: createExample,
     createCustomExample: createCustomExample,
+    getAllCustomExamples: getAllCustomExamples,
 }
