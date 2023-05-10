@@ -13,6 +13,8 @@ import EditorContainer from './EditorContainer'
 import ParameterPanel from './ParameterPanel'
 import History from './History'
 
+import convert from '../Models/convert'
+
 import { OpenAIModel } from '../Models/OpenAIModel'
 import { ExampleModel } from '../Models/ExampleModel'
 import set from '../Services/Example'
@@ -32,77 +34,13 @@ export async function playgroundLoader({ params, request }: any) {
     return await set.getExample(params.parameter ?? "")
 }
 
-const mapExampleModelToPlaygroundModel = (data: ExampleModel): PlaygroundModel => {
-    let result: PlaygroundModel = {
-        ...DefaultPlayground,
-        model: data.model,
-        prompt: data.prompt,
-        responseLength: data.max_tokens,
-        top_p: data.top_p,
-        temperature: data.temperature,
-        frequency_penalty: data.frequency_penalty,
-        presence_penalty: data.presence_penalty,
-        stopSequence: data.stop,
-    }
-
-    return result
-}
-
-
-const mapPlaygroundModelToOpenAIModel = (data: PlaygroundModel, modeParam: string): OpenAIModel => {
-    let result: OpenAIModel = {
-        model: data.model,
-        prompt: data.prompt,
-        max_tokens: data.responseLength,
-        temperature: data.temperature,
-        top_p: data.top_p,
-        frequency_penalty: data.frequency_penalty,
-        presence_penalty: data.presence_penalty,
-        best_of: data.best_of,
-        echo: false,
-        logprobs: 0,
-        stop: data.stopSequence,
-        suffix: data.suffix,
-    }
-
-    if ((modeParam == "Complete") && data.startSequenceEnabled && data.startSequence.length > 0) {
-        result.prompt = data.prompt + data.startSequence
-    }
-
-    return result
-}
-
-const mapPlaygroundModelToChatModel = (data: PlaygroundModel): ChatModel => {
-    let messages: ChatMessage[] = data.chatLog.map(i => { return { role: i.role, content: i.content } })
-    if (data.instruction.length > 0) {
-        let message: ChatMessage = {
-            role: "system",
-            content: data.instruction,
-        }
-
-        messages.push(message)
-    }
-
-    let result: ChatModel = {
-        model: data.model,
-        temperature: data.temperature,
-        top_p: data.top_p,
-        max_tokens: data.responseLength,
-        frequency_penalty: data.frequency_penalty,
-        presence_penalty: data.presence_penalty,
-        messages: messages,
-    }
-
-    return result
-}
-
 function Playground() {
     let searchParams = new URLSearchParams(location.search || "")
     let modeParam = searchParams.get("mode") || ""
     let modelParam = searchParams.get("model") || ""
 
     const loaderdata = useLoaderData() as ExampleModel
-    const data = mapExampleModelToPlaygroundModel(loaderdata)
+    const data = convert.mapExampleModelToPlaygroundModel(loaderdata)
 
     if (modelParam !== "") {
         data.model = modelParam
@@ -139,7 +77,7 @@ function Playground() {
     }
 
     const handleCompletion = async () => {
-        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel, mode)
+        let data: OpenAIModel = convert.mapPlaygroundModelToOpenAIModel(playgroundModel, mode)
 
         const response = await completionService.createCompletion(data)
         if (response.error != '') {
@@ -174,7 +112,7 @@ function Playground() {
     }
 
     const handleCompletionStream = async () => {
-        let data: OpenAIModel = mapPlaygroundModelToOpenAIModel(playgroundModel, mode)
+        let data: OpenAIModel = convert.mapPlaygroundModelToOpenAIModel(playgroundModel, mode)
         await completionService.createCompletionStream(data, handleStreamProcess, () => handleStreamEnd(data.prompt))
     }
 
@@ -219,7 +157,7 @@ function Playground() {
             return
         }
 
-        let data: ChatModel = mapPlaygroundModelToChatModel(playgroundModel)
+        let data: ChatModel = convert.mapPlaygroundModelToChatModel(playgroundModel)
         await chatService.createChatStream(data, handleChatStreamProcess, handleChatStreamEnd)
     }
 
