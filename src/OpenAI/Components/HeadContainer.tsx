@@ -7,13 +7,14 @@ import SavePanel from "./SavePanel"
 import convert from '../Models/convert'
 import { ExampleModel } from '../Models/ExampleModel'
 import exampleService from '../Services/Example'
-import { DefaultPlayground } from '../Models/PlaygroundModel'
+import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 
 
 function HeadContainer(props: any) {
     let didInit = false;
     const [examples, setExamples] = useState<ExampleModel[]>([])
     const [customExamples, setCustomExamples] = useState<ExampleModel[]>([])
+    const [showSuccess, setSuccess] = useState(false)
 
     useEffect(() => {
         if (!didInit) {
@@ -38,14 +39,20 @@ function HeadContainer(props: any) {
 
     const HandleSelectChange = (value: string) => {
         if (props.onPresetChange) {
+            let playground: PlaygroundModel
+
             if (value == "") {
-                props.onPresetChange(DefaultPlayground)
-                return
+                playground = DefaultPlayground
+            } else {
+                const example = examples.concat(customExamples).find(p => p.key == value)
+                playground = example == null ? DefaultPlayground : convert.mapExampleModelToPlaygroundModel(example)
             }
-            
-            const example = examples.concat(customExamples).find(p => p.key == value)!
-            const playground = convert.mapExampleModelToPlaygroundModel(example)
+
             props.onPresetChange(playground)
+            setSuccess(true)
+            setTimeout(function () {
+                setSuccess(false)
+            }, 2000)
         }
     }
 
@@ -55,12 +62,14 @@ function HeadContainer(props: any) {
         perset.title = data.key
         perset.description = data.description
 
-        const persets: ExampleModel[] = await exampleService.createCustomExample(perset)
-        console.log(persets.length)
+        await exampleService.createCustomExample(perset)
     }
 
     return (
         <div className="playground-header">
+            {showSuccess && <div className="alert alert-success setting-change-tip" role="alert">
+                Settings updated!
+            </div>}
             <div className="playground-header-title">Playground</div>
             <div className="playground-header-right">
                 <div className="playground-header-select">

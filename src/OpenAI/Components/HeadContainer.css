@@ -9,6 +9,16 @@
     margin-bottom: 10px;
     padding-left: 100px !important;
     justify-content: space-between;
+    position: relative;
+}
+
+.setting-change-tip {
+    position: absolute !important;
+    width: 520px;
+    margin: auto;
+    top: 10px;
+    left: 0;
+    right: 0;
 }
 
 .playground-header-title {
@@ -41,11 +51,11 @@
     border-radius: 5px;
 }
 
-.playground-header-save:hover{
+.playground-header-save:hover {
     background-color: #d8d8f1;
     cursor: pointer;
 }
 
-.playground-header-save span{
+.playground-header-save span {
     pointer-events: none;
 }
