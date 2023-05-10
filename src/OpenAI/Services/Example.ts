@@ -3,45 +3,46 @@ import { openaiserver } from './Const'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const settingPath = 'examples/'
+const exampleKey: string = "playground/example"
+const customeExampleKey: string = "playground/customeExample"
 
 const getExample = async (exampleName: string) => {
-    const examples = await getAllExamples()
-    const example = examples.find(d => d.key == exampleName) ?? DefaultExampleModel
+    const examples = await getAllSystemExamples()
+    const example = examples.find((d: ExampleModel) => d.key == exampleName) ?? DefaultExampleModel
     return example
 }
 
-const getAllExamples = async () => {
-    const options: AxiosRequestConfig = {
-        url: `${openaiserver}${settingPath}`,
-        method: "GET",
-    }
+const getAllSystemExamples = async () => {
+    return getAllExamples(exampleKey, `${openaiserver}${settingPath}`)
+}
 
-    let result: ExampleModel[] = []
-    try {
-        const { data, status } = await axios<ExampleModel[]>(options)
-        result = data
-    } catch (error) {
-        console.log(error)
-    }
 
-    return result
+const getAllExamples = async (localStoragekey: string, path: string) => {
+    let examples = JSON.parse(localStorage.getItem(localStoragekey) ?? "{}")
+    if (examples.date && examples.date < new Date().getTime() || !examples.data) {
+        const options: AxiosRequestConfig = {
+            url: path,
+            method: "GET",
+        }
+
+        let result: ExampleModel[] = []
+        try {
+            const { data, status } = await axios<ExampleModel[]>(options)
+            result = data
+            const expiraDate = new Date().setHours(new Date().getHours() + 1)
+            localStorage.setItem(localStoragekey, JSON.stringify({ date: expiraDate, data: data }))
+        } catch (error) {
+            console.log(error)
+        }
+
+        return result
+    } else {
+        return examples.data
+    }
 }
 
 const getAllCustomExamples = async () => {
-    const options: AxiosRequestConfig = {
-        url: `${openaiserver}${settingPath}?type=custom`,
-        method: "GET",
-    }
-
-    let result: ExampleModel[] = []
-    try {
-        const { data, status } = await axios<ExampleModel[]>(options)
-        result = data
-    } catch (error) {
-        console.log(error)
-    }
-
-    return result
+    return getAllExamples(customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
 }
 
 const createExample = async (data: ExampleModel) => {
@@ -85,7 +86,7 @@ const createCustomExample = async (data: ExampleModel) => {
 
 export default {
     getExample: getExample,
-    getAllExamples: getAllExamples,
+    getAllExamples: getAllSystemExamples,
     createExample: createExample,
     createCustomExample: createCustomExample,
     getAllCustomExamples: getAllCustomExamples,
