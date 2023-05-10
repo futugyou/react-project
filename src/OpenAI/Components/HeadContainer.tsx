@@ -1,6 +1,6 @@
 import './HeadContainer.css'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Dropdown, { DropdownItem } from "./Dropdown"
 import SavePanel from "./SavePanel"
 
@@ -31,13 +31,30 @@ const convertOpenAIToExample = (data: PlaygroundModel): ExampleModel => {
 }
 
 function HeadContainer(props: any) {
+    let didInit = false;
+    const [examples, setExamples] = useState<ExampleModel[]>([])
+    const [customExamples, setCustomExamples] = useState<ExampleModel[]>([])
 
-    const selects: DropdownItem[] = [
-        {
-            key: "default-qa",
-            value: "Q&A",
+    useEffect(() => {
+        if (!didInit) {
+            didInit = true;
+            const fetchData = async () => {
+                const examples = await exampleService.getAllExamples();
+                setExamples(examples)
+                const customExamples = await exampleService.getAllCustomExamples();
+                setCustomExamples(customExamples)
+            };
+
+            fetchData();
         }
-    ]
+    }, [])
+
+    const selects: DropdownItem[] = examples.concat(customExamples).map(data => {
+        return {
+            key: data.key,
+            value: data.title,
+        }
+    })
 
     const HandleSelectChange = (value: string) => {
         console.log(value)
