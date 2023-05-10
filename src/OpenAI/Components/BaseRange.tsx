@@ -15,7 +15,7 @@ function BaseRange(props: any) {
     }
 
     const [stringValue, setStringValue] = useState<string>(value + '')
-    console.log(value, value + '', stringValue)
+
     const modelPopover = (
         <Popover id="model-popover">
             <Popover.Body>

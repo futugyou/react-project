@@ -7,6 +7,7 @@ import SavePanel from "./SavePanel"
 import convert from '../Models/convert'
 import { ExampleModel } from '../Models/ExampleModel'
 import exampleService from '../Services/Example'
+import { DefaultPlayground } from '../Models/PlaygroundModel'
 
 
 function HeadContainer(props: any) {
@@ -28,19 +29,20 @@ function HeadContainer(props: any) {
         }
     }, [])
 
-    const selects: DropdownItem[] = examples.concat(customExamples).map(data => {
+    const selects: DropdownItem[] = [{ key: "", value: "Load a preset..." }].concat(examples.concat(customExamples).map(data => {
         return {
             key: data.key,
             value: data.title,
         }
-    })
+    }))
 
     const HandleSelectChange = (value: string) => {
-        if (value == "") {
-            return
-        }
-
         if (props.onPresetChange) {
+            if (value == "") {
+                props.onPresetChange(DefaultPlayground)
+                return
+            }
+            
             const example = examples.concat(customExamples).find(p => p.key == value)!
             const playground = convert.mapExampleModelToPlaygroundModel(example)
             props.onPresetChange(playground)
