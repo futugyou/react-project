@@ -13,8 +13,8 @@ import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
 export async function examplesLoader({ params, request }: any) {
     const list = await set.getAllExamples()
     return list
-        .filter(p => p.title != undefined && p.title.length > 0)
-        .sort((a, b) => {
+        .filter((p: ExampleModel) => p.title != undefined && p.title.length > 0)
+        .sort((a: ExampleModel, b: ExampleModel) => {
             if (a.key > b.key) {
                 return 1
             }
