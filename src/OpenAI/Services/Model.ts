@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { openaiserver } from './Const';
 
-const modelListPath = 'model/'
+const modelListPath = 'model'
 const modelKey: string = "playground/model"
 
 const getModelList = async () => {

@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { openaiserver } from './Const'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
-const settingPath = 'examples/'
+const settingPath = 'examples'
 const exampleKey: string = "playground/example"
 const customeExampleKey: string = "playground/customeExample"
 

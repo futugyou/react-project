@@ -5,7 +5,7 @@ import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionMod
 import * as SSEClient from '../../modules/sse';
 
 const createCompletion = async (data: OpenAIModel) => {
-    const path = 'completions/'
+    const path = 'completions'
     const options: AxiosRequestConfig = {
         url: `${openaiserver}${path}`,
         method: "POST",

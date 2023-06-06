@@ -4,7 +4,7 @@ import { EditModel } from '../Models/EditModel';
 import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
 
 const createEdit = async (data: EditModel) => {
-    const path = 'edits/'
+    const path = 'edits'
     const options: AxiosRequestConfig = {
         url: `${openaiserver}${path}`,
         method: "POST",
