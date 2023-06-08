@@ -13,9 +13,9 @@ export const Home = () => {
     authService.logout()
   }
 
-  if (authService.isPending()) {
-    return <div>Loading...</div>
-  }
+  // if (authService.isPending()) {
+  //   return <div>Loading...</div>
+  // }
 
   if (!authService.isAuthenticated()) {
     return (

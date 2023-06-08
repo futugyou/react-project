@@ -6,7 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import Spinner from 'react-bootstrap/Spinner'
 
-import { AuthProvider } from 'react-oauth2-pkce'
+import { AuthProvider } from './Auth/index'
 import authService from "./Auth"
 
 import { router } from './Route'
