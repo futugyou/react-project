@@ -6,6 +6,7 @@ import { DemoRoute } from './ReactDemo/DemoRoute'
 import { OpenAIRoute } from './OpenAI/OpenAIRoute'
 
 const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
+const Home = lazy(() => import('./Home'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
 // const router = createBrowserRouter(
@@ -30,7 +31,7 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 let childrenRoute: RouteObject[] = [
     {
         index: true,
-        element: <App />,
+        element: <Home />,
     },
     DemoRoute
 ]

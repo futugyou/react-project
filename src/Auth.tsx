@@ -1,4 +1,4 @@
-import { AuthProvider, AuthService, useAuth } from 'react-oauth2-pkce'
+import { AuthProvider, AuthService, useAuth } from './Auth/index'
 
 const authService = new AuthService({
     clientId: import.meta.env.REACT_APP_CLIENT_ID,
@@ -9,5 +9,5 @@ const authService = new AuthService({
     redirectUri: import.meta.env.REACT_APP_REDIRECT_URI || window.location.origin,
     scopes: ['openid', 'profile']
   });
-  
+
   export default authService
