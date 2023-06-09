@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     padding-left: 20vh;
     list-style: none;
+    flex: 1 1 auto;
 }
 
 .header-nav div {
@@ -36,4 +37,10 @@
     padding: 10px;
     padding-left: 20px;
     font-size: 18px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
 }

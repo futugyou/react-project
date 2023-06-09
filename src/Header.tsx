@@ -3,6 +3,8 @@ import './Header.css'
 import React from "react"
 import { NavLink } from "react-router-dom"
 
+import { User } from "./User";
+
 function Header(props: any) {
     return (
         <div className='header-container'>
@@ -46,6 +48,9 @@ function Header(props: any) {
                     </ul>
                 </div>
             </div >
+            <div className="header-user">
+                <User></User>
+            </div>
         </div >
     )
 }

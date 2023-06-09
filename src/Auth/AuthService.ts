@@ -30,10 +30,11 @@ export interface AuthTokens {
 }
 
 export interface JWTIDToken {
-  given_name: string
-  family_name: string
+  sub: string // uid
+  phone: string
   name: string
   email: string
+  brth: string
 }
 
 export interface TokenRequestBody {
@@ -69,10 +70,13 @@ export class AuthService<TIDToken = JWTIDToken> {
     }
   }
 
-  getUser(): {} {
-    const t = this.getAuthTokens()
-    if (null === t) return {}
-    const decoded = jwtDecode(t.id_token) as TIDToken
+  getUser(): TIDToken | null {
+    const t = this.getAuthTokens() // t can be empty object, but not null.
+    if (t.id_token == undefined && t.access_token == undefined) {
+      return null
+    }
+
+    const decoded = jwtDecode(t.id_token ?? t.access_token) as TIDToken
     return decoded
   }
 
