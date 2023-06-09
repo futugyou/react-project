@@ -1,6 +1,5 @@
 
 import { Buffer } from 'buffer'
-import randomBytes from "randombytes"
 import shaJs from "sha.js"
 
 export const b64toB64UrlEncoded = (str: string): string => {
@@ -12,7 +11,9 @@ export const b64toB64UrlEncoded = (str: string): string => {
 
 export const generateCodeVerifier = () => {
   return b64toB64UrlEncoded(
-    randomBytes(32).toString("base64")
+    Math.floor(Math.random() * Date.now()).toString(36)
+    + Math.floor(Math.random() * Date.now()).toString(36)
+    + Math.floor(Math.random() * Date.now()).toString(36)
   )
 }
 
