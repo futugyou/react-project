@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { createPKCECodes, PKCECodePair } from './pkce'
+import { createPKCECodes, PKCECodePair, base64URLEncode } from './pkce'
 import { toUrlEncoded } from './util'
 
 import jwtDecode from 'jwt-decode'
@@ -231,7 +231,8 @@ export class AuthService<TIDToken = JWTIDToken> {
 
     const response = await fetch(`${tokenEndpoint || `${provider}/token`}`, {
       headers: {
-        'Content-Type': contentType || 'application/x-www-form-urlencoded'
+        'Content-Type': contentType || 'application/x-www-form-urlencoded',
+        'Authorization': "Basic " + base64URLEncode(clientId + ":" + clientSecret)
       },
       method: 'POST',
       body: toUrlEncoded(payload)
