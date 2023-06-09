@@ -62,7 +62,7 @@ export class AuthService<TIDToken = JWTIDToken> {
           this.removeItem('pkce')
           this.removeItem('auth')
           this.removeCodeFromLocation()
-          console.warn({ e })
+          console.error({ e })
         })
     } else if (this.props.autoRefresh) {
       this.startTimer()
@@ -236,8 +236,13 @@ export class AuthService<TIDToken = JWTIDToken> {
       method: 'POST',
       body: toUrlEncoded(payload)
     })
+
     this.removeItem('pkce')
     let json = await response.json()
+    if (json.error != undefined) {
+      throw Error(json.error + " " + json.error_description)
+    }
+
     if (isRefresh && !json.refresh_token) {
       json.refresh_token = payload.refresh_token
     }
@@ -268,7 +273,7 @@ export class AuthService<TIDToken = JWTIDToken> {
         .catch((e) => {
           this.removeItem('auth')
           this.removeCodeFromLocation()
-          console.warn({ e })
+          console.error({ e })
         })
     }, timeoutDuration)
   }
