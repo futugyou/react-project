@@ -35,7 +35,7 @@ const User = (props: any) => {
 
     return (
         <OverlayTrigger placement="bottom" overlay={logoutPopover} delay={{ show: 100, hide: 1000 }} >
-            <div>{user.name}</div>
+            <div className="user-name">{user.name}</div>
         </OverlayTrigger >
     )
 }

@@ -1,0 +1,12 @@
+.user-name {
+    cursor: pointer;
+    border: 1px solid #c5c5d2;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #d9efee;
+}
+
+.user-name:hover {
+    border: 1px solid #d2d2e3;
+    background-color: #b1cbc5;
+}
