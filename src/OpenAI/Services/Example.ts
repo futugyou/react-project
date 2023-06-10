@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
 import { openaiserver } from './Const'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
@@ -52,11 +52,15 @@ const createSystemExample = async (data: ExampleModel) => {
 }
 
 const createExample = async (data: ExampleModel, localStoragekey: string, path: string) => {
+    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const options: AxiosRequestConfig = {
         url: path,
         method: "POST",
         data: data,
-    }
+        headers: {},
+    };
+
+    options.headers!.Authorization = "Bearer " + jwtToken.access_token
 
     let result: ExampleModel[] = []
 
@@ -65,7 +69,7 @@ const createExample = async (data: ExampleModel, localStoragekey: string, path: 
         if (status == 200) {
             localStorage.removeItem(localStoragekey)
         }
-        
+
         return data
     } catch (error: any) {
         console.log(error)

@@ -1,16 +1,20 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios';
 import { openaiserver } from './Const';
 import { OpenAIModel } from '../Models/OpenAIModel';
 import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
 import * as SSEClient from '../../modules/sse';
 
 const createCompletion = async (data: OpenAIModel) => {
+    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const path = 'completions'
     const options: AxiosRequestConfig = {
         url: `${openaiserver}${path}`,
         method: "POST",
         data: data,
+        headers: {},
     };
+
+    options.headers!.Authorization = "Bearer " + jwtToken.access_token
 
     let result: CompletionModel = DefaultCompletionModel;
 
@@ -33,9 +37,11 @@ const createCompletion = async (data: OpenAIModel) => {
 
 const createCompletionStream = async (data: OpenAIModel, processfn: (a: any) => void, endfn: () => void) => {
     const path = 'completions/sse'
+    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const sse = SSEClient.SSE(`${openaiserver}${path}`, {
         headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer " + jwtToken.access_token,
         },
         method: "POST",
         payload: JSON.stringify(data),

@@ -5,7 +5,6 @@ const modelListPath = 'model'
 const modelKey: string = "playground/model"
 
 const getModelList = async () => {
-
     let examples = JSON.parse(localStorage.getItem(modelKey) ?? "{}")
     if (examples.date && examples.date < new Date().getTime() || !examples.data) {
         const options: AxiosRequestConfig = {

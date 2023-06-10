@@ -4,10 +4,12 @@ import * as SSEClient from '../../modules/sse';
 
 
 const createChatStream = async (data: ChatModel, processfn: (a: any) => void, endfn: () => void) => {
+    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const path = 'chat/sse'
     const sse = SSEClient.SSE(`${openaiserver}${path}`, {
         headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer " + jwtToken.access_token,
         },
         method: "POST",
         payload: JSON.stringify(data),
