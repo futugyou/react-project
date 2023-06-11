@@ -30,7 +30,7 @@ interface Fiber {
 }
 
 // 调度timeout对应的ID
-let callbackNode: number | undefined = undefined;
+let callbackNode: any
 // 正在执行Hook
 let workInProgressHook: Hook | undefined;
 let isMount = true;
