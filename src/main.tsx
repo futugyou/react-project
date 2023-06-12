@@ -11,7 +11,7 @@ import authService from "./Auth"
 
 import { router } from './Route'
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense fallback={<Spinner animation="border" variant="dark" />}>
       <AuthProvider authService={authService} >

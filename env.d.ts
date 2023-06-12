@@ -8,6 +8,7 @@ interface ImportMetaEnv {
     readonly REACT_APP_REDIRECT_URI: string
     readonly REACT_APP_AUTHORIZE: string
     readonly REACT_APP_TOKEN: string
+    readonly REACT_APP_ADDRESS: string
 }
 
 interface ImportMeta {
