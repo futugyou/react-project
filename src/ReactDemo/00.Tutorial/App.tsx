@@ -1,9 +1,41 @@
-import { useState } from 'react'
-import reactLogo from '../../assets/react.svg'
 import './App.css'
+import reactLogo from '../../assets/react.svg'
+
+import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    // 接收基座传递的数据
+    function dataListener(data: any) {
+      if (data.path) {
+        navigate(data.path)
+      }
+    }
+    if (window.__MICRO_APP_ENVIRONMENT__) {
+      window.microApp.addDataListener(dataListener)
+    }
+    return () => {
+      if (window.__MICRO_APP_ENVIRONMENT__) {
+        // 解绑监听函数
+        window.microApp.removeDataListener(dataListener)
+        // 清空当前子应用的所有绑定函数(全局数据函数除外)
+        window.microApp.clearDataListener()
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (window.microApp) {
+      window.microApp.dispatch({
+        path: location.pathname,
+      })
+    }
+  }, [location.pathname])
 
   return (
     <div className="App">

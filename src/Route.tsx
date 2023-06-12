@@ -8,6 +8,15 @@ import { OpenAIRoute } from './OpenAI/OpenAIRoute'
 const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
+declare global {
+    interface Window {
+        microApp: any
+        __MICRO_APP_NAME__: string
+        __MICRO_APP_ENVIRONMENT__: string
+        __MICRO_APP_BASE_ROUTE__: string
+    }
+}
+
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
 //     <Route path="/" element={<Layout />} errorElement={<ErrorPage />}    >
@@ -39,11 +48,13 @@ childrenRoute = childrenRoute.concat(OpenAIRoute)
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: '/',
         element: <Layout />,
         errorElement: <ErrorPage />,
         children: childrenRoute,
     },
-])
+], {
+    basename: `${window.__MICRO_APP_BASE_ROUTE__}` || '/',
+})
 
 export { router }
