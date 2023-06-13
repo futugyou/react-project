@@ -17,21 +17,21 @@ function App() {
       }
     }
     if (window.__MICRO_APP_ENVIRONMENT__) {
-      window.microApp.addDataListener(dataListener)
+      window.eventCenterForAppNameVite.addDataListener(dataListener)
     }
     return () => {
       if (window.__MICRO_APP_ENVIRONMENT__) {
         // 解绑监听函数
-        window.microApp.removeDataListener(dataListener)
+        window.eventCenterForAppNameVite.removeDataListener(dataListener)
         // 清空当前子应用的所有绑定函数(全局数据函数除外)
-        window.microApp.clearDataListener()
+        window.eventCenterForAppNameVite.clearDataListener()
       }
     }
   }, [])
 
   useEffect(() => {
-    if (window.microApp) {
-      window.microApp.dispatch({
+    if (window.eventCenterForAppNameVite) {
+      window.eventCenterForAppNameVite.dispatch({
         path: location.pathname,
       })
     }
