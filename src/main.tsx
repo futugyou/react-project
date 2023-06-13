@@ -22,7 +22,7 @@ declare global {
 }
 
 // 与基座的数据交互
-function handleMicroData () {
+function handleMicroData() {
   // 是否是微前端环境
   if (window.__MICRO_APP_ENVIRONMENT__) {
     // 主动获取基座下发的数据
@@ -40,11 +40,11 @@ function handleMicroData () {
   }
 }
 
-var openairoot: ReactDOM.Root 
+var openairoot: ReactDOM.Root
 
 function mount() {
-    openairoot = ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement)
-    openairoot.render(
+  openairoot = ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement)
+  openairoot.render(
     <React.StrictMode>
       <Suspense fallback={<Spinner animation="border" variant="dark" />}>
         <AuthProvider authService={authService} >
@@ -65,10 +65,12 @@ function unmount() {
 }
 
 // 微前端环境下，注册mount和unmount方法
-if (window.__MICRO_APP_ENVIRONMENT__) {
+if (window.__MICRO_APP_BASE_APPLICATION__) {
+  window.__MICRO_APP_BASE_ROUTE__ = "/m/openai"
   // @ts-ignore
   window['micro-app-openai-web'] = { mount, unmount }
 } else {
+  window.__MICRO_APP_BASE_ROUTE__ = "/openai"
   // 非微前端环境直接渲染
   mount();
 }

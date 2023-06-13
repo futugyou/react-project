@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     },
 ],
     {
-        basename: window.__MICRO_APP_BASE_ROUTE__ || '/openai',
+        basename: window.__MICRO_APP_BASE_ROUTE__ || '/',
     })
 
 export { router }
