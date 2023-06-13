@@ -44,9 +44,6 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: childrenRoute,
     },
-],
-    {
-        basename: window.__MICRO_APP_BASE_ROUTE__ || '/',
-    })
+])
 
 export { router }

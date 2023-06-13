@@ -1,42 +1,11 @@
 import './App.css'
 import reactLogo from '../../assets/react.svg'
 
-import { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 function App() {
   const [count, setCount] = useState(0)
-  const navigate = useNavigate()
-  const location = useLocation()
-
-  useEffect(() => {
-    // 接收基座传递的数据
-    function dataListener(data: any) {
-      if (data.path) {
-        navigate(data.path)
-      }
-    }
-    if (window.__MICRO_APP_ENVIRONMENT__) {
-      window.eventCenterForAppNameVite.addDataListener(dataListener)
-    }
-    return () => {
-      if (window.__MICRO_APP_ENVIRONMENT__) {
-        // 解绑监听函数
-        window.eventCenterForAppNameVite.removeDataListener(dataListener)
-        // 清空当前子应用的所有绑定函数(全局数据函数除外)
-        window.eventCenterForAppNameVite.clearDataListener()
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (window.eventCenterForAppNameVite) {
-      window.eventCenterForAppNameVite.dispatch({
-        path: location.pathname,
-      })
-    }
-  }, [location.pathname])
-
+ 
   return (
     <div className="App">
       <div>
