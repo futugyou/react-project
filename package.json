@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@micro-zoe/micro-app": "^0.8.11",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "buffer": "^6.0.3",

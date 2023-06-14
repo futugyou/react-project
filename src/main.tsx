@@ -6,10 +6,28 @@ import { RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import Spinner from 'react-bootstrap/Spinner'
 
-import { AuthProvider } from './Auth/index'
-import authService from "./Auth"
+import { AuthProvider, authService } from './Auth/index'
 
 import { router } from './Route'
+
+
+import microApp from '@micro-zoe/micro-app'
+
+microApp.start({
+  plugins: {
+    modules: {
+      'appname-react17': [{
+        loader(code) {
+          if (process.env.NODE_ENV === 'development' && code.indexOf('sockjs-node') > -1) {
+            code = code.replace('window.location.port', '4005')
+          }
+          return code
+        }
+      }],
+    }
+  }
+})
+
 
 ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement).render(
   <React.StrictMode>

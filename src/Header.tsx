@@ -3,7 +3,7 @@ import './Header.css'
 import React from "react"
 import { NavLink } from "react-router-dom"
 
-import { User } from "./User";
+import { User } from "./User/User";
 
 function Header(props: any) {
     return (
@@ -12,12 +12,6 @@ function Header(props: any) {
                 <div>
                     <NavLink to="/">Home</NavLink>
                 </div>
-                {/* <div>
-                    <NavLink to="/examples">Examples</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/playground">Playground</NavLink>
-                </div> */}
                 <div className="header-dropdown-container" >
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">OpenAI Demo</a>
                     <ul className="dropdown-menu" >
