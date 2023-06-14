@@ -25,7 +25,9 @@
 }
 
 .header-dropdown-container {
-    position: "relative"
+    position: "relative";
+    width: 200px;
+    text-align: left;
 }
 
 .header-dropdown-container ul {

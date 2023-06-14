@@ -12,11 +12,22 @@ function Header(props: any) {
                 <div>
                     <NavLink to="/">Home</NavLink>
                 </div>
-                <div>
+                {/* <div>
                     <NavLink to="/examples">Examples</NavLink>
                 </div>
                 <div>
                     <NavLink to="/playground">Playground</NavLink>
+                </div> */}
+                <div className="header-dropdown-container" >
+                    <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">OpenAI Demo</a>
+                    <ul className="dropdown-menu" >
+                        <li>
+                            <NavLink to="/examples" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Examples</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/playground" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Playground</NavLink>
+                        </li>
+                    </ul>
                 </div>
                 <div className="header-dropdown-container" >
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">React Demo</a>
