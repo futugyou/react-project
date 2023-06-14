@@ -10,7 +10,6 @@ import { AuthProvider, authService } from './Auth/index'
 
 import { router } from './Route'
 
-
 import microApp from '@micro-zoe/micro-app'
 
 microApp.start({

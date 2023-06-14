@@ -4,6 +4,7 @@ import Layout from "./Layout"
 
 import { DemoRoute } from './ReactDemo/DemoRoute'
 import { OpenAIRoute } from './OpenAI/OpenAIRoute'
+import { MicroAppRoute } from './MicroApp/MicroAppRoute'
 
 const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
@@ -35,7 +36,7 @@ let childrenRoute: RouteObject[] = [
     DemoRoute
 ]
 
-childrenRoute = childrenRoute.concat(OpenAIRoute)
+childrenRoute = childrenRoute.concat(OpenAIRoute).concat(MicroAppRoute)
 
 const router = createBrowserRouter([
     {

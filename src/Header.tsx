@@ -12,6 +12,9 @@ function Header(props: any) {
                 <div>
                     <NavLink to="/">Home</NavLink>
                 </div>
+                <div>
+                    <NavLink to="/aws">Vue Demo</NavLink>
+                </div>
                 <div className="header-dropdown-container" >
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">OpenAI Demo</a>
                     <ul className="dropdown-menu" >
