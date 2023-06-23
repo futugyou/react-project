@@ -35,20 +35,18 @@ function VueDemo() {
     }
 
     return (
-        <div>
-            <h1>vue sub app</h1>
-            <micro-app
-                name='vueawsapp'
-                url='http://localhost:8080/'
-                data={microAppData}
-                onCreated={handleCreate}
-                onBeforemount={handleBeforeMount}
-                onMounted={handleMount}
-                onUnmount={handleUnmount}
-                onError={handleError}
-                onDataChange={handleDataChange}
-            ></micro-app>
-        </div>
+        <micro-app
+            name='vueawsapp'
+            url='http://localhost:8080/'
+            data={microAppData}
+            onCreated={handleCreate}
+            onBeforemount={handleBeforeMount}
+            onMounted={handleMount}
+            onUnmount={handleUnmount}
+            onError={handleError}
+            onDataChange={handleDataChange}
+            style={{ height: "100%" }}
+        ></ micro-app>
     )
 }
 

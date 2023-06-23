@@ -1,0 +1,13 @@
+.react-demo-container {
+    display: flex;
+}
+
+.react-demo-container .left-mune {
+    flex: 1 1 10%;
+    padding: 50px
+}
+
+.react-demo-container .right-content {
+    flex: 1 1 100%;
+    padding: 50px
+}

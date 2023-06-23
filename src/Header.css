@@ -1,6 +1,7 @@
 .header-container {
     height: 100%;
     display: flex;
+    border-bottom: 1px solid var(--bs-border-color-translucent);
 }
 
 .header-nav {
@@ -24,18 +25,18 @@
     text-decoration: unset;
 }
 
-.header-dropdown-container {
+.header-route-container {
     position: "relative";
-    width: 200px;
     text-align: left;
+    margin-right: 20px;
 }
 
-.header-dropdown-container ul {
+.header-route-container ul {
     width: 200px;
     color: var(--bs-link-color);
 }
 
-.header-dropdown-container ul li {
+.header-route-container ul li {
     padding: 10px;
     padding-left: 20px;
     font-size: 18px;

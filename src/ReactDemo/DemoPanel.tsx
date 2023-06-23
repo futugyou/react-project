@@ -1,10 +1,10 @@
+import "./DemoPanel.css"
+
 import React from "react"
 
 import { useState, useEffect } from 'react';
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { BsListUl } from "react-icons/bs";
@@ -37,9 +37,9 @@ function DemoPanel(props: any) {
                     <BsListUl />
                 </div>
             </OverlayTrigger>
-            <Row className="route-out-container">
+            <div className="react-demo-container">
                 {show && (
-                    <Col xs={2} style={{ padding: "50px" }}>
+                    <div className="left-mune" >
                         <ul className="nav nav-pills flex-column mb-auto">
                             <li className="nav-item">
                                 <NavLink to="/demo/app" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
@@ -66,14 +66,12 @@ function DemoPanel(props: any) {
                                 <NavLink to="/demo/withbailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WithoutBailout</NavLink>
                             </li>
                         </ul>
-                    </Col>
+                    </div>
                 )}
-                <Col xs={show ? 10 : 12} className="route-out-container" style={{ padding: "50px" }}>
-                    <Row className="route-out-container" >
-                        <Outlet />
-                    </Row>
-                </Col>
-            </Row>
+                <div className="right-content">
+                    <Outlet />
+                </div>
+            </div>
         </>
     )
 }

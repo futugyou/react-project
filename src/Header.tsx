@@ -9,13 +9,13 @@ function Header(props: any) {
     return (
         <div className='header-container'>
             <div className="header-nav">
-                <div>
+                <div className="header-route-container">
                     <NavLink to="/">Home</NavLink>
                 </div>
-                <div>
+                <div className="header-route-container">
                     <NavLink to="/aws">Vue Demo</NavLink>
                 </div>
-                <div className="header-dropdown-container" >
+                <div className="header-route-container" >
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">OpenAI Demo</a>
                     <ul className="dropdown-menu" >
                         <li>
@@ -26,7 +26,7 @@ function Header(props: any) {
                         </li>
                     </ul>
                 </div>
-                <div className="header-dropdown-container" >
+                <div className="header-route-container" >
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">React Demo</a>
                     <ul className="dropdown-menu" >
                         <li>
