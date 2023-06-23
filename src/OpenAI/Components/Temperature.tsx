@@ -1,6 +1,6 @@
 import BaseRange from './BaseRange'
 
-function Temperature(props: any) {
+const Temperature = (props: any) => {
     const data = {
         popover: "Controls randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive.",
         display: "Temperature",

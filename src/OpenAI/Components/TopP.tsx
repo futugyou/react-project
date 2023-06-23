@@ -1,6 +1,6 @@
 import BaseRange from './BaseRange'
 
-function TopP(props: any) {
+const TopP = (props: any) => {
     const data = {
         popover: "Controls diversity via nucleus sampling: 0.5 means half of all likelihood-weighted options are considered.",
         display: "Top P",

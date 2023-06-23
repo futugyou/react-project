@@ -35,7 +35,7 @@ let callbackNode: any
 let workInProgressHook: Hook | undefined;
 let isMount = true;
 
-function APPP() {
+const APPP = () => {
     const [num, updateNum] = useState(0);
     console.log(`${isMount ? 'mount' : 'update'} num: `, num);
 
@@ -51,7 +51,7 @@ const fiber: Fiber = {
     stateNode: APPP,
 }
 
-function schedule() {
+const schedule = () => {
     if (callbackNode) {
         // 如果存在其他调度，取消他
         clearTimeout(callbackNode);
@@ -67,7 +67,7 @@ function schedule() {
     });
 }
 
-function dispatchSetState(queue: Queue, action: Action) {
+const dispatchSetState = (queue: Queue, action: Action) => {
     // 1 创建update
     const update: Update = {
         action,
@@ -87,7 +87,7 @@ function dispatchSetState(queue: Queue, action: Action) {
     schedule();
 }
 
-function useState(initialState: any) {
+const useState = (initialState: any) => {
     // 当前useState使用的hook会被赋值给该变量
     let hook;
     if (isMount) {

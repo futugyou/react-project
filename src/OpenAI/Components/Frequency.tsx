@@ -1,6 +1,6 @@
 import BaseRange from './BaseRange'
 
-function Frequency(props: any) {
+const Frequency = (props: any) => {
     const data = {
         popover: "How much to penalize new tokens based on their existing frequency in the text so far. Decreases the model's likelihood to repeat the same line verbatim.",
         display: "Frequency penalty",

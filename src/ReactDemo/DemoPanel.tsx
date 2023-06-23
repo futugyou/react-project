@@ -9,7 +9,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { BsListUl } from "react-icons/bs";
 
-function DemoPanel(props: any) {
+const DemoPanel = (props: any) => {
     const [show, setShow] = useState(true);
     const location = useLocation();
     useEffect(() => {

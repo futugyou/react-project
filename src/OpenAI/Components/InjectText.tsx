@@ -16,7 +16,7 @@ interface IInjectTextProps {
 
 }
 
-function InjectText({ text = '', label = '', checked = false, descript, onInjectChanged, onCheckChanged }: IInjectTextProps) {
+const InjectText = ({ text = '', label = '', checked = false, descript, onInjectChanged, onCheckChanged }: IInjectTextProps) => {
     const [inject, setInject] = useState<string>(text)
     const [check, setCheck] = useState<boolean>(checked)
     const input_className = "inject-text-ta" + (check ? "" : " off")

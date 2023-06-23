@@ -1,6 +1,6 @@
 import BaseRange from './BaseRange'
 
-function Presence(props: any) {
+const Presence = (props: any) => {
     const data = {
         popover: "How much to penalize new tokens based on whether they appear in the text so far. Increases the model's likelihood to talk about new topics.",
         display: "Presence penalty",

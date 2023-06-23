@@ -2,7 +2,7 @@ import './ExampleDetail.css'
 
 import { BsBinoculars } from "react-icons/bs";
 
-function ExampleDetail(props: any) {
+const ExampleDetail = (props: any) => {
     let tags = []
     if (props.data.tags) {
         tags = props.data.tags.map((t: string) => {

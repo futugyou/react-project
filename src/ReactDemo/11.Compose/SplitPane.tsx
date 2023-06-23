@@ -1,14 +1,14 @@
 import './SplitPane.css'
 
-function Contacts() {
+const Contacts = () => {
     return <div className="Contacts" />;
 }
 
-function Chat() {
+const Chat = () => {
     return <div className="Chat" />;
 }
 
-function SplitPane(props: any) {
+const SplitPane = (props: any) => {
     return (
         <div className="SplitPane">
             <div className="SplitPane-left">
@@ -21,7 +21,7 @@ function SplitPane(props: any) {
     );
 }
 
-function SplitPaneApp() {
+const SplitPaneApp = () => {
     return (
         <SplitPane
             left={

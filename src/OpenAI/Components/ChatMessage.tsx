@@ -15,7 +15,7 @@ interface IChatMessageProps {
     children?: React.ReactNode;
 }
 
-function ChatMessage(message: IChatMessageProps) {
+const ChatMessage = (message: IChatMessageProps) => {
     const chatpgmessageRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
 

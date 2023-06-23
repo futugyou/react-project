@@ -15,7 +15,7 @@ interface Node {
 type NodeList = Node[];
 
 // 接收更新前后的nodelist，并为他们标记flag
-function diff(before: NodeList, after: NodeList): NodeList {
+const diff = (before: NodeList, after: NodeList): NodeList => {
     const result: NodeList = [];
     // 1 遍历前准备工作
     // 将before保存在map

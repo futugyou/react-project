@@ -10,7 +10,7 @@ import { ChatLog } from '../Models/PlaygroundModel'
 
 const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
 
-function EditorContainer(props: any) {
+const EditorContainer = (props: any) => {
     const playgroundModel: PlaygroundModel = props.data
     const mode: string = props.mode
     const disabled: boolean = props.disabled

@@ -2,7 +2,7 @@ import './InputContainer.css';
 import { KeyboardEvent, useRef } from 'react';
 import ExistedItem from './ExistedItem';
 
-function InputContainer(props: any) {
+const InputContainer = (props: any) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const existedItems: any[] = [];

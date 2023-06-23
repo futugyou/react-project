@@ -10,7 +10,7 @@ import ExampleDetail from "./ExampleDetail"
 import set from '../Services/Example';
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
 
-export async function examplesLoader({ params, request }: any) {
+export const examplesLoader = async ({ params, request }: any) => {
     const list = await set.getAllExamples()
     return list
         .filter((p: ExampleModel) => p.title != undefined && p.title.length > 0)
@@ -25,7 +25,7 @@ export async function examplesLoader({ params, request }: any) {
         })
 }
 
-function Examples(props: any) {
+const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]
 
     const [exampleList, setExampleList] = useState(loaderdata)

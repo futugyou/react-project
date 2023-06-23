@@ -6,7 +6,7 @@ import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function ModeSelect(props: any) {
+const ModeSelect = (props: any) => {
     const mode = props.mode ?? 'Complete';
     const modes: string[] = ['Complete', 'Chat', 'Insert', 'Edit']
 

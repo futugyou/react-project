@@ -5,8 +5,7 @@ interface GuardedRouteProps {
     children?: React.ReactNode;
 }
 
-
-function GuardedRoute({ children }: GuardedRouteProps) {
+const GuardedRoute = ({ children }: GuardedRouteProps) => {
     const { authService } = useAuth()
     const isRouteAccessible = authService.isAuthenticated()
     if (!isRouteAccessible) {

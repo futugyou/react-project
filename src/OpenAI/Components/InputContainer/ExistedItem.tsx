@@ -5,7 +5,7 @@ interface IExistedItemProps {
     onRemoveItem: (itemKey: string) => void;
 }
 
-function ExistedItem({ itemKey, onRemoveItem }: IExistedItemProps) {
+const ExistedItem = ({ itemKey, onRemoveItem }: IExistedItemProps) => {
     return (
         <div key={itemKey} className="existed-item">
             <div className="display-item">  {itemKey == '\n' ? '↵' : itemKey}</div>

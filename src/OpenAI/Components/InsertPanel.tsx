@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import Form from 'react-bootstrap/Form';
 
-function InsertPanel(props: any) {
+const InsertPanel = (props: any) => {
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const text = props.prompt + (props.suffix ?? "")
     const [completion, setCompletion] = useState("");
@@ -39,7 +39,7 @@ function InsertPanel(props: any) {
     return (
         <>
             <div className="insert-container-left">
-                <Form.Control as="textarea" rows={1} onChange={HandleTextChange} value={text} disabled={props.disabled}/>
+                <Form.Control as="textarea" rows={1} onChange={HandleTextChange} value={text} disabled={props.disabled} />
                 {showPlaceholder && (<div className="insert-placeholder">
                     <div className="insert-placeholder-lg">We're writing to [insert]. Congrats from OpenAI!</div>
                     <div className="insert-placeholder-md">Use [insert] to indicate where the model should insert text.</div>

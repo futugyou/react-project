@@ -9,7 +9,7 @@ import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 import playgroundService from '../Services/Playground'
 import moment from 'moment'
 
-function History(props: any) {
+const History = (props: any) => {
     const [show, setShow] = useState(false)
     const [historyList, setHistoryList] = useState<PlaygroundModel[]>([])
     const currentEdit: PlaygroundModel = props.current ?? DefaultPlayground

@@ -59,7 +59,7 @@ const workList: Work[] = [];
 let prevPriority = IdlePriority;
 let curCallback: CallbackNode | null;
 
-function schedule() {
+const schedule = () => {
     // // 从队列末尾获取一个work
     // const currwork = workList.pop();
 
@@ -94,7 +94,7 @@ function schedule() {
     curCallback = scheduleCallback(curPriority, perform.bind(null, currwork));
 }
 
-function perform(work: Work, didTimeout?: boolean): any {
+const perform = (work: Work, didTimeout?: boolean): any => {
     // 是否需要同步执行,
     // shouldYield()=== true，表示发生了中断，有两种情况，1工作太多，总耗时超过5ms. 2单次运行时间太长
     // 代码模拟了第二种情况

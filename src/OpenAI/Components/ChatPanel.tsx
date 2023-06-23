@@ -7,7 +7,7 @@ import { BsPlusCircle } from "react-icons/bs";
 import ChatMessage from './ChatMessage';
 import { ChatLog } from '../Models/PlaygroundModel';
 
-function ChatPanel(props: any) {
+const ChatPanel = (props: any) => {
     const [messages, setMessages] = useState<any[]>(props.chatLog)
     const adddivRef = useRef<HTMLDivElement>(null);
     const chatExchangeClassName = props.disabled ? "chat-pg-exchange playground-disabled" : "chat-pg-exchange"

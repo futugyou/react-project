@@ -18,7 +18,7 @@ import { PlaygroundModel } from '../Models/PlaygroundModel'
 
 const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
 
-function ParameterPanel(props: any) {
+const ParameterPanel = (props: any) => {
     let playgroundModel: PlaygroundModel = props.data
     const mode: string = props.mode
     let setPlaygroundModel = props.onPlaygroundModelChange ?? defaultPalygroundModelChange

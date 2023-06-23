@@ -10,7 +10,7 @@ import Popover from 'react-bootstrap/Popover';
 
 import ModelService, { BaseModel } from '../Services/Model';
 
-function ModelSelect(props: any) {
+const ModelSelect = (props: any) => {
     const [model, setModel] = useState<string>(props.model)
     const [models, setModels] = useState<BaseModel[]>([])
 

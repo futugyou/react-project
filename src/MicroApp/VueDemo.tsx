@@ -3,19 +3,19 @@
 import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import { useState } from 'react'
 
-function VueDemo() {
+const VueDemo = () => {
     const [microAppData, changeMicroAppData] = useState({ msg: 'data from base app' })
     const vueawsapp_address = import.meta.env.REACT_APP_VUEAWS_APP_ADDRESS
 
-    function handleCreate() {
+    const handleCreate = () => {
         console.log('vueawsapp created')
     }
 
-    function handleBeforeMount() {
+    const handleBeforeMount = () => {
         console.log('vueawsapp will be render')
     }
 
-    function handleMount() {
+    const handleMount = () => {
         console.log('vueawsapp rendered')
 
         setTimeout(() => {
@@ -23,15 +23,15 @@ function VueDemo() {
         }, 2000)
     }
 
-    function handleUnmount() {
+    const handleUnmount = () => {
         console.log('vueawsapp unmount')
     }
 
-    function handleError() {
+    const handleError = () => {
         console.log('vueawsapp load error')
     }
 
-    function handleDataChange(e: CustomEvent) {
+    const handleDataChange = (e: CustomEvent) => {
         console.log('data from vue demo app:', e.detail.data)
     }
 

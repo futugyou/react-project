@@ -1,6 +1,6 @@
 import './WelcomeDialog.css'
 
-function FancyBorder(props: any) {
+const FancyBorder = (props: any) => {
     return (
         <div className={'FancyBorder FancyBorder-' + props.color}>
             {props.children}
@@ -8,7 +8,7 @@ function FancyBorder(props: any) {
     );
 }
 
-function WelcomeDialog() {
+const WelcomeDialog = () => {
     return (
         <FancyBorder color="blue">
             <h1 className="Dialog-title">

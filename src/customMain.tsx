@@ -1,7 +1,7 @@
 
 import CostomRender from './ReactDemo/MiniReactHook/costomRender'
 
-function App() {
+const App = () => {
     const writelog = () => {
         console.log("ok");
     };
@@ -11,6 +11,7 @@ function App() {
         </div>
     );
 }
+
 CostomRender.render(
     <App />,
     document.getElementById('root1'),

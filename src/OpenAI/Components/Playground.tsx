@@ -30,11 +30,11 @@ import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 import playgroundService from '../Services/Playground'
 import { ChatLog } from '../Models/PlaygroundModel'
 
-export async function playgroundLoader({ params, request }: any) {
+export const playgroundLoader = async ({ params, request }: any) => {
     return await set.getExample(params.parameter ?? "")
 }
 
-function Playground() {
+const Playground = () => {
     let searchParams = new URLSearchParams(location.search || "")
     let modeParam = searchParams.get("mode") || ""
     let modelParam = searchParams.get("model") || ""

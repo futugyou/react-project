@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Board from './Board'
 
-function Game() {
+const Game = () => {
     const [state, setState] = useState(
         {
             history: [{

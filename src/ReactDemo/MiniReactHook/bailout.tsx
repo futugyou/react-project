@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 
-function Child() {
+const Child = () => {
     console.log("child render");
     return <p>child</p>;
 }
 
-export function WithoutBailout() {
+export const WithoutBailout = () => {
     const [num, updateNum] = useState(0);
     const onClock = () => {
         updateNum(num + 1);
@@ -17,7 +17,7 @@ export function WithoutBailout() {
     );
 }
 
-export function Bailout() {
+export const Bailout = () => {
     const [num, updateNum] = useState(0);
     const onClock = () => {
         updateNum(num + 1);

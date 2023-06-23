@@ -2,15 +2,15 @@ import TemperatureInput from './TemperatureInput'
 import BoilingVerdict from './BoilingVerdict'
 import { useState } from 'react'
 
-function toCelsius(fahrenheit: number) {
+const toCelsius = (fahrenheit: number) => {
     return (fahrenheit - 32) * 5 / 9;
 }
 
-function toFahrenheit(celsius: number) {
+const toFahrenheit = (celsius: number) => {
     return (celsius * 9 / 5) + 32;
 }
 
-function tryConvert(temperature: string, convert: (arg0: number) => any) {
+const tryConvert = (temperature: string, convert: (arg0: number) => any) => {
     const input = parseFloat(temperature);
     if (Number.isNaN(input)) {
         return '';
@@ -20,7 +20,7 @@ function tryConvert(temperature: string, convert: (arg0: number) => any) {
     return rounded.toString();
 }
 
-function Calculator(props: any) {
+const Calculator = (props: any) => {
     const [state, setState] = useState(
         {
             temperature: '',

@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 
 import Header from "./Header"
 
-function Layout() {
+const Layout = () => {
     return (
         <>
             <Row className="header">

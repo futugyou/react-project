@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 
 import { User } from "./User/User";
 
-function Header(props: any) {
+const Header = (props: any) => {
     return (
         <div className='header-container'>
             <div className="header-nav">

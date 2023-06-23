@@ -5,7 +5,7 @@ const scaleNames: { [key: string]: string } = {
     f: 'Fahrenheit'
 }
 
-function TemperatureInput(props: any) {
+const TemperatureInput = (props: any) => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         props.onTemperatureChange(event.target.value);
     }

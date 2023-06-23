@@ -3,7 +3,7 @@ import './SavePanel.css'
 
 import { useState } from 'react'
 
-function SavePanel(props: any) {
+const SavePanel = (props: any) => {
     const [state, setState] = useState({
         "key": "",
         "description": "",

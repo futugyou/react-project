@@ -9,7 +9,7 @@ import StopInputContainer from './InputContainer/InputContainer';
 import StopTip from './InputContainer/Tip';
 import CleanAllStop from './InputContainer/CleanAllItem';
 
-function Stop(props: any) {
+const Stop = (props: any) => {
     let stops = new Set<string>(props.stop);
     const [stop, setStop] = useState<Set<string>>(stops)
     const [state, setState] = useState('');

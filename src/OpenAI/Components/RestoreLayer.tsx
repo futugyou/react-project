@@ -3,7 +3,7 @@ import { BsStopwatch } from "react-icons/bs"
 import moment from 'moment'
 import { PlaygroundModel } from '../Models/PlaygroundModel'
 
-function RestoreLayer(props: any) {
+const RestoreLayer = (props: any) => {
     if (props.data == null) {
         return (<></>)
     }

@@ -1,6 +1,6 @@
 
 
-function BoilingVerdict(props: any) {
+const BoilingVerdict = (props: any) => {
     if (props.celsius >= 100) {
         return <p>The water would boil.</p>;
     }

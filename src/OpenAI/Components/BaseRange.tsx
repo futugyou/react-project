@@ -6,7 +6,7 @@ import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function BaseRange(props: any) {
+const BaseRange = (props: any) => {
     let value: number = props.value
     if (value > props.max) {
         value = props.max

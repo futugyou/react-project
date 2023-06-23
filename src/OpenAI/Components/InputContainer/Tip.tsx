@@ -9,7 +9,7 @@ interface ITipProps {
     tip: string
 }
 
-function Tip({ show = false, tip }: ITipProps) {
+const Tip = ({ show = false, tip }: ITipProps) => {
     console.log("tip")
     if (!show) {
         return null

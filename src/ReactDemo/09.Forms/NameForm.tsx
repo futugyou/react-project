@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 
-function NameForm(props: any) {
+const NameForm = (props: any) => {
     const [state, setState] = useState(
         {
             name: '',

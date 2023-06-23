@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
-function ErrorPage(props: any) {
+const ErrorPage = (props: any) => {
     const message = props.message || "Nothing to see here!";
-    
+
     return (
         <div>
             <h2>{message}</h2>

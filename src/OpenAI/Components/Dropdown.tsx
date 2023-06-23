@@ -15,7 +15,7 @@ interface DropdownProps {
     children?: React.ReactNode
 }
 
-function Dropdown(props: DropdownProps) {
+const Dropdown = (props: DropdownProps) => {
     if (props.items.length < 1) {
         return (<></>)
     }

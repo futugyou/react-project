@@ -6,7 +6,7 @@ interface ICleanAllItemProps {
     onRemoveAllItem: () => void;
 }
 
-function CleanAllItem({ show, onRemoveAllItem }: ICleanAllItemProps) {
+const CleanAllItem = ({ show, onRemoveAllItem }: ICleanAllItemProps) => {
     console.log("CleanAllItem")
     if (!show) {
         return null

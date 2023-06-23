@@ -10,7 +10,7 @@ import exampleService from '../Services/Example'
 import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 
 
-function HeadContainer(props: any) {
+const HeadContainer = (props: any) => {
     let didInit = false;
     const [examples, setExamples] = useState<ExampleModel[]>([])
     const [customExamples, setCustomExamples] = useState<ExampleModel[]>([])
