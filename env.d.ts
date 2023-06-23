@@ -9,6 +9,7 @@ interface ImportMetaEnv {
     readonly REACT_APP_AUTHORIZE: string
     readonly REACT_APP_TOKEN: string
     readonly REACT_APP_ADDRESS: string
+    readonly REACT_APP_VUEAWS_APP_ADDRESS: string
 }
 
 interface ImportMeta {

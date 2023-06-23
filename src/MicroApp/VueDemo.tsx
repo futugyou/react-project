@@ -5,17 +5,18 @@ import { useState } from 'react'
 
 function VueDemo() {
     const [microAppData, changeMicroAppData] = useState({ msg: 'data from base app' })
+    const vueawsapp_address = import.meta.env.REACT_APP_VUEAWS_APP_ADDRESS
 
     function handleCreate() {
-        console.log('child-vue3 created')
+        console.log('vueawsapp created')
     }
 
     function handleBeforeMount() {
-        console.log('child-vue3 will be render')
+        console.log('vueawsapp will be render')
     }
 
     function handleMount() {
-        console.log('child-vue3 rendered')
+        console.log('vueawsapp rendered')
 
         setTimeout(() => {
             changeMicroAppData({ msg: 'new data from base app' })
@@ -23,11 +24,11 @@ function VueDemo() {
     }
 
     function handleUnmount() {
-        console.log('child-vue3 unmount')
+        console.log('vueawsapp unmount')
     }
 
     function handleError() {
-        console.log('child-vue3 load error')
+        console.log('vueawsapp load error')
     }
 
     function handleDataChange(e: CustomEvent) {
@@ -37,7 +38,7 @@ function VueDemo() {
     return (
         <micro-app
             name='vueawsapp'
-            url='http://localhost:8080/'
+            url={vueawsapp_address}
             data={microAppData}
             onCreated={handleCreate}
             onBeforemount={handleBeforeMount}
