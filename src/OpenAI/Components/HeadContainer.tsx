@@ -50,7 +50,7 @@ const HeadContainer = (props: any) => {
 
             props.onPresetChange(playground)
             setSuccess(true)
-            setTimeout(function () {
+            setTimeout(() => {
                 setSuccess(false)
             }, 2000)
         }

@@ -32,7 +32,7 @@ const SavePanel = (props: any) => {
 
         if (state.key.length == 0) {
             setShowError(true)
-            setTimeout(function () {
+            setTimeout(() => {
                 setShowError(false)
             }, 3000)
             return
@@ -43,7 +43,7 @@ const SavePanel = (props: any) => {
         }
 
         setSuccess(true)
-        setTimeout(function () {
+        setTimeout(() => {
             setSuccess(false)
             document.getElementById('closeModal')!.click();
         }, 3000)

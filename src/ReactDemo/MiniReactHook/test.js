@@ -1,11 +1,11 @@
-function test() {
+const test = () => {
     const [count, setCount] = useState(0);
     console.log(count());
     setCount(1)
     console.log(count());
 }
 
-function test1() {
+const test1 = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ function test1() {
     setCount(2)
 }
 
-function test2() {
+const test2 = () => {
     const [name1, setName1] = useState('LiLei');
     const [name2, setName2] = useState('hanmeimei');
     const [showAll, setShowAll] = useState(true);

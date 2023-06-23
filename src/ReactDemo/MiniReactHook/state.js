@@ -1,6 +1,6 @@
 const effectStack = [];
 
-function useState(value) {
+const useState = (value) => {
     const subs = new Set()
     const getter = () => {
         const effect = effectStack[effectStack.length - 1]
@@ -18,7 +18,7 @@ function useState(value) {
     return [getter, setter]
 }
 
-function subscribe(effect, subs) {
+const subscribe = (effect, subs) => {
     subs.add(effect)
     effect.deps.add(subs)
 }

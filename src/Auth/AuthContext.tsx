@@ -20,9 +20,9 @@ export const useAuth = (): AuthContextProps => {
   return context
 }
 
-export function withAuth<T>(
+export const withAuth = <T extends unknown>(
   ComponentToWrap: React.ComponentType<T & AuthServiceProps>
-): React.FC<T & AuthServiceProps> {
+): React.FC<T & AuthServiceProps> => {
   const WrappedComponent = (props: T & AuthServiceProps): ReactElement => {
     const authProps = useAuth()
     return <ComponentToWrap {...authProps} {...props} />
