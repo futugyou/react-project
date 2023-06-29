@@ -80,6 +80,7 @@ const VueDemo = () => {
             onDataChange={handleDataChange}
             style={{ height: "100%" }}
             clear-data
+            iframe
         ></ micro-app>
     )
 }
