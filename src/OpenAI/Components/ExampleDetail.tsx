@@ -15,16 +15,49 @@ const ExampleDetail = (props: any) => {
         })
     }
 
-    const [EditMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+    const [exampleData, setExampleData] = useState(props.data)
 
-    const handleEdit = (e: any) => {
-        setEditMode(() => true)
+    const handleMode = (m: boolean) => {
+        setEditMode(() => m)
         return false
     }
 
-    if (EditMode) {
+    const handleTitleChanged = (value: string) => {
+        setExampleData({
+            ...exampleData,
+            title: value,
+        })
+    }
+
+    if (editMode) {
         return (
             <div className="detail-container">
+                <div className="detail-header">
+                    <div className="detail-header-icon">
+                        <BsBinoculars></BsBinoculars>
+                    </div>
+                    <div className="detail-header-title-group">
+                        <div className="detail-header-title">
+                            <input type="text" value={exampleData.title} onChange={(e) => handleTitleChanged(e.target.value)}></input>
+                        </div>
+                        <div className="detail-header-tags">{tags}</div>
+                    </div>
+                    <div className="detail-header-link">
+                        <a href="#" onClick={() => handleMode(false)}>
+                            <span>
+                                Back
+                            </span>
+                        </a>
+                    </div>
+                    <div className="detail-header-link">
+                        <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model}>
+                            <span>
+                                Open in Playground
+                            </span>
+                        </a>
+                    </div>
+                </div>
                 this is for edit mode
             </div>
         )
@@ -40,7 +73,7 @@ const ExampleDetail = (props: any) => {
                     <div className="detail-header-tags">{tags}</div>
                 </div>
                 <div className="detail-header-link">
-                    <a href="#" onClick={handleEdit}>
+                    <a href="#" onClick={() => handleMode(true)}>
                         <span>
                             Edit
                         </span>
