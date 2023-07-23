@@ -1,7 +1,7 @@
 import './Examples.css'
 
-import { useState, useEffect } from "react";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "./Dropdown"

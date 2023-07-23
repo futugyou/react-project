@@ -1,6 +1,7 @@
 import './ExampleDetail.css'
 
-import { BsBinoculars } from "react-icons/bs";
+import { useState, useEffect } from "react"
+import { BsBinoculars } from "react-icons/bs"
 
 const ExampleDetail = (props: any) => {
     let tags = []
@@ -13,6 +14,21 @@ const ExampleDetail = (props: any) => {
             )
         })
     }
+
+    const [EditMode, setEditMode] = useState(false)
+
+    const handleEdit = (e: any) => {
+        setEditMode(() => true)
+        return false
+    }
+
+    if (EditMode) {
+        return (
+            <div className="detail-container">
+                this is for edit mode
+            </div>
+        )
+    }
     return (
         <div className="detail-container">
             <div className="detail-header">
@@ -22,6 +38,13 @@ const ExampleDetail = (props: any) => {
                 <div className="detail-header-title-group">
                     <div className="detail-header-title">{props.data.title}</div>
                     <div className="detail-header-tags">{tags}</div>
+                </div>
+                <div className="detail-header-link">
+                    <a href="#" onClick={handleEdit}>
+                        <span>
+                            Edit
+                        </span>
+                    </a>
                 </div>
                 <div className="detail-header-link">
                     <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model}>
