@@ -7,23 +7,7 @@ import { BsSearch } from "react-icons/bs"
 import Dropdown, { DropdownItem } from "./Dropdown"
 import ExampleDetail from "./ExampleDetail"
 
-import set from '../Services/Example';
-import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel';
-
-export const examplesLoader = async ({ params, request }: any) => {
-    const list = await set.getAllExamples()
-    return list
-        .filter((p: ExampleModel) => p.title != undefined && p.title.length > 0)
-        .sort((a: ExampleModel, b: ExampleModel) => {
-            if (a.key > b.key) {
-                return 1
-            }
-            if (a.key < b.key) {
-                return -1
-            }
-            return 0
-        })
-}
+import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]

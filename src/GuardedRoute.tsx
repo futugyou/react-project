@@ -1,5 +1,7 @@
+import { lazy } from 'react'
 import { useAuth } from './Auth/index'
-import ErrorPage from './ErrorPage'
+
+const ErrorPage = lazy(() => import('./ErrorPage'))
 
 interface GuardedRouteProps {
     children?: React.ReactNode;

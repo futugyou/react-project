@@ -16,8 +16,7 @@ import History from './History'
 import convert from '../Models/convert'
 
 import { OpenAIModel } from '../Models/OpenAIModel'
-import { ExampleModel } from '../Models/ExampleModel'
-import set from '../Services/Example'
+import { ExampleModel } from '../Models/ExampleModel' 
 import completionService from '../Services/Completion'
 
 import { ChatModel, ChatMessage } from '../Models/ChatModel'
@@ -30,9 +29,7 @@ import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 import playgroundService from '../Services/Playground'
 import { ChatLog } from '../Models/PlaygroundModel'
 
-export const playgroundLoader = async ({ params, request }: any) => {
-    return await set.getExample(params.parameter ?? "")
-}
+
 
 const Playground = () => {
     let searchParams = new URLSearchParams(location.search || "")
