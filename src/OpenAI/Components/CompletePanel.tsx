@@ -1,5 +1,5 @@
 import './CompletePanel.css'
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'
 
 const CompletePanel = (props: any) => {
     let text: string = props.prompt + props.completion
