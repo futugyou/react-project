@@ -6,12 +6,14 @@ import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "./Dropdown"
 import ExampleDetail from "./ExampleDetail"
+import ExampleEdit from "./ExampleEdit"
 
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]
 
+    const [editMode, setEditMode] = useState(false)
     const [exampleList, setExampleList] = useState(loaderdata)
     const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
     const [searchFilter, setSearchFilter] = useState({ key: "", category: "chooseAll" })
@@ -111,6 +113,10 @@ const Examples = (props: any) => {
         })
     }
 
+    const onModeChange = (f: boolean) => {
+        setEditMode(() => f)
+    }
+
     return (
         <div className="example-page">
             <div className="example-container">
@@ -131,7 +137,8 @@ const Examples = (props: any) => {
             </div>
             <div className="modal fade" id="exampleModal" tabIndex={-1} aria-hidden="true">
                 <div className="modal-dialog" style={{ maxWidth: "920px" }}>
-                    <ExampleDetail data={exampleData}></ExampleDetail>
+                    {!editMode && (<ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>)}
+                    {editMode && (<ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)}></ExampleEdit>)}
                 </div>
             </div >
         </div >

@@ -35,9 +35,9 @@ const ExampleEdit = (props: any) => {
         })
     }
 
-    const handleCancel = () => {
-        if (props.onhandleCancel) {
-            props.onhandleCancel()
+    const onCancelClick = () => {
+        if (props.onCancelClick) {
+            props.onCancelClick()
         }
     }
 
@@ -54,7 +54,7 @@ const ExampleEdit = (props: any) => {
                     <div className="detail-header-tags">....</div>
                 </div>
                 <div className="detail-header-link">
-                    <a href="#" onClick={() => handleCancel()}>
+                    <a href="#" onClick={() => onCancelClick()}>
                         <span>
                             Cancel
                         </span>
@@ -100,3 +100,5 @@ const ExampleEdit = (props: any) => {
         </div>
     )
 }
+
+export default ExampleEdit
