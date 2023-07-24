@@ -14,6 +14,7 @@
     "bootstrap": "^5.3.0",
     "buffer": "^6.0.3",
     "jwt-decode": "^3.1.2",
+    "lodash-es": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
+    "@types/lodash-es": "^4.17.8",
     "@types/randombytes": "^2.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

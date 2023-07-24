@@ -3,6 +3,7 @@ import './ExampleDetail.css'
 import { useState, useEffect } from "react"
 import { BsBinoculars } from "react-icons/bs"
 import Form from 'react-bootstrap/Form'
+import isEqual from 'lodash-es/isEqual'
 
 const ExampleEdit = (props: any) => {
 
@@ -37,7 +38,14 @@ const ExampleEdit = (props: any) => {
 
     const onCancelClick = () => {
         if (props.onCancelClick) {
-            props.onCancelClick()
+            if (isEqual(props.data, exampleData)) {
+                props.onCancelClick()
+            } else {
+                const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+                if (answer) {
+                    props.onCancelClick()
+                }
+            }
         }
     }
 
