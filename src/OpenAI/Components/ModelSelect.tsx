@@ -1,16 +1,23 @@
-import './ModelSelect.css';
-import { useState, useEffect } from 'react';
+import './ModelSelect.css'
+import { useState, useEffect } from 'react'
 
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Popover from 'react-bootstrap/Popover';
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Dropdown from 'react-bootstrap/Dropdown'
+import Popover from 'react-bootstrap/Popover'
 
-import ModelService, { BaseModel } from '../Services/Model';
+import ModelService, { BaseModel } from '../Services/Model'
 
-const ModelSelect = (props: any) => {
+interface IModelSelectProps {
+    model: string
+    disableHeader?: boolean
+    disablePopover?: boolean
+    onModelChange: (model: string) => void
+}
+
+const ModelSelect = (props: IModelSelectProps) => {
     const [model, setModel] = useState<string>(props.model)
     const [models, setModels] = useState<BaseModel[]>([])
 
@@ -20,7 +27,7 @@ const ModelSelect = (props: any) => {
                 {display}
             </Popover.Body>
         </Popover>
-    );
+    )
 
     const modelDescriptPopover = (
         <Popover id="model-popover">
@@ -28,45 +35,55 @@ const ModelSelect = (props: any) => {
                 The model which will generate the completion. Some models are suitable for natural language tasks, others specialize in code. <a href='https://platform.openai.com/docs/models'>Learn more</a>.
             </Popover.Body>
         </Popover>
-    );
+    )
 
-    let didInit = false;
+    let didInit = false
     useEffect(() => {
         if (!didInit) {
-            didInit = true;
+            didInit = true
             const fetchData = async () => {
-                const data = await ModelService.getModelList();
+                const data = await ModelService.getModelList()
                 setModels(data)
-            };
+            }
 
-            fetchData();
+            fetchData()
         }
     }, [])
 
     const onModelChange = (value: any) => {
-        setModel(value);
-        props.onModelChange(value);
+        setModel(value)
+        props.onModelChange(value)
     }
 
     const dropdown_options = models.map((data, index) => {
+        if (props.disablePopover) {
+            return (
+                <Dropdown.Item key={data.name} eventKey={data.name}>
+                    {data.name}
+                </Dropdown.Item>
+            )
+        }
+
         return (
             <OverlayTrigger key={data.name} placement="left" overlay={modelPopover(data.describe)}>
                 <Dropdown.Item eventKey={data.name}>
                     {data.name}
                 </Dropdown.Item>
             </OverlayTrigger>
-        );
-    });
+        )
+    })
     return (
         <>
             <Form.Group className="mb-3" >
-                <Row>
-                    <Col>
-                        <OverlayTrigger placement="left" overlay={modelDescriptPopover}>
-                            <Form.Label>Model</Form.Label>
-                        </OverlayTrigger>
-                    </Col>
-                </Row>
+                {!props.disableHeader && (
+                    <Row>
+                        <Col>
+                            <OverlayTrigger placement="left" overlay={modelDescriptPopover}>
+                                <Form.Label>Model</Form.Label>
+                            </OverlayTrigger>
+                        </Col>
+                    </Row>
+                )}
                 <Row>
                     <Col>
                         <Dropdown onSelect={onModelChange}>
