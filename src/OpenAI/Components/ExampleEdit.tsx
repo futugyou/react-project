@@ -5,6 +5,8 @@ import { BsBinoculars } from "react-icons/bs"
 import Form from 'react-bootstrap/Form'
 import isEqual from 'lodash-es/isEqual'
 
+import ModelSelect from './ModelSelect'
+
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
     const handleTitleChanged = (value: string) => {
@@ -52,6 +54,13 @@ const ExampleEdit = (props: any) => {
         if (isEqual(props.data, exampleData)) {
             return
         }
+    }
+
+    const handleModelChange = (value: string) => {
+        setExampleData({
+            ...exampleData,
+            model: value,
+        })
     }
 
     return (
@@ -106,7 +115,12 @@ const ExampleEdit = (props: any) => {
                 <div className="detail-body-right">
                     <div className="detail-setting-header">Settings</div>
                     <div className="detail-setting-details">
-
+                        <div className="detail-setting-container">
+                            <div className="detail-setting-label">Engine</div>
+                            <div className="detail-setting-text">
+                                <ModelSelect disableHeader={true} disablePopover={true} model={exampleData.model} onModelChange={handleModelChange} ></ModelSelect>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
