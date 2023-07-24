@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form'
 import isEqual from 'lodash-es/isEqual'
 
 const ExampleEdit = (props: any) => {
-
     const [exampleData, setExampleData] = useState(props.data)
     const handleTitleChanged = (value: string) => {
         setExampleData({
@@ -49,6 +48,12 @@ const ExampleEdit = (props: any) => {
         }
     }
 
+    const onSaveChangeClick = () => {
+        if (isEqual(props.data, exampleData)) {
+            return
+        }
+    }
+
     return (
         <div className="detail-container">
             <div className="detail-header">
@@ -57,21 +62,21 @@ const ExampleEdit = (props: any) => {
                 </div>
                 <div className="detail-header-title-group">
                     <div className="detail-header-title">
-                        <input type="text" value={exampleData.title} onChange={(e) => handleTitleChanged(e.target.value)}></input>
+                        <input className="form-control" type="text" value={exampleData.title} onChange={(e) => handleTitleChanged(e.target.value)}></input>
                     </div>
                     <div className="detail-header-tags">....</div>
                 </div>
-                <div className="detail-header-link">
-                    <a href="#" onClick={() => onCancelClick()}>
+                <div className="detail-header-link" >
+                    <a href="#" onClick={() => onCancelClick()} >
                         <span>
                             Cancel
                         </span>
                     </a>
                 </div>
                 <div className="detail-header-link">
-                    <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model}>
+                    <a href="#" onClick={() => onSaveChangeClick()}>
                         <span>
-                            Open in Playground
+                            SaveChange
                         </span>
                     </a>
                 </div>
@@ -79,7 +84,7 @@ const ExampleEdit = (props: any) => {
             <div className="detail-body">
                 <div className="detail-body-left">
                     <div className="detail-description">
-                        <input type="text" value={exampleData.description} onChange={(e) => handleDescChanged(e.target.value)}></input>
+                        <Form.Control as="textarea" rows={3} value={exampleData.description} onChange={e => handleDescChanged(e.target.value)} />
                     </div>
                     <div className="detail-prompt">
                         <div className="detail-prompt-header">
