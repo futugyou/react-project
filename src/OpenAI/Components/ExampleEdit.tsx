@@ -1,4 +1,4 @@
-import './ExampleDetail.css'
+import './ExampleEdit.css'
 
 import { useState, useEffect } from "react"
 import { BsBinoculars } from "react-icons/bs"
@@ -64,25 +64,25 @@ const ExampleEdit = (props: any) => {
     }
 
     return (
-        <div className="detail-container">
-            <div className="detail-header">
-                <div className="detail-header-icon">
+        <div className="edit-container">
+            <div className="edit-header">
+                <div className="edit-header-icon">
                     <BsBinoculars></BsBinoculars>
                 </div>
-                <div className="detail-header-title-group">
-                    <div className="detail-header-title">
+                <div className="edit-header-title-group">
+                    <div className="edit-header-title">
                         <input className="form-control" type="text" value={exampleData.title} onChange={(e) => handleTitleChanged(e.target.value)}></input>
                     </div>
-                    <div className="detail-header-tags">....</div>
+                    <div className="edit-header-tags">....</div>
                 </div>
-                <div className="detail-header-link" >
+                <div className="edit-header-link" >
                     <a href="#" onClick={() => onCancelClick()} >
                         <span>
                             Cancel
                         </span>
                     </a>
                 </div>
-                <div className="detail-header-link">
+                <div className="edit-header-link">
                     <a href="#" onClick={() => onSaveChangeClick()}>
                         <span>
                             SaveChange
@@ -90,34 +90,34 @@ const ExampleEdit = (props: any) => {
                     </a>
                 </div>
             </div>
-            <div className="detail-body">
-                <div className="detail-body-left">
-                    <div className="detail-description">
+            <div className="edit-body">
+                <div className="edit-body-left">
+                    <div className="edit-description">
                         <Form.Control as="textarea" rows={3} value={exampleData.description} onChange={e => handleDescChanged(e.target.value)} />
                     </div>
-                    <div className="detail-prompt">
-                        <div className="detail-prompt-header">
+                    <div className="edit-prompt">
+                        <div className="edit-prompt-header">
                             Prompt
                         </div>
-                        <div className="detail-prompt-content">
+                        <div className="edit-prompt-content">
                             <Form.Control as="textarea" rows={10} value={exampleData.prompt} onChange={e => handlePromptChange(e.target.value)} />
                         </div>
                     </div>
-                    <div className="detail-response">
-                        <div className="detail-response-header">
+                    <div className="edit-response">
+                        <div className="edit-response-header">
                             Sample response
                         </div>
-                        <div className="detail-response-content">
+                        <div className="edit-response-content">
                             <Form.Control as="textarea" rows={10} value={exampleData.sample_response} onChange={e => handleResponseChange(e.target.value)} />
                         </div>
                     </div>
                 </div>
-                <div className="detail-body-right">
-                    <div className="detail-setting-header">Settings</div>
-                    <div className="detail-setting-details">
-                        <div className="detail-setting-container">
-                            <div className="detail-setting-label">Engine</div>
-                            <div className="detail-setting-text">
+                <div className="edit-body-right">
+                    <div className="edit-setting-header">Settings</div>
+                    <div className="edit-setting-edits">
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-label">Engine</div>
+                            <div className="edit-setting-text">
                                 <ModelSelect disableHeader={true} disablePopover={true} model={exampleData.model} onModelChange={handleModelChange} ></ModelSelect>
                             </div>
                         </div>
