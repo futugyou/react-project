@@ -6,7 +6,20 @@ import Popover from 'react-bootstrap/Popover';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const BaseRange = (props: any) => {
+
+interface IBaseRangeProps {
+    value: number
+    max: number
+    min: number
+    step: number
+    popover?: any
+    display?: any
+    disablePopover?: boolean
+    onValueChange?: (value: any) => void
+    children?: React.ReactNode
+}
+
+const BaseRange = (props: IBaseRangeProps) => {
     let value: number = props.value
     if (value > props.max) {
         value = props.max
@@ -47,25 +60,37 @@ const BaseRange = (props: any) => {
             props.onValueChange(t)
         }
     }
+
+    const renderRange = () => {
+        return <Form.Group className="mb-3" >
+            <Row>
+                <Col>
+                    <Form.Label>{props.display}</Form.Label>
+                </Col>
+                <Col xs="4">
+                    <Form.Control value={stringValue} className="display-value" onChange={e => handleValueChange(e.target.value)} />
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Form.Range min={props.min} max={props.max} step={props.step} value={stringValue} onChange={e => handleValueChange(e.target.value)} />
+                </Col>
+            </Row>
+        </Form.Group>
+    }
+    
+    if (props.disablePopover) {
+        return (
+            renderRange()
+        )
+    }
+
+
     return (
         <>
             {/* <OverlayTrigger placement="left" overlay={modelPopover} delay={{ show: 100, hide: 1000 }} > */}
             <OverlayTrigger placement="left" overlay={modelPopover}>
-                <Form.Group className="mb-3" >
-                    <Row>
-                        <Col>
-                            <Form.Label>{props.display}</Form.Label>
-                        </Col>
-                        <Col xs="4">
-                            <Form.Control value={stringValue} className="display-value" onChange={e => handleValueChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Range min={props.min} max={props.max} step={props.step} value={stringValue} onChange={e => handleValueChange(e.target.value)} />
-                        </Col>
-                    </Row>
-                </Form.Group>
+                {renderRange()}
             </OverlayTrigger>
         </>
     )
