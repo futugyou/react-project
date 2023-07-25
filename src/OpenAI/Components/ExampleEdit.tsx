@@ -8,6 +8,9 @@ import isEqual from 'lodash-es/isEqual'
 const ModelSelect = lazy(() => import('./ModelSelect'))
 const MaxTokens = lazy(() => import('./MaxTokens'))
 const Temperature = lazy(() => import('./Temperature'))
+const TopP = lazy(() => import('./TopP'))
+const Frequency = lazy(() => import('./Frequency'))
+const Presence = lazy(() => import('./Presence'))
 
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
@@ -81,6 +84,27 @@ const ExampleEdit = (props: any) => {
         })
     }
 
+    const handleToppChange = (value: number) => {
+        setExampleData({
+            ...exampleData,
+            top_p: +value
+        })
+    }
+
+    const handleFrequencyPenaltyChange = (value: number) => {
+        setExampleData({
+            ...exampleData,
+            frequency_penalty: +value
+        })
+    }
+
+    const handlePresencePenaltyChange = (value: number) => {
+        setExampleData({
+            ...exampleData,
+            presence_penalty: +value
+        })
+    }
+
     return (
         <div className="edit-container">
             <div className="edit-header">
@@ -134,23 +158,41 @@ const ExampleEdit = (props: any) => {
                     <div className="edit-setting-header">Settings</div>
                     <div className="edit-setting-edits">
                         <div className="edit-setting-container">
-                            <div className="edit-setting-label">Engine</div>
+                            {/* <div className="edit-setting-label">Engine</div> */}
                             <div className="edit-setting-text">
-                                <ModelSelect disableHeader={true} disablePopover={true} model={props.data.model} onModelChange={handleModelChange} ></ModelSelect>
+                                <ModelSelect disablePopover={true} model={props.data.model} onModelChange={handleModelChange} ></ModelSelect>
                             </div>
                         </div>
 
                         <div className="edit-setting-container">
-                            <div className="edit-setting-label">Max tokens</div>
+                            {/* <div className="edit-setting-label">Max tokens</div> */}
                             <div className="edit-setting-text">
                                 <MaxTokens max_tokens={props.data.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
                             </div>
                         </div>
 
                         <div className="edit-setting-container">
-                            <div className="edit-setting-label">Temperature</div>
+                            {/* <div className="edit-setting-label">Temperature</div> */}
                             <div className="edit-setting-text">
                                 <Temperature temperature={props.data.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+                            </div>
+                        </div>
+
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-text">
+                                <TopP top_p={props.data.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
+                            </div>
+                        </div>
+
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-text">
+                                <Frequency frequency_penalty={props.data.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
+                            </div>
+                        </div>
+
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-text">
+                                <Presence presence_penalty={props.data.frequency_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
                             </div>
                         </div>
                     </div>
