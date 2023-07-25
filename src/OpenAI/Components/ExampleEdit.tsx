@@ -7,6 +7,7 @@ import isEqual from 'lodash-es/isEqual'
 
 const ModelSelect = lazy(() => import('./ModelSelect'))
 const MaxTokens = lazy(() => import('./MaxTokens'))
+const Temperature = lazy(() => import('./Temperature'))
 
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
@@ -55,7 +56,7 @@ const ExampleEdit = (props: any) => {
         if (isEqual(props.data, exampleData)) {
             return
         }
-        
+
         console.log(exampleData)
     }
 
@@ -69,7 +70,14 @@ const ExampleEdit = (props: any) => {
     const handleMaxTokensChange = (value: number) => {
         setExampleData({
             ...exampleData,
-            responseLength: +value
+            max_tokens: +value
+        })
+    }
+
+    const handleTemperatureChange = (value: number) => {
+        setExampleData({
+            ...exampleData,
+            temperature: +value
         })
     }
 
@@ -139,6 +147,12 @@ const ExampleEdit = (props: any) => {
                             </div>
                         </div>
 
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-label">Temperature</div>
+                            <div className="edit-setting-text">
+                                <Temperature temperature={props.data.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
