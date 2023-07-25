@@ -62,7 +62,7 @@ const BaseRange = (props: any) => {
                     </Row>
                     <Row>
                         <Col>
-                            <Form.Range min={props.min} max={props.max} step={props.step} value={value} onChange={e => handleValueChange(e.target.value)} />
+                            <Form.Range min={props.min} max={props.max} step={props.step} value={stringValue} onChange={e => handleValueChange(e.target.value)} />
                         </Col>
                     </Row>
                 </Form.Group>

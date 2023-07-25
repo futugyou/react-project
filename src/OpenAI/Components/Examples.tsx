@@ -1,14 +1,15 @@
 import './Examples.css'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect,lazy } from "react"
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "./Dropdown"
-import ExampleDetail from "./ExampleDetail"
-import ExampleEdit from "./ExampleEdit"
 
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
+
+const ExampleDetail = lazy(() => import('./ExampleDetail'))
+const ExampleEdit = lazy(() => import('./ExampleEdit'))
 
 const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]

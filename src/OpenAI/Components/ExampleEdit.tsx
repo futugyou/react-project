@@ -1,11 +1,12 @@
 import './ExampleEdit.css'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy } from "react"
 import { BsBinoculars } from "react-icons/bs"
 import Form from 'react-bootstrap/Form'
 import isEqual from 'lodash-es/isEqual'
 
-import ModelSelect from './ModelSelect'
+const ModelSelect = lazy(() => import('./ModelSelect'))
+const MaxTokens = lazy(() => import('./MaxTokens'))
 
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
@@ -54,12 +55,21 @@ const ExampleEdit = (props: any) => {
         if (isEqual(props.data, exampleData)) {
             return
         }
+        
+        console.log(exampleData)
     }
 
     const handleModelChange = (value: string) => {
         setExampleData({
             ...exampleData,
             model: value,
+        })
+    }
+
+    const handleMaxTokensChange = (value: number) => {
+        setExampleData({
+            ...exampleData,
+            responseLength: +value
         })
     }
 
@@ -93,14 +103,14 @@ const ExampleEdit = (props: any) => {
             <div className="edit-body">
                 <div className="edit-body-left">
                     <div className="edit-description">
-                        <Form.Control as="textarea" rows={3} value={exampleData.description} onChange={e => handleDescChanged(e.target.value)} />
+                        <Form.Control as="textarea" rows={3} value={props.data.description} onChange={e => handleDescChanged(e.target.value)} />
                     </div>
                     <div className="edit-prompt">
                         <div className="edit-prompt-header">
                             Prompt
                         </div>
                         <div className="edit-prompt-content">
-                            <Form.Control as="textarea" rows={10} value={exampleData.prompt} onChange={e => handlePromptChange(e.target.value)} />
+                            <Form.Control as="textarea" rows={10} value={props.data.prompt} onChange={e => handlePromptChange(e.target.value)} />
                         </div>
                     </div>
                     <div className="edit-response">
@@ -108,7 +118,7 @@ const ExampleEdit = (props: any) => {
                             Sample response
                         </div>
                         <div className="edit-response-content">
-                            <Form.Control as="textarea" rows={10} value={exampleData.sample_response} onChange={e => handleResponseChange(e.target.value)} />
+                            <Form.Control as="textarea" rows={10} value={props.data.sample_response} onChange={e => handleResponseChange(e.target.value)} />
                         </div>
                     </div>
                 </div>
@@ -118,9 +128,17 @@ const ExampleEdit = (props: any) => {
                         <div className="edit-setting-container">
                             <div className="edit-setting-label">Engine</div>
                             <div className="edit-setting-text">
-                                <ModelSelect disableHeader={true} disablePopover={true} model={exampleData.model} onModelChange={handleModelChange} ></ModelSelect>
+                                <ModelSelect disableHeader={true} disablePopover={true} model={props.data.model} onModelChange={handleModelChange} ></ModelSelect>
                             </div>
                         </div>
+
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-label">Max tokens</div>
+                            <div className="edit-setting-text">
+                                <MaxTokens max_tokens={props.data.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
