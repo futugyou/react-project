@@ -12,6 +12,7 @@ const TopP = lazy(() => import('./TopP'))
 const Frequency = lazy(() => import('./Frequency'))
 const Presence = lazy(() => import('./Presence'))
 const Stop = lazy(() => import('./Stop'))
+import CheckBox, { CheckBoxItem } from "./CheckBox"
 
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
@@ -21,6 +22,48 @@ const ExampleEdit = (props: any) => {
             title: value,
         })
     }
+
+    let tags: CheckBoxItem[] = [
+        {
+            key: "answers",
+            value: "answers",
+        },
+        {
+            key: "classification",
+            value: "classification",
+        },
+        {
+            key: "code",
+            value: "code",
+        },
+        {
+            key: "conversation",
+            value: "conversation",
+        },
+        {
+            key: "generation",
+            value: "generation",
+        },
+        {
+            key: "translation",
+            value: "translation",
+        },
+        {
+            key: "transformation",
+            value: "transformation",
+        },
+    ]
+
+    tags = tags.map(t => {
+        if (props.data.tags
+            && props.data.tags.findIndex((element: string) => {
+                return element.toLowerCase() === t.key.toLowerCase()
+            }) >= 0) {
+            t.choose = true
+        }
+
+        return t
+    })
 
     const handleDescChanged = (value: string) => {
         setExampleData({
@@ -123,7 +166,9 @@ const ExampleEdit = (props: any) => {
                     <div className="edit-header-title">
                         <input className="form-control" type="text" value={exampleData.title} onChange={(e) => handleTitleChanged(e.target.value)}></input>
                     </div>
-                    <div className="edit-header-tags">....</div>
+                    <div className="edit-header-tags">
+                        <CheckBox items={tags}></CheckBox>
+                    </div>
                 </div>
                 <div className="edit-header-link" >
                     <a href="#" onClick={() => onCancelClick()} >
