@@ -1,7 +1,7 @@
 import './Dropdown.css'
 
-import { useState } from "react";
-import { BsChevronDown } from "react-icons/bs";
+import { useState } from "react"
+import { BsChevronDown } from "react-icons/bs"
 
 export interface DropdownItem {
     key: string
