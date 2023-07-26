@@ -56,6 +56,10 @@ const BaseRange = (props: IBaseRangeProps) => {
 
         const t = parseFloat(value) + ''
         setStringValue(t)
+    }
+
+    const handleChange = () => {
+        const t = parseFloat(stringValue) + ''
         if (props.onValueChange) {
             props.onValueChange(t)
         }
@@ -73,12 +77,12 @@ const BaseRange = (props: IBaseRangeProps) => {
             </Row>
             <Row>
                 <Col>
-                    <Form.Range min={props.min} max={props.max} step={props.step} value={stringValue} onChange={e => handleValueChange(e.target.value)} />
+                    <Form.Range min={props.min} max={props.max} step={props.step} defaultValue={stringValue} onMouseUp={handleChange} onChange={e => handleValueChange(e.target.value)} />
                 </Col>
             </Row>
         </Form.Group>
     }
-    
+
     if (props.disablePopover) {
         return (
             renderRange()
