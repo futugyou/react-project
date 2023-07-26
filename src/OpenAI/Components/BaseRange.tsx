@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -37,7 +37,7 @@ const BaseRange = (props: IBaseRangeProps) => {
         </Popover>
     );
 
-    const handleValueChange = (value: string) => {
+    const handleInputChange = (value: string) => {
         if (value === '') {
             setStringValue("0")
             return
@@ -48,22 +48,34 @@ const BaseRange = (props: IBaseRangeProps) => {
             return
         }
 
-        setStringValue(value)
         if (value.charAt(value.length - 1) === '.') {
+            setStringValue(value)
             return
         }
-
 
         const t = parseFloat(value) + ''
         setStringValue(t)
     }
 
-    const handleChange = () => {
-        const t = parseFloat(stringValue) + ''
-        if (props.onValueChange) {
-            props.onValueChange(t)
-        }
+    const handleValueChange = (value: string) => {
+        setStringValue(value)
     }
+
+    const handleChange = () => {
+        // if (props.onValueChange) {
+        //     props.onValueChange(t)
+        // }
+    }
+
+    useEffect(() => {
+        const timeOutId = setTimeout(() => {
+            const t = parseFloat(stringValue) + ''
+            if (props.onValueChange) {
+                props.onValueChange(t)
+            }
+        }, 500);
+        return () => clearTimeout(timeOutId);
+    }, [stringValue])
 
     const renderRange = () => {
         return <Form.Group className="mb-3" >
@@ -72,12 +84,12 @@ const BaseRange = (props: IBaseRangeProps) => {
                     <Form.Label>{props.display}</Form.Label>
                 </Col>
                 <Col xs="4">
-                    <Form.Control value={stringValue} className="display-value" onChange={e => handleValueChange(e.target.value)} />
+                    <Form.Control value={stringValue} className="display-value" onChange={e => handleInputChange(e.target.value)} />
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <Form.Range min={props.min} max={props.max} step={props.step} defaultValue={stringValue} onMouseUp={handleChange} onChange={e => handleValueChange(e.target.value)} />
+                    <Form.Range min={props.min} max={props.max} step={props.step} value={stringValue} onMouseUp={handleChange} onChange={e => handleValueChange(e.target.value)} />
                 </Col>
             </Row>
         </Form.Group>
@@ -88,7 +100,6 @@ const BaseRange = (props: IBaseRangeProps) => {
             renderRange()
         )
     }
-
 
     return (
         <>
