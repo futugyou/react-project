@@ -11,6 +11,7 @@ const Temperature = lazy(() => import('./Temperature'))
 const TopP = lazy(() => import('./TopP'))
 const Frequency = lazy(() => import('./Frequency'))
 const Presence = lazy(() => import('./Presence'))
+const Stop = lazy(() => import('./Stop'))
 
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
@@ -105,6 +106,13 @@ const ExampleEdit = (props: any) => {
         })
     }
 
+    const handleStopChange = (value: string[]) => {
+        setExampleData({
+            ...exampleData,
+            stop: value
+        })
+    }
+
     return (
         <div className="edit-container">
             <div className="edit-header">
@@ -193,6 +201,12 @@ const ExampleEdit = (props: any) => {
                         <div className="edit-setting-container">
                             <div className="edit-setting-text">
                                 <Presence presence_penalty={props.data.frequency_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
+                            </div>
+                        </div>
+
+                        <div className="edit-setting-container">
+                            <div className="edit-setting-text">
+                                <Stop stop={props.data.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>
                             </div>
                         </div>
                     </div>
