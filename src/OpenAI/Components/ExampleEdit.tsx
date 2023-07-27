@@ -156,6 +156,14 @@ const ExampleEdit = (props: any) => {
         })
     }
 
+    const handleCheckBoxChange = (items: CheckBoxItem[]) => {
+        let checkedTags = items.map(i => i.key)
+        setExampleData({
+            ...exampleData,
+            tags: checkedTags
+        })
+    }
+
     return (
         <div className="edit-container">
             <div className="edit-header">
@@ -167,7 +175,7 @@ const ExampleEdit = (props: any) => {
                         <input className="form-control" type="text" value={exampleData.title} onChange={(e) => handleTitleChanged(e.target.value)}></input>
                     </div>
                     <div className="edit-header-tags">
-                        <CheckBox items={tags}></CheckBox>
+                        <CheckBox items={tags} onCheckBoxChange={handleCheckBoxChange}></CheckBox>
                     </div>
                 </div>
                 <div className="edit-header-link" >

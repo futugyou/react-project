@@ -1,5 +1,7 @@
 import './CheckBox.css'
 
+import { useState } from "react"
+
 export interface CheckBoxItem {
     key: string
     value: string
@@ -8,7 +10,7 @@ export interface CheckBoxItem {
 
 interface CheckBoxProps {
     items: CheckBoxItem[]
-    onCheckBoxChange?: (key: string) => void;
+    onCheckBoxChange?: (items: CheckBoxItem[]) => void;
     children?: React.ReactNode
 }
 
@@ -17,11 +19,25 @@ const CheckBox = (props: CheckBoxProps) => {
         return (<></>)
     }
 
-    const HandleChange = (v: string) => {
+    const [checkItems, setCheckItems] = useState(props.items)
 
+    const HandleChange = (v: string) => {
+        let t = checkItems.map(t => {
+            if (t.key.toLowerCase() === v.toLowerCase()) {
+                t.choose = !t.choose
+            }
+            return t
+        })
+
+        setCheckItems(t)
+
+        if (props.onCheckBoxChange) {
+            t = t.filter(i => i.choose)
+            props.onCheckBoxChange(t)
+        }
     }
 
-    const checkBoxitems = props.items.map(i => {
+    const checkBoxitems = checkItems.map(i => {
         return (
             <div key={i.key} className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id={i.key} checked={i.choose ? true : false} onChange={() => HandleChange(i.key)} />
