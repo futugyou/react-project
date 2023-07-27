@@ -94,41 +94,17 @@
     flex: 1 1 100%;
 }
 
-.edit-description {
+.edit-item {
     margin-bottom: 20px;
 }
 
-.edit-prompt {
-    margin-bottom: 20px;
-}
-
-.edit-prompt-header {
+.edit-item-header {
     font-weight: 700;
     margin-bottom: 10px
 }
 
-.edit-prompt-content {
+.edit-item-content {
     background-color: #f7f7f8;
-    border-radius: 4px;
-    color: #202123;
-    font-size: 14px;
-    line-height: 20px;
-    margin-top: 12px;
-    padding: 16px;
-    white-space: pre-wrap;
-}
-
-.edit-response {
-    margin-bottom: 20px
-}
-
-.edit-response-header {
-    font-weight: 700;
-    margin-bottom: 10px
-}
-
-.edit-response-content {
-    background-color: #ebfaeb;
     border-radius: 4px;
     color: #202123;
     font-size: 14px;

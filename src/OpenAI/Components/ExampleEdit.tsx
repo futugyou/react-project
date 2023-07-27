@@ -195,22 +195,27 @@ const ExampleEdit = (props: any) => {
             </div>
             <div className="edit-body">
                 <div className="edit-body-left">
-                    <div className="edit-description">
-                        <Form.Control as="textarea" rows={3} value={props.data.description} onChange={e => handleDescChanged(e.target.value)} />
+                    <div className="edit-item">
+                        <div className="edit-item-header">
+                            Description
+                        </div>
+                        <div className="edit-item-content">
+                            <Form.Control as="textarea" rows={3} value={props.data.description} onChange={e => handleDescChanged(e.target.value)} />
+                        </div>
                     </div>
-                    <div className="edit-prompt">
-                        <div className="edit-prompt-header">
+                    <div className="edit-item">
+                        <div className="edit-item-header">
                             Prompt
                         </div>
-                        <div className="edit-prompt-content">
+                        <div className="edit-item-content">
                             <Form.Control as="textarea" rows={10} value={props.data.prompt} onChange={e => handlePromptChange(e.target.value)} />
                         </div>
                     </div>
-                    <div className="edit-response">
-                        <div className="edit-response-header">
+                    <div className="edit-item">
+                        <div className="edit-item-header">
                             Sample response
                         </div>
-                        <div className="edit-response-content">
+                        <div className="edit-item-content">
                             <Form.Control as="textarea" rows={10} value={props.data.sample_response} onChange={e => handleResponseChange(e.target.value)} />
                         </div>
                     </div>
@@ -219,21 +224,18 @@ const ExampleEdit = (props: any) => {
                     <div className="edit-setting-header">Settings</div>
                     <div className="edit-setting-edits">
                         <div className="edit-setting-container">
-                            {/* <div className="edit-setting-label">Engine</div> */}
                             <div className="edit-setting-text">
                                 <ModelSelect disablePopover={true} model={props.data.model} onModelChange={handleModelChange} ></ModelSelect>
                             </div>
                         </div>
 
                         <div className="edit-setting-container">
-                            {/* <div className="edit-setting-label">Max tokens</div> */}
                             <div className="edit-setting-text">
                                 <MaxTokens max_tokens={props.data.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
                             </div>
                         </div>
 
                         <div className="edit-setting-container">
-                            {/* <div className="edit-setting-label">Temperature</div> */}
                             <div className="edit-setting-text">
                                 <Temperature temperature={props.data.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
                             </div>
