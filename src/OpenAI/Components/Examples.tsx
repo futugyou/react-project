@@ -1,6 +1,6 @@
 import './Examples.css'
 
-import { useState, useEffect,lazy } from "react"
+import { useState, useEffect, lazy } from "react"
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
@@ -136,10 +136,19 @@ const Examples = (props: any) => {
                     {exampleItems}
                 </div>
             </div>
-            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-hidden="true">
-                <div className="modal-dialog" style={{ maxWidth: "920px" }}>
-                    {!editMode && (<ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>)}
-                    {editMode && (<ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)}></ExampleEdit>)}
+            <div className="modal fade" id="exampleModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
+
+                <div className="modal-dialog" style={{ maxWidth: "max-content" }}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title"></h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            {!editMode && (<ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>)}
+                            {editMode && (<ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)}></ExampleEdit>)}
+                        </div>
+                    </div>
                 </div>
             </div >
         </div >
