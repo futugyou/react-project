@@ -1,5 +1,5 @@
 import { openaiserver } from './Const';
-import { ChatModel } from '../Models/ChatModel';
+import { ChatModel } from '../models/ChatModel';
 import * as SSEClient from '../../modules/sse';
 
 

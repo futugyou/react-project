@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "./Dropdown"
 
-import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
+import { ExampleModel, DefaultExampleModel } from '../models/ExampleModel'
 
 const ExampleDetail = lazy(() => import('./ExampleDetail'))
 const ExampleEdit = lazy(() => import('./ExampleEdit'))

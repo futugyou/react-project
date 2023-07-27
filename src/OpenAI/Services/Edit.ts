@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios';
 import { openaiserver } from './Const';
-import { EditModel } from '../Models/EditModel';
-import { CompletionModel, DefaultCompletionModel } from '../Models/CompletionModel';
+import { EditModel } from '../models/EditModel';
+import { CompletionModel, DefaultCompletionModel } from '../models/CompletionModel';
 
 const createEdit = async (data: EditModel) => {
     const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')

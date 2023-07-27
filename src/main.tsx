@@ -6,7 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import Loading from './Loading'
 
-import { AuthProvider, authService } from './Auth/index'
+import { AuthProvider, authService } from './auth/index'
 
 import { router } from './Route'
 

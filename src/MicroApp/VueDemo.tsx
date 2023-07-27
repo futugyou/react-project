@@ -2,7 +2,7 @@
 /** @jsx jsxCustomEvent */
 import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import { useState } from 'react'
-import { useAuth } from '../Auth/index'
+import { useAuth } from '../auth/index'
 
 interface VueDemoData {
     Msg: string,

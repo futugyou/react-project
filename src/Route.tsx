@@ -2,11 +2,11 @@ import { lazy } from 'react'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import Layout from "./Layout"
 
-import { DemoRoute } from './ReactDemo/DemoRoute'
-import { OpenAIRoute } from './OpenAI/OpenAIRoute'
-import { MicroAppRoute } from './MicroApp/MicroAppRoute'
+import { DemoRoute } from './reactDemo/DemoRoute'
+import { OpenAIRoute } from './openAI/OpenAIRoute'
+import { MicroAppRoute } from './microApp/MicroAppRoute'
 
-const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
+const App = lazy(() => import('./reactDemo/00.Tutorial/App'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
 // const router = createBrowserRouter(

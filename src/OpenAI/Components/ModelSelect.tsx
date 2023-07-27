@@ -8,7 +8,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Popover from 'react-bootstrap/Popover'
 
-import ModelService, { BaseModel } from '../Services/Model'
+import ModelService, { BaseModel } from '../services/Model'
 
 interface IModelSelectProps {
     model: string

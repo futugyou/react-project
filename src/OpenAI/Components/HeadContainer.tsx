@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react'
 import Dropdown, { DropdownItem } from "./Dropdown"
 import SavePanel from "./SavePanel"
 
-import convert from '../Models/convert'
-import { ExampleModel } from '../Models/ExampleModel'
-import exampleService from '../Services/Example'
-import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
+import convert from '../models/convert'
+import { ExampleModel } from '../models/ExampleModel'
+import exampleService from '../services/Example'
+import { PlaygroundModel, DefaultPlayground } from '../models/PlaygroundModel'
 
 
 const HeadContainer = (props: any) => {

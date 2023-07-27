@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { BsClockHistory } from "react-icons/bs"
 
-import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
-import playgroundService from '../Services/Playground'
+import { PlaygroundModel, DefaultPlayground } from '../models/PlaygroundModel'
+import playgroundService from '../services/Playground'
 import moment from 'moment'
 
 const History = (props: any) => {

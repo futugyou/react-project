@@ -13,21 +13,21 @@ import EditorContainer from './EditorContainer'
 import ParameterPanel from './ParameterPanel'
 import History from './History'
 
-import convert from '../Models/convert'
+import convert from '../models/convert'
 
-import { OpenAIModel } from '../Models/OpenAIModel'
-import { ExampleModel } from '../Models/ExampleModel' 
-import completionService from '../Services/Completion'
+import { OpenAIModel } from '../models/OpenAIModel'
+import { ExampleModel } from '../models/ExampleModel' 
+import completionService from '../services/Completion'
 
-import { ChatModel, ChatMessage } from '../Models/ChatModel'
-import chatService from '../Services/Chat'
+import { ChatModel, ChatMessage } from '../models/ChatModel'
+import chatService from '../services/Chat'
 
-import { EditModel } from '../Models/EditModel'
-import editService from '../Services/Edit'
+import { EditModel } from '../models/EditModel'
+import editService from '../services/Edit'
 
-import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
-import playgroundService from '../Services/Playground'
-import { ChatLog } from '../Models/PlaygroundModel'
+import { PlaygroundModel, DefaultPlayground } from '../models/PlaygroundModel'
+import playgroundService from '../services/Playground'
+import { ChatLog } from '../models/PlaygroundModel'
 
 
 

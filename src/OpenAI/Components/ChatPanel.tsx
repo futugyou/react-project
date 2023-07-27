@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom';
 import Form from 'react-bootstrap/Form';
 import { BsPlusCircle } from "react-icons/bs";
 import ChatMessage from './ChatMessage';
-import { ChatLog } from '../Models/PlaygroundModel';
+import { ChatLog } from '../models/PlaygroundModel';
 
 const ChatPanel = (props: any) => {
     const [messages, setMessages] = useState<any[]>(props.chatLog)

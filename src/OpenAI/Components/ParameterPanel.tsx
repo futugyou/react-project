@@ -14,7 +14,7 @@ import Bestof from './Bestof'
 import InjectText from './InjectText'
 
 
-import { PlaygroundModel } from '../Models/PlaygroundModel'
+import { PlaygroundModel } from '../models/PlaygroundModel'
 
 const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
 

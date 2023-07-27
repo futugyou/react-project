@@ -5,8 +5,8 @@ import EditPanel from './EditPanel'
 import InsertPanel from './InsertPanel'
 import RestoreLayer from './RestoreLayer'
 
-import { PlaygroundModel } from '../Models/PlaygroundModel'
-import { ChatLog } from '../Models/PlaygroundModel'
+import { PlaygroundModel } from '../models/PlaygroundModel'
+import { ChatLog } from '../models/PlaygroundModel'
 
 const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
 
