@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
-import StopDescribe from './inputContainer/Describe';
-import StopInputContainer from './inputContainer/InputContainer';
-import StopTip from './inputContainer/Tip';
-import CleanAllStop from './inputContainer/CleanAllItem';
+import StopDescribe from './InputContainer/Describe';
+import StopInputContainer from './InputContainer/InputContainer';
+import StopTip from './InputContainer/Tip';
+import CleanAllStop from './InputContainer/CleanAllItem';
 
 const Stop = (props: any) => {
     let stops = new Set<string>(props.stop);

@@ -3,7 +3,7 @@ import './User.css'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 
-import { useAuth } from '../auth/index'
+import { useAuth } from '../Auth/index'
 
 const User = (props: any) => {
     const { authService } = useAuth()

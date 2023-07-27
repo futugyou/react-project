@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { useAuth } from './auth/index'
+import { useAuth } from './Auth/index'
 
 const ErrorPage = lazy(() => import('./ErrorPage'))
 

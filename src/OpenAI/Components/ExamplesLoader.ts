@@ -1,5 +1,5 @@
-import set from '../services/Example'
-import { ExampleModel } from '../models/ExampleModel'
+import set from '../Services/Example'
+import { ExampleModel } from '../Models/ExampleModel'
 
 export const examplesLoader = async ({ params, request }: any) => {
     const list = await set.getAllExamples()

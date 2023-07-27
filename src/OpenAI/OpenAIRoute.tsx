@@ -2,12 +2,12 @@
 import { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
 
-import { playgroundLoader } from './components/PlaygroundLoader'
-import { examplesLoader } from './components/ExamplesLoader'
+import { playgroundLoader } from './Components/PlaygroundLoader'
+import { examplesLoader } from './Components/ExamplesLoader'
 import GuardedRoute from '../GuardedRoute'
 
-const Playground = lazy(() => import('./components/Playground'))
-const Examples = lazy(() => import('./components/Examples'))
+const Playground = lazy(() => import('./Components/Playground'))
+const Examples = lazy(() => import('./Components/Examples'))
 
 export const OpenAIRoute: RouteObject[] = [
     {

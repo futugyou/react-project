@@ -3,7 +3,7 @@ import './Header.css'
 import React from "react"
 import { NavLink } from "react-router-dom"
 
-import { User } from "./user/User";
+import { User } from "./User/User";
 
 const Header = (props: any) => {
     return (

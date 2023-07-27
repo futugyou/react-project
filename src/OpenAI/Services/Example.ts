@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
 import { openaiserver } from './Const'
-import { ExampleModel, DefaultExampleModel } from '../models/ExampleModel'
+import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const settingPath = 'examples'
 const exampleKey: string = "playground/example"
