@@ -211,7 +211,7 @@ const ExampleEdit = (props: any) => {
                             <Form.Control as="textarea" rows={10} value={props.data.prompt} onChange={e => handlePromptChange(e.target.value)} />
                         </div>
                     </div>
-                    <div className="edit-item">
+                    <div className="edit-item"  style={{ marginBottom: "0px" }}>
                         <div className="edit-item-header">
                             Sample response
                         </div>
