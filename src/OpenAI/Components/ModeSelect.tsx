@@ -1,6 +1,6 @@
 
 import Form from 'react-bootstrap/Form'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger' 
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -31,7 +31,7 @@ const ModeSelect = (props: any) => {
             value: data,
         }
     })
-    
+
     return (
         <>
             <Form.Group className="mb-3" >
@@ -44,10 +44,9 @@ const ModeSelect = (props: any) => {
                 </Row>
                 <Row>
                     <Col>
-                    <Dropdown items={selects} onDropdownChange={HandleModeChange}></Dropdown>
+                        <Dropdown items={selects} onDropdownChange={HandleModeChange}></Dropdown>
                     </Col>
                 </Row>
-
             </Form.Group>
         </>
     )

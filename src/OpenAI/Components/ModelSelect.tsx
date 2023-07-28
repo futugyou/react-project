@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Popover from 'react-bootstrap/Popover'
 
 import ModelService, { BaseModel } from '../Services/Model'
+import Dropdown, { DropdownItem } from "@/Common/Dropdown"
 
 interface IModelSelectProps {
     model: string
@@ -55,23 +55,21 @@ const ModelSelect = (props: IModelSelectProps) => {
         props.onModelChange(value)
     }
 
-    const dropdown_options = models.map((data, index) => {
+    const items: DropdownItem[] = models.map((data, index) => {
         if (props.disablePopover) {
-            return (
-                <Dropdown.Item key={data.name} eventKey={data.name}>
-                    {data.name}
-                </Dropdown.Item>
-            )
+            return {
+                key: data.name,
+                value: data.name,
+            }
         }
 
-        return (
-            <OverlayTrigger key={data.name} placement="left" overlay={modelPopover(data.describe)}>
-                <Dropdown.Item eventKey={data.name}>
-                    {data.name}
-                </Dropdown.Item>
-            </OverlayTrigger>
-        )
+        return {
+            key: data.name,
+            value: data.name,
+            popover: data.describe,
+        }
     })
+
     return (
         <>
             <Form.Group className="mb-3" >
@@ -86,15 +84,9 @@ const ModelSelect = (props: IModelSelectProps) => {
                 )}
                 <Row>
                     <Col>
-                        <Dropdown onSelect={onModelChange}>
-                            <Dropdown.Toggle variant="select" id="dropdown-basic">
-                                {model}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu >{dropdown_options}</Dropdown.Menu>
-                        </Dropdown>
+                        <Dropdown items={items} onDropdownChange={onModelChange}></Dropdown>
                     </Col>
                 </Row>
-
             </Form.Group>
         </>
     )

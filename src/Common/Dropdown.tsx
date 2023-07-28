@@ -3,9 +3,13 @@ import './Dropdown.css'
 import { useState } from "react"
 import { BsChevronDown } from "react-icons/bs"
 
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
+
 export interface DropdownItem {
     key: string
     value: string
+    popover?: string
     choose?: boolean
 }
 
@@ -23,6 +27,14 @@ const Dropdown = (props: DropdownProps) => {
     const [showDropdown, setShowDropdown] = useState(false)
     const [emptyDisplay, setEmptyDisplay] = useState(props.items[0].value)
     const ulClassName = showDropdown ? "dropdown-menu show" : "dropdown-menu"
+
+    const itemPopover = (item: string) => (
+        <Popover id={item + "-popover"}>
+            <Popover.Body>
+                {item}
+            </Popover.Body>
+        </Popover>
+    )
 
     const HandleContainerClick = (e: any) => {
         setShowDropdown(f => !f)
@@ -42,8 +54,16 @@ const Dropdown = (props: DropdownProps) => {
     }
 
     const dropdownitems = props.items.map(i => {
+        if (!i.popover) {
+            return (
+                <li key={i.key} className={i.value == emptyDisplay ? "dropdown-item selected" : "dropdown-item"} onClick={() => HandleDropdownClick(i.key)}> {i.value} </li>
+            )
+        }
+
         return (
-            <li key={i.key} className={i.value == emptyDisplay ? "dropdown-item selected" : "dropdown-item"} onClick={() => HandleDropdownClick(i.key)}> {i.value} </li>
+            <OverlayTrigger key={i.key} placement="left" overlay={itemPopover(i.popover)}>
+                <li className={i.value == emptyDisplay ? "dropdown-item selected" : "dropdown-item"} onClick={() => HandleDropdownClick(i.key)}> {i.value} </li>
+            </OverlayTrigger>
         )
     })
 
