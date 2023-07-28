@@ -25,6 +25,7 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.6",
     "@types/crypto-js": "^4.1.1",
     "@types/lodash-es": "^4.17.8",
     "@types/randombytes": "^2.0.0",
