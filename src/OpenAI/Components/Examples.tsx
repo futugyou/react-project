@@ -4,7 +4,7 @@ import { useState, useEffect, lazy } from "react"
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
-import Dropdown, { DropdownItem } from "./Dropdown"
+import Dropdown, { DropdownItem } from "@/Common/Dropdown"
 
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 

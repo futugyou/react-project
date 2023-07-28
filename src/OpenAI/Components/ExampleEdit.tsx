@@ -12,7 +12,7 @@ const TopP = lazy(() => import('./TopP'))
 const Frequency = lazy(() => import('./Frequency'))
 const Presence = lazy(() => import('./Presence'))
 const Stop = lazy(() => import('./Stop'))
-import CheckBox, { CheckBoxItem } from "./CheckBox"
+import CheckBox, { CheckBoxItem } from "@/Common/CheckBox"
 
 const ExampleEdit = (props: any) => {
     const [exampleData, setExampleData] = useState(props.data)
