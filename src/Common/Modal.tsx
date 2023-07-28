@@ -44,7 +44,7 @@ function Modal(props: ModalProps) {
     if (props.autoClose) {
         return (
             <>
-                <div className="modal fade" tabIndex={-1}>
+                <div id='exampleModal' className="modal fade" tabIndex={-1}>
                     {dialog}
                 </div >
             </>
@@ -53,7 +53,7 @@ function Modal(props: ModalProps) {
 
     return (
         <>
-            <div className="modal fade" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
+            <div id='exampleModal' className="modal fade" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
                 {dialog}
             </div >
         </>

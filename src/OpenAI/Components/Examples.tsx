@@ -10,6 +10,7 @@ import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const ExampleDetail = lazy(() => import('./ExampleDetail'))
 const ExampleEdit = lazy(() => import('./ExampleEdit'))
+const Modal = lazy(() => import('@/Common/Modal'))
 
 const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]
@@ -118,6 +119,9 @@ const Examples = (props: any) => {
         setEditMode(() => f)
     }
 
+    const handleModalClose = () => {
+        setEditMode(false)
+    }
     return (
         <div className="example-page">
             <div className="example-container">
@@ -138,8 +142,18 @@ const Examples = (props: any) => {
                     {exampleItems}
                 </div>
             </div>
-            <div className="modal fade" id="exampleModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
+            {!editMode && (
+                <Modal autoClose={true} onModalClose={handleModalClose}>
+                    <ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>
+                </Modal>
+            )}
+            {editMode && (
+                <Modal autoClose={false} onModalClose={handleModalClose}>
+                    <ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)}></ExampleEdit>
+                </Modal>
+            )}
 
+            {/* <div className="modal fade" id="exampleModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
                 <div className="modal-dialog" style={{ maxWidth: "max-content" }}>
                     <div className="modal-content">
                         <div className="modal-header">
@@ -152,7 +166,7 @@ const Examples = (props: any) => {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div > */}
         </div >
     )
 }
