@@ -1,13 +1,14 @@
 
-import Form from 'react-bootstrap/Form';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Popover from 'react-bootstrap/Popover';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger' 
+import Popover from 'react-bootstrap/Popover'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
+import Dropdown, { DropdownItem } from "@/Common/Dropdown"
 
 const ModeSelect = (props: any) => {
-    const mode = props.mode ?? 'Complete';
+    const mode = props.mode ?? 'Complete'
     const modes: string[] = ['Complete', 'Chat', 'Insert', 'Edit']
 
     const modeDescriptPopover = (
@@ -16,21 +17,21 @@ const ModeSelect = (props: any) => {
                 Choose the interface that best suits your task. You can provide: a simple prompt to complete, starting and ending text to insert a completion within, or some text with instructions to edit it.
             </Popover.Body>
         </Popover>
-    );
+    )
 
-    const HandleModeChange = (value: any) => {
+    const HandleModeChange = (value: string) => {
         if (props.onModeChange) {
             props.onModeChange(value)
         }
     }
 
-    const dropdown_options = modes.map((data, index) => {
-        return (
-            <Dropdown.Item key={data} eventKey={data}>
-                {data}
-            </Dropdown.Item>
-        );
-    });
+    const selects: DropdownItem[] = modes.map(data => {
+        return {
+            key: data,
+            value: data,
+        }
+    })
+    
     return (
         <>
             <Form.Group className="mb-3" >
@@ -43,12 +44,7 @@ const ModeSelect = (props: any) => {
                 </Row>
                 <Row>
                     <Col>
-                        <Dropdown onSelect={HandleModeChange}>
-                            <Dropdown.Toggle variant="select" id="dropdown-basic">
-                                {mode}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu >{dropdown_options}</Dropdown.Menu>
-                        </Dropdown>
+                    <Dropdown items={selects} onDropdownChange={HandleModeChange}></Dropdown>
                     </Col>
                 </Row>
 

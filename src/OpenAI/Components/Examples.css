@@ -31,6 +31,9 @@
     position: relative;
 }
 
+.example-search-dropdowm-container{
+    flex: 1 1 50%;
+}
 
 .search-icon {
     position: absolute;

@@ -130,7 +130,9 @@ const Examples = (props: any) => {
                         <BsSearch className="search-icon"></BsSearch>
                         <input className="example-search-input" onChange={handleKeyworkChange}></input>
                     </div>
-                    <Dropdown items={categories} onDropdownChange={HandleCategoryChange}></Dropdown>
+                    <div className="example-search-dropdowm-container">
+                        <Dropdown items={categories} onDropdownChange={HandleCategoryChange}></Dropdown>
+                    </div>
                 </div>
                 <div className="example-item-container">
                     {exampleItems}
