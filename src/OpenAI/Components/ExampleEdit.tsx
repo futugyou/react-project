@@ -19,6 +19,8 @@ import { ExampleModel } from '../Models/ExampleModel'
 
 const ExampleEdit = (props: any) => {
     const [showSuccess, setSuccess] = useState(false)
+    const [showError, setShowError] = useState(false)
+
     const [exampleData, setExampleData] = useState<ExampleModel>(props.data)
     const handleTitleChanged = (value: string) => {
         setExampleData({
@@ -105,6 +107,10 @@ const ExampleEdit = (props: any) => {
 
     const onSaveChangeClick = async () => {
         if (isEqual(props.data, exampleData)) {
+            setShowError(true)
+            setTimeout(() => {
+                setShowError(false)
+            }, 3000)
             return
         }
 
@@ -179,6 +185,9 @@ const ExampleEdit = (props: any) => {
 
     return (
         <>
+            {showError && <div className="alert alert-danger check-message" role="alert">
+                No change for exmaple data !
+            </div>}
             {showSuccess && <div className="alert alert-success check-message" role="alert">
                 Data is already saved  !
             </div>}
