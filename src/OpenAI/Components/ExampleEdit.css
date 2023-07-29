@@ -10,6 +10,7 @@
     font-size: 16px;
     pointer-events: fill;
     overflow-x: hidden;
+    position: relative;
 }
 
 .edit-header {

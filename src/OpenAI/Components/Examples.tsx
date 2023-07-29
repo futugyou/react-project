@@ -10,10 +10,10 @@ import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const ExampleDetail = lazy(() => import('./ExampleDetail'))
 const ExampleEdit = lazy(() => import('./ExampleEdit'))
-const Modal = lazy(() => import('@/Common/Modal'))
 
 const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]
+    const navigate = useNavigate()
 
     const [editMode, setEditMode] = useState(false)
     const [exampleList, setExampleList] = useState(loaderdata)
@@ -119,9 +119,13 @@ const Examples = (props: any) => {
         setEditMode(() => f)
     }
 
-    const handleModalClose = () => {
+    const handleSaveClick = () => {
         setEditMode(false)
+        document.getElementById('closeModal')!.click()
+        let path = location.pathname || "/"
+        navigate(path, { replace: true })
     }
+
     return (
         <div className="example-page">
             <div className="example-container">
@@ -142,31 +146,21 @@ const Examples = (props: any) => {
                     {exampleItems}
                 </div>
             </div>
-            {!editMode && (
-                <Modal autoClose={true} onModalClose={handleModalClose}>
-                    <ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>
-                </Modal>
-            )}
-            {editMode && (
-                <Modal autoClose={false} onModalClose={handleModalClose}>
-                    <ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)}></ExampleEdit>
-                </Modal>
-            )}
 
-            {/* <div className="modal fade" id="exampleModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
+            <div className="modal fade" id="exampleModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
                 <div className="modal-dialog" style={{ maxWidth: "max-content" }}>
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title"></h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" id="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             {!editMode && (<ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>)}
-                            {editMode && (<ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)}></ExampleEdit>)}
+                            {editMode && (<ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)} onSaveClick={handleSaveClick}></ExampleEdit>)}
                         </div>
                     </div>
                 </div>
-            </div > */}
+            </div >
         </div >
     )
 }
