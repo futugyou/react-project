@@ -11,7 +11,7 @@
   "dependencies": {
     "@micro-zoe/micro-app": "^1.0.0-beta.5",
     "axios": "^1.4.0",
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.3.1",
     "buffer": "^6.0.3",
     "jwt-decode": "^3.1.2",
     "lodash-es": "^4.17.21",
@@ -29,12 +29,12 @@
     "@types/crypto-js": "^4.1.1",
     "@types/lodash-es": "^4.17.8",
     "@types/randombytes": "^2.0.0",
-    "@types/react": "^18.2.15",
+    "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "@types/react-reconciler": "^0.28.2",
     "@types/sha.js": "^2.4.1",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "typescript": "^5.1.6",
-    "vite": "^4.4.6"
+    "vite": "^4.4.8"
   }
 }
