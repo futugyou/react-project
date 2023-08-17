@@ -42,7 +42,7 @@ const ExampleDetail = (props: any) => {
                     </a>
                 </div>
                 <div className="detail-header-link">
-                    <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model}>
+                    <a target="_blank" href={"/playground/p/" + props.data.key + "?model=" + props.data.model} rel="noopener noreferrer">
                         <span>
                             Open in Playground
                         </span>
