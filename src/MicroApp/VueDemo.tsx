@@ -65,6 +65,10 @@ const VueDemo = () => {
                 authService.authorize()
             }
         }
+
+        if (e.detail.data.Logout) {
+            authService.logout(true)
+        }
     }
 
     return (
