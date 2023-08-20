@@ -29,7 +29,7 @@
     "@types/crypto-js": "^4.1.1",
     "@types/lodash-es": "^4.17.8",
     "@types/randombytes": "^2.0.0",
-    "@types/react": "^18.2.18",
+    "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/react-reconciler": "^0.28.2",
     "@types/sha.js": "^2.4.1",
