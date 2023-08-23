@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-reconciler": "^0.29.0",
-    "react-router-dom": "^6.14.2",
+    "react-router-dom": "^6.15.0",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
@@ -29,12 +29,12 @@
     "@types/crypto-js": "^4.1.1",
     "@types/lodash-es": "^4.17.8",
     "@types/randombytes": "^2.0.0",
-    "@types/react": "^18.2.18",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@types/react-reconciler": "^0.28.2",
+    "@types/react-reconciler": "^0.28.3",
     "@types/sha.js": "^2.4.1",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "typescript": "^5.1.6",
-    "vite": "^4.4.8"
+    "vite": "^4.4.9"
   }
 }
