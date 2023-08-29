@@ -1,12 +1,13 @@
 import { lazy } from 'react'
-import { createBrowserRouter, RouteObject } from 'react-router-dom'
+import { createBrowserRouter, RouteObject, Navigate } from 'react-router-dom'
 import Layout from "./Layout"
 
 import { DemoRoute } from './ReactDemo/DemoRoute'
+import { FlowRoute } from './Flow/FlowRoute'
 import { OpenAIRoute } from './OpenAI/OpenAIRoute'
 import { MicroAppRoute } from './MicroApp/MicroAppRoute'
 
-const DI = lazy(() => import('./Flow/Dotnet/DI'))
+const FlowPanel = lazy(() => import('./Flow/FlowPanel'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
 // const router = createBrowserRouter(
@@ -31,9 +32,10 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 let childrenRoute: RouteObject[] = [
     {
         index: true,
-        element: <DI />,
+        element: <Navigate to='/flow' />,
     },
-    DemoRoute
+    FlowRoute,
+    DemoRoute,
 ]
 
 childrenRoute = childrenRoute.concat(OpenAIRoute).concat(MicroAppRoute)

@@ -1,0 +1,17 @@
+.flow-panel-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.flow-panel-mune {
+    height: 100%;
+    width: 100px;
+}
+
+.flow-panel-content {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+}
