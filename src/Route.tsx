@@ -7,7 +7,6 @@ import { FlowRoute } from './Flow/FlowRoute'
 import { OpenAIRoute } from './OpenAI/OpenAIRoute'
 import { MicroAppRoute } from './MicroApp/MicroAppRoute'
 
-const FlowPanel = lazy(() => import('./Flow/FlowPanel'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
 // const router = createBrowserRouter(
