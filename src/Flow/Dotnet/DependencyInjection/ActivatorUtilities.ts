@@ -1,4 +1,4 @@
-import { ClassNodeType } from "../ClassNode"
+import { ClassNodeType } from '@/Flow/ClassNode'
 
 export const ActivatorUtilities: ClassNodeType = {
     id: 'ActivatorUtilities',
