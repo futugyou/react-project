@@ -1,13 +1,19 @@
 import './ClassNode.css'
 
 import { ReactElement, JSXElementConstructor, ReactNode } from 'react'
-import { Handle, Position, Node, NodeProps } from 'reactflow'
+import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
 
 export type ClassNodeData = {
     name: string
     parent?: string
     methods?: string[]
     propertys?: string[]
+    connects?: ConnectInfo[]
+}
+
+type ConnectInfo = {
+    position: Position
+    type: HandleType
 }
 
 export type ClassNodeType = Node<ClassNodeData>
@@ -35,8 +41,17 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
         })
     }
 
+    let connects: JSX.Element[] = []
+    if (data.connects) {
+        connects = data.connects.map((t: ConnectInfo) => {
+            return (
+                <Handle id={data.name + t.position + t.type} key={data.name + t.position} position={t.position} type={t.type} />
+            )
+        })
+    }
+
     return (
-        <div className='node-container'> 
+        <div className='node-container'>
             <div className='class-name' >
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>
@@ -56,8 +71,12 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
                     </ul>
                 </div>
             )}
-            <Handle type="target" position={Position.Left} onConnect={(params) => console.log('handle onConnect', params)} />
-            <Handle type="source" position={Position.Bottom} id={data.name} />
+
+            {connects.length > 0 && (
+                <>
+                    {connects}
+                </>
+            )}
         </div>
     )
 }

@@ -1,44 +1,80 @@
 import React, { useCallback, useMemo } from 'react'
 import ReactFlow, {
-    MarkerType, NodeTypes, Edge, Node, MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel
+    DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType,
+    MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
 import { ClassNode } from '../ClassNode'
 import { ServiceDescriptor } from './ServiceDescriptor'
 import { ServiceCollection } from './ServiceCollection'
+import { ServiceProvider } from './ServiceProvider'
 
 const initialNodes: Node[] = [
     {
         ...ServiceCollection,
         position: { x: 0, y: 0 },
+        data: {
+            ...ServiceCollection.data,
+            connects: [{
+                position: Position.Bottom,
+                type: 'source',
+            }, {
+                position: Position.Right,
+                type: 'source',
+            }]
+        },
     },
     {
         ...ServiceDescriptor,
-        position: { x: 0, y: 300 },
+        position: { x: 0, y: 400 },
+        data: {
+            ...ServiceCollection.data,
+            connects: [{
+                position: Position.Top,
+                type: 'target',
+            }]
+        },
+    },
+    {
+        ...ServiceProvider,
+        position: { x: 700, y: 200 },
+        data: {
+            ...ServiceCollection.data,
+            connects: [{
+                position: Position.Top,
+                type: 'target',
+            }]
+        },
     },
 ]
-console.log(ServiceCollection.id + '-' + ServiceDescriptor.id)
+
 const initialEdges: Edge[] = [
     {
         id: ServiceCollection.id + '-' + ServiceDescriptor.id,
         source: ServiceCollection.id,
         target: ServiceDescriptor.id,
-    }
-] 
+    },
+    {
+        id: ServiceCollection.id + '-' + ServiceProvider.id,
+        source: ServiceCollection.id,
+        target: ServiceProvider.id,
+        sourceHandle:'IServiceCollectionrightsource',
+    },
+]
 
 const nodeTypes: NodeTypes = {
     custom: ClassNode,
 }
 
-const defaultEdgeOptions = {
+const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 1, stroke: 'black' },
-    type: 'floating',
+    type: 'default',
     markerEnd: {
-      type: MarkerType.ArrowClosed,
-      color: 'black',
+        type: MarkerType.ArrowClosed,
+        color: 'black',
     },
-  }
+}
 
 export default function DI() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
