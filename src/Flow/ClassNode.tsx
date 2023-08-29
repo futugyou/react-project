@@ -36,7 +36,7 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
     }
 
     return (
-        <div className='node-container'>
+        <div className='node-container'> 
             <div className='class-name' >
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>
@@ -56,8 +56,8 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
                     </ul>
                 </div>
             )}
-
-            <Handle type="source" position={Position.Bottom} id="a" />
+            <Handle type="target" position={Position.Left} onConnect={(params) => console.log('handle onConnect', params)} />
+            <Handle type="source" position={Position.Bottom} id={data.name} />
         </div>
     )
 }

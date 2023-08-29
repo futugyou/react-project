@@ -1,63 +1,46 @@
 import React, { useCallback, useMemo } from 'react'
 import ReactFlow, {
-    NodeTypes, Edge, Node, MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel
+    MarkerType, NodeTypes, Edge, Node, MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
 import { ClassNode } from '../ClassNode'
+import { ServiceDescriptor } from './ServiceDescriptor'
+import { ServiceCollection } from './ServiceCollection'
 
 const initialNodes: Node[] = [
     {
-        id: 'ServiceDescriptor', type: 'custom', position: { x: 0, y: 0 },
-        data: {
-            name: 'ServiceDescriptor',
-            propertys: [
-                'public ServiceLifetime Lifetime',
-                'public Type ServiceType',
-                'public Type? ImplementationType',
-                'public Type? KeyedImplementationType',
-                'public object? ImplementationInstance',
-                'public Func<IServiceProvider, object>? ImplementationFactory'
-
-            ],
-            methods: [
-                'public static ServiceDescriptor Transient<TService, TImplementation>()',
-                'public static ServiceDescriptor KeyedTransient<TService, TImplementation>(object? serviceKey)',
-                'public static ServiceDescriptor Scoped<TService, TImplementation>()',
-                'public static ServiceDescriptor Singleton<TService, TImplementation>()',
-                'public static ServiceDescriptor Describe(Type serviceType, Type implementationType, ServiceLifetime lifetime)',
-            ]
-        }
+        ...ServiceCollection,
+        position: { x: 0, y: 0 },
     },
     {
-        id: 'IServiceCollection ', position: { x: 0, y: 300 }, type: 'custom',
-        data: {
-            name: 'IServiceCollection',
-            parent: 'IList<ServiceDescriptor>',
-            propertys: [
-                'public int Count',
-                'public ServiceDescriptor this[int index]',
-
-            ],
-            methods: [
-                'void Add(ServiceDescriptor item)',
-                'public static IServiceCollection AddTransient(this IServiceCollection services, Type serviceType, Type implementationType)',
-                'public static IServiceCollection AddKeyedTransient(this IServiceCollection services, Type serviceType, object? serviceKey, Type implementationType)',
-                'public static IServiceCollection AddScoped(this IServiceCollection services, Type serviceType, Func<IServiceProvider, object> implementationFactory)',
-                'public static IServiceCollection AddSingleton<TService>(this IServiceCollection services, TService implementationInstance)',
-                'public static ServiceProvider BuildServiceProvider(this IServiceCollection services)',                
-            ]
-        }
+        ...ServiceDescriptor,
+        position: { x: 0, y: 300 },
     },
 ]
-
-const initialEdges: Edge[] = [{ id: 'e1-2', source: 'ServiceDescriptor', target: 'IServiceCollection' }]
+console.log(ServiceCollection.id + '-' + ServiceDescriptor.id)
+const initialEdges: Edge[] = [
+    {
+        id: ServiceCollection.id + '-' + ServiceDescriptor.id,
+        source: ServiceCollection.id,
+        target: ServiceDescriptor.id,
+    }
+] 
 
 const nodeTypes: NodeTypes = {
     custom: ClassNode,
 }
 
-export default function App() {
+const defaultEdgeOptions = {
+    style: { strokeWidth: 1, stroke: 'black' },
+    type: 'floating',
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      color: 'black',
+    },
+  }
+
+export default function DI() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
@@ -73,6 +56,7 @@ export default function App() {
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
+                defaultEdgeOptions={defaultEdgeOptions}
                 fitView
                 nodeTypes={nodeTypes}
             >
