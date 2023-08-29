@@ -6,7 +6,7 @@ import { DemoRoute } from './ReactDemo/DemoRoute'
 import { OpenAIRoute } from './OpenAI/OpenAIRoute'
 import { MicroAppRoute } from './MicroApp/MicroAppRoute'
 
-const App = lazy(() => import('./ReactDemo/00.Tutorial/App'))
+const DI = lazy(() => import('./Flow/Dotnet/DI'))
 const ErrorPage = lazy(() => import('./ErrorPage'))
 
 // const router = createBrowserRouter(
@@ -31,7 +31,7 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 let childrenRoute: RouteObject[] = [
     {
         index: true,
-        element: <App />,
+        element: <DI />,
     },
     DemoRoute
 ]
