@@ -27,9 +27,9 @@ const initialNodes: Node[] = [
     },
     {
         ...ServiceDescriptor,
-        position: { x: 0, y: 400 },
+        position: { x: 0, y: 300 },
         data: {
-            ...ServiceCollection.data,
+            ...ServiceDescriptor.data,
             connects: [{
                 position: Position.Top,
                 type: 'target',
@@ -40,7 +40,7 @@ const initialNodes: Node[] = [
         ...ServiceProvider,
         position: { x: 700, y: 200 },
         data: {
-            ...ServiceCollection.data,
+            ...ServiceProvider.data,
             connects: [{
                 position: Position.Top,
                 type: 'target',
