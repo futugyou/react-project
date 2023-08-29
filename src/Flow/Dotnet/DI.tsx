@@ -9,6 +9,8 @@ import { ClassNode } from '../ClassNode'
 import { ServiceDescriptor } from './ServiceDescriptor'
 import { ServiceCollection } from './ServiceCollection'
 import { ServiceProvider } from './ServiceProvider'
+import { IServiceProviderFactory } from './IServiceProviderFactory'
+import { ActivatorUtilities } from './ActivatorUtilities'
 
 const initialNodes: Node[] = [
     {
@@ -47,6 +49,21 @@ const initialNodes: Node[] = [
             }]
         },
     },
+    {
+        ...IServiceProviderFactory,
+        position: { x: 900, y: 0 },
+        data: {
+            ...IServiceProviderFactory.data,
+            connects: [{
+                position: Position.Bottom,
+                type: 'source',
+            }]
+        },
+    },
+    {
+        ...ActivatorUtilities,
+        position: { x: 700, y: 400 },
+    },
 ]
 
 const initialEdges: Edge[] = [
@@ -59,7 +76,12 @@ const initialEdges: Edge[] = [
         id: ServiceCollection.id + '-' + ServiceProvider.id,
         source: ServiceCollection.id,
         target: ServiceProvider.id,
-        sourceHandle:'IServiceCollectionrightsource',
+        sourceHandle: 'IServiceCollectionrightsource',
+    },
+    {
+        id: IServiceProviderFactory.id + '-' + ServiceProvider.id,
+        source: IServiceProviderFactory.id,
+        target: ServiceProvider.id,
     },
 ]
 
@@ -68,7 +90,7 @@ const nodeTypes: NodeTypes = {
 }
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
-    style: { strokeWidth: 1, stroke: 'black' },
+    style: { strokeWidth: 2, stroke: 'black' },
     type: 'default',
     markerEnd: {
         type: MarkerType.ArrowClosed,
@@ -100,7 +122,6 @@ export default function DI() {
                     <h2>Dependency Injection</h2>
                 </Panel>
                 <Controls />
-                <MiniMap />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>
