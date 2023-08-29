@@ -4,6 +4,7 @@ import { RouteObject } from 'react-router-dom'
 
 const FlowPanel = lazy(() => import('./FlowPanel'))
 const DI = lazy(() => import('./Dotnet/DependencyInjection/DI'))
+const File = lazy(() => import('./Dotnet/FileSystem/File'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -16,6 +17,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/di",
             element: <DI />,
+        },
+        {
+            path: "dotnet/file",
+            element: <File />,
         },
     ]
 }
