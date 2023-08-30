@@ -1,33 +1,24 @@
 import './MiniModal.css'
 
-import React, { useState, useEffect } from 'react'
-import { propTypes } from 'react-bootstrap/esm/Image'
+import React, { useState } from 'react'
 
 const MiniModal = (props: any) => {
-    if (!props.show) {
-        return (<></>)
-    }
-
-    const [show, setShow] = useState(props.show)
-    return (
-        <>
-            {
-                show &&
-                (
-                    <div className="mini-modal">
-                        <div className='mini-modal-content'>
-                            <div className='mini-modal-body'>
-                                {props.children}
-                            </div>
-                            <div className='mini-modal-bottom'>
-                                <button onClick={() => setShow(false)}>Close</button>
-                            </div>
-                        </div>
+    if (props.show) {
+        return (
+            <div className="mini-modal">
+                <div className='mini-modal-content' onClick={(e) => e.stopPropagation()}>
+                    <div className='mini-modal-body'>
+                        {props.children}
                     </div>
-                )
-            }
-        </>
-    )
+                    <div className='mini-modal-bottom'>
+                        <button onClick={() => props.setShow(false)}>Close</button>
+                    </div>
+                </div>
+            </div>
+        )
+    } else {
+        return null
+    }
 }
 
 export default MiniModal

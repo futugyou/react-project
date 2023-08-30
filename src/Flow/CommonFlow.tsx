@@ -7,6 +7,8 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
+import MiniModal from '@/Common/MiniModal'
+
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
     type: 'default',
@@ -24,7 +26,11 @@ interface CommonFlow {
     children?: React.ReactNode
 }
 
+const getNodeId = () => `randomnode_${+new Date()}`
+
 const CommonFlow = (props: CommonFlow) => {
+    const [showModal, setShowModal] = useState(false)
+    const [newNode, setNewNode] = useState<any>(null)
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -48,17 +54,32 @@ const CommonFlow = (props: CommonFlow) => {
 
             if (flow) {
                 const { x = 0, y = 0, zoom = 1 } = flow.viewport
-                setNodes(flow.nodes || []);
-                setEdges(flow.edges || []);
-                setViewport({ x, y, zoom });
+                setNodes(flow.nodes || [])
+                setEdges(flow.edges || [])
+                setViewport({ x, y, zoom })
             }
-        };
+        }
 
-        restoreFlow();
+        restoreFlow()
     }, [setNodes, setViewport])
+
+    const onAdd = () => {
+        const newNode = {
+            id: getNodeId(),
+            data: { label: 'Added node' },
+            position: {
+                x: Math.random() * window.innerWidth - 100,
+                y: Math.random() * window.innerHeight,
+            },
+        }
+
+        setNewNode(newNode)
+        setShowModal(true)
+    }
 
     return (
         <div style={{ width: '100%', height: '100%' }}>
+            <MiniModal show={showModal} setShow={setShowModal}  >{newNode?.id}</MiniModal>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -76,6 +97,7 @@ const CommonFlow = (props: CommonFlow) => {
                 <Panel position="top-right">
                     <button onClick={onSave}>save</button>
                     <button onClick={onRestore}>restore</button>
+                    <button onClick={onAdd}>add</button>
                 </Panel>
                 <Controls />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
