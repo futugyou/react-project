@@ -30,10 +30,47 @@
 .nodeItemContent {
     flex: 1;
     padding: 5px 0px;
+    display: flex;
+    flex-direction: column;
 }
 
-.nodeItemContent>input {
+.textInput {
     width: 400px;
     height: 100%;
     font-size: 18px;
+}
+
+.nodeItemContentList {
+    flex: 1;
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.textInputDelete {
+    margin-left: 20px;
+    height: 30px;
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+}
+
+.nodeItemOperator {
+    width: 200px;
+    height: 40px;
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+}
+
+.nodeItemOperator>span {
+    margin-left: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.nodeItemOperator>span:hover {
+    border: 1px solid #88bdf3;
+    border-radius: 5px;
 }

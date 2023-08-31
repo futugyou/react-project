@@ -7,7 +7,7 @@ export type ClassNodeData = {
     name: string
     parent?: string
     methods?: string[]
-    propertys?: string[]
+    properties?: string[]
     connects?: ConnectInfo[]
 }
 
@@ -43,9 +43,9 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
         })
     }
 
-    let propertys: JSX.Element[] = []
-    if (data.propertys) {
-        propertys = data.propertys.map((t: string) => {
+    let properties: JSX.Element[] = []
+    if (data.properties) {
+        properties = data.properties.map((t: string) => {
             return (
                 <li key={t} >
                     {t}
@@ -69,10 +69,10 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>
 
-            {propertys.length > 0 && (
+            {properties.length > 0 && (
                 <div>
                     <ul className='list-display'>
-                        {propertys}
+                        {properties}
                     </ul>
                 </div>
             )}
