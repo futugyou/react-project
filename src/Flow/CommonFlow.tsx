@@ -8,6 +8,8 @@ import ReactFlow, {
 import 'reactflow/dist/style.css'
 
 import MiniModal from '@/Common/MiniModal'
+import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from './ClassNode'
+import { ModifyNode } from './ModifyNode'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -26,11 +28,9 @@ interface CommonFlow {
     children?: React.ReactNode
 }
 
-const getNodeId = () => `randomnode_${+new Date()}`
-
 const CommonFlow = (props: CommonFlow) => {
     const [showModal, setShowModal] = useState(false)
-    const [newNode, setNewNode] = useState<any>(null)
+    const [newNode, setNewNode] = useState<ClassNodeType>(DefaultClassNodeType)
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -64,22 +64,25 @@ const CommonFlow = (props: CommonFlow) => {
     }, [setNodes, setViewport])
 
     const onAdd = () => {
-        const newNode = {
-            id: getNodeId(),
-            data: { label: 'Added node' },
-            position: {
-                x: Math.random() * window.innerWidth - 100,
-                y: Math.random() * window.innerHeight,
-            },
-        }
-
+        const newNode = DefaultClassNodeType
         setNewNode(newNode)
         setShowModal(true)
     }
 
+    const updateNode = (data: ClassNodeData) => {
+        const node = {
+            ...newNode,
+            data: data,
+        }
+
+        setNewNode(node)
+    }
+
     return (
         <div style={{ width: '100%', height: '100%' }}>
-            <MiniModal show={showModal} setShow={setShowModal}  >{newNode?.id}</MiniModal>
+            <MiniModal show={showModal} setShow={setShowModal}  >
+                <ModifyNode data={newNode.data} updateNode={updateNode}></ModifyNode>
+            </MiniModal>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}

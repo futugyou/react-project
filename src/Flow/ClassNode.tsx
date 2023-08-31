@@ -11,12 +11,25 @@ export type ClassNodeData = {
     connects?: ConnectInfo[]
 }
 
-type ConnectInfo = {
+export type ConnectInfo = {
     position: Position
     type: HandleType
 }
 
 export type ClassNodeType = Node<ClassNodeData>
+
+const getNodeId = () => `randomnode_${+new Date()}`
+
+export const DefaultClassNodeType: ClassNodeType = {
+    id: getNodeId(),
+    position: {
+        x: Math.random() * window.innerWidth - 100,
+        y: Math.random() * window.innerHeight,
+    },
+    data: {
+        name: '',
+    }
+}
 
 export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
     let methods: JSX.Element[] = []

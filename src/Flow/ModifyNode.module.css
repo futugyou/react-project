@@ -1,0 +1,39 @@
+.nodeContainer {
+    position: relative;
+    display: flex;
+    font-size: 10px;
+    text-align: left;
+    flex-direction: column;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.nodeItem {
+    display: flex;
+    flex-direction: row;
+}
+
+.nodeItemLable {
+    width: 200px;
+    height: 40px;
+}
+
+.nodeItemLable>label {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.nodeItemContent {
+    flex: 1;
+    padding: 5px 0px;
+}
+
+.nodeItemContent>input {
+    width: 400px;
+    height: 100%;
+    font-size: 18px;
+}
