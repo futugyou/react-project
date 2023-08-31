@@ -7,7 +7,7 @@ export const IDirectoryContents: ClassNodeType = {
     data: {
         name: 'IDirectoryContents',
         parent:'IEnumerable<IFileInfo>',
-        propertys:[
+        properties:[
             'bool Exists { get; }',
         ],
     }

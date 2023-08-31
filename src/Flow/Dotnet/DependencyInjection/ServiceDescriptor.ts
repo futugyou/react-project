@@ -6,7 +6,7 @@ export const ServiceDescriptor: ClassNodeType = {
     position: { x: 0, y: 0 },
     data: {
         name: 'ServiceDescriptor',
-        propertys: [
+        properties: [
             'public ServiceLifetime Lifetime',
             'public Type ServiceType',
             'public Type? ImplementationType',

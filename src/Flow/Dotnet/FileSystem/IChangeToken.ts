@@ -6,7 +6,7 @@ export const IChangeToken: ClassNodeType = {
     position: { x: 0, y: 0 },
     data: {
         name: 'IChangeToken',
-        propertys:[
+        properties:[
             'bool HasChanged { get; }',
             'bool ActiveChangeCallbacks { get; }',
         ],

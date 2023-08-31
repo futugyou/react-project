@@ -6,7 +6,7 @@ export const IFileInfo: ClassNodeType = {
     position: { x: 0, y: 0 },
     data: {
         name: 'IFileInfo',
-        propertys:[
+        properties:[
             'bool Exists { get; }',
             'long Length { get; }',
             'string? PhysicalPath { get; }',

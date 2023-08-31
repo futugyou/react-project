@@ -6,7 +6,7 @@ export const ServiceProvider: ClassNodeType = {
     position: { x: 0, y: 0 },
     data: {
         name: 'ServiceProvider',
-        propertys: [
+        properties: [
             'internal CallSiteFactory CallSiteFactory',
             'internal ServiceProviderEngineScope Root',
 

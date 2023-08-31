@@ -7,7 +7,7 @@ export const ServiceCollection: ClassNodeType = {
     data: {
         name: 'IServiceCollection',
         parent: 'IList<ServiceDescriptor>',
-        propertys: [
+        properties: [
             'public int Count',
             'public ServiceDescriptor this[int index]',
 
