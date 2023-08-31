@@ -26,6 +26,7 @@ export const DefaultClassNodeType: ClassNodeType = {
         x: Math.random() * window.innerWidth - 100,
         y: Math.random() * window.innerHeight,
     },
+    type: 'custom',
     data: {
         name: '',
     }

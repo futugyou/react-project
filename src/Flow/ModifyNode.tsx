@@ -121,15 +121,15 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                 type: handleType
             })
         }
-        
+
         setNodeData({
             ...nodeData,
             connects: list,
         })
     }
 
-    const HandeSaveNode=()=>{
-        console.log(nodeData)
+    const HandeSaveNode = () => {
+        updateNode(nodeData)
     }
 
     return (
@@ -152,7 +152,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                     <label htmlFor="nodeParent">Parent:</label >
                 </div>
                 <div className={styles.nodeItemContent}>
-                    <input id="nodeParent" className={styles.textInput} value={nodeData.parent??''}
+                    <input id="nodeParent" className={styles.textInput} value={nodeData.parent ?? ''}
                         onChange={e => HandleParentChange(e.target.value)}></input>
                 </div>
             </div>
@@ -272,9 +272,9 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                 </div>
             </div>
 
-             {/* save change */}
-             <div className={styles.nodeSave}>
-                <button onClick={()=>HandeSaveNode()}>Save Node</button>
+            {/* save change */}
+            <div className={styles.nodeSave}>
+                <button onClick={() => HandeSaveNode()}>Save Node</button>
             </div>
         </div>
     )

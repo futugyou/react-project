@@ -74,14 +74,15 @@ const CommonFlow = (props: CommonFlow) => {
             ...newNode,
             data: data,
         }
-
-        setNewNode(node)
+        
+        setNodes((nds) => nds.concat(node))
+        setShowModal(false)
     }
 
     return (
         <div style={{ width: '100%', height: '100%' }}>
             <MiniModal show={showModal} setShow={setShowModal}  >
-                <ModifyNode data={newNode.data} updateNode={updateNode}></ModifyNode>
+                <ModifyNode data={newNode.data} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
             <ReactFlow
                 nodes={nodes}
