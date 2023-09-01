@@ -22,6 +22,7 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
 }
 
 interface CommonFlow {
+    id: string
     title: string
     initialNodes: Node[]
     initialEdges: Edge[]
@@ -57,13 +58,13 @@ const CommonFlow = (props: CommonFlow) => {
     const onFlowSave = useCallback(() => {
         if (rfInstance) {
             const flow = rfInstance.toObject()
-            localStorage.setItem('example-flow', JSON.stringify(flow))
+            localStorage.setItem('example-flow' + props.id, JSON.stringify(flow))
         }
     }, [rfInstance])
 
     const onFlowRestore = useCallback(() => {
         const restoreFlow = async () => {
-            const flow = JSON.parse(localStorage.getItem('example-flow') ?? '{}')
+            const flow = JSON.parse(localStorage.getItem('example-flow' + props.id) ?? '{}')
 
             if (flow) {
                 const { x = 0, y = 0, zoom = 1 } = flow.viewport

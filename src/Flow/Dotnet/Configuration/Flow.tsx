@@ -16,7 +16,8 @@ const nodeTypes: NodeTypes = {
 export default function Flow() {
     return (
         <CommonFlow
-            title={'Dependency Injection'}
+            id={'configuration'}
+            title={'Configuration'}
             initialNodes={initialNodes}
             initialEdges={initialEdges}
             nodeTypes={nodeTypes} >

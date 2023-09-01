@@ -90,6 +90,7 @@ const nodeTypes: NodeTypes = {
 export default function DI() {
     return (
         <CommonFlow
+            id={'dependency-injection'}
             title={'Dependency Injection'}
             initialNodes={initialNodes}
             initialEdges={initialEdges}

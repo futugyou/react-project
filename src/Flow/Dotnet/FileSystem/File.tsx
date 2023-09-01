@@ -98,6 +98,7 @@ const nodeTypes: NodeTypes = {
 export default function File() {
     return (
         <CommonFlow
+            id={'file-system'}
             title={'File System'}
             initialNodes={initialNodes}
             initialEdges={initialEdges}
