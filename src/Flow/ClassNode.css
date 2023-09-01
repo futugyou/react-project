@@ -15,6 +15,10 @@
     flex: 1;
 }
 
+.node-container-selected {
+    border-color: #ff0000;
+}
+
 .class-name {
     text-align: center;
     position: absolute;

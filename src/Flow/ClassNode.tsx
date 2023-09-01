@@ -32,7 +32,7 @@ export const DefaultClassNodeType: ClassNodeType = {
     }
 }
 
-export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
+export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
     let methods: JSX.Element[] = []
     if (data.methods) {
         methods = data.methods.map((t: string) => {
@@ -65,7 +65,7 @@ export const ClassNode = ({ data }: NodeProps<ClassNodeData>) => {
     }
 
     return (
-        <div className='node-container'>
+        <div className={selected ? 'node-container node-container-selected' : 'node-container'}>
             <div className='class-name' >
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>

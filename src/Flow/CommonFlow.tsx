@@ -3,7 +3,7 @@ import ReactFlow, {
     ReactFlowProvider,
     DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType, useReactFlow,
     MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel,
-    useOnSelectionChange 
+    useOnSelectionChange
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -31,8 +31,8 @@ interface CommonFlow {
 
 const CommonFlow = (props: CommonFlow) => {
     const [showModal, setShowModal] = useState(false)
-    const [newNode, setNewNode] = useState<ClassNodeType>(DefaultClassNodeType)
-    const [changeNode, setChangeNode] = useState<ClassNodeType>()
+    const [addOrUpdtateNode, setAddOrUpdtateNode] = useState<ClassNodeType>(DefaultClassNodeType)
+    const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -47,21 +47,21 @@ const CommonFlow = (props: CommonFlow) => {
         onChange: ({ nodes, edges }) => {
             if (nodes.length > 0) {
                 const selected = nodes[0]
-                setChangeNode(selected)
-            }else{
-                setChangeNode(undefined)
+                setSelectedNode(selected)
+            } else {
+                setSelectedNode(undefined)
             }
         }
     })
 
-    const onSave = useCallback(() => {
+    const onFlowSave = useCallback(() => {
         if (rfInstance) {
             const flow = rfInstance.toObject()
             localStorage.setItem('example-flow', JSON.stringify(flow))
         }
     }, [rfInstance])
 
-    const onRestore = useCallback(() => {
+    const onFlowRestore = useCallback(() => {
         const restoreFlow = async () => {
             const flow = JSON.parse(localStorage.getItem('example-flow') ?? '{}')
 
@@ -76,34 +76,36 @@ const CommonFlow = (props: CommonFlow) => {
         restoreFlow()
     }, [setNodes, setViewport])
 
-    const onAdd = () => {
+    const onNodeAdd = () => {
         const newNode = DefaultClassNodeType
-        setNewNode(newNode)
+        setAddOrUpdtateNode(newNode)
         setShowModal(true)
+    }
+
+    const onNodeChange = () => {
+        if (selectedNode) {
+            setAddOrUpdtateNode(selectedNode)
+            setShowModal(true)
+        }
     }
 
     const updateNode = (data: ClassNodeData) => {
         const node = {
-            ...newNode,
+            ...addOrUpdtateNode,
             data: data,
         }
 
         setNodes((nds) => nds.concat(node))
         setShowModal(false)
-    }
-
-    const onChange = () => {
-        if (changeNode) {
-            setNewNode(changeNode)
-            setShowModal(true)
-            // setChangeNode(undefined)
+        if (selectedNode) {
+            setSelectedNode(node)
         }
     }
-    
+
     return (
         <div style={{ width: '100%', height: '100%' }}>
             <MiniModal show={showModal} setShow={setShowModal}  >
-                <ModifyNode data={newNode.data} updateNode={updateNode} ></ModifyNode>
+                <ModifyNode data={addOrUpdtateNode.data} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
             <ReactFlow
                 nodes={nodes}
@@ -120,10 +122,10 @@ const CommonFlow = (props: CommonFlow) => {
                     <h2>{props.title}</h2>
                 </Panel>
                 <Panel position="top-right">
-                    <button onClick={onSave}>save</button>
-                    <button onClick={onRestore}>restore</button>
-                    <button onClick={onAdd}>add</button>
-                    <button onClick={onChange} disabled={changeNode == undefined}>update</button>
+                    <button onClick={onFlowSave}>save</button>
+                    <button onClick={onFlowRestore}>restore</button>
+                    <button onClick={onNodeAdd}>add</button>
+                    <button onClick={onNodeChange} disabled={selectedNode == undefined}>update</button>
                 </Panel>
                 <Controls />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
