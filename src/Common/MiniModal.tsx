@@ -7,12 +7,13 @@ const MiniModal = (props: any) => {
         return (
             <div className="mini-modal">
                 <div className='mini-modal-content' onClick={(e) => e.stopPropagation()}>
+                    <div className='mini-modal-close' onClick={() => props.setShow(false)}>X</div>
                     <div className='mini-modal-body'>
                         {props.children}
                     </div>
-                    <div className='mini-modal-bottom'>
+                    {/* <div className='mini-modal-bottom'>
                         <button onClick={() => props.setShow(false)}>Close</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

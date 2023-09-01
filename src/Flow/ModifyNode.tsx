@@ -134,144 +134,145 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
 
     return (
         <div className={styles.nodeContainer}>
-            {/* class node name */}
-            <div className={styles.nodeItem}>
-                <div className={styles.nodeItemLable}>
-                    <label htmlFor="nodeName2">NodeName:</label >
+            <div className={styles.nodeItemContainer}>
+                {/* class node name */}
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label htmlFor="nodeName2">NodeName:</label >
+                    </div>
+                    {/* nodeName is special id, it will cause 'TypeError elem.nodeName.toLowerCase is not a function' */}
+                    <div className={styles.nodeItemContent}>
+                        <input id="nodeName2" className={styles.textInput} value={nodeData.name}
+                            onChange={e => HandleNameChange(e.target.value)}></input>
+                    </div>
                 </div>
-                {/* nodeName is special id, it will cause 'TypeError elem.nodeName.toLowerCase is not a function' */}
-                <div className={styles.nodeItemContent}>
-                    <input id="nodeName2" className={styles.textInput} value={nodeData.name}
-                        onChange={e => HandleNameChange(e.target.value)}></input>
-                </div>
-            </div>
 
-            {/* class node parent */}
-            <div className={styles.nodeItem}>
-                <div className={styles.nodeItemLable}>
-                    <label htmlFor="nodeParent">Parent:</label >
+                {/* class node parent */}
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label htmlFor="nodeParent">Parent:</label >
+                    </div>
+                    <div className={styles.nodeItemContent}>
+                        <input id="nodeParent" className={styles.textInput} value={nodeData.parent ?? ''}
+                            onChange={e => HandleParentChange(e.target.value)}></input>
+                    </div>
                 </div>
-                <div className={styles.nodeItemContent}>
-                    <input id="nodeParent" className={styles.textInput} value={nodeData.parent ?? ''}
-                        onChange={e => HandleParentChange(e.target.value)}></input>
-                </div>
-            </div>
 
-            {/* class node property */}
-            <div className={styles.nodeItem}>
-                <div className={styles.nodeItemLable}>
-                    <label >Properties:</label >
-                </div>
-                <div className={styles.nodeItemContent}>
-                    {nodeData.properties?.map((message, index) => {
-                        return (
-                            <div key={index} className={styles.nodeItemContentList} >
-                                <div>
-                                    <input className={styles.textInput} value={message} onChange={e => HandlePropertyChange(index, e.target.value)}></input>
+                {/* class node property */}
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label >Properties:</label >
+                    </div>
+                    <div className={styles.nodeItemContent}>
+                        {nodeData.properties?.map((message, index) => {
+                            return (
+                                <div key={index} className={styles.nodeItemContentList} >
+                                    <div>
+                                        <input className={styles.textInput} value={message} onChange={e => HandlePropertyChange(index, e.target.value)}></input>
+                                    </div>
+                                    <div className={styles.textInputDelete}>
+                                        <BsDashCircle onClick={() => HandlePropertyReomve(index)} />
+                                    </div>
                                 </div>
-                                <div className={styles.textInputDelete}>
-                                    <BsDashCircle onClick={() => HandlePropertyReomve(index)} />
+                            )
+                        })}
+                    </div>
+                    <div className={styles.nodeItemOperator}  onClick={() => AddNewProperty()}>
+                        <BsPlusCircle />
+                        <span>Add Property</span>
+                    </div>
+                </div>
+
+                {/* class node methods */}
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label >Methods:</label >
+                    </div>
+                    <div className={styles.nodeItemContent}>
+                        {nodeData.methods?.map((message, index) => {
+                            return (
+                                <div key={index} className={styles.nodeItemContentList} >
+                                    <div>
+                                        <input className={styles.textInput} value={message} onChange={e => HandleMethodChange(index, e.target.value)}></input>
+                                    </div>
+                                    <div className={styles.textInputDelete}>
+                                        <BsDashCircle onClick={() => HandleMethodReomve(index)} />
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
+                    <div className={styles.nodeItemOperator} onClick={() => AddNewMethod()} >
+                        <BsPlusCircle />
+                        <span>Add Method</span>
+                    </div>
                 </div>
-                <div className={styles.nodeItemOperator} >
-                    <BsPlusCircle />
-                    <span onClick={() => AddNewProperty()}>Add Property</span>
-                </div>
-            </div>
 
-            {/* class node methods */}
-            <div className={styles.nodeItem}>
-                <div className={styles.nodeItemLable}>
-                    <label >Methods:</label >
+                {/* HandleType */}
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label>Source:</label>
+                    </div>
+                    <div className={styles.nodeItemContentCheckList}>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="sourceleft" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Left) ? true : false} onChange={() => HandleConnectChange('source', Position.Left)} />
+                            <label className="form-check-label" htmlFor='sourceleft'>
+                                Left
+                            </label>
+                        </div>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="sourcetop" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Top) ? true : false} onChange={() => HandleConnectChange('source', Position.Top)} />
+                            <label className="form-check-label" htmlFor='sourcetop'>
+                                Top
+                            </label>
+                        </div>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="sourceright" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Right) ? true : false} onChange={() => HandleConnectChange('source', Position.Right)} />
+                            <label className="form-check-label" htmlFor='sourceright'>
+                                Right
+                            </label>
+                        </div>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="sourcebottom" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Bottom) ? true : false} onChange={() => HandleConnectChange('source', Position.Bottom)} />
+                            <label className="form-check-label" htmlFor='sourcebottom'>
+                                Bottom
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.nodeItemContent}>
-                    {nodeData.methods?.map((message, index) => {
-                        return (
-                            <div key={index} className={styles.nodeItemContentList} >
-                                <div>
-                                    <input className={styles.textInput} value={message} onChange={e => HandleMethodChange(index, e.target.value)}></input>
-                                </div>
-                                <div className={styles.textInputDelete}>
-                                    <BsDashCircle onClick={() => HandleMethodReomve(index)} />
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className={styles.nodeItemOperator} >
-                    <BsPlusCircle />
-                    <span onClick={() => AddNewMethod()}>Add Method</span>
-                </div>
-            </div>
 
-            {/* HandleType */}
-            <div className={styles.nodeItem}>
-                <div className={styles.nodeItemLable}>
-                    <label>Source:</label>
-                </div>
-                <div className={styles.nodeItemContentCheckList}>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="sourceleft" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Left) ? true : false} onChange={() => HandleConnectChange('source', Position.Left)} />
-                        <label className="form-check-label" htmlFor='sourceleft'>
-                            Left
-                        </label>
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label>Target:</label>
                     </div>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="sourcetop" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Top) ? true : false} onChange={() => HandleConnectChange('source', Position.Top)} />
-                        <label className="form-check-label" htmlFor='sourcetop'>
-                            Top
-                        </label>
-                    </div>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="sourceright" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Right) ? true : false} onChange={() => HandleConnectChange('source', Position.Right)} />
-                        <label className="form-check-label" htmlFor='sourceright'>
-                            Right
-                        </label>
-                    </div>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="sourcebottom" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'source' && i.position == Position.Bottom) ? true : false} onChange={() => HandleConnectChange('source', Position.Bottom)} />
-                        <label className="form-check-label" htmlFor='sourcebottom'>
-                            Bottom
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div className={styles.nodeItem}>
-                <div className={styles.nodeItemLable}>
-                    <label>Target:</label>
-                </div>
-                <div className={styles.nodeItemContentCheckList}>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="targetleft" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Left) ? true : false} onChange={() => HandleConnectChange('target', Position.Left)} />
-                        <label className="form-check-label" htmlFor='targetleft'>
-                            Left
-                        </label>
-                    </div>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="targettop" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Top) ? true : false} onChange={() => HandleConnectChange('target', Position.Top)} />
-                        <label className="form-check-label" htmlFor='targettop'>
-                            Top
-                        </label>
-                    </div>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="targetright" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Right) ? true : false} onChange={() => HandleConnectChange('target', Position.Right)} />
-                        <label className="form-check-label" htmlFor='targetright'>
-                            Right
-                        </label>
-                    </div>
-                    <div className={styles.nodeItemContentCheck}>
-                        <input className="form-check-input" id="targetbottom" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Bottom) ? true : false} onChange={() => HandleConnectChange('target', Position.Bottom)} />
-                        <label className="form-check-label" htmlFor='targetbottom'>
-                            Bottom
-                        </label>
+                    <div className={styles.nodeItemContentCheckList}>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="targetleft" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Left) ? true : false} onChange={() => HandleConnectChange('target', Position.Left)} />
+                            <label className="form-check-label" htmlFor='targetleft'>
+                                Left
+                            </label>
+                        </div>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="targettop" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Top) ? true : false} onChange={() => HandleConnectChange('target', Position.Top)} />
+                            <label className="form-check-label" htmlFor='targettop'>
+                                Top
+                            </label>
+                        </div>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="targetright" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Right) ? true : false} onChange={() => HandleConnectChange('target', Position.Right)} />
+                            <label className="form-check-label" htmlFor='targetright'>
+                                Right
+                            </label>
+                        </div>
+                        <div className={styles.nodeItemContentCheck}>
+                            <input className="form-check-input" id="targetbottom" type="checkbox" value="" checked={nodeData.connects?.find(i => i.type == 'target' && i.position == Position.Bottom) ? true : false} onChange={() => HandleConnectChange('target', Position.Bottom)} />
+                            <label className="form-check-label" htmlFor='targetbottom'>
+                                Bottom
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
-
             {/* save change */}
             <div className={styles.nodeSave}>
                 <button onClick={() => HandeSaveNode()}>Save Node</button>
