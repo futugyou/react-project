@@ -2,7 +2,8 @@ import React, { useState, useCallback } from 'react'
 import ReactFlow, {
     ReactFlowProvider,
     DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType, useReactFlow,
-    MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel
+    MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel,
+    useOnSelectionChange 
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -31,6 +32,7 @@ interface CommonFlow {
 const CommonFlow = (props: CommonFlow) => {
     const [showModal, setShowModal] = useState(false)
     const [newNode, setNewNode] = useState<ClassNodeType>(DefaultClassNodeType)
+    const [changeNode, setChangeNode] = useState<ClassNodeType>()
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -40,6 +42,17 @@ const CommonFlow = (props: CommonFlow) => {
 
     const [rfInstance, setRfInstance] = useState<any>(null)
     const { setViewport } = useReactFlow()
+
+    useOnSelectionChange({
+        onChange: ({ nodes, edges }) => {
+            if (nodes.length > 0) {
+                const selected = nodes[0]
+                setChangeNode(selected)
+            }else{
+                setChangeNode(undefined)
+            }
+        }
+    })
 
     const onSave = useCallback(() => {
         if (rfInstance) {
@@ -74,11 +87,19 @@ const CommonFlow = (props: CommonFlow) => {
             ...newNode,
             data: data,
         }
-        
+
         setNodes((nds) => nds.concat(node))
         setShowModal(false)
     }
 
+    const onChange = () => {
+        if (changeNode) {
+            setNewNode(changeNode)
+            setShowModal(true)
+            // setChangeNode(undefined)
+        }
+    }
+    
     return (
         <div style={{ width: '100%', height: '100%' }}>
             <MiniModal show={showModal} setShow={setShowModal}  >
@@ -102,6 +123,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <button onClick={onSave}>save</button>
                     <button onClick={onRestore}>restore</button>
                     <button onClick={onAdd}>add</button>
+                    <button onClick={onChange} disabled={changeNode == undefined}>update</button>
                 </Panel>
                 <Controls />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
