@@ -2,10 +2,14 @@ import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
 
 const flowserver = import.meta.env.REACT_APP_FLOW_SERVER
 
-const flowsPath = 'flows'
+const flowsPath = 'v1/keyvalues'
 const keyPerfix = 'react-flow-'
 
-const getFlow = async (flowid: string) => {
+export const restoreFlow = async (flowid: string) => {
+    return JSON.parse(localStorage.getItem(keyPerfix + flowid) ?? "{}")
+}
+
+export const getFlow = async (flowid: string) => {
     let savedata = JSON.parse(localStorage.getItem(keyPerfix + flowid) ?? "{}")
     if (savedata.nodes != undefined && savedata.nodes.length > 0) {
         return savedata
@@ -15,17 +19,17 @@ const getFlow = async (flowid: string) => {
 
     const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const options: AxiosRequestConfig = {
-        url: flowserver + flowsPath,
+        url: flowserver + flowsPath + '/' + flowid,
         method: "GET",
     }
 
     options.headers!.Authorization = "Bearer " + jwtToken.access_token
 
     try {
-        const { data, status } = await axios<string>(options)
+        const { data, status } = await axios(options)
         if (status == 200) {
             result = data
-            localStorage.setItem(keyPerfix + flowid, data)
+            localStorage.setItem(keyPerfix + flowid, data.value)
         }
     } catch (error) {
         console.log(error)
@@ -34,7 +38,7 @@ const getFlow = async (flowid: string) => {
     return JSON.parse(result)
 }
 
-const saveFlow = async (flowid: string, data: string) => {
+export const saveFlow = async (flowid: string, data: string) => {
     const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const options: AxiosRequestConfig = {
         url: flowserver + flowsPath,
@@ -58,4 +62,8 @@ const saveFlow = async (flowid: string, data: string) => {
     }
 
     return false
+}
+
+export const stashFlow = async (flowid: string, data: string) => {
+    localStorage.setItem(keyPerfix + flowid, data)
 }
