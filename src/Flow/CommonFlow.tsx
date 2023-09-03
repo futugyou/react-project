@@ -8,9 +8,11 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
+import { useAuth } from '@/Auth/index'
 import MiniModal from '@/Common/MiniModal'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from './ClassNode'
 import { ModifyNode } from './ModifyNode'
+import { restoreFlow, getFlow, saveFlow, stashFlow } from './FlowService'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -31,9 +33,11 @@ interface CommonFlow {
 }
 
 const CommonFlow = (props: CommonFlow) => {
+    const { authService } = useAuth()
     const [showModal, setShowModal] = useState(false)
     const [addOrUpdtateNode, setAddOrUpdtateNode] = useState<ClassNodeType>(DefaultClassNodeType)
     const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
+
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -55,18 +59,26 @@ const CommonFlow = (props: CommonFlow) => {
         }
     })
 
-    const onFlowSave = useCallback(() => {
-        if (rfInstance) {
-            const flow = rfInstance.toObject()
-            localStorage.setItem('example-flow' + props.id, JSON.stringify(flow))
+    // ModifyNode callback
+    const updateNode = (data: ClassNodeData) => {
+        const node = {
+            ...addOrUpdtateNode,
+            data: data,
         }
-    }, [rfInstance])
 
+        setNodes((nds) => nds.concat(node))
+        setShowModal(false)
+        if (selectedNode) {
+            setSelectedNode(node)
+        }
+    }
+
+    // panel operate
     const onFlowRestore = useCallback(() => {
-        const restoreFlow = async () => {
-            const flow = JSON.parse(localStorage.getItem('example-flow' + props.id) ?? '{}')
+        const restore = async () => {
+            const flow = restoreFlow(props.id)
 
-            if (flow) {
+            if (flow && flow.viewport) {
                 const { x = 0, y = 0, zoom = 1 } = flow.viewport
                 setNodes(flow.nodes || [])
                 setEdges(flow.edges || [])
@@ -74,8 +86,37 @@ const CommonFlow = (props: CommonFlow) => {
             }
         }
 
-        restoreFlow()
+        restore()
     }, [setNodes, setViewport])
+
+    const onFlowStash = useCallback(() => {
+        if (rfInstance) {
+            const flow = rfInstance.toObject()
+            stashFlow(props.id, JSON.stringify(flow))
+        }
+    }, [rfInstance])
+
+    const onLoadFlowFromDB = useCallback(() => {
+        const restore = async () => {
+            const flow = await getFlow(props.id)
+
+            if (flow && flow.viewport) {
+                const { x = 0, y = 0, zoom = 1 } = flow.viewport
+                setNodes(flow.nodes || [])
+                setEdges(flow.edges || [])
+                setViewport({ x, y, zoom })
+            }
+        }
+
+        restore()
+    }, [setNodes, setViewport])
+
+    const onSaveFlowToDB = useCallback(() => {
+        if (rfInstance) {
+            const flow = rfInstance.toObject()
+            saveFlow(props.id, JSON.stringify(flow))
+        }
+    }, [rfInstance])
 
     const onNodeAdd = () => {
         const newNode = DefaultClassNodeType
@@ -87,19 +128,6 @@ const CommonFlow = (props: CommonFlow) => {
         if (selectedNode) {
             setAddOrUpdtateNode(selectedNode)
             setShowModal(true)
-        }
-    }
-
-    const updateNode = (data: ClassNodeData) => {
-        const node = {
-            ...addOrUpdtateNode,
-            data: data,
-        }
-
-        setNodes((nds) => nds.concat(node))
-        setShowModal(false)
-        if (selectedNode) {
-            setSelectedNode(node)
         }
     }
 
@@ -123,10 +151,17 @@ const CommonFlow = (props: CommonFlow) => {
                     <h2>{props.title}</h2>
                 </Panel>
                 <Panel position="top-right">
-                    <button onClick={onFlowSave}>save</button>
                     <button onClick={onFlowRestore}>restore</button>
-                    <button onClick={onNodeAdd}>add</button>
-                    <button onClick={onNodeChange} disabled={selectedNode == undefined}>update</button>
+                    <button onClick={onFlowStash}>stash</button>
+                    {authService.isAuthenticated() && (
+                        <>
+                            <button onClick={onLoadFlowFromDB}>loadFromDB</button>
+                            <button onClick={onSaveFlowToDB}>saveToDB</button>
+                            <button onClick={onNodeAdd}>addNode</button>
+                            <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
+                        </>
+                    )}
+
                 </Panel>
                 <Controls />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
