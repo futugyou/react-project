@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import ReactFlow, {
     ReactFlowProvider,
     DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType, useReactFlow,
@@ -35,6 +35,7 @@ interface CommonFlow {
 const CommonFlow = (props: CommonFlow) => {
     const { authService } = useAuth()
     const [showModal, setShowModal] = useState(false)
+    const [disableRestore, setDisableRestore] = useState(true)
     const [addOrUpdtateNode, setAddOrUpdtateNode] = useState<ClassNodeType>(DefaultClassNodeType)
     const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
 
@@ -58,6 +59,29 @@ const CommonFlow = (props: CommonFlow) => {
             }
         }
     })
+
+    useEffect(() => {
+        const storageEventHandler = () => {
+            const flow = restoreFlow(props.id)
+
+            if (flow && flow.viewport) {
+                setDisableRestore(false)
+            } else {
+                setDisableRestore(true)
+            }
+        }
+
+        storageEventHandler()
+
+        // Hook up the event handler
+        // Do not change 'storage' type name, beacuse when delete data in 'F12->application->local storage',
+        // it will send an event type named 'storage'.
+        window.addEventListener("storage", storageEventHandler)
+        return () => {
+            // Remove the handler when the component unmounts
+            window.removeEventListener("storage", storageEventHandler)
+        }
+    }, [])
 
     // ModifyNode callback
     const updateNode = (data: ClassNodeData) => {
@@ -93,6 +117,7 @@ const CommonFlow = (props: CommonFlow) => {
         if (rfInstance) {
             const flow = rfInstance.toObject()
             stashFlow(props.id, JSON.stringify(flow))
+            window.dispatchEvent(new Event("storage"))
         }
     }, [rfInstance])
 
@@ -151,7 +176,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <h2>{props.title}</h2>
                 </Panel>
                 <Panel position="top-right">
-                    <button onClick={onFlowRestore}>restore</button>
+                    <button onClick={onFlowRestore} disabled={disableRestore}>restore</button>
                     <button onClick={onFlowStash}>stash</button>
                     {authService.isAuthenticated() && (
                         <>

@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 
 const flowserver = import.meta.env.REACT_APP_FLOW_SERVER
 
@@ -10,11 +10,6 @@ export const restoreFlow = (flowid: string) => {
 }
 
 export const getFlow = async (flowid: string) => {
-    // let savedata = JSON.parse(localStorage.getItem(keyPerfix + flowid) ?? "{}")
-    // if (savedata.nodes != undefined && savedata.nodes.length > 0) {
-    //     return savedata
-    // }
-
     let result: string = '{}'
 
     const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
