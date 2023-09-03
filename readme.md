@@ -4,6 +4,10 @@
 
 [icon](https://react-icons.github.io/react-icons/icons?name=bs)
 
+[react-simple-animate](https://github.com/beekai-oss/react-simple-animate)
+
+[motion](https://github.com/framer/motion)
+
 #### update all package
 ```
 npx npm-check-updates -u
