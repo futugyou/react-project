@@ -119,8 +119,8 @@
             "height": 106,
             "id": "IConfigurationProvider",
             "position": {
-                "x": 599.428837774726,
-                "y": 140.11763852649273
+                "x": 602.4793857507175,
+                "y": 141.13448785182317
             },
             "type": "custom",
             "data": {
@@ -145,8 +145,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 599.428837774726,
-                "y": 140.11763852649273
+                "x": 602.4793857507175,
+                "y": 141.13448785182317
             },
             "dragging": false
         },
@@ -418,11 +418,27 @@
             "target": "IChangeToken",
             "targetHandle": "IChangeTokenlefttarget",
             "id": "reactflow__edge-IConfigurationIConfigurationrightsource-IChangeTokenIChangeTokenlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConfigurationProvider",
+            "sourceHandle": "IConfigurationProvidertopsource",
+            "target": "IChangeToken",
+            "targetHandle": "IChangeTokenbottomtarget",
+            "id": "reactflow__edge-IConfigurationProviderIConfigurationProvidertopsource-IChangeTokenIChangeTokenbottomtarget"
         }
     ],
     "viewport": {
-        "x": 626.606246942514,
-        "y": 231.07862884047267,
-        "zoom": 1.148698354997035
+        "x": 537.7570602766446,
+        "y": 270.65929844364405,
+        "zoom": 0.9834298701776766
     }
 }

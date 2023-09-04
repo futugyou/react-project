@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react'
 import ReactFlow, {
     ReactFlowProvider,
     DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType, useReactFlow,
-    MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, BackgroundVariant, Panel,
-    useOnSelectionChange
+    MiniMap, Controls, Background, useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel,
+    useOnSelectionChange,
+    Connection
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -45,6 +46,11 @@ const CommonFlow = (props: CommonFlow) => {
     const onConnect = useCallback((params: any) => {
         setEdges((eds) => addEdge(params, eds))
     }, [setEdges])
+
+    const onEdgeUpdate = useCallback(
+        (oldEdge: Edge<any>, newConnection: Connection) => setEdges((els) => updateEdge(oldEdge, newConnection, els)),
+        []
+    )
 
     const [rfInstance, setRfInstance] = useState<any>(null)
     const { setViewport } = useReactFlow()
@@ -91,7 +97,23 @@ const CommonFlow = (props: CommonFlow) => {
             data: data,
         }
 
-        setNodes((nds) => nds.concat(node))
+        const index = nodes.findIndex(n => n.id == node.id)
+        if (index == -1) {
+            setNodes((nds) => nds.concat(node))
+        } else {
+            setNodes((nds) =>
+                nds.map((n) => {
+                    if (n.id === node.id) {
+                        n = {
+                            ...node,
+                        }
+                    }
+
+                    return n;
+                })
+            )
+        }
+
         setShowModal(false)
         if (selectedNode) {
             setSelectedNode(node)
@@ -168,6 +190,7 @@ const CommonFlow = (props: CommonFlow) => {
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
+                onEdgeUpdate={onEdgeUpdate}
                 defaultEdgeOptions={defaultEdgeOptions}
                 fitView
                 nodeTypes={props.nodeTypes}
