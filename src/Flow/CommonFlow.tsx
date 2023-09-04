@@ -15,6 +15,8 @@ import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from './ClassNode'
 import { ModifyNode } from './ModifyNode'
 import { restoreFlow, getFlow, saveFlow, stashFlow } from './FlowService'
 
+import DownloadFlow from './DownloadFlow'
+
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
     type: 'default',
@@ -210,7 +212,7 @@ const CommonFlow = (props: CommonFlow) => {
                             <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
                         </>
                     )}
-
+                    <DownloadFlow />
                 </Panel>
                 <Controls />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
