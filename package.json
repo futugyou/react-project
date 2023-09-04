@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.6",
-    "@types/crypto-js": "^4.1.1",
+    "@types/crypto-js": "^4.1.2",
     "@types/lodash-es": "^4.17.9",
     "@types/randombytes": "^2.0.0",
     "@types/react": "^18.2.21",
