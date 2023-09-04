@@ -32,3 +32,33 @@
     padding-left: 0px;
     list-style: none;
 }
+
+.customHandle {
+    width: 10px;
+    height: 10px;
+}
+
+.react-flow__handle-right {
+    right: -5px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.react-flow__handle-left {
+    top: 50%;
+    left: -5px;
+    transform: translate(0, -50%);
+}
+
+.react-flow__handle-top {
+    left: 50%;
+    top: -5px;
+    transform: translate(-50%, 0);
+}
+
+.react-flow__handle-bottom {
+    top: auto;
+    left: 50%;
+    bottom: -5px;
+    transform: translate(-50%, 0);
+}
