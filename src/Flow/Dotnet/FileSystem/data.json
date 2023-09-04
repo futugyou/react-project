@@ -1,0 +1,205 @@
+{
+    "nodes": [
+        {
+            "width": 350,
+            "height": 74,
+            "id": "IFileProvider",
+            "type": "custom",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "data": {
+                "name": "IFileProvider",
+                "methods": [
+                    "IFileInfo GetFileInfo(string subpath)",
+                    "IDirectoryContents GetDirectoryContents(string subpath)",
+                    "IChangeToken Watch(string filter)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "width": 300,
+            "height": 152,
+            "id": "IFileInfo",
+            "type": "custom",
+            "position": {
+                "x": 0,
+                "y": 300
+            },
+            "data": {
+                "name": "IFileInfo",
+                "properties": [
+                    "bool Exists { get; }",
+                    "long Length { get; }",
+                    "string? PhysicalPath { get; }",
+                    "string Name { get; }",
+                    "DateTimeOffset LastModified { get; }",
+                    "bool IsDirectory { get; }"
+                ],
+                "methods": [
+                    "Stream CreateReadStream()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 0,
+                "y": 300
+            }
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IDirectoryContents",
+            "type": "custom",
+            "position": {
+                "x": 379.3299309498351,
+                "y": 309.4440393987899
+            },
+            "data": {
+                "name": "IDirectoryContents",
+                "parent": "IEnumerable<IFileInfo>",
+                "properties": [
+                    "bool Exists { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 379.3299309498351,
+                "y": 309.4440393987899
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "width": 463,
+            "height": 88,
+            "id": "IChangeToken",
+            "type": "custom",
+            "position": {
+                "x": 526.0484897641783,
+                "y": -7.834959671585608
+            },
+            "data": {
+                "name": "IChangeToken",
+                "properties": [
+                    "bool HasChanged { get; }",
+                    "bool ActiveChangeCallbacks { get; }"
+                ],
+                "methods": [
+                    "IDisposable RegisterChangeCallback(Action<object?> callback, object? state)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 526.0484897641783,
+                "y": -7.834959671585608
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IFileProvider-IFileInfo",
+            "source": "IFileProvider",
+            "target": "IFileInfo"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IFileProvider-IDirectoryContents",
+            "source": "IFileProvider",
+            "target": "IDirectoryContents"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IFileProvider-IChangeToken",
+            "source": "IFileProvider",
+            "target": "IChangeToken",
+            "sourceHandle": "IFileProviderrightsource"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IDirectoryContents-IFileInfo",
+            "source": "IDirectoryContents",
+            "target": "IFileInfo",
+            "sourceHandle": "IDirectoryContentsleftsource",
+            "targetHandle": "IFileInforighttarget"
+        }
+    ],
+    "viewport": {
+        "x": 78.5454545454545,
+        "y": 103.26557548140335,
+        "zoom": 1.5883034119830135
+    }
+}

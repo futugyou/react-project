@@ -1,3 +1,5 @@
+import data from './data.json'
+
 import React from 'react'
 import { NodeTypes, Edge, Node, Position } from 'reactflow'
 
@@ -9,87 +11,90 @@ import { IDirectoryContents } from './IDirectoryContents'
 import { IFileInfo } from './IFileInfo'
 import { IFileProvider } from './IFileProvider'
 
-const initialNodes: Node[] = [
-    {
-        ...IFileProvider,
-        position: { x: 0, y: 0 },
-        data: {
-            ...IFileProvider.data,
-            connects: [{
-                position: Position.Bottom,
-                type: 'source',
-            }, {
-                position: Position.Right,
-                type: 'source',
-            },]
-        },
-    },
-    {
-        ...IFileInfo,
-        position: { x: 0, y: 300 },
-        data: {
-            ...IFileInfo.data,
-            connects: [{
-                position: Position.Top,
-                type: 'target',
-            }, {
-                position: Position.Right,
-                type: 'target',
-            }]
-        },
-    },
-    {
-        ...IDirectoryContents,
-        position: { x: 300, y: 300 },
-        data: {
-            ...IDirectoryContents.data,
-            connects: [{
-                position: Position.Top,
-                type: 'target',
-            }, {
-                position: Position.Left,
-                type: 'source',
-            }]
-        },
-    },
-    {
-        ...IChangeToken,
-        position: { x: 500, y: 0 },
-        data: {
-            ...IChangeToken.data,
-            connects: [{
-                position: Position.Left,
-                type: 'target',
-            }]
-        },
-    },
-]
+// const initialNodes: Node[] = [
+//     {
+//         ...IFileProvider,
+//         position: { x: 0, y: 0 },
+//         data: {
+//             ...IFileProvider.data,
+//             connects: [{
+//                 position: Position.Bottom,
+//                 type: 'source',
+//             }, {
+//                 position: Position.Right,
+//                 type: 'source',
+//             },]
+//         },
+//     },
+//     {
+//         ...IFileInfo,
+//         position: { x: 0, y: 300 },
+//         data: {
+//             ...IFileInfo.data,
+//             connects: [{
+//                 position: Position.Top,
+//                 type: 'target',
+//             }, {
+//                 position: Position.Right,
+//                 type: 'target',
+//             }]
+//         },
+//     },
+//     {
+//         ...IDirectoryContents,
+//         position: { x: 300, y: 300 },
+//         data: {
+//             ...IDirectoryContents.data,
+//             connects: [{
+//                 position: Position.Top,
+//                 type: 'target',
+//             }, {
+//                 position: Position.Left,
+//                 type: 'source',
+//             }]
+//         },
+//     },
+//     {
+//         ...IChangeToken,
+//         position: { x: 500, y: 0 },
+//         data: {
+//             ...IChangeToken.data,
+//             connects: [{
+//                 position: Position.Left,
+//                 type: 'target',
+//             }]
+//         },
+//     },
+// ]
 
-const initialEdges: Edge[] = [
-    {
-        id: IFileProvider.id + '-' + IFileInfo.id,
-        source: IFileProvider.id,
-        target: IFileInfo.id,
-    },
-    {
-        id: IFileProvider.id + '-' + IDirectoryContents.id,
-        source: IFileProvider.id,
-        target: IDirectoryContents.id,
-    },
-    {
-        id: IFileProvider.id + '-' + IChangeToken.id,
-        source: IFileProvider.id,
-        target: IChangeToken.id,
-        sourceHandle: 'IFileProviderrightsource',
-    },
-    {
-        id: IDirectoryContents.id + '-' + IFileInfo.id,
-        source: IDirectoryContents.id,
-        target: IFileInfo.id,
-        sourceHandle: 'IDirectoryContentsleftsource',
-        targetHandle: 'IFileInforighttarget',
-    },
-]
+// const initialEdges: Edge[] = [
+//     {
+//         id: IFileProvider.id + '-' + IFileInfo.id,
+//         source: IFileProvider.id,
+//         target: IFileInfo.id,
+//     },
+//     {
+//         id: IFileProvider.id + '-' + IDirectoryContents.id,
+//         source: IFileProvider.id,
+//         target: IDirectoryContents.id,
+//     },
+//     {
+//         id: IFileProvider.id + '-' + IChangeToken.id,
+//         source: IFileProvider.id,
+//         target: IChangeToken.id,
+//         sourceHandle: 'IFileProviderrightsource',
+//     },
+//     {
+//         id: IDirectoryContents.id + '-' + IFileInfo.id,
+//         source: IDirectoryContents.id,
+//         target: IFileInfo.id,
+//         sourceHandle: 'IDirectoryContentsleftsource',
+//         targetHandle: 'IFileInforighttarget',
+//     },
+// ]
+
+const initialNodes: Node[] = data.nodes
+const initialEdges: any[] = data.edges
 
 const nodeTypes: NodeTypes = {
     custom: ClassNode,

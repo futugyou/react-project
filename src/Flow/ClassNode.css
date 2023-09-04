@@ -13,6 +13,7 @@
     border-color: #1a192b;
     white-space: nowrap;
     flex: 1;
+    min-width: 300px;
 }
 
 .node-container-selected {

@@ -1,0 +1,219 @@
+{
+    "nodes": [
+        {
+            "width": 876,
+            "height": 168,
+            "id": "IServiceCollection",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "type": "custom",
+            "data": {
+                "name": "IServiceCollection",
+                "parent": "IList<ServiceDescriptor>",
+                "properties": [
+                    "public int Count",
+                    "public ServiceDescriptor this[int index]"
+                ],
+                "methods": [
+                    "void Add(ServiceDescriptor item)",
+                    "public static IServiceCollection AddTransient(this IServiceCollection services, Type serviceType, Type implementationType)",
+                    "public static IServiceCollection AddKeyedTransient(this IServiceCollection services, Type serviceType, object? serviceKey, Type implementationType)",
+                    "public static IServiceCollection AddScoped(this IServiceCollection services, Type serviceType, Func<IServiceProvider, object> implementationFactory)",
+                    "public static IServiceCollection AddSingleton<TService>(this IServiceCollection services, TService implementationInstance)",
+                    "public static ServiceProvider BuildServiceProvider(this IServiceCollection services)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "width": 649,
+            "height": 216,
+            "id": "ServiceDescriptor",
+            "type": "custom",
+            "position": {
+                "x": 0,
+                "y": 300
+            },
+            "data": {
+                "name": "ServiceDescriptor",
+                "properties": [
+                    "public ServiceLifetime Lifetime",
+                    "public Type ServiceType",
+                    "public Type? ImplementationType",
+                    "public Type? KeyedImplementationType",
+                    "public object? ImplementationInstance",
+                    "public Func<IServiceProvider, object>? ImplementationFactory"
+                ],
+                "methods": [
+                    "public static ServiceDescriptor Transient<TService, TImplementation>()",
+                    "public static ServiceDescriptor KeyedTransient<TService, TImplementation>(object? serviceKey)",
+                    "public static ServiceDescriptor Scoped<TService, TImplementation>()",
+                    "public static ServiceDescriptor Singleton<TService, TImplementation>()",
+                    "public static ServiceDescriptor Describe(Type serviceType, Type implementationType, ServiceLifetime lifetime)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 0,
+                "y": 300
+            }
+        },
+        {
+            "width": 491,
+            "height": 168,
+            "id": "ServiceProvider",
+            "type": "custom",
+            "position": {
+                "x": 700,
+                "y": 200
+            },
+            "data": {
+                "name": "ServiceProvider",
+                "properties": [
+                    "internal CallSiteFactory CallSiteFactory",
+                    "internal ServiceProviderEngineScope Root"
+                ],
+                "methods": [
+                    "public object? GetService(Type serviceType)",
+                    "public object? GetKeyedService(Type serviceType, object? serviceKey)",
+                    "public object GetRequiredKeyedService(Type serviceType, object? serviceKey)",
+                    "public static T? GetService<T>(this IServiceProvider provider)",
+                    "public static IServiceScope CreateScope(this IServiceProvider provider)",
+                    "public static AsyncServiceScope CreateAsyncScope(this IServiceProvider provider)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 700,
+                "y": 200
+            }
+        },
+        {
+            "width": 453,
+            "height": 58,
+            "id": "IServiceProviderFactory",
+            "position": {
+                "x": 900,
+                "y": 0
+            },
+            "type": "custom",
+            "data": {
+                "name": "IServiceProviderFactory<TContainerBuilder>",
+                "methods": [
+                    "TContainerBuilder CreateBuilder(IServiceCollection services)",
+                    "IServiceProvider CreateServiceProvider(TContainerBuilder containerBuilder)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "positionAbsolute": {
+                "x": 900,
+                "y": 0
+            }
+        },
+        {
+            "width": 646,
+            "height": 122,
+            "id": "ActivatorUtilities",
+            "position": {
+                "x": 700,
+                "y": 400
+            },
+            "type": "custom",
+            "data": {
+                "name": "ActivatorUtilities",
+                "methods": [
+                    "public static ObjectFactory CreateFactory(Type instanceType, Type[] argumentTypes)",
+                    "public static ObjectFactory<T> CreateFactory<T>(Type[] argumentTypes)",
+                    "public static object CreateInstance(IServiceProvider provider, Type instanceType, params object[] parameters)",
+                    "public static T CreateInstance<T>(IServiceProvider provider, params object[] parameters)",
+                    "public static object GetServiceOrCreateInstance(IServiceProvider provider, Type type)",
+                    "public static T GetServiceOrCreateInstance<T>(IServiceProvider provider)"
+                ]
+            },
+            "positionAbsolute": {
+                "x": 700,
+                "y": 400
+            }
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IServiceCollection-ServiceDescriptor",
+            "source": "IServiceCollection",
+            "target": "ServiceDescriptor"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IServiceCollection-ServiceProvider",
+            "source": "IServiceCollection",
+            "target": "ServiceProvider",
+            "sourceHandle": "IServiceCollectionrightsource"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "id": "IServiceProviderFactory-ServiceProvider",
+            "source": "IServiceProviderFactory",
+            "target": "ServiceProvider"
+        }
+    ],
+    "viewport": {
+        "x": 78.54545454545473,
+        "y": 152.96432170933286,
+        "zoom": 1.16105623866156
+    }
+}

@@ -1,58 +1,19 @@
 {
     "nodes": [
         {
-            "width": 350,
-            "height": 74,
-            "id": "IFileProvider",
-            "type": "custom",
-            "position": {
-                "x": 0,
-                "y": 0
-            },
-            "data": {
-                "name": "IFileProvider",
-                "methods": [
-                    "IFileInfo GetFileInfo(string subpath)",
-                    "IDirectoryContents GetDirectoryContents(string subpath)",
-                    "IChangeToken Watch(string filter)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "positionAbsolute": {
-                "x": 0,
-                "y": 0
-            }
-        },
-        {
-            "width": 231,
-            "height": 152,
+            "width": 361,
+            "height": 42,
             "id": "IFileInfo",
             "type": "custom",
             "position": {
-                "x": 0,
-                "y": 300
+                "x": 0.20268016256005694,
+                "y": 175.76357622478795
             },
             "data": {
-                "name": "IFileInfo",
-                "properties": [
-                    "bool Exists { get; }",
-                    "long Length { get; }",
-                    "string? PhysicalPath { get; }",
-                    "string Name { get; }",
-                    "DateTimeOffset LastModified { get; }",
-                    "bool IsDirectory { get; }"
-                ],
+                "name": "IConfigurationSource",
+                "properties": [],
                 "methods": [
-                    "Stream CreateReadStream()"
+                    "IConfigurationProvider Build(IConfigurationBuilder builder)"
                 ],
                 "connects": [
                     {
@@ -61,46 +22,19 @@
                     },
                     {
                         "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "positionAbsolute": {
-                "x": 0,
-                "y": 300
-            }
-        },
-        {
-            "width": 124,
-            "height": 42,
-            "id": "IDirectoryContents",
-            "type": "custom",
-            "position": {
-                "x": 387.0489583333335,
-                "y": 276.09218749999997
-            },
-            "data": {
-                "name": "IDirectoryContents",
-                "parent": "IEnumerable<IFileInfo>",
-                "properties": [
-                    "bool Exists { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
+                        "type": "source"
                     },
                     {
-                        "position": "left",
+                        "position": "bottom",
                         "type": "source"
                     }
                 ]
             },
-            "selected": true,
             "positionAbsolute": {
-                "x": 387.0489583333335,
-                "y": 276.09218749999997
+                "x": 0.20268016256005694,
+                "y": 175.76357622478795
             },
+            "selected": false,
             "dragging": false
         },
         {
@@ -109,8 +43,8 @@
             "id": "IChangeToken",
             "type": "custom",
             "position": {
-                "x": 500,
-                "y": 0
+                "x": 618.1061530249598,
+                "y": -43.77256762420576
             },
             "data": {
                 "name": "IChangeToken",
@@ -125,13 +59,235 @@
                     {
                         "position": "left",
                         "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
                     }
                 ]
             },
             "positionAbsolute": {
-                "x": 500,
-                "y": 0
-            }
+                "x": 618.1061530249598,
+                "y": -43.77256762420576
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "width": 344,
+            "height": 104,
+            "id": "IConfigurationBuilder",
+            "position": {
+                "x": 7.856095679737848,
+                "y": 323.53664031086674
+            },
+            "type": "custom",
+            "data": {
+                "name": "IConfigurationBuilder",
+                "properties": [
+                    "IDictionary<string, object> Properties { get; }",
+                    "IList<IConfigurationSource> Sources { get; }"
+                ],
+                "methods": [
+                    "IConfigurationBuilder Add(IConfigurationSource source)",
+                    "IConfigurationRoot Build()"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 7.856095679737848,
+                "y": 323.53664031086674
+            },
+            "dragging": false
+        },
+        {
+            "width": 531,
+            "height": 106,
+            "id": "IConfigurationProvider",
+            "position": {
+                "x": 599.428837774726,
+                "y": 140.11763852649273
+            },
+            "type": "custom",
+            "data": {
+                "name": "IConfigurationProvider",
+                "methods": [
+                    "bool TryGet(string key, out string? value)",
+                    "void Set(string key, string? value)",
+                    "IChangeToken GetReloadToken()",
+                    "void Load()",
+                    "IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string? parentPath)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 599.428837774726,
+                "y": 140.11763852649273
+            },
+            "dragging": false
+        },
+        {
+            "width": 340,
+            "height": 72,
+            "id": "IConfigurationRoot",
+            "position": {
+                "x": -466.9490114716814,
+                "y": 79.3616190742812
+            },
+            "type": "custom",
+            "data": {
+                "name": "IConfigurationRoot",
+                "parent": "IConfiguration",
+                "methods": [
+                    "void Reload()"
+                ],
+                "properties": [
+                    "IEnumerable<IConfigurationProvider> Providers { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -466.9490114716814,
+                "y": 79.3616190742812
+            },
+            "dragging": false
+        },
+        {
+            "width": 596,
+            "height": 136,
+            "id": "IConfiguration",
+            "type": "custom",
+            "position": {
+                "x": -49.05681733846774,
+                "y": -50.60950564315449
+            },
+            "data": {
+                "name": "IConfiguration",
+                "methods": [
+                    "IConfigurationSection GetSection(string key)",
+                    "IEnumerable<IConfigurationSection> GetChildren()",
+                    "IChangeToken GetReloadToken()",
+                    "public static string? GetConnectionString(this IConfiguration configuration, string name)",
+                    "public static IConfigurationSection GetRequiredSection(this IConfiguration configuration, string key)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "string? this[string key] { get; set; }"
+                ]
+            },
+            "positionAbsolute": {
+                "x": -49.05681733846774,
+                "y": -50.60950564315449
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "IConfigurationSection",
+            "position": {
+                "x": -466.56671931657456,
+                "y": -39.35493333992995
+            },
+            "type": "custom",
+            "data": {
+                "name": "IConfigurationSection",
+                "parent": "IConfiguration",
+                "properties": [
+                    "string Key { get; }",
+                    "string Path { get; }",
+                    "string? Value { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -466.56671931657456,
+                "y": -39.35493333992995
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 26,
+            "id": "IConfigurationManager",
+            "position": {
+                "x": -463.5290150121043,
+                "y": 363.0289346893902
+            },
+            "type": "custom",
+            "data": {
+                "name": "IConfigurationManager",
+                "parent": "IConfiguration, IConfigurationBuilder",
+                "properties": [
+                    " "
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -463.5290150121043,
+                "y": 363.0289346893902
+            },
+            "dragging": false
         }
     ],
     "edges": [
@@ -145,9 +301,11 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "id": "IFileProvider-IFileInfo",
-            "source": "IFileProvider",
-            "target": "IFileInfo"
+            "source": "IFileInfo",
+            "sourceHandle": "IConfigurationSourcerightsource",
+            "target": "IConfigurationProvider",
+            "targetHandle": "IConfigurationProviderlefttarget",
+            "id": "reactflow__edge-IFileInfoIConfigurationSourcerightsource-IConfigurationProviderIConfigurationProviderlefttarget"
         },
         {
             "style": {
@@ -159,9 +317,11 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "id": "IFileProvider-IDirectoryContents",
-            "source": "IFileProvider",
-            "target": "IDirectoryContents"
+            "source": "IFileInfo",
+            "sourceHandle": "IConfigurationSourcebottomsource",
+            "target": "IConfigurationBuilder",
+            "targetHandle": "IConfigurationBuildertoptarget",
+            "id": "reactflow__edge-IFileInfoIConfigurationSourcebottomsource-IConfigurationBuilderIConfigurationBuildertoptarget"
         },
         {
             "style": {
@@ -173,31 +333,96 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "id": "IFileProvider-IChangeToken",
-            "source": "IFileProvider",
+            "source": "IConfiguration",
+            "sourceHandle": "IConfigurationleftsource",
+            "target": "IConfigurationRoot",
+            "targetHandle": "IConfigurationRootrighttarget",
+            "id": "reactflow__edge-IConfigurationIConfigurationleftsource-IConfigurationRootIConfigurationRootrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConfigurationBuilder",
+            "sourceHandle": "IConfigurationBuilderleftsource",
+            "target": "IConfigurationRoot",
+            "targetHandle": "IConfigurationRootbottomtarget",
+            "id": "reactflow__edge-IConfigurationBuilderIConfigurationBuilderleftsource-IConfigurationRootIConfigurationRootbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConfiguration",
+            "sourceHandle": "IConfigurationleftsource",
+            "target": "IConfigurationSection",
+            "targetHandle": "IConfigurationSectionrighttarget",
+            "id": "reactflow__edge-IConfigurationIConfigurationleftsource-IConfigurationSectionIConfigurationSectionrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConfiguration",
+            "sourceHandle": "IConfigurationleftsource",
+            "target": "IConfigurationManager",
+            "targetHandle": "IConfigurationManagerrighttarget",
+            "id": "reactflow__edge-IConfigurationIConfigurationleftsource-IConfigurationManagerIConfigurationManagerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConfigurationBuilder",
+            "sourceHandle": "IConfigurationBuilderleftsource",
+            "target": "IConfigurationManager",
+            "targetHandle": "IConfigurationManagerrighttarget",
+            "id": "reactflow__edge-IConfigurationBuilderIConfigurationBuilderleftsource-IConfigurationManagerIConfigurationManagerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConfiguration",
+            "sourceHandle": "IConfigurationrightsource",
             "target": "IChangeToken",
-            "sourceHandle": "IFileProviderrightsource"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "id": "IDirectoryContents-IFileInfo",
-            "source": "IDirectoryContents",
-            "target": "IFileInfo",
-            "sourceHandle": "IDirectoryContentsleftsource",
-            "targetHandle": "IFileInforighttarget"
+            "targetHandle": "IChangeTokenlefttarget",
+            "id": "reactflow__edge-IConfigurationIConfigurationrightsource-IChangeTokenIChangeTokenlefttarget"
         }
     ],
     "viewport": {
-        "x": 78.54545454545473,
-        "y": 87.33389974511476,
-        "zoom": 1.6312659303313506
+        "x": 626.606246942514,
+        "y": 231.07862884047267,
+        "zoom": 1.148698354997035
     }
 }
