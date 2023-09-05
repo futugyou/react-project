@@ -6,6 +6,7 @@ const FlowPanel = lazy(() => import('./FlowPanel'))
 const DI = lazy(() => import('./Dotnet/DependencyInjection/DI'))
 const File = lazy(() => import('./Dotnet/FileSystem/File'))
 const Configuration = lazy(() => import('./Dotnet/Configuration/Flow'))
+const Options = lazy(() => import('./Dotnet/Options/Flow'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -26,6 +27,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/conf",
             element: <Configuration />,
+        },
+        {
+            path: "dotnet/option",
+            element: <Options />,
         },
     ]
 }
