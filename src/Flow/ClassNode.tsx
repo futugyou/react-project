@@ -4,6 +4,7 @@ import { ReactElement, JSXElementConstructor, ReactNode } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
 
 export type ClassNodeData = {
+    id: string
     name: string
     parent?: string
     methods?: string[]
@@ -21,13 +22,14 @@ export type ClassNodeType = Node<ClassNodeData>
 const getNodeId = () => `randomnode_${+new Date()}`
 
 export const DefaultClassNodeType: ClassNodeType = {
-    id: getNodeId(),
+    id: '',
     position: {
         x: Math.random() * window.innerWidth - 100,
         y: Math.random() * window.innerHeight,
     },
     type: 'custom',
     data: {
+        id: '',
         name: '',
     }
 }

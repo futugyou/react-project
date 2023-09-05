@@ -22,6 +22,13 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
         })
     }
 
+    const HandleIdChange = (value: string) => {
+        setNodeData({
+            ...nodeData,
+            id: value,
+        })
+    }
+
     const HandleNameChange = (value: string) => {
         setNodeData({
             ...nodeData,
@@ -135,6 +142,17 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     return (
         <div className={styles.nodeContainer}>
             <div className={styles.nodeItemContainer}>
+                {/* class node id */}
+                <div className={styles.nodeItem}>
+                    <div className={styles.nodeItemLable}>
+                        <label htmlFor="nodeid">NodeName:</label >
+                    </div>
+                    <div className={styles.nodeItemContent}>
+                        <input id="nodeid" className={styles.textInput} value={nodeData.id}
+                            onChange={e => HandleIdChange(e.target.value)}></input>
+                    </div>
+                </div>
+
                 {/* class node name */}
                 <div className={styles.nodeItem}>
                     <div className={styles.nodeItemLable}>
@@ -177,7 +195,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                             )
                         })}
                     </div>
-                    <div className={styles.nodeItemOperator}  onClick={() => AddNewProperty()}>
+                    <div className={styles.nodeItemOperator} onClick={() => AddNewProperty()}>
                         <BsPlusCircle />
                         <span>Add Property</span>
                     </div>

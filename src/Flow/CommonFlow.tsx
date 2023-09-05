@@ -95,7 +95,7 @@ const CommonFlow = (props: CommonFlow) => {
     const updateNode = (data: ClassNodeData) => {
         const node = {
             ...addOrUpdtateNode,
-            id: data.name,
+            id: data.id,
             data: data,
         }
 
