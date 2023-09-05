@@ -6,8 +6,8 @@
             "id": "IFileProvider",
             "type": "custom",
             "position": {
-                "x": 0,
-                "y": 0
+                "x": 3.148013132929975,
+                "y": 1.2592052531719844
             },
             "data": {
                 "name": "IFileProvider",
@@ -25,12 +25,15 @@
                         "position": "right",
                         "type": "source"
                     }
-                ]
+                ],
+                "id": "IFileProvider"
             },
             "positionAbsolute": {
-                "x": 0,
-                "y": 0
-            }
+                "x": 3.148013132929975,
+                "y": 1.2592052531719844
+            },
+            "selected": false,
+            "dragging": false
         },
         {
             "width": 300,
@@ -63,12 +66,15 @@
                         "position": "right",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "IFileInfo"
             },
             "positionAbsolute": {
                 "x": 0,
                 "y": 300
-            }
+            },
+            "selected": false,
+            "dragging": false
         },
         {
             "width": 300,
@@ -94,7 +100,8 @@
                         "position": "left",
                         "type": "source"
                     }
-                ]
+                ],
+                "id": "IDirectoryContents"
             },
             "positionAbsolute": {
                 "x": 379.3299309498351,
@@ -126,7 +133,8 @@
                         "position": "left",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "IChangeToken"
             },
             "selected": false,
             "positionAbsolute": {
@@ -199,7 +207,7 @@
     ],
     "viewport": {
         "x": 78.5454545454545,
-        "y": 103.26557548140335,
+        "y": 103.76557548140335,
         "zoom": 1.5883034119830135
     }
 }

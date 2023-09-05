@@ -145,7 +145,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                 {/* class node id */}
                 <div className={styles.nodeItem}>
                     <div className={styles.nodeItemLable}>
-                        <label htmlFor="nodeid">NodeName:</label >
+                        <label htmlFor="nodeid">NodeId:</label >
                     </div>
                     <div className={styles.nodeItemContent}>
                         <input id="nodeid" className={styles.textInput} value={nodeData.id}

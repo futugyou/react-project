@@ -69,7 +69,8 @@
                         "position": "left",
                         "type": "source"
                     }
-                ]
+                ],
+                "id": "IConfigurationBuilder"
             },
             "selected": false,
             "positionAbsolute": {
@@ -105,7 +106,8 @@
                         "position": "top",
                         "type": "source"
                     }
-                ]
+                ],
+                "id": "IConfigurationProvider"
             },
             "selected": false,
             "positionAbsolute": {
@@ -141,7 +143,8 @@
                         "position": "bottom",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "IConfigurationRoot"
             },
             "selected": false,
             "positionAbsolute": {
@@ -187,7 +190,8 @@
                 ],
                 "properties": [
                     "string? this[string key] { get; set; }"
-                ]
+                ],
+                "id": "IConfiguration"
             },
             "positionAbsolute": {
                 "x": -54.378272987734334,
@@ -201,8 +205,8 @@
             "height": 74,
             "id": "IConfigurationSection",
             "position": {
-                "x": -466.56671931657456,
-                "y": -39.35493333992995
+                "x": -475.62405281914016,
+                "y": -38.34856295075599
             },
             "type": "custom",
             "data": {
@@ -218,12 +222,13 @@
                         "position": "right",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "IConfigurationSection"
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -466.56671931657456,
-                "y": -39.35493333992995
+                "x": -475.62405281914016,
+                "y": -38.34856295075599
             },
             "dragging": false
         },
@@ -247,7 +252,8 @@
                         "position": "right",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "IConfigurationManager"
             },
             "selected": false,
             "positionAbsolute": {
@@ -285,11 +291,50 @@
                         "type": "target"
                     }
                 ],
-                "parent": "IChangeToken"
+                "parent": "IChangeToken",
+                "id": "ConfigurationReloadToken"
             },
             "positionAbsolute": {
                 "x": 616.3323344752041,
                 "y": -55.30238819761669
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "width": 361,
+            "height": 42,
+            "id": "IConfigurationSource",
+            "type": "custom",
+            "position": {
+                "x": 0.20268016256005694,
+                "y": 175.76357622478795
+            },
+            "data": {
+                "name": "IConfigurationSource",
+                "properties": [],
+                "methods": [
+                    "IConfigurationProvider Build(IConfigurationBuilder builder)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "id": "IConfigurationSource"
+            },
+            "positionAbsolute": {
+                "x": 0.20268016256005694,
+                "y": 175.76357622478795
             },
             "selected": false,
             "dragging": false
@@ -442,8 +487,8 @@
         }
     ],
     "viewport": {
-        "x": 489.6632024440137,
-        "y": 298.5770023444531,
-        "zoom": 1.1275110412367944
+        "x": 542.5386487956946,
+        "y": 290.821148661569,
+        "zoom": 0.993669935798503
     }
 }

@@ -5,8 +5,8 @@
             "height": 168,
             "id": "IServiceCollection",
             "position": {
-                "x": 0,
-                "y": 0
+                "x": -12.919270833333371,
+                "y": -19.809548611111097
             },
             "type": "custom",
             "data": {
@@ -33,12 +33,15 @@
                         "position": "right",
                         "type": "source"
                     }
-                ]
+                ],
+                "id": "IServiceCollection"
             },
             "positionAbsolute": {
-                "x": 0,
-                "y": 0
-            }
+                "x": -12.919270833333371,
+                "y": -19.809548611111097
+            },
+            "selected": false,
+            "dragging": false
         },
         {
             "width": 649,
@@ -46,8 +49,8 @@
             "id": "ServiceDescriptor",
             "type": "custom",
             "position": {
-                "x": 0,
-                "y": 300
+                "x": -4.306423611111086,
+                "y": 276.7453125
             },
             "data": {
                 "name": "ServiceDescriptor",
@@ -71,12 +74,15 @@
                         "position": "top",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "ServiceDescriptor"
             },
             "positionAbsolute": {
-                "x": 0,
-                "y": 300
-            }
+                "x": -4.306423611111086,
+                "y": 276.7453125
+            },
+            "selected": false,
+            "dragging": false
         },
         {
             "width": 491,
@@ -106,20 +112,23 @@
                         "position": "top",
                         "type": "target"
                     }
-                ]
+                ],
+                "id": "ServiceProvider"
             },
             "positionAbsolute": {
                 "x": 700,
                 "y": 200
-            }
+            },
+            "selected": false,
+            "dragging": false
         },
         {
             "width": 453,
             "height": 58,
             "id": "IServiceProviderFactory",
             "position": {
-                "x": 900,
-                "y": 0
+                "x": 917.2256944444446,
+                "y": -0.8612847222222229
             },
             "type": "custom",
             "data": {
@@ -133,12 +142,15 @@
                         "position": "bottom",
                         "type": "source"
                     }
-                ]
+                ],
+                "id": "IServiceProviderFactory"
             },
             "positionAbsolute": {
-                "x": 900,
-                "y": 0
-            }
+                "x": 917.2256944444446,
+                "y": -0.8612847222222229
+            },
+            "selected": false,
+            "dragging": false
         },
         {
             "width": 646,
@@ -158,12 +170,15 @@
                     "public static T CreateInstance<T>(IServiceProvider provider, params object[] parameters)",
                     "public static object GetServiceOrCreateInstance(IServiceProvider provider, Type type)",
                     "public static T GetServiceOrCreateInstance<T>(IServiceProvider provider)"
-                ]
+                ],
+                "id": "ActivatorUtilities"
             },
             "positionAbsolute": {
                 "x": 700,
                 "y": 400
-            }
+            },
+            "selected": false,
+            "dragging": false
         }
     ],
     "edges": [
@@ -213,7 +228,7 @@
     ],
     "viewport": {
         "x": 78.54545454545473,
-        "y": 152.96432170933286,
+        "y": 153.4643217093328,
         "zoom": 1.16105623866156
     }
 }
