@@ -38,48 +38,12 @@
             "dragging": false
         },
         {
-            "width": 463,
-            "height": 88,
-            "id": "IChangeToken",
-            "type": "custom",
-            "position": {
-                "x": 618.1061530249598,
-                "y": -43.77256762420576
-            },
-            "data": {
-                "name": "IChangeToken",
-                "properties": [
-                    "bool HasChanged { get; }",
-                    "bool ActiveChangeCallbacks { get; }"
-                ],
-                "methods": [
-                    "IDisposable RegisterChangeCallback(Action<object?> callback, object? state)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "positionAbsolute": {
-                "x": 618.1061530249598,
-                "y": -43.77256762420576
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
             "width": 344,
             "height": 104,
             "id": "IConfigurationBuilder",
             "position": {
-                "x": 7.856095679737848,
-                "y": 323.53664031086674
+                "x": 9.629914229493352,
+                "y": 324.4235495857445
             },
             "type": "custom",
             "data": {
@@ -109,8 +73,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 7.856095679737848,
-                "y": 323.53664031086674
+                "x": 9.629914229493352,
+                "y": 324.4235495857445
             },
             "dragging": false
         },
@@ -119,8 +83,8 @@
             "height": 106,
             "id": "IConfigurationProvider",
             "position": {
-                "x": 602.4793857507175,
-                "y": 141.13448785182317
+                "x": 582.9673817034067,
+                "y": 143.79521567645645
             },
             "type": "custom",
             "data": {
@@ -145,8 +109,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 602.4793857507175,
-                "y": 141.13448785182317
+                "x": 582.9673817034067,
+                "y": 143.79521567645645
             },
             "dragging": false
         },
@@ -187,13 +151,13 @@
             "dragging": false
         },
         {
-            "width": 596,
-            "height": 136,
+            "width": 606,
+            "height": 184,
             "id": "IConfiguration",
             "type": "custom",
             "position": {
-                "x": -49.05681733846774,
-                "y": -50.60950564315449
+                "x": -54.378272987734334,
+                "y": -94.95496938704275
             },
             "data": {
                 "name": "IConfiguration",
@@ -202,7 +166,10 @@
                     "IEnumerable<IConfigurationSection> GetChildren()",
                     "IChangeToken GetReloadToken()",
                     "public static string? GetConnectionString(this IConfiguration configuration, string name)",
-                    "public static IConfigurationSection GetRequiredSection(this IConfiguration configuration, string key)"
+                    "public static IConfigurationSection GetRequiredSection(this IConfiguration configuration, string key)",
+                    "public static T? Get<T>(this IConfiguration configuration)",
+                    "public static T? Get<T>(this IConfiguration configuration, Action<BinderOptions>? configureOptions)",
+                    "public static object? Get(this IConfiguration configuration, Type type)"
                 ],
                 "connects": [
                     {
@@ -223,8 +190,8 @@
                 ]
             },
             "positionAbsolute": {
-                "x": -49.05681733846774,
-                "y": -50.60950564315449
+                "x": -54.378272987734334,
+                "y": -94.95496938704275
             },
             "selected": false,
             "dragging": false
@@ -287,6 +254,44 @@
                 "x": -463.5290150121043,
                 "y": 363.0289346893902
             },
+            "dragging": false
+        },
+        {
+            "width": 463,
+            "height": 104,
+            "id": "ConfigurationReloadToken",
+            "type": "custom",
+            "position": {
+                "x": 616.3323344752041,
+                "y": -55.30238819761669
+            },
+            "data": {
+                "name": "ConfigurationReloadToken",
+                "properties": [
+                    "bool HasChanged { get; }",
+                    "bool ActiveChangeCallbacks { get; }"
+                ],
+                "methods": [
+                    "IDisposable RegisterChangeCallback(Action<object?> callback, object? state)",
+                    "public void OnReload()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "parent": "IChangeToken"
+            },
+            "positionAbsolute": {
+                "x": 616.3323344752041,
+                "y": -55.30238819761669
+            },
+            "selected": false,
             "dragging": false
         }
     ],
@@ -415,9 +420,9 @@
             },
             "source": "IConfiguration",
             "sourceHandle": "IConfigurationrightsource",
-            "target": "IChangeToken",
-            "targetHandle": "IChangeTokenlefttarget",
-            "id": "reactflow__edge-IConfigurationIConfigurationrightsource-IChangeTokenIChangeTokenlefttarget"
+            "target": "ConfigurationReloadToken",
+            "targetHandle": "ConfigurationReloadTokenlefttarget",
+            "id": "reactflow__edge-IConfigurationIConfigurationrightsource-ConfigurationReloadTokenConfigurationReloadTokenlefttarget"
         },
         {
             "style": {
@@ -431,14 +436,14 @@
             },
             "source": "IConfigurationProvider",
             "sourceHandle": "IConfigurationProvidertopsource",
-            "target": "IChangeToken",
-            "targetHandle": "IChangeTokenbottomtarget",
-            "id": "reactflow__edge-IConfigurationProviderIConfigurationProvidertopsource-IChangeTokenIChangeTokenbottomtarget"
+            "target": "ConfigurationReloadToken",
+            "targetHandle": "ConfigurationReloadTokenbottomtarget",
+            "id": "reactflow__edge-IConfigurationProviderIConfigurationProvidertopsource-ConfigurationReloadTokenConfigurationReloadTokenbottomtarget"
         }
     ],
     "viewport": {
-        "x": 537.7570602766446,
-        "y": 270.65929844364405,
-        "zoom": 0.9834298701776766
+        "x": 489.6632024440137,
+        "y": 298.5770023444531,
+        "zoom": 1.1275110412367944
     }
 }
