@@ -7,6 +7,7 @@ const DI = lazy(() => import('./Dotnet/DependencyInjection/Flow'))
 const File = lazy(() => import('./Dotnet/FileSystem/Flow'))
 const Configuration = lazy(() => import('./Dotnet/Configuration/Flow'))
 const Options = lazy(() => import('./Dotnet/Options/Flow'))
+const TraceSource = lazy(() => import('./Dotnet/TraceSource/Flow'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -31,6 +32,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/option",
             element: <Options />,
+        },
+        {
+            path: "dotnet/trace",
+            element: <TraceSource />,
         },
     ]
 }
