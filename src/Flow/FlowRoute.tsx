@@ -9,6 +9,7 @@ const Configuration = lazy(() => import('./Dotnet/Configuration/Flow'))
 const Options = lazy(() => import('./Dotnet/Options/Flow'))
 const TraceSource = lazy(() => import('./Dotnet/TraceSource/Flow'))
 const EventSource = lazy(() => import('./Dotnet/EventSource/Flow'))
+const DiagnosticSource = lazy(() => import('./Dotnet/DiagnosticSource/Flow'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -41,6 +42,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/event",
             element: <EventSource />,
+        },
+        {
+            path: "dotnet/diagnostic",
+            element: <DiagnosticSource />,
         },
     ]
 }
