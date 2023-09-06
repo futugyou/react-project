@@ -1,9 +1,940 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 479,
+            "height": 216,
+            "id": "TraceSource",
+            "position": {
+                "x": 475.1508600838373,
+                "y": -274.3903038077533
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceSource",
+                "name": "TraceSource",
+                "methods": [
+                    "public void Close()",
+                    "public void Flush()",
+                    "public void TraceEvent(TraceEventType eventType, int id)",
+                    "public void TraceData(TraceEventType eventType, int id, object? data)",
+                    "public void TraceInformation(string? message)"
+                ],
+                "properties": [
+                    "public StringDictionary Attributes",
+                    "public SourceLevels DefaultLevel",
+                    "public string Name",
+                    "public static event EventHandler<InitializingTraceSourceEventArgs>? Initializing",
+                    "public TraceListenerCollection Listeners",
+                    "public SourceSwitch Switch"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 475.1508600838373,
+                "y": -274.3903038077533
+            },
+            "dragging": false
+        },
+        {
+            "width": 447,
+            "height": 152,
+            "id": "Switch",
+            "position": {
+                "x": 1427.7414654032566,
+                "y": -191.36012953304154
+            },
+            "type": "custom",
+            "data": {
+                "id": "Switch",
+                "name": "Switch",
+                "properties": [
+                    "public string DisplayName",
+                    "public string Description",
+                    "public StringDictionary Attributes",
+                    "public string DefaultValue",
+                    "public string Value",
+                    "public static event EventHandler<InitializingSwitchEventArgs>? Initializing"
+                ],
+                "methods": [
+                    "public void Refresh()"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1427.7414654032566,
+                "y": -191.36012953304154
+            },
+            "dragging": false
+        },
+        {
+            "width": 316,
+            "height": 152,
+            "id": "TraceSwitch",
+            "position": {
+                "x": 1400.6051600756557,
+                "y": 18.39213152500723
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceSwitch",
+                "name": "TraceSwitch",
+                "parent": "Switch",
+                "properties": [
+                    "public TraceLevel Level",
+                    "public bool TraceError",
+                    "public bool TraceWarning",
+                    "public bool TraceInfo",
+                    "public bool TraceVerbose"
+                ],
+                "methods": [
+                    "protected override void OnSwitchSettingChanged()",
+                    "protected override void OnValueChanged()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1400.6051600756557,
+                "y": 18.39213152500723
+            },
+            "dragging": false
+        },
+        {
+            "width": 319,
+            "height": 88,
+            "id": "SourceSwitch",
+            "position": {
+                "x": 1055.9103232497093,
+                "y": -76.45782075286763
+            },
+            "type": "custom",
+            "data": {
+                "id": "SourceSwitch",
+                "name": "SourceSwitch",
+                "parent": "Switch",
+                "properties": [
+                    "public SourceLevels Level"
+                ],
+                "methods": [
+                    "public bool ShouldTrace(TraceEventType eventType)",
+                    "protected override void OnValueChanged()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1055.9103232497093,
+                "y": -76.45782075286763
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 154,
+            "id": "SourceLevels",
+            "position": {
+                "x": 1089.4918648389144,
+                "y": 49.37413437296638
+            },
+            "type": "custom",
+            "data": {
+                "id": "SourceLevels",
+                "name": "SourceLevels",
+                "properties": [
+                    "Off = 0",
+                    "Critical = 0x01",
+                    "Error = 0x03",
+                    "Warning = 0x07",
+                    "Information = 0x0F",
+                    "Verbose = 0x1F",
+                    "ActivityTracing = 0xFF00",
+                    "All = unchecked((int)0xFFFFFFFF)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1089.4918648389144,
+                "y": 49.37413437296638
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 186,
+            "id": "TraceEventType",
+            "position": {
+                "x": 1065.1270711690838,
+                "y": -292.91091621367946
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceEventType",
+                "name": "TraceEventType",
+                "properties": [
+                    "Critical = 0x01",
+                    "Error = 0x02",
+                    "Warning = 0x04",
+                    "Information = 0x08",
+                    "Verbose = 0x10",
+                    "Start = 0x0100",
+                    "Stop = 0x0200",
+                    "Suspend = 0x0400",
+                    "Resume = 0x0800",
+                    "Transfer = 0x1000"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1065.1270711690838,
+                "y": -292.91091621367946
+            },
+            "dragging": false
+        },
+        {
+            "width": 306,
+            "height": 104,
+            "id": "TraceListenerCollection",
+            "position": {
+                "x": 136.73473062579836,
+                "y": -103.06156260865183
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceListenerCollection",
+                "name": "TraceListenerCollection",
+                "parent": "IList",
+                "properties": [
+                    "public TraceListener this[int i]",
+                    "public TraceListener? this[string name]"
+                ],
+                "methods": [
+                    "public void AddRange(TraceListener[] value)",
+                    "public void Insert(int index, TraceListener listener)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 136.73473062579836,
+                "y": -103.06156260865183
+            },
+            "dragging": false
+        },
+        {
+            "width": 730,
+            "height": 248,
+            "id": "TraceListener",
+            "position": {
+                "x": 342.1853563358935,
+                "y": 29.304983575851594
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceListener",
+                "name": "TraceListener",
+                "parent": "MarshalByRefObject, IDisposable",
+                "properties": [
+                    "public virtual string Name",
+                    "public virtual bool IsThreadSafe",
+                    "public int IndentLevel",
+                    "public TraceFilter? Filter",
+                    "public TraceOptions TraceOutputOptions"
+                ],
+                "methods": [
+                    "public virtual void Flush()",
+                    "public virtual void Close()",
+                    "public virtual void TraceTransfer(TraceEventCache? eventCache, string source, int id, string? message, Guid relatedActivityId)",
+                    "public virtual void Fail(string? message)",
+                    "ublic abstract void Write(string? message)",
+                    "public abstract void WriteLine(string? message)",
+                    "public virtual void TraceData(TraceEventCache? eventCache, string source, TraceEventType eventType, int id, object? data)",
+                    "public virtual void TraceEvent(TraceEventCache? eventCache, string source, TraceEventType eventType, int id)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 342.1853563358935,
+                "y": 29.304983575851594
+            },
+            "dragging": false
+        },
+        {
+            "width": 1046,
+            "height": 42,
+            "id": "TraceFilter",
+            "position": {
+                "x": 824.6008656081171,
+                "y": 325.9928621018105
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceFilter",
+                "name": "TraceFilter",
+                "methods": [
+                    "public abstract bool ShouldTrace(TraceEventCache? cache, string source, TraceEventType eventType, int id, string? formatOrMessage,  object?[]? args, object? data1, object?[]? data)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 824.6008656081171,
+                "y": 325.9928621018105
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "EventTypeFilter",
+            "position": {
+                "x": 1196.6762687721848,
+                "y": 230.10037618742422
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventTypeFilter",
+                "name": "EventTypeFilter",
+                "parent": "TraceFilter",
+                "properties": [
+                    "public SourceLevels EventType"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1196.6762687721848,
+                "y": 230.10037618742422
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "SourceFilter",
+            "position": {
+                "x": 1200.2689116830525,
+                "y": 446.52350617611097
+            },
+            "type": "custom",
+            "data": {
+                "id": "SourceFilter",
+                "name": "SourceFilter",
+                "parent": "TraceFilter",
+                "properties": [
+                    "public string Source"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1200.2689116830525,
+                "y": 446.52350617611097
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "InitializingSwitchEventArgs",
+            "position": {
+                "x": 1500.0686938205313,
+                "y": -279.9723262203122
+            },
+            "type": "custom",
+            "data": {
+                "id": "InitializingSwitchEventArgs",
+                "name": "InitializingSwitchEventArgs",
+                "parent": "EventArgs",
+                "properties": [
+                    "public Switch Switch { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1500.0686938205313,
+                "y": -279.9723262203122
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 122,
+            "id": "TraceEventCache",
+            "position": {
+                "x": 261.08912815219776,
+                "y": 405.2998013944332
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceEventCache",
+                "name": "TraceEventCache",
+                "properties": [
+                    "public DateTime DateTime",
+                    "public int ProcessId",
+                    "public string ThreadId",
+                    "public long Timestamp",
+                    "public string Callstack",
+                    "public Stack LogicalOperationStack"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 261.08912815219776,
+                "y": 405.2998013944332
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 138,
+            "id": "TraceOptions",
+            "position": {
+                "x": 583.856471451596,
+                "y": 389.1829459386712
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceOptions",
+                "name": "TraceOptions",
+                "properties": [
+                    "None = 0",
+                    "LogicalOperationStack = 0x01",
+                    "DateTime = 0x02",
+                    "Timestamp = 0x04",
+                    "ProcessId = 0x08",
+                    "ThreadId = 0x10",
+                    "Callstack = 0x20"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 583.856471451596,
+                "y": 389.1829459386712
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "InitializingTraceSourceEventArgs",
+            "position": {
+                "x": 133.58284198208162,
+                "y": -270.6824402547775
+            },
+            "type": "custom",
+            "data": {
+                "id": "InitializingTraceSourceEventArgs",
+                "name": "InitializingTraceSourceEventArgs",
+                "parent": "EventArgs",
+                "properties": [
+                    "public TraceSource TraceSource { get; }",
+                    "public bool WasInitialized { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 133.58284198208162,
+                "y": -270.6824402547775
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 72,
+            "id": "BooleanSwitch",
+            "position": {
+                "x": 1578.9552413032582,
+                "y": 215.31800284446297
+            },
+            "type": "custom",
+            "data": {
+                "id": "BooleanSwitch",
+                "name": "BooleanSwitch",
+                "parent": "Switch",
+                "properties": [
+                    "public bool Enabled"
+                ],
+                "methods": [
+                    "protected override void OnValueChanged()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1578.9552413032582,
+                "y": 215.31800284446297
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 88,
+            "id": "DefaultTraceListener",
+            "position": {
+                "x": 129.13523498358478,
+                "y": 295.9324984742318
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultTraceListener",
+                "name": "DefaultTraceListener",
+                "parent": "TraceListener",
+                "properties": [
+                    "public bool AssertUiEnabled",
+                    "public string? LogFileName"
+                ],
+                "methods": [
+                    "private void WriteToLogFile(string message)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 129.13523498358478,
+                "y": 295.9324984742318
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSource",
+            "sourceHandle": "TraceSourcerightsource",
+            "target": "SourceSwitch",
+            "targetHandle": "SourceSwitchlefttarget",
+            "id": "reactflow__edge-TraceSourceTraceSourcerightsource-SourceSwitchSourceSwitchlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SourceSwitch",
+            "sourceHandle": "SourceSwitchrightsource",
+            "target": "Switch",
+            "targetHandle": "Switchlefttarget",
+            "id": "reactflow__edge-SourceSwitchSourceSwitchrightsource-SwitchSwitchlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSwitch",
+            "sourceHandle": "TraceSwitchtopsource",
+            "target": "Switch",
+            "targetHandle": "Switchbottomtarget",
+            "id": "reactflow__edge-TraceSwitchTraceSwitchtopsource-SwitchSwitchbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSource",
+            "sourceHandle": "TraceSourcerightsource",
+            "target": "SourceLevels",
+            "targetHandle": "SourceLevelslefttarget",
+            "id": "reactflow__edge-TraceSourceTraceSourcerightsource-SourceLevelsSourceLevelslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SourceSwitch",
+            "sourceHandle": "SourceSwitchtopsource",
+            "target": "TraceEventType",
+            "targetHandle": "TraceEventTypebottomtarget",
+            "id": "reactflow__edge-SourceSwitchSourceSwitchtopsource-TraceEventTypeTraceEventTypebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSource",
+            "sourceHandle": "TraceSourcerightsource",
+            "target": "TraceEventType",
+            "targetHandle": "TraceEventTypelefttarget",
+            "id": "reactflow__edge-TraceSourceTraceSourcerightsource-TraceEventTypeTraceEventTypelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventTypeFilter",
+            "sourceHandle": "EventTypeFilterbottomsource",
+            "target": "TraceFilter",
+            "targetHandle": "TraceFiltertoptarget",
+            "id": "reactflow__edge-EventTypeFilterEventTypeFilterbottomsource-TraceFilterTraceFiltertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Switch",
+            "sourceHandle": "Switchtopsource",
+            "target": "InitializingSwitchEventArgs",
+            "targetHandle": "InitializingSwitchEventArgsbottomtarget",
+            "id": "reactflow__edge-SwitchSwitchtopsource-InitializingSwitchEventArgsInitializingSwitchEventArgsbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceListener",
+            "sourceHandle": "TraceListenerbottomsource",
+            "target": "TraceEventCache",
+            "targetHandle": "TraceEventCachetoptarget",
+            "id": "reactflow__edge-TraceListenerTraceListenerbottomsource-TraceEventCacheTraceEventCachetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceListener",
+            "sourceHandle": "TraceListenerbottomsource",
+            "target": "TraceOptions",
+            "targetHandle": "TraceOptionstoptarget",
+            "id": "reactflow__edge-TraceListenerTraceListenerbottomsource-TraceOptionsTraceOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSource",
+            "sourceHandle": "TraceSourceleftsource",
+            "target": "InitializingTraceSourceEventArgs",
+            "targetHandle": "InitializingTraceSourceEventArgsbottomtarget",
+            "id": "reactflow__edge-TraceSourceTraceSourceleftsource-InitializingTraceSourceEventArgsInitializingTraceSourceEventArgsbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "BooleanSwitch",
+            "sourceHandle": "BooleanSwitchtopsource",
+            "target": "Switch",
+            "targetHandle": "Switchbottomtarget",
+            "id": "reactflow__edge-BooleanSwitchBooleanSwitchtopsource-SwitchSwitchbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSource",
+            "sourceHandle": "TraceSourcebottomsource",
+            "target": "TraceListener",
+            "targetHandle": "TraceListenertoptarget",
+            "id": "reactflow__edge-TraceSourceTraceSourcebottomsource-TraceListenerTraceListenertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSource",
+            "sourceHandle": "TraceSourceleftsource",
+            "target": "TraceListenerCollection",
+            "targetHandle": "TraceListenerCollectiontoptarget",
+            "id": "reactflow__edge-TraceSourceTraceSourceleftsource-TraceListenerCollectionTraceListenerCollectiontoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceListenerCollection",
+            "sourceHandle": "TraceListenerCollectionbottomsource",
+            "target": "TraceListener",
+            "targetHandle": "TraceListenerlefttarget",
+            "id": "reactflow__edge-TraceListenerCollectionTraceListenerCollectionbottomsource-TraceListenerTraceListenerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultTraceListener",
+            "sourceHandle": "DefaultTraceListenertopsource",
+            "target": "TraceListener",
+            "targetHandle": "TraceListenerlefttarget",
+            "id": "reactflow__edge-DefaultTraceListenerDefaultTraceListenertopsource-TraceListenerTraceListenerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceListener",
+            "sourceHandle": "TraceListenerbottomsource",
+            "target": "TraceFilter",
+            "targetHandle": "TraceFilterlefttarget",
+            "id": "reactflow__edge-TraceListenerTraceListenerbottomsource-TraceFilterTraceFilterlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SourceFilter",
+            "sourceHandle": "SourceFiltertopsource",
+            "target": "TraceFilter",
+            "targetHandle": "TraceFilterbottomtarget",
+            "id": "reactflow__edge-SourceFilterSourceFiltertopsource-TraceFilterTraceFilterbottomtarget"
+        }
+    ],
     "viewport": {
-        "x": 595.4062517741925,
-        "y": 318.85232943455253,
-        "zoom": 0.9806195172327969
+        "x": -89.533904662223,
+        "y": 352.6541910089745,
+        "zoom": 0.8988976496030169
     }
 }
