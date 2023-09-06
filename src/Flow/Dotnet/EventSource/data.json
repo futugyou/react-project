@@ -1,9 +1,318 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 819,
+            "height": 184,
+            "id": "EventSource",
+            "position": {
+                "x": 1181.1446901712625,
+                "y": 208.94370686142258
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventSource",
+                "name": "EventSource",
+                "parent": "IDisposable",
+                "properties": [
+                    "public string Name",
+                    "public Guid Guid",
+                    "public EventSourceSettings Settings",
+                    "public Exception? ConstructionException",
+                    "public event EventHandler<EventCommandEventArgs>? EventCommandExecuted"
+                ],
+                "methods": [
+                    "public bool IsEnabled(EventLevel level, EventKeywords keywords, EventChannel channel)",
+                    "public static void SendCommand(EventSource eventSource, EventCommand command, IDictionary<string, string?>? commandArguments)",
+                    "protected virtual void OnEventCommand(EventCommandEventArgs command)",
+                    "protected unsafe void WriteEvent(int eventId, int arg1)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1181.1446901712625,
+                "y": 208.94370686142258
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 90,
+            "id": "EventSourceSettings",
+            "position": {
+                "x": 2139.8853684663445,
+                "y": 197.59947024707867
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventSourceSettings",
+                "name": "EventSourceSettings",
+                "properties": [
+                    "Default = 0",
+                    "ThrowOnEventWriteErrors = 1",
+                    "EtwManifestEventFormat = 4",
+                    "EtwSelfDescribingEventFormat = 8"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2139.8853684663445,
+                "y": 197.59947024707867
+            },
+            "dragging": false
+        },
+        {
+            "width": 490,
+            "height": 120,
+            "id": "EventListener",
+            "position": {
+                "x": 1346.544017657785,
+                "y": 477.8847489521761
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventListener",
+                "name": "EventListener",
+                "parent": "IDisposable",
+                "properties": [
+                    "public event EventHandler<EventSourceCreatedEventArgs>? EventSourceCreated",
+                    "public event EventHandler<EventWrittenEventArgs>? EventWritten"
+                ],
+                "methods": [
+                    "public void EnableEvents(EventSource eventSource, EventLevel level)",
+                    "public void DisableEvents(EventSource eventSource)",
+                    "protected internal virtual void OnEventWritten(EventWrittenEventArgs eventData)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1346.544017657785,
+                "y": 477.8847489521761
+            },
+            "dragging": false
+        },
+        {
+            "width": 403,
+            "height": 104,
+            "id": "EventCommandEventArgs",
+            "position": {
+                "x": 2038.0217754261446,
+                "y": 350.6183737896307
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventCommandEventArgs",
+                "name": "EventCommandEventArgs",
+                "parent": "EventArgs",
+                "properties": [
+                    "public EventCommand Command { get; internal set; }",
+                    "public IDictionary<string, string?>? Arguments { get; internal set; }"
+                ],
+                "methods": [
+                    "public bool EnableEvent(int eventId)",
+                    "public bool DisableEvent(int eventId)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2038.0217754261446,
+                "y": 350.6183737896307
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "EventSourceCreatedEventArgs",
+            "position": {
+                "x": 1441.945345297129,
+                "y": 662.915232867748
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventSourceCreatedEventArgs",
+                "name": "EventSourceCreatedEventArgs",
+                "parent": "EventArgs",
+                "properties": [
+                    "public EventSource? EventSource"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1441.945345297129,
+                "y": 662.915232867748
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 234,
+            "id": "EventWrittenEventArgs",
+            "position": {
+                "x": 2140.9841876627484,
+                "y": 477.895878796735
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventWrittenEventArgs",
+                "name": "EventWrittenEventArgs",
+                "parent": "EventArgs",
+                "properties": [
+                    "public string? EventName",
+                    "public int EventId { get; }",
+                    "public Guid ActivityId",
+                    "public Guid RelatedActivityId",
+                    "public EventSource EventSource { get; }",
+                    "public EventKeywords Keywords",
+                    "public EventOpcode Opcode",
+                    "public EventTask Task",
+                    "public EventTags Tags",
+                    "public string? Message",
+                    "public EventChannel Channel",
+                    "public EventLevel Level",
+                    "public DateTime TimeStamp"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2140.9841876627484,
+                "y": 477.895878796735
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSource",
+            "sourceHandle": "EventSourcerightsource",
+            "target": "EventSourceSettings",
+            "targetHandle": "EventSourceSettingslefttarget",
+            "id": "reactflow__edge-EventSourceEventSourcerightsource-EventSourceSettingsEventSourceSettingslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSource",
+            "sourceHandle": "EventSourcebottomsource",
+            "target": "EventListener",
+            "targetHandle": "EventListenertoptarget",
+            "id": "reactflow__edge-EventSourceEventSourcebottomsource-EventListenerEventListenertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSource",
+            "sourceHandle": "EventSourcerightsource",
+            "target": "EventCommandEventArgs",
+            "targetHandle": "EventCommandEventArgstoptarget",
+            "id": "reactflow__edge-EventSourceEventSourcerightsource-EventCommandEventArgsEventCommandEventArgstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventListener",
+            "sourceHandle": "EventListenerrightsource",
+            "target": "EventWrittenEventArgs",
+            "targetHandle": "EventWrittenEventArgslefttarget",
+            "id": "reactflow__edge-EventListenerEventListenerrightsource-EventWrittenEventArgsEventWrittenEventArgslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventListener",
+            "sourceHandle": "EventListenerbottomsource",
+            "target": "EventSourceCreatedEventArgs",
+            "targetHandle": "EventSourceCreatedEventArgstoptarget",
+            "id": "reactflow__edge-EventListenerEventListenerbottomsource-EventSourceCreatedEventArgsEventSourceCreatedEventArgstoptarget"
+        }
+    ],
     "viewport": {
-        "x": -89.533904662223,
-        "y": 352.6541910089745,
-        "zoom": 0.8988976496030169
+        "x": -1394.1941906030736,
+        "y": -111.01345261129984,
+        "zoom": 1.2468748811248396
     }
 }
