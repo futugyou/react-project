@@ -1,9 +1,806 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IMeterFactory",
+            "position": {
+                "x": 1101.3947978772017,
+                "y": 752.806781924818
+            },
+            "type": "custom",
+            "data": {
+                "id": "IMeterFactory",
+                "name": "IMeterFactory",
+                "parent": "IDisposable",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "Meter Create(MeterOptions options)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1101.3947978772017,
+                "y": 752.806781924818
+            },
+            "dragging": false
+        },
+        {
+            "width": 420,
+            "height": 90,
+            "id": "MeterOptions",
+            "position": {
+                "x": 1442.1795935438486,
+                "y": 733.0067532789714
+            },
+            "type": "custom",
+            "data": {
+                "id": "MeterOptions",
+                "name": "MeterOptions",
+                "properties": [
+                    "public string Name",
+                    "public string? Version { get; set; }",
+                    " public IEnumerable<KeyValuePair<string, object?>>? Tags { get; set; }",
+                    "public object? Scope { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1442.1795935438486,
+                "y": 733.0067532789714
+            },
+            "dragging": false
+        },
+        {
+            "width": 948,
+            "height": 232,
+            "id": "Meter",
+            "position": {
+                "x": 1001.7666494603593,
+                "y": 873.0621840280409
+            },
+            "type": "custom",
+            "data": {
+                "id": "Meter",
+                "name": "Meter",
+                "parent": "IDisposable",
+                "properties": [
+                    "private List<Instrument> _instruments",
+                    "public string Name { get; private set; }",
+                    "public string? Version { get; private set; }",
+                    "public IEnumerable<KeyValuePair<string, object?>>? Tags { get; private set; }",
+                    "public object? Scope { get; private set; }"
+                ],
+                "methods": [
+                    "public Counter<T> CreateCounter<T>(string name, string? unit = null, string? description = null)",
+                    "public Histogram<T> CreateHistogram<T>(string name, string? unit = null, string? description = null)",
+                    "public UpDownCounter<T> CreateUpDownCounter<T>(string name, string? unit = null, string? description = null)",
+                    "public ObservableUpDownCounter<T> CreateObservableUpDownCounter<T>(string name, Func<T> observeValue, string? unit = null, string? description = null)",
+                    "public ObservableCounter<T> CreateObservableCounter<T>(string name, Func<T> observeValue, string? unit = null, string? description = null)",
+                    "public ObservableGauge<T> CreateObservableGauge<T>(string name, Func<T> observeValue, string? unit = null, string? description = null)",
+                    "internal bool AddInstrument(Instrument instrument)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1001.7666494603593,
+                "y": 873.0621840280409
+            },
+            "dragging": false
+        },
+        {
+            "width": 397,
+            "height": 168,
+            "id": "Instrument",
+            "position": {
+                "x": 1003.3416450298455,
+                "y": 1167.3763190670475
+            },
+            "type": "custom",
+            "data": {
+                "id": "Instrument",
+                "name": "Instrument",
+                "methods": [
+                    "protected void Publish()"
+                ],
+                "properties": [
+                    "public Meter Meter { get; }",
+                    "public string Name { get; }",
+                    "public string? Description { get; }",
+                    "public string? Unit { get; }",
+                    "public IEnumerable<KeyValuePair<string, object?>>? Tags { get; }",
+                    "public bool Enabled",
+                    "public virtual bool IsObservable"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1003.3416450298455,
+                "y": 1167.3763190670475
+            },
+            "dragging": false
+        },
+        {
+            "width": 586,
+            "height": 152,
+            "id": "MeterListener",
+            "position": {
+                "x": 1001.0362875372496,
+                "y": 1415.225604019876
+            },
+            "type": "custom",
+            "data": {
+                "id": "MeterListener",
+                "name": "MeterListener",
+                "parent": "IDisposable",
+                "properties": [
+                    "public Action<Instrument, MeterListener>? InstrumentPublished { get; set; }",
+                    "public Action<Instrument, object?>? MeasurementsCompleted { get; set; }"
+                ],
+                "methods": [
+                    "public void EnableMeasurementEvents(Instrument instrument, object? state = null)",
+                    "public object? DisableMeasurementEvents(Instrument instrument)",
+                    "public void SetMeasurementEventCallback<T>(MeasurementCallback<T>? measurementCallback)",
+                    "public void Start()",
+                    "public void RecordObservableInstruments()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1001.0362875372496,
+                "y": 1415.225604019876
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "Counter",
+            "position": {
+                "x": 2179.1795194521983,
+                "y": 823.3052892215588
+            },
+            "type": "custom",
+            "data": {
+                "id": "Counter",
+                "name": "Counter<T>",
+                "parent": "Instrument<T>",
+                "properties": [
+                    "public void Add(T delta)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2179.1795194521983,
+                "y": 823.3052892215588
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "Histogram",
+            "position": {
+                "x": 2183.224059226733,
+                "y": 914.2057356629505
+            },
+            "type": "custom",
+            "data": {
+                "id": "Histogram",
+                "name": "Histogram<T>",
+                "parent": "Instrument<T>",
+                "methods": [
+                    "public void Record(T value)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2183.224059226733,
+                "y": 914.2057356629505
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "UpDownCounter",
+            "position": {
+                "x": 2180.2055041747103,
+                "y": 1072.6195767920458
+            },
+            "type": "custom",
+            "data": {
+                "id": "UpDownCounter",
+                "name": "UpDownCounter<T>",
+                "parent": "Instrument<T>",
+                "methods": [
+                    "public void Add(T delta)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2180.2055041747103,
+                "y": 1072.6195767920458
+            },
+            "dragging": false
+        },
+        {
+            "width": 633,
+            "height": 58,
+            "id": "Instrument_1",
+            "position": {
+                "x": 1443.5484734108836,
+                "y": 1149.568430980468
+            },
+            "type": "custom",
+            "data": {
+                "id": "Instrument_1",
+                "name": "Instrument<T>",
+                "parent": "Instrument",
+                "methods": [
+                    "protected void RecordMeasurement(T measurement)",
+                    "protected void RecordMeasurement(T measurement, ReadOnlySpan<KeyValuePair<string, object?>> tags)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1443.5484734108836,
+                "y": 1149.568430980468
+            },
+            "dragging": false
+        },
+        {
+            "width": 384,
+            "height": 72,
+            "id": "ObservableInstrument",
+            "position": {
+                "x": 1551.2768692746745,
+                "y": 1297.3102310222382
+            },
+            "type": "custom",
+            "data": {
+                "id": "ObservableInstrument",
+                "name": "ObservableInstrument<T>",
+                "parent": "Instrument",
+                "methods": [
+                    "protected abstract IEnumerable<Measurement<T>> Observe()"
+                ],
+                "properties": [
+                    "public override bool IsObservable"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1551.2768692746745,
+                "y": 1297.3102310222382
+            },
+            "dragging": false
+        },
+        {
+            "width": 385,
+            "height": 42,
+            "id": "ObservableUpDownCounter",
+            "position": {
+                "x": 2179.1795194521983,
+                "y": 1192.6597893259848
+            },
+            "type": "custom",
+            "data": {
+                "id": "ObservableUpDownCounter",
+                "name": "ObservableUpDownCounter<T>",
+                "parent": "ObservableInstrument<T>",
+                "methods": [
+                    "protected override IEnumerable<Measurement<T>> Observe()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2179.1795194521983,
+                "y": 1192.6597893259848
+            },
+            "dragging": false
+        },
+        {
+            "width": 385,
+            "height": 42,
+            "id": "ObservableCounter",
+            "position": {
+                "x": 2180.2055041747108,
+                "y": 1294.2322768547015
+            },
+            "type": "custom",
+            "data": {
+                "id": "ObservableCounter",
+                "name": "ObservableCounter<T>",
+                "parent": "ObservableInstrument<T>",
+                "methods": [
+                    "protected override IEnumerable<Measurement<T>> Observe()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2180.2055041747108,
+                "y": 1294.2322768547015
+            },
+            "dragging": false
+        },
+        {
+            "width": 385,
+            "height": 42,
+            "id": "ObservableGauge",
+            "position": {
+                "x": 2182.2574736197357,
+                "y": 1395.8047643834188
+            },
+            "type": "custom",
+            "data": {
+                "id": "ObservableGauge",
+                "name": "ObservableGauge<T>",
+                "parent": "ObservableInstrument<T>",
+                "methods": [
+                    "protected override IEnumerable<Measurement<T>> Observe()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2182.2574736197357,
+                "y": 1395.8047643834188
+            },
+            "dragging": false
+        },
+        {
+            "width": 363,
+            "height": 58,
+            "id": "Measurement",
+            "position": {
+                "x": 1627.673131691498,
+                "y": 1418.4790267509404
+            },
+            "type": "custom",
+            "data": {
+                "id": "Measurement",
+                "name": "Measurement<T>",
+                "properties": [
+                    "public ReadOnlySpan<KeyValuePair<string, object?>> Tags",
+                    "public T Value { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1627.673131691498,
+                "y": 1418.4790267509404
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMeterFactory",
+            "sourceHandle": "IMeterFactoryrightsource",
+            "target": "MeterOptions",
+            "targetHandle": "MeterOptionslefttarget",
+            "id": "reactflow__edge-IMeterFactoryIMeterFactoryrightsource-MeterOptionsMeterOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMeterFactory",
+            "sourceHandle": "IMeterFactorybottomsource",
+            "target": "Meter",
+            "targetHandle": "Metertoptarget",
+            "id": "reactflow__edge-IMeterFactoryIMeterFactorybottomsource-MeterMetertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Instrument",
+            "sourceHandle": "Instrumentbottomsource",
+            "target": "MeterListener",
+            "targetHandle": "MeterListenertoptarget",
+            "id": "reactflow__edge-InstrumentInstrumentbottomsource-MeterListenerMeterListenertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterbottomsource",
+            "target": "Instrument",
+            "targetHandle": "Instrumenttoptarget",
+            "id": "reactflow__edge-MeterMeterbottomsource-InstrumentInstrumenttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Instrument_1",
+            "sourceHandle": "Instrument<T>leftsource",
+            "target": "Instrument",
+            "targetHandle": "Instrumentrighttarget",
+            "id": "reactflow__edge-Instrument_1Instrument<T>leftsource-InstrumentInstrumentrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ObservableInstrument",
+            "sourceHandle": "ObservableInstrument<T>leftsource",
+            "target": "Instrument",
+            "targetHandle": "Instrumentrighttarget",
+            "id": "reactflow__edge-ObservableInstrumentObservableInstrument<T>leftsource-InstrumentInstrumentrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ObservableUpDownCounter",
+            "sourceHandle": "ObservableUpDownCounter<T>leftsource",
+            "target": "ObservableInstrument",
+            "targetHandle": "ObservableInstrument<T>righttarget",
+            "id": "reactflow__edge-ObservableUpDownCounterObservableUpDownCounter<T>leftsource-ObservableInstrumentObservableInstrument<T>righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ObservableCounter",
+            "sourceHandle": "ObservableCounter<T>leftsource",
+            "target": "ObservableInstrument",
+            "targetHandle": "ObservableInstrument<T>righttarget",
+            "id": "reactflow__edge-ObservableCounterObservableCounter<T>leftsource-ObservableInstrumentObservableInstrument<T>righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ObservableGauge",
+            "sourceHandle": "ObservableGauge<T>leftsource",
+            "target": "ObservableInstrument",
+            "targetHandle": "ObservableInstrument<T>righttarget",
+            "id": "reactflow__edge-ObservableGaugeObservableGauge<T>leftsource-ObservableInstrumentObservableInstrument<T>righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Counter",
+            "sourceHandle": "Counter<T>leftsource",
+            "target": "Instrument_1",
+            "targetHandle": "Instrument<T>righttarget",
+            "id": "reactflow__edge-CounterCounter<T>leftsource-Instrument_1Instrument<T>righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Histogram",
+            "sourceHandle": "Histogram<T>leftsource",
+            "target": "Instrument_1",
+            "targetHandle": "Instrument<T>righttarget",
+            "id": "reactflow__edge-HistogramHistogram<T>leftsource-Instrument_1Instrument<T>righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "UpDownCounter",
+            "sourceHandle": "UpDownCounter<T>leftsource",
+            "target": "Instrument_1",
+            "targetHandle": "Instrument<T>righttarget",
+            "id": "reactflow__edge-UpDownCounterUpDownCounter<T>leftsource-Instrument_1Instrument<T>righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterrightsource",
+            "target": "Counter",
+            "targetHandle": "Counter<T>bottomtarget",
+            "id": "reactflow__edge-MeterMeterrightsource-CounterCounter<T>bottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterrightsource",
+            "target": "Histogram",
+            "targetHandle": "Histogram<T>bottomtarget",
+            "id": "reactflow__edge-MeterMeterrightsource-HistogramHistogram<T>bottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterrightsource",
+            "target": "UpDownCounter",
+            "targetHandle": "UpDownCounter<T>toptarget",
+            "id": "reactflow__edge-MeterMeterrightsource-UpDownCounterUpDownCounter<T>toptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterrightsource",
+            "target": "ObservableUpDownCounter",
+            "targetHandle": "ObservableUpDownCounter<T>toptarget",
+            "id": "reactflow__edge-MeterMeterrightsource-ObservableUpDownCounterObservableUpDownCounter<T>toptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterrightsource",
+            "target": "ObservableCounter",
+            "targetHandle": "ObservableCounter<T>toptarget",
+            "id": "reactflow__edge-MeterMeterrightsource-ObservableCounterObservableCounter<T>toptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Meter",
+            "sourceHandle": "Meterrightsource",
+            "target": "ObservableGauge",
+            "targetHandle": "ObservableGauge<T>toptarget",
+            "id": "reactflow__edge-MeterMeterrightsource-ObservableGaugeObservableGauge<T>toptarget"
+        }
+    ],
     "viewport": {
-        "x": 558.2143593393089,
-        "y": 358.6437494010324,
-        "zoom": 0.8937168636377776
+        "x": -947.1797331800576,
+        "y": -688.0464167403129,
+        "zoom": 0.9938530019485398
     }
 }
