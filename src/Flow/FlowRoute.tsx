@@ -10,6 +10,7 @@ const Options = lazy(() => import('./Dotnet/Options/Flow'))
 const TraceSource = lazy(() => import('./Dotnet/TraceSource/Flow'))
 const EventSource = lazy(() => import('./Dotnet/EventSource/Flow'))
 const DiagnosticSource = lazy(() => import('./Dotnet/DiagnosticSource/Flow'))
+const ILogger = lazy(() => import('./Dotnet/ILogger/Flow'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -46,6 +47,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/diagnostic",
             element: <DiagnosticSource />,
+        },
+        {
+            path: "dotnet/logger",
+            element: <ILogger />,
         },
     ]
 }
