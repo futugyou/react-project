@@ -1,9 +1,539 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 418,
+            "height": 122,
+            "id": "DiagnosticSource",
+            "position": {
+                "x": 870.2205293485724,
+                "y": 36.16560185797121
+            },
+            "type": "custom",
+            "data": {
+                "id": "DiagnosticSource",
+                "name": "DiagnosticSource",
+                "methods": [
+                    "public abstract void Write(string name, object? value)",
+                    "public abstract bool IsEnabled(string name)",
+                    "public Activity StartActivity(Activity activity, object? args)",
+                    "public void StopActivity(Activity activity, object? args)",
+                    "public virtual void OnActivityImport(Activity activity, object? payload)",
+                    "public virtual void OnActivityExport(Activity activity, object? payload)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 870.2205293485724,
+                "y": 36.16560185797121
+            },
+            "dragging": false
+        },
+        {
+            "width": 534,
+            "height": 104,
+            "id": "DiagnosticListener",
+            "position": {
+                "x": 811.86723810906,
+                "y": 210.9363563664976
+            },
+            "type": "custom",
+            "data": {
+                "id": "DiagnosticListener",
+                "name": "DiagnosticListener",
+                "parent": "DiagnosticSource, IObservable<KeyValuePair<string, object?>>, IDisposable",
+                "properties": [
+                    "public static IObservable<DiagnosticListener> AllListeners",
+                    "public string Name { get; private set; }"
+                ],
+                "methods": [
+                    "public virtual IDisposable Subscribe(IObserver<KeyValuePair<string, object?>> observer)",
+                    "public virtual void Dispose()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 811.86723810906,
+                "y": 210.9363563664976
+            },
+            "dragging": false
+        },
+        {
+            "width": 480,
+            "height": 344,
+            "id": "Activity",
+            "position": {
+                "x": 838.1585148114873,
+                "y": 359.06935074738874
+            },
+            "type": "custom",
+            "data": {
+                "id": "Activity",
+                "name": "Activity",
+                "parent": "IDisposable",
+                "properties": [
+                    "public static event EventHandler<ActivityChangedEventArgs>? CurrentChanged",
+                    "public ActivityKind Kind { get; private set; }",
+                    "public string OperationName { get; }",
+                    "public string DisplayName",
+                    "public ActivitySource Source { get; private set; }",
+                    "public Activity? Parent { get; private set; }",
+                    "public IEnumerable<KeyValuePair<string, string?>> Tags",
+                    "public IEnumerable<KeyValuePair<string, string?>> Baggage",
+                    "public IEnumerable<ActivityEvent> Events",
+                    "public IEnumerable<ActivityLink> Links",
+                    "public ActivityContext Context",
+                    "public static Activity? Current"
+                ],
+                "methods": [
+                    "public Activity SetStatus(ActivityStatusCode code, string? description = null)",
+                    "public Activity AddTag(string key, string? value)",
+                    "public Activity AddEvent(ActivityEvent e)",
+                    "public Activity AddBaggage(string key, string? value)",
+                    "public Activity SetParentId(string parentId)",
+                    "public Activity Start()",
+                    "public void Stop()"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 838.1585148114873,
+                "y": 359.06935074738874
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "ActivityChangedEventArgs",
+            "position": {
+                "x": 1431.785244275156,
+                "y": 90.474270038139
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivityChangedEventArgs",
+                "name": "ActivityChangedEventArgs",
+                "properties": [
+                    "public Activity? Previous { get; init; }",
+                    "public Activity? Current { get; init; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1431.785244275156,
+                "y": 90.474270038139
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 106,
+            "id": "ActivityKind",
+            "position": {
+                "x": 1434.2533592605869,
+                "y": 174.26052051849246
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivityKind",
+                "name": "ActivityKind",
+                "properties": [
+                    "Internal = 0",
+                    "Server = 1",
+                    "Client = 2",
+                    "Producer = 3",
+                    "Consumer = 4"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1434.2533592605869,
+                "y": 174.26052051849246
+            },
+            "dragging": false
+        },
+        {
+            "width": 498,
+            "height": 88,
+            "id": "ActivityLink",
+            "position": {
+                "x": 1768.4653826289539,
+                "y": 237.19954245603196
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivityLink",
+                "name": "ActivityLink",
+                "parent": "IEquatable<ActivityLink>",
+                "properties": [
+                    "public ActivityContext Context { get; }",
+                    " public IEnumerable<KeyValuePair<string, object?>>? Tags"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public Activity.Enumerator<KeyValuePair<string, object?>> EnumerateTagObjects()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1768.4653826289539,
+                "y": 237.19954245603196
+            },
+            "dragging": false
+        },
+        {
+            "width": 498,
+            "height": 104,
+            "id": "ActivityEvent",
+            "position": {
+                "x": 1768.341637951936,
+                "y": 97.1045515018775
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivityEvent",
+                "name": "ActivityEvent",
+                "properties": [
+                    "public string Name { get; }",
+                    "public DateTimeOffset Timestamp { get; }",
+                    "public IEnumerable<KeyValuePair<string, object?>> Tags"
+                ],
+                "methods": [
+                    "public Activity.Enumerator<KeyValuePair<string, object?>> EnumerateTagObjects()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1768.341637951936,
+                "y": 97.1045515018775
+            },
+            "dragging": false
+        },
+        {
+            "width": 646,
+            "height": 136,
+            "id": "ActivityContext",
+            "position": {
+                "x": 1621.712728569161,
+                "y": 361.1610987852084
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivityContext",
+                "name": "ActivityContext",
+                "parent": "IEquatable<ActivityContext>",
+                "properties": [
+                    "public ActivityTraceId TraceId { get; }",
+                    "public ActivitySpanId SpanId { get; }",
+                    "public ActivityTraceFlags TraceFlags { get; }",
+                    "public string? TraceState { get; }",
+                    "public bool IsRemote { get; }"
+                ],
+                "methods": [
+                    "public static bool TryParse(string? traceParent, string? traceState, bool isRemote, out ActivityContext context)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1621.712728569161,
+                "y": 361.1610987852084
+            },
+            "dragging": false
+        },
+        {
+            "width": 375,
+            "height": 184,
+            "id": "ActivitySource",
+            "position": {
+                "x": 1398.5075309497186,
+                "y": 576.57330608792
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivitySource",
+                "name": "ActivitySource",
+                "parent": "IDisposable",
+                "properties": [
+                    "public string Name { get; }",
+                    "public string? Version { get; }"
+                ],
+                "methods": [
+                    "public bool HasListeners()",
+                    "public Activity? CreateActivity(string name, ActivityKind kind)",
+                    "public Activity? StartActivity(string name, ActivityKind kind)",
+                    "public static void AddActivityListener(ActivityListener listener)",
+                    "internal static void DetachListener(ActivityListener listener)",
+                    "internal void NotifyActivityStart(Activity activity)",
+                    "internal void NotifyActivityStop(Activity activity)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1398.5075309497186,
+                "y": 576.57330608792
+            },
+            "dragging": false
+        },
+        {
+            "width": 392,
+            "height": 136,
+            "id": "ActivityListener",
+            "position": {
+                "x": 1874.1643350344912,
+                "y": 543.1224424330642
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActivityListener",
+                "name": "ActivityListener",
+                "parent": "IDisposable",
+                "properties": [
+                    "public Action<Activity>? ActivityStarted { get; set; }",
+                    "public Action<Activity>? ActivityStopped { get; set; }",
+                    "public Func<ActivitySource, bool>? ShouldListenTo { get; set; }",
+                    "public SampleActivity<string>? SampleUsingParentId { get; set; }",
+                    "public SampleActivity<ActivityContext>? Sample { get; set; }"
+                ],
+                "methods": [
+                    "public void Dispose() => ActivitySource.DetachListener(this)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1874.1643350344912,
+                "y": 543.1224424330642
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DiagnosticListener",
+            "sourceHandle": "DiagnosticListenertopsource",
+            "target": "DiagnosticSource",
+            "targetHandle": "DiagnosticSourcebottomtarget",
+            "id": "reactflow__edge-DiagnosticListenerDiagnosticListenertopsource-DiagnosticSourceDiagnosticSourcebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Activity",
+            "sourceHandle": "Activityrightsource",
+            "target": "ActivityChangedEventArgs",
+            "targetHandle": "ActivityChangedEventArgslefttarget",
+            "id": "reactflow__edge-ActivityActivityrightsource-ActivityChangedEventArgsActivityChangedEventArgslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Activity",
+            "sourceHandle": "Activityrightsource",
+            "target": "ActivityKind",
+            "targetHandle": "ActivityKindlefttarget",
+            "id": "reactflow__edge-ActivityActivityrightsource-ActivityKindActivityKindlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DiagnosticListener",
+            "sourceHandle": "DiagnosticListenerbottomsource",
+            "target": "Activity",
+            "targetHandle": "Activitytoptarget",
+            "id": "reactflow__edge-DiagnosticListenerDiagnosticListenerbottomsource-ActivityActivitytoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Activity",
+            "sourceHandle": "Activityrightsource",
+            "target": "ActivityLink",
+            "targetHandle": "ActivityLinklefttarget",
+            "id": "reactflow__edge-ActivityActivityrightsource-ActivityLinkActivityLinklefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Activity",
+            "sourceHandle": "Activityrightsource",
+            "target": "ActivityEvent",
+            "targetHandle": "ActivityEventlefttarget",
+            "id": "reactflow__edge-ActivityActivityrightsource-ActivityEventActivityEventlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Activity",
+            "sourceHandle": "Activityrightsource",
+            "target": "ActivityContext",
+            "targetHandle": "ActivityContextlefttarget",
+            "id": "reactflow__edge-ActivityActivityrightsource-ActivityContextActivityContextlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ActivitySource",
+            "sourceHandle": "ActivitySourcebottomsource",
+            "target": "Activity",
+            "targetHandle": "Activitybottomtarget",
+            "id": "reactflow__edge-ActivitySourceActivitySourcebottomsource-ActivityActivitybottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ActivitySource",
+            "sourceHandle": "ActivitySourcerightsource",
+            "target": "ActivityListener",
+            "targetHandle": "ActivityListenerlefttarget",
+            "id": "reactflow__edge-ActivitySourceActivitySourcerightsource-ActivityListenerActivityListenerlefttarget"
+        }
+    ],
     "viewport": {
-        "x": -1394.1941906030736,
-        "y": -111.01345261129984,
-        "zoom": 1.2468748811248396
+        "x": -798.2394016443131,
+        "y": 27.776574276365636,
+        "zoom": 1.0799608791111077
     }
 }
