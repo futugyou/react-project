@@ -42,8 +42,8 @@
             "height": 42,
             "id": "ILoggerProvider",
             "position": {
-                "x": 921.0133102708407,
-                "y": -30.296316191967605
+                "x": 771.0776813798657,
+                "y": -28.058470984639627
             },
             "type": "custom",
             "data": {
@@ -61,13 +61,17 @@
                     {
                         "position": "top",
                         "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 921.0133102708407,
-                "y": -30.296316191967605
+                "x": 771.0776813798657,
+                "y": -28.058470984639627
             },
             "dragging": false
         },
@@ -76,8 +80,8 @@
             "height": 202,
             "id": "ILogger",
             "position": {
-                "x": 435.05499077779984,
-                "y": 90.86629487810396
+                "x": 159.80003027645773,
+                "y": 125.55289559168776
             },
             "type": "custom",
             "data": {
@@ -110,8 +114,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 435.05499077779984,
-                "y": 90.86629487810396
+                "x": 159.80003027645773,
+                "y": 125.55289559168776
             },
             "dragging": false
         },
@@ -120,8 +124,8 @@
             "height": 152,
             "id": "ILoggingBuilder",
             "position": {
-                "x": -324.54222235558,
-                "y": 285.4932953122593
+                "x": -531.5429040334185,
+                "y": 292.2068309342432
             },
             "type": "custom",
             "data": {
@@ -147,8 +151,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -324.54222235558,
-                "y": 285.4932953122593
+                "x": -531.5429040334185,
+                "y": 292.2068309342432
             },
             "dragging": false
         },
@@ -190,8 +194,8 @@
             "height": 58,
             "id": "IExternalScopeProvider",
             "position": {
-                "x": -517.7503555553089,
-                "y": -191.74250146603669
+                "x": -531.1774267992769,
+                "y": -195.09926927702867
             },
             "type": "custom",
             "data": {
@@ -210,8 +214,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -517.7503555553089,
-                "y": -191.74250146603669
+                "x": -531.1774267992769,
+                "y": -195.09926927702867
             },
             "dragging": false
         },
@@ -220,8 +224,8 @@
             "height": 58,
             "id": "LoggerMessage",
             "position": {
-                "x": 363.71571777949384,
-                "y": 355.94961558532975
+                "x": 165.66641693096722,
+                "y": 369.3766868292977
             },
             "type": "custom",
             "data": {
@@ -240,8 +244,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 363.71571777949384,
-                "y": 355.94961558532975
+                "x": 165.66641693096722,
+                "y": 369.3766868292977
             },
             "dragging": false
         },
@@ -250,8 +254,8 @@
             "height": 74,
             "id": "LoggerFilterOptions",
             "position": {
-                "x": -142.7229525809649,
-                "y": -39.36350072966383
+                "x": -140.4851073736369,
+                "y": -99.78532132751941
             },
             "type": "custom",
             "data": {
@@ -279,8 +283,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -142.7229525809649,
-                "y": -39.36350072966383
+                "x": -140.4851073736369,
+                "y": -99.78532132751941
             },
             "dragging": false
         },
@@ -289,8 +293,8 @@
             "height": 42,
             "id": "LoggerFactoryOptions",
             "position": {
-                "x": -117.56233816109079,
-                "y": 159.73709083436984
+                "x": -164.5570875149785,
+                "y": 66.86651473025847
             },
             "type": "custom",
             "data": {
@@ -316,8 +320,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -117.56233816109079,
-                "y": 159.73709083436984
+                "x": -164.5570875149785,
+                "y": 66.86651473025847
             },
             "dragging": false
         },
@@ -326,8 +330,8 @@
             "height": 90,
             "id": "LoggerFilterRule",
             "position": {
-                "x": -532.8578878337851,
-                "y": -47.99418545639762
+                "x": -531.738965230121,
+                "y": -80.4429409626534
             },
             "type": "custom",
             "data": {
@@ -349,8 +353,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -532.8578878337851,
-                "y": -47.99418545639762
+                "x": -531.738965230121,
+                "y": -80.4429409626534
             },
             "dragging": false
         },
@@ -395,8 +399,8 @@
             "height": 104,
             "id": "LoggerFactory",
             "position": {
-                "x": 240.368693821929,
-                "y": -47.526097132208456
+                "x": 206.80101571200925,
+                "y": -58.715323168848386
             },
             "type": "custom",
             "data": {
@@ -424,8 +428,194 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 240.368693821929,
-                "y": -47.526097132208456
+                "x": 206.80101571200925,
+                "y": -58.715323168848386
+            },
+            "dragging": false
+        },
+        {
+            "width": 316,
+            "height": 42,
+            "id": "EventSourceLogger ",
+            "position": {
+                "x": 1302.3421177671562,
+                "y": -12.079663799316478
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventSourceLogger ",
+                "name": "EventSourceLogger ",
+                "parent": "ILogger",
+                "properties": [
+                    "private readonly LoggingEventSource _eventSource"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1302.3421177671562,
+                "y": -12.079663799316478
+            },
+            "dragging": false
+        },
+        {
+            "width": 316,
+            "height": 42,
+            "id": "EventSourceLoggerProvider",
+            "position": {
+                "x": 1303.0349156287114,
+                "y": -248.2636046609952
+            },
+            "type": "custom",
+            "data": {
+                "id": "EventSourceLoggerProvider",
+                "name": "EventSourceLoggerProvider",
+                "parent": "ILoggerProvider",
+                "properties": [
+                    "private readonly LoggingEventSource _eventSource"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1303.0349156287114,
+                "y": -248.2636046609952
+            },
+            "dragging": false
+        },
+        {
+            "width": 734,
+            "height": 120,
+            "id": "LoggingEventSource",
+            "position": {
+                "x": 1093.2630610106323,
+                "y": -180.59994310973255
+            },
+            "type": "custom",
+            "data": {
+                "id": "LoggingEventSource",
+                "name": "LoggingEventSource",
+                "parent": "EventSource",
+                "properties": [
+                    "private LoggerFilterRule[] _filterSpec",
+                    "private CancellationTokenSource? _cancellationTokenSource"
+                ],
+                "methods": [
+                    "protected override void OnEventCommand(EventCommandEventArgs command)",
+                    "internal void ActivityStart(int ID, int FactoryID, string LoggerName, IEnumerable<KeyValuePair<string, string?>> Arguments)",
+                    "internal unsafe void ActivityStop(int ID, int FactoryID, string LoggerName)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1093.2630610106323,
+                "y": -180.59994310973255
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "TraceSourceLogger",
+            "position": {
+                "x": 1118.674668133386,
+                "y": 279.07063484190456
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceSourceLogger",
+                "name": "TraceSourceLogger",
+                "parent": "ILogger",
+                "properties": [
+                    "private readonly TraceSource _traceSource"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1118.674668133386,
+                "y": 279.07063484190456
+            },
+            "dragging": false
+        },
+        {
+            "width": 420,
+            "height": 74,
+            "id": "TraceSourceLoggerProvider",
+            "position": {
+                "x": 1172.9248287895693,
+                "y": 101.02900574821706
+            },
+            "type": "custom",
+            "data": {
+                "id": "TraceSourceLoggerProvider",
+                "name": "TraceSourceLoggerProvider",
+                "parent": "ILoggerProvider",
+                "properties": [
+                    "private readonly SourceSwitch _rootSourceSwitch",
+                    "private readonly TraceListener? _rootTraceListener",
+                    "private readonly ConcurrentDictionary<string, TraceSource> _sources"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1172.9248287895693,
+                "y": 101.02900574821706
             },
             "dragging": false
         }
@@ -623,11 +813,139 @@
             "target": "ILoggerProvider",
             "targetHandle": "ILoggerProvidertoptarget",
             "id": "reactflow__edge-ILoggerFactoryILoggerFactorybottomsource-ILoggerProviderILoggerProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSourceLogger ",
+            "sourceHandle": "EventSourceLogger leftsource",
+            "target": "ILogger",
+            "targetHandle": "ILoggerrighttarget",
+            "id": "reactflow__edge-EventSourceLogger EventSourceLogger leftsource-ILoggerILoggerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSourceLoggerProvider",
+            "sourceHandle": "EventSourceLoggerProviderleftsource",
+            "target": "ILoggerProvider",
+            "targetHandle": "ILoggerProviderrighttarget",
+            "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderleftsource-ILoggerProviderILoggerProviderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSourceLoggerProvider",
+            "sourceHandle": "EventSourceLoggerProviderrightsource",
+            "target": "EventSourceLogger ",
+            "targetHandle": "EventSourceLogger righttarget",
+            "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderrightsource-EventSourceLogger EventSourceLogger righttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSourceLogger ",
+            "sourceHandle": "EventSourceLogger topsource",
+            "target": "LoggingEventSource",
+            "targetHandle": "LoggingEventSourcebottomtarget",
+            "id": "reactflow__edge-EventSourceLogger EventSourceLogger topsource-LoggingEventSourceLoggingEventSourcebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EventSourceLoggerProvider",
+            "sourceHandle": "EventSourceLoggerProviderbottomsource",
+            "target": "LoggingEventSource",
+            "targetHandle": "LoggingEventSourcetoptarget",
+            "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderbottomsource-LoggingEventSourceLoggingEventSourcetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSourceLogger",
+            "sourceHandle": "TraceSourceLoggerleftsource",
+            "target": "ILogger",
+            "targetHandle": "ILoggerrighttarget",
+            "id": "reactflow__edge-TraceSourceLoggerTraceSourceLoggerleftsource-ILoggerILoggerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSourceLoggerProvider",
+            "sourceHandle": "TraceSourceLoggerProviderleftsource",
+            "target": "ILoggerProvider",
+            "targetHandle": "ILoggerProviderrighttarget",
+            "id": "reactflow__edge-TraceSourceLoggerProviderTraceSourceLoggerProviderleftsource-ILoggerProviderILoggerProviderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TraceSourceLoggerProvider",
+            "sourceHandle": "TraceSourceLoggerProviderbottomsource",
+            "target": "TraceSourceLogger",
+            "targetHandle": "TraceSourceLoggertoptarget",
+            "id": "reactflow__edge-TraceSourceLoggerProviderTraceSourceLoggerProviderbottomsource-TraceSourceLoggerTraceSourceLoggertoptarget"
         }
     ],
     "viewport": {
-        "x": 558.2143593393089,
-        "y": 358.6437494010324,
-        "zoom": 0.8937168636377776
+        "x": 435.2015949329211,
+        "y": 390.8958982114417,
+        "zoom": 0.6645200553936874
     }
 }
