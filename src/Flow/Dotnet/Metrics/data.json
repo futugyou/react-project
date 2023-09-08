@@ -482,8 +482,8 @@
             "height": 58,
             "id": "Measurement",
             "position": {
-                "x": 1627.673131691498,
-                "y": 1418.4790267509404
+                "x": 1741.4182035365757,
+                "y": 1402.6489788542222
             },
             "type": "custom",
             "data": {
@@ -502,8 +502,230 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1627.673131691498,
-                "y": 1418.4790267509404
+                "x": 1741.4182035365757,
+                "y": 1402.6489788542222
+            },
+            "dragging": false
+        },
+        {
+            "width": 557,
+            "height": 136,
+            "id": "IMetricsBuilder",
+            "position": {
+                "x": 1001.9887717502411,
+                "y": 1616.0012181786444
+            },
+            "type": "custom",
+            "data": {
+                "id": "IMetricsBuilder",
+                "name": "IMetricsBuilder",
+                "methods": [
+                    "public static IMetricsBuilder AddListener<T>(this IMetricsBuilder builder)",
+                    "public static IMetricsBuilder AddListener(this IMetricsBuilder builder, IMetricsListener listener)",
+                    "public static IMetricsBuilder ClearListeners(this IMetricsBuilder builder)",
+                    "public static IMetricsBuilder EnableMetrics(this IMetricsBuilder builder, string? meterName)",
+                    "public static IMetricsBuilder DisableMetrics(this IMetricsBuilder builder, string? meterName)"
+                ],
+                "parent": "",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "IServiceCollection Services { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1001.9887717502411,
+                "y": 1616.0012181786444
+            },
+            "dragging": false
+        },
+        {
+            "width": 478,
+            "height": 120,
+            "id": "IMetricsListener",
+            "position": {
+                "x": 1620.225247859206,
+                "y": 1503.9043844703288
+            },
+            "type": "custom",
+            "data": {
+                "id": "IMetricsListener",
+                "name": "IMetricsListener",
+                "properties": [
+                    "public string Name { get; }"
+                ],
+                "methods": [
+                    "public void Initialize(IObservableInstrumentsSource source)",
+                    "public bool InstrumentPublished(Instrument instrument, out object? userState)",
+                    "public void MeasurementsCompleted(Instrument instrument, object? userState)",
+                    "public MeasurementHandlers GetMeasurementHandlers()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1620.225247859206,
+                "y": 1503.9043844703288
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IObservableInstrumentsSource",
+            "position": {
+                "x": 2197.4801760141277,
+                "y": 1496.1465261870735
+            },
+            "type": "custom",
+            "data": {
+                "id": "IObservableInstrumentsSource",
+                "name": "IObservableInstrumentsSource",
+                "methods": [
+                    "public void RecordObservableInstruments()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2197.4801760141277,
+                "y": 1496.1465261870735
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 106,
+            "id": "InstrumentRule",
+            "position": {
+                "x": 1650.3918661930256,
+                "y": 1782.5713922391662
+            },
+            "type": "custom",
+            "data": {
+                "id": "InstrumentRule",
+                "name": "InstrumentRule",
+                "properties": [
+                    "public string? MeterName { get; }",
+                    "public string? InstrumentName { get; }",
+                    "public string? ListenerName { get; }",
+                    "public MeterScope Scopes { get; }",
+                    "public bool Enable { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1650.3918661930256,
+                "y": 1782.5713922391662
+            },
+            "dragging": false
+        },
+        {
+            "width": 415,
+            "height": 138,
+            "id": "MeasurementHandlers",
+            "position": {
+                "x": 2051.846018015174,
+                "y": 1678.1351618622796
+            },
+            "type": "custom",
+            "data": {
+                "id": "MeasurementHandlers",
+                "name": "MeasurementHandlers",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public MeasurementCallback<byte>? ByteHandler { get; set; }",
+                    "public MeasurementCallback<short>? ShortHandler { get; set; }",
+                    "public MeasurementCallback<int>? IntHandler { get; set; }",
+                    "public MeasurementCallback<long>? LongHandler { get; set; }",
+                    "public MeasurementCallback<float>? FloatHandler { get; set; }",
+                    "public MeasurementCallback<double>? DoubleHandler { get; set; }",
+                    "public MeasurementCallback<decimal>? DecimalHandler { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2051.846018015174,
+                "y": 1678.1351618622796
+            },
+            "dragging": false
+        },
+        {
+            "width": 555,
+            "height": 88,
+            "id": "MetricsOptions",
+            "position": {
+                "x": 1004.0302558419917,
+                "y": 1814.738747731682
+            },
+            "type": "custom",
+            "data": {
+                "id": "MetricsOptions",
+                "name": "MetricsOptions",
+                "properties": [
+                    "public IList<InstrumentRule> Rules { get; }"
+                ],
+                "methods": [
+                    "public static MetricsOptions EnableMetrics(this MetricsOptions options, string? meterName)",
+                    "public static MetricsOptions DisableMetrics(this MetricsOptions options, string? meterName)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1004.0302558419917,
+                "y": 1814.738747731682
             },
             "dragging": false
         }
@@ -796,11 +1018,107 @@
             "target": "ObservableGauge",
             "targetHandle": "ObservableGauge<T>toptarget",
             "id": "reactflow__edge-MeterMeterrightsource-ObservableGaugeObservableGauge<T>toptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMetricsListener",
+            "sourceHandle": "IMetricsListenertopsource",
+            "target": "Instrument",
+            "targetHandle": "Instrumentrighttarget",
+            "id": "reactflow__edge-IMetricsListenerIMetricsListenertopsource-InstrumentInstrumentrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMetricsListener",
+            "sourceHandle": "IMetricsListenerrightsource",
+            "target": "IObservableInstrumentsSource",
+            "targetHandle": "IObservableInstrumentsSourcelefttarget",
+            "id": "reactflow__edge-IMetricsListenerIMetricsListenerrightsource-IObservableInstrumentsSourceIObservableInstrumentsSourcelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMetricsBuilder",
+            "sourceHandle": "IMetricsBuilderrightsource",
+            "target": "IMetricsListener",
+            "targetHandle": "IMetricsListenerlefttarget",
+            "id": "reactflow__edge-IMetricsBuilderIMetricsBuilderrightsource-IMetricsListenerIMetricsListenerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMetricsBuilder",
+            "sourceHandle": "IMetricsBuilderbottomsource",
+            "target": "MetricsOptions",
+            "targetHandle": "MetricsOptionstoptarget",
+            "id": "reactflow__edge-IMetricsBuilderIMetricsBuilderbottomsource-MetricsOptionsMetricsOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MetricsOptions",
+            "sourceHandle": "MetricsOptionsrightsource",
+            "target": "InstrumentRule",
+            "targetHandle": "InstrumentRulelefttarget",
+            "id": "reactflow__edge-MetricsOptionsMetricsOptionsrightsource-InstrumentRuleInstrumentRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMetricsListener",
+            "sourceHandle": "IMetricsListenerbottomsource",
+            "target": "MeasurementHandlers",
+            "targetHandle": "MeasurementHandlerslefttarget",
+            "id": "reactflow__edge-IMetricsListenerIMetricsListenerbottomsource-MeasurementHandlersMeasurementHandlerslefttarget"
         }
     ],
     "viewport": {
-        "x": -947.1797331800576,
-        "y": -688.0464167403129,
-        "zoom": 0.9938530019485398
+        "x": -400.58023392155155,
+        "y": -478.0911610217314,
+        "zoom": 0.7087870666295835
     }
 }
