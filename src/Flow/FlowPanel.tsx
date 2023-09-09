@@ -42,6 +42,9 @@ const FlowPanel = (props: any) => {
                         <li className="nav-item">
                             <NavLink to="/flow/dotnet/cache" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Cache</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink to="/flow/dotnet/httpclient" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >HttpClient</NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="flow-panel-content">

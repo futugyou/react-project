@@ -14,6 +14,7 @@ const ILogger = lazy(() => import('./Dotnet/ILogger/Flow'))
 const Metrics = lazy(() => import('./Dotnet/Metrics/Flow'))
 const ObjectPool = lazy(() => import('./Dotnet/ObjectPool/Flow'))
 const Cache = lazy(() => import('./Dotnet/Cache/Flow'))
+const HttpClient = lazy(() => import('./Dotnet/HttpClient/Flow'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -66,6 +67,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/cache",
             element: <Cache />,
+        },
+        {
+            path: "dotnet/httpclient",
+            element: <HttpClient />,
         },
     ]
 }
