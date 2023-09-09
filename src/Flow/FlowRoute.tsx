@@ -12,6 +12,7 @@ const EventSource = lazy(() => import('./Dotnet/EventSource/Flow'))
 const DiagnosticSource = lazy(() => import('./Dotnet/DiagnosticSource/Flow'))
 const ILogger = lazy(() => import('./Dotnet/ILogger/Flow'))
 const Metrics = lazy(() => import('./Dotnet/Metrics/Flow'))
+const ObjectPool = lazy(() => import('./Dotnet/ObjectPool/Flow'))
 
 export const FlowRoute: RouteObject = {
     path: "/flow",
@@ -56,6 +57,10 @@ export const FlowRoute: RouteObject = {
         {
             path: "dotnet/metrics",
             element: <Metrics />,
+        },
+        {
+            path: "dotnet/objectpool",
+            element: <ObjectPool />,
         },
     ]
 }
