@@ -1,9 +1,587 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 835,
+            "height": 154,
+            "id": "IMemoryCache",
+            "position": {
+                "x": -828.1710671405444,
+                "y": -97.66281784878453
+            },
+            "type": "custom",
+            "data": {
+                "id": "IMemoryCache",
+                "name": "IMemoryCache",
+                "parent": "IDisposable",
+                "methods": [
+                    "bool TryGetValue(object key, out object? value)",
+                    "ICacheEntry CreateEntry(object key)",
+                    "void Remove(object key)",
+                    "MemoryCacheStatistics? GetCurrentStatistics()",
+                    "public static TItem? Get<TItem>(this IMemoryCache cache, object key)",
+                    "public static bool TryGetValue<TItem>(this IMemoryCache cache, object key, out TItem? value)",
+                    "public static TItem Set<TItem>(this IMemoryCache cache, object key, TItem value, MemoryCacheEntryOptions? options)",
+                    "public static async Task<TItem?> GetOrCreateAsync<TItem>(this IMemoryCache cache, object key, Func<ICacheEntry, Task<TItem>> factory)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -828.1710671405444,
+                "y": -97.66281784878453
+            },
+            "dragging": false
+        },
+        {
+            "width": 889,
+            "height": 186,
+            "id": "IDistributedCache",
+            "position": {
+                "x": 169.84092179742117,
+                "y": -96.19699078752643
+            },
+            "type": "custom",
+            "data": {
+                "id": "IDistributedCache",
+                "name": "IDistributedCache",
+                "methods": [
+                    "byte[]? Get(string key)",
+                    "Task<byte[]?> GetAsync(string key, CancellationToken token)",
+                    "void Set(string key, byte[] value, DistributedCacheEntryOptions options)",
+                    "Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token)",
+                    "void Refresh(string key)",
+                    "Task RefreshAsync(string key, CancellationToken token)",
+                    "void Remove(string key)",
+                    "Task RemoveAsync(string key, CancellationToken token)",
+                    "public static Task SetStringAsync(this IDistributedCache cache, string key, string value, DistributedCacheEntryOptions options, CancellationToken token)",
+                    "public static async Task<string?> GetStringAsync(this IDistributedCache cache, string key, CancellationToken token)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 169.84092179742117,
+                "y": -96.19699078752643
+            },
+            "dragging": false
+        },
+        {
+            "width": 640,
+            "height": 312,
+            "id": "ICacheEntry",
+            "position": {
+                "x": -322.54273966601494,
+                "y": 227.6251657307514
+            },
+            "type": "custom",
+            "data": {
+                "id": "ICacheEntry",
+                "name": "ICacheEntry",
+                "parent": "IDisposable",
+                "properties": [
+                    "object Key { get; }",
+                    "object? Value { get; set; }",
+                    "DateTimeOffset? AbsoluteExpiration { get; set; }",
+                    "TimeSpan? AbsoluteExpirationRelativeToNow { get; set; }",
+                    "TimeSpan? SlidingExpiration { get; set; }",
+                    "IList<IChangeToken> ExpirationTokens { get; }",
+                    "IList<PostEvictionCallbackRegistration> PostEvictionCallbacks { get; }",
+                    "CacheItemPriority Priority { get; set; }",
+                    "long? Size { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public static ICacheEntry SetPriority(this ICacheEntry entry, CacheItemPriority priority)",
+                    "public static ICacheEntry AddExpirationToken(this ICacheEntry entry, IChangeToken expirationToken)",
+                    "public static ICacheEntry SetAbsoluteExpiration(this ICacheEntry entry, TimeSpan relative)",
+                    "public static ICacheEntry SetSlidingExpiration(this ICacheEntry entry, TimeSpan offset)",
+                    "public static ICacheEntry RegisterPostEvictionCallback(this ICacheEntry entry, PostEvictionDelegate callback)",
+                    "public static ICacheEntry SetValue(this ICacheEntry entry, object? value)",
+                    "public static ICacheEntry SetSize(this ICacheEntry entry, long size)",
+                    "public static ICacheEntry SetOptions(this ICacheEntry entry, MemoryCacheEntryOptions options)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -322.54273966601494,
+                "y": 227.6251657307514
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 90,
+            "id": "MemoryCacheStatistics",
+            "position": {
+                "x": -240.22893289724666,
+                "y": 105.47869437018343
+            },
+            "type": "custom",
+            "data": {
+                "id": "MemoryCacheStatistics",
+                "name": "MemoryCacheStatistics",
+                "properties": [
+                    "public long CurrentEntryCount { get; init; }",
+                    "public long? CurrentEstimatedSize { get; init; }",
+                    "public long TotalMisses { get; init; }",
+                    "public long TotalHits { get; init; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -240.22893289724666,
+                "y": 105.47869437018343
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 90,
+            "id": "CacheItemPriority",
+            "position": {
+                "x": -701.9057042799928,
+                "y": 317.0734594262873
+            },
+            "type": "custom",
+            "data": {
+                "id": "CacheItemPriority",
+                "name": "CacheItemPriority",
+                "properties": [
+                    "Low",
+                    "Normal",
+                    "High",
+                    "NeverRemove"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -701.9057042799928,
+                "y": 317.0734594262873
+            },
+            "dragging": false
+        },
+        {
+            "width": 347,
+            "height": 58,
+            "id": "PostEvictionCallbackRegistration",
+            "position": {
+                "x": -848.0580257966069,
+                "y": 444.2509925352718
+            },
+            "type": "custom",
+            "data": {
+                "id": "PostEvictionCallbackRegistration",
+                "name": "PostEvictionCallbackRegistration",
+                "properties": [
+                    "public PostEvictionDelegate? EvictionCallback { get; set; }",
+                    " public object? State { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -848.0580257966069,
+                "y": 444.2509925352718
+            },
+            "dragging": false
+        },
+        {
+            "width": 625,
+            "height": 42,
+            "id": "PostEvictionDelegate",
+            "position": {
+                "x": -804.2708775496844,
+                "y": 568.0941840666522
+            },
+            "type": "custom",
+            "data": {
+                "id": "PostEvictionDelegate",
+                "name": "PostEvictionDelegate",
+                "methods": [
+                    "public delegate void PostEvictionDelegate(object key, object? value, EvictionReason reason, object? state)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -804.2708775496844,
+                "y": 568.0941840666522
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 122,
+            "id": "EvictionReason",
+            "position": {
+                "x": -479.2151260149217,
+                "y": 675.9265967814655
+            },
+            "type": "custom",
+            "data": {
+                "id": "EvictionReason",
+                "name": "EvictionReason",
+                "properties": [
+                    "None",
+                    "Removed",
+                    "Replaced",
+                    "Expired",
+                    "TokenExpired",
+                    "Capacity"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -479.2151260149217,
+                "y": 675.9265967814655
+            },
+            "dragging": false
+        },
+        {
+            "width": 454,
+            "height": 138,
+            "id": "MemoryCacheEntryOptions",
+            "position": {
+                "x": -825.9072214733976,
+                "y": 137.14124434030953
+            },
+            "type": "custom",
+            "data": {
+                "id": "MemoryCacheEntryOptions",
+                "name": "MemoryCacheEntryOptions",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public DateTimeOffset? AbsoluteExpiration",
+                    "public TimeSpan? AbsoluteExpirationRelativeToNow",
+                    "public TimeSpan? SlidingExpiration",
+                    "public IList<IChangeToken> ExpirationTokens { get; }",
+                    "public IList<PostEvictionCallbackRegistration> PostEvictionCallbacks { get; }",
+                    "public CacheItemPriority Priority { get; set; }",
+                    "public long? Size"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -825.9072214733976,
+                "y": 137.14124434030953
+            },
+            "dragging": false
+        },
+        {
+            "width": 802,
+            "height": 136,
+            "id": "DistributedCacheEntryOptions",
+            "position": {
+                "x": 349.07801597021285,
+                "y": 231.1605123575606
+            },
+            "type": "custom",
+            "data": {
+                "id": "DistributedCacheEntryOptions",
+                "name": "DistributedCacheEntryOptions",
+                "properties": [
+                    "public DateTimeOffset? AbsoluteExpiration",
+                    "public TimeSpan? AbsoluteExpirationRelativeToNow",
+                    "public TimeSpan? SlidingExpiration"
+                ],
+                "methods": [
+                    "public static DistributedCacheEntryOptions SetAbsoluteExpiration(this DistributedCacheEntryOptions options, TimeSpan relative)",
+                    "public static DistributedCacheEntryOptions SetAbsoluteExpiration(this DistributedCacheEntryOptions options, DateTimeOffset absolute)",
+                    "public static DistributedCacheEntryOptions SetSlidingExpiration(this DistributedCacheEntryOptions options, TimeSpan offset)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 349.07801597021285,
+                "y": 231.1605123575606
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMemoryCache",
+            "sourceHandle": "IMemoryCachebottomsource",
+            "target": "ICacheEntry",
+            "targetHandle": "ICacheEntrytoptarget",
+            "id": "reactflow__edge-IMemoryCacheIMemoryCachebottomsource-ICacheEntryICacheEntrytoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMemoryCache",
+            "sourceHandle": "IMemoryCachebottomsource",
+            "target": "MemoryCacheStatistics",
+            "targetHandle": "MemoryCacheStatisticstoptarget",
+            "id": "reactflow__edge-IMemoryCacheIMemoryCachebottomsource-MemoryCacheStatisticsMemoryCacheStatisticstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICacheEntry",
+            "sourceHandle": "ICacheEntryleftsource",
+            "target": "CacheItemPriority",
+            "targetHandle": "CacheItemPriorityrighttarget",
+            "id": "reactflow__edge-ICacheEntryICacheEntryleftsource-CacheItemPriorityCacheItemPriorityrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICacheEntry",
+            "sourceHandle": "ICacheEntryleftsource",
+            "target": "PostEvictionCallbackRegistration",
+            "targetHandle": "PostEvictionCallbackRegistrationrighttarget",
+            "id": "reactflow__edge-ICacheEntryICacheEntryleftsource-PostEvictionCallbackRegistrationPostEvictionCallbackRegistrationrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICacheEntry",
+            "sourceHandle": "ICacheEntrybottomsource",
+            "target": "PostEvictionDelegate",
+            "targetHandle": "PostEvictionDelegaterighttarget",
+            "id": "reactflow__edge-ICacheEntryICacheEntrybottomsource-PostEvictionDelegatePostEvictionDelegaterighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "PostEvictionCallbackRegistration",
+            "sourceHandle": "PostEvictionCallbackRegistrationbottomsource",
+            "target": "PostEvictionDelegate",
+            "targetHandle": "PostEvictionDelegatetoptarget",
+            "id": "reactflow__edge-PostEvictionCallbackRegistrationPostEvictionCallbackRegistrationbottomsource-PostEvictionDelegatePostEvictionDelegatetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "PostEvictionDelegate",
+            "sourceHandle": "PostEvictionDelegatebottomsource",
+            "target": "EvictionReason",
+            "targetHandle": "EvictionReasontoptarget",
+            "id": "reactflow__edge-PostEvictionDelegatePostEvictionDelegatebottomsource-EvictionReasonEvictionReasontoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IMemoryCache",
+            "sourceHandle": "IMemoryCachebottomsource",
+            "target": "MemoryCacheEntryOptions",
+            "targetHandle": "MemoryCacheEntryOptionstoptarget",
+            "selected": false,
+            "id": "reactflow__edge-IMemoryCacheIMemoryCachebottomsource-MemoryCacheEntryOptionsMemoryCacheEntryOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IDistributedCache",
+            "sourceHandle": "IDistributedCachebottomsource",
+            "target": "DistributedCacheEntryOptions",
+            "targetHandle": "DistributedCacheEntryOptionstoptarget",
+            "id": "reactflow__edge-IDistributedCacheIDistributedCachebottomsource-DistributedCacheEntryOptionsDistributedCacheEntryOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MemoryCacheEntryOptions",
+            "sourceHandle": "MemoryCacheEntryOptionsbottomsource",
+            "target": "PostEvictionCallbackRegistration",
+            "targetHandle": "PostEvictionCallbackRegistrationtoptarget",
+            "id": "reactflow__edge-MemoryCacheEntryOptionsMemoryCacheEntryOptionsbottomsource-PostEvictionCallbackRegistrationPostEvictionCallbackRegistrationtoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MemoryCacheEntryOptions",
+            "sourceHandle": "MemoryCacheEntryOptionsbottomsource",
+            "target": "CacheItemPriority",
+            "targetHandle": "CacheItemPrioritytoptarget",
+            "id": "reactflow__edge-MemoryCacheEntryOptionsMemoryCacheEntryOptionsbottomsource-CacheItemPriorityCacheItemPrioritytoptarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": 744.9443561254087,
+        "y": 180.86846483256664,
+        "zoom": 0.7857939920490526
     }
 }
