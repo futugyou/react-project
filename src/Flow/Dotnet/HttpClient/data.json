@@ -1,9 +1,1217 @@
 {
-    "nodes": [],
-    "edges": [],
+    "nodes": [
+        {
+            "width": 957,
+            "height": 136,
+            "id": "HttpMessageHandlerBuilder",
+            "position": {
+                "x": 169.3940559855547,
+                "y": 234.87223558906163
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpMessageHandlerBuilder",
+                "name": "HttpMessageHandlerBuilder",
+                "properties": [
+                    "public abstract string? Name { get; set; }",
+                    "public abstract HttpMessageHandler PrimaryHandler { get; set; }",
+                    "public abstract IList<DelegatingHandler> AdditionalHandlers { get; }",
+                    "public virtual IServiceProvider Services { get; }"
+                ],
+                "methods": [
+                    "public abstract HttpMessageHandler Build()",
+                    "protected internal static HttpMessageHandler CreateHandlerPipeline(HttpMessageHandler primaryHandler, IEnumerable<DelegatingHandler> additionalHandlers)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 169.3940559855547,
+                "y": 234.87223558906163
+            },
+            "dragging": false
+        },
+        {
+            "width": 415,
+            "height": 42,
+            "id": "DefaultHttpMessageHandlerBuilder",
+            "position": {
+                "x": 1212.3468337633324,
+                "y": 280.5623397557283
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultHttpMessageHandlerBuilder",
+                "name": "DefaultHttpMessageHandlerBuilder",
+                "parent": "HttpMessageHandlerBuilder",
+                "properties": [],
+                "methods": [
+                    "public DefaultHttpMessageHandlerBuilder(IServiceProvider services)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1212.3468337633324,
+                "y": 280.5623397557283
+            },
+            "dragging": false
+        },
+        {
+            "width": 812,
+            "height": 90,
+            "id": "HttpMessageHandler",
+            "position": {
+                "x": 244.52518154067639,
+                "y": 441.0721166401681
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpMessageHandler",
+                "name": "HttpMessageHandler",
+                "parent": "IDisposable",
+                "properties": [],
+                "methods": [
+                    "protected internal abstract Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)",
+                    "protected internal virtual HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)",
+                    "public void Dispose()",
+                    "protected virtual void Dispose(bool disposing)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 244.52518154067639,
+                "y": 441.0721166401681
+            },
+            "dragging": false
+        },
+        {
+            "width": 399,
+            "height": 72,
+            "id": "DelegatingHandler",
+            "position": {
+                "x": 1129.292791307692,
+                "y": 430.8120375738262
+            },
+            "type": "custom",
+            "data": {
+                "id": "DelegatingHandler",
+                "name": "DelegatingHandler",
+                "parent": "HttpMessageHandler",
+                "properties": [
+                    "public HttpMessageHandler? InnerHandler"
+                ],
+                "methods": [
+                    "protected DelegatingHandler(HttpMessageHandler innerHandler)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1129.292791307692,
+                "y": 430.8120375738262
+            },
+            "dragging": false
+        },
+        {
+            "width": 408,
+            "height": 58,
+            "id": "IHttpClientFactory",
+            "position": {
+                "x": 210.29521153595442,
+                "y": 636.8822039617733
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHttpClientFactory",
+                "name": "IHttpClientFactory",
+                "methods": [
+                    "HttpClient CreateClient(string name)",
+                    "public static HttpClient CreateClient(this IHttpClientFactory factory)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 210.29521153595442,
+                "y": 636.8822039617733
+            },
+            "dragging": false
+        },
+        {
+            "width": 547,
+            "height": 58,
+            "id": "IHttpMessageHandlerFactory",
+            "position": {
+                "x": 165.02719384616904,
+                "y": 842.8080784332537
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHttpMessageHandlerFactory",
+                "name": "IHttpMessageHandlerFactory",
+                "methods": [
+                    "HttpMessageHandler CreateHandler(string name)",
+                    "public static HttpMessageHandler CreateHandler(this IHttpMessageHandlerFactory factory)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 165.02719384616904,
+                "y": 842.8080784332537
+            },
+            "dragging": false
+        },
+        {
+            "width": 598,
+            "height": 200,
+            "id": "DefaultHttpClientFactory",
+            "position": {
+                "x": 924.9730770149263,
+                "y": 768.5692287457035
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultHttpClientFactory",
+                "name": "DefaultHttpClientFactory",
+                "parent": "IHttpClientFactory, IHttpMessageHandlerFactory",
+                "properties": [
+                    "private readonly IHttpMessageHandlerBuilderFilter[] _filters",
+                    "internal readonly ConcurrentDictionary<string, Lazy<ActiveHandlerTrackingEntry>> _activeHandlers",
+                    "internal readonly ConcurrentQueue<ExpiredHandlerTrackingEntry> _expiredHandlers",
+                    "private readonly TimerCallback _expiryCallback"
+                ],
+                "methods": [
+                    "internal ActiveHandlerTrackingEntry CreateHandlerEntry(string name)",
+                    "internal void ExpiryTimer_Tick(object? state)",
+                    "internal virtual void StartHandlerEntryTimer(ActiveHandlerTrackingEntry entry)",
+                    "internal virtual void StartCleanupTimer()",
+                    "internal virtual void StopCleanupTimer()",
+                    "internal void CleanupTimer_Tick()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 924.9730770149263,
+                "y": 768.5692287457035
+            },
+            "dragging": false
+        },
+        {
+            "width": 554,
+            "height": 42,
+            "id": "IHttpMessageHandlerBuilderFilter",
+            "position": {
+                "x": 1626.1480423069024,
+                "y": 793.3791780994442
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHttpMessageHandlerBuilderFilter",
+                "name": "IHttpMessageHandlerBuilderFilter",
+                "methods": [
+                    "Action<HttpMessageHandlerBuilder> Configure(Action<HttpMessageHandlerBuilder> next)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1626.1480423069024,
+                "y": 793.3791780994442
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "MetricsFactoryHttpMessageHandlerFilter",
+            "position": {
+                "x": 1753.2960917906826,
+                "y": 863.1637130891762
+            },
+            "type": "custom",
+            "data": {
+                "id": "MetricsFactoryHttpMessageHandlerFilter",
+                "name": "MetricsFactoryHttpMessageHandlerFilter",
+                "parent": "IHttpMessageHandlerBuilderFilter",
+                "properties": [
+                    "private readonly IMeterFactory _meterFactory"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1753.2960917906826,
+                "y": 863.1637130891762
+            },
+            "dragging": false
+        },
+        {
+            "width": 850,
+            "height": 42,
+            "id": "LoggingHttpMessageHandlerBuilderFilter",
+            "position": {
+                "x": 1478.487786739215,
+                "y": 723.0443135774669
+            },
+            "type": "custom",
+            "data": {
+                "id": "LoggingHttpMessageHandlerBuilderFilter",
+                "name": "LoggingHttpMessageHandlerBuilderFilter",
+                "parent": "IHttpMessageHandlerBuilderFilter",
+                "properties": [],
+                "methods": [
+                    "public LoggingHttpMessageHandlerBuilderFilter(IServiceProvider serviceProvider, IOptionsMonitor<HttpClientFactoryOptions> optionsMonitor)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1478.487786739215,
+                "y": 723.0443135774669
+            },
+            "dragging": false
+        },
+        {
+            "width": 558,
+            "height": 104,
+            "id": "LoggingScopeHttpMessageHandler",
+            "position": {
+                "x": 1782.9930646637292,
+                "y": 241.0603183153455
+            },
+            "type": "custom",
+            "data": {
+                "id": "LoggingScopeHttpMessageHandler",
+                "name": "LoggingScopeHttpMessageHandler",
+                "parent": "DelegatingHandler",
+                "properties": [
+                    "private readonly ILogger _logger",
+                    "private readonly HttpClientFactoryOptions? _options"
+                ],
+                "methods": [
+                    "public LoggingScopeHttpMessageHandler(ILogger logger)",
+                    "public LoggingScopeHttpMessageHandler(ILogger logger, HttpClientFactoryOptions options)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1782.9930646637292,
+                "y": 241.0603183153455
+            },
+            "dragging": false
+        },
+        {
+            "width": 558,
+            "height": 104,
+            "id": "LoggingHttpMessageHandler",
+            "position": {
+                "x": 1777.831033616261,
+                "y": 381.22401909314624
+            },
+            "type": "custom",
+            "data": {
+                "id": "LoggingHttpMessageHandler",
+                "name": "LoggingHttpMessageHandler",
+                "parent": "DelegatingHandler",
+                "properties": [
+                    "private readonly ILogger _logger",
+                    "private readonly HttpClientFactoryOptions? _options"
+                ],
+                "methods": [
+                    "public LoggingScopeHttpMessageHandler(ILogger logger)",
+                    "public LoggingScopeHttpMessageHandler(ILogger logger, HttpClientFactoryOptions options)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1777.831033616261,
+                "y": 381.22401909314624
+            },
+            "dragging": false
+        },
+        {
+            "width": 432,
+            "height": 120,
+            "id": "ActiveHandlerTrackingEntry",
+            "position": {
+                "x": 1153.073602441238,
+                "y": 1051.8920232862422
+            },
+            "type": "custom",
+            "data": {
+                "id": "ActiveHandlerTrackingEntry",
+                "name": "ActiveHandlerTrackingEntry",
+                "properties": [
+                    "public LifetimeTrackingHttpMessageHandler Handler { get; private set; }",
+                    "public TimeSpan Lifetime { get; }",
+                    "public string Name { get; }",
+                    "public IServiceScope? Scope { get; }"
+                ],
+                "methods": [
+                    "public void StartExpiryTimer(TimerCallback callback)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1153.073602441238,
+                "y": 1051.8920232862422
+            },
+            "dragging": false
+        },
+        {
+            "width": 485,
+            "height": 42,
+            "id": "LifetimeTrackingHttpMessageHandler",
+            "position": {
+                "x": 1699.292201716494,
+                "y": 519.8062473867146
+            },
+            "type": "custom",
+            "data": {
+                "id": "LifetimeTrackingHttpMessageHandler",
+                "name": "LifetimeTrackingHttpMessageHandler",
+                "parent": "DelegatingHandler",
+                "methods": [
+                    "public LifetimeTrackingHttpMessageHandler(HttpMessageHandler innerHandler)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1699.292201716494,
+                "y": 519.8062473867146
+            },
+            "dragging": false
+        },
+        {
+            "width": 427,
+            "height": 120,
+            "id": "ExpiredHandlerTrackingEntry",
+            "position": {
+                "x": 1685.5498041667047,
+                "y": 929.5785252221281
+            },
+            "type": "custom",
+            "data": {
+                "id": "ExpiredHandlerTrackingEntry",
+                "name": "ExpiredHandlerTrackingEntry",
+                "properties": [
+                    "public bool CanDispose",
+                    "public HttpMessageHandler InnerHandler { get; }",
+                    "public string Name { get; }",
+                    "public IServiceScope? Scope { get; }"
+                ],
+                "methods": [
+                    "public ExpiredHandlerTrackingEntry(ActiveHandlerTrackingEntry other)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1685.5498041667047,
+                "y": 929.5785252221281
+            },
+            "dragging": false
+        },
+        {
+            "width": 1102,
+            "height": 200,
+            "id": "IHttpClientBuilder",
+            "position": {
+                "x": 1146.6316184946459,
+                "y": 1213.6138331072327
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHttpClientBuilder",
+                "name": "IHttpClientBuilder",
+                "properties": [
+                    "string Name { get; }",
+                    "IServiceCollection Services { get; }"
+                ],
+                "methods": [
+                    "public static IHttpClientBuilder ConfigureHttpClient(this IHttpClientBuilder builder, Action<HttpClient> configureClient)",
+                    "public static IHttpClientBuilder AddHttpMessageHandler(this IHttpClientBuilder builder, Func<DelegatingHandler> configureHandler)",
+                    "public static IHttpClientBuilder ConfigurePrimaryHttpMessageHandler(this IHttpClientBuilder builder, Func<HttpMessageHandler> configureHandler)",
+                    "public static IHttpClientBuilder UseSocketsHttpHandler(this IHttpClientBuilder builder, Action<ISocketsHttpHandlerBuilder> configureBuilder) ",
+                    "public static IHttpClientBuilder AddTypedClient<TClient>(this IHttpClientBuilder builder)",
+                    "public static IHttpClientBuilder RedactLoggedHeaders(this IHttpClientBuilder builder, Func<string, bool> shouldRedactHeaderValue)",
+                    "public static IHttpClientBuilder SetHandlerLifetime(this IHttpClientBuilder builder, TimeSpan handlerLifetime)",
+                    "public static IHttpClientBuilder ConfigureAdditionalHttpMessageHandlers(this IHttpClientBuilder builder, Action<IList<DelegatingHandler>, IServiceProvider> configureAdditionalHandlers)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1146.6316184946459,
+                "y": 1213.6138331072327
+            },
+            "dragging": false
+        },
+        {
+            "width": 436,
+            "height": 42,
+            "id": "DefaultHttpClientBuilder",
+            "position": {
+                "x": 1732.2184801510211,
+                "y": 1101.4289183890364
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultHttpClientBuilder",
+                "name": "DefaultHttpClientBuilder",
+                "parent": "IHttpClientBuilder",
+                "methods": [
+                    "public DefaultHttpClientBuilder(IServiceCollection services, string name)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1732.2184801510211,
+                "y": 1101.4289183890364
+            },
+            "dragging": false
+        },
+        {
+            "width": 734,
+            "height": 152,
+            "id": "HttpMessageInvoker",
+            "position": {
+                "x": 240.79183041456383,
+                "y": 1236.784671504109
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpMessageInvoker",
+                "name": "HttpMessageInvoker",
+                "parent": "IDisposable",
+                "properties": [
+                    "private readonly bool _disposeHandler",
+                    "private readonly HttpMessageHandler _handler"
+                ],
+                "methods": [
+                    "public HttpMessageInvoker(HttpMessageHandler handler, bool disposeHandler)",
+                    "public virtual HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)",
+                    "public virtual Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)",
+                    "public void Dispose()",
+                    "protected virtual void Dispose(bool disposing)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 240.79183041456383,
+                "y": 1236.784671504109
+            },
+            "dragging": false
+        },
+        {
+            "width": 943,
+            "height": 200,
+            "id": "HttpClient",
+            "position": {
+                "x": 162.34507332736825,
+                "y": 980.7932359843687
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpClient",
+                "name": "HttpClient",
+                "parent": "HttpMessageInvoker",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public static IWebProxy DefaultProxy",
+                    "public HttpRequestHeaders DefaultRequestHeaders",
+                    "public Version DefaultRequestVersion",
+                    "public HttpVersionPolicy DefaultVersionPolicy",
+                    "public Uri? BaseAddress",
+                    "public TimeSpan Timeout",
+                    "public long MaxResponseContentBufferSize"
+                ],
+                "methods": [
+                    "public HttpClient(HttpMessageHandler handler, bool disposeHandler)",
+                    "public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)",
+                    "public override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 162.34507332736825,
+                "y": 980.7932359843687
+            },
+            "dragging": false
+        },
+        {
+            "width": 813,
+            "height": 152,
+            "id": "HttpClientHandler",
+            "position": {
+                "x": 746.8187858036065,
+                "y": 549.6545230213077
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpClientHandler",
+                "name": "HttpClientHandler",
+                "parent": "HttpMessageHandler",
+                "properties": [
+                    "public virtual bool SupportsAutomaticDecompression",
+                    "public virtual bool SupportsProxy",
+                    "public virtual bool SupportsRedirectConfiguration",
+                    "public IMeterFactory? MeterFactory",
+                    "public CookieContainer CookieContainer"
+                ],
+                "methods": [
+                    "protected internal override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)",
+                    "protected internal override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 746.8187858036065,
+                "y": 549.6545230213077
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpMessageHandlerBuilder",
+            "sourceHandle": "DefaultHttpMessageHandlerBuilderleftsource",
+            "target": "HttpMessageHandlerBuilder",
+            "targetHandle": "HttpMessageHandlerBuilderrighttarget",
+            "id": "reactflow__edge-DefaultHttpMessageHandlerBuilderDefaultHttpMessageHandlerBuilderleftsource-HttpMessageHandlerBuilderHttpMessageHandlerBuilderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpMessageHandlerBuilder",
+            "sourceHandle": "HttpMessageHandlerBuilderbottomsource",
+            "target": "HttpMessageHandler",
+            "targetHandle": "HttpMessageHandlertoptarget",
+            "id": "reactflow__edge-HttpMessageHandlerBuilderHttpMessageHandlerBuilderbottomsource-HttpMessageHandlerHttpMessageHandlertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpMessageHandlerBuilder",
+            "sourceHandle": "HttpMessageHandlerBuilderbottomsource",
+            "target": "DelegatingHandler",
+            "targetHandle": "DelegatingHandlertoptarget",
+            "id": "reactflow__edge-HttpMessageHandlerBuilderHttpMessageHandlerBuilderbottomsource-DelegatingHandlerDelegatingHandlertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IHttpMessageHandlerFactory",
+            "sourceHandle": "IHttpMessageHandlerFactoryleftsource",
+            "target": "HttpMessageHandler",
+            "targetHandle": "HttpMessageHandlerlefttarget",
+            "id": "reactflow__edge-IHttpMessageHandlerFactoryIHttpMessageHandlerFactoryleftsource-HttpMessageHandlerHttpMessageHandlerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpClientFactory",
+            "sourceHandle": "DefaultHttpClientFactoryleftsource",
+            "target": "IHttpClientFactory",
+            "targetHandle": "IHttpClientFactoryrighttarget",
+            "id": "reactflow__edge-DefaultHttpClientFactoryDefaultHttpClientFactoryleftsource-IHttpClientFactoryIHttpClientFactoryrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpClientFactory",
+            "sourceHandle": "DefaultHttpClientFactoryleftsource",
+            "target": "IHttpMessageHandlerFactory",
+            "targetHandle": "IHttpMessageHandlerFactoryrighttarget",
+            "id": "reactflow__edge-DefaultHttpClientFactoryDefaultHttpClientFactoryleftsource-IHttpMessageHandlerFactoryIHttpMessageHandlerFactoryrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IHttpMessageHandlerBuilderFilter",
+            "sourceHandle": "IHttpMessageHandlerBuilderFilterleftsource",
+            "target": "DefaultHttpClientFactory",
+            "targetHandle": "DefaultHttpClientFactoryrighttarget",
+            "id": "reactflow__edge-IHttpMessageHandlerBuilderFilterIHttpMessageHandlerBuilderFilterleftsource-DefaultHttpClientFactoryDefaultHttpClientFactoryrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "LoggingScopeHttpMessageHandler",
+            "sourceHandle": "LoggingScopeHttpMessageHandlerleftsource",
+            "target": "DelegatingHandler",
+            "targetHandle": "DelegatingHandlerrighttarget",
+            "id": "reactflow__edge-LoggingScopeHttpMessageHandlerLoggingScopeHttpMessageHandlerleftsource-DelegatingHandlerDelegatingHandlerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "LoggingHttpMessageHandler",
+            "sourceHandle": "LoggingHttpMessageHandlerleftsource",
+            "target": "DelegatingHandler",
+            "targetHandle": "DelegatingHandlerrighttarget",
+            "id": "reactflow__edge-LoggingHttpMessageHandlerLoggingHttpMessageHandlerleftsource-DelegatingHandlerDelegatingHandlerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "LifetimeTrackingHttpMessageHandler",
+            "sourceHandle": "LifetimeTrackingHttpMessageHandlerleftsource",
+            "target": "DelegatingHandler",
+            "targetHandle": "DelegatingHandlerrighttarget",
+            "id": "reactflow__edge-LifetimeTrackingHttpMessageHandlerLifetimeTrackingHttpMessageHandlerleftsource-DelegatingHandlerDelegatingHandlerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ActiveHandlerTrackingEntry",
+            "sourceHandle": "ActiveHandlerTrackingEntryrightsource",
+            "target": "LifetimeTrackingHttpMessageHandler",
+            "targetHandle": "LifetimeTrackingHttpMessageHandlerbottomtarget",
+            "id": "reactflow__edge-ActiveHandlerTrackingEntryActiveHandlerTrackingEntryrightsource-LifetimeTrackingHttpMessageHandlerLifetimeTrackingHttpMessageHandlerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ExpiredHandlerTrackingEntry",
+            "sourceHandle": "ExpiredHandlerTrackingEntrytopsource",
+            "target": "HttpMessageHandler",
+            "targetHandle": "HttpMessageHandlerrighttarget",
+            "id": "reactflow__edge-ExpiredHandlerTrackingEntryExpiredHandlerTrackingEntrytopsource-HttpMessageHandlerHttpMessageHandlerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ActiveHandlerTrackingEntry",
+            "sourceHandle": "ActiveHandlerTrackingEntryrightsource",
+            "target": "ExpiredHandlerTrackingEntry",
+            "targetHandle": "ExpiredHandlerTrackingEntrylefttarget",
+            "id": "reactflow__edge-ActiveHandlerTrackingEntryActiveHandlerTrackingEntryrightsource-ExpiredHandlerTrackingEntryExpiredHandlerTrackingEntrylefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MetricsFactoryHttpMessageHandlerFilter",
+            "sourceHandle": "MetricsFactoryHttpMessageHandlerFiltertopsource",
+            "target": "IHttpMessageHandlerBuilderFilter",
+            "targetHandle": "IHttpMessageHandlerBuilderFilterbottomtarget",
+            "id": "reactflow__edge-MetricsFactoryHttpMessageHandlerFilterMetricsFactoryHttpMessageHandlerFiltertopsource-IHttpMessageHandlerBuilderFilterIHttpMessageHandlerBuilderFilterbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "LoggingHttpMessageHandlerBuilderFilter",
+            "sourceHandle": "LoggingHttpMessageHandlerBuilderFilterbottomsource",
+            "target": "IHttpMessageHandlerBuilderFilter",
+            "targetHandle": "IHttpMessageHandlerBuilderFiltertoptarget",
+            "id": "reactflow__edge-LoggingHttpMessageHandlerBuilderFilterLoggingHttpMessageHandlerBuilderFilterbottomsource-IHttpMessageHandlerBuilderFilterIHttpMessageHandlerBuilderFiltertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpMessageInvoker",
+            "sourceHandle": "HttpMessageInvokerleftsource",
+            "target": "HttpMessageHandler",
+            "targetHandle": "HttpMessageHandlerlefttarget",
+            "id": "reactflow__edge-HttpMessageInvokerHttpMessageInvokerleftsource-HttpMessageHandlerHttpMessageHandlerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpClient",
+            "sourceHandle": "HttpClientbottomsource",
+            "target": "HttpMessageInvoker",
+            "targetHandle": "HttpMessageInvokertoptarget",
+            "id": "reactflow__edge-HttpClientHttpClientbottomsource-HttpMessageInvokerHttpMessageInvokertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IHttpClientFactory",
+            "sourceHandle": "IHttpClientFactorybottomsource",
+            "target": "HttpClient",
+            "targetHandle": "HttpClienttoptarget",
+            "id": "reactflow__edge-IHttpClientFactoryIHttpClientFactorybottomsource-HttpClientHttpClienttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "LoggingHttpMessageHandlerBuilderFilter",
+            "sourceHandle": "LoggingHttpMessageHandlerBuilderFiltertopsource",
+            "target": "LoggingScopeHttpMessageHandler",
+            "targetHandle": "LoggingScopeHttpMessageHandlerbottomtarget",
+            "id": "reactflow__edge-LoggingHttpMessageHandlerBuilderFilterLoggingHttpMessageHandlerBuilderFiltertopsource-LoggingScopeHttpMessageHandlerLoggingScopeHttpMessageHandlerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "LoggingHttpMessageHandlerBuilderFilter",
+            "sourceHandle": "LoggingHttpMessageHandlerBuilderFiltertopsource",
+            "target": "LoggingHttpMessageHandler",
+            "targetHandle": "LoggingHttpMessageHandlerbottomtarget",
+            "id": "reactflow__edge-LoggingHttpMessageHandlerBuilderFilterLoggingHttpMessageHandlerBuilderFiltertopsource-LoggingHttpMessageHandlerLoggingHttpMessageHandlerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DelegatingHandler",
+            "sourceHandle": "DelegatingHandlerleftsource",
+            "target": "HttpMessageHandler",
+            "targetHandle": "HttpMessageHandlerrighttarget",
+            "id": "reactflow__edge-DelegatingHandlerDelegatingHandlerleftsource-HttpMessageHandlerHttpMessageHandlerrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpClientFactory",
+            "sourceHandle": "DefaultHttpClientFactorybottomsource",
+            "target": "ActiveHandlerTrackingEntry",
+            "targetHandle": "ActiveHandlerTrackingEntrytoptarget",
+            "id": "reactflow__edge-DefaultHttpClientFactoryDefaultHttpClientFactorybottomsource-ActiveHandlerTrackingEntryActiveHandlerTrackingEntrytoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpClientFactory",
+            "sourceHandle": "DefaultHttpClientFactorybottomsource",
+            "target": "ExpiredHandlerTrackingEntry",
+            "targetHandle": "ExpiredHandlerTrackingEntrylefttarget",
+            "id": "reactflow__edge-DefaultHttpClientFactoryDefaultHttpClientFactorybottomsource-ExpiredHandlerTrackingEntryExpiredHandlerTrackingEntrylefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpClientHandler",
+            "sourceHandle": "HttpClientHandlerleftsource",
+            "target": "HttpMessageHandler",
+            "targetHandle": "HttpMessageHandlerbottomtarget",
+            "id": "reactflow__edge-HttpClientHandlerHttpClientHandlerleftsource-HttpMessageHandlerHttpMessageHandlerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpClientFactory",
+            "sourceHandle": "DefaultHttpClientFactorytopsource",
+            "target": "HttpClientHandler",
+            "targetHandle": "HttpClientHandlerbottomtarget",
+            "id": "reactflow__edge-DefaultHttpClientFactoryDefaultHttpClientFactorytopsource-HttpClientHandlerHttpClientHandlerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpClient",
+            "sourceHandle": "HttpClientrightsource",
+            "target": "HttpClientHandler",
+            "targetHandle": "HttpClientHandlerbottomtarget",
+            "id": "reactflow__edge-HttpClientHttpClientrightsource-HttpClientHandlerHttpClientHandlerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHttpClientBuilder",
+            "sourceHandle": "DefaultHttpClientBuilderbottomsource",
+            "target": "IHttpClientBuilder",
+            "targetHandle": "IHttpClientBuildertoptarget",
+            "id": "reactflow__edge-DefaultHttpClientBuilderDefaultHttpClientBuilderbottomsource-IHttpClientBuilderIHttpClientBuildertoptarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": -16.385869540413523,
+        "y": -123.74742564306587,
+        "zoom": 0.7033695178286333
     }
 }
