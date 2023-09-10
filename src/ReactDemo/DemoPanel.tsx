@@ -39,7 +39,7 @@ const DemoPanel = (props: any) => {
             </OverlayTrigger>
             <div className="react-demo-container">
                 {show && (
-                    <div className="left-mune" >
+                    <div className="left-menu" >
                         <ul className="nav nav-pills flex-column mb-auto">
                             <li className="nav-item">
                                 <NavLink to="/demo/app" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>

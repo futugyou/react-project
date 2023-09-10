@@ -3,31 +3,39 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    padding: 0;
 }
 
-.flow-panel-mune {
+.flow-panel-menu {
     height: 100%;
-    width: 150px;
+    width: 200px;
     font-size: 20px;
     padding-top: 10px;
     background-color: aliceblue;
 }
 
-.flow-panel-mune>ul {
+.flow-panel-menu>ul {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
 }
 
-.flow-panel-mune>ul>li {
+.flow-panel-menu>ul>li {
     margin-bottom: 10px;
+    width: 100%;
 }
 
-.flow-panel-mune>ul>li:hover {
+.flow-panel-menu>ul>li:hover {
     background-color: aquamarine;
     cursor: pointer;
 }
 
-.flow-panel-mune>ul>li>a {
+.flow-panel-menu>ul>li>a {
     width: 100%;
     height: 100%;
     display: block;
