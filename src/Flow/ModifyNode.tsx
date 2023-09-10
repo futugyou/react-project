@@ -23,6 +23,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandleIdChange = (value: string) => {
+        value = value.trim()
         setNodeData({
             ...nodeData,
             id: value,
@@ -30,6 +31,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandleNameChange = (value: string) => {
+        value = value.trim()
         setNodeData({
             ...nodeData,
             name: value,
@@ -37,6 +39,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandleParentChange = (value: string) => {
+        value = value.trim()
         setNodeData({
             ...nodeData,
             parent: value,
@@ -44,6 +47,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandlePropertyChange = (index: number, value: string) => {
+        value = value.trim()
         if (nodeData.properties) {
             const newList = nodeData.properties.map((property, ind) => {
                 if (ind === index) {
@@ -81,6 +85,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandleMethodChange = (index: number, value: string) => {
+        value = value.trim()
         if (nodeData.methods) {
             const newList = nodeData.methods.map((property, ind) => {
                 if (ind === index) {
