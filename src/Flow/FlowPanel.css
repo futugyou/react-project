@@ -12,6 +12,7 @@
     font-size: 20px;
     padding-top: 10px;
     background-color: aliceblue;
+    overflow-y: auto;
 }
 
 .flow-panel-menu>ul {
@@ -22,20 +23,23 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    overflow-y: auto;
 }
 
-.flow-panel-menu>ul>li {
+.flow-panel-menu-group{
+    margin-bottom: 5px;
+}
+
+.flow-panel-menu-group>ul>li {
     margin-bottom: 10px;
     width: 100%;
 }
 
-.flow-panel-menu>ul>li:hover {
+.flow-panel-menu-group>ul>li:hover {
     background-color: aquamarine;
     cursor: pointer;
 }
 
-.flow-panel-menu>ul>li>a {
+.flow-panel-menu-group>ul>li>a {
     width: 100%;
     height: 100%;
     display: block;
@@ -45,4 +49,18 @@
     height: 100%;
     width: 100%;
     flex: 1;
+}
+
+.menu-group-name {
+    height: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #4b54ff;
+    background-color: #a1eeee;
+    line-height: 40px;
+}
+
+.menu-group-name:hover {
+    color: #2c36fe;
+    background-color: #57d5d5;
 }
