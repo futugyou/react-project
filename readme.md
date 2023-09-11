@@ -10,6 +10,8 @@
 
 [reactflow](https://reactflow.dev/)
 
+[lodashjs](https://www.lodashjs.com/)
+
 #### update all package
 ```
 npx npm-check-updates -u
