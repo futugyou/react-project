@@ -1,13 +1,38 @@
 import './FlowPanel.css'
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Outlet, NavLink } from "react-router-dom"
+import _ from 'lodash-es'
+import { useAnimate, ElementOrSelector } from "framer-motion"
 
 import { FlowRouteDataList } from './FlowRouteData'
-import _ from 'lodash-es'
 
 const FlowPanel = (props: any) => {
     const [showIndex, setShowIndex] = useState(0)
+    const [scope, animate] = useAnimate()
+
+    useEffect(() => {
+        const menus = document.getElementsByClassName("nav nav-pills flex-column")
+        if (menus.length <= 1) {
+            return
+        }
+
+        const current = menus[showIndex]
+
+        animate(current,
+            { opacity: 1, visibility: 'visible', height: 'auto' }, { duration: 0.5 })
+
+        for (let index = 0; index < menus.length; index++) {
+            if (index == showIndex) {
+                continue
+            }
+            const element = menus[index]
+
+            animate(element,
+                { opacity: 1, visibility: 'hidden', height: '0px' }, { duration: 0.5 })
+        }
+
+    }, [showIndex])
 
     const groups = _.mapValues(_.groupBy(FlowRouteDataList, 'group'),
         clist => clist.map(car => _.omit(car, 'group')))
@@ -18,19 +43,19 @@ const FlowPanel = (props: any) => {
                 <div className='menu-group-name' onClick={() => onGroupClick(index)}>
                     {group}
                 </div>
-                {showIndex == index && (
-                    <ul className="nav nav-pills flex-column mb-auto">
-                        {
-                            _.get(groups, group).map((a) => {
-                                return (
-                                    <li className="nav-item" key={a.name}>
-                                        <NavLink to={a.linkpath} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >{a.display}</NavLink>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                )}
+                {/* {showIndex == index && ( */}
+                <ul className="nav nav-pills flex-column mb-auto" style={{ visibility: 'hidden', height: '0px' }}>
+                    {
+                        _.get(groups, group).map((a) => {
+                            return (
+                                <li className="nav-item" key={a.name}>
+                                    <NavLink to={a.linkpath} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >{a.display}</NavLink>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+                {/* )} */}
             </div>
         )
     })
@@ -45,7 +70,7 @@ const FlowPanel = (props: any) => {
                 <div className="flow-panel-menu" >
                     {groupedLinks}
                 </div>
-                <div className="flow-panel-content">
+                <div className="flow-panel-content" ref={scope}>
                     <Outlet />
                 </div>
             </div>
