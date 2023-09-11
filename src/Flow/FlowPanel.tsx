@@ -13,25 +13,28 @@ const FlowPanel = (props: any) => {
 
     useEffect(() => {
         const menus = document.getElementsByClassName("nav nav-pills flex-column")
-        if (menus.length <= 1) {
+        if (menus.length <= 0) {
             return
         }
 
-        const current = menus[showIndex]
+        const enterAnimation = () => {
+            const current = menus[showIndex]
 
-        animate(current,
-            { opacity: 1, visibility: 'visible', height: 'auto' }, { duration: 0.5 })
+            animate(current,
+                { opacity: 1, display: 'flex' }, { duration: 0.7 })
 
-        for (let index = 0; index < menus.length; index++) {
-            if (index == showIndex) {
-                continue
+            for (let index = 0; index < menus.length; index++) {
+                if (index == showIndex) {
+                    continue
+                }
+                const element = menus[index]
+
+                animate(element,
+                    { opacity: 0, display: 'none' }, { duration: 0.7 })
             }
-            const element = menus[index]
-
-            animate(element,
-                { opacity: 1, visibility: 'hidden', height: '0px' }, { duration: 0.5 })
         }
 
+        enterAnimation()
     }, [showIndex])
 
     const groups = _.mapValues(_.groupBy(FlowRouteDataList, 'group'),
@@ -44,7 +47,7 @@ const FlowPanel = (props: any) => {
                     {group}
                 </div>
                 {/* {showIndex == index && ( */}
-                <ul className="nav nav-pills flex-column mb-auto" style={{ visibility: 'hidden', height: '0px' }}>
+                <ul className="nav nav-pills flex-column mb-auto" style={{ display: 'none' }}>
                     {
                         _.get(groups, group).map((a) => {
                             return (

@@ -114,4 +114,25 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/httpclient1',
     path: 'dotnet/httpclient1',
     element: lazy(() => import('./Dotnet/HttpClient/Flow')),
+}, {
+    name: 'objectpool11',
+    display: 'ObjectPool11',
+    group: 'Fake1',
+    linkpath: '/flow/dotnet/objectpool11',
+    path: 'dotnet/objectpool11',
+    element: lazy(() => import('./Dotnet/ObjectPool/Flow')),
+}, {
+    name: 'cache11',
+    display: 'Cache11',
+    group: 'Fake1',
+    linkpath: '/flow/dotnet/cache11',
+    path: 'dotnet/cache11',
+    element: lazy(() => import('./Dotnet/Cache/Flow')),
+}, {
+    name: 'httpclient11',
+    display: 'HttpClient11',
+    group: 'Fake1',
+    linkpath: '/flow/dotnet/httpclient11',
+    path: 'dotnet/httpclient11',
+    element: lazy(() => import('./Dotnet/HttpClient/Flow')),
 }]
