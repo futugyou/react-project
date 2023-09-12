@@ -94,6 +94,13 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     path: 'dotnet/httpclient',
     element: lazy(() => import('./Dotnet/HttpClient/Flow')),
 }, {
+    name: 'host',
+    display: 'Host',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/host',
+    path: 'dotnet/host',
+    element: lazy(() => import('./Dotnet/Host/Flow')),
+}, {
     name: 'objectpool1',
     display: 'ObjectPool1',
     group: 'Fake',
