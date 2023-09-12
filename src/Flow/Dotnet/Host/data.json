@@ -5,8 +5,8 @@
             "height": 88,
             "id": "IHost",
             "position": {
-                "x": 550.9420462895403,
-                "y": 918.3873033573902
+                "x": 685.2338413334999,
+                "y": 871.5118654646874
             },
             "type": "custom",
             "data": {
@@ -30,10 +30,6 @@
                         "type": "target"
                     },
                     {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
                         "position": "top",
                         "type": "target"
                     }
@@ -41,8 +37,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 550.9420462895403,
-                "y": 918.3873033573902
+                "x": 685.2338413334999,
+                "y": 871.5118654646874
             },
             "dragging": false
         },
@@ -51,8 +47,8 @@
             "height": 104,
             "id": "Host",
             "position": {
-                "x": 307.1686632495092,
-                "y": 1091.455520587779
+                "x": 322.3715079714668,
+                "y": 1031.911045426778
             },
             "type": "custom",
             "data": {
@@ -88,8 +84,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 307.1686632495092,
-                "y": 1091.455520587779
+                "x": 322.3715079714668,
+                "y": 1031.911045426778
             },
             "dragging": false
         },
@@ -99,7 +95,7 @@
             "id": "IHostBuilder",
             "position": {
                 "x": -359.6889602508245,
-                "y": 887.0625559570932
+                "y": 869.3259037814759
             },
             "type": "custom",
             "data": {
@@ -130,7 +126,7 @@
             "selected": false,
             "positionAbsolute": {
                 "x": -359.6889602508245,
-                "y": 887.0625559570932
+                "y": 869.3259037814759
             },
             "dragging": false
         },
@@ -139,8 +135,8 @@
             "height": 152,
             "id": "HostBuilder",
             "position": {
-                "x": -357.5417435978309,
-                "y": 1106.3365209711096
+                "x": -344.8727063295328,
+                "y": 1067.0625054393854
             },
             "type": "custom",
             "data": {
@@ -175,8 +171,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -357.5417435978309,
-                "y": 1106.3365209711096
+                "x": -344.8727063295328,
+                "y": 1067.0625054393854
             },
             "dragging": false
         },
@@ -185,8 +181,8 @@
             "height": 58,
             "id": "IHostedService",
             "position": {
-                "x": 837.5348984702134,
-                "y": 1232.5463573035343
+                "x": 851.3526340935086,
+                "y": 1185.3830140219945
             },
             "type": "custom",
             "data": {
@@ -213,8 +209,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 837.5348984702134,
-                "y": 1232.5463573035343
+                "x": 851.3526340935086,
+                "y": 1185.3830140219945
             },
             "dragging": false
         },
@@ -223,8 +219,8 @@
             "height": 42,
             "id": "BackgroundService",
             "position": {
-                "x": 781.2464308475174,
-                "y": 1328.8934564600575
+                "x": 798.4769061724732,
+                "y": 1303.6220926501226
             },
             "type": "custom",
             "data": {
@@ -243,8 +239,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 781.2464308475174,
-                "y": 1328.8934564600575
+                "x": 798.4769061724732,
+                "y": 1303.6220926501226
             },
             "dragging": false
         },
@@ -253,8 +249,8 @@
             "height": 104,
             "id": "IHostApplicationLifetime",
             "position": {
-                "x": 214.8984609537286,
-                "y": 1457.8784046386747
+                "x": 612.5880258064553,
+                "y": 1492.4879928233986
             },
             "type": "custom",
             "data": {
@@ -277,8 +273,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 214.8984609537286,
-                "y": 1457.8784046386747
+                "x": 612.5880258064553,
+                "y": 1492.4879928233986
             },
             "dragging": false
         },
@@ -287,8 +283,8 @@
             "height": 74,
             "id": "ApplicationLifetime",
             "position": {
-                "x": 159.19760779051876,
-                "y": 1328.109267507082
+                "x": 404.9769307955014,
+                "y": 1220.4224507265483
             },
             "type": "custom",
             "data": {
@@ -313,8 +309,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 159.19760779051876,
-                "y": 1328.109267507082
+                "x": 404.9769307955014,
+                "y": 1220.4224507265483
             },
             "dragging": false
         },
@@ -323,8 +319,8 @@
             "height": 90,
             "id": "IHostedLifecycleService",
             "position": {
-                "x": 1236.0209260766542,
-                "y": 1198.2813380063653
+                "x": 1237.287829803484,
+                "y": 1141.270670299024
             },
             "type": "custom",
             "data": {
@@ -350,8 +346,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1236.0209260766542,
-                "y": 1198.2813380063653
+                "x": 1237.287829803484,
+                "y": 1141.270670299024
             },
             "dragging": false
         },
@@ -360,8 +356,8 @@
             "height": 122,
             "id": "StartAsync",
             "position": {
-                "x": 1261.202357164529,
-                "y": 1314.3118108411713
+                "x": 1280.205913066976,
+                "y": 1313.0449071143416
             },
             "type": "custom",
             "data": {
@@ -378,8 +374,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1261.202357164529,
-                "y": 1314.3118108411713
+                "x": 1280.205913066976,
+                "y": 1313.0449071143416
             },
             "dragging": false
         },
@@ -388,8 +384,8 @@
             "height": 122,
             "id": "StopAsync",
             "position": {
-                "x": 1248.1197192269267,
-                "y": 1472.8570265409232
+                "x": 1278.5254086708421,
+                "y": 1470.3232190872636
             },
             "type": "custom",
             "data": {
@@ -406,8 +402,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1248.1197192269267,
-                "y": 1472.8570265409232
+                "x": 1278.5254086708421,
+                "y": 1470.3232190872636
             },
             "dragging": false
         },
@@ -416,8 +412,8 @@
             "height": 58,
             "id": "IHostLifetime",
             "position": {
-                "x": 1221.5443358935156,
-                "y": 1062.5095490037188
+                "x": 1220.277432166686,
+                "y": 1006.7657850232072
             },
             "type": "custom",
             "data": {
@@ -440,8 +436,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1221.5443358935156,
-                "y": 1062.5095490037188
+                "x": 1220.277432166686,
+                "y": 1006.7657850232072
             },
             "dragging": false
         },
@@ -450,8 +446,8 @@
             "height": 42,
             "id": "ConsoleLifetime",
             "position": {
-                "x": 1229.794258000809,
-                "y": 898.1743827343121
+                "x": 1217.1252207325108,
+                "y": 848.7651373879496
             },
             "type": "custom",
             "data": {
@@ -470,8 +466,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1229.794258000809,
-                "y": 898.1743827343121
+                "x": 1217.1252207325108,
+                "y": 848.7651373879496
             },
             "dragging": false
         },
@@ -480,8 +476,8 @@
             "height": 58,
             "id": "NullLifetime",
             "position": {
-                "x": 1183.1641097097704,
-                "y": 969.0372661982798
+                "x": 1142.6231904512163,
+                "y": 917.0942133982577
             },
             "type": "custom",
             "data": {
@@ -501,29 +497,30 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1183.1641097097704,
-                "y": 969.0372661982798
+                "x": 1142.6231904512163,
+                "y": 917.0942133982577
             },
             "dragging": false
         },
         {
             "width": 559,
-            "height": 90,
+            "height": 106,
             "id": "HostOptions",
             "position": {
-                "x": 577.6723080824117,
-                "y": 1392.8863358395622
+                "x": 690.6479344324403,
+                "y": 1368.4090542691263
             },
             "type": "custom",
             "data": {
                 "id": "HostOptions",
                 "name": "HostOptions",
-                "parent": "public TimeSpan ShutdownTimeout { get; set; } = TimeSpan.FromSeconds(30)",
+                "parent": "",
                 "properties": [
                     "public TimeSpan StartupTimeout { get; set; } = Timeout.InfiniteTimeSpan",
                     "public bool ServicesStartConcurrently { get; set; }",
                     "public bool ServicesStopConcurrently { get; set; }",
-                    "public BackgroundServiceExceptionBehavior BackgroundServiceExceptionBehavior { get; set; }"
+                    "public BackgroundServiceExceptionBehavior BackgroundServiceExceptionBehavior { get; set; }",
+                    "public TimeSpan ShutdownTimeout { get; set; } = TimeSpan.FromSeconds(30)"
                 ],
                 "connects": [
                     {
@@ -538,8 +535,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 577.6723080824117,
-                "y": 1392.8863358395622
+                "x": 690.6479344324403,
+                "y": 1368.4090542691263
             },
             "dragging": false
         },
@@ -548,8 +545,8 @@
             "height": 58,
             "id": "BackgroundServiceExceptionBehavior",
             "position": {
-                "x": 707.0666596883209,
-                "y": 1528.363517727207
+                "x": 930.0083602470363,
+                "y": 1534.0736541388615
             },
             "type": "custom",
             "data": {
@@ -568,8 +565,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 707.0666596883209,
-                "y": 1528.363517727207
+                "x": 930.0083602470363,
+                "y": 1534.0736541388615
             },
             "dragging": false
         },
@@ -578,8 +575,8 @@
             "height": 74,
             "id": "HostBuilderContext",
             "position": {
-                "x": -223.04359677010672,
-                "y": 1287.4981965494137
+                "x": -339.27747888628124,
+                "y": 1252.024892198179
             },
             "type": "custom",
             "data": {
@@ -599,8 +596,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -223.04359677010672,
-                "y": 1287.4981965494137
+                "x": -339.27747888628124,
+                "y": 1252.024892198179
             },
             "dragging": false
         },
@@ -646,8 +643,8 @@
             "height": 58,
             "id": "HostApplicationBuilder",
             "position": {
-                "x": 525.9491767203964,
-                "y": 776.8624177692277
+                "x": 655.1733568570368,
+                "y": 736.3214985106739
             },
             "type": "custom",
             "data": {
@@ -676,8 +673,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 525.9491767203964,
-                "y": 776.8624177692277
+                "x": 655.1733568570368,
+                "y": 736.3214985106739
             },
             "dragging": false
         },
@@ -686,8 +683,8 @@
             "height": 122,
             "id": "HostApplicationBuilderSettings",
             "position": {
-                "x": 1025.8665231316143,
-                "y": 743.2169001329471
+                "x": 1232.371830604873,
+                "y": 701.4090771475635
             },
             "type": "custom",
             "data": {
@@ -710,8 +707,145 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1025.8665231316143,
-                "y": 743.2169001329471
+                "x": 1232.371830604873,
+                "y": 701.4090771475635
+            },
+            "dragging": false
+        },
+        {
+            "width": 386,
+            "height": 58,
+            "id": "IServiceFactoryAdapter",
+            "position": {
+                "x": -349.15705641054205,
+                "y": 1354.2633602932533
+            },
+            "type": "custom",
+            "data": {
+                "id": "IServiceFactoryAdapter",
+                "name": "IServiceFactoryAdapter",
+                "properties": [],
+                "methods": [
+                    "object CreateBuilder(IServiceCollection services)",
+                    "IServiceProvider CreateServiceProvider(object containerBuilder)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -349.15705641054205,
+                "y": 1354.2633602932533
+            },
+            "dragging": false
+        },
+        {
+            "width": 966,
+            "height": 120,
+            "id": "ServiceFactoryAdapter",
+            "position": {
+                "x": -360.55918995201046,
+                "y": 1478.0805254885659
+            },
+            "type": "custom",
+            "data": {
+                "id": "ServiceFactoryAdapter",
+                "name": "ServiceFactoryAdapter<TContainerBuilder>",
+                "parent": "IServiceFactoryAdapter",
+                "properties": [
+                    "private IServiceProviderFactory<TContainerBuilder>? _serviceProviderFactory",
+                    "private readonly Func<HostBuilderContext>? _contextResolver",
+                    "private readonly Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>>? _factoryResolver"
+                ],
+                "methods": [
+                    "public ServiceFactoryAdapter(IServiceProviderFactory<TContainerBuilder> serviceProviderFactory)",
+                    "public ServiceFactoryAdapter(Func<HostBuilderContext> contextResolver, Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factoryResolver)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -360.55918995201046,
+                "y": 1478.0805254885659
+            },
+            "dragging": false
+        },
+        {
+            "width": 497,
+            "height": 42,
+            "id": "IConfigureContainerAdapter",
+            "position": {
+                "x": 43.195127427869124,
+                "y": 1308.6214707640493
+            },
+            "type": "custom",
+            "data": {
+                "id": "IConfigureContainerAdapter",
+                "name": "IConfigureContainerAdapter",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "void ConfigureContainer(HostBuilderContext hostContext, object containerBuilder)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 43.195127427869124,
+                "y": 1308.6214707640493
+            },
+            "dragging": false
+        },
+        {
+            "width": 543,
+            "height": 72,
+            "id": "ConfigureContainerAdapter",
+            "position": {
+                "x": 51.293957038457506,
+                "y": 1388.1145447224235
+            },
+            "type": "custom",
+            "data": {
+                "id": "ConfigureContainerAdapter",
+                "name": "ConfigureContainerAdapter<TContainerBuilder>",
+                "parent": "IConfigureContainerAdapter",
+                "properties": [
+                    "private readonly Action<HostBuilderContext, TContainerBuilder> _action"
+                ],
+                "methods": [
+                    "public ConfigureContainerAdapter(Action<HostBuilderContext, TContainerBuilder> action)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 51.293957038457506,
+                "y": 1388.1145447224235
             },
             "dragging": false
         }
@@ -1020,11 +1154,75 @@
             "target": "HostApplicationBuilderSettings",
             "targetHandle": "HostApplicationBuilderSettingslefttarget",
             "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderrightsource-HostApplicationBuilderSettingsHostApplicationBuilderSettingslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HostBuilder",
+            "sourceHandle": "HostBuilderbottomsource",
+            "target": "IServiceFactoryAdapter",
+            "targetHandle": "IServiceFactoryAdaptertoptarget",
+            "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-IServiceFactoryAdapterIServiceFactoryAdaptertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ServiceFactoryAdapter",
+            "sourceHandle": "ServiceFactoryAdapter<TContainerBuilder>topsource",
+            "target": "IServiceFactoryAdapter",
+            "targetHandle": "IServiceFactoryAdapterbottomtarget",
+            "id": "reactflow__edge-ServiceFactoryAdapterServiceFactoryAdapter<TContainerBuilder>topsource-IServiceFactoryAdapterIServiceFactoryAdapterbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HostBuilder",
+            "sourceHandle": "HostBuilderbottomsource",
+            "target": "IConfigureContainerAdapter",
+            "targetHandle": "IConfigureContainerAdaptertoptarget",
+            "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-IConfigureContainerAdapterIConfigureContainerAdaptertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ConfigureContainerAdapter",
+            "sourceHandle": "ConfigureContainerAdapter<TContainerBuilder>topsource",
+            "target": "IConfigureContainerAdapter",
+            "targetHandle": "IConfigureContainerAdapterbottomtarget",
+            "id": "reactflow__edge-ConfigureContainerAdapterConfigureContainerAdapter<TContainerBuilder>topsource-IConfigureContainerAdapterIConfigureContainerAdapterbottomtarget"
         }
     ],
     "viewport": {
-        "x": 362.6682855316215,
-        "y": -445.9313038321143,
-        "zoom": 0.7893259596783377
+        "x": 362.9437646483572,
+        "y": -448.075181214757,
+        "zoom": 0.7900877381489663
     }
 }
