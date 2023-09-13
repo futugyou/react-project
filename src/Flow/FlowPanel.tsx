@@ -1,15 +1,17 @@
 import './FlowPanel.css'
 
 import React, { useState, useEffect } from "react"
-import { Outlet, NavLink } from "react-router-dom"
+import { Outlet, NavLink, useLocation } from "react-router-dom"
 import _ from 'lodash-es'
-import { useAnimate, ElementOrSelector } from "framer-motion"
+import { useAnimate } from "framer-motion"
 
 import { FlowRouteDataList } from './FlowRouteData'
 
 const FlowPanel = (props: any) => {
     const [showIndex, setShowIndex] = useState(0)
     const [scope, animate] = useAnimate()
+    const location = useLocation()
+    const [currentPage, setCurrentPage] = useState('/flow/dotnet/di')
 
     useEffect(() => {
         const menus = document.getElementsByClassName("nav nav-pills flex-column")
@@ -37,6 +39,24 @@ const FlowPanel = (props: any) => {
         enterAnimation()
     }, [showIndex])
 
+    useEffect(() => {
+        const pathname = location.pathname.split('/',)
+        if (pathname.length < 4) {
+            setCurrentPage('/flow/dotnet/di')
+            return
+        }
+
+        setCurrentPage(location.pathname)
+    }, [location])
+
+    const checkMenuSelect = (path: string) => {
+        if (currentPage == path) {
+            return true
+        }
+
+        return false
+    }
+
     const groups = _.mapValues(_.groupBy(FlowRouteDataList, 'group'),
         clist => clist.map(car => _.omit(car, 'group')))
 
@@ -46,19 +66,17 @@ const FlowPanel = (props: any) => {
                 <div className='menu-group-name' onClick={() => onGroupClick(index)}>
                     {group}
                 </div>
-                {/* {showIndex == index && ( */}
                 <ul className="nav nav-pills flex-column mb-auto" style={{ display: 'none' }}>
                     {
                         _.get(groups, group).map((a) => {
                             return (
-                                <li className="nav-item" key={a.name}>
+                                <li className={checkMenuSelect(a.linkpath) ? 'nav-item flow-panel-menu-hover' : 'nav-item'} key={a.name} >
                                     <NavLink to={a.linkpath} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >{a.display}</NavLink>
                                 </li>
                             )
                         })
                     }
                 </ul>
-                {/* )} */}
             </div>
         )
     })

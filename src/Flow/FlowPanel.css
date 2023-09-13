@@ -25,7 +25,7 @@
     align-items: center;
 }
 
-.flow-panel-menu-group{
+.flow-panel-menu-group {
     margin-bottom: 5px;
 }
 
@@ -35,6 +35,11 @@
 }
 
 .flow-panel-menu-group>ul>li:hover {
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+.flow-panel-menu-hover {
     background-color: aquamarine;
     cursor: pointer;
 }
