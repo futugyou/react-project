@@ -101,6 +101,13 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     path: 'dotnet/host',
     element: lazy(() => import('./Dotnet/Host/Flow')),
 }, {
+    name: 'webapp',
+    display: 'WebApplication',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/webapp',
+    path: 'dotnet/webapp',
+    element: lazy(() => import('./Dotnet/WebApplication/Flow')),
+}, {
     name: 'objectpool1',
     display: 'ObjectPool1',
     group: 'Fake',
