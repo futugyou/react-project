@@ -115,6 +115,13 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     path: 'dotnet/server',
     element: lazy(() => import('./Dotnet/Server/Flow')),
 }, {
+    name: 'staticfile',
+    display: 'StaticFile',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/staticfile',
+    path: 'dotnet/staticfile',
+    element: lazy(() => import('./Dotnet/StaticFile/Flow')),
+}, {
     name: 'objectpool1',
     display: 'ObjectPool1',
     group: 'Fake',
