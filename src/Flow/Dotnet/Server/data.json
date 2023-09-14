@@ -1,9 +1,202 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 462,
+            "height": 88,
+            "id": "IServer",
+            "position": {
+                "x": 461.33647898512095,
+                "y": 794.8581475193535
+            },
+            "type": "custom",
+            "data": {
+                "id": "IServer",
+                "name": "IServer",
+                "properties": [
+                    "IFeatureCollection Features { get; }"
+                ],
+                "methods": [
+                    "Task StartAsync<TContext>(IHttpApplication<TContext>, CancellationToken)",
+                    "Task StopAsync(CancellationToken cancellationToken)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 461.33647898512095,
+                "y": 794.8581475193535
+            },
+            "dragging": false
+        },
+        {
+            "width": 586,
+            "height": 88,
+            "id": "KestrelServer",
+            "position": {
+                "x": 54.39141125623098,
+                "y": 942.2998890699118
+            },
+            "type": "custom",
+            "data": {
+                "id": "KestrelServer",
+                "name": "KestrelServer",
+                "parent": "IServer",
+                "properties": [
+                    "public KestrelServerOptions Options",
+                    "private readonly KestrelServerImpl"
+                ],
+                "methods": [
+                    "public KestrelServer(IOptions<KestrelServerOptions>, IConnectionListenerFactory, ILoggerFactory)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 54.39141125623098,
+                "y": 942.2998890699118
+            },
+            "dragging": false
+        },
+        {
+            "width": 437,
+            "height": 168,
+            "id": "IISHttpServer",
+            "position": {
+                "x": 475.2328946240573,
+                "y": 1056.8581475193535
+            },
+            "type": "custom",
+            "data": {
+                "id": "IISHttpServer",
+                "name": "IISHttpServer",
+                "parent": "IServer",
+                "properties": [
+                    "private IISContextFactory? _iisContextFactory",
+                    "private readonly MemoryPool<byte> _memoryPool",
+                    "private GCHandle _httpServerHandle",
+                    "private readonly IHostApplicationLifetime _applicationLifetime",
+                    "private readonly IISServerOptions _options",
+                    "private readonly IISNativeApplication _nativeApplication",
+                    "private readonly ServerAddressesFeature _serverAddressesFeature"
+                ],
+                "methods": [
+                    "public bool IsWebSocketAvailable(NativeSafeHandle pInProcessHandler)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 475.2328946240573,
+                "y": 1056.8581475193535
+            },
+            "dragging": false
+        },
+        {
+            "width": 637,
+            "height": 136,
+            "id": "MessagePump",
+            "position": {
+                "x": 774.5463373574194,
+                "y": 911.9779706737577
+            },
+            "type": "custom",
+            "data": {
+                "id": "MessagePump",
+                "name": "MessagePump",
+                "parent": "IServer, IServerDelegationFeature",
+                "properties": [
+                    "private readonly HttpSysOptions _options",
+                    "private readonly ServerAddressesFeature",
+                    "internal HttpSysListener Listener { get; }",
+                    "internal IRequestContextFactory? RequestContextFactory { get; set; }",
+                    "public IFeatureCollection Features { get; }"
+                ],
+                "methods": [
+                    "public MessagePump(IOptions<HttpSysOptions> options, ILoggerFactory, IAuthenticationSchemeProvider)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 774.5463373574194,
+                "y": 911.9779706737577
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "KestrelServer",
+            "sourceHandle": "KestrelServertopsource",
+            "target": "IServer",
+            "targetHandle": "IServerbottomtarget",
+            "id": "reactflow__edge-KestrelServerKestrelServertopsource-IServerIServerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IISHttpServer",
+            "sourceHandle": "IISHttpServertopsource",
+            "target": "IServer",
+            "targetHandle": "IServerbottomtarget",
+            "id": "reactflow__edge-IISHttpServerIISHttpServertopsource-IServerIServerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MessagePump",
+            "sourceHandle": "MessagePumptopsource",
+            "target": "IServer",
+            "targetHandle": "IServerbottomtarget",
+            "id": "reactflow__edge-MessagePumpMessagePumptopsource-IServerIServerbottomtarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": 37.84125057006008,
+        "y": -720.0123424859848,
+        "zoom": 1.1486983549970349
     }
 }

@@ -16,8 +16,8 @@ const nodeTypes: NodeTypes = {
 export default function Flow() {
     return (
         <CommonFlow
-            id={'webapp'}
-            title={'WebApplication'}
+            id={'server'}
+            title={'Server'}
             initialNodes={initialNodes}
             initialEdges={initialEdges}
             nodeTypes={nodeTypes} >
