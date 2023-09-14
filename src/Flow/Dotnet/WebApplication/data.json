@@ -129,8 +129,8 @@
             "height": 184,
             "id": "HttpContext",
             "position": {
-                "x": 1237.073446875231,
-                "y": 411.0038965955614
+                "x": 1198.807717462817,
+                "y": 441.3525785433379
             },
             "type": "custom",
             "data": {
@@ -166,8 +166,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1237.073446875231,
-                "y": 411.0038965955614
+                "x": 1198.807717462817,
+                "y": 441.3525785433379
             },
             "dragging": false
         },
@@ -656,6 +656,248 @@
                 "y": 827.9884227130524
             },
             "dragging": false
+        },
+        {
+            "width": 404,
+            "height": 234,
+            "id": "GenericWebHostService",
+            "position": {
+                "x": 969.0051074132925,
+                "y": 903.1311893798519
+            },
+            "type": "custom",
+            "data": {
+                "id": "GenericWebHostService",
+                "name": "GenericWebHostService",
+                "parent": "IHostedService",
+                "properties": [
+                    "public GenericWebHostServiceOptions Options { get; }",
+                    "public IServer Server { get; }",
+                    "public ILogger Logger { get; }",
+                    "public ILogger LifetimeLogger { get; }",
+                    "public DiagnosticListener DiagnosticListener { get; }",
+                    "public ActivitySource ActivitySource { get; }",
+                    "public DistributedContextPropagator Propagator { get; }",
+                    "public IHttpContextFactory HttpContextFactory { get; }",
+                    "public IApplicationBuilderFactory ApplicationBuilderFactory { get; }",
+                    "public IEnumerable<IStartupFilter> StartupFilters { get; }",
+                    "public IConfiguration Configuration { get; }",
+                    "public IWebHostEnvironment HostingEnvironment { get; }",
+                    "public HostingMetrics HostingMetrics { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 969.0051074132925,
+                "y": 903.1311893798519
+            },
+            "dragging": false
+        },
+        {
+            "width": 447,
+            "height": 42,
+            "id": "IStartupFilter",
+            "position": {
+                "x": 1442.6981581660202,
+                "y": 869.1936345133363
+            },
+            "type": "custom",
+            "data": {
+                "id": "IStartupFilter",
+                "name": "IStartupFilter",
+                "methods": [
+                    "Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1442.6981581660202,
+                "y": 869.1936345133363
+            },
+            "dragging": false
+        },
+        {
+            "width": 513,
+            "height": 104,
+            "id": "GenericWebHostBuilder",
+            "position": {
+                "x": 1422.3484595423347,
+                "y": 969.7906748157427
+            },
+            "type": "custom",
+            "data": {
+                "id": "GenericWebHostBuilder",
+                "name": "GenericWebHostBuilder",
+                "parent": "WebHostBuilderBase, ISupportsStartup",
+                "properties": [
+                    "private HostingStartupWebHostBuilder? _hostingStartupWebHostBuilder"
+                ],
+                "methods": [
+                    "public GenericWebHostBuilder(IHostBuilder builder, WebHostBuilderOptions options)",
+                    "public IWebHostBuilder UseStartup(Type startupType)",
+                    "public IWebHostBuilder Configure(Action<IApplicationBuilder> configure)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1422.3484595423347,
+                "y": 969.7906748157427
+            },
+            "dragging": false
+        },
+        {
+            "width": 587,
+            "height": 90,
+            "id": "ISupportsStartup",
+            "position": {
+                "x": 2148.389375731557,
+                "y": 808.2974401135249
+            },
+            "type": "custom",
+            "data": {
+                "id": "ISupportsStartup",
+                "name": "ISupportsStartup",
+                "methods": [
+                    "IWebHostBuilder Configure(Action<IApplicationBuilder> configure)",
+                    "IWebHostBuilder Configure(Action<WebHostBuilderContext, IApplicationBuilder> configure)",
+                    "IWebHostBuilder UseStartup(Type startupType)",
+                    "IWebHostBuilder UseStartup<TStartup>(Func<WebHostBuilderContext, TStartup> startupFactory)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2148.389375731557,
+                "y": 808.2974401135249
+            },
+            "dragging": false
+        },
+        {
+            "width": 762,
+            "height": 122,
+            "id": "WebHostBuilderBase",
+            "position": {
+                "x": 1983.8186649209993,
+                "y": 933.2345255396848
+            },
+            "type": "custom",
+            "data": {
+                "id": "WebHostBuilderBase",
+                "name": "WebHostBuilderBase",
+                "parent": "IWebHostBuilder, ISupportsUseDefaultServiceProvider",
+                "methods": [
+                    "public IWebHostBuilder ConfigureAppConfiguration(Action<WebHostBuilderContext, IConfigurationBuilder> configureDelegate)",
+                    "public IWebHostBuilder ConfigureServices(Action<IServiceCollection> configureServices)",
+                    "public IWebHostBuilder ConfigureServices(Action<WebHostBuilderContext, IServiceCollection> configureServices)",
+                    "public IWebHostBuilder UseDefaultServiceProvider(Action<WebHostBuilderContext, ServiceProviderOptions> configure)",
+                    "protected WebHostBuilderContext GetWebHostBuilderContext(HostBuilderContext context)",
+                    "public IWebHostBuilder UseSetting(string key, string? value)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1983.8186649209993,
+                "y": 933.2345255396848
+            },
+            "dragging": false
+        },
+        {
+            "width": 676,
+            "height": 42,
+            "id": "ISupportsUseDefaultServiceProvider",
+            "position": {
+                "x": 2069.212205358168,
+                "y": 1106.9084826645922
+            },
+            "type": "custom",
+            "data": {
+                "id": "ISupportsUseDefaultServiceProvider",
+                "name": "ISupportsUseDefaultServiceProvider",
+                "methods": [
+                    "IWebHostBuilder UseDefaultServiceProvider(Action<WebHostBuilderContext, ServiceProviderOptions> configure)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2069.212205358168,
+                "y": 1106.9084826645922
+            },
+            "dragging": false
+        },
+        {
+            "width": 339,
+            "height": 122,
+            "id": "GenericFlow",
+            "position": {
+                "x": 547.3578491456399,
+                "y": 960.1860678900257
+            },
+            "type": "custom",
+            "data": {
+                "id": "GenericFlow",
+                "name": "GenericFlow",
+                "properties": [
+                    "IHost",
+                    "IHostedService",
+                    "IServer",
+                    "IHttpApplication -> HostingApplication.Context",
+                    "IApplicationBuilderFactory",
+                    "IApplicationBuilder -> Middleware -> RequestDelegate"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 547.3578491456399,
+                "y": 960.1860678900257
+            },
+            "dragging": false
         }
     ],
     "edges": [
@@ -995,11 +1237,75 @@
             "target": "IFeatureCollection",
             "targetHandle": "IFeatureCollectionrighttarget",
             "id": "reactflow__edge-IServerIServertopsource-IFeatureCollectionIFeatureCollectionrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "GenericWebHostService",
+            "sourceHandle": "GenericWebHostServicerightsource",
+            "target": "IStartupFilter",
+            "targetHandle": "IStartupFilterlefttarget",
+            "id": "reactflow__edge-GenericWebHostServiceGenericWebHostServicerightsource-IStartupFilterIStartupFilterlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "GenericWebHostBuilder",
+            "sourceHandle": "GenericWebHostBuilderrightsource",
+            "target": "ISupportsStartup",
+            "targetHandle": "ISupportsStartuplefttarget",
+            "id": "reactflow__edge-GenericWebHostBuilderGenericWebHostBuilderrightsource-ISupportsStartupISupportsStartuplefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "GenericWebHostBuilder",
+            "sourceHandle": "GenericWebHostBuilderrightsource",
+            "target": "WebHostBuilderBase",
+            "targetHandle": "WebHostBuilderBaselefttarget",
+            "id": "reactflow__edge-GenericWebHostBuilderGenericWebHostBuilderrightsource-WebHostBuilderBaseWebHostBuilderBaselefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "WebHostBuilderBase",
+            "sourceHandle": "WebHostBuilderBasebottomsource",
+            "target": "ISupportsUseDefaultServiceProvider",
+            "targetHandle": "ISupportsUseDefaultServiceProvidertoptarget",
+            "id": "reactflow__edge-WebHostBuilderBaseWebHostBuilderBasebottomsource-ISupportsUseDefaultServiceProviderISupportsUseDefaultServiceProvidertoptarget"
         }
     ],
     "viewport": {
         "x": -301.2649895089587,
-        "y": 93.46208205425796,
+        "y": 1.4478430408072995,
         "zoom": 0.6999408035310081
     }
 }
