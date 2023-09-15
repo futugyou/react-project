@@ -147,8 +147,8 @@
             "height": 90,
             "id": "SharedOptionsBase",
             "position": {
-                "x": 1427.0858512368927,
-                "y": 1004.3376032359217
+                "x": 1455.5350749495726,
+                "y": 836.3093756829044
             },
             "type": "custom",
             "data": {
@@ -167,15 +167,19 @@
                         "type": "target"
                     },
                     {
-                        "position": "top",
+                        "position": "bottom",
                         "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1427.0858512368927,
-                "y": 1004.3376032359217
+                "x": 1455.5350749495726,
+                "y": 836.3093756829044
             },
             "dragging": false
         },
@@ -184,8 +188,8 @@
             "height": 74,
             "id": "SharedOptions",
             "position": {
-                "x": 1443.1698855038694,
-                "y": 843.0096387619958
+                "x": 1471.5208616125378,
+                "y": 986.2074346662514
             },
             "type": "custom",
             "data": {
@@ -199,15 +203,15 @@
                 ],
                 "connects": [
                     {
-                        "position": "bottom",
+                        "position": "top",
                         "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1443.1698855038694,
-                "y": 843.0096387619958
+                "x": 1471.5208616125378,
+                "y": 986.2074346662514
             },
             "dragging": false
         },
@@ -281,8 +285,8 @@
             "height": 42,
             "id": "DirectoryBrowserOptions",
             "position": {
-                "x": 919.8240617080567,
-                "y": 1161.3603271415457
+                "x": 968.7211649642256,
+                "y": 1104.4618797161854
             },
             "type": "custom",
             "data": {
@@ -305,8 +309,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 919.8240617080567,
-                "y": 1161.3603271415457
+                "x": 968.7211649642256,
+                "y": 1104.4618797161854
             },
             "dragging": false
         },
@@ -374,6 +378,97 @@
             "positionAbsolute": {
                 "x": 964.698106020513,
                 "y": 1268.758857627768
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "DefaultFilesMiddleware",
+            "position": {
+                "x": 466.1069508662142,
+                "y": 699.9890775084879
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultFilesMiddleware",
+                "name": "DefaultFilesMiddleware",
+                "properties": [
+                    "private readonly DefaultFilesOptions _options",
+                    "private readonly PathString _matchUrl",
+                    "private readonly IFileProvider _fileProvider"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 466.1069508662142,
+                "y": 699.9890775084879
+            },
+            "dragging": false
+        },
+        {
+            "width": 332,
+            "height": 58,
+            "id": "DefaultFilesOptions",
+            "position": {
+                "x": 923.6210215819913,
+                "y": 708.1589716284124
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultFilesOptions",
+                "name": "DefaultFilesOptions",
+                "parent": "SharedOptionsBase",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public IList<string> DefaultFileNames { get; set; }",
+                    "\"default.htm\",\"default.html\", \"index.htm\",\"index.html\","
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 923.6210215819913,
+                "y": 708.1589716284124
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "MiddlewareOrder",
+            "position": {
+                "x": 1331.3810820345366,
+                "y": 1155.802883857673
+            },
+            "type": "custom",
+            "data": {
+                "id": "MiddlewareOrder",
+                "name": "MiddlewareOrder",
+                "properties": [
+                    "DefaultFilesMiddleware",
+                    "StaticFileMiddleware",
+                    "DirectoryBrowserMiddleware"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1331.3810820345366,
+                "y": 1155.802883857673
             },
             "dragging": false
         }
@@ -533,16 +628,49 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
+            "source": "DefaultFilesMiddleware",
+            "sourceHandle": "DefaultFilesMiddlewarerightsource",
+            "target": "DefaultFilesOptions",
+            "targetHandle": "DefaultFilesOptionslefttarget",
+            "id": "reactflow__edge-DefaultFilesMiddlewareDefaultFilesMiddlewarerightsource-DefaultFilesOptionsDefaultFilesOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
             "source": "SharedOptionsBase",
-            "sourceHandle": "SharedOptionsBasetopsource",
+            "sourceHandle": "SharedOptionsBasebottomsource",
             "target": "SharedOptions",
-            "targetHandle": "SharedOptionsbottomtarget",
-            "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBasetopsource-SharedOptionsSharedOptionsbottomtarget"
+            "targetHandle": "SharedOptionstoptarget",
+            "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBasebottomsource-SharedOptionsSharedOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultFilesOptions",
+            "sourceHandle": "DefaultFilesOptionsrightsource",
+            "target": "SharedOptionsBase",
+            "targetHandle": "SharedOptionsBasetoptarget",
+            "selected": false,
+            "id": "reactflow__edge-DefaultFilesOptionsDefaultFilesOptionsrightsource-SharedOptionsBaseSharedOptionsBasetoptarget"
         }
     ],
     "viewport": {
-        "x": -448.82839115650927,
-        "y": -796.4434419443269,
-        "zoom": 1.1486983549970373
+        "x": -382.2167502188074,
+        "y": -652.0925494494193,
+        "zoom": 1.1019801075583349
     }
 }
