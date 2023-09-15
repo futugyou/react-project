@@ -5,8 +5,8 @@
             "height": 88,
             "id": "IServer",
             "position": {
-                "x": 461.33647898512095,
-                "y": 794.8581475193535
+                "x": 1364.9141684281149,
+                "y": 249.80198136519
             },
             "type": "custom",
             "data": {
@@ -23,13 +23,21 @@
                     {
                         "position": "bottom",
                         "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 461.33647898512095,
-                "y": 794.8581475193535
+                "x": 1364.9141684281149,
+                "y": 249.80198136519
             },
             "dragging": false
         },
@@ -38,8 +46,8 @@
             "height": 88,
             "id": "KestrelServer",
             "position": {
-                "x": 54.39141125623098,
-                "y": 942.2998890699118
+                "x": 1302.6653221753136,
+                "y": 379.49349865202976
             },
             "type": "custom",
             "data": {
@@ -57,13 +65,25 @@
                     {
                         "position": "top",
                         "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 54.39141125623098,
-                "y": 942.2998890699118
+                "x": 1302.6653221753136,
+                "y": 379.49349865202976
             },
             "dragging": false
         },
@@ -72,8 +92,8 @@
             "height": 168,
             "id": "IISHttpServer",
             "position": {
-                "x": 475.2328946240573,
-                "y": 1056.8581475193535
+                "x": 825.9911271418409,
+                "y": 210.73941823105434
             },
             "type": "custom",
             "data": {
@@ -94,15 +114,15 @@
                 ],
                 "connects": [
                     {
-                        "position": "top",
+                        "position": "right",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 475.2328946240573,
-                "y": 1056.8581475193535
+                "x": 825.9911271418409,
+                "y": 210.73941823105434
             },
             "dragging": false
         },
@@ -111,8 +131,8 @@
             "height": 136,
             "id": "MessagePump",
             "position": {
-                "x": 774.5463373574194,
-                "y": 911.9779706737577
+                "x": 2087.7445238752853,
+                "y": 225.38685986535575
             },
             "type": "custom",
             "data": {
@@ -131,15 +151,468 @@
                 ],
                 "connects": [
                     {
-                        "position": "top",
+                        "position": "left",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 774.5463373574194,
-                "y": 911.9779706737577
+                "x": 2087.7445238752853,
+                "y": 225.38685986535575
+            },
+            "dragging": false
+        },
+        {
+            "width": 581,
+            "height": 184,
+            "id": "KestrelServerOptions",
+            "position": {
+                "x": 828.422628295302,
+                "y": 476.0903132217793
+            },
+            "type": "custom",
+            "data": {
+                "id": "KestrelServerOptions",
+                "name": "KestrelServerOptions",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public IServiceProvider ApplicationServices { get; set; }",
+                    "public KestrelServerLimits Limits { get; }",
+                    "public KestrelConfigurationLoader? ConfigurationLoader { get; set; }"
+                ],
+                "methods": [
+                    "public void ConfigureEndpointDefaults(Action<ListenOptions> configureOptions)",
+                    "public void ConfigureHttpsDefaults(Action<HttpsConnectionAdapterOptions> configureOptions)",
+                    "public KestrelConfigurationLoader Configure(IConfiguration config, bool reloadOnChange)",
+                    "public void Listen(IPAddress address, int port, Action<ListenOptions> configure)",
+                    "public void Listen(IPEndPoint endPoint, Action<ListenOptions> configure)",
+                    "public void Listen(EndPoint endPoint, Action<ListenOptions> configure)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 828.422628295302,
+                "y": 476.0903132217793
+            },
+            "dragging": false
+        },
+        {
+            "width": 522,
+            "height": 88,
+            "id": "IConnectionBuilder",
+            "position": {
+                "x": 827.0257969139027,
+                "y": 917.6586026261514
+            },
+            "type": "custom",
+            "data": {
+                "id": "IConnectionBuilder",
+                "name": "IConnectionBuilder",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "IServiceProvider ApplicationServices { get; }"
+                ],
+                "methods": [
+                    "IConnectionBuilder Use(Func<ConnectionDelegate, ConnectionDelegate> middleware)",
+                    "ConnectionDelegate Build()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 827.0257969139027,
+                "y": 917.6586026261514
+            },
+            "dragging": false
+        },
+        {
+            "width": 726,
+            "height": 88,
+            "id": "IMultiplexedConnectionBuilder",
+            "position": {
+                "x": 830.2647445514895,
+                "y": 1064.091453997945
+            },
+            "type": "custom",
+            "data": {
+                "id": "IMultiplexedConnectionBuilder",
+                "name": "IMultiplexedConnectionBuilder",
+                "properties": [
+                    "IServiceProvider ApplicationServices { get; }"
+                ],
+                "methods": [
+                    "IMultiplexedConnectionBuilder Use(Func<MultiplexedConnectionDelegate, MultiplexedConnectionDelegate> middleware)",
+                    "MultiplexedConnectionDelegate Build()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 830.2647445514895,
+                "y": 1064.091453997945
+            },
+            "dragging": false
+        },
+        {
+            "width": 722,
+            "height": 136,
+            "id": "ListenOptions",
+            "position": {
+                "x": 827.5434399143767,
+                "y": 732.5007360718012
+            },
+            "type": "custom",
+            "data": {
+                "id": "ListenOptions",
+                "name": "ListenOptions",
+                "parent": "IConnectionBuilder, IMultiplexedConnectionBuilder",
+                "properties": [
+                    "public EndPoint EndPoint { get; internal set; }",
+                    "public IPEndPoint? IPEndPoint",
+                    "public HttpProtocols Protocols",
+                    "private readonly List<Func<ConnectionDelegate, ConnectionDelegate>> _middleware",
+                    "private readonly List<Func<MultiplexedConnectionDelegate, MultiplexedConnectionDelegate>> _multiplexedMiddleware"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public static ListenOptions UseHttps(this ListenOptions listenOptions)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 827.5434399143767,
+                "y": 732.5007360718012
+            },
+            "dragging": false
+        },
+        {
+            "width": 643,
+            "height": 168,
+            "id": "KestrelConfigurationLoader",
+            "position": {
+                "x": 1445.3374437619595,
+                "y": 483.8944577772644
+            },
+            "type": "custom",
+            "data": {
+                "id": "KestrelConfigurationLoader",
+                "name": "KestrelConfigurationLoader",
+                "properties": [
+                    "public KestrelServerOptions Options { get; }",
+                    "public IConfiguration Configuration { get; internal set; }"
+                ],
+                "methods": [
+                    "public KestrelConfigurationLoader Endpoint(IPEndPoint endPoint, Action<ListenOptions> configure)",
+                    "public KestrelConfigurationLoader LocalhostEndpoint(int port, Action<ListenOptions> configure)",
+                    "public KestrelConfigurationLoader AnyIPEndpoint(int port, Action<ListenOptions> configure)",
+                    "public KestrelConfigurationLoader UnixSocketEndpoint(string socketPath, Action<ListenOptions> configure)",
+                    "public KestrelConfigurationLoader HandleEndpoint(ulong handle, Action<ListenOptions> configure)",
+                    "public void Load()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1445.3374437619595,
+                "y": 483.8944577772644
+            },
+            "dragging": false
+        },
+        {
+            "width": 443,
+            "height": 42,
+            "id": "IConnectionListenerFactory",
+            "position": {
+                "x": 1925.104376367603,
+                "y": 402.29406456223757
+            },
+            "type": "custom",
+            "data": {
+                "id": "IConnectionListenerFactory",
+                "name": "IConnectionListenerFactory",
+                "methods": [
+                    "ValueTask<IConnectionListener> BindAsync(EndPoint, CancellationToken)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1925.104376367603,
+                "y": 402.29406456223757
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IConnectionListenerFactorySelector",
+            "position": {
+                "x": 2155.576027894219,
+                "y": 468.52736816645154
+            },
+            "type": "custom",
+            "data": {
+                "id": "IConnectionListenerFactorySelector",
+                "name": "IConnectionListenerFactorySelector",
+                "methods": [
+                    "bool CanBind(EndPoint endpoint)"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2155.576027894219,
+                "y": 468.52736816645154
+            },
+            "dragging": false
+        },
+        {
+            "width": 348,
+            "height": 74,
+            "id": "NamedPipeTransportFactory",
+            "position": {
+                "x": 1834.0914304237167,
+                "y": 685.5886836402194
+            },
+            "type": "custom",
+            "data": {
+                "id": "NamedPipeTransportFactory",
+                "name": "NamedPipeTransportFactory",
+                "parent": "IConnectionListenerFactory, IConnectionListenerFactorySelector",
+                "properties": [
+                    "private readonly ILoggerFactory _loggerFactory",
+                    "private readonly ObjectPoolProvider _objectPoolProvider",
+                    "private readonly NamedPipeTransportOptions _options"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1834.0914304237167,
+                "y": 685.5886836402194
+            },
+            "dragging": false
+        },
+        {
+            "width": 506,
+            "height": 88,
+            "id": "IConnectionListener",
+            "position": {
+                "x": 2453.7724244686337,
+                "y": 378.8023084952778
+            },
+            "type": "custom",
+            "data": {
+                "id": "IConnectionListener",
+                "name": "IConnectionListener",
+                "parent": "IAsyncDisposable",
+                "methods": [
+                    "ValueTask<ConnectionContext?> AcceptAsync(CancellationToken cancellationToken)",
+                    "ValueTask UnbindAsync(CancellationToken cancellationToken)"
+                ],
+                "properties": [
+                    "EndPoint EndPoint { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2453.7724244686337,
+                "y": 378.8023084952778
+            },
+            "dragging": false
+        },
+        {
+            "width": 519,
+            "height": 170,
+            "id": "NamedPipeConnectionListener",
+            "position": {
+                "x": 2396.9272982116822,
+                "y": 518.0108538725731
+            },
+            "type": "custom",
+            "data": {
+                "id": "NamedPipeConnectionListener",
+                "name": "NamedPipeConnectionListener",
+                "parent": "IConnectionListener",
+                "methods": [],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly ILogger _log",
+                    "private readonly NamedPipeEndPoint _endpoint",
+                    "private readonly NamedPipeTransportOptions _options",
+                    "private readonly ObjectPool<NamedPipeServerStream> _namedPipeServerStreamPool",
+                    "private readonly Channel<ConnectionContext> _acceptedQueue",
+                    "private readonly MemoryPool<byte> _memoryPool",
+                    "private readonly PipeOptions _inputOptions",
+                    "private readonly PipeOptions _outputOptions",
+                    "private readonly NamedPipeServerStreamPoolPolicy _poolPolicy"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2396.9272982116822,
+                "y": 518.0108538725731
+            },
+            "dragging": false
+        },
+        {
+            "width": 309,
+            "height": 58,
+            "id": "SocketTransportFactory",
+            "position": {
+                "x": 2061.931702538423,
+                "y": 776.3690944065653
+            },
+            "type": "custom",
+            "data": {
+                "id": "SocketTransportFactory",
+                "name": "SocketTransportFactory",
+                "parent": "IConnectionListenerFactory, IConnectionListenerFactorySelector",
+                "methods": [],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "private readonly SocketTransportOptions _options",
+                    "private readonly ILoggerFactory _logger"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2061.931702538423,
+                "y": 776.3690944065653
+            },
+            "dragging": false
+        },
+        {
+            "width": 359,
+            "height": 106,
+            "id": "SocketConnectionListener",
+            "position": {
+                "x": 2585.269825542014,
+                "y": 720.1700244597962
+            },
+            "type": "custom",
+            "data": {
+                "id": "SocketConnectionListener",
+                "name": "SocketConnectionListener",
+                "parent": "IConnectionListener",
+                "properties": [
+                    "private readonly SocketConnectionContextFactory _factory",
+                    "private readonly ILogger _logger",
+                    "private Socket? _listenSocket",
+                    "private readonly SocketTransportOptions _options",
+                    "public EndPoint EndPoint { get; private set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2585.269825542014,
+                "y": 720.1700244597962
             },
             "dragging": false
         }
@@ -171,11 +644,11 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "IISHttpServer",
-            "sourceHandle": "IISHttpServertopsource",
+            "source": "MessagePump",
+            "sourceHandle": "MessagePumpleftsource",
             "target": "IServer",
-            "targetHandle": "IServerbottomtarget",
-            "id": "reactflow__edge-IISHttpServerIISHttpServertopsource-IServerIServerbottomtarget"
+            "targetHandle": "IServerrighttarget",
+            "id": "reactflow__edge-MessagePumpMessagePumpleftsource-IServerIServerrighttarget"
         },
         {
             "style": {
@@ -187,16 +660,256 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "MessagePump",
-            "sourceHandle": "MessagePumptopsource",
+            "source": "IISHttpServer",
+            "sourceHandle": "IISHttpServerrightsource",
             "target": "IServer",
-            "targetHandle": "IServerbottomtarget",
-            "id": "reactflow__edge-MessagePumpMessagePumptopsource-IServerIServerbottomtarget"
+            "targetHandle": "IServerlefttarget",
+            "id": "reactflow__edge-IISHttpServerIISHttpServerrightsource-IServerIServerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "KestrelServer",
+            "sourceHandle": "KestrelServerleftsource",
+            "target": "KestrelServerOptions",
+            "targetHandle": "KestrelServerOptionstoptarget",
+            "id": "reactflow__edge-KestrelServerKestrelServerleftsource-KestrelServerOptionsKestrelServerOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ListenOptions",
+            "sourceHandle": "ListenOptionsbottomsource",
+            "target": "IConnectionBuilder",
+            "targetHandle": "IConnectionBuildertoptarget",
+            "id": "reactflow__edge-ListenOptionsListenOptionsbottomsource-IConnectionBuilderIConnectionBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ListenOptions",
+            "sourceHandle": "ListenOptionsbottomsource",
+            "target": "IMultiplexedConnectionBuilder",
+            "targetHandle": "IMultiplexedConnectionBuildertoptarget",
+            "id": "reactflow__edge-ListenOptionsListenOptionsbottomsource-IMultiplexedConnectionBuilderIMultiplexedConnectionBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "KestrelServerOptions",
+            "sourceHandle": "KestrelServerOptionsbottomsource",
+            "target": "ListenOptions",
+            "targetHandle": "ListenOptionstoptarget",
+            "id": "reactflow__edge-KestrelServerOptionsKestrelServerOptionsbottomsource-ListenOptionsListenOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "KestrelServerOptions",
+            "sourceHandle": "KestrelServerOptionsrightsource",
+            "target": "KestrelConfigurationLoader",
+            "targetHandle": "KestrelConfigurationLoaderlefttarget",
+            "id": "reactflow__edge-KestrelServerOptionsKestrelServerOptionsrightsource-KestrelConfigurationLoaderKestrelConfigurationLoaderlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "KestrelServer",
+            "sourceHandle": "KestrelServerrightsource",
+            "target": "IConnectionListenerFactory",
+            "targetHandle": "IConnectionListenerFactorylefttarget",
+            "id": "reactflow__edge-KestrelServerKestrelServerrightsource-IConnectionListenerFactoryIConnectionListenerFactorylefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "NamedPipeTransportFactory",
+            "sourceHandle": "NamedPipeTransportFactorytopsource",
+            "target": "IConnectionListenerFactory",
+            "targetHandle": "IConnectionListenerFactorybottomtarget",
+            "id": "reactflow__edge-NamedPipeTransportFactoryNamedPipeTransportFactorytopsource-IConnectionListenerFactoryIConnectionListenerFactorybottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "NamedPipeTransportFactory",
+            "sourceHandle": "NamedPipeTransportFactorytopsource",
+            "target": "IConnectionListenerFactorySelector",
+            "targetHandle": "IConnectionListenerFactorySelectorbottomtarget",
+            "id": "reactflow__edge-NamedPipeTransportFactoryNamedPipeTransportFactorytopsource-IConnectionListenerFactorySelectorIConnectionListenerFactorySelectorbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "NamedPipeConnectionListener",
+            "sourceHandle": "NamedPipeConnectionListenertopsource",
+            "target": "IConnectionListener",
+            "targetHandle": "IConnectionListenerbottomtarget",
+            "id": "reactflow__edge-NamedPipeConnectionListenerNamedPipeConnectionListenertopsource-IConnectionListenerIConnectionListenerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SocketTransportFactory",
+            "sourceHandle": "SocketTransportFactorytopsource",
+            "target": "IConnectionListenerFactory",
+            "targetHandle": "IConnectionListenerFactorybottomtarget",
+            "id": "reactflow__edge-SocketTransportFactorySocketTransportFactorytopsource-IConnectionListenerFactoryIConnectionListenerFactorybottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SocketTransportFactory",
+            "sourceHandle": "SocketTransportFactorytopsource",
+            "target": "IConnectionListenerFactorySelector",
+            "targetHandle": "IConnectionListenerFactorySelectorbottomtarget",
+            "id": "reactflow__edge-SocketTransportFactorySocketTransportFactorytopsource-IConnectionListenerFactorySelectorIConnectionListenerFactorySelectorbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IConnectionListenerFactory",
+            "sourceHandle": "IConnectionListenerFactoryrightsource",
+            "target": "IConnectionListener",
+            "targetHandle": "IConnectionListenerlefttarget",
+            "id": "reactflow__edge-IConnectionListenerFactoryIConnectionListenerFactoryrightsource-IConnectionListenerIConnectionListenerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SocketConnectionListener",
+            "sourceHandle": "SocketConnectionListenertopsource",
+            "target": "IConnectionListener",
+            "targetHandle": "IConnectionListenerbottomtarget",
+            "id": "reactflow__edge-SocketConnectionListenerSocketConnectionListenertopsource-IConnectionListenerIConnectionListenerbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SocketConnectionListener",
+            "sourceHandle": "SocketConnectionListenerleftsource",
+            "target": "SocketTransportFactory",
+            "targetHandle": "SocketTransportFactoryrighttarget",
+            "id": "reactflow__edge-SocketConnectionListenerSocketConnectionListenerleftsource-SocketTransportFactorySocketTransportFactoryrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "NamedPipeConnectionListener",
+            "sourceHandle": "NamedPipeConnectionListenerleftsource",
+            "target": "NamedPipeTransportFactory",
+            "targetHandle": "NamedPipeTransportFactoryrighttarget",
+            "id": "reactflow__edge-NamedPipeConnectionListenerNamedPipeConnectionListenerleftsource-NamedPipeTransportFactoryNamedPipeTransportFactoryrighttarget"
         }
     ],
     "viewport": {
-        "x": 37.84125057006008,
-        "y": -720.0123424859848,
-        "zoom": 1.1486983549970349
+        "x": -520.6694482347623,
+        "y": -37.245074284935015,
+        "zoom": 0.7238536847616319
     }
 }
