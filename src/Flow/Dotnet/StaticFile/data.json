@@ -1,9 +1,348 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 371,
+            "height": 74,
+            "id": "StaticFileMiddleware",
+            "position": {
+                "x": 459.20367463389516,
+                "y": 846.3533443288505
+            },
+            "type": "custom",
+            "data": {
+                "id": "StaticFileMiddleware",
+                "name": "StaticFileMiddleware",
+                "properties": [
+                    "private readonly StaticFileOptions _options",
+                    "private readonly IFileProvider _fileProvider",
+                    "private readonly IContentTypeProvider _contentTypeProvider"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+                "x": 459.20367463389516,
+                "y": 846.3533443288505
+            }
+        },
+        {
+            "width": 390,
+            "height": 42,
+            "id": "IContentTypeProvider",
+            "position": {
+                "x": 449.20367463389516,
+                "y": 953.8533443288505
+            },
+            "type": "custom",
+            "data": {
+                "id": "IContentTypeProvider",
+                "name": "IContentTypeProvider",
+                "methods": [
+                    "bool TryGetContentType(string subpath, out string contentType)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 449.20367463389516,
+                "y": 953.8533443288505
+            },
+            "dragging": false
+        },
+        {
+            "width": 381,
+            "height": 42,
+            "id": "FileExtensionContentTypeProvider",
+            "position": {
+                "x": 454.20367463389516,
+                "y": 1034.3533443288507
+            },
+            "type": "custom",
+            "data": {
+                "id": "FileExtensionContentTypeProvider",
+                "name": "FileExtensionContentTypeProvider",
+                "parent": "IContentTypeProvider",
+                "methods": [],
+                "properties": [
+                    "public IDictionary<string, string> Mappings { get; private set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 454.20367463389516,
+                "y": 1034.3533443288507
+            },
+            "dragging": false
+        },
+        {
+            "width": 504,
+            "height": 122,
+            "id": "StaticFileOptions",
+            "position": {
+                "x": 866.5879596942304,
+                "y": 822.8232027142134
+            },
+            "type": "custom",
+            "data": {
+                "id": "StaticFileOptions",
+                "name": "StaticFileOptions",
+                "parent": "SharedOptionsBase",
+                "properties": [
+                    "public IContentTypeProvider ContentTypeProvider { get; set; }",
+                    "public string? DefaultContentType { get; set; }",
+                    "public bool ServeUnknownFileTypes { get; set; }",
+                    "public HttpsCompressionMode HttpsCompression { get; set; }",
+                    "public Action<StaticFileResponseContext> OnPrepareResponse { get; set; }",
+                    "public Func<StaticFileResponseContext, Task> OnPrepareResponseAsync { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 866.5879596942304,
+                "y": 822.8232027142134
+            },
+            "dragging": false
+        },
+        {
+            "width": 363,
+            "height": 90,
+            "id": "SharedOptionsBase",
+            "position": {
+                "x": 1406.6236775890022,
+                "y": 839.1244974862885
+            },
+            "type": "custom",
+            "data": {
+                "id": "SharedOptionsBase",
+                "name": "SharedOptionsBase",
+                "properties": [
+                    "protected SharedOptions SharedOptions { get; private set; }",
+                    "public PathString RequestPath",
+                    "public IFileProvider? FileProvider",
+                    "public bool RedirectToAppendTrailingSlash"
+                ],
+                "methods": [],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1406.6236775890022,
+                "y": 839.1244974862885
+            },
+            "dragging": false
+        },
+        {
+            "width": 331,
+            "height": 74,
+            "id": "SharedOptions",
+            "position": {
+                "x": 1811.4890111658956,
+                "y": 846.7989301782718
+            },
+            "type": "custom",
+            "data": {
+                "id": "SharedOptions",
+                "name": "SharedOptions",
+                "parent": "",
+                "properties": [
+                    "public PathString RequestPath",
+                    "public IFileProvider? FileProvider { get; set; }",
+                    "public bool RedirectToAppendTrailingSlash { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1811.4890111658956,
+                "y": 846.7989301782718
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "StaticFileResponseContext",
+            "position": {
+                "x": 968.9897121607628,
+                "y": 990.1325936262896
+            },
+            "type": "custom",
+            "data": {
+                "id": "StaticFileResponseContext",
+                "name": "StaticFileResponseContext",
+                "properties": [
+                    "public HttpContext Context { get; }",
+                    "public IFileInfo File { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 968.9897121607628,
+                "y": 990.1325936262896
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StaticFileMiddleware",
+            "sourceHandle": "StaticFileMiddlewarebottomsource",
+            "target": "IContentTypeProvider",
+            "targetHandle": "IContentTypeProvidertoptarget",
+            "id": "reactflow__edge-StaticFileMiddlewareStaticFileMiddlewarebottomsource-IContentTypeProviderIContentTypeProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "FileExtensionContentTypeProvider",
+            "sourceHandle": "FileExtensionContentTypeProvidertopsource",
+            "target": "IContentTypeProvider",
+            "targetHandle": "IContentTypeProviderbottomtarget",
+            "id": "reactflow__edge-FileExtensionContentTypeProviderFileExtensionContentTypeProvidertopsource-IContentTypeProviderIContentTypeProviderbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StaticFileMiddleware",
+            "sourceHandle": "StaticFileMiddlewarerightsource",
+            "target": "StaticFileOptions",
+            "targetHandle": "StaticFileOptionslefttarget",
+            "id": "reactflow__edge-StaticFileMiddlewareStaticFileMiddlewarerightsource-StaticFileOptionsStaticFileOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SharedOptionsBase",
+            "sourceHandle": "SharedOptionsBaserightsource",
+            "target": "SharedOptions",
+            "targetHandle": "SharedOptionslefttarget",
+            "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBaserightsource-SharedOptionsSharedOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StaticFileOptions",
+            "sourceHandle": "StaticFileOptionsbottomsource",
+            "target": "StaticFileResponseContext",
+            "targetHandle": "StaticFileResponseContexttoptarget",
+            "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsbottomsource-StaticFileResponseContextStaticFileResponseContexttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StaticFileOptions",
+            "sourceHandle": "StaticFileOptionsrightsource",
+            "target": "SharedOptionsBase",
+            "targetHandle": "SharedOptionsBaselefttarget",
+            "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": -482.4373178000326,
+        "y": -751.2684840571762,
+        "zoom": 1.1789232893679547
     }
 }
