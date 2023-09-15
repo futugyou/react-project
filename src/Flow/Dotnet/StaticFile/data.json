@@ -147,8 +147,8 @@
             "height": 90,
             "id": "SharedOptionsBase",
             "position": {
-                "x": 1406.6236775890022,
-                "y": 839.1244974862885
+                "x": 1427.0858512368927,
+                "y": 1004.3376032359217
             },
             "type": "custom",
             "data": {
@@ -167,15 +167,15 @@
                         "type": "target"
                     },
                     {
-                        "position": "right",
+                        "position": "top",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1406.6236775890022,
-                "y": 839.1244974862885
+                "x": 1427.0858512368927,
+                "y": 1004.3376032359217
             },
             "dragging": false
         },
@@ -184,8 +184,8 @@
             "height": 74,
             "id": "SharedOptions",
             "position": {
-                "x": 1811.4890111658956,
-                "y": 846.7989301782718
+                "x": 1443.1698855038694,
+                "y": 843.0096387619958
             },
             "type": "custom",
             "data": {
@@ -199,15 +199,15 @@
                 ],
                 "connects": [
                     {
-                        "position": "left",
+                        "position": "bottom",
                         "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1811.4890111658956,
-                "y": 846.7989301782718
+                "x": 1443.1698855038694,
+                "y": 843.0096387619958
             },
             "dragging": false
         },
@@ -238,6 +238,142 @@
             "positionAbsolute": {
                 "x": 968.9897121607628,
                 "y": 990.1325936262896
+            },
+            "dragging": false
+        },
+        {
+            "width": 316,
+            "height": 74,
+            "id": "DirectoryBrowserMiddleware",
+            "position": {
+                "x": 479.4548165808708,
+                "y": 1144.8522797661158
+            },
+            "type": "custom",
+            "data": {
+                "id": "DirectoryBrowserMiddleware",
+                "name": "DirectoryBrowserMiddleware",
+                "properties": [
+                    "private readonly DirectoryBrowserOptions _options",
+                    "private readonly IDirectoryFormatter _formatter",
+                    "private readonly IFileProvider _fileProvider"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 479.4548165808708,
+                "y": 1144.8522797661158
+            },
+            "dragging": false
+        },
+        {
+            "width": 304,
+            "height": 42,
+            "id": "DirectoryBrowserOptions",
+            "position": {
+                "x": 919.8240617080567,
+                "y": 1161.3603271415457
+            },
+            "type": "custom",
+            "data": {
+                "id": "DirectoryBrowserOptions",
+                "name": "DirectoryBrowserOptions",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "parent": "SharedOptionsBase",
+                "properties": [
+                    "public IDirectoryFormatter? Formatter { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 919.8240617080567,
+                "y": 1161.3603271415457
+            },
+            "dragging": false
+        },
+        {
+            "width": 502,
+            "height": 42,
+            "id": "IDirectoryFormatter",
+            "position": {
+                "x": 416.9258771504267,
+                "y": 1269.1044837076538
+            },
+            "type": "custom",
+            "data": {
+                "id": "IDirectoryFormatter",
+                "name": "IDirectoryFormatter",
+                "methods": [
+                    "Task GenerateContentAsync(HttpContext context, IEnumerable<IFileInfo> contents)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 416.9258771504267,
+                "y": 1269.1044837076538
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "HtmlDirectoryFormatter",
+            "position": {
+                "x": 964.698106020513,
+                "y": 1268.758857627768
+            },
+            "type": "custom",
+            "data": {
+                "id": "HtmlDirectoryFormatter",
+                "name": "HtmlDirectoryFormatter",
+                "parent": "IDirectoryFormatter",
+                "properties": [
+                    "private readonly HtmlEncoder _htmlEncoder"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 964.698106020513,
+                "y": 1268.758857627768
             },
             "dragging": false
         }
@@ -301,22 +437,6 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "SharedOptionsBase",
-            "sourceHandle": "SharedOptionsBaserightsource",
-            "target": "SharedOptions",
-            "targetHandle": "SharedOptionslefttarget",
-            "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBaserightsource-SharedOptionsSharedOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
             "source": "StaticFileOptions",
             "sourceHandle": "StaticFileOptionsbottomsource",
             "target": "StaticFileResponseContext",
@@ -338,11 +458,91 @@
             "target": "SharedOptionsBase",
             "targetHandle": "SharedOptionsBaselefttarget",
             "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DirectoryBrowserOptions",
+            "sourceHandle": "DirectoryBrowserOptionsrightsource",
+            "target": "SharedOptionsBase",
+            "targetHandle": "SharedOptionsBaselefttarget",
+            "id": "reactflow__edge-DirectoryBrowserOptionsDirectoryBrowserOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DirectoryBrowserMiddleware",
+            "sourceHandle": "DirectoryBrowserMiddlewarerightsource",
+            "target": "DirectoryBrowserOptions",
+            "targetHandle": "DirectoryBrowserOptionslefttarget",
+            "id": "reactflow__edge-DirectoryBrowserMiddlewareDirectoryBrowserMiddlewarerightsource-DirectoryBrowserOptionsDirectoryBrowserOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DirectoryBrowserMiddleware",
+            "sourceHandle": "DirectoryBrowserMiddlewarebottomsource",
+            "target": "IDirectoryFormatter",
+            "targetHandle": "IDirectoryFormattertoptarget",
+            "id": "reactflow__edge-DirectoryBrowserMiddlewareDirectoryBrowserMiddlewarebottomsource-IDirectoryFormatterIDirectoryFormattertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HtmlDirectoryFormatter",
+            "sourceHandle": "HtmlDirectoryFormatterleftsource",
+            "target": "IDirectoryFormatter",
+            "targetHandle": "IDirectoryFormatterrighttarget",
+            "id": "reactflow__edge-HtmlDirectoryFormatterHtmlDirectoryFormatterleftsource-IDirectoryFormatterIDirectoryFormatterrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SharedOptionsBase",
+            "sourceHandle": "SharedOptionsBasetopsource",
+            "target": "SharedOptions",
+            "targetHandle": "SharedOptionsbottomtarget",
+            "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBasetopsource-SharedOptionsSharedOptionsbottomtarget"
         }
     ],
     "viewport": {
-        "x": -482.4373178000326,
-        "y": -751.2684840571762,
-        "zoom": 1.1789232893679547
+        "x": -448.82839115650927,
+        "y": -796.4434419443269,
+        "zoom": 1.1486983549970373
     }
 }
