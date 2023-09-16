@@ -280,6 +280,136 @@
                 "y": 432.0278063869094
             },
             "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "EndpointMiddleware",
+            "position": {
+                "x": 1228.9496966891365,
+                "y": 705.8922374520813
+            },
+            "type": "custom",
+            "data": {
+                "id": "EndpointMiddleware",
+                "name": "EndpointMiddleware",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly RouteOptions _routeOptions"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1228.9496966891365,
+                "y": 705.8922374520813
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "IAuthorizeData",
+            "position": {
+                "x": 700.502914659108,
+                "y": 840.0713821483852
+            },
+            "type": "custom",
+            "data": {
+                "id": "IAuthorizeData",
+                "name": "IAuthorizeData",
+                "properties": [
+                    "string? Policy { get; set; }",
+                    "string? Roles { get; set; }",
+                    "string? AuthenticationSchemes { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 700.502914659108,
+                "y": 840.0713821483852
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "ICorsMetadata",
+            "position": {
+                "x": 1084.8027483420872,
+                "y": 862.403575873304
+            },
+            "type": "custom",
+            "data": {
+                "id": "ICorsMetadata",
+                "name": "ICorsMetadata",
+                "properties": [
+                    "empty"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1084.8027483420872,
+                "y": 862.403575873304
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IAntiforgeryMetadata",
+            "position": {
+                "x": 1417.3663332290043,
+                "y": 859.6120516576892
+            },
+            "type": "custom",
+            "data": {
+                "id": "IAntiforgeryMetadata",
+                "name": "IAntiforgeryMetadata",
+                "properties": [
+                    "bool RequiresValidation { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1417.3663332290043,
+                "y": 859.6120516576892
+            },
+            "dragging": false
         }
     ],
     "edges": [
@@ -394,11 +524,91 @@
             "target": "EndpointMetadataCollection",
             "targetHandle": "EndpointMetadataCollectionbottomtarget",
             "id": "reactflow__edge-EndpointEndpointtopsource-EndpointMetadataCollectionEndpointMetadataCollectionbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointRoutingMiddleware",
+            "sourceHandle": "EndpointRoutingMiddlewarebottomsource",
+            "target": "EndpointMiddleware",
+            "targetHandle": "EndpointMiddlewaretoptarget",
+            "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarebottomsource-EndpointMiddlewareEndpointMiddlewaretoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointMiddleware",
+            "sourceHandle": "EndpointMiddlewareleftsource",
+            "target": "RouteOptions",
+            "targetHandle": "RouteOptionsrighttarget",
+            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewareleftsource-RouteOptionsRouteOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointMiddleware",
+            "sourceHandle": "EndpointMiddlewarebottomsource",
+            "target": "IAuthorizeData",
+            "targetHandle": "IAuthorizeDatatoptarget",
+            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAuthorizeDataIAuthorizeDatatoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointMiddleware",
+            "sourceHandle": "EndpointMiddlewarebottomsource",
+            "target": "ICorsMetadata",
+            "targetHandle": "ICorsMetadatatoptarget",
+            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-ICorsMetadataICorsMetadatatoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointMiddleware",
+            "sourceHandle": "EndpointMiddlewarebottomsource",
+            "target": "IAntiforgeryMetadata",
+            "targetHandle": "IAntiforgeryMetadatatoptarget",
+            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAntiforgeryMetadataIAntiforgeryMetadatatoptarget"
         }
     ],
     "viewport": {
         "x": -477.2738871763722,
-        "y": 91.95533548275961,
+        "y": -25.992194138229024,
         "zoom": 0.8144564310235862
     }
 }
