@@ -64,6 +64,10 @@
                     {
                         "position": "bottom",
                         "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
                     }
                 ]
             },
@@ -79,8 +83,8 @@
             "height": 88,
             "id": "EndpointDataSource",
             "position": {
-                "x": 1634.8589257552173,
-                "y": 536.4364179483838
+                "x": 1649.237483204885,
+                "y": 586.3365078126343
             },
             "type": "custom",
             "data": {
@@ -95,23 +99,27 @@
                 ],
                 "connects": [
                     {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
                         "position": "left",
                         "type": "target"
                     },
                     {
                         "position": "top",
                         "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1634.8589257552173,
-                "y": 536.4364179483838
+                "x": 1649.237483204885,
+                "y": 586.3365078126343
             },
             "dragging": false
         },
@@ -121,7 +129,7 @@
             "id": "Matcher",
             "position": {
                 "x": 1683.8589257552176,
-                "y": 342.0209520234369
+                "y": 342.63485840437323
             },
             "type": "custom",
             "data": {
@@ -134,13 +142,17 @@
                     {
                         "position": "top",
                         "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
                 "x": 1683.8589257552176,
-                "y": 342.0209520234369
+                "y": 342.63485840437323
             },
             "dragging": false
         },
@@ -182,12 +194,12 @@
             "dragging": false
         },
         {
-            "width": 335,
-            "height": 88,
+            "width": 692,
+            "height": 104,
             "id": "IEndpointRouteBuilder",
             "position": {
-                "x": 1683.0768527411885,
-                "y": 412.8949416807025
+                "x": 1578.0988616010782,
+                "y": 413.50884806163884
             },
             "type": "custom",
             "data": {
@@ -198,19 +210,24 @@
                     "ICollection<EndpointDataSource> DataSources { get; }"
                 ],
                 "methods": [
-                    "IApplicationBuilder CreateApplicationBuilder()"
+                    "IApplicationBuilder CreateApplicationBuilder()",
+                    "internal static RouteEndpointDataSource GetOrAddRouteEndpointDataSource(this IEndpointRouteBuilder endpoints)"
                 ],
                 "connects": [
                     {
                         "position": "bottom",
                         "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1683.0768527411885,
-                "y": 412.8949416807025
+                "x": 1578.0988616010782,
+                "y": 413.50884806163884
             },
             "dragging": false
         },
@@ -219,8 +236,8 @@
             "height": 74,
             "id": "Endpoint",
             "position": {
-                "x": 2253.2362209861562,
-                "y": 542.206716936446
+                "x": 1761.8815015780667,
+                "y": 751.8460975257315
             },
             "type": "custom",
             "data": {
@@ -233,19 +250,23 @@
                 ],
                 "connects": [
                     {
-                        "position": "left",
+                        "position": "top",
                         "type": "target"
                     },
                     {
-                        "position": "top",
+                        "position": "bottom",
                         "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2253.2362209861562,
-                "y": 542.206716936446
+                "x": 1761.8815015780667,
+                "y": 751.8460975257315
             },
             "dragging": false
         },
@@ -254,8 +275,8 @@
             "height": 74,
             "id": "EndpointMetadataCollection",
             "position": {
-                "x": 2253.764024150465,
-                "y": 432.0278063869094
+                "x": 1763.673744731514,
+                "y": 903.7250821815737
             },
             "type": "custom",
             "data": {
@@ -269,15 +290,15 @@
                 ],
                 "connects": [
                     {
-                        "position": "bottom",
+                        "position": "top",
                         "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2253.764024150465,
-                "y": 432.0278063869094
+                "x": 1763.673744731514,
+                "y": 903.7250821815737
             },
             "dragging": false
         },
@@ -300,10 +321,6 @@
                     },
                     {
                         "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
                         "type": "source"
                     },
                     {
@@ -410,6 +427,179 @@
                 "y": 859.6120516576892
             },
             "dragging": false
+        },
+        {
+            "width": 691,
+            "height": 74,
+            "id": "RouteEndpointDataSource",
+            "position": {
+                "x": 2289.5838615256826,
+                "y": 592.654192228922
+            },
+            "type": "custom",
+            "data": {
+                "id": "RouteEndpointDataSource",
+                "name": "RouteEndpointDataSource",
+                "parent": "EndpointDataSource",
+                "methods": [
+                    "public RouteHandlerBuilder AddRequestDelegate(RoutePattern,RequestDelegate,IEnumerable<string>? methods,.....)",
+                    "public RouteHandlerBuilder AddRouteHandler(RoutePattern,Delegate routeHandler,.....)",
+                    "internal RouteEndpointBuilder GetSingleRouteEndpointBuilder()"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": []
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2289.5838615256826,
+                "y": 592.654192228922
+            },
+            "dragging": false
+        },
+        {
+            "width": 454,
+            "height": 42,
+            "id": "DefaultEndpointRouteBuilder",
+            "position": {
+                "x": 2313.880196861559,
+                "y": 444.477078059463
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultEndpointRouteBuilder",
+                "name": "DefaultEndpointRouteBuilder",
+                "parent": "IEndpointRouteBuilder",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public DefaultEndpointRouteBuilder(IApplicationBuilder applicationBuilder)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2313.880196861559,
+                "y": 444.477078059463
+            },
+            "dragging": false
+        },
+        {
+            "width": 673,
+            "height": 136,
+            "id": "EndpointBuilder",
+            "position": {
+                "x": 2273.608737222885,
+                "y": 948.5454007866496
+            },
+            "type": "custom",
+            "data": {
+                "id": "EndpointBuilder",
+                "name": "EndpointBuilder",
+                "methods": [
+                    "public abstract Endpoint Build()"
+                ],
+                "properties": [
+                    "public IList<Func<EndpointFilterFactoryContext, EndpointFilterDelegate, EndpointFilterDelegate>> FilterFactories",
+                    "public RequestDelegate? RequestDelegate { get; set; }",
+                    "public string? DisplayName { get; set; }",
+                    "public IList<object> Metadata { get; }",
+                    "public IServiceProvider ApplicationServices { get; init; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2273.608737222885,
+                "y": 948.5454007866496
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "RouteEndpointBuilder",
+            "position": {
+                "x": 2457.7224138674214,
+                "y": 826.9518882016383
+            },
+            "type": "custom",
+            "data": {
+                "id": "RouteEndpointBuilder",
+                "name": "RouteEndpointBuilder",
+                "parent": "EndpointBuilder",
+                "properties": [
+                    "public RoutePattern RoutePattern { get; set; }",
+                    "public int Order { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2457.7224138674214,
+                "y": 826.9518882016383
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "RouteEndpoint",
+            "position": {
+                "x": 2152.3981123807794,
+                "y": 752.839654310166
+            },
+            "type": "custom",
+            "data": {
+                "id": "RouteEndpoint",
+                "name": "RouteEndpoint",
+                "parent": "Endpoint",
+                "properties": [
+                    "public int Order { get; }",
+                    "public RoutePattern RoutePattern { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2152.3981123807794,
+                "y": 752.839654310166
+            },
+            "dragging": false
         }
     ],
     "edges": [
@@ -503,38 +693,6 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "EndpointDataSource",
-            "sourceHandle": "EndpointDataSourcerightsource",
-            "target": "Endpoint",
-            "targetHandle": "Endpointlefttarget",
-            "id": "reactflow__edge-EndpointDataSourceEndpointDataSourcerightsource-EndpointEndpointlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Endpoint",
-            "sourceHandle": "Endpointtopsource",
-            "target": "EndpointMetadataCollection",
-            "targetHandle": "EndpointMetadataCollectionbottomtarget",
-            "id": "reactflow__edge-EndpointEndpointtopsource-EndpointMetadataCollectionEndpointMetadataCollectionbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
             "source": "EndpointRoutingMiddleware",
             "sourceHandle": "EndpointRoutingMiddlewarebottomsource",
             "target": "EndpointMiddleware",
@@ -604,11 +762,139 @@
             "target": "IAntiforgeryMetadata",
             "targetHandle": "IAntiforgeryMetadatatoptarget",
             "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAntiforgeryMetadataIAntiforgeryMetadatatoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointDataSource",
+            "sourceHandle": "EndpointDataSourcebottomsource",
+            "target": "Endpoint",
+            "targetHandle": "Endpointtoptarget",
+            "id": "reactflow__edge-EndpointDataSourceEndpointDataSourcebottomsource-EndpointEndpointtoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Endpoint",
+            "sourceHandle": "Endpointbottomsource",
+            "target": "EndpointMetadataCollection",
+            "targetHandle": "EndpointMetadataCollectiontoptarget",
+            "id": "reactflow__edge-EndpointEndpointbottomsource-EndpointMetadataCollectionEndpointMetadataCollectiontoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RouteEndpointDataSource",
+            "sourceHandle": "RouteEndpointDataSourceleftsource",
+            "target": "EndpointDataSource",
+            "targetHandle": "EndpointDataSourcerighttarget",
+            "id": "reactflow__edge-RouteEndpointDataSourceRouteEndpointDataSourceleftsource-EndpointDataSourceEndpointDataSourcerighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultEndpointRouteBuilder",
+            "sourceHandle": "DefaultEndpointRouteBuilderleftsource",
+            "target": "IEndpointRouteBuilder",
+            "targetHandle": "IEndpointRouteBuilderrighttarget",
+            "id": "reactflow__edge-DefaultEndpointRouteBuilderDefaultEndpointRouteBuilderleftsource-IEndpointRouteBuilderIEndpointRouteBuilderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "EndpointBuilder",
+            "sourceHandle": "EndpointBuilderleftsource",
+            "target": "Endpoint",
+            "targetHandle": "Endpointrighttarget",
+            "id": "reactflow__edge-EndpointBuilderEndpointBuilderleftsource-EndpointEndpointrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RouteEndpointBuilder",
+            "sourceHandle": "RouteEndpointBuilderbottomsource",
+            "target": "EndpointBuilder",
+            "targetHandle": "EndpointBuildertoptarget",
+            "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderbottomsource-EndpointBuilderEndpointBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RouteEndpoint",
+            "sourceHandle": "RouteEndpointleftsource",
+            "target": "Endpoint",
+            "targetHandle": "Endpointrighttarget",
+            "id": "reactflow__edge-RouteEndpointRouteEndpointleftsource-EndpointEndpointrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RouteEndpointBuilder",
+            "sourceHandle": "RouteEndpointBuilderleftsource",
+            "target": "RouteEndpoint",
+            "targetHandle": "RouteEndpointbottomtarget",
+            "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderleftsource-RouteEndpointRouteEndpointbottomtarget"
         }
     ],
     "viewport": {
-        "x": -477.2738871763722,
-        "y": -25.992194138229024,
-        "zoom": 0.8144564310235862
+        "x": -380.02169166542785,
+        "y": 1.2967281149222458,
+        "zoom": 0.6716115069862484
     }
 }
