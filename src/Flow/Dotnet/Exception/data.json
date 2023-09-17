@@ -265,8 +265,8 @@
             "height": 58,
             "id": "IProblemDetailsService",
             "position": {
-                "x": 308.1303623616009,
-                "y": 686.1983356703805
+                "x": 317.3264434861587,
+                "y": 974.2855003463219
             },
             "type": "custom",
             "data": {
@@ -278,7 +278,7 @@
                         "type": "target"
                     },
                     {
-                        "position": "bottom",
+                        "position": "top",
                         "type": "target"
                     }
                 ],
@@ -289,8 +289,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 308.1303623616009,
-                "y": 686.1983356703805
+                "x": 317.3264434861587,
+                "y": 974.2855003463219
             },
             "dragging": false
         },
@@ -299,8 +299,8 @@
             "height": 72,
             "id": "ProblemDetailsService",
             "position": {
-                "x": 309.97494509895466,
-                "y": 770.1268502199724
+                "x": 307.01919044067733,
+                "y": 810.611825024005
             },
             "type": "custom",
             "data": {
@@ -315,15 +315,255 @@
                 ],
                 "connects": [
                     {
-                        "position": "top",
+                        "position": "bottom",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 309.97494509895466,
-                "y": 770.1268502199724
+                "x": 307.01919044067733,
+                "y": 810.611825024005
+            },
+            "dragging": false
+        },
+        {
+            "width": 445,
+            "height": 42,
+            "id": "ExceptionHandlerMiddleware",
+            "position": {
+                "x": 857.7838685838599,
+                "y": 952.9314475749275
+            },
+            "type": "custom",
+            "data": {
+                "id": "ExceptionHandlerMiddleware",
+                "name": "ExceptionHandlerMiddleware",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly ExceptionHandlerMiddlewareImpl _innerMiddlewareImpl"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 857.7838685838599,
+                "y": 952.9314475749275
+            },
+            "dragging": false
+        },
+        {
+            "width": 394,
+            "height": 74,
+            "id": "ExceptionHandlerMiddlewareImpl",
+            "position": {
+                "x": 882.6537777961648,
+                "y": 1046.7270051500311
+            },
+            "type": "custom",
+            "data": {
+                "id": "ExceptionHandlerMiddlewareImpl",
+                "name": "ExceptionHandlerMiddlewareImpl",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly ExceptionHandlerOptions _options",
+                    "private readonly IExceptionHandler[] _exceptionHandlers",
+                    "private readonly IProblemDetailsService? _problemDetailsService"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 882.6537777961648,
+                "y": 1046.7270051500311
+            },
+            "dragging": false
+        },
+        {
+            "width": 333,
+            "height": 74,
+            "id": "ExceptionHandlerOptions",
+            "position": {
+                "x": 1748.189781518308,
+                "y": 1016.0323077633727
+            },
+            "type": "custom",
+            "data": {
+                "id": "ExceptionHandlerOptions",
+                "name": "ExceptionHandlerOptions",
+                "properties": [
+                    "public PathString ExceptionHandlingPath { get; set; }",
+                    "public RequestDelegate? ExceptionHandler { get; set; }",
+                    "public bool AllowStatusCode404Response { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1748.189781518308,
+                "y": 1016.0323077633727
+            },
+            "dragging": false
+        },
+        {
+            "width": 706,
+            "height": 42,
+            "id": "IExceptionHandler",
+            "position": {
+                "x": 1372.981461837798,
+                "y": 946.6187252901216
+            },
+            "type": "custom",
+            "data": {
+                "id": "IExceptionHandler",
+                "name": "IExceptionHandler",
+                "parent": "",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1372.981461837798,
+                "y": 946.6187252901216
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 90,
+            "id": "IExceptionHandlerFeature",
+            "position": {
+                "x": 1724.4551383690941,
+                "y": 1247.8052986811504
+            },
+            "type": "custom",
+            "data": {
+                "id": "IExceptionHandlerFeature",
+                "name": "IExceptionHandlerFeature",
+                "properties": [
+                    "Exception Error { get; }",
+                    "string Path",
+                    "Endpoint? Endpoint",
+                    "RouteValueDictionary? RouteValues"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1724.4551383690941,
+                "y": 1247.8052986811504
+            },
+            "dragging": false
+        },
+        {
+            "width": 349,
+            "height": 42,
+            "id": "IExceptionHandlerPathFeature",
+            "position": {
+                "x": 1697.2193275638729,
+                "y": 1174.1481569172067
+            },
+            "type": "custom",
+            "data": {
+                "id": "IExceptionHandlerPathFeature",
+                "name": "IExceptionHandlerPathFeature",
+                "parent": "IExceptionHandlerFeature",
+                "properties": [
+                    "new string Path => ((IExceptionHandlerFeature)this).Path"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1697.2193275638729,
+                "y": 1174.1481569172067
+            },
+            "dragging": false
+        },
+        {
+            "width": 328,
+            "height": 90,
+            "id": "ExceptionHandlerFeature",
+            "position": {
+                "x": 1349.4065110929869,
+                "y": 1099.911630115058
+            },
+            "type": "custom",
+            "data": {
+                "id": "ExceptionHandlerFeature",
+                "name": "ExceptionHandlerFeature",
+                "parent": "IExceptionHandlerPathFeature",
+                "properties": [
+                    "public Exception Error { get; set; } = default!",
+                    "public string Path { get; set; } = default!",
+                    "public Endpoint? Endpoint { get; set; }",
+                    "public RouteValueDictionary? RouteValues { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1349.4065110929869,
+                "y": 1099.911630115058
             },
             "dragging": false
         }
@@ -467,16 +707,128 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
+            "source": "ExceptionHandlerMiddleware",
+            "sourceHandle": "ExceptionHandlerMiddlewarebottomsource",
+            "target": "ExceptionHandlerMiddlewareImpl",
+            "targetHandle": "ExceptionHandlerMiddlewareImpltoptarget",
+            "id": "reactflow__edge-ExceptionHandlerMiddlewareExceptionHandlerMiddlewarebottomsource-ExceptionHandlerMiddlewareImplExceptionHandlerMiddlewareImpltoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ExceptionHandlerMiddlewareImpl",
+            "sourceHandle": "ExceptionHandlerMiddlewareImplrightsource",
+            "target": "ExceptionHandlerOptions",
+            "targetHandle": "ExceptionHandlerOptionslefttarget",
+            "id": "reactflow__edge-ExceptionHandlerMiddlewareImplExceptionHandlerMiddlewareImplrightsource-ExceptionHandlerOptionsExceptionHandlerOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ExceptionHandlerMiddlewareImpl",
+            "sourceHandle": "ExceptionHandlerMiddlewareImplrightsource",
+            "target": "IExceptionHandler",
+            "targetHandle": "IExceptionHandlerlefttarget",
+            "id": "reactflow__edge-ExceptionHandlerMiddlewareImplExceptionHandlerMiddlewareImplrightsource-IExceptionHandlerIExceptionHandlerlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IExceptionHandlerPathFeature",
+            "sourceHandle": "IExceptionHandlerPathFeaturebottomsource",
+            "target": "IExceptionHandlerFeature",
+            "targetHandle": "IExceptionHandlerFeaturetoptarget",
+            "id": "reactflow__edge-IExceptionHandlerPathFeatureIExceptionHandlerPathFeaturebottomsource-IExceptionHandlerFeatureIExceptionHandlerFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
             "source": "ProblemDetailsService",
-            "sourceHandle": "ProblemDetailsServicetopsource",
+            "sourceHandle": "ProblemDetailsServicebottomsource",
             "target": "IProblemDetailsService",
-            "targetHandle": "IProblemDetailsServicebottomtarget",
-            "id": "reactflow__edge-ProblemDetailsServiceProblemDetailsServicetopsource-IProblemDetailsServiceIProblemDetailsServicebottomtarget"
+            "targetHandle": "IProblemDetailsServicetoptarget",
+            "id": "reactflow__edge-ProblemDetailsServiceProblemDetailsServicebottomsource-IProblemDetailsServiceIProblemDetailsServicetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ExceptionHandlerMiddlewareImpl",
+            "sourceHandle": "ExceptionHandlerMiddlewareImplleftsource",
+            "target": "IProblemDetailsService",
+            "targetHandle": "IProblemDetailsServicerighttarget",
+            "id": "reactflow__edge-ExceptionHandlerMiddlewareImplExceptionHandlerMiddlewareImplleftsource-IProblemDetailsServiceIProblemDetailsServicerighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ExceptionHandlerMiddlewareImpl",
+            "sourceHandle": "ExceptionHandlerMiddlewareImplrightsource",
+            "target": "ExceptionHandlerFeature",
+            "targetHandle": "ExceptionHandlerFeaturelefttarget",
+            "id": "reactflow__edge-ExceptionHandlerMiddlewareImplExceptionHandlerMiddlewareImplrightsource-ExceptionHandlerFeatureExceptionHandlerFeaturelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ExceptionHandlerFeature",
+            "sourceHandle": "ExceptionHandlerFeaturerightsource",
+            "target": "IExceptionHandlerPathFeature",
+            "targetHandle": "IExceptionHandlerPathFeaturetoptarget",
+            "id": "reactflow__edge-ExceptionHandlerFeatureExceptionHandlerFeaturerightsource-IExceptionHandlerPathFeatureIExceptionHandlerPathFeaturetoptarget"
         }
     ],
     "viewport": {
-        "x": -190.80102845519468,
-        "y": -131.2339865715769,
-        "zoom": 0.8698535877095025
+        "x": -189.66745225213936,
+        "y": -345.53782225233147,
+        "zoom": 0.8693095848384172
     }
 }
