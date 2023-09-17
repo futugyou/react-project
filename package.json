@@ -11,7 +11,7 @@
   "dependencies": {
     "@micro-zoe/micro-app": "^1.0.0-beta.5",
     "axios": "^1.5.0",
-    "bootstrap": "^5.3.1",
+    "bootstrap": "^5.3.2",
     "buffer": "^6.0.3",
     "framer-motion": "^10.16.4",
     "html-to-image": "^1.11.11",
@@ -23,13 +23,13 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-reconciler": "^0.29.0",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.16.0",
     "react-simple-animate": "^3.5.2",
     "reactflow": "^11.8.3",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.6",
+    "@types/bootstrap": "^5.2.7",
     "@types/crypto-js": "^4.1.2",
     "@types/lodash-es": "^4.17.9",
     "@types/randombytes": "^2.0.0",
@@ -37,7 +37,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-reconciler": "^0.28.4",
     "@types/sha.js": "^2.4.1",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "eslint": "^8.49.0",
     "eslint-config-standard-with-typescript": "^39.0.0",
