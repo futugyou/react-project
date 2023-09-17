@@ -34,8 +34,8 @@
             "height": 170,
             "id": "DeveloperExceptionPageMiddlewareImpl",
             "position": {
-                "x": 846.9323413984923,
-                "y": 597.2738101470749
+                "x": 848.2518493092653,
+                "y": 636.8590474702617
             },
             "type": "custom",
             "data": {
@@ -70,8 +70,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-                "x": 846.9323413984923,
-                "y": 597.2738101470749
+                "x": 848.2518493092653,
+                "y": 636.8590474702617
             }
         },
         {
@@ -143,8 +143,8 @@
             "height": 42,
             "id": "IDeveloperPageExceptionFilter",
             "position": {
-                "x": 1563.7687874585758,
-                "y": 722.5712068570689
+                "x": 1562.4492795478031,
+                "y": 743.6833334294353
             },
             "type": "custom",
             "data": {
@@ -166,8 +166,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1563.7687874585758,
-                "y": 722.5712068570689
+                "x": 1562.4492795478031,
+                "y": 743.6833334294353
             },
             "dragging": false
         },
@@ -176,8 +176,8 @@
             "height": 42,
             "id": "DatabaseDeveloperPageExceptionFilter",
             "position": {
-                "x": 1672.3037639455674,
-                "y": 801.9166009033198
+                "x": 1660.4281927486115,
+                "y": 841.5018382265066
             },
             "type": "custom",
             "data": {
@@ -196,8 +196,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1672.3037639455674,
-                "y": 801.9166009033198
+                "x": 1660.4281927486115,
+                "y": 841.5018382265066
             },
             "dragging": false
         },
@@ -265,7 +265,7 @@
             "height": 58,
             "id": "IProblemDetailsService",
             "position": {
-                "x": 317.3264434861587,
+                "x": 319.96545930770446,
                 "y": 974.2855003463219
             },
             "type": "custom",
@@ -280,6 +280,10 @@
                     {
                         "position": "top",
                         "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
                     }
                 ],
                 "methods": [
@@ -289,7 +293,7 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 317.3264434861587,
+                "x": 319.96545930770446,
                 "y": 974.2855003463219
             },
             "dragging": false
@@ -380,10 +384,6 @@
                     {
                         "position": "right",
                         "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
                     }
                 ],
                 "properties": [
@@ -447,10 +447,6 @@
                     {
                         "position": "left",
                         "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
                     }
                 ],
                 "methods": [
@@ -469,8 +465,8 @@
             "height": 90,
             "id": "IExceptionHandlerFeature",
             "position": {
-                "x": 1724.4551383690941,
-                "y": 1247.8052986811504
+                "x": 1740.8161225475483,
+                "y": 1306.1248065919233
             },
             "type": "custom",
             "data": {
@@ -491,8 +487,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1724.4551383690941,
-                "y": 1247.8052986811504
+                "x": 1740.8161225475483,
+                "y": 1306.1248065919233
             },
             "dragging": false
         },
@@ -501,8 +497,8 @@
             "height": 42,
             "id": "IExceptionHandlerPathFeature",
             "position": {
-                "x": 1697.2193275638729,
-                "y": 1174.1481569172067
+                "x": 1715.2193275638729,
+                "y": 1202.1481569172065
             },
             "type": "custom",
             "data": {
@@ -525,8 +521,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1697.2193275638729,
-                "y": 1174.1481569172067
+                "x": 1715.2193275638729,
+                "y": 1202.1481569172065
             },
             "dragging": false
         },
@@ -564,6 +560,248 @@
             "positionAbsolute": {
                 "x": 1349.4065110929869,
                 "y": 1099.911630115058
+            },
+            "dragging": false
+        },
+        {
+            "width": 315,
+            "height": 58,
+            "id": "StatusCodePagesMiddleware",
+            "position": {
+                "x": 908.8684248921364,
+                "y": 1263.9559834989775
+            },
+            "type": "custom",
+            "data": {
+                "id": "StatusCodePagesMiddleware",
+                "name": "StatusCodePagesMiddleware",
+                "properties": [
+                    "private readonly RequestDelegate _next",
+                    "private readonly StatusCodePagesOptions _options"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 908.8684248921364,
+                "y": 1263.9559834989775
+            },
+            "dragging": false
+        },
+        {
+            "width": 388,
+            "height": 42,
+            "id": "StatusCodePagesOptions",
+            "position": {
+                "x": 338.90834344512155,
+                "y": 1273.3449416539547
+            },
+            "type": "custom",
+            "data": {
+                "id": "StatusCodePagesOptions",
+                "name": "StatusCodePagesOptions",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public Func<StatusCodeContext, Task> HandleAsync { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 338.90834344512155,
+                "y": 1273.3449416539547
+            },
+            "dragging": false
+        },
+        {
+            "width": 361,
+            "height": 74,
+            "id": "StatusCodeContext",
+            "position": {
+                "x": 352.15132308932357,
+                "y": 1429.9124565459304
+            },
+            "type": "custom",
+            "data": {
+                "id": "StatusCodeContext",
+                "name": "StatusCodeContext",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public HttpContext HttpContext { get; private set; }",
+                    "public StatusCodePagesOptions Options { get; private set; }",
+                    "public RequestDelegate Next { get; private set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 352.15132308932357,
+                "y": 1429.9124565459304
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IStatusCodePagesFeature",
+            "position": {
+                "x": 1371.8663437118303,
+                "y": 1225.7114612455798
+            },
+            "type": "custom",
+            "data": {
+                "id": "IStatusCodePagesFeature",
+                "name": "IStatusCodePagesFeature",
+                "properties": [
+                    "bool Enabled { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1371.8663437118303,
+                "y": 1225.7114612455798
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "StatusCodePagesFeature",
+            "position": {
+                "x": 1373.1061098155553,
+                "y": 1312.9224725115032
+            },
+            "type": "custom",
+            "data": {
+                "id": "StatusCodePagesFeature",
+                "name": "StatusCodePagesFeature",
+                "parent": "IStatusCodePagesFeature",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public bool Enabled { get; set; } = true"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1373.1061098155553,
+                "y": 1312.9224725115032
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 122,
+            "id": "IStatusCodeReExecuteFeature",
+            "position": {
+                "x": 916.0477003428399,
+                "y": 1403.6824086492118
+            },
+            "type": "custom",
+            "data": {
+                "id": "IStatusCodeReExecuteFeature",
+                "name": "IStatusCodeReExecuteFeature",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "string OriginalPathBase { get; set; }",
+                    "string OriginalPath { get; set; }",
+                    "string? OriginalQueryString { get; set; }",
+                    "int OriginalStatusCode",
+                    "Endpoint? Endpoint",
+                    "RouteValueDictionary? RouteValues"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 916.0477003428399,
+                "y": 1403.6824086492118
+            },
+            "dragging": false
+        },
+        {
+            "width": 328,
+            "height": 122,
+            "id": "StatusCodeReExecuteFeature",
+            "position": {
+                "x": 1354.0867447486528,
+                "y": 1404.349269566678
+            },
+            "type": "custom",
+            "data": {
+                "id": "StatusCodeReExecuteFeature",
+                "name": "StatusCodeReExecuteFeature",
+                "parent": "IStatusCodeReExecuteFeature",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public string OriginalPath { get; set; }",
+                    "public string OriginalPathBase { get; set; }",
+                    "public string? OriginalQueryString { get; set; }",
+                    "public int OriginalStatusCode { get; internal set; }",
+                    "public Endpoint? Endpoint { get; set; }",
+                    "public RouteValueDictionary? RouteValues { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1354.0867447486528,
+                "y": 1404.349269566678
             },
             "dragging": false
         }
@@ -824,11 +1062,123 @@
             "target": "IExceptionHandlerPathFeature",
             "targetHandle": "IExceptionHandlerPathFeaturetoptarget",
             "id": "reactflow__edge-ExceptionHandlerFeatureExceptionHandlerFeaturerightsource-IExceptionHandlerPathFeatureIExceptionHandlerPathFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodePagesMiddleware",
+            "sourceHandle": "StatusCodePagesMiddlewareleftsource",
+            "target": "StatusCodePagesOptions",
+            "targetHandle": "StatusCodePagesOptionsrighttarget",
+            "id": "reactflow__edge-StatusCodePagesMiddlewareStatusCodePagesMiddlewareleftsource-StatusCodePagesOptionsStatusCodePagesOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodePagesOptions",
+            "sourceHandle": "StatusCodePagesOptionstopsource",
+            "target": "IProblemDetailsService",
+            "targetHandle": "IProblemDetailsServicebottomtarget",
+            "id": "reactflow__edge-StatusCodePagesOptionsStatusCodePagesOptionstopsource-IProblemDetailsServiceIProblemDetailsServicebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodePagesOptions",
+            "sourceHandle": "StatusCodePagesOptionsbottomsource",
+            "target": "StatusCodeContext",
+            "targetHandle": "StatusCodeContexttoptarget",
+            "id": "reactflow__edge-StatusCodePagesOptionsStatusCodePagesOptionsbottomsource-StatusCodeContextStatusCodeContexttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodePagesMiddleware",
+            "sourceHandle": "StatusCodePagesMiddlewarerightsource",
+            "target": "IStatusCodePagesFeature",
+            "targetHandle": "IStatusCodePagesFeaturelefttarget",
+            "id": "reactflow__edge-StatusCodePagesMiddlewareStatusCodePagesMiddlewarerightsource-IStatusCodePagesFeatureIStatusCodePagesFeaturelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodePagesFeature",
+            "sourceHandle": "StatusCodePagesFeaturetopsource",
+            "target": "IStatusCodePagesFeature",
+            "targetHandle": "IStatusCodePagesFeaturebottomtarget",
+            "id": "reactflow__edge-StatusCodePagesFeatureStatusCodePagesFeaturetopsource-IStatusCodePagesFeatureIStatusCodePagesFeaturebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodePagesMiddleware",
+            "sourceHandle": "StatusCodePagesMiddlewarebottomsource",
+            "target": "IStatusCodeReExecuteFeature",
+            "targetHandle": "IStatusCodeReExecuteFeaturetoptarget",
+            "id": "reactflow__edge-StatusCodePagesMiddlewareStatusCodePagesMiddlewarebottomsource-IStatusCodeReExecuteFeatureIStatusCodeReExecuteFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "StatusCodeReExecuteFeature",
+            "sourceHandle": "StatusCodeReExecuteFeatureleftsource",
+            "target": "IStatusCodeReExecuteFeature",
+            "targetHandle": "IStatusCodeReExecuteFeaturerighttarget",
+            "id": "reactflow__edge-StatusCodeReExecuteFeatureStatusCodeReExecuteFeatureleftsource-IStatusCodeReExecuteFeatureIStatusCodeReExecuteFeaturerighttarget"
         }
     ],
     "viewport": {
-        "x": -189.66745225213936,
-        "y": -345.53782225233147,
-        "zoom": 0.8693095848384172
+        "x": -64.92550084578068,
+        "y": -321.61858478874206,
+        "zoom": 0.7578582832551989
     }
 }
