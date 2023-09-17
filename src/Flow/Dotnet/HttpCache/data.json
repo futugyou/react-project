@@ -1,0 +1,502 @@
+{
+    "nodes": [
+        {
+            "width": 395,
+            "height": 90,
+            "id": "ResponseCachingMiddleware",
+            "position": {
+                "x": 1629.0597155333942,
+                "y": 255.810029111998
+            },
+            "type": "custom",
+            "data": {
+                "id": "ResponseCachingMiddleware",
+                "name": "ResponseCachingMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly ResponseCachingOptions _options",
+                    "private readonly IResponseCachingPolicyProvider _policyProvider",
+                    "private readonly IResponseCache _cache",
+                    "private readonly IResponseCachingKeyProvider _keyProvider"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1629.0597155333942,
+                "y": 255.810029111998
+            },
+            "dragging": false
+        },
+        {
+            "width": 426,
+            "height": 90,
+            "id": "ResponseCachingOptions",
+            "position": {
+                "x": 1129.059715533394,
+                "y": 256.310029111998
+            },
+            "type": "custom",
+            "data": {
+                "id": "ResponseCachingOptions",
+                "name": "ResponseCachingOptions",
+                "properties": [
+                    "public long SizeLimit { get; set; } = 100 * 1024 * 1024",
+                    "public long MaximumBodySize { get; set; } = 64 * 1024 * 1024",
+                    "public bool UseCaseSensitivePaths { get; set; }",
+                    "internal TimeProvider TimeProvider { get; set; } = TimeProvider.System;"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1129.059715533394,
+                "y": 256.310029111998
+            },
+            "dragging": false
+        },
+        {
+            "width": 406,
+            "height": 58,
+            "id": "IResponseCache",
+            "position": {
+                "x": 2123.532435485593,
+                "y": 395.09811923937787
+            },
+            "type": "custom",
+            "data": {
+                "id": "IResponseCache",
+                "name": "IResponseCache",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "IResponseCacheEntry? Get(string key)",
+                    "void Set(string key, IResponseCacheEntry entry, TimeSpan validFor)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2123.532435485593,
+                "y": 395.09811923937787
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "MemoryResponseCache",
+            "position": {
+                "x": 2587.535885722427,
+                "y": 402.93307430904304
+            },
+            "type": "custom",
+            "data": {
+                "id": "MemoryResponseCache",
+                "name": "MemoryResponseCache",
+                "parent": "IResponseCache",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly IMemoryCache _cache"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2587.535885722427,
+                "y": 402.93307430904304
+            },
+            "dragging": false
+        },
+        {
+            "width": 494,
+            "height": 74,
+            "id": "IResponseCachingKeyProvider",
+            "position": {
+                "x": 1580.3088839888107,
+                "y": 530.0334565502772
+            },
+            "type": "custom",
+            "data": {
+                "id": "IResponseCachingKeyProvider",
+                "name": "IResponseCachingKeyProvider",
+                "methods": [
+                    "string CreateBaseKey(ResponseCachingContext context)",
+                    "string CreateStorageVaryByKey(ResponseCachingContext context)",
+                    "IEnumerable<string> CreateLookupVaryByKeys(ResponseCachingContext context)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1580.3088839888107,
+                "y": 530.0334565502772
+            },
+            "dragging": false
+        },
+        {
+            "width": 702,
+            "height": 120,
+            "id": "ResponseCachingKeyProvider",
+            "position": {
+                "x": 2191.435379422691,
+                "y": 505.65804077798566
+            },
+            "type": "custom",
+            "data": {
+                "id": "ResponseCachingKeyProvider",
+                "name": "ResponseCachingKeyProvider",
+                "parent": "IResponseCachingKeyProvider",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private const char KeyDelimiter = '\\x1e'",
+                    "private const char KeySubDelimiter = '\\x1f'",
+                    "private readonly ObjectPool<StringBuilder> _builderPool",
+                    "private readonly ResponseCachingOptions _options"
+                ],
+                "methods": [
+                    "internal ResponseCachingKeyProvider(ObjectPoolProvider poolProvider, IOptions<ResponseCachingOptions> options)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2191.435379422691,
+                "y": 505.65804077798566
+            },
+            "dragging": false
+        },
+        {
+            "width": 354,
+            "height": 90,
+            "id": "ResponseCachingContext",
+            "position": {
+                "x": 1128.435213579996,
+                "y": 521.6664078201871
+            },
+            "type": "custom",
+            "data": {
+                "id": "ResponseCachingContext",
+                "name": "ResponseCachingContext",
+                "methods": [],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public HttpContext HttpContext { get; }",
+                    "public DateTimeOffset? ResponseTime { get; internal set; }",
+                    "public TimeSpan? CachedEntryAge { get; internal set; }",
+                    "public CachedVaryByRules CachedVaryByRules { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1128.435213579996,
+                "y": 521.6664078201871
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IResponseCachingFeature",
+            "position": {
+                "x": 1136.0288510947578,
+                "y": 366.5383642563461
+            },
+            "type": "custom",
+            "data": {
+                "id": "IResponseCachingFeature",
+                "name": "IResponseCachingFeature",
+                "parent": "",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "methods": [],
+                "properties": [
+                    "string[]? VaryByQueryKeys { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1136.0288510947578,
+                "y": 366.5383642563461
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "ResponseCachingFeature",
+            "position": {
+                "x": 1136.0272337854021,
+                "y": 445.79654099124787
+            },
+            "type": "custom",
+            "data": {
+                "id": "ResponseCachingFeature",
+                "name": "ResponseCachingFeature",
+                "parent": "IResponseCachingFeature",
+                "properties": [
+                    "public string[]? VaryByQueryKeys"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1136.0272337854021,
+                "y": 445.79654099124787
+            },
+            "dragging": false
+        },
+        {
+            "width": 401,
+            "height": 106,
+            "id": "ResponseCachingPolicyProvider",
+            "position": {
+                "x": 2124.278663885485,
+                "y": 248.45276023761718
+            },
+            "type": "custom",
+            "data": {
+                "id": "ResponseCachingPolicyProvider",
+                "name": "ResponseCachingPolicyProvider",
+                "methods": [
+                    "bool AttemptResponseCaching(ResponseCachingContext context)",
+                    "bool AllowCacheLookup(ResponseCachingContext context)",
+                    "bool AllowCacheStorage(ResponseCachingContext context)",
+                    "bool IsResponseCacheable(ResponseCachingContext context)",
+                    "bool IsCachedEntryFresh(ResponseCachingContext context)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "parent": "IResponseCachingPolicyProvider"
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2124.278663885485,
+                "y": 248.45276023761718
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingMiddleware",
+            "sourceHandle": "ResponseCachingMiddlewareleftsource",
+            "target": "ResponseCachingOptions",
+            "targetHandle": "ResponseCachingOptionsrighttarget",
+            "id": "reactflow__edge-ResponseCachingMiddlewareResponseCachingMiddlewareleftsource-ResponseCachingOptionsResponseCachingOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingMiddleware",
+            "sourceHandle": "ResponseCachingMiddlewarerightsource",
+            "target": "IResponseCache",
+            "targetHandle": "IResponseCachelefttarget",
+            "id": "reactflow__edge-ResponseCachingMiddlewareResponseCachingMiddlewarerightsource-IResponseCacheIResponseCachelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MemoryResponseCache",
+            "sourceHandle": "MemoryResponseCacheleftsource",
+            "target": "IResponseCache",
+            "targetHandle": "IResponseCacherighttarget",
+            "id": "reactflow__edge-MemoryResponseCacheMemoryResponseCacheleftsource-IResponseCacheIResponseCacherighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingMiddleware",
+            "sourceHandle": "ResponseCachingMiddlewarebottomsource",
+            "target": "IResponseCachingKeyProvider",
+            "targetHandle": "IResponseCachingKeyProvidertoptarget",
+            "id": "reactflow__edge-ResponseCachingMiddlewareResponseCachingMiddlewarebottomsource-IResponseCachingKeyProviderIResponseCachingKeyProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingKeyProvider",
+            "sourceHandle": "ResponseCachingKeyProviderleftsource",
+            "target": "IResponseCachingKeyProvider",
+            "targetHandle": "IResponseCachingKeyProviderrighttarget",
+            "id": "reactflow__edge-ResponseCachingKeyProviderResponseCachingKeyProviderleftsource-IResponseCachingKeyProviderIResponseCachingKeyProviderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IResponseCachingKeyProvider",
+            "sourceHandle": "IResponseCachingKeyProviderleftsource",
+            "target": "ResponseCachingContext",
+            "targetHandle": "ResponseCachingContextrighttarget",
+            "id": "reactflow__edge-IResponseCachingKeyProviderIResponseCachingKeyProviderleftsource-ResponseCachingContextResponseCachingContextrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingMiddleware",
+            "sourceHandle": "ResponseCachingMiddlewarebottomsource",
+            "target": "IResponseCachingFeature",
+            "targetHandle": "IResponseCachingFeaturerighttarget",
+            "id": "reactflow__edge-ResponseCachingMiddlewareResponseCachingMiddlewarebottomsource-IResponseCachingFeatureIResponseCachingFeaturerighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingFeature",
+            "sourceHandle": "ResponseCachingFeaturetopsource",
+            "target": "IResponseCachingFeature",
+            "targetHandle": "IResponseCachingFeaturebottomtarget",
+            "id": "reactflow__edge-ResponseCachingFeatureResponseCachingFeaturetopsource-IResponseCachingFeatureIResponseCachingFeaturebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ResponseCachingMiddleware",
+            "sourceHandle": "ResponseCachingMiddlewarerightsource",
+            "target": "ResponseCachingPolicyProvider",
+            "targetHandle": "ResponseCachingPolicyProviderlefttarget",
+            "id": "reactflow__edge-ResponseCachingMiddlewareResponseCachingMiddlewarerightsource-ResponseCachingPolicyProviderResponseCachingPolicyProviderlefttarget"
+        }
+    ],
+    "viewport": {
+        "x": -910.262424788908,
+        "y": 74.03435194915915,
+        "zoom": 0.8750964925875886
+    }
+}

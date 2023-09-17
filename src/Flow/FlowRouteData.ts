@@ -135,4 +135,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/exception',
     path: 'dotnet/exception',
     element: lazy(() => import('./Dotnet/Exception/Flow')),
+},{
+    name: 'httpcache',
+    display: 'HttpCache',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/httpcache',
+    path: 'dotnet/httpcache',
+    element: lazy(() => import('./Dotnet/HttpCache/Flow')),
 },]
