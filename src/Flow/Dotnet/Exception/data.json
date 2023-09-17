@@ -1,9 +1,482 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 486,
+            "height": 42,
+            "id": "DeveloperExceptionPageMiddleware",
+            "position": {
+                "x": 817.5259607911162,
+                "y": 532.1763731692348
+            },
+            "type": "custom",
+            "data": {
+                "id": "DeveloperExceptionPageMiddleware",
+                "name": "DeveloperExceptionPageMiddleware",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly DeveloperExceptionPageMiddlewareImpl _innerMiddlewareImpl"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 817.5259607911162,
+                "y": 532.1763731692348
+            },
+            "dragging": false
+        },
+        {
+            "width": 427,
+            "height": 170,
+            "id": "DeveloperExceptionPageMiddlewareImpl",
+            "position": {
+                "x": 846.9323413984923,
+                "y": 597.2738101470749
+            },
+            "type": "custom",
+            "data": {
+                "id": "DeveloperExceptionPageMiddlewareImpl",
+                "name": "DeveloperExceptionPageMiddlewareImpl",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly DeveloperExceptionPageOptions _options",
+                    "private readonly IFileProvider _fileProvider",
+                    "private readonly DiagnosticSource _diagnosticSource",
+                    "private readonly DiagnosticsMetrics _metrics",
+                    "private readonly ExceptionDetailsProvider _exceptionDetailsProvider",
+                    "private readonly Func<ErrorContext, Task> _exceptionHandler",
+                    "private static readonly MediaTypeHeaderValue _textHtmlMediaType",
+                    "private readonly ExtensionsExceptionJsonContext _serializationContext",
+                    "private readonly IProblemDetailsService? _problemDetailsService"
+                ]
+            },
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+                "x": 846.9323413984923,
+                "y": 597.2738101470749
+            }
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "DeveloperExceptionPageOptions",
+            "position": {
+                "x": 1773.043065383175,
+                "y": 506.27381014707487
+            },
+            "type": "custom",
+            "data": {
+                "id": "DeveloperExceptionPageOptions",
+                "name": "DeveloperExceptionPageOptions",
+                "properties": [
+                    "public int SourceCodeLineCount { get; set; }=6",
+                    "public IFileProvider? FileProvider { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1773.043065383175,
+                "y": 506.27381014707487
+            },
+            "dragging": false
+        },
+        {
+            "width": 431,
+            "height": 104,
+            "id": "ExceptionDetailsProvider",
+            "position": {
+                "x": 1650.9323413984937,
+                "y": 587.2738101470749
+            },
+            "type": "custom",
+            "data": {
+                "id": "ExceptionDetailsProvider",
+                "name": "ExceptionDetailsProvider",
+                "properties": [
+                    "private readonly IFileProvider _fileProvider",
+                    "private readonly ILogger? _logger",
+                    "private readonly int _sourceCodeLineCount"
+                ],
+                "methods": [
+                    "public IEnumerable<ExceptionDetails> GetDetails(Exception exception)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1650.9323413984937,
+                "y": 587.2738101470749
+            },
+            "dragging": false
+        },
+        {
+            "width": 520,
+            "height": 42,
+            "id": "IDeveloperPageExceptionFilter",
+            "position": {
+                "x": 1563.7687874585758,
+                "y": 722.5712068570689
+            },
+            "type": "custom",
+            "data": {
+                "id": "IDeveloperPageExceptionFilter",
+                "name": "IDeveloperPageExceptionFilter",
+                "methods": [
+                    "Task HandleExceptionAsync(ErrorContext errorContext, Func<ErrorContext, Task> next)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1563.7687874585758,
+                "y": 722.5712068570689
+            },
+            "dragging": false
+        },
+        {
+            "width": 326,
+            "height": 42,
+            "id": "DatabaseDeveloperPageExceptionFilter",
+            "position": {
+                "x": 1672.3037639455674,
+                "y": 801.9166009033198
+            },
+            "type": "custom",
+            "data": {
+                "id": "DatabaseDeveloperPageExceptionFilter",
+                "name": "DatabaseDeveloperPageExceptionFilter",
+                "parent": "IDeveloperPageExceptionFilter",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly DatabaseErrorPageOptions _options"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1672.3037639455674,
+                "y": 801.9166009033198
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "ErrorContext",
+            "position": {
+                "x": 311.24723509261526,
+                "y": 542.6549928660157
+            },
+            "type": "custom",
+            "data": {
+                "id": "ErrorContext",
+                "name": "ErrorContext",
+                "properties": [
+                    "public HttpContext HttpContext { get; }",
+                    "public Exception Exception { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 311.24723509261526,
+                "y": 542.6549928660157
+            },
+            "dragging": false
+        },
+        {
+            "width": 325,
+            "height": 42,
+            "id": "JsonOptions",
+            "position": {
+                "x": 311.75132815154495,
+                "y": 625.3990900592555
+            },
+            "type": "custom",
+            "data": {
+                "id": "JsonOptions",
+                "name": "JsonOptions",
+                "properties": [
+                    "public JsonSerializerOptions SerializerOptions { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 311.75132815154495,
+                "y": 625.3990900592555
+            },
+            "dragging": false
+        },
+        {
+            "width": 429,
+            "height": 58,
+            "id": "IProblemDetailsService",
+            "position": {
+                "x": 308.1303623616009,
+                "y": 686.1983356703805
+            },
+            "type": "custom",
+            "data": {
+                "id": "IProblemDetailsService",
+                "name": "IProblemDetailsService",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "ValueTask WriteAsync(ProblemDetailsContext context)",
+                    "async ValueTask<bool> TryWriteAsync(ProblemDetailsContext context)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 308.1303623616009,
+                "y": 686.1983356703805
+            },
+            "dragging": false
+        },
+        {
+            "width": 456,
+            "height": 72,
+            "id": "ProblemDetailsService",
+            "position": {
+                "x": 309.97494509895466,
+                "y": 770.1268502199724
+            },
+            "type": "custom",
+            "data": {
+                "id": "ProblemDetailsService",
+                "name": "ProblemDetailsService",
+                "parent": "IProblemDetailsService",
+                "methods": [
+                    "public ProblemDetailsService(IEnumerable<IProblemDetailsWriter> writers)"
+                ],
+                "properties": [
+                    "private readonly IProblemDetailsWriter[] _writers"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 309.97494509895466,
+                "y": 770.1268502199724
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddlewareImpl",
+            "sourceHandle": "DeveloperExceptionPageMiddlewareImplrightsource",
+            "target": "DeveloperExceptionPageOptions",
+            "targetHandle": "DeveloperExceptionPageOptionslefttarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImplrightsource-DeveloperExceptionPageOptionsDeveloperExceptionPageOptionslefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddlewareImpl",
+            "sourceHandle": "DeveloperExceptionPageMiddlewareImplrightsource",
+            "target": "ExceptionDetailsProvider",
+            "targetHandle": "ExceptionDetailsProviderlefttarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImplrightsource-ExceptionDetailsProviderExceptionDetailsProviderlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddlewareImpl",
+            "sourceHandle": "DeveloperExceptionPageMiddlewareImplrightsource",
+            "target": "IDeveloperPageExceptionFilter",
+            "targetHandle": "IDeveloperPageExceptionFilterlefttarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImplrightsource-IDeveloperPageExceptionFilterIDeveloperPageExceptionFilterlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddleware",
+            "sourceHandle": "DeveloperExceptionPageMiddlewarebottomsource",
+            "target": "DeveloperExceptionPageMiddlewareImpl",
+            "targetHandle": "DeveloperExceptionPageMiddlewareImpltoptarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareDeveloperExceptionPageMiddlewarebottomsource-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImpltoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DatabaseDeveloperPageExceptionFilter",
+            "sourceHandle": "DatabaseDeveloperPageExceptionFiltertopsource",
+            "target": "IDeveloperPageExceptionFilter",
+            "targetHandle": "IDeveloperPageExceptionFilterbottomtarget",
+            "id": "reactflow__edge-DatabaseDeveloperPageExceptionFilterDatabaseDeveloperPageExceptionFiltertopsource-IDeveloperPageExceptionFilterIDeveloperPageExceptionFilterbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddlewareImpl",
+            "sourceHandle": "DeveloperExceptionPageMiddlewareImplleftsource",
+            "target": "ErrorContext",
+            "targetHandle": "ErrorContextrighttarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImplleftsource-ErrorContextErrorContextrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddlewareImpl",
+            "sourceHandle": "DeveloperExceptionPageMiddlewareImplleftsource",
+            "target": "JsonOptions",
+            "targetHandle": "JsonOptionsrighttarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImplleftsource-JsonOptionsJsonOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DeveloperExceptionPageMiddlewareImpl",
+            "sourceHandle": "DeveloperExceptionPageMiddlewareImplleftsource",
+            "target": "IProblemDetailsService",
+            "targetHandle": "IProblemDetailsServicerighttarget",
+            "id": "reactflow__edge-DeveloperExceptionPageMiddlewareImplDeveloperExceptionPageMiddlewareImplleftsource-IProblemDetailsServiceIProblemDetailsServicerighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ProblemDetailsService",
+            "sourceHandle": "ProblemDetailsServicetopsource",
+            "target": "IProblemDetailsService",
+            "targetHandle": "IProblemDetailsServicebottomtarget",
+            "id": "reactflow__edge-ProblemDetailsServiceProblemDetailsServicetopsource-IProblemDetailsServiceIProblemDetailsServicebottomtarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": -190.80102845519468,
+        "y": -131.2339865715769,
+        "zoom": 0.8698535877095025
     }
 }

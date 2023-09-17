@@ -16,8 +16,8 @@ const nodeTypes: NodeTypes = {
 export default function Flow() {
     return (
         <CommonFlow
-            id={'routing'}
-            title={'Routing'}
+            id={'exception'}
+            title={'Exception'}
             initialNodes={initialNodes}
             initialEdges={initialEdges}
             nodeTypes={nodeTypes} >
