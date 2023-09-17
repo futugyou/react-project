@@ -15,6 +15,9 @@ const Header = (props: any) => {
                 <div className="header-route-container">
                     <NavLink to="/aws">Vue Demo</NavLink>
                 </div>
+                <div className="header-route-container">
+                    <NavLink to="/flow">React Flow</NavLink>
+                </div>
                 <div className="header-route-container" >
                     <a className="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">OpenAI Demo</a>
                     <ul className="dropdown-menu" >

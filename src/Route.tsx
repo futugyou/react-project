@@ -28,16 +28,21 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 //   )
 // );
 
+const WelcomePage = () => {
+    return <div className='WelcomePage'></div>
+}
+
 let childrenRoute: RouteObject[] = [
     {
         index: true,
-        element: <Navigate to='/flow' />,
+        element: <WelcomePage />,
     },
     FlowRoute,
     DemoRoute,
+    MicroAppRoute,
 ]
 
-childrenRoute = childrenRoute.concat(OpenAIRoute).concat(MicroAppRoute)
+childrenRoute = childrenRoute.concat(OpenAIRoute)
 
 const router = createBrowserRouter([
     {

@@ -160,3 +160,11 @@ ul {
   width: 40px;
   filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
 }
+
+.WelcomePage {
+  background-image: url('./assets/background.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.3;
+}
