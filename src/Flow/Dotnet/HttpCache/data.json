@@ -346,6 +346,448 @@
                 "y": 248.45276023761718
             },
             "dragging": false
+        },
+        {
+            "width": 553,
+            "height": 106,
+            "id": "OutputCacheMiddleware",
+            "position": {
+                "x": 1722.561398152578,
+                "y": 671.3144425717009
+            },
+            "type": "custom",
+            "data": {
+                "id": "OutputCacheMiddleware",
+                "name": "OutputCacheMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly OutputCacheOptions _options",
+                    "private readonly IOutputCacheStore _store",
+                    "private readonly IOutputCacheKeyProvider _keyProvider",
+                    "private readonly WorkDispatcher<string, OutputCacheEntry?> _outputCacheEntryDispatcher",
+                    "private readonly WorkDispatcher<string, OutputCacheEntry?> _requestDispatcher"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1722.561398152578,
+                "y": 671.3144425717009
+            },
+            "dragging": false
+        },
+        {
+            "width": 516,
+            "height": 168,
+            "id": "OutputCacheOptions",
+            "position": {
+                "x": 1130.9165707246784,
+                "y": 652.191686765778
+            },
+            "type": "custom",
+            "data": {
+                "id": "OutputCacheOptions",
+                "name": "OutputCacheOptions",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public long SizeLimit { get; set; } = 100 * 1024 * 1024",
+                    "public long MaximumBodySize { get; set; } = 64 * 1024 * 1024",
+                    "public TimeSpan DefaultExpirationTimeSpan { get; set; } = TimeSpan.FromSeconds(60)",
+                    "public bool UseCaseSensitivePaths { get; set; }",
+                    "public IServiceProvider ApplicationServices { get; internal set; }"
+                ],
+                "methods": [
+                    "public void AddPolicy(string name, IOutputCachePolicy policy)",
+                    "public void AddPolicy(string name, Action<OutputCachePolicyBuilder> build)",
+                    "public void AddBasePolicy(IOutputCachePolicy policy)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1130.9165707246784,
+                "y": 652.191686765778
+            },
+            "dragging": false
+        },
+        {
+            "width": 678,
+            "height": 74,
+            "id": "IOutputCacheStore",
+            "position": {
+                "x": 2323.0113575455243,
+                "y": 680.2921726694902
+            },
+            "type": "custom",
+            "data": {
+                "id": "IOutputCacheStore",
+                "name": "IOutputCacheStore",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "ValueTask EvictByTagAsync(string tag, CancellationToken cancellationToken)",
+                    "ValueTask<byte[]?> GetAsync(string key, CancellationToken cancellationToken)",
+                    "ValueTask SetAsync(string key, byte[] value, string[]? tags, TimeSpan validFor, CancellationToken cancellationToken)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2323.0113575455243,
+                "y": 680.2921726694902
+            },
+            "dragging": false
+        },
+        {
+            "width": 421,
+            "height": 58,
+            "id": "MemoryOutputCacheStore",
+            "position": {
+                "x": 2450.8188049647556,
+                "y": 786.9541724861124
+            },
+            "type": "custom",
+            "data": {
+                "id": "MemoryOutputCacheStore",
+                "name": "MemoryOutputCacheStore",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ],
+                "parent": "IOutputCacheStore",
+                "properties": [
+                    "private readonly MemoryCache _cache",
+                    "private readonly Dictionary<string, HashSet<string>> _taggedEntries"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2450.8188049647556,
+                "y": 786.9541724861124
+            },
+            "dragging": false
+        },
+        {
+            "width": 335,
+            "height": 42,
+            "id": "IOutputCacheKeyProvider",
+            "position": {
+                "x": 2089.9554784481743,
+                "y": 955.1384658825791
+            },
+            "type": "custom",
+            "data": {
+                "id": "IOutputCacheKeyProvider",
+                "name": "IOutputCacheKeyProvider",
+                "methods": [
+                    "string CreateStorageKey(OutputCacheContext context)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2089.9554784481743,
+                "y": 955.1384658825791
+            },
+            "dragging": false
+        },
+        {
+            "width": 540,
+            "height": 168,
+            "id": "OutputCacheKeyProvider",
+            "position": {
+                "x": 2454.348436327909,
+                "y": 890.9622353410155
+            },
+            "type": "custom",
+            "data": {
+                "id": "OutputCacheKeyProvider",
+                "name": "OutputCacheKeyProvider",
+                "parent": "IOutputCacheKeyProvider",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private const char KeyDelimiter = '\\x1e'",
+                    "private const char KeySubDelimiter = '\\x1f'",
+                    "private readonly ObjectPool<StringBuilder> _builderPool",
+                    "private readonly OutputCacheOptions _options"
+                ],
+                "methods": [
+                    "public static bool ContainsDelimiters(string? value)",
+                    "public static bool TryAppendKeyPrefix(OutputCacheContext context, StringBuilder builder)",
+                    "public bool TryAppendBaseKey(OutputCacheContext context, StringBuilder builder)",
+                    "public bool TryAppendVaryByKey(OutputCacheContext context, StringBuilder builder)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2454.348436327909,
+                "y": 890.9622353410155
+            },
+            "dragging": false
+        },
+        {
+            "width": 365,
+            "height": 170,
+            "id": "OutputCacheContext",
+            "position": {
+                "x": 2618.0614042748775,
+                "y": 1165.9453877121543
+            },
+            "type": "custom",
+            "data": {
+                "id": "OutputCacheContext",
+                "name": "OutputCacheContext",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public bool EnableOutputCaching { get; set; }",
+                    "public bool AllowCacheLookup { get; set; }",
+                    "public bool AllowCacheStorage { get; set; }",
+                    "public bool AllowLocking { get; set; }",
+                    "public required HttpContext HttpContext { get; init; }",
+                    "public DateTimeOffset? ResponseTime { get; set; }",
+                    "public CacheVaryByRules CacheVaryByRules { get; } = new();",
+                    "public HashSet<string> Tags { get; } = new();",
+                    "public TimeSpan? ResponseExpirationTimeSpan { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2618.0614042748775,
+                "y": 1165.9453877121543
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "public interface IOutputCacheFeature",
+            "position": {
+                "x": 1673.6506638611297,
+                "y": 862.0885830251084
+            },
+            "type": "custom",
+            "data": {
+                "id": "public interface IOutputCacheFeature",
+                "name": "public interface IOutputCacheFeature",
+                "methods": [
+                    "OutputCacheContext Context { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1673.6506638611297,
+                "y": 862.0885830251084
+            },
+            "dragging": false
+        },
+        {
+            "width": 355,
+            "height": 72,
+            "id": "OutputCacheFeature",
+            "position": {
+                "x": 2058.1485084362457,
+                "y": 846.3394110390757
+            },
+            "type": "custom",
+            "data": {
+                "id": "OutputCacheFeature",
+                "name": "OutputCacheFeature",
+                "parent": "IOutputCacheFeature",
+                "properties": [
+                    "public OutputCacheContext Context { get; }"
+                ],
+                "methods": [
+                    "public OutputCacheFeature(OutputCacheContext context)"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2058.1485084362457,
+                "y": 846.3394110390757
+            },
+            "dragging": false
+        },
+        {
+            "width": 569,
+            "height": 74,
+            "id": "IOutputCachePolicy",
+            "position": {
+                "x": 1105.4673451714184,
+                "y": 1184.068456114823
+            },
+            "type": "custom",
+            "data": {
+                "id": "IOutputCachePolicy",
+                "name": "IOutputCachePolicy",
+                "methods": [
+                    "ValueTask CacheRequestAsync(OutputCacheContext context, CancellationToken cancellation)",
+                    "ValueTask ServeFromCacheAsync(OutputCacheContext context, CancellationToken cancellation)",
+                    "ValueTask ServeResponseAsync(OutputCacheContext context, CancellationToken cancellation)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1105.4673451714184,
+                "y": 1184.068456114823
+            },
+            "dragging": false
+        },
+        {
+            "width": 803,
+            "height": 250,
+            "id": "OutputCachePolicyBuilder",
+            "position": {
+                "x": 1781.8188049647551,
+                "y": 1094.9541724861124
+            },
+            "type": "custom",
+            "data": {
+                "id": "OutputCachePolicyBuilder",
+                "name": "OutputCachePolicyBuilder",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public OutputCachePolicyBuilder AddPolicy<T>() where T : IOutputCachePolicy",
+                    "public OutputCachePolicyBuilder With(Func<OutputCacheContext, CancellationToken, ValueTask<bool>> predicate)",
+                    "public OutputCachePolicyBuilder SetVaryByQuery(string queryKey, params string[] queryKeys)",
+                    "public OutputCachePolicyBuilder SetVaryByHeader(string headerName, params string[] headerNames)",
+                    "public OutputCachePolicyBuilder SetVaryByRouteValue(string routeValueName, params string[] routeValueNames)",
+                    "public OutputCachePolicyBuilder SetCacheKeyPrefix(Func<HttpContext, CancellationToken, ValueTask<string>> keyPrefix)",
+                    "public OutputCachePolicyBuilder VaryByValue(Func<HttpContext, CancellationToken, ValueTask<KeyValuePair<string, string>>> varyBy)",
+                    "public OutputCachePolicyBuilder Tag(params string[] tags)",
+                    "public OutputCachePolicyBuilder Expire(TimeSpan expiration)",
+                    "public OutputCachePolicyBuilder SetLocking(bool enabled)",
+                    "public OutputCachePolicyBuilder NoCache()",
+                    "public OutputCachePolicyBuilder Cache()",
+                    "public OutputCachePolicyBuilder SetVaryByHost(bool enabled)",
+                    "internal IOutputCachePolicy Build()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1781.8188049647551,
+                "y": 1094.9541724861124
+            },
+            "dragging": false
+        },
+        {
+            "width": 745,
+            "height": 88,
+            "id": "WorkDispatcher",
+            "position": {
+                "x": 1119.6013024097363,
+                "y": 951.645282025961
+            },
+            "type": "custom",
+            "data": {
+                "id": "WorkDispatcher",
+                "name": "WorkDispatcher<TKey, TValue>",
+                "methods": [
+                    "public async Task<TValue?> ScheduleAsync(TKey key, Func<TKey, Task<TValue?>> valueFactory)",
+                    "public async Task<TValue?> ScheduleAsync<TState>(TKey key, TState state, Func<TKey, TState, Task<TValue?>> valueFactory)"
+                ],
+                "properties": [
+                    "private readonly ConcurrentDictionary<TKey, Task<TValue?>> _workers = new()"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1119.6013024097363,
+                "y": 951.645282025961
+            },
+            "dragging": false
         }
     ],
     "edges": [
@@ -492,11 +934,187 @@
             "target": "ResponseCachingPolicyProvider",
             "targetHandle": "ResponseCachingPolicyProviderlefttarget",
             "id": "reactflow__edge-ResponseCachingMiddlewareResponseCachingMiddlewarerightsource-ResponseCachingPolicyProviderResponseCachingPolicyProviderlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheMiddleware",
+            "sourceHandle": "OutputCacheMiddlewarerightsource",
+            "target": "IOutputCacheStore",
+            "targetHandle": "IOutputCacheStorelefttarget",
+            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewarerightsource-IOutputCacheStoreIOutputCacheStorelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MemoryOutputCacheStore",
+            "sourceHandle": "MemoryOutputCacheStoretopsource",
+            "target": "IOutputCacheStore",
+            "targetHandle": "IOutputCacheStorebottomtarget",
+            "id": "reactflow__edge-MemoryOutputCacheStoreMemoryOutputCacheStoretopsource-IOutputCacheStoreIOutputCacheStorebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheMiddleware",
+            "sourceHandle": "OutputCacheMiddlewarebottomsource",
+            "target": "IOutputCacheKeyProvider",
+            "targetHandle": "IOutputCacheKeyProvidertoptarget",
+            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewarebottomsource-IOutputCacheKeyProviderIOutputCacheKeyProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheKeyProvider",
+            "sourceHandle": "OutputCacheKeyProviderleftsource",
+            "target": "IOutputCacheKeyProvider",
+            "targetHandle": "IOutputCacheKeyProviderrighttarget",
+            "id": "reactflow__edge-OutputCacheKeyProviderOutputCacheKeyProviderleftsource-IOutputCacheKeyProviderIOutputCacheKeyProviderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheMiddleware",
+            "sourceHandle": "OutputCacheMiddlewarebottomsource",
+            "target": "public interface IOutputCacheFeature",
+            "targetHandle": "public interface IOutputCacheFeaturetoptarget",
+            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewarebottomsource-public interface IOutputCacheFeaturepublic interface IOutputCacheFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheFeature",
+            "sourceHandle": "OutputCacheFeatureleftsource",
+            "target": "public interface IOutputCacheFeature",
+            "targetHandle": "public interface IOutputCacheFeaturerighttarget",
+            "id": "reactflow__edge-OutputCacheFeatureOutputCacheFeatureleftsource-public interface IOutputCacheFeaturepublic interface IOutputCacheFeaturerighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IOutputCacheKeyProvider",
+            "sourceHandle": "IOutputCacheKeyProviderbottomsource",
+            "target": "OutputCacheContext",
+            "targetHandle": "OutputCacheContexttoptarget",
+            "id": "reactflow__edge-IOutputCacheKeyProviderIOutputCacheKeyProviderbottomsource-OutputCacheContextOutputCacheContexttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCachePolicyBuilder",
+            "sourceHandle": "OutputCachePolicyBuilderleftsource",
+            "target": "IOutputCachePolicy",
+            "targetHandle": "IOutputCachePolicyrighttarget",
+            "id": "reactflow__edge-OutputCachePolicyBuilderOutputCachePolicyBuilderleftsource-IOutputCachePolicyIOutputCachePolicyrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheOptions",
+            "sourceHandle": "OutputCacheOptionsbottomsource",
+            "target": "IOutputCachePolicy",
+            "targetHandle": "IOutputCachePolicytoptarget",
+            "id": "reactflow__edge-OutputCacheOptionsOutputCacheOptionsbottomsource-IOutputCachePolicyIOutputCachePolicytoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheMiddleware",
+            "sourceHandle": "OutputCacheMiddlewareleftsource",
+            "target": "OutputCacheOptions",
+            "targetHandle": "OutputCacheOptionsrighttarget",
+            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewareleftsource-OutputCacheOptionsOutputCacheOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OutputCacheMiddleware",
+            "sourceHandle": "OutputCacheMiddlewareleftsource",
+            "target": "WorkDispatcher",
+            "targetHandle": "WorkDispatcher<TKey, TValue>toptarget",
+            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewareleftsource-WorkDispatcherWorkDispatcher<TKey, TValue>toptarget"
         }
     ],
     "viewport": {
-        "x": -910.262424788908,
-        "y": 74.03435194915915,
-        "zoom": 0.8750964925875886
+        "x": -749.0033177186951,
+        "y": -155.40652116200081,
+        "zoom": 0.7561238862344628
     }
 }
