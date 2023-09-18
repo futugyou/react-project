@@ -1,9 +1,702 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 300,
+            "height": 74,
+            "id": "SessionMiddleware",
+            "position": {
+                "x": 118.89436260040105,
+                "y": 282.55538807754874
+            },
+            "type": "custom",
+            "data": {
+                "id": "SessionMiddleware",
+                "name": "SessionMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly SessionOptions _options",
+                    "private readonly ISessionStore _sessionStore",
+                    "private readonly IDataProtector _dataProtector"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 118.89436260040105,
+                "y": 282.55538807754874
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "SessionOptions",
+            "position": {
+                "x": -303.9497172021776,
+                "y": 283.0134252829979
+            },
+            "type": "custom",
+            "data": {
+                "id": "SessionOptions",
+                "name": "SessionOptions",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public CookieBuilder Cookie",
+                    "public TimeSpan IdleTimeout { get; set; }",
+                    "public TimeSpan IOTimeout { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -303.9497172021776,
+                "y": 283.0134252829979
+            },
+            "dragging": false
+        },
+        {
+            "width": 514,
+            "height": 232,
+            "id": "CookieBuilder",
+            "position": {
+                "x": -305.5054520008182,
+                "y": 493.71624836158776
+            },
+            "type": "custom",
+            "data": {
+                "id": "CookieBuilder",
+                "name": "CookieBuilder",
+                "properties": [
+                    "public virtual string? Name",
+                    "public virtual string? Path { get; set; }",
+                    "public virtual string? Domain { get; set; }",
+                    "public virtual bool HttpOnly { get; set; }",
+                    "public virtual SameSiteMode SameSite { get; set; }",
+                    "public virtual CookieSecurePolicy SecurePolicy { get; set; }",
+                    "public virtual TimeSpan? Expiration { get; set; }",
+                    "public virtual TimeSpan? MaxAge { get; set; }",
+                    "public virtual bool IsEssential { get; set; }",
+                    "public IList<string> Extensions"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public CookieOptions Build(HttpContext context)",
+                    "public virtual CookieOptions Build(HttpContext context, DateTimeOffset expiresFrom)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -305.5054520008182,
+                "y": 493.71624836158776
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "SessionCookieBuilder",
+            "position": {
+                "x": 299.03432806021976,
+                "y": 588.8821378503941
+            },
+            "type": "custom",
+            "data": {
+                "id": "SessionCookieBuilder",
+                "name": "SessionCookieBuilder",
+                "parent": "CookieBuilder",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public override TimeSpan? Expiration"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 299.03432806021976,
+                "y": 588.8821378503941
+            },
+            "dragging": false
+        },
+        {
+            "width": 403,
+            "height": 58,
+            "id": "SessionDefaults",
+            "position": {
+                "x": 514.5434118211451,
+                "y": 670.8555247221706
+            },
+            "type": "custom",
+            "data": {
+                "id": "SessionDefaults",
+                "name": "SessionDefaults",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public static readonly string CookieName = \".AspNetCore.Session\"",
+                    "public static readonly string CookiePath = \"/\""
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 514.5434118211451,
+                "y": 670.8555247221706
+            },
+            "dragging": false
+        },
+        {
+            "width": 800,
+            "height": 42,
+            "id": "ISessionStore",
+            "position": {
+                "x": 479.6912575456163,
+                "y": 298.13672360436294
+            },
+            "type": "custom",
+            "data": {
+                "id": "ISessionStore",
+                "name": "ISessionStore",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "properties": [],
+                "methods": [
+                    "ISession Create(string sessionKey, TimeSpan idleTimeout, TimeSpan ioTimeout, Func<bool> tryEstablishSession, bool isNewSessionKey)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 479.6912575456163,
+                "y": 298.13672360436294
+            },
+            "dragging": false
+        },
+        {
+            "width": 520,
+            "height": 72,
+            "id": "DistributedSessionStore",
+            "position": {
+                "x": 621.6360637788878,
+                "y": 463.6304562702202
+            },
+            "type": "custom",
+            "data": {
+                "id": "DistributedSessionStore",
+                "name": "DistributedSessionStore",
+                "parent": "ISessionStore",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly IDistributedCache _cache"
+                ],
+                "methods": [
+                    "public DistributedSessionStore(IDistributedCache cache, ILoggerFactory loggerFactory)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 621.6360637788878,
+                "y": 463.6304562702202
+            },
+            "dragging": false
+        },
+        {
+            "width": 516,
+            "height": 184,
+            "id": "ISession",
+            "position": {
+                "x": 1325.3215152729142,
+                "y": 226.72290840391793
+            },
+            "type": "custom",
+            "data": {
+                "id": "ISession",
+                "name": "ISession",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "bool IsAvailable { get; }",
+                    "string Id { get; }",
+                    "IEnumerable<string> Keys { get; }"
+                ],
+                "methods": [
+                    "Task LoadAsync(CancellationToken cancellationToken = default(CancellationToken))",
+                    "Task CommitAsync(CancellationToken cancellationToken = default(CancellationToken))",
+                    "bool TryGetValue(string key, [NotNullWhen(true)] out byte[]? value)",
+                    "void Set(string key, byte[] value)",
+                    "void Remove(string key)",
+                    "void Clear()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1325.3215152729142,
+                "y": 226.72290840391793
+            },
+            "dragging": false
+        },
+        {
+            "width": 478,
+            "height": 104,
+            "id": "DistributedSession",
+            "position": {
+                "x": 1344.0859964375722,
+                "y": 446.32359638911015
+            },
+            "type": "custom",
+            "data": {
+                "id": "DistributedSession",
+                "name": "DistributedSession",
+                "parent": "ISession",
+                "methods": [
+                    "public async Task LoadAsync(CancellationToken cancellationToken = default)",
+                    "public async Task CommitAsync(CancellationToken cancellationToken = default)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly IDistributedCache _cache",
+                    "private IDistributedSessionStore _store"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1344.0859964375722,
+                "y": 446.32359638911015
+            },
+            "dragging": false
+        },
+        {
+            "width": 460,
+            "height": 136,
+            "id": "IDistributedSessionStore",
+            "position": {
+                "x": 1353.267801024674,
+                "y": 603.1154302822918
+            },
+            "type": "custom",
+            "data": {
+                "id": "IDistributedSessionStore",
+                "name": "IDistributedSessionStore",
+                "parent": "IEnumerable<KeyValuePair<EncodedKey, byte[]>>",
+                "properties": [
+                    "int Count { get; }",
+                    "ICollection<EncodedKey> Keys { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "bool TryGetValue(EncodedKey key, [MaybeNullWhen(false)] out byte[] value)",
+                    "void SetValue(EncodedKey key, byte[] value)",
+                    "bool Remove(EncodedKey encodedKey)",
+                    "void Clear()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1353.267801024674,
+                "y": 603.1154302822918
+            },
+            "dragging": false
+        },
+        {
+            "width": 343,
+            "height": 42,
+            "id": "DefaultDistributedSessionStore",
+            "position": {
+                "x": 971.2745041325936,
+                "y": 650.5162836967677
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultDistributedSessionStore",
+                "name": "DefaultDistributedSessionStore",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "parent": "IDistributedSessionStore",
+                "properties": [
+                    "private readonly Dictionary<EncodedKey, byte[]> _store"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 971.2745041325936,
+                "y": 650.5162836967677
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "ISessionFeature",
+            "position": {
+                "x": 244.05028279782238,
+                "y": 405.41241096135536
+            },
+            "type": "custom",
+            "data": {
+                "id": "ISessionFeature",
+                "name": "ISessionFeature",
+                "properties": [
+                    "ISession Session { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 244.05028279782238,
+                "y": 405.41241096135536
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "SessionFeature",
+            "position": {
+                "x": 245.3748609881725,
+                "y": 491.2310360397015
+            },
+            "type": "custom",
+            "data": {
+                "id": "SessionFeature",
+                "name": "SessionFeature",
+                "parent": "ISessionFeature",
+                "properties": [
+                    "public ISession Session { get; set; } = default!"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 245.3748609881725,
+                "y": 491.2310360397015
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionMiddleware",
+            "sourceHandle": "SessionMiddlewareleftsource",
+            "target": "SessionOptions",
+            "targetHandle": "SessionOptionsrighttarget",
+            "id": "reactflow__edge-SessionMiddlewareSessionMiddlewareleftsource-SessionOptionsSessionOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionOptions",
+            "sourceHandle": "SessionOptionsbottomsource",
+            "target": "CookieBuilder",
+            "targetHandle": "CookieBuildertoptarget",
+            "id": "reactflow__edge-SessionOptionsSessionOptionsbottomsource-CookieBuilderCookieBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionMiddleware",
+            "sourceHandle": "SessionMiddlewarerightsource",
+            "target": "ISessionStore",
+            "targetHandle": "ISessionStorelefttarget",
+            "id": "reactflow__edge-SessionMiddlewareSessionMiddlewarerightsource-ISessionStoreISessionStorelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DistributedSessionStore",
+            "sourceHandle": "DistributedSessionStoretopsource",
+            "target": "ISessionStore",
+            "targetHandle": "ISessionStorebottomtarget",
+            "id": "reactflow__edge-DistributedSessionStoreDistributedSessionStoretopsource-ISessionStoreISessionStorebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ISessionStore",
+            "sourceHandle": "ISessionStorerightsource",
+            "target": "ISession",
+            "targetHandle": "ISessionlefttarget",
+            "id": "reactflow__edge-ISessionStoreISessionStorerightsource-ISessionISessionlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DistributedSession",
+            "sourceHandle": "DistributedSessiontopsource",
+            "target": "ISession",
+            "targetHandle": "ISessionbottomtarget",
+            "id": "reactflow__edge-DistributedSessionDistributedSessiontopsource-ISessionISessionbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DistributedSessionStore",
+            "sourceHandle": "DistributedSessionStorerightsource",
+            "target": "DistributedSession",
+            "targetHandle": "DistributedSessionlefttarget",
+            "id": "reactflow__edge-DistributedSessionStoreDistributedSessionStorerightsource-DistributedSessionDistributedSessionlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DistributedSession",
+            "sourceHandle": "DistributedSessionbottomsource",
+            "target": "IDistributedSessionStore",
+            "targetHandle": "IDistributedSessionStoretoptarget",
+            "id": "reactflow__edge-DistributedSessionDistributedSessionbottomsource-IDistributedSessionStoreIDistributedSessionStoretoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultDistributedSessionStore",
+            "sourceHandle": "DefaultDistributedSessionStorerightsource",
+            "target": "IDistributedSessionStore",
+            "targetHandle": "IDistributedSessionStorelefttarget",
+            "id": "reactflow__edge-DefaultDistributedSessionStoreDefaultDistributedSessionStorerightsource-IDistributedSessionStoreIDistributedSessionStorelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionMiddleware",
+            "sourceHandle": "SessionMiddlewarebottomsource",
+            "target": "ISessionFeature",
+            "targetHandle": "ISessionFeaturetoptarget",
+            "id": "reactflow__edge-SessionMiddlewareSessionMiddlewarebottomsource-ISessionFeatureISessionFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionFeature",
+            "sourceHandle": "SessionFeaturetopsource",
+            "target": "ISessionFeature",
+            "targetHandle": "ISessionFeaturebottomtarget",
+            "id": "reactflow__edge-SessionFeatureSessionFeaturetopsource-ISessionFeatureISessionFeaturebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionCookieBuilder",
+            "sourceHandle": "SessionCookieBuilderleftsource",
+            "target": "CookieBuilder",
+            "targetHandle": "CookieBuilderrighttarget",
+            "id": "reactflow__edge-SessionCookieBuilderSessionCookieBuilderleftsource-CookieBuilderCookieBuilderrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SessionCookieBuilder",
+            "sourceHandle": "SessionCookieBuilderrightsource",
+            "target": "SessionDefaults",
+            "targetHandle": "SessionDefaultstoptarget",
+            "id": "reactflow__edge-SessionCookieBuilderSessionCookieBuilderrightsource-SessionDefaultsSessionDefaultstoptarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": 297.02470606487645,
+        "y": 108.561375792214,
+        "zoom": 0.7194550273918358
     }
 }

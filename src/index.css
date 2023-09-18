@@ -163,7 +163,7 @@ ul {
 
 .WelcomePage {
   background-image: url('./assets/background.jpg');
-  background-size: contain;
+  background-size: auto;
   background-repeat: no-repeat;
   background-position: center center;
   opacity: 0.3;
