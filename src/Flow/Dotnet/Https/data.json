@@ -1,9 +1,229 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 411,
+            "height": 90,
+            "id": "HttpsRedirectionMiddleware",
+            "position": {
+                "x": 134.51373163672656,
+                "y": 766.508824550193
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpsRedirectionMiddleware",
+                "name": "HttpsRedirectionMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly IConfiguration _config",
+                    "private readonly IServerAddressesFeature? _serverAddressesFeature",
+                    "private readonly Lazy<int> _httpsPort",
+                    "private readonly int _statusCode"
+                ]
+            },
+            "positionAbsolute": {
+                "x": 134.51373163672656,
+                "y": 766.508824550193
+            }
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "HttpsRedirectionOptions",
+            "position": {
+                "x": -214.58626836327346,
+                "y": 782.508824550193
+            },
+            "type": "custom",
+            "data": {
+                "id": "HttpsRedirectionOptions",
+                "name": "HttpsRedirectionOptions",
+                "properties": [
+                    "public int RedirectStatusCode { get; set; } =307",
+                    "public int? HttpsPort { get; set; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -214.58626836327346,
+                "y": 782.508824550193
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "IServerAddressesFeature",
+            "position": {
+                "x": 661.0137316367266,
+                "y": 781.508824550193
+            },
+            "type": "custom",
+            "data": {
+                "id": "IServerAddressesFeature",
+                "name": "IServerAddressesFeature",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "ICollection<string> Addresses { get; }",
+                    "bool PreferHostingUrls { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 661.0137316367266,
+                "y": 781.508824550193
+            },
+            "dragging": false
+        },
+        {
+            "width": 401,
+            "height": 90,
+            "id": "HstsMiddleware",
+            "position": {
+                "x": 494.4492664834147,
+                "y": 917.508824550193
+            },
+            "type": "custom",
+            "data": {
+                "id": "HstsMiddleware",
+                "name": "HstsMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private const string IncludeSubDomains = \"; includeSubDomains\";",
+                    "private const string Preload = \"; preload\";",
+                    "private readonly StringValues _strictTransportSecurityValue",
+                    "private readonly IList<string> _excludedHosts"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 494.4492664834147,
+                "y": 917.508824550193
+            },
+            "dragging": false
+        },
+        {
+            "width": 648,
+            "height": 90,
+            "id": "HstsOptions",
+            "position": {
+                "x": -215.61679522717537,
+                "y": 918.838339484488
+            },
+            "type": "custom",
+            "data": {
+                "id": "HstsOptions",
+                "name": "HstsOptions",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public TimeSpan MaxAge { get; set; } = TimeSpan.FromDays(30);",
+                    "public bool IncludeSubDomains { get; set; }",
+                    "public bool Preload { get; set; }",
+                    "public IList<string> ExcludedHosts { get; } = new List<string>         {             \"localhost\",             \"127.0.0.1\", // ipv4             \"[::1]\" // ipv6         };"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -215.61679522717537,
+                "y": 918.838339484488
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpsRedirectionMiddleware",
+            "sourceHandle": "HttpsRedirectionMiddlewareleftsource",
+            "target": "HttpsRedirectionOptions",
+            "targetHandle": "HttpsRedirectionOptionsrighttarget",
+            "id": "reactflow__edge-HttpsRedirectionMiddlewareHttpsRedirectionMiddlewareleftsource-HttpsRedirectionOptionsHttpsRedirectionOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HttpsRedirectionMiddleware",
+            "sourceHandle": "HttpsRedirectionMiddlewarerightsource",
+            "target": "IServerAddressesFeature",
+            "targetHandle": "IServerAddressesFeaturelefttarget",
+            "id": "reactflow__edge-HttpsRedirectionMiddlewareHttpsRedirectionMiddlewarerightsource-IServerAddressesFeatureIServerAddressesFeaturelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HstsMiddleware",
+            "sourceHandle": "HstsMiddlewareleftsource",
+            "target": "HstsOptions",
+            "targetHandle": "HstsOptionsrighttarget",
+            "id": "reactflow__edge-HstsMiddlewareHstsMiddlewareleftsource-HstsOptionsHstsOptionsrighttarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": 360.26424430697796,
+        "y": -709.2359554866041,
+        "zoom": 1.3126851796563226
     }
 }
