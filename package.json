@@ -33,7 +33,7 @@
     "@types/crypto-js": "^4.1.2",
     "@types/lodash-es": "^4.17.9",
     "@types/randombytes": "^2.0.0",
-    "@types/react": "^18.2.21",
+    "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "@types/react-reconciler": "^0.28.4",
     "@types/sha.js": "^2.4.1",
