@@ -1,0 +1,966 @@
+{
+    "nodes": [
+        {
+            "width": 300,
+            "height": 58,
+            "id": "RewriteMiddleware",
+            "position": {
+                "x": 1321.9038392557613,
+                "y": 138.4585403919189
+            },
+            "type": "custom",
+            "data": {
+                "id": "RewriteMiddleware",
+                "name": "RewriteMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly RewriteOptions _options",
+                    "private readonly IFileProvider _fileProvider"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1321.9038392557613,
+                "y": 138.4585403919189
+            },
+            "dragging": false
+        },
+        {
+            "width": 962,
+            "height": 264,
+            "id": "RewriteOptions",
+            "position": {
+                "x": 218.78055215150562,
+                "y": 133.29307606421278
+            },
+            "type": "custom",
+            "data": {
+                "id": "RewriteOptions",
+                "name": "RewriteOptions",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "parent": "",
+                "properties": [
+                    "public IList<IRule> Rules { get; } = new List<IRule>()",
+                    "public IFileProvider StaticFileProvider { get; set; } = default!",
+                    "internal RequestDelegate? BranchedNext { get; set; }"
+                ],
+                "methods": [
+                    "public static RewriteOptions Add(this RewriteOptions options, Action<RewriteContext> applyRule)",
+                    "public static RewriteOptions AddRewrite(this RewriteOptions options, string regex, string replacement, bool skipRemainingRules)",
+                    "public static RewriteOptions AddRedirect(this RewriteOptions options, string regex, string replacement, int statusCode)",
+                    "public static RewriteOptions AddRedirectToHttpsPermanent(this RewriteOptions options)",
+                    "public static RewriteOptions AddRedirectToHttps(this RewriteOptions options, int statusCode, int? sslPort)",
+                    "public static RewriteOptions AddRedirectToWwwPermanent(this RewriteOptions options, params string[] domains)",
+                    "public static RewriteOptions AddRedirectToWww(this RewriteOptions options, params string[] domains)",
+                    "public static RewriteOptions AddRedirectToNonWwwPermanent(this RewriteOptions options, params string[] domains)",
+                    "public static RewriteOptions AddRedirectToNonWww(this RewriteOptions options, int statusCode, params string[] domains)",
+                    "public static RewriteOptions AddApacheModRewrite(this RewriteOptions options, IFileProvider fileProvider, string filePath)",
+                    "public static RewriteOptions AddIISUrlRewrite(this RewriteOptions options, IFileProvider fileProvider, string filePath, bool alwaysUseManagedServerVariables = false)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 218.78055215150562,
+                "y": 133.29307606421278
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IRouteValuesFeature",
+            "position": {
+                "x": 1739.4556912971832,
+                "y": 145.9250796993996
+            },
+            "type": "custom",
+            "data": {
+                "id": "IRouteValuesFeature",
+                "name": "IRouteValuesFeature",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "RouteValueDictionary RouteValues { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1739.4556912971832,
+                "y": 145.9250796993996
+            },
+            "dragging": false
+        },
+        {
+            "width": 358,
+            "height": 90,
+            "id": "RewriteContext",
+            "position": {
+                "x": 220.87697633235797,
+                "y": 504.4062079202296
+            },
+            "type": "custom",
+            "data": {
+                "id": "RewriteContext",
+                "name": "RewriteContext",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public HttpContext HttpContext { get; set; } = default!",
+                    "public IFileProvider StaticFileProvider { get; set; } = default!",
+                    "public ILogger Logger { get; set; } = NullLogger.Instance",
+                    "public RuleResult Result { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 220.87697633235797,
+                "y": 504.4062079202296
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "RuleResult",
+            "position": {
+                "x": 631.2669745477739,
+                "y": 489.43044199662404
+            },
+            "type": "custom",
+            "data": {
+                "id": "RuleResult",
+                "name": "RuleResult",
+                "properties": [
+                    "ContinueRules",
+                    "EndResponse",
+                    "SkipRemainingRules"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 631.2669745477739,
+                "y": 489.43044199662404
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IRule",
+            "position": {
+                "x": 951.7827558242188,
+                "y": 439.31349381208884
+            },
+            "type": "custom",
+            "data": {
+                "id": "IRule",
+                "name": "IRule",
+                "methods": [
+                    "void ApplyRule(RewriteContext context)"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 951.7827558242188,
+                "y": 439.31349381208884
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "ApacheModRewriteRule",
+            "position": {
+                "x": 1304.6260582195046,
+                "y": 231.84953519770468
+            },
+            "type": "custom",
+            "data": {
+                "id": "ApacheModRewriteRule",
+                "name": "ApacheModRewriteRule",
+                "parent": "IRule",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public UrlMatch InitialMatch { get; }",
+                    "public IList<Condition>? Conditions { get; }",
+                    "public IList<UrlAction> Actions { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1304.6260582195046,
+                "y": 231.84953519770468
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 106,
+            "id": "IISUrlRewriteRule",
+            "position": {
+                "x": 1718.2069202455664,
+                "y": 208.81246147690825
+            },
+            "type": "custom",
+            "data": {
+                "id": "IISUrlRewriteRule",
+                "name": "IISUrlRewriteRule",
+                "parent": "IRule",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public string? Name { get; }",
+                    "public UrlMatch InitialMatch { get; }",
+                    "public ConditionCollection? Conditions { get; }",
+                    "public UrlAction Action { get; }",
+                    "public bool Global { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1718.2069202455664,
+                "y": 208.81246147690825
+            },
+            "dragging": false
+        },
+        {
+            "width": 343,
+            "height": 42,
+            "id": "DelegateRule",
+            "position": {
+                "x": 1344.2871329359805,
+                "y": 343.4818553479429
+            },
+            "type": "custom",
+            "data": {
+                "id": "DelegateRule",
+                "name": "DelegateRule",
+                "parent": "IRule",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "private readonly Action<RewriteContext> _onApplyRule"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1344.2871329359805,
+                "y": 343.4818553479429
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "RedirectRule",
+            "position": {
+                "x": 1737.8921240744667,
+                "y": 353.23055163733676
+            },
+            "type": "custom",
+            "data": {
+                "id": "RedirectRule",
+                "name": "RedirectRule",
+                "parent": "IRule",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public Regex InitialMatch { get; }",
+                    "public string Replacement { get; }",
+                    "public int StatusCode { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1737.8921240744667,
+                "y": 353.23055163733676
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "RedirectToHttpsRule",
+            "position": {
+                "x": 1457.37692853755,
+                "y": 450.2238281833773
+            },
+            "type": "custom",
+            "data": {
+                "id": "RedirectToHttpsRule",
+                "name": "RedirectToHttpsRule",
+                "parent": "IRule",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public int? SSLPort { get; set; }",
+                    "public int StatusCode { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1457.37692853755,
+                "y": 450.2238281833773
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "RedirectToNonWwwRule",
+            "position": {
+                "x": 1190.0396952518245,
+                "y": 519.4274400508639
+            },
+            "type": "custom",
+            "data": {
+                "id": "RedirectToNonWwwRule",
+                "name": "RedirectToNonWwwRule",
+                "parent": "IRule",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "private const string WwwDot = \"www.\"",
+                    "private readonly string[]? _domains",
+                    "private readonly int _statusCode"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1190.0396952518245,
+                "y": 519.4274400508639
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "RedirectToWwwRule",
+            "position": {
+                "x": 989.624771722704,
+                "y": 604.8008005243637
+            },
+            "type": "custom",
+            "data": {
+                "id": "RedirectToWwwRule",
+                "name": "RedirectToWwwRule",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "parent": "IRule",
+                "properties": [
+                    "private const string WwwDot = \"www.\"",
+                    "private readonly string[]? _domains",
+                    "private readonly int _statusCode"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 989.624771722704,
+                "y": 604.8008005243637
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "RewriteRule",
+            "position": {
+                "x": 656.9249853736724,
+                "y": 607.0743753741292
+            },
+            "type": "custom",
+            "data": {
+                "id": "RewriteRule",
+                "name": "RewriteRule",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "parent": "IRule",
+                "properties": [
+                    "public Regex InitialMatch { get; }",
+                    "public string Replacement { get; }",
+                    "public bool StopProcessing { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 656.9249853736724,
+                "y": 607.0743753741292
+            },
+            "dragging": false
+        },
+        {
+            "width": 922,
+            "height": 72,
+            "id": "UrlAction",
+            "position": {
+                "x": 228.8860701366906,
+                "y": 701.6346070627369
+            },
+            "type": "custom",
+            "data": {
+                "id": "UrlAction",
+                "name": "UrlAction",
+                "properties": [
+                    "protected Pattern? Url { get; set; }"
+                ],
+                "methods": [
+                    "public abstract void ApplyAction(RewriteContext context, BackReferenceCollection? ruleBackReferences, BackReferenceCollection? conditionBackReferences);"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 228.8860701366906,
+                "y": 701.6346070627369
+            },
+            "dragging": false
+        },
+        {
+            "width": 456,
+            "height": 72,
+            "id": "UrlMatch",
+            "position": {
+                "x": 1614.3212713016105,
+                "y": 525.4203331825715
+            },
+            "type": "custom",
+            "data": {
+                "id": "UrlMatch",
+                "name": "UrlMatch",
+                "properties": [
+                    "protected bool Negate { get; set; }"
+                ],
+                "methods": [
+                    "public abstract MatchResults Evaluate(string input, RewriteContext context);"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1614.3212713016105,
+                "y": 525.4203331825715
+            },
+            "dragging": false
+        },
+        {
+            "width": 855,
+            "height": 72,
+            "id": "Pattern",
+            "position": {
+                "x": 260.51239026382564,
+                "y": 807.8719674124275
+            },
+            "type": "custom",
+            "data": {
+                "id": "Pattern",
+                "name": "Pattern",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public IList<PatternSegment> PatternSegments { get; }"
+                ],
+                "methods": [
+                    "public string Evaluate(RewriteContext context, BackReferenceCollection? ruleBackReferences, BackReferenceCollection? conditionBackReferences)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 260.51239026382564,
+                "y": 807.8719674124275
+            },
+            "dragging": false
+        },
+        {
+            "width": 910,
+            "height": 42,
+            "id": "PatternSegment",
+            "position": {
+                "x": 234.5234874451029,
+                "y": 923.6687108171751
+            },
+            "type": "custom",
+            "data": {
+                "id": "PatternSegment",
+                "name": "PatternSegment",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [],
+                "methods": [
+                    "public abstract string? Evaluate(RewriteContext context, BackReferenceCollection? ruleBackReferences, BackReferenceCollection? conditionBackReferences)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 234.5234874451029,
+                "y": 923.6687108171751
+            },
+            "dragging": false
+        },
+        {
+            "width": 509,
+            "height": 90,
+            "id": "MatchResults",
+            "position": {
+                "x": 1597.913827472175,
+                "y": 646.3196520287128
+            },
+            "type": "custom",
+            "data": {
+                "id": "MatchResults",
+                "name": "MatchResults",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public static readonly MatchResults EmptySuccess = new MatchResults(success: true)",
+                    "public static readonly MatchResults EmptyFailure = new MatchResults(success: false)",
+                    "public bool Success { get; }",
+                    "public BackReferenceCollection? BackReferences { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1597.913827472175,
+                "y": 646.3196520287128
+            },
+            "dragging": false
+        },
+        {
+            "width": 366,
+            "height": 104,
+            "id": "BackReferenceCollection",
+            "position": {
+                "x": 1269.0022435698927,
+                "y": 787.995320567084
+            },
+            "type": "custom",
+            "data": {
+                "id": "BackReferenceCollection",
+                "name": "BackReferenceCollection",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public BackReferenceCollection(GroupCollection references)",
+                    "public BackReferenceCollection(string reference)",
+                    "public void Add(BackReferenceCollection references)"
+                ],
+                "properties": [
+                    "public string this[int index]"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1269.0022435698927,
+                "y": 787.995320567084
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RewriteMiddleware",
+            "sourceHandle": "RewriteMiddlewareleftsource",
+            "target": "RewriteOptions",
+            "targetHandle": "RewriteOptionsrighttarget",
+            "id": "reactflow__edge-RewriteMiddlewareRewriteMiddlewareleftsource-RewriteOptionsRewriteOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RewriteMiddleware",
+            "sourceHandle": "RewriteMiddlewarerightsource",
+            "target": "IRouteValuesFeature",
+            "targetHandle": "IRouteValuesFeaturelefttarget",
+            "id": "reactflow__edge-RewriteMiddlewareRewriteMiddlewarerightsource-IRouteValuesFeatureIRouteValuesFeaturelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RewriteOptions",
+            "sourceHandle": "RewriteOptionsbottomsource",
+            "target": "RewriteContext",
+            "targetHandle": "RewriteContexttoptarget",
+            "id": "reactflow__edge-RewriteOptionsRewriteOptionsbottomsource-RewriteContextRewriteContexttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RewriteContext",
+            "sourceHandle": "RewriteContextrightsource",
+            "target": "RuleResult",
+            "targetHandle": "RuleResultlefttarget",
+            "id": "reactflow__edge-RewriteContextRewriteContextrightsource-RuleResultRuleResultlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RewriteOptions",
+            "sourceHandle": "RewriteOptionsbottomsource",
+            "target": "IRule",
+            "targetHandle": "IRulelefttarget",
+            "id": "reactflow__edge-RewriteOptionsRewriteOptionsbottomsource-IRuleIRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulerightsource",
+            "target": "ApacheModRewriteRule",
+            "targetHandle": "ApacheModRewriteRulelefttarget",
+            "id": "reactflow__edge-IRuleIRulerightsource-ApacheModRewriteRuleApacheModRewriteRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulerightsource",
+            "target": "IISUrlRewriteRule",
+            "targetHandle": "IISUrlRewriteRulelefttarget",
+            "id": "reactflow__edge-IRuleIRulerightsource-IISUrlRewriteRuleIISUrlRewriteRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulerightsource",
+            "target": "DelegateRule",
+            "targetHandle": "DelegateRulelefttarget",
+            "id": "reactflow__edge-IRuleIRulerightsource-DelegateRuleDelegateRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulerightsource",
+            "target": "RedirectRule",
+            "targetHandle": "RedirectRulelefttarget",
+            "id": "reactflow__edge-IRuleIRulerightsource-RedirectRuleRedirectRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulerightsource",
+            "target": "RedirectToHttpsRule",
+            "targetHandle": "RedirectToHttpsRulelefttarget",
+            "id": "reactflow__edge-IRuleIRulerightsource-RedirectToHttpsRuleRedirectToHttpsRulelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulebottomsource",
+            "target": "RedirectToNonWwwRule",
+            "targetHandle": "RedirectToNonWwwRuletoptarget",
+            "id": "reactflow__edge-IRuleIRulebottomsource-RedirectToNonWwwRuleRedirectToNonWwwRuletoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulebottomsource",
+            "target": "RedirectToWwwRule",
+            "targetHandle": "RedirectToWwwRuletoptarget",
+            "id": "reactflow__edge-IRuleIRulebottomsource-RedirectToWwwRuleRedirectToWwwRuletoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IRule",
+            "sourceHandle": "IRulebottomsource",
+            "target": "RewriteRule",
+            "targetHandle": "RewriteRuletoptarget",
+            "id": "reactflow__edge-IRuleIRulebottomsource-RewriteRuleRewriteRuletoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "UrlAction",
+            "sourceHandle": "UrlActionbottomsource",
+            "target": "Pattern",
+            "targetHandle": "Patterntoptarget",
+            "id": "reactflow__edge-UrlActionUrlActionbottomsource-PatternPatterntoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "Pattern",
+            "sourceHandle": "Patternbottomsource",
+            "target": "PatternSegment",
+            "targetHandle": "PatternSegmenttoptarget",
+            "id": "reactflow__edge-PatternPatternbottomsource-PatternSegmentPatternSegmenttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "UrlMatch",
+            "sourceHandle": "UrlMatchbottomsource",
+            "target": "MatchResults",
+            "targetHandle": "MatchResultstoptarget",
+            "id": "reactflow__edge-UrlMatchUrlMatchbottomsource-MatchResultsMatchResultstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "MatchResults",
+            "sourceHandle": "MatchResultsleftsource",
+            "target": "BackReferenceCollection",
+            "targetHandle": "BackReferenceCollectiontoptarget",
+            "id": "reactflow__edge-MatchResultsMatchResultsleftsource-BackReferenceCollectionBackReferenceCollectiontoptarget"
+        }
+    ],
+    "viewport": {
+        "x": -101.74129468551382,
+        "y": 6.509369536289057,
+        "zoom": 0.8180277709915038
+    }
+}

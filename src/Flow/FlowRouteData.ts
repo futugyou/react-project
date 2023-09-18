@@ -156,4 +156,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/https',
     path: 'dotnet/https',
     element: lazy(() => import('./Dotnet/Https/Flow')),
+},{
+    name: 'rewrite',
+    display: 'Rewrite',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/rewrite',
+    path: 'dotnet/rewrite',
+    element: lazy(() => import('./Dotnet/Rewrite/Flow')),
 },]
