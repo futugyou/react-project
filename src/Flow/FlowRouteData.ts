@@ -163,4 +163,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/rewrite',
     path: 'dotnet/rewrite',
     element: lazy(() => import('./Dotnet/Rewrite/Flow')),
+},{
+    name: 'ratelimiting',
+    display: 'RateLimiting',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/ratelimiting',
+    path: 'dotnet/ratelimiting',
+    element: lazy(() => import('./Dotnet/RateLimiting/Flow')),
 },]

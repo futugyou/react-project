@@ -1,0 +1,808 @@
+{
+    "nodes": [
+        {
+            "width": 569,
+            "height": 122,
+            "id": "RateLimitingMiddleware",
+            "position": {
+                "x": 1254.6687801278097,
+                "y": 10.408801869171441
+            },
+            "type": "custom",
+            "data": {
+                "id": "RateLimitingMiddleware",
+                "name": "RateLimitingMiddleware",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly Func<OnRejectedContext, CancellationToken, ValueTask>? _defaultOnRejected",
+                    "private readonly RateLimitingMetrics _metrics",
+                    "private readonly PartitionedRateLimiter<HttpContext>? _globalLimiter",
+                    "private readonly PartitionedRateLimiter<HttpContext> _endpointLimiter",
+                    "private readonly Dictionary<string, DefaultRateLimiterPolicy> _policyMap",
+                    "private readonly DefaultKeyType _defaultPolicyKey"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1254.6687801278097,
+                "y": 10.408801869171441
+            },
+            "dragging": false
+        },
+        {
+            "width": 1024,
+            "height": 232,
+            "id": "RateLimiterOptions",
+            "position": {
+                "x": 72.44121988404413,
+                "y": 13.214118441245517
+            },
+            "type": "custom",
+            "data": {
+                "id": "RateLimiterOptions",
+                "name": "RateLimiterOptions",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "internal Dictionary<string, DefaultRateLimiterPolicy> PolicyMap { get; }",
+                    "internal Dictionary<string, Func<IServiceProvider, DefaultRateLimiterPolicy>> UnactivatedPolicyMap { get; }",
+                    "public PartitionedRateLimiter<HttpContext>? GlobalLimiter { get; set; }",
+                    "public Func<OnRejectedContext, CancellationToken, ValueTask>? OnRejected { get; set; }",
+                    "public int RejectionStatusCode { get; set; } = StatusCodes.Status503ServiceUnavailable"
+                ],
+                "methods": [
+                    "public RateLimiterOptions AddPolicy<TPartitionKey>(string policyName, Func<HttpContext, RateLimitPartition<TPartitionKey>> partitioner)",
+                    "public RateLimiterOptions AddPolicy<TPartitionKey, TPolicy>(string policyName)",
+                    "public RateLimiterOptions AddPolicy<TPartitionKey>(string policyName, IRateLimiterPolicy<TPartitionKey> policy)",
+                    "public static RateLimiterOptions AddTokenBucketLimiter(this RateLimiterOptions options, string policyName, Action<TokenBucketRateLimiterOptions> configureOptions)",
+                    "public static RateLimiterOptions AddFixedWindowLimiter(this RateLimiterOptions options, string policyName, Action<FixedWindowRateLimiterOptions> configureOptions)",
+                    "public static RateLimiterOptions AddSlidingWindowLimiter(this RateLimiterOptions options, string policyName, Action<SlidingWindowRateLimiterOptions> configureOptions)",
+                    "public static RateLimiterOptions AddConcurrencyLimiter(this RateLimiterOptions options, string policyName, Action<ConcurrencyLimiterOptions> configureOptions)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 72.44121988404413,
+                "y": 13.214118441245517
+            },
+            "dragging": false
+        },
+        {
+            "width": 323,
+            "height": 58,
+            "id": "OnRejectedContext",
+            "position": {
+                "x": 493.1951700647239,
+                "y": 592.215650054244
+            },
+            "type": "custom",
+            "data": {
+                "id": "OnRejectedContext",
+                "name": "OnRejectedContext",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public required HttpContext HttpContext { get; init; }",
+                    "public required RateLimitLease Lease { get; init; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 493.1951700647239,
+                "y": 592.215650054244
+            },
+            "dragging": false
+        },
+        {
+            "width": 467,
+            "height": 72,
+            "id": "IRateLimiterPolicy",
+            "position": {
+                "x": 72.62430890433257,
+                "y": 294.74773561724766
+            },
+            "type": "custom",
+            "data": {
+                "id": "IRateLimiterPolicy",
+                "name": "IRateLimiterPolicy<TPartitionKey>",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "Func<OnRejectedContext, CancellationToken, ValueTask>? OnRejected { get; }"
+                ],
+                "methods": [
+                    "RateLimitPartition<TPartitionKey> GetPartition(HttpContext httpContext)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 72.62430890433257,
+                "y": 294.74773561724766
+            },
+            "dragging": false
+        },
+        {
+            "width": 494,
+            "height": 72,
+            "id": "DefaultRateLimiterPolicy",
+            "position": {
+                "x": 72.62430890433257,
+                "y": 408.74773561724766
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultRateLimiterPolicy",
+                "name": "DefaultRateLimiterPolicy",
+                "parent": "IRateLimiterPolicy<DefaultKeyType>",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public Func<OnRejectedContext, CancellationToken, ValueTask>? OnRejected"
+                ],
+                "methods": [
+                    "public RateLimitPartition<DefaultKeyType> GetPartition(HttpContext httpContext)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 72.62430890433257,
+                "y": 408.74773561724766
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "DefaultKeyType",
+            "position": {
+                "x": 170.86008840516956,
+                "y": 523.2943992230407
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultKeyType",
+                "name": "DefaultKeyType",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public string? PolicyName { get; }",
+                    "public object? Key { get; }",
+                    "public object? Factory { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 170.86008840516956,
+                "y": 523.2943992230407
+            },
+            "dragging": false
+        },
+        {
+            "width": 608,
+            "height": 152,
+            "id": "RateLimiter",
+            "position": {
+                "x": 1260.4579951348492,
+                "y": 594.103549080482
+            },
+            "type": "custom",
+            "data": {
+                "id": "RateLimiter",
+                "name": "RateLimiter",
+                "parent": "IAsyncDisposable, IDisposable",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public abstract RateLimiterStatistics? GetStatistics()",
+                    "public RateLimitLease AttemptAcquire(int permitCount = 1)",
+                    "protected abstract RateLimitLease AttemptAcquireCore(int permitCount)",
+                    "public ValueTask<RateLimitLease> AcquireAsync(int permitCount = 1, CancellationToken)",
+                    "protected abstract ValueTask<RateLimitLease> AcquireAsyncCore(int permitCount, CancellationToken)",
+                    "protected virtual void Dispose(bool disposing)"
+                ],
+                "properties": [
+                    "public abstract TimeSpan? IdleDuration { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1260.4579951348492,
+                "y": 594.103549080482
+            },
+            "dragging": false
+        },
+        {
+            "width": 333,
+            "height": 88,
+            "id": "ReplenishingRateLimiter",
+            "position": {
+                "x": 873.879663739843,
+                "y": 656.1087233450494
+            },
+            "type": "custom",
+            "data": {
+                "id": "ReplenishingRateLimiter",
+                "name": "ReplenishingRateLimiter",
+                "parent": "RateLimiter",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public abstract TimeSpan ReplenishmentPeriod { get; }",
+                    "public abstract bool IsAutoReplenishing { get; }"
+                ],
+                "methods": [
+                    "public abstract bool TryReplenish()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 873.879663739843,
+                "y": 656.1087233450494
+            },
+            "dragging": false
+        },
+        {
+            "width": 354,
+            "height": 42,
+            "id": "TokenBucketRateLimiter",
+            "position": {
+                "x": 1169.6097060193442,
+                "y": 459.6042588373341
+            },
+            "type": "custom",
+            "data": {
+                "id": "TokenBucketRateLimiter",
+                "name": "TokenBucketRateLimiter",
+                "parent": "ReplenishingRateLimiter",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly TokenBucketRateLimiterOptions _options"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1169.6097060193442,
+                "y": 459.6042588373341
+            },
+            "dragging": false
+        },
+        {
+            "width": 359,
+            "height": 58,
+            "id": "FixedWindowRateLimiter",
+            "position": {
+                "x": 860.0993464484914,
+                "y": 534.80411875765
+            },
+            "type": "custom",
+            "data": {
+                "id": "FixedWindowRateLimiter",
+                "name": "FixedWindowRateLimiter",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "parent": "ReplenishingRateLimiter",
+                "properties": [
+                    "private readonly FixedWindowRateLimiterOptions _options",
+                    "private readonly Deque<RequestRegistration> _queue"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 860.0993464484914,
+                "y": 534.80411875765
+            },
+            "dragging": false
+        },
+        {
+            "width": 369,
+            "height": 58,
+            "id": "SlidingWindowRateLimiter",
+            "position": {
+                "x": 605.5690986215398,
+                "y": 464.0780699250836
+            },
+            "type": "custom",
+            "data": {
+                "id": "SlidingWindowRateLimiter",
+                "name": "SlidingWindowRateLimiter",
+                "parent": "ReplenishingRateLimiter",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly SlidingWindowRateLimiterOptions _options",
+                    "private readonly Deque<RequestRegistration> _queue"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 605.5690986215398,
+                "y": 464.0780699250836
+            },
+            "dragging": false
+        },
+        {
+            "width": 334,
+            "height": 58,
+            "id": "ConcurrencyLimiter",
+            "position": {
+                "x": 1531.9637752102335,
+                "y": 321.5745111822891
+            },
+            "type": "custom",
+            "data": {
+                "id": "ConcurrencyLimiter",
+                "name": "ConcurrencyLimiter",
+                "parent": "RateLimiter",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly ConcurrencyLimiterOptions _options",
+                    "private readonly Deque<RequestRegistration> _queue"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1531.9637752102335,
+                "y": 321.5745111822891
+            },
+            "dragging": false
+        },
+        {
+            "width": 869,
+            "height": 106,
+            "id": "RateLimitPartition",
+            "position": {
+                "x": 605.7015045532816,
+                "y": 298.9763652090841
+            },
+            "type": "custom",
+            "data": {
+                "id": "RateLimitPartition",
+                "name": "RateLimitPartition",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public static RateLimitPartition<TKey> Get<TKey>(TKey partitionKey, Func<TKey, RateLimiter> factory)",
+                    "public static RateLimitPartition<TKey> GetConcurrencyLimiter<TKey>(TKey partitionKey,Func<TKey, ConcurrencyLimiterOptions> factory)",
+                    "public static RateLimitPartition<TKey> GetTokenBucketLimiter<TKey>(TKey partitionKey,Func<TKey, TokenBucketRateLimiterOptions> factory)",
+                    "public static RateLimitPartition<TKey> GetSlidingWindowLimiter<TKey>(TKey partitionKey,Func<TKey, SlidingWindowRateLimiterOptions> factory)",
+                    "public static RateLimitPartition<TKey> GetFixedWindowLimiter<TKey>(TKey partitionKey,Func<TKey, FixedWindowRateLimiterOptions> factory)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 605.7015045532816,
+                "y": 298.9763652090841
+            },
+            "dragging": false
+        },
+        {
+            "width": 726,
+            "height": 122,
+            "id": "PartitionedRateLimiter",
+            "position": {
+                "x": 1175.6007039165518,
+                "y": 164.95993203832614
+            },
+            "type": "custom",
+            "data": {
+                "id": "PartitionedRateLimiter",
+                "name": "PartitionedRateLimiter<TResource>",
+                "parent": "IAsyncDisposable, IDisposable",
+                "methods": [
+                    "public abstract RateLimiterStatistics? GetStatistics(TResource resource)",
+                    "public RateLimitLease AttemptAcquire(TResource resource, int permitCount = 1)",
+                    "protected abstract RateLimitLease AttemptAcquireCore(TResource resource, int permitCount)",
+                    "public ValueTask<RateLimitLease> AcquireAsync(TResource resource, int permitCount = 1, CancellationToken)",
+                    "protected abstract ValueTask<RateLimitLease> AcquireAsyncCore(TResource resource, int permitCount, CancellationToken)",
+                    "protected virtual void Dispose(bool disposing)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1175.6007039165518,
+                "y": 164.95993203832614
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimitingMiddleware",
+            "sourceHandle": "RateLimitingMiddlewareleftsource",
+            "target": "RateLimiterOptions",
+            "targetHandle": "RateLimiterOptionsrighttarget",
+            "id": "reactflow__edge-RateLimitingMiddlewareRateLimitingMiddlewareleftsource-RateLimiterOptionsRateLimiterOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimiterOptions",
+            "sourceHandle": "RateLimiterOptionsbottomsource",
+            "target": "OnRejectedContext",
+            "targetHandle": "OnRejectedContexttoptarget",
+            "id": "reactflow__edge-RateLimiterOptionsRateLimiterOptionsbottomsource-OnRejectedContextOnRejectedContexttoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimiterOptions",
+            "sourceHandle": "RateLimiterOptionsbottomsource",
+            "target": "IRateLimiterPolicy",
+            "targetHandle": "IRateLimiterPolicy<TPartitionKey>toptarget",
+            "id": "reactflow__edge-RateLimiterOptionsRateLimiterOptionsbottomsource-IRateLimiterPolicyIRateLimiterPolicy<TPartitionKey>toptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultRateLimiterPolicy",
+            "sourceHandle": "DefaultRateLimiterPolicytopsource",
+            "target": "IRateLimiterPolicy",
+            "targetHandle": "IRateLimiterPolicy<TPartitionKey>bottomtarget",
+            "id": "reactflow__edge-DefaultRateLimiterPolicyDefaultRateLimiterPolicytopsource-IRateLimiterPolicyIRateLimiterPolicy<TPartitionKey>bottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimiterOptions",
+            "sourceHandle": "RateLimiterOptionsbottomsource",
+            "target": "DefaultRateLimiterPolicy",
+            "targetHandle": "DefaultRateLimiterPolicyrighttarget",
+            "id": "reactflow__edge-RateLimiterOptionsRateLimiterOptionsbottomsource-DefaultRateLimiterPolicyDefaultRateLimiterPolicyrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultRateLimiterPolicy",
+            "sourceHandle": "DefaultRateLimiterPolicybottomsource",
+            "target": "DefaultKeyType",
+            "targetHandle": "DefaultKeyTypetoptarget",
+            "id": "reactflow__edge-DefaultRateLimiterPolicyDefaultRateLimiterPolicybottomsource-DefaultKeyTypeDefaultKeyTypetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimiterOptions",
+            "sourceHandle": "RateLimiterOptionsbottomsource",
+            "target": "RateLimitPartition",
+            "targetHandle": "RateLimitPartitiontoptarget",
+            "id": "reactflow__edge-RateLimiterOptionsRateLimiterOptionsbottomsource-RateLimitPartitionRateLimitPartitiontoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimitPartition",
+            "sourceHandle": "RateLimitPartitionrightsource",
+            "target": "ConcurrencyLimiter",
+            "targetHandle": "ConcurrencyLimiterlefttarget",
+            "id": "reactflow__edge-RateLimitPartitionRateLimitPartitionrightsource-ConcurrencyLimiterConcurrencyLimiterlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimitPartition",
+            "sourceHandle": "RateLimitPartitionbottomsource",
+            "target": "SlidingWindowRateLimiter",
+            "targetHandle": "SlidingWindowRateLimitertoptarget",
+            "id": "reactflow__edge-RateLimitPartitionRateLimitPartitionbottomsource-SlidingWindowRateLimiterSlidingWindowRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimitPartition",
+            "sourceHandle": "RateLimitPartitionbottomsource",
+            "target": "FixedWindowRateLimiter",
+            "targetHandle": "FixedWindowRateLimitertoptarget",
+            "id": "reactflow__edge-RateLimitPartitionRateLimitPartitionbottomsource-FixedWindowRateLimiterFixedWindowRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimitPartition",
+            "sourceHandle": "RateLimitPartitionbottomsource",
+            "target": "TokenBucketRateLimiter",
+            "targetHandle": "TokenBucketRateLimitertoptarget",
+            "id": "reactflow__edge-RateLimitPartitionRateLimitPartitionbottomsource-TokenBucketRateLimiterTokenBucketRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "SlidingWindowRateLimiter",
+            "sourceHandle": "SlidingWindowRateLimiterbottomsource",
+            "target": "ReplenishingRateLimiter",
+            "targetHandle": "ReplenishingRateLimitertoptarget",
+            "id": "reactflow__edge-SlidingWindowRateLimiterSlidingWindowRateLimiterbottomsource-ReplenishingRateLimiterReplenishingRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "FixedWindowRateLimiter",
+            "sourceHandle": "FixedWindowRateLimiterbottomsource",
+            "target": "ReplenishingRateLimiter",
+            "targetHandle": "ReplenishingRateLimitertoptarget",
+            "id": "reactflow__edge-FixedWindowRateLimiterFixedWindowRateLimiterbottomsource-ReplenishingRateLimiterReplenishingRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "TokenBucketRateLimiter",
+            "sourceHandle": "TokenBucketRateLimiterbottomsource",
+            "target": "ReplenishingRateLimiter",
+            "targetHandle": "ReplenishingRateLimitertoptarget",
+            "id": "reactflow__edge-TokenBucketRateLimiterTokenBucketRateLimiterbottomsource-ReplenishingRateLimiterReplenishingRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ReplenishingRateLimiter",
+            "sourceHandle": "ReplenishingRateLimiterrightsource",
+            "target": "RateLimiter",
+            "targetHandle": "RateLimiterlefttarget",
+            "id": "reactflow__edge-ReplenishingRateLimiterReplenishingRateLimiterrightsource-RateLimiterRateLimiterlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ConcurrencyLimiter",
+            "sourceHandle": "ConcurrencyLimiterbottomsource",
+            "target": "RateLimiter",
+            "targetHandle": "RateLimitertoptarget",
+            "id": "reactflow__edge-ConcurrencyLimiterConcurrencyLimiterbottomsource-RateLimiterRateLimitertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "RateLimitingMiddleware",
+            "sourceHandle": "RateLimitingMiddlewarebottomsource",
+            "target": "PartitionedRateLimiter",
+            "targetHandle": "PartitionedRateLimiter<TResource>toptarget",
+            "id": "reactflow__edge-RateLimitingMiddlewareRateLimitingMiddlewarebottomsource-PartitionedRateLimiterPartitionedRateLimiter<TResource>toptarget"
+        }
+    ],
+    "viewport": {
+        "x": 16.057780471211117,
+        "y": 136.59982654141896,
+        "zoom": 0.8444017419084737
+    }
+}
