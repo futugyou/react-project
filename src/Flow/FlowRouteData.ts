@@ -149,4 +149,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/session',
     path: 'dotnet/session',
     element: lazy(() => import('./Dotnet/Session/Flow')),
+},{
+    name: 'https',
+    display: 'Https',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/https',
+    path: 'dotnet/https',
+    element: lazy(() => import('./Dotnet/Https/Flow')),
 },]
