@@ -170,4 +170,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/ratelimiting',
     path: 'dotnet/ratelimiting',
     element: lazy(() => import('./Dotnet/RateLimiting/Flow')),
+},{
+    name: 'cors',
+    display: 'Cors',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/cors',
+    path: 'dotnet/cors',
+    element: lazy(() => import('./Dotnet/Cors/Flow')),
 },]
