@@ -1,9 +1,726 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 362,
+            "height": 58,
+            "id": "HealthCheckMiddleware",
+            "position": {
+                "x": 130.65834023972695,
+                "y": 500.8273262941799
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckMiddleware",
+                "name": "HealthCheckMiddleware",
+                "properties": [
+                    "private readonly HealthCheckOptions _healthCheckOptions",
+                    "private readonly HealthCheckService _healthCheckService"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+                "x": 130.65834023972695,
+                "y": 500.8273262941799
+            }
+        },
+        {
+            "width": 448,
+            "height": 90,
+            "id": "HealthCheckOptions",
+            "position": {
+                "x": -466.2139345853077,
+                "y": 484.137222310139
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckOptions",
+                "name": "HealthCheckOptions",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public Func<HealthCheckRegistration, bool>? Predicate { get; set; }",
+                    "public IDictionary<HealthStatus, int> ResultStatusCodes",
+                    "public Func<HttpContext, HealthReport, Task> ResponseWriter { get; set; }",
+                    "public bool AllowCachingResponses { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -466.2139345853077,
+                "y": 484.137222310139
+            },
+            "dragging": false
+        },
+        {
+            "width": 519,
+            "height": 42,
+            "id": "HealthCheckResponseWriters",
+            "position": {
+                "x": -1051.1656571029655,
+                "y": 508.77008701634577
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckResponseWriters",
+                "name": "HealthCheckResponseWriters",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public static Task WriteMinimalPlaintext(HttpContext httpContext, HealthReport result)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -1051.1656571029655,
+                "y": 508.77008701634577
+            },
+            "dragging": false
+        },
+        {
+            "width": 736,
+            "height": 58,
+            "id": "HealthCheckService",
+            "position": {
+                "x": -56.571350233849955,
+                "y": 597.1775279841232
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckService",
+                "name": "HealthCheckService",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public Task<HealthReport> CheckHealthAsync(CancellationToken cancellationToken = default)",
+                    "public abstract Task<HealthReport> CheckHealthAsync(Func<HealthCheckRegistration, bool>? predicate,CancellationToken)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -56.571350233849955,
+                "y": 597.1775279841232
+            },
+            "dragging": false
+        },
+        {
+            "width": 397,
+            "height": 58,
+            "id": "DefaultHealthCheckService",
+            "position": {
+                "x": 113.6472403230137,
+                "y": 697.8546531824841
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultHealthCheckService",
+                "name": "DefaultHealthCheckService",
+                "parent": "HealthCheckService",
+                "properties": [
+                    "private readonly IServiceScopeFactory _scopeFactory",
+                    "private readonly IOptions<HealthCheckServiceOptions> _options"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 113.6472403230137,
+                "y": 697.8546531824841
+            },
+            "dragging": false
+        },
+        {
+            "width": 407,
+            "height": 90,
+            "id": "HealthCheckPublisherOptions",
+            "position": {
+                "x": -1034.0364018739238,
+                "y": 1040.327747826413
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckPublisherOptions",
+                "name": "HealthCheckPublisherOptions",
+                "properties": [
+                    "public TimeSpan Delay",
+                    "public TimeSpan Period",
+                    "public Func<HealthCheckRegistration, bool>? Predicate { get; set; }",
+                    "public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(30)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -1034.0364018739238,
+                "y": 1040.327747826413
+            },
+            "dragging": false
+        },
+        {
+            "width": 400,
+            "height": 42,
+            "id": "HealthCheckServiceOptions",
+            "position": {
+                "x": 702.3009222320636,
+                "y": 502.4710952486861
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckServiceOptions",
+                "name": "HealthCheckServiceOptions",
+                "properties": [
+                    "public ICollection<HealthCheckRegistration> Registrations { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 702.3009222320636,
+                "y": 502.4710952486861
+            },
+            "dragging": false
+        },
+        {
+            "width": 325,
+            "height": 138,
+            "id": "HealthCheckRegistration",
+            "position": {
+                "x": 739.5642508276773,
+                "y": 590.0310824887711
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckRegistration",
+                "name": "HealthCheckRegistration",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "methods": [],
+                "properties": [
+                    "public TimeSpan Timeout",
+                    "public Func<IServiceProvider, IHealthCheck> Factory",
+                    "public HealthStatus FailureStatus { get; set; }",
+                    "public TimeSpan? Delay { get; set; }",
+                    "public TimeSpan? Period { get; set; }",
+                    "public string Name",
+                    "public ISet<string> Tags { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 739.5642508276773,
+                "y": 590.0310824887711
+            },
+            "dragging": false
+        },
+        {
+            "width": 564,
+            "height": 42,
+            "id": "IHealthCheck",
+            "position": {
+                "x": 69.01992011032576,
+                "y": 795.017921463467
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHealthCheck",
+                "name": "IHealthCheck",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 69.01992011032576,
+                "y": 795.017921463467
+            },
+            "dragging": false
+        },
+        {
+            "width": 465,
+            "height": 42,
+            "id": "DelegateHealthCheck",
+            "position": {
+                "x": 119.0524874856228,
+                "y": 878.9247689495731
+            },
+            "type": "custom",
+            "data": {
+                "id": "DelegateHealthCheck",
+                "name": "DelegateHealthCheck",
+                "parent": "IHealthCheck",
+                "properties": [
+                    "private readonly Func<CancellationToken, Task<HealthCheckResult>> _check"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 119.0524874856228,
+                "y": 878.9247689495731
+            },
+            "dragging": false
+        },
+        {
+            "width": 339,
+            "height": 42,
+            "id": "HealthCheckContext",
+            "position": {
+                "x": 746.5087082412166,
+                "y": 752.765720347383
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckContext",
+                "name": "HealthCheckContext",
+                "properties": [
+                    "public HealthCheckRegistration Registration { get; set; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 746.5087082412166,
+                "y": 752.765720347383
+            },
+            "dragging": false
+        },
+        {
+            "width": 870,
+            "height": 152,
+            "id": "HealthCheckResult",
+            "position": {
+                "x": -1045.2079534846218,
+                "y": 822.2692958563912
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckResult",
+                "name": "HealthCheckResult",
+                "properties": [
+                    "public IReadOnlyDictionary<string, object> Data { get; }",
+                    "public string? Description { get; }",
+                    "public Exception? Exception { get; }",
+                    "public HealthStatus Status { get; }"
+                ],
+                "methods": [
+                    "public static HealthCheckResult Healthy(string? description = null, IReadOnlyDictionary<string, object>? data = null)",
+                    "public static HealthCheckResult Degraded(string? description = null, Exception? exception = null, IReadOnlyDictionary<string, object>? data = null)",
+                    "public static HealthCheckResult Unhealthy(string? description = null, Exception? exception = null, IReadOnlyDictionary<string, object>? data = null)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -1045.2079534846218,
+                "y": 822.2692958563912
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 74,
+            "id": "HealthStatus",
+            "position": {
+                "x": -918.7807244003136,
+                "y": 582.9545279165582
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthStatus",
+                "name": "HealthStatus",
+                "properties": [
+                    "Unhealthy = 0",
+                    "Degraded = 1",
+                    "Healthy = 2"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -918.7807244003136,
+                "y": 582.9545279165582
+            },
+            "dragging": false
+        },
+        {
+            "width": 425,
+            "height": 74,
+            "id": "HealthReport",
+            "position": {
+                "x": -513.6290098550925,
+                "y": 623.8512317960246
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthReport",
+                "name": "HealthReport",
+                "properties": [
+                    "public IReadOnlyDictionary<string, HealthReportEntry> Entries { get; }",
+                    "public HealthStatus Status { get; }",
+                    "public TimeSpan TotalDuration { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -513.6290098550925,
+                "y": 623.8512317960246
+            },
+            "dragging": false
+        },
+        {
+            "width": 342,
+            "height": 122,
+            "id": "HealthReportEntry",
+            "position": {
+                "x": -948.4749429220317,
+                "y": 679.1113261453122
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthReportEntry",
+                "name": "HealthReportEntry",
+                "properties": [
+                    "public IReadOnlyDictionary<string, object> Data { get; }",
+                    "public string? Description { get; }",
+                    "public TimeSpan Duration { get; }",
+                    "public Exception? Exception { get; }",
+                    "public HealthStatus Status { get; }",
+                    "public IEnumerable<string> Tags { get; }"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -948.4749429220317,
+                "y": 679.1113261453122
+            },
+            "dragging": false
+        },
+        {
+            "width": 1004,
+            "height": 120,
+            "id": "IHealthChecksBuilder",
+            "position": {
+                "x": 95.6220227809672,
+                "y": 982.2290298059387
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHealthChecksBuilder",
+                "name": "IHealthChecksBuilder",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "IHealthChecksBuilder Add(HealthCheckRegistration registration)",
+                    "public static IHealthChecksBuilder AddCheck( this IHealthChecksBuilder builder, string name, IHealthCheck instance, HealthStatus? failureStatus, IEnumerable<string> tags)",
+                    "public static IHealthChecksBuilder AddTypeActivatedCheck<T>( this IHealthChecksBuilder builder, string name, params object[] args)",
+                    "public static IHealthChecksBuilder AddAsyncCheck( this IHealthChecksBuilder builder, string name, Func<Task<HealthCheckResult>> check, IEnumerable<string> tags)"
+                ],
+                "properties": [
+                    "IServiceCollection Services { get; }",
+                    ""
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 95.6220227809672,
+                "y": 982.2290298059387
+            },
+            "dragging": false
+        },
+        {
+            "width": 429,
+            "height": 72,
+            "id": "HealthChecksBuilder",
+            "position": {
+                "x": 657.446031104924,
+                "y": 859.0522362757139
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthChecksBuilder",
+                "name": "HealthChecksBuilder",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public IServiceCollection Services { get; }"
+                ],
+                "methods": [
+                    "public IHealthChecksBuilder Add(HealthCheckRegistration registration)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 657.446031104924,
+                "y": 859.0522362757139
+            },
+            "dragging": false
+        },
+        {
+            "width": 466,
+            "height": 42,
+            "id": "IHealthCheckPublisher",
+            "position": {
+                "x": -528.5622757301179,
+                "y": 747.6381371082662
+            },
+            "type": "custom",
+            "data": {
+                "id": "IHealthCheckPublisher",
+                "name": "IHealthCheckPublisher",
+                "parent": "",
+                "methods": [
+                    "Task PublishAsync(HealthReport report, CancellationToken cancellationToken)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -528.5622757301179,
+                "y": 747.6381371082662
+            },
+            "dragging": false
+        },
+        {
+            "width": 535,
+            "height": 90,
+            "id": "HealthCheckPublisherHostedService",
+            "position": {
+                "x": -544.8592025941709,
+                "y": 1029.1413222442116
+            },
+            "type": "custom",
+            "data": {
+                "id": "HealthCheckPublisherHostedService",
+                "name": "HealthCheckPublisherHostedService",
+                "parent": "IHostedService",
+                "properties": [
+                    "private readonly HealthCheckService _healthCheckService",
+                    "private readonly IOptions<HealthCheckServiceOptions> _healthCheckServiceOptions",
+                    "private readonly IOptions<HealthCheckPublisherOptions> _healthCheckPublisherOptions",
+                    "private readonly IHealthCheckPublisher[] _publishers"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -544.8592025941709,
+                "y": 1029.1413222442116
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HealthCheckMiddleware",
+            "sourceHandle": "HealthCheckMiddlewareleftsource",
+            "target": "HealthCheckOptions",
+            "targetHandle": "HealthCheckOptionsrighttarget",
+            "id": "reactflow__edge-HealthCheckMiddlewareHealthCheckMiddlewareleftsource-HealthCheckOptionsHealthCheckOptionsrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HealthCheckOptions",
+            "sourceHandle": "HealthCheckOptionsleftsource",
+            "target": "HealthCheckResponseWriters",
+            "targetHandle": "HealthCheckResponseWritersrighttarget",
+            "id": "reactflow__edge-HealthCheckOptionsHealthCheckOptionsleftsource-HealthCheckResponseWritersHealthCheckResponseWritersrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultHealthCheckService",
+            "sourceHandle": "DefaultHealthCheckServicetopsource",
+            "target": "HealthCheckService",
+            "targetHandle": "HealthCheckServicebottomtarget",
+            "id": "reactflow__edge-DefaultHealthCheckServiceDefaultHealthCheckServicetopsource-HealthCheckServiceHealthCheckServicebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HealthCheckServiceOptions",
+            "sourceHandle": "HealthCheckServiceOptionsbottomsource",
+            "target": "HealthCheckRegistration",
+            "targetHandle": "HealthCheckRegistrationtoptarget",
+            "id": "reactflow__edge-HealthCheckServiceOptionsHealthCheckServiceOptionsbottomsource-HealthCheckRegistrationHealthCheckRegistrationtoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DelegateHealthCheck",
+            "sourceHandle": "DelegateHealthChecktopsource",
+            "target": "IHealthCheck",
+            "targetHandle": "IHealthCheckbottomtarget",
+            "id": "reactflow__edge-DelegateHealthCheckDelegateHealthChecktopsource-IHealthCheckIHealthCheckbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HealthCheckMiddleware",
+            "sourceHandle": "HealthCheckMiddlewarebottomsource",
+            "target": "HealthCheckService",
+            "targetHandle": "HealthCheckServicetoptarget",
+            "id": "reactflow__edge-HealthCheckMiddlewareHealthCheckMiddlewarebottomsource-HealthCheckServiceHealthCheckServicetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HealthChecksBuilder",
+            "sourceHandle": "HealthChecksBuilderbottomsource",
+            "target": "IHealthChecksBuilder",
+            "targetHandle": "IHealthChecksBuildertoptarget",
+            "id": "reactflow__edge-HealthChecksBuilderHealthChecksBuilderbottomsource-IHealthChecksBuilderIHealthChecksBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "HealthCheckRegistration",
+            "sourceHandle": "HealthCheckRegistrationleftsource",
+            "target": "IHealthCheck",
+            "targetHandle": "IHealthCheckrighttarget",
+            "id": "reactflow__edge-HealthCheckRegistrationHealthCheckRegistrationleftsource-IHealthCheckIHealthCheckrighttarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": 830.650080538594,
+        "y": -126.35168812508675,
+        "zoom": 0.7177011565337154
     }
 }
