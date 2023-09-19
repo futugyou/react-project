@@ -177,4 +177,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/cors',
     path: 'dotnet/cors',
     element: lazy(() => import('./Dotnet/Cors/Flow')),
+},{
+    name: 'healthchecks',
+    display: 'HealthChecks',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/healthchecks',
+    path: 'dotnet/healthchecks',
+    element: lazy(() => import('./Dotnet/HealthChecks/Flow')),
 },]
