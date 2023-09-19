@@ -1,9 +1,816 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 536,
+            "height": 74,
+            "id": "CorsMiddleware",
+            "position": {
+                "x": 1049.5791801133414,
+                "y": 963.7196048434321
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsMiddleware",
+                "name": "CorsMiddleware",
+                "properties": [
+                    "private readonly Func<object, Task> OnResponseStartingDelegate = OnResponseStarting",
+                    "private readonly CorsPolicy? _policy",
+                    "private ICorsService CorsService { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1049.5791801133414,
+                "y": 963.7196048434321
+            },
+            "dragging": false
+        },
+        {
+            "width": 395,
+            "height": 58,
+            "id": "ICorsService",
+            "position": {
+                "x": 1835.539565513502,
+                "y": 972.1333608432943
+            },
+            "type": "custom",
+            "data": {
+                "id": "ICorsService",
+                "name": "ICorsService",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "CorsResult EvaluatePolicy(HttpContext context, CorsPolicy policy)",
+                    "void ApplyResult(CorsResult result, HttpResponse response)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1835.539565513502,
+                "y": 972.1333608432943
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "CorsService",
+            "position": {
+                "x": 2301.911097642298,
+                "y": 980.7485985057723
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsService",
+                "name": "CorsService",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "private readonly CorsOptions _options"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2301.911097642298,
+                "y": 980.7485985057723
+            },
+            "dragging": false
+        },
+        {
+            "width": 563,
+            "height": 152,
+            "id": "CorsOptions",
+            "position": {
+                "x": 2053.7922529629386,
+                "y": 1085.280148810502
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsOptions",
+                "name": "CorsOptions",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "public string DefaultPolicyName",
+                    "nternal IDictionary<string, (CorsPolicy policy, Task<CorsPolicy> policyTask)> PolicyMap { get; }"
+                ],
+                "methods": [
+                    "public void AddDefaultPolicy(CorsPolicy policy)",
+                    "public void AddDefaultPolicy(Action<CorsPolicyBuilder> configurePolicy)",
+                    "public void AddPolicy(string name, CorsPolicy policy)",
+                    "public void AddPolicy(string name, Action<CorsPolicyBuilder> configurePolicy)",
+                    "public CorsPolicy? GetPolicy(string name)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2053.7922529629386,
+                "y": 1085.280148810502
+            },
+            "dragging": false
+        },
+        {
+            "width": 502,
+            "height": 232,
+            "id": "CorsPolicy",
+            "position": {
+                "x": 1502.8637921570655,
+                "y": 1258.9129119299039
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsPolicy",
+                "name": "CorsPolicy",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public bool AllowAnyHeader",
+                    "public bool AllowAnyMethod",
+                    "public bool AllowAnyOrigin",
+                    "internal bool IsDefaultIsOriginAllowed { get; private set; } = true",
+                    "public Func<string, bool> IsOriginAllowed",
+                    "public IList<string> ExposedHeaders { get; }",
+                    "public IList<string> Headers { get; }",
+                    "public IList<string> Methods { get; }",
+                    "public IList<string> Origins { get; }",
+                    "public TimeSpan? PreflightMaxAge",
+                    "public bool SupportsCredentials { get; set; }"
+                ],
+                "methods": [
+                    "public static bool IsOriginAnAllowedSubdomain(this CorsPolicy policy, string origin)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1502.8637921570655,
+                "y": 1258.9129119299039
+            },
+            "dragging": false
+        },
+        {
+            "width": 486,
+            "height": 234,
+            "id": "CorsPolicyBuilder",
+            "position": {
+                "x": 2126.1779954770914,
+                "y": 1278.9355748857147
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsPolicyBuilder",
+                "name": "CorsPolicyBuilder",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public CorsPolicyBuilder WithOrigins(params string[] origins)",
+                    "public CorsPolicyBuilder WithHeaders(params string[] headers)",
+                    "public CorsPolicyBuilder WithExposedHeaders(params string[] exposedHeaders)",
+                    "public CorsPolicyBuilder WithMethods(params string[] methods)",
+                    "public CorsPolicyBuilder AllowCredentials()",
+                    "public CorsPolicyBuilder DisallowCredentials()",
+                    "public CorsPolicyBuilder AllowAnyOrigin()",
+                    "public CorsPolicyBuilder AllowAnyMethod()",
+                    "public CorsPolicyBuilder AllowAnyHeader()",
+                    "public CorsPolicyBuilder SetPreflightMaxAge(TimeSpan preflightMaxAge)",
+                    "public CorsPolicyBuilder SetIsOriginAllowed(Func<string, bool> isOriginAllowed)",
+                    "public CorsPolicyBuilder SetIsOriginAllowedToAllowWildcardSubdomains()",
+                    "public CorsPolicy Build()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2126.1779954770914,
+                "y": 1278.9355748857147
+            },
+            "dragging": false
+        },
+        {
+            "width": 461,
+            "height": 42,
+            "id": "ICorsPolicyProvider",
+            "position": {
+                "x": 665.150322024161,
+                "y": 1068.8606576977925
+            },
+            "type": "custom",
+            "data": {
+                "id": "ICorsPolicyProvider",
+                "name": "ICorsPolicyProvider",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "Task<CorsPolicy?> GetPolicyAsync(HttpContext context, string? policyName)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 665.150322024161,
+                "y": 1068.8606576977925
+            },
+            "dragging": false
+        },
+        {
+            "width": 403,
+            "height": 72,
+            "id": "DefaultCorsPolicyProvider",
+            "position": {
+                "x": 694.5140394879912,
+                "y": 1149.3740765502307
+            },
+            "type": "custom",
+            "data": {
+                "id": "DefaultCorsPolicyProvider",
+                "name": "DefaultCorsPolicyProvider",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "parent": "ICorsPolicyProvider",
+                "properties": [
+                    "private readonly CorsOptions _options"
+                ],
+                "methods": [
+                    "public DefaultCorsPolicyProvider(IOptions<CorsOptions> options)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 694.5140394879912,
+                "y": 1149.3740765502307
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "ICorsPolicyMetadata",
+            "position": {
+                "x": 1120.4415084316936,
+                "y": 1301.559610307559
+            },
+            "type": "custom",
+            "data": {
+                "id": "ICorsPolicyMetadata",
+                "name": "ICorsPolicyMetadata",
+                "parent": "ICorsMetadata",
+                "properties": [
+                    "CorsPolicy Policy { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1120.4415084316936,
+                "y": 1301.559610307559
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 72,
+            "id": "CorsPolicyMetadata",
+            "position": {
+                "x": 1121.7069232961464,
+                "y": 1387.7563293142869
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsPolicyMetadata",
+                "name": "CorsPolicyMetadata",
+                "parent": "ICorsPolicyMetadata",
+                "properties": [
+                    "public CorsPolicy Policy { get; }"
+                ],
+                "methods": [
+                    "public CorsPolicyMetadata(CorsPolicy policy)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1121.7069232961464,
+                "y": 1387.7563293142869
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IDisableCorsAttribute",
+            "position": {
+                "x": 693.663740876599,
+                "y": 1283.1091646408313
+            },
+            "type": "custom",
+            "data": {
+                "id": "IDisableCorsAttribute",
+                "name": "IDisableCorsAttribute",
+                "parent": "ICorsMetadata",
+                "properties": [
+                    "''"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 693.663740876599,
+                "y": 1283.1091646408313
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "ICorsMetadata",
+            "position": {
+                "x": 1118.8671176749594,
+                "y": 1212.8375949397994
+            },
+            "type": "custom",
+            "data": {
+                "id": "ICorsMetadata",
+                "name": "ICorsMetadata",
+                "properties": [
+                    "''"
+                ],
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    },
+                    {
+                        "position": "left",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1118.8671176749594,
+                "y": 1212.8375949397994
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 42,
+            "id": "IEnableCorsAttribute",
+            "position": {
+                "x": 697.1949844642959,
+                "y": 1393.946233120453
+            },
+            "type": "custom",
+            "data": {
+                "id": "IEnableCorsAttribute",
+                "name": "IEnableCorsAttribute",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "string? PolicyName { get; set; }"
+                ],
+                "parent": "ICorsMetadata"
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 697.1949844642959,
+                "y": 1393.946233120453
+            },
+            "dragging": false
+        },
+        {
+            "width": 320,
+            "height": 170,
+            "id": "CorsResult",
+            "position": {
+                "x": 1555.1949844642959,
+                "y": 1055.946233120453
+            },
+            "type": "custom",
+            "data": {
+                "id": "CorsResult",
+                "name": "CorsResult",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public bool IsPreflightRequest { get; set; }",
+                    "public string? AllowedOrigin { get; set; }",
+                    "public bool IsOriginAllowed { get; set; }",
+                    "public bool SupportsCredentials { get; set; }",
+                    "public IList<string> AllowedMethods { get; }",
+                    "public IList<string> AllowedHeaders { get; }",
+                    "public IList<string> AllowedExposedHeaders { get; }",
+                    "public bool VaryByOrigin { get; set; }",
+                    "public TimeSpan? PreflightMaxAge"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1555.1949844642959,
+                "y": 1055.946233120453
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsMiddleware",
+            "sourceHandle": "CorsMiddlewarerightsource",
+            "target": "ICorsService",
+            "targetHandle": "ICorsServicelefttarget",
+            "id": "reactflow__edge-CorsMiddlewareCorsMiddlewarerightsource-ICorsServiceICorsServicelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICorsService",
+            "sourceHandle": "ICorsServicerightsource",
+            "target": "CorsService",
+            "targetHandle": "CorsServicelefttarget",
+            "id": "reactflow__edge-ICorsServiceICorsServicerightsource-CorsServiceCorsServicelefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsService",
+            "sourceHandle": "CorsServicebottomsource",
+            "target": "CorsOptions",
+            "targetHandle": "CorsOptionstoptarget",
+            "id": "reactflow__edge-CorsServiceCorsServicebottomsource-CorsOptionsCorsOptionstoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsMiddleware",
+            "sourceHandle": "CorsMiddlewarebottomsource",
+            "target": "CorsPolicy",
+            "targetHandle": "CorsPolicylefttarget",
+            "id": "reactflow__edge-CorsMiddlewareCorsMiddlewarebottomsource-CorsPolicyCorsPolicylefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsOptions",
+            "sourceHandle": "CorsOptionsleftsource",
+            "target": "CorsPolicy",
+            "targetHandle": "CorsPolicyrighttarget",
+            "id": "reactflow__edge-CorsOptionsCorsOptionsleftsource-CorsPolicyCorsPolicyrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsOptions",
+            "sourceHandle": "CorsOptionsbottomsource",
+            "target": "CorsPolicyBuilder",
+            "targetHandle": "CorsPolicyBuildertoptarget",
+            "id": "reactflow__edge-CorsOptionsCorsOptionsbottomsource-CorsPolicyBuilderCorsPolicyBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsPolicyBuilder",
+            "sourceHandle": "CorsPolicyBuilderleftsource",
+            "target": "CorsPolicy",
+            "targetHandle": "CorsPolicyrighttarget",
+            "id": "reactflow__edge-CorsPolicyBuilderCorsPolicyBuilderleftsource-CorsPolicyCorsPolicyrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsMiddleware",
+            "sourceHandle": "CorsMiddlewareleftsource",
+            "target": "ICorsPolicyProvider",
+            "targetHandle": "ICorsPolicyProvidertoptarget",
+            "id": "reactflow__edge-CorsMiddlewareCorsMiddlewareleftsource-ICorsPolicyProviderICorsPolicyProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "DefaultCorsPolicyProvider",
+            "sourceHandle": "DefaultCorsPolicyProvidertopsource",
+            "target": "ICorsPolicyProvider",
+            "targetHandle": "ICorsPolicyProviderbottomtarget",
+            "id": "reactflow__edge-DefaultCorsPolicyProviderDefaultCorsPolicyProvidertopsource-ICorsPolicyProviderICorsPolicyProviderbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICorsPolicyProvider",
+            "sourceHandle": "ICorsPolicyProviderrightsource",
+            "target": "CorsPolicy",
+            "targetHandle": "CorsPolicylefttarget",
+            "id": "reactflow__edge-ICorsPolicyProviderICorsPolicyProviderrightsource-CorsPolicyCorsPolicylefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsPolicyMetadata",
+            "sourceHandle": "CorsPolicyMetadatatopsource",
+            "target": "ICorsPolicyMetadata",
+            "targetHandle": "ICorsPolicyMetadatabottomtarget",
+            "id": "reactflow__edge-CorsPolicyMetadataCorsPolicyMetadatatopsource-ICorsPolicyMetadataICorsPolicyMetadatabottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICorsPolicyMetadata",
+            "sourceHandle": "ICorsPolicyMetadatarightsource",
+            "target": "CorsPolicy",
+            "targetHandle": "CorsPolicylefttarget",
+            "id": "reactflow__edge-ICorsPolicyMetadataICorsPolicyMetadatarightsource-CorsPolicyCorsPolicylefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "CorsMiddleware",
+            "sourceHandle": "CorsMiddlewarebottomsource",
+            "target": "ICorsMetadata",
+            "targetHandle": "ICorsMetadatatoptarget",
+            "id": "reactflow__edge-CorsMiddlewareCorsMiddlewarebottomsource-ICorsMetadataICorsMetadatatoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICorsPolicyMetadata",
+            "sourceHandle": "ICorsPolicyMetadatatopsource",
+            "target": "ICorsMetadata",
+            "targetHandle": "ICorsMetadatabottomtarget",
+            "id": "reactflow__edge-ICorsPolicyMetadataICorsPolicyMetadatatopsource-ICorsMetadataICorsMetadatabottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IDisableCorsAttribute",
+            "sourceHandle": "IDisableCorsAttributetopsource",
+            "target": "ICorsMetadata",
+            "targetHandle": "ICorsMetadatalefttarget",
+            "id": "reactflow__edge-IDisableCorsAttributeIDisableCorsAttributetopsource-ICorsMetadataICorsMetadatalefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IEnableCorsAttribute",
+            "sourceHandle": "IEnableCorsAttributetopsource",
+            "target": "ICorsMetadata",
+            "targetHandle": "ICorsMetadatalefttarget",
+            "id": "reactflow__edge-IEnableCorsAttributeIEnableCorsAttributetopsource-ICorsMetadataICorsMetadatalefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ICorsService",
+            "sourceHandle": "ICorsServicebottomsource",
+            "target": "CorsResult",
+            "targetHandle": "CorsResultrighttarget",
+            "id": "reactflow__edge-ICorsServiceICorsServicebottomsource-CorsResultCorsResultrighttarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": -449.1781555357311,
+        "y": -524.0226259965275,
+        "zoom": 0.7914082138020564
     }
 }
