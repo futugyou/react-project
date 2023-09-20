@@ -1,9 +1,421 @@
 {
-    "nodes": [ ],
-    "edges": [ ],
+    "nodes": [
+        {
+            "width": 300,
+            "height": 74,
+            "id": "IIdentity",
+            "position": {
+                "x": 1157.4108018089319,
+                "y": 623.8338080977634
+            },
+            "type": "custom",
+            "data": {
+                "id": "IIdentity",
+                "name": "IIdentity",
+                "properties": [
+                    "string? Name { get; }",
+                    "string? AuthenticationType { get; }",
+                    "bool IsAuthenticated { get; }"
+                ],
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1157.4108018089319,
+                "y": 623.8338080977634
+            },
+            "dragging": false
+        },
+        {
+            "width": 416,
+            "height": 296,
+            "id": "ClaimsIdentity",
+            "position": {
+                "x": 1593.3114515388788,
+                "y": 513.4365979318173
+            },
+            "type": "custom",
+            "data": {
+                "id": "ClaimsIdentity",
+                "name": "ClaimsIdentity",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "parent": "IIdentity",
+                "properties": [
+                    "public const string DefaultIssuer = @\"LOCAL AUTHORITY\"",
+                    "public const string DefaultNameClaimType = ClaimTypes.Name",
+                    "public const string DefaultRoleClaimType = ClaimTypes.Role",
+                    "public ClaimsIdentity? Actor",
+                    "public object? BootstrapContext",
+                    "public virtual IEnumerable<Claim> Claims",
+                    "public string NameClaimType",
+                    "public string RoleClaimType"
+                ],
+                "methods": [
+                    "public virtual ClaimsIdentity Clone()",
+                    "public virtual void AddClaim(Claim claim)",
+                    "public virtual void AddClaims(IEnumerable<Claim?> claims)",
+                    "public virtual bool TryRemoveClaim(Claim? claim)",
+                    "public virtual void RemoveClaim(Claim? claim)",
+                    "public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)",
+                    "public virtual Claim? FindFirst(Predicate<Claim> match)",
+                    "public virtual bool HasClaim(Predicate<Claim> match)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1593.3114515388788,
+                "y": 513.4365979318173
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 90,
+            "id": "GenericIdentity",
+            "position": {
+                "x": 2159.240233670325,
+                "y": 615.943881618662
+            },
+            "type": "custom",
+            "data": {
+                "id": "GenericIdentity",
+                "name": "GenericIdentity",
+                "parent": "ClaimsIdentity",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public override string Name",
+                    "public override string AuthenticationType",
+                    "public override bool IsAuthenticated",
+                    "public override ClaimsIdentity Clone()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2159.240233670325,
+                "y": 615.943881618662
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 184,
+            "id": "Claim",
+            "position": {
+                "x": 1649.9900166317407,
+                "y": 289.5689970946054
+            },
+            "type": "custom",
+            "data": {
+                "id": "Claim",
+                "name": "Claim",
+                "connects": [
+                    {
+                        "position": "right",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "properties": [
+                    "public string Issuer",
+                    "public string OriginalIssuer",
+                    "public IDictionary<string, string> Properties",
+                    "public ClaimsIdentity? Subject",
+                    "public string Type",
+                    "public string Value",
+                    "public string ValueType"
+                ],
+                "methods": [
+                    "public virtual Claim Clone()",
+                    "public virtual void WriteTo(BinaryWriter writer)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1649.9900166317407,
+                "y": 289.5689970946054
+            },
+            "dragging": false
+        },
+        {
+            "width": 300,
+            "height": 58,
+            "id": "IPrincipal",
+            "position": {
+                "x": 1158.9982592731947,
+                "y": 956.4690961363556
+            },
+            "type": "custom",
+            "data": {
+                "id": "IPrincipal",
+                "name": "IPrincipal",
+                "properties": [
+                    "IIdentity? Identity { get; }",
+                    "bool IsInRole(string role);"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1158.9982592731947,
+                "y": 956.4690961363556
+            },
+            "dragging": false
+        },
+        {
+            "width": 543,
+            "height": 264,
+            "id": "ClaimsPrincipal",
+            "position": {
+                "x": 1530.1803345262058,
+                "y": 853.5272793295127
+            },
+            "type": "custom",
+            "data": {
+                "id": "ClaimsPrincipal",
+                "name": "ClaimsPrincipal",
+                "parent": "IPrincipal",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "public static Func<IEnumerable<ClaimsIdentity>, ClaimsIdentity?> PrimaryIdentitySelector",
+                    "public static Func<ClaimsPrincipal> ClaimsPrincipalSelector",
+                    "public virtual void AddIdentity(ClaimsIdentity identity)",
+                    "public virtual void AddIdentities(IEnumerable<ClaimsIdentity> identities)",
+                    "public virtual ClaimsPrincipal Clone()",
+                    "public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)",
+                    "public virtual Claim? FindFirst(Predicate<Claim> match)",
+                    "public virtual bool HasClaim(Predicate<Claim> match)",
+                    "public virtual bool IsInRole(string role)",
+                    "public virtual void WriteTo(BinaryWriter writer)"
+                ],
+                "properties": [
+                    "public virtual IEnumerable<Claim> Claims",
+                    "public static ClaimsPrincipal? Current",
+                    "public virtual IEnumerable<ClaimsIdentity> Identities",
+                    "public virtual System.Security.Principal.IIdentity? Identity"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1530.1803345262058,
+                "y": 853.5272793295127
+            },
+            "dragging": false
+        },
+        {
+            "width": 381,
+            "height": 72,
+            "id": "GenericPrincipal",
+            "position": {
+                "x": 2126.7862366183613,
+                "y": 949.3409369414758
+            },
+            "type": "custom",
+            "data": {
+                "id": "GenericPrincipal",
+                "name": "GenericPrincipal",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "source"
+                    },
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ],
+                "parent": "ClaimsPrincipal",
+                "properties": [
+                    "public override IIdentity Identity"
+                ],
+                "methods": [
+                    "public override bool IsInRole([NotNullWhen(true)] string? role)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2126.7862366183613,
+                "y": 949.3409369414758
+            },
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ClaimsIdentity",
+            "sourceHandle": "ClaimsIdentityleftsource",
+            "target": "IIdentity",
+            "targetHandle": "IIdentityrighttarget",
+            "id": "reactflow__edge-ClaimsIdentityClaimsIdentityleftsource-IIdentityIIdentityrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "GenericIdentity",
+            "sourceHandle": "GenericIdentityleftsource",
+            "target": "ClaimsIdentity",
+            "targetHandle": "ClaimsIdentityrighttarget",
+            "id": "reactflow__edge-GenericIdentityGenericIdentityleftsource-ClaimsIdentityClaimsIdentityrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IPrincipal",
+            "sourceHandle": "IPrincipaltopsource",
+            "target": "IIdentity",
+            "targetHandle": "IIdentitybottomtarget",
+            "id": "reactflow__edge-IPrincipalIPrincipaltopsource-IIdentityIIdentitybottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ClaimsPrincipal",
+            "sourceHandle": "ClaimsPrincipalleftsource",
+            "target": "IPrincipal",
+            "targetHandle": "IPrincipalrighttarget",
+            "id": "reactflow__edge-ClaimsPrincipalClaimsPrincipalleftsource-IPrincipalIPrincipalrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ClaimsPrincipal",
+            "sourceHandle": "ClaimsPrincipaltopsource",
+            "target": "ClaimsIdentity",
+            "targetHandle": "ClaimsIdentitybottomtarget",
+            "id": "reactflow__edge-ClaimsPrincipalClaimsPrincipaltopsource-ClaimsIdentityClaimsIdentitybottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ClaimsIdentity",
+            "sourceHandle": "ClaimsIdentitytopsource",
+            "target": "Claim",
+            "targetHandle": "Claimbottomtarget",
+            "id": "reactflow__edge-ClaimsIdentityClaimsIdentitytopsource-ClaimClaimbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "GenericPrincipal",
+            "sourceHandle": "GenericPrincipalleftsource",
+            "target": "ClaimsPrincipal",
+            "targetHandle": "ClaimsPrincipalrighttarget",
+            "id": "reactflow__edge-GenericPrincipalGenericPrincipalleftsource-ClaimsPrincipalClaimsPrincipalrighttarget"
+        }
+    ],
     "viewport": {
-        "x": 0,
-        "y": 0,
-        "zoom": 1
+        "x": -985.6054695560329,
+        "y": -248.51057500739853,
+        "zoom": 1.0013679757547016
     }
 }
