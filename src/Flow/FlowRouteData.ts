@@ -184,4 +184,11 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/healthchecks',
     path: 'dotnet/healthchecks',
     element: lazy(() => import('./Dotnet/HealthChecks/Flow')),
+},{
+    name: 'authentication',
+    display: 'Authentication',
+    group: 'NetCore',
+    linkpath: '/flow/dotnet/authentication',
+    path: 'dotnet/authentication',
+    element: lazy(() => import('./Dotnet/Authentication/Flow')),
 },]
