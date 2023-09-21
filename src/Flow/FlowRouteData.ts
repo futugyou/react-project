@@ -193,7 +193,7 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     element: lazy(() => import('./Dotnet/Authentication/Flow')),
 },{
     name: 'authenticationhandler',
-    display: 'AuthenticationHandler',
+    display: 'Auth-Handler',
     group: 'NetCore',
     linkpath: '/flow/dotnet/authenticationhandler',
     path: 'dotnet/authenticationhandler',
