@@ -12,6 +12,10 @@ const FlowPanel = (props: any) => {
     const [scope, animate] = useAnimate()
     const location = useLocation()
     const [currentPage, setCurrentPage] = useState('/flow/dotnet/di')
+    const refs = FlowRouteDataList.reduce((acc: any, value) => {
+        acc[value.linkpath] = React.createRef();
+        return acc;
+    }, {});
 
     useEffect(() => {
         const menus = document.getElementsByClassName("nav nav-pills flex-column")
@@ -49,6 +53,13 @@ const FlowPanel = (props: any) => {
         setCurrentPage(location.pathname)
     }, [location])
 
+    useEffect(() => {
+        refs[currentPage].current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        })
+    }, [currentPage])
+
     const checkMenuSelect = (path: string) => {
         if (currentPage == path) {
             return true
@@ -70,7 +81,7 @@ const FlowPanel = (props: any) => {
                     {
                         _.get(groups, group).map((a) => {
                             return (
-                                <li className={checkMenuSelect(a.linkpath) ? 'nav-item flow-panel-menu-hover' : 'nav-item'} key={a.name} >
+                                <li ref={refs[a.linkpath]} className={checkMenuSelect(a.linkpath) ? 'nav-item flow-panel-menu-hover' : 'nav-item'} key={a.name} >
                                     <NavLink to={a.linkpath} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >{a.display}</NavLink>
                                 </li>
                             )
