@@ -61,7 +61,7 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
     if (data.connects) {
         connects = data.connects.map((t: ConnectInfo) => {
             return (
-                <Handle className='customHandle' id={data.name + t.position + t.type} key={data.name + t.position} position={t.position} type={t.type} />
+                <Handle className='customHandle' id={data.name + t.position + t.type} key={data.name + t.position + t.type} position={t.position} type={t.type} />
             )
         })
     }
