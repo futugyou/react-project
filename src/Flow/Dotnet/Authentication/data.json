@@ -341,8 +341,8 @@
             "height": 296,
             "id": "AuthenticationProperties",
             "position": {
-                "x": 1848.7098485748345,
-                "y": 1485.3446087665202
+                "x": 1699.234050561309,
+                "y": 1585.532316652666
             },
             "type": "custom",
             "data": {
@@ -377,8 +377,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1848.7098485748345,
-                "y": 1485.3446087665202
+                "x": 1699.234050561309,
+                "y": 1585.532316652666
             },
             "dragging": false
         },
@@ -463,8 +463,8 @@
             "height": 42,
             "id": "IAuthenticationHandlerProvider",
             "position": {
-                "x": 1207.6381955118395,
-                "y": 1437.5937919317976
+                "x": 690.0061468410386,
+                "y": 1328.8673300873804
             },
             "type": "custom",
             "data": {
@@ -472,7 +472,7 @@
                 "name": "IAuthenticationHandlerProvider",
                 "connects": [
                     {
-                        "position": "top",
+                        "position": "bottom",
                         "type": "target"
                     }
                 ],
@@ -482,8 +482,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1207.6381955118395,
-                "y": 1437.5937919317976
+                "x": 690.0061468410386,
+                "y": 1328.8673300873804
             },
             "dragging": false
         },
@@ -522,8 +522,8 @@
             "height": 74,
             "id": "AuthenticationScheme",
             "position": {
-                "x": 2758.9819455906204,
-                "y": 1549.221404540738
+                "x": 2584.871832931396,
+                "y": 1880.9011691565602
             },
             "type": "custom",
             "data": {
@@ -536,15 +536,15 @@
                 ],
                 "connects": [
                     {
-                        "position": "bottom",
+                        "position": "top",
                         "type": "target"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2758.9819455906204,
-                "y": 1549.221404540738
+                "x": 2584.871832931396,
+                "y": 1880.9011691565602
             },
             "dragging": false
         },
@@ -553,8 +553,8 @@
             "height": 104,
             "id": "AuthenticationSchemeBuilder",
             "position": {
-                "x": 2742.574224058548,
-                "y": 1671.3787331135338
+                "x": 2584.1177886479536,
+                "y": 1738.8327197031551
             },
             "type": "custom",
             "data": {
@@ -571,18 +571,18 @@
                 "connects": [
                     {
                         "position": "top",
-                        "type": "source"
+                        "type": "target"
                     },
                     {
                         "position": "bottom",
-                        "type": "target"
+                        "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2742.574224058548,
-                "y": 1671.3787331135338
+                "x": 2584.1177886479536,
+                "y": 1738.8327197031551
             },
             "dragging": false
         },
@@ -591,8 +591,8 @@
             "height": 202,
             "id": "IAuthenticationSchemeProvider",
             "position": {
-                "x": 2385.662869095206,
-                "y": 1091.8064424129016
+                "x": 2293.2973153411035,
+                "y": 1101.0429977883118
             },
             "type": "custom",
             "data": {
@@ -632,8 +632,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2385.662869095206,
-                "y": 1091.8064424129016
+                "x": 2293.2973153411035,
+                "y": 1101.0429977883118
             },
             "dragging": false
         },
@@ -642,8 +642,8 @@
             "height": 58,
             "id": "AuthenticationToken",
             "position": {
-                "x": 1700.1587629487171,
-                "y": 1820.9437534249141
+                "x": 1699.773740816937,
+                "y": 1903.6621915956953
             },
             "type": "custom",
             "data": {
@@ -656,8 +656,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1700.1587629487171,
-                "y": 1820.9437534249141
+                "x": 1699.773740816937,
+                "y": 1903.6621915956953
             },
             "dragging": false
         },
@@ -743,8 +743,8 @@
             "height": 90,
             "id": "AuthenticationService",
             "position": {
-                "x": 1705.8714779431164,
-                "y": 1328.4304201673908
+                "x": 1743.4304030166222,
+                "y": 1384.189258920181
             },
             "type": "custom",
             "data": {
@@ -766,8 +766,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1705.8714779431164,
-                "y": 1328.4304201673908
+                "x": 1743.4304030166222,
+                "y": 1384.189258920181
             },
             "dragging": false
         },
@@ -776,8 +776,8 @@
             "height": 42,
             "id": "AuthenticationHandlerProvider",
             "position": {
-                "x": 1319.8038173452576,
-                "y": 1342.5622806023462
+                "x": 823.7054884626425,
+                "y": 1433.1418829851273
             },
             "type": "custom",
             "data": {
@@ -786,7 +786,7 @@
                 "parent": "IAuthenticationHandlerProvider",
                 "connects": [
                     {
-                        "position": "bottom",
+                        "position": "top",
                         "type": "source"
                     }
                 ],
@@ -796,8 +796,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1319.8038173452576,
-                "y": 1342.5622806023462
+                "x": 823.7054884626425,
+                "y": 1433.1418829851273
             },
             "dragging": false
         },
@@ -806,8 +806,8 @@
             "height": 74,
             "id": "AuthenticationSchemeProvider",
             "position": {
-                "x": 2584.309049706471,
-                "y": 1378.3591750469193
+                "x": 2325.0437713520687,
+                "y": 1352.896965703809
             },
             "type": "custom",
             "data": {
@@ -832,8 +832,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2584.309049706471,
-                "y": 1378.3591750469193
+                "x": 2325.0437713520687,
+                "y": 1352.896965703809
             },
             "dragging": false
         },
@@ -842,8 +842,8 @@
             "height": 42,
             "id": "IClaimsTransformation",
             "position": {
-                "x": 740.0405042665477,
-                "y": 1334.2364792067851
+                "x": 1323.5792686050409,
+                "y": 1329.6416857867969
             },
             "type": "custom",
             "data": {
@@ -861,8 +861,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 740.0405042665477,
-                "y": 1334.2364792067851
+                "x": 1323.5792686050409,
+                "y": 1329.6416857867969
             },
             "dragging": false
         },
@@ -871,8 +871,8 @@
             "height": 42,
             "id": "NoopClaimsTransformation",
             "position": {
-                "x": 701.2785078155512,
-                "y": 1440.2231385632838
+                "x": 1242.889782196653,
+                "y": 1433.3309484333015
             },
             "type": "custom",
             "data": {
@@ -891,8 +891,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 701.2785078155512,
-                "y": 1440.2231385632838
+                "x": 1242.889782196653,
+                "y": 1433.3309484333015
             },
             "dragging": false
         },
@@ -901,8 +901,8 @@
             "height": 216,
             "id": "AuthenticationOptions",
             "position": {
-                "x": 2173.707366881011,
-                "y": 1805.6038895415727
+                "x": 2400.8389715063267,
+                "y": 1481.5401669421558
             },
             "type": "custom",
             "data": {
@@ -929,15 +929,15 @@
                         "type": "target"
                     },
                     {
-                        "position": "right",
+                        "position": "bottom",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2173.707366881011,
-                "y": 1805.6038895415727
+                "x": 2400.8389715063267,
+                "y": 1481.5401669421558
             },
             "dragging": false
         },
@@ -1010,8 +1010,8 @@
             "height": 42,
             "id": "AuthenticationMiddleware",
             "position": {
-                "x": 2276.516836689934,
-                "y": 707.976833151329
+                "x": 2357.0068192470803,
+                "y": 983.7539865028635
             },
             "type": "custom",
             "data": {
@@ -1026,19 +1026,23 @@
                         "type": "source"
                     },
                     {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
                         "position": "right",
                         "type": "source"
                     },
                     {
-                        "position": "bottom",
+                        "position": "top",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2276.516836689934,
-                "y": 707.976833151329
+                "x": 2357.0068192470803,
+                "y": 983.7539865028635
             },
             "dragging": false
         },
@@ -1047,8 +1051,8 @@
             "height": 58,
             "id": "IAuthenticationFeature",
             "position": {
-                "x": 2776.804896406434,
-                "y": 700.4367395554484
+                "x": 2780.742030140392,
+                "y": 975.2351444316137
             },
             "type": "custom",
             "data": {
@@ -1056,11 +1060,11 @@
                 "name": "IAuthenticationFeature",
                 "connects": [
                     {
-                        "position": "bottom",
+                        "position": "left",
                         "type": "target"
                     },
                     {
-                        "position": "left",
+                        "position": "top",
                         "type": "target"
                     }
                 ],
@@ -1071,8 +1075,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2776.804896406434,
-                "y": 700.4367395554484
+                "x": 2780.742030140392,
+                "y": 975.2351444316137
             },
             "dragging": false
         },
@@ -1081,8 +1085,8 @@
             "height": 58,
             "id": "AuthenticationFeature",
             "position": {
-                "x": 2778.230973045609,
-                "y": 814.5620522403901
+                "x": 2779.379671400606,
+                "y": 857.0638913752804
             },
             "type": "custom",
             "data": {
@@ -1090,7 +1094,7 @@
                 "name": "AuthenticationFeature",
                 "connects": [
                     {
-                        "position": "top",
+                        "position": "bottom",
                         "type": "source"
                     }
                 ],
@@ -1102,8 +1106,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2778.230973045609,
-                "y": 814.5620522403901
+                "x": 2779.379671400606,
+                "y": 857.0638913752804
             },
             "dragging": false
         },
@@ -1112,8 +1116,8 @@
             "height": 42,
             "id": "IHttpAuthenticationFeature",
             "position": {
-                "x": 2448.708479191047,
-                "y": 813.7352571422587
+                "x": 2459.686375547315,
+                "y": 839.2772626739244
             },
             "type": "custom",
             "data": {
@@ -1135,8 +1139,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2448.708479191047,
-                "y": 813.7352571422587
+                "x": 2459.686375547315,
+                "y": 839.2772626739244
             },
             "dragging": false
         },
@@ -1145,8 +1149,8 @@
             "height": 42,
             "id": "IAuthenticateResultFeature",
             "position": {
-                "x": 2113.7882686470293,
-                "y": 814.2045015655647
+                "x": 2109.300251661423,
+                "y": 838.1264535152527
             },
             "type": "custom",
             "data": {
@@ -1168,8 +1172,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2113.7882686470293,
-                "y": 814.2045015655647
+                "x": 2109.300251661423,
+                "y": 838.1264535152527
             },
             "dragging": false
         },
@@ -1178,8 +1182,8 @@
             "height": 88,
             "id": "AuthenticationFeatures",
             "position": {
-                "x": 2274.791172169543,
-                "y": 916.9656209916341
+                "x": 2286.6667433664993,
+                "y": 687.3712445171504
             },
             "type": "custom",
             "data": {
@@ -1195,15 +1199,46 @@
                 ],
                 "connects": [
                     {
-                        "position": "top",
+                        "position": "bottom",
                         "type": "source"
                     }
                 ]
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 2274.791172169543,
-                "y": 916.9656209916341
+                "x": 2286.6667433664993,
+                "y": 687.3712445171504
+            },
+            "dragging": false
+        },
+        {
+            "width": 420,
+            "height": 170,
+            "id": "AuthenticationFlow",
+            "position": {
+                "x": 2246.8765971970993,
+                "y": 426.5835820657835
+            },
+            "type": "custom",
+            "data": {
+                "id": "AuthenticationFlow",
+                "name": "AuthenticationFlow",
+                "properties": [
+                    "AuthenticationMiddleware",
+                    "IAuthenticationFeature",
+                    "IAuthenticationSchemeProvider.GetRequestHandlerSchemesAsync()",
+                    "IAuthenticationHandlerProvider.GetHandlerAsync",
+                    "IAuthenticationRequestHandler.HandleRequestAsync",
+                    "IAuthenticationSchemeProvider.GetDefaultAuthenticateSchemeAsync",
+                    "HttpContext.AuthenticateAsync",
+                    "IHttpAuthenticationFeature",
+                    "IAuthenticateResultFeature"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2246.8765971970993,
+                "y": 426.5835820657835
             },
             "dragging": false
         }
@@ -1364,22 +1399,6 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "AuthenticationSchemeBuilder",
-            "sourceHandle": "AuthenticationSchemeBuildertopsource",
-            "target": "AuthenticationScheme",
-            "targetHandle": "AuthenticationSchemebottomtarget",
-            "id": "reactflow__edge-AuthenticationSchemeBuilderAuthenticationSchemeBuildertopsource-AuthenticationSchemeAuthenticationSchemebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
             "source": "HttpContext",
             "sourceHandle": "HttpContextrightsource",
             "target": "IAuthenticationService",
@@ -1460,22 +1479,6 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "AuthenticationHandlerProvider",
-            "sourceHandle": "AuthenticationHandlerProviderbottomsource",
-            "target": "IAuthenticationHandlerProvider",
-            "targetHandle": "IAuthenticationHandlerProvidertoptarget",
-            "id": "reactflow__edge-AuthenticationHandlerProviderAuthenticationHandlerProviderbottomsource-IAuthenticationHandlerProviderIAuthenticationHandlerProvidertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
             "source": "IAuthenticationRequestHandler",
             "sourceHandle": "IAuthenticationRequestHandlerleftsource",
             "target": "IAuthenticationHandler",
@@ -1497,22 +1500,6 @@
             "target": "AuthenticationOptions",
             "targetHandle": "AuthenticationOptionstoptarget",
             "id": "reactflow__edge-AuthenticationSchemeProviderAuthenticationSchemeProviderbottomsource-AuthenticationOptionsAuthenticationOptionstoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationOptions",
-            "sourceHandle": "AuthenticationOptionsrightsource",
-            "target": "AuthenticationSchemeBuilder",
-            "targetHandle": "AuthenticationSchemeBuilderbottomtarget",
-            "id": "reactflow__edge-AuthenticationOptionsAuthenticationOptionsrightsource-AuthenticationSchemeBuilderAuthenticationSchemeBuilderbottomtarget"
         },
         {
             "style": {
@@ -1572,11 +1559,27 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "AuthenticationFeature",
-            "sourceHandle": "AuthenticationFeaturetopsource",
-            "target": "IAuthenticationFeature",
-            "targetHandle": "IAuthenticationFeaturebottomtarget",
-            "id": "reactflow__edge-AuthenticationFeatureAuthenticationFeaturetopsource-IAuthenticationFeatureIAuthenticationFeaturebottomtarget"
+            "source": "AuthenticationOptions",
+            "sourceHandle": "AuthenticationOptionsbottomsource",
+            "target": "AuthenticationSchemeBuilder",
+            "targetHandle": "AuthenticationSchemeBuildertoptarget",
+            "id": "reactflow__edge-AuthenticationOptionsAuthenticationOptionsbottomsource-AuthenticationSchemeBuilderAuthenticationSchemeBuildertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthenticationSchemeBuilder",
+            "sourceHandle": "AuthenticationSchemeBuilderbottomsource",
+            "target": "AuthenticationScheme",
+            "targetHandle": "AuthenticationSchemetoptarget",
+            "id": "reactflow__edge-AuthenticationSchemeBuilderAuthenticationSchemeBuilderbottomsource-AuthenticationSchemeAuthenticationSchemetoptarget"
         },
         {
             "style": {
@@ -1589,59 +1592,26 @@
                 "color": "black"
             },
             "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewarebottomsource",
-            "target": "IAuthenticateResultFeature",
-            "targetHandle": "IAuthenticateResultFeaturetoptarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarebottomsource-IAuthenticateResultFeatureIAuthenticateResultFeaturetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewarebottomsource",
-            "target": "IHttpAuthenticationFeature",
-            "targetHandle": "IHttpAuthenticationFeaturetoptarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarebottomsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationFeatures",
-            "sourceHandle": "AuthenticationFeaturestopsource",
-            "target": "IAuthenticateResultFeature",
-            "targetHandle": "IAuthenticateResultFeaturebottomtarget",
-            "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturestopsource-IAuthenticateResultFeatureIAuthenticateResultFeaturebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationFeatures",
-            "sourceHandle": "AuthenticationFeaturestopsource",
+            "sourceHandle": "AuthenticationMiddlewaretopsource",
             "target": "IHttpAuthenticationFeature",
             "targetHandle": "IHttpAuthenticationFeaturebottomtarget",
-            "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturestopsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturebottomtarget",
-            "selected": false
+            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewaretopsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthenticationFeatures",
+            "sourceHandle": "AuthenticationFeaturesbottomsource",
+            "target": "IAuthenticateResultFeature",
+            "targetHandle": "IAuthenticateResultFeaturetoptarget",
+            "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturesbottomsource-IAuthenticateResultFeatureIAuthenticateResultFeaturetoptarget"
         },
         {
             "style": {
@@ -1654,15 +1624,79 @@
                 "color": "black"
             },
             "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewareleftsource",
+            "sourceHandle": "AuthenticationMiddlewarebottomsource",
             "target": "IAuthenticationSchemeProvider",
-            "targetHandle": "IAuthenticationSchemeProviderlefttarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewareleftsource-IAuthenticationSchemeProviderIAuthenticationSchemeProviderlefttarget"
+            "targetHandle": "IAuthenticationSchemeProvidertoptarget",
+            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarebottomsource-IAuthenticationSchemeProviderIAuthenticationSchemeProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthenticationFeatures",
+            "sourceHandle": "AuthenticationFeaturesbottomsource",
+            "target": "IHttpAuthenticationFeature",
+            "targetHandle": "IHttpAuthenticationFeaturetoptarget",
+            "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturesbottomsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthenticationMiddleware",
+            "sourceHandle": "AuthenticationMiddlewaretopsource",
+            "target": "IAuthenticateResultFeature",
+            "targetHandle": "IAuthenticateResultFeaturebottomtarget",
+            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewaretopsource-IAuthenticateResultFeatureIAuthenticateResultFeaturebottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthenticationFeature",
+            "sourceHandle": "AuthenticationFeaturebottomsource",
+            "target": "IAuthenticationFeature",
+            "targetHandle": "IAuthenticationFeaturetoptarget",
+            "id": "reactflow__edge-AuthenticationFeatureAuthenticationFeaturebottomsource-IAuthenticationFeatureIAuthenticationFeaturetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthenticationHandlerProvider",
+            "sourceHandle": "AuthenticationHandlerProvidertopsource",
+            "target": "IAuthenticationHandlerProvider",
+            "targetHandle": "IAuthenticationHandlerProviderbottomtarget",
+            "id": "reactflow__edge-AuthenticationHandlerProviderAuthenticationHandlerProvidertopsource-IAuthenticationHandlerProviderIAuthenticationHandlerProviderbottomtarget"
         }
     ],
     "viewport": {
-        "x": -91.41044371363523,
-        "y": -126.29322165904455,
-        "zoom": 0.5
+        "x": -94.36552269141498,
+        "y": -112.71008097465642,
+        "zoom": 0.5012359109191431
     }
 }
