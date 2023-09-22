@@ -1,7 +1,7 @@
 import './ClassNode.css'
 
 import { ReactElement, ReactNode, useState, useEffect } from 'react'
-import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
+import { Handle, Position, Node, NodeProps, HandleType, NodeResizer } from 'reactflow'
 
 export type ClassNodeData = {
     id: string
@@ -69,7 +69,7 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
     }
 
     useEffect(() => {
-        if (data.methods && data.properties && (data.properties.length > 0 || data.methods.length > 0)) {
+        if ((data.methods && data.methods.length > 0) || (data.properties && data.properties.length > 0)) {
             setEmptyBody({})
         } else {
             setEmptyBody({ top: 'calc(50% - 6px)' })
@@ -78,6 +78,7 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
 
     return (
         <div className={selected ? 'node-container node-container-selected' : 'node-container'}>
+            <NodeResizer color="#ff0071" isVisible={selected} minWidth={300} minHeight={50} />
             <div className='class-name' style={emptyBody} >
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>
