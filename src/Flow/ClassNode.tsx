@@ -1,6 +1,6 @@
 import './ClassNode.css'
 
-import { ReactElement, JSXElementConstructor, ReactNode } from 'react'
+import { ReactElement, ReactNode, useState, useEffect } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
 
 export type ClassNodeData = {
@@ -35,6 +35,8 @@ export const DefaultClassNodeType: ClassNodeType = {
 }
 
 export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
+    const [emptyBody, setEmptyBody] = useState({})
+
     let methods: JSX.Element[] = []
     if (data.methods) {
         methods = data.methods.map((t: string) => {
@@ -66,9 +68,17 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
         })
     }
 
+    useEffect(() => {
+        if (data.methods && data.properties && (data.properties.length > 0 || data.methods.length > 0)) {
+            setEmptyBody({})
+        } else {
+            setEmptyBody({ top: 'calc(50% - 6px)' })
+        }
+    }, [data.methods, data.properties])
+
     return (
         <div className={selected ? 'node-container node-container-selected' : 'node-container'}>
-            <div className='class-name' >
+            <div className='class-name' style={emptyBody} >
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>
 
