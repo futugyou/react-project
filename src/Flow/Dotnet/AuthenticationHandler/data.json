@@ -129,12 +129,12 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 337,
+            "height": 50,
             "id": "PolicySchemeOptions",
             "position": {
-                "x": 398.57211661302904,
-                "y": 908.4384715685931
+                "x": 357.61359288071037,
+                "y": 926.5173532352516
             },
             "type": "custom",
             "data": {
@@ -151,16 +151,19 @@
                         "type": "target"
                     }
                 ],
-                "properties": [
-                    "{ }"
-                ]
+                "properties": []
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 398.57211661302904,
-                "y": 908.4384715685931
+                "x": 357.61359288071037,
+                "y": 926.5173532352516
             },
-            "dragging": false
+            "dragging": false,
+            "style": {
+                "width": 337,
+                "height": 50
+            },
+            "resizing": false
         },
         {
             "width": 721,
@@ -350,8 +353,8 @@
             "height": 106,
             "id": "PolicySchemeHandler",
             "position": {
-                "x": 743.8668741975989,
-                "y": 876.4493100266621
+                "x": 745.1863821083718,
+                "y": 892.283404955937
             },
             "type": "custom",
             "data": {
@@ -378,8 +381,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 743.8668741975989,
-                "y": 876.4493100266621
+                "x": 745.1863821083718,
+                "y": 892.283404955937
             },
             "dragging": false
         },
@@ -428,8 +431,8 @@
             "height": 106,
             "id": "BearerTokenOptions",
             "position": {
-                "x": 928.441904591526,
-                "y": 1008.0666639749772
+                "x": 925.8028887699802,
+                "y": 1025.2202668150248
             },
             "type": "custom",
             "data": {
@@ -456,8 +459,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 928.441904591526,
-                "y": 1008.0666639749772
+                "x": 925.8028887699802,
+                "y": 1025.2202668150248
             },
             "dragging": false
         },
@@ -510,8 +513,8 @@
             "height": 218,
             "id": "CookieAuthenticationOptions",
             "position": {
-                "x": 828.8655374994137,
-                "y": 1140.5349830376108
+                "x": 830.1850454101866,
+                "y": 1159.0080937884313
             },
             "type": "custom",
             "data": {
@@ -545,8 +548,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 828.8655374994137,
-                "y": 1140.5349830376108
+                "x": 830.1850454101866,
+                "y": 1159.0080937884313
             },
             "dragging": false
         },
@@ -555,8 +558,8 @@
             "height": 120,
             "id": "JwtBearerHandler",
             "position": {
-                "x": 1577.497384341949,
-                "y": 1382.805398410602
+                "x": 1565.621813144993,
+                "y": 1374.8883509459647
             },
             "type": "custom",
             "data": {
@@ -585,8 +588,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1577.497384341949,
-                "y": 1382.805398410602
+                "x": 1565.621813144993,
+                "y": 1374.8883509459647
             },
             "dragging": false
         },
@@ -952,7 +955,7 @@
         },
         {
             "width": 300,
-            "height": 42,
+            "height": 50,
             "id": "GoogleOptions",
             "position": {
                 "x": -120.64536055642861,
@@ -1021,7 +1024,7 @@
         },
         {
             "width": 300,
-            "height": 42,
+            "height": 50,
             "id": "MicrosoftAccountOptions",
             "position": {
                 "x": -209.6453605564286,
@@ -1221,8 +1224,8 @@
             "height": 152,
             "id": "WsFederationHandler",
             "position": {
-                "x": 81.42648543089138,
-                "y": 1940.0017300043246
+                "x": 79.42648543089138,
+                "y": 1948.0017300043246
             },
             "type": "custom",
             "data": {
@@ -1253,8 +1256,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 81.42648543089138,
-                "y": 1940.0017300043246
+                "x": 79.42648543089138,
+                "y": 1948.0017300043246
             },
             "dragging": false
         },
@@ -1983,8 +1986,8 @@
         }
     ],
     "viewport": {
-        "x": 354.1295624284237,
-        "y": -178.98306807304834,
+        "x": 451.12956242842364,
+        "y": -369.08306807304825,
         "zoom": 0.5
     }
 }

@@ -190,8 +190,8 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                         {nodeData.properties?.map((message, index) => {
                             return (
                                 <div key={index} className={styles.nodeItemContentList} >
-                                    <div>
-                                        <input className={styles.textInput} value={message} onChange={e => HandlePropertyChange(index, e.target.value)}></input>
+                                    <div style={{ flex: '0.9' }}>
+                                        <input className={styles.textInput} style={{ width: '100%' }} value={message} onChange={e => HandlePropertyChange(index, e.target.value)}></input>
                                     </div>
                                     <div className={styles.textInputDelete}>
                                         <BsDashCircle onClick={() => HandlePropertyReomve(index)} />
@@ -215,8 +215,8 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                         {nodeData.methods?.map((message, index) => {
                             return (
                                 <div key={index} className={styles.nodeItemContentList} >
-                                    <div>
-                                        <input className={styles.textInput} value={message} onChange={e => HandleMethodChange(index, e.target.value)}></input>
+                                    <div style={{ flex: '0.9' }}>
+                                        <input className={styles.textInput} style={{ width: '100%' }} value={message} onChange={e => HandleMethodChange(index, e.target.value)}></input>
                                     </div>
                                     <div className={styles.textInputDelete}>
                                         <BsDashCircle onClick={() => HandleMethodReomve(index)} />
