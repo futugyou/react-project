@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import ReactFlow, {
     ReactFlowProvider,
     DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType, useReactFlow,
@@ -11,7 +11,7 @@ import 'reactflow/dist/style.css'
 
 import { useAuth } from '@/Auth/index'
 import MiniModal from '@/Common/MiniModal'
-import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from './ClassNode'
+import { ClassNodeData, ClassNodeType, DefaultClassNodeType, getNodeId } from './ClassNode'
 import { ModifyNode } from './ModifyNode'
 import { restoreFlow, getFlow, saveFlow, stashFlow } from './FlowService'
 
@@ -55,6 +55,7 @@ const CommonFlow = (props: CommonFlow) => {
     )
 
     const [rfInstance, setRfInstance] = useState<any>(null)
+    const reactFlowWrapper = useRef<any>(null)
     const { setViewport } = useReactFlow()
 
     useOnSelectionChange({
@@ -111,7 +112,7 @@ const CommonFlow = (props: CommonFlow) => {
                         }
                     }
 
-                    return n;
+                    return n
                 })
             )
         }
@@ -181,8 +182,47 @@ const CommonFlow = (props: CommonFlow) => {
         }
     }
 
+    const onDragStart = (event: any, nodeType: string) => {
+        event.dataTransfer.setData('application/reactflow', nodeType)
+        event.dataTransfer.effectAllowed = 'move'
+    }
+
+    const onDragOver = useCallback((event: any) => {
+        event.preventDefault()
+        event.dataTransfer.dropEffect = 'move'
+    }, [])
+
+    const onDrop = useCallback(
+        (event: any) => {
+            event.preventDefault()
+
+            const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
+            const type = event.dataTransfer.getData('application/reactflow')
+
+            // check if the dropped element is valid
+            if (typeof type === 'undefined' || !type) {
+                return
+            }
+
+            const position = rfInstance.project({
+                x: event.clientX - reactFlowBounds.left,
+                y: event.clientY - reactFlowBounds.top,
+            })
+
+            const newNode = {
+                ...DefaultClassNodeType,
+                id: getNodeId(),
+                type,
+                position,
+            }
+
+            setNodes((nds) => nds.concat(newNode))
+        },
+        [rfInstance]
+    )
+
     return (
-        <div style={{ width: '100%', height: '100%' }}>
+        <div style={{ width: '100%', height: '100%' }} ref={reactFlowWrapper}>
             <MiniModal show={showModal} setShow={setShowModal}  >
                 <ModifyNode data={addOrUpdtateNode.data} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
@@ -197,6 +237,8 @@ const CommonFlow = (props: CommonFlow) => {
                 fitView
                 nodeTypes={props.nodeTypes}
                 onInit={setRfInstance}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
             >
                 <Panel position="top-left">
                     <h2>{props.title}</h2>
@@ -210,6 +252,7 @@ const CommonFlow = (props: CommonFlow) => {
                             <button onClick={onSaveFlowToDB}>saveToDB</button>
                             <button onClick={onNodeAdd}>addNode</button>
                             <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
+                            <button onDragStart={(event) => onDragStart(event, 'custom')} draggable>Class Node</button>
                         </>
                     )}
                     <DownloadFlow />

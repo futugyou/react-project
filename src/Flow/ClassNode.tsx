@@ -19,7 +19,7 @@ export type ConnectInfo = {
 
 export type ClassNodeType = Node<ClassNodeData>
 
-const getNodeId = () => `randomnode_${+new Date()}`
+export const getNodeId = () => `randomnode_${+new Date()}`
 
 export const DefaultClassNodeType: ClassNodeType = {
     id: '',
