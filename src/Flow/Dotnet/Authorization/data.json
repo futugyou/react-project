@@ -596,8 +596,8 @@
             "height": 106,
             "id": "ServiceFlow",
             "position": {
-                "x": 1294.589963858271,
-                "y": 160.3472587517017
+                "x": 201.02912990109502,
+                "y": 21.35475779706067
             },
             "type": "custom",
             "data": {
@@ -613,8 +613,8 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1294.589963858271,
-                "y": 160.3472587517017
+                "x": 201.02912990109502,
+                "y": 21.35475779706067
             },
             "dragging": false
         },
@@ -909,6 +909,281 @@
             "positionAbsolute": {
                 "x": 57.37251315295612,
                 "y": 859.495998329253
+            },
+            "dragging": false
+        },
+        {
+            "width": 677,
+            "height": 138,
+            "id": "MiddlewareFlow",
+            "position": {
+                "x": 195.5713038836443,
+                "y": -168.92066304140567
+            },
+            "type": "custom",
+            "data": {
+                "id": "MiddlewareFlow",
+                "name": "MiddlewareFlow",
+                "properties": [
+                    "endpoint?.Metadata.GetOrderedMetadata<IAuthorizeData>()",
+                    "endpoint?.Metadata.GetOrderedMetadata<AuthorizationPolicy>()",
+                    "endpoint?.Metadata?.GetOrderedMetadata<IAuthorizationRequirementData>()AuthorizationPolicy.CombineAsync",
+                    "AuthorizationPolicyBuilder.Build()",
+                    "IPolicyEvaluator.AuthenticateAsync",
+                    "IPolicyEvaluator.AuthorizeAsync",
+                    "IAuthorizationMiddlewareResultHandler.HandleAsync"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 195.5713038836443,
+                "y": -168.92066304140567
+            },
+            "dragging": false
+        },
+        {
+            "width": 378,
+            "height": 42,
+            "id": "IAuthorizationRequirementData",
+            "position": {
+                "x": 535.3318866828346,
+                "y": 99.37927969122167
+            },
+            "type": "custom",
+            "data": {
+                "id": "IAuthorizationRequirementData",
+                "name": "IAuthorizationRequirementData",
+                "methods": [
+                    "IEnumerable<IAuthorizationRequirement> GetRequirements()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 535.3318866828346,
+                "y": 99.37927969122167
+            },
+            "dragging": false
+        },
+        {
+            "width": 372,
+            "height": 58,
+            "id": "AuthorizationMiddleware",
+            "position": {
+                "x": 1100.411765438255,
+                "y": -169.71236778786945
+            },
+            "type": "custom",
+            "data": {
+                "id": "AuthorizationMiddleware",
+                "name": "AuthorizationMiddleware",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "source"
+                    },
+                    {
+                        "position": "right",
+                        "type": "source"
+                    }
+                ],
+                "properties": [
+                    "private readonly IAuthorizationPolicyProvider _policyProvider",
+                    "private readonly AuthorizationPolicyCache? _policyCache"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1100.411765438255,
+                "y": -169.71236778786945
+            },
+            "dragging": false
+        },
+        {
+            "width": 920,
+            "height": 58,
+            "id": "IPolicyEvaluator",
+            "position": {
+                "x": 1593.6116837783075,
+                "y": -169.8773631739674
+            },
+            "type": "custom",
+            "data": {
+                "id": "IPolicyEvaluator",
+                "name": "IPolicyEvaluator",
+                "connects": [
+                    {
+                        "position": "left",
+                        "type": "target"
+                    },
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "Task<AuthenticateResult> AuthenticateAsync(AuthorizationPolicy policy, HttpContext context)",
+                    "Task<PolicyAuthorizationResult> AuthorizeAsync(AuthorizationPolicy policy, AuthenticateResult authenticationResult, HttpContext context, object? resource)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1593.6116837783075,
+                "y": -169.8773631739674
+            },
+            "dragging": false
+        },
+        {
+            "width": 358,
+            "height": 42,
+            "id": "PolicyEvaluator",
+            "position": {
+                "x": 1874.9606159717418,
+                "y": -57.315381591578586
+            },
+            "type": "custom",
+            "data": {
+                "id": "PolicyEvaluator",
+                "name": "PolicyEvaluator",
+                "parent": "IPolicyEvaluator",
+                "methods": [
+                    "public PolicyEvaluator(IAuthorizationService authorization)"
+                ],
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1874.9606159717418,
+                "y": -57.315381591578586
+            },
+            "dragging": false
+        },
+        {
+            "width": 782,
+            "height": 42,
+            "id": "IAuthorizationMiddlewareResultHandler",
+            "position": {
+                "x": 895.7020830363772,
+                "y": -53.80641202582645
+            },
+            "type": "custom",
+            "data": {
+                "id": "IAuthorizationMiddlewareResultHandler",
+                "name": "IAuthorizationMiddlewareResultHandler",
+                "connects": [
+                    {
+                        "position": "bottom",
+                        "type": "target"
+                    },
+                    {
+                        "position": "top",
+                        "type": "target"
+                    }
+                ],
+                "methods": [
+                    "Task HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 895.7020830363772,
+                "y": -53.80641202582645
+            },
+            "dragging": false
+        },
+        {
+            "width": 821,
+            "height": 42,
+            "id": "AuthorizationMiddlewareResultHandler",
+            "position": {
+                "x": 877.2118911023351,
+                "y": 40.68556756369348
+            },
+            "type": "custom",
+            "data": {
+                "id": "AuthorizationMiddlewareResultHandler",
+                "name": "AuthorizationMiddlewareResultHandler",
+                "parent": "IAuthorizationMiddlewareResultHandler",
+                "connects": [
+                    {
+                        "position": "top",
+                        "type": "source"
+                    }
+                ],
+                "methods": [
+                    "public Task HandleAsync(RequestDelegate next, HttpContext context, AuthorizationPolicy policy, PolicyAuthorizationResult authorizeResult)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 877.2118911023351,
+                "y": 40.68556756369348
+            },
+            "dragging": false
+        },
+        {
+            "width": 529,
+            "height": 168,
+            "id": "PolicyAuthorizationResult",
+            "position": {
+                "x": 1783.4937123848622,
+                "y": 2.0408884046785687
+            },
+            "type": "custom",
+            "data": {
+                "id": "PolicyAuthorizationResult",
+                "name": "PolicyAuthorizationResult",
+                "properties": [
+                    "public bool Challenged { get; private set; }",
+                    "public bool Forbidden { get; private set; }",
+                    "public bool Succeeded { get; private set; }",
+                    "public AuthorizationFailure? AuthorizationFailure { get; private set; }"
+                ],
+                "methods": [
+                    "public static PolicyAuthorizationResult Challenge()",
+                    "public static PolicyAuthorizationResult Forbid()",
+                    "public static PolicyAuthorizationResult Forbid(AuthorizationFailure? authorizationFailure)",
+                    "public static PolicyAuthorizationResult Success()"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 1783.4937123848622,
+                "y": 2.0408884046785687
+            },
+            "dragging": false
+        },
+        {
+            "width": 613,
+            "height": 120,
+            "id": "AuthorizationPolicyCache",
+            "position": {
+                "x": 2440.233749779066,
+                "y": -35.90104007229911
+            },
+            "type": "custom",
+            "data": {
+                "id": "AuthorizationPolicyCache",
+                "name": "AuthorizationPolicyCache",
+                "parent": "IDisposable",
+                "methods": [
+                    "public AuthorizationPolicyCache(EndpointDataSource dataSource)",
+                    "public AuthorizationPolicy? Lookup(Endpoint endpoint)",
+                    "public void Store(Endpoint endpoint, AuthorizationPolicy policy)",
+                    "public void Dispose()"
+                ],
+                "properties": [
+                    "private readonly DataSourceDependentCache<ConcurrentDictionary<Endpoint, AuthorizationPolicy>>"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": 2440.233749779066,
+                "y": -35.90104007229911
             },
             "dragging": false
         }
@@ -1233,11 +1508,75 @@
             "target": "AuthorizationHandler1",
             "targetHandle": "AuthorizationHandler<TRequirement>lefttarget",
             "id": "reactflow__edge-RolesAuthorizationRequirementRolesAuthorizationRequirementrightsource-AuthorizationHandler1AuthorizationHandler<TRequirement>lefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthorizationMiddleware",
+            "sourceHandle": "AuthorizationMiddlewarerightsource",
+            "target": "IPolicyEvaluator",
+            "targetHandle": "IPolicyEvaluatorlefttarget",
+            "id": "reactflow__edge-AuthorizationMiddlewareAuthorizationMiddlewarerightsource-IPolicyEvaluatorIPolicyEvaluatorlefttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "PolicyEvaluator",
+            "sourceHandle": "PolicyEvaluatortopsource",
+            "target": "IPolicyEvaluator",
+            "targetHandle": "IPolicyEvaluatorbottomtarget",
+            "id": "reactflow__edge-PolicyEvaluatorPolicyEvaluatortopsource-IPolicyEvaluatorIPolicyEvaluatorbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthorizationMiddleware",
+            "sourceHandle": "AuthorizationMiddlewarebottomsource",
+            "target": "IAuthorizationMiddlewareResultHandler",
+            "targetHandle": "IAuthorizationMiddlewareResultHandlertoptarget",
+            "id": "reactflow__edge-AuthorizationMiddlewareAuthorizationMiddlewarebottomsource-IAuthorizationMiddlewareResultHandlerIAuthorizationMiddlewareResultHandlertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "AuthorizationMiddlewareResultHandler",
+            "sourceHandle": "AuthorizationMiddlewareResultHandlertopsource",
+            "target": "IAuthorizationMiddlewareResultHandler",
+            "targetHandle": "IAuthorizationMiddlewareResultHandlerbottomtarget",
+            "id": "reactflow__edge-AuthorizationMiddlewareResultHandlerAuthorizationMiddlewareResultHandlertopsource-IAuthorizationMiddlewareResultHandlerIAuthorizationMiddlewareResultHandlerbottomtarget"
         }
     ],
     "viewport": {
         "x": 48.50098919731852,
-        "y": 139.8766256700958,
+        "y": 224.32936372200808,
         "zoom": 0.5114866211939937
     }
 }
