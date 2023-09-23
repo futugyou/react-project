@@ -1,9 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useReactFlow } from 'reactflow'
 import { getFlow } from '@/Flow/FlowService'
+import { useAuth } from '@/Auth/index'
 
 function LoadFlow(props: any) {
-    if (!props.isAuth) {
+    const { authService } = useAuth()
+    if (!authService.isAuthenticated()) {
         return null
     }
 

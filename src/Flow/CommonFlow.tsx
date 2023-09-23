@@ -19,6 +19,7 @@ import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 import RestoreFlow from '@/Flow/MiscFeatures/RestoreFlow'
 import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
+import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -186,10 +187,10 @@ const CommonFlow = (props: CommonFlow) => {
                 <Panel position="top-right">
                     <RestoreFlow id={props.id} />
                     <StashFlow id={props.id} />
-                    <LoadFlow id={props.id} isAuth={authService.isAuthenticated()} />
+                    <LoadFlow id={props.id} />
+                    <SaveFlow id={props.id} />
                     {authService.isAuthenticated() && (
                         <>
-                            <button onClick={onSaveFlowToDB}>saveToDB</button>
                             <button onClick={onNodeAdd}>addNode</button>
                             <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
                             <button onDragStart={(event) => onDragStart(event, 'custom')} draggable>Class Node</button>
