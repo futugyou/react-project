@@ -18,6 +18,7 @@ import { restoreFlow, getFlow, saveFlow, stashFlow } from '@/Flow/FlowService'
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 import RestoreFlow from '@/Flow/MiscFeatures/RestoreFlow'
+import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -100,21 +101,6 @@ const CommonFlow = (props: CommonFlow) => {
             setSelectedNode(node)
         }
     }
-
-    const onLoadFlowFromDB = useCallback(() => {
-        const restore = async () => {
-            const flow = await getFlow(props.id)
-
-            if (flow && flow.viewport) {
-                const { x = 0, y = 0, zoom = 1 } = flow.viewport
-                setNodes(flow.nodes || [])
-                setEdges(flow.edges || [])
-                setViewport({ x, y, zoom })
-            }
-        }
-
-        restore()
-    }, [setNodes, setViewport])
 
     const onSaveFlowToDB = useCallback(() => {
         if (rfInstance) {
@@ -200,9 +186,9 @@ const CommonFlow = (props: CommonFlow) => {
                 <Panel position="top-right">
                     <RestoreFlow id={props.id} />
                     <StashFlow id={props.id} />
+                    <LoadFlow id={props.id} isAuth={authService.isAuthenticated()} />
                     {authService.isAuthenticated() && (
                         <>
-                            <button onClick={onLoadFlowFromDB}>loadFromDB</button>
                             <button onClick={onSaveFlowToDB}>saveToDB</button>
                             <button onClick={onNodeAdd}>addNode</button>
                             <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
