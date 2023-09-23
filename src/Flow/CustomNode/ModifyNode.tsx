@@ -4,7 +4,7 @@ import { ReactElement, JSXElementConstructor, ReactNode, useState } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
 import { BsPlusCircle, BsDashCircle } from "react-icons/bs"
 
-import { ClassNodeData, ConnectInfo } from './ClassNode'
+import { ClassNodeData, ConnectInfo } from '@/Flow/CustomNode/ClassNode'
 
 interface ModifyNodeProps {
     data: ClassNodeData

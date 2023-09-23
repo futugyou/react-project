@@ -12,10 +12,10 @@ import 'reactflow/dist/style.css'
 import { useAuth } from '@/Auth/index'
 import MiniModal from '@/Common/MiniModal'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
-import { ModifyNode } from '@/Flow/ModifyNode'
+import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 import { restoreFlow, getFlow, saveFlow, stashFlow } from '@/Flow/FlowService'
 
-import DownloadFlow from '@/Flow/DownloadFlow'
+import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
