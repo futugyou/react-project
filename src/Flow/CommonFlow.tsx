@@ -16,6 +16,7 @@ import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 import { restoreFlow, getFlow, saveFlow, stashFlow } from '@/Flow/FlowService'
 
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
+import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -139,14 +140,6 @@ const CommonFlow = (props: CommonFlow) => {
         restore()
     }, [setNodes, setViewport])
 
-    const onFlowStash = useCallback(() => {
-        if (rfInstance) {
-            const flow = rfInstance.toObject()
-            stashFlow(props.id, JSON.stringify(flow))
-            window.dispatchEvent(new Event("storage"))
-        }
-    }, [rfInstance])
-
     const onLoadFlowFromDB = useCallback(() => {
         const restore = async () => {
             const flow = await getFlow(props.id)
@@ -245,7 +238,7 @@ const CommonFlow = (props: CommonFlow) => {
                 </Panel>
                 <Panel position="top-right">
                     <button onClick={onFlowRestore} disabled={disableRestore}>restore</button>
-                    <button onClick={onFlowStash}>stash</button>
+                    <StashFlow id={props.id} />
                     {authService.isAuthenticated() && (
                         <>
                             <button onClick={onLoadFlowFromDB}>loadFromDB</button>
