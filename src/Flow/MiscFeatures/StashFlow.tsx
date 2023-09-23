@@ -2,9 +2,14 @@ import React, { useCallback } from 'react'
 import { useReactFlow } from 'reactflow'
 import { stashFlow } from '@/Flow/FlowService'
 
-function StashFlow(props: any) {
-    const { toObject } = useReactFlow()
+interface StashFlowProps {
+    id: string
+    title?: string
+}
 
+function StashFlow(props: StashFlowProps) {
+    const { toObject } = useReactFlow()
+    const title = props.title ?? 'stash'
     const onFlowStash = useCallback(() => {
         const flow = toObject()
         stashFlow(props.id, JSON.stringify(flow))
@@ -12,7 +17,7 @@ function StashFlow(props: any) {
     }, [toObject()])
 
     return (
-        <button onClick={onFlowStash}>stash</button>
+        <button onClick={onFlowStash}>{title}</button>
     )
 }
 

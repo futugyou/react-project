@@ -2,10 +2,15 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useReactFlow } from 'reactflow'
 import { restoreFlow } from '@/Flow/FlowService'
 
-function RestoreFlow(props: any) {
+interface RestoreFlowProps {
+    id: string
+    title?: string
+}
+
+function RestoreFlow(props: RestoreFlowProps) {
     const [disableRestore, setDisableRestore] = useState(true)
     const { setNodes, setEdges, setViewport } = useReactFlow()
-
+    const title = props.title ?? 'restore'
     // panel operate
     const onFlowRestore = useCallback(() => {
         const restore = async () => {
@@ -46,7 +51,7 @@ function RestoreFlow(props: any) {
     }, [])
 
     return (
-        <button onClick={onFlowRestore} disabled={disableRestore}>restore</button>
+        <button onClick={onFlowRestore} disabled={disableRestore}>{title}</button>
     )
 }
 

@@ -3,11 +3,18 @@ import { useReactFlow } from 'reactflow'
 import { saveFlow } from '@/Flow/FlowService'
 import { useAuth } from '@/Auth/index'
 
-function SaveFlow(props: any) {
+interface SaveFlowProps {
+    id: string
+    title?: string
+}
+
+function SaveFlow(props: SaveFlowProps) {
     const { authService } = useAuth()
     if (!authService.isAuthenticated()) {
         return null
     }
+
+    const title = props.title ?? 'saveToDB'
 
     const { toObject } = useReactFlow()
 
@@ -18,7 +25,7 @@ function SaveFlow(props: any) {
     }, [toObject])
 
     return (
-        <button onClick={onSaveFlowToDB}>saveToDB</button>
+        <button onClick={onSaveFlowToDB}>{title}</button>
     )
 }
 

@@ -3,12 +3,18 @@ import { useReactFlow } from 'reactflow'
 import { getFlow } from '@/Flow/FlowService'
 import { useAuth } from '@/Auth/index'
 
-function LoadFlow(props: any) {
+interface LoadFlowProps {
+    id: string
+    title?: string
+}
+
+function LoadFlow(props: LoadFlowProps) {
     const { authService } = useAuth()
     if (!authService.isAuthenticated()) {
         return null
     }
 
+    const title = props.title ?? 'loadFromDB'
     const { setNodes, setEdges, setViewport } = useReactFlow()
 
     const onLoadFlowFromDB = useCallback(() => {
@@ -27,7 +33,7 @@ function LoadFlow(props: any) {
     }, [setNodes, setViewport])
 
     return (
-        <button onClick={onLoadFlowFromDB}>loadFromDB</button>
+        <button onClick={onLoadFlowFromDB}>{title}</button>
     )
 }
 
