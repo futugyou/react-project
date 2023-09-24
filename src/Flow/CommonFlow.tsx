@@ -38,7 +38,6 @@ interface CommonFlow {
 
 const CommonFlow = (props: CommonFlow) => {
     const { authService } = useAuth()
-    const [addOrUpdtateNode, setAddOrUpdtateNode] = useState<ClassNodeType>(DefaultClassNodeType)
     const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
 
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
@@ -78,32 +77,26 @@ const CommonFlow = (props: CommonFlow) => {
     }
 
     // ModifyNode callback
-    const onNodeUpdated = (data: ClassNodeData) => {
+    const onNodeUpdated = (data: Node) => {
         const node = {
-            ...addOrUpdtateNode,
-            id: data.id,
-            data: data,
+            ...data,
+            selected: false,
         }
 
-        const index = nodes.findIndex(n => n.id == node.id)
-        if (index == -1) {
-            setNodes((nds) => nds.concat(node))
-        } else {
-            setNodes((nds) =>
-                nds.map((n) => {
-                    if (n.id === node.id) {
-                        n = {
-                            ...node,
-                        }
+        setNodes((nds) =>
+            nds.map((n) => {
+                if (n.id === node.id) {
+                    n = {
+                        ...node,
                     }
+                }
 
-                    return n
-                })
-            )
-        }
+                return n
+            })
+        )
 
         if (selectedNode) {
-            setSelectedNode(node)
+            setSelectedNode(undefined)
         }
     }
 
@@ -171,7 +164,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
                     <CreateNode onNodeCreated={onNodeCreated} type='custom' ></CreateNode>
-                    <UpdateNode updateNode={onNodeUpdated} selectedNode={selectedNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></UpdateNode>
+                    <UpdateNode onNodeUpdated={onNodeUpdated} selectedNode={selectedNode}></UpdateNode>
 
                     {authService.isAuthenticated() && (
                         <>
