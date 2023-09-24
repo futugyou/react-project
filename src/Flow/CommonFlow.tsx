@@ -67,8 +67,18 @@ const CommonFlow = (props: CommonFlow) => {
         }
     })
 
+    const onNodeCreated = (data: Node) => {
+        const index = nodes.findIndex(n => n.id == data.id)
+        if (index == -1) {
+            setNodes((nds) => nds.concat(data))
+            if (selectedNode) {
+                setSelectedNode(undefined)
+            }
+        }
+    }
+
     // ModifyNode callback
-    const updateNode = (data: ClassNodeData) => {
+    const onNodeUpdated = (data: ClassNodeData) => {
         const node = {
             ...addOrUpdtateNode,
             id: data.id,
@@ -160,8 +170,8 @@ const CommonFlow = (props: CommonFlow) => {
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
-                    <CreateNode updateNode={updateNode} ></CreateNode>
-                    <UpdateNode updateNode={updateNode} selectedNode={selectedNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></UpdateNode>
+                    <CreateNode onNodeCreated={onNodeCreated} type='custom' ></CreateNode>
+                    <UpdateNode updateNode={onNodeUpdated} selectedNode={selectedNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></UpdateNode>
 
                     {authService.isAuthenticated() && (
                         <>
