@@ -1,18 +1,18 @@
 import styles from './ModifyNode.module.css'
 
-import { ReactElement, JSXElementConstructor, ReactNode, useState } from 'react'
+import { useState } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
 import { BsPlusCircle, BsDashCircle } from "react-icons/bs"
 
-import { ClassNodeData, ConnectInfo } from '@/Flow/CustomNode/ClassNode'
+import { ClassNodeType, ClassNodeData, ConnectInfo } from '@/Flow/CustomNode/ClassNode'
 
 interface ModifyNodeProps {
-    data: ClassNodeData
-    updateNode: (data: ClassNodeData) => void
+    data: ClassNodeType
+    updateNode: (data: ClassNodeType) => void
 }
 
 export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
-    const [nodeData, setNodeData] = useState<ClassNodeData>(data)
+    const [nodeData, setNodeData] = useState<ClassNodeData>(data.data)
     let connects: JSX.Element[] = []
     if (nodeData.connects) {
         connects = nodeData.connects.map((t: ConnectInfo) => {
@@ -141,7 +141,12 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandeSaveNode = () => {
-        updateNode(nodeData)
+        const newData = {
+            ...data,
+        }
+
+        newData.data = nodeData
+        updateNode(newData)
     }
 
     return (

@@ -7,8 +7,6 @@ import MiniModal from '@/Common/MiniModal'
 import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 
 interface CreateNodeProps {
-    addOrUpdtateNode: ClassNodeType
-    setAddOrUpdtateNode: (arg0: ClassNodeType) => void
     updateNode: (data: ClassNodeData) => void
 }
 
@@ -18,22 +16,23 @@ const CreateNode = (props: CreateNodeProps) => {
         return null
     }
 
+    const [addOrUpdtateNode, setAddOrUpdtateNode] = useState<ClassNodeType>(DefaultClassNodeType)
     const [showModal, setShowModal] = useState(false)
+
     const onNodeAdd = () => {
-        const newNode = DefaultClassNodeType
-        props.setAddOrUpdtateNode(newNode)
+        setAddOrUpdtateNode(DefaultClassNodeType)
         setShowModal(true)
     }
 
-    const updateNode = (data: ClassNodeData) => {
-        props.updateNode(data)
+    const updateNode = (data: ClassNodeType) => {
+        props.updateNode(data.data)
         setShowModal(false)
     }
 
     return (
         <>
             <MiniModal show={showModal} setShow={setShowModal}  >
-                <ModifyNode data={props.addOrUpdtateNode.data} updateNode={updateNode} ></ModifyNode>
+                <ModifyNode data={addOrUpdtateNode} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
             <button onClick={onNodeAdd}>addNode</button>
         </>

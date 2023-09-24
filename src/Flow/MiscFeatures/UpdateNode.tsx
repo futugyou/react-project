@@ -29,15 +29,15 @@ const UpdateNode = (props: UpdateNodeProps) => {
         }
     }
 
-    const updateNode = (data: ClassNodeData) => {
-        props.updateNode(data)
+    const updateNode = (data: ClassNodeType) => {
+        props.updateNode(data.data)
         setShowModal(false)
     }
 
     return (
         <>
             <MiniModal show={showModal} setShow={setShowModal}  >
-                <ModifyNode data={props.addOrUpdtateNode.data} updateNode={updateNode} ></ModifyNode>
+                <ModifyNode data={props.addOrUpdtateNode} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
             <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
         </>

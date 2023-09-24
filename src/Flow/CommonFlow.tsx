@@ -160,7 +160,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
-                    <CreateNode updateNode={updateNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></CreateNode>
+                    <CreateNode updateNode={updateNode} ></CreateNode>
                     <UpdateNode updateNode={updateNode} selectedNode={selectedNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></UpdateNode>
 
                     {authService.isAuthenticated() && (
