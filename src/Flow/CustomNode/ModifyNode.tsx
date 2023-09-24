@@ -141,8 +141,13 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandeSaveNode = () => {
+        if (!nodeData.id) {
+            return
+        }
+
         const newData = {
             ...data,
+            id: nodeData.id
         }
 
         newData.data = nodeData
