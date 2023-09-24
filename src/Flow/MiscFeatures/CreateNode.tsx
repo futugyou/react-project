@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from '@/Flow/CustomNode/ClassNode'
+import { useAuth } from '@/Auth/index'
 
 import MiniModal from '@/Common/MiniModal'
 
@@ -12,6 +13,11 @@ interface CreateNodeProps {
 }
 
 const CreateNode = (props: CreateNodeProps) => {
+    const { authService } = useAuth()
+    if (!authService.isAuthenticated()) {
+        return null
+    }
+
     const [showModal, setShowModal] = useState(false)
     const onNodeAdd = () => {
         const newNode = DefaultClassNodeType
