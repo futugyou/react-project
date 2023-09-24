@@ -1,25 +1,22 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import ReactFlow, {
-    ReactFlowProvider,
-    DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Position, HandleType, useReactFlow,
-    MiniMap, Controls, Background, useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel,
-    useOnSelectionChange,
-    Connection
+    ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
+    useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel,
+    useOnSelectionChange, Connection
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
 
 import { useAuth } from '@/Auth/index'
-import MiniModal from '@/Common/MiniModal'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
-import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
-import { restoreFlow, getFlow, saveFlow, stashFlow } from '@/Flow/FlowService'
 
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 import RestoreFlow from '@/Flow/MiscFeatures/RestoreFlow'
 import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
+import CreateNode from '@/Flow/MiscFeatures/CreateNode'
+import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -41,7 +38,6 @@ interface CommonFlow {
 
 const CommonFlow = (props: CommonFlow) => {
     const { authService } = useAuth()
-    const [showModal, setShowModal] = useState(false)
     const [addOrUpdtateNode, setAddOrUpdtateNode] = useState<ClassNodeType>(DefaultClassNodeType)
     const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
 
@@ -59,7 +55,6 @@ const CommonFlow = (props: CommonFlow) => {
 
     const [rfInstance, setRfInstance] = useState<any>(null)
     const reactFlowWrapper = useRef<any>(null)
-    const { setViewport } = useReactFlow()
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
@@ -97,29 +92,8 @@ const CommonFlow = (props: CommonFlow) => {
             )
         }
 
-        setShowModal(false)
         if (selectedNode) {
             setSelectedNode(node)
-        }
-    }
-
-    const onSaveFlowToDB = useCallback(() => {
-        if (rfInstance) {
-            const flow = rfInstance.toObject()
-            saveFlow(props.id, JSON.stringify(flow))
-        }
-    }, [rfInstance])
-
-    const onNodeAdd = () => {
-        const newNode = DefaultClassNodeType
-        setAddOrUpdtateNode(newNode)
-        setShowModal(true)
-    }
-
-    const onNodeChange = () => {
-        if (selectedNode) {
-            setAddOrUpdtateNode(selectedNode)
-            setShowModal(true)
         }
     }
 
@@ -164,9 +138,6 @@ const CommonFlow = (props: CommonFlow) => {
 
     return (
         <div style={{ width: '100%', height: '100%' }} ref={reactFlowWrapper}>
-            <MiniModal show={showModal} setShow={setShowModal}  >
-                <ModifyNode data={addOrUpdtateNode.data} updateNode={updateNode} ></ModifyNode>
-            </MiniModal>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -189,10 +160,11 @@ const CommonFlow = (props: CommonFlow) => {
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
+                    <CreateNode updateNode={updateNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></CreateNode>
+                    <UpdateNode updateNode={updateNode} selectedNode={selectedNode} addOrUpdtateNode={addOrUpdtateNode} setAddOrUpdtateNode={setAddOrUpdtateNode} ></UpdateNode>
+
                     {authService.isAuthenticated() && (
                         <>
-                            <button onClick={onNodeAdd}>addNode</button>
-                            <button onClick={onNodeChange} disabled={selectedNode == undefined}>updateNode</button>
                             <button onDragStart={(event) => onDragStart(event, 'custom')} draggable>Class Node</button>
                         </>
                     )}
