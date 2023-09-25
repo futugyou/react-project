@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, useReducer } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
     useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel, Connection
@@ -6,7 +6,6 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
-import { useAuth } from '@/Auth/index'
 import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
 
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
@@ -16,6 +15,7 @@ import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 import CreateNode from '@/Flow/MiscFeatures/CreateNode'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
+import DragNode, { DragNodeType } from '@/Flow/MiscFeatures/DragNode'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -36,7 +36,6 @@ interface CommonFlow {
 }
 
 const CommonFlow = (props: CommonFlow) => {
-    const { authService } = useAuth()
 
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
@@ -53,11 +52,6 @@ const CommonFlow = (props: CommonFlow) => {
     const [rfInstance, setRfInstance] = useState<any>(null)
     const reactFlowWrapper = useRef<any>(null)
 
-    const onDragStart = (event: any, nodeType: string) => {
-        event.dataTransfer.setData('application/reactflow', nodeType)
-        event.dataTransfer.effectAllowed = 'move'
-    }
-
     const onDragOver = useCallback((event: any) => {
         event.preventDefault()
         event.dataTransfer.dropEffect = 'move'
@@ -68,7 +62,7 @@ const CommonFlow = (props: CommonFlow) => {
             event.preventDefault()
 
             const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
-            const type = event.dataTransfer.getData('application/reactflow')
+            const type = event.dataTransfer.getData(DragNodeType)
 
             // check if the dropped element is valid
             if (typeof type === 'undefined' || !type) {
@@ -117,13 +111,8 @@ const CommonFlow = (props: CommonFlow) => {
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
                     <CreateNode type='custom' ></CreateNode>
-                    <UpdateNode></UpdateNode>
-
-                    {authService.isAuthenticated() && (
-                        <>
-                            <button onDragStart={(event) => onDragStart(event, 'custom')} draggable>Class Node</button>
-                        </>
-                    )}
+                    <UpdateNode />
+                    <DragNode />
                     <DownloadFlow />
                 </Panel>
                 <Controls />
