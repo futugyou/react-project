@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { DefaultClassNodeType } from '@/Flow/CustomNode/ClassNode'
-import { Node } from 'reactflow'
+import { Node, useReactFlow } from 'reactflow'
 import { useAuth } from '@/Auth/index'
 
 import MiniModal from '@/Common/MiniModal'
@@ -8,7 +8,6 @@ import MiniModal from '@/Common/MiniModal'
 import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 
 interface CreateNodeProps {
-    onNodeCreated: (data: Node) => void
     type: string
     title?: string
 }
@@ -22,6 +21,7 @@ const CreateNode = (props: CreateNodeProps) => {
     // TODO: initNodeData should init by props.type
     const initNodeData = DefaultClassNodeType
 
+    const { setNodes, getNodes } = useReactFlow()
     const title = props.title ?? 'addNode'
     const [showModal, setShowModal] = useState(false)
 
@@ -30,7 +30,12 @@ const CreateNode = (props: CreateNodeProps) => {
     }
 
     const updateNode = (data: Node) => {
-        props.onNodeCreated(data)
+        const nodes = getNodes()
+        const index = nodes.findIndex(n => n.id == data.id)
+        if (index == -1) {
+            setNodes((nds) => nds.concat(data))
+        }
+
         setShowModal(false)
     }
 

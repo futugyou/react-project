@@ -65,14 +65,6 @@ const CommonFlow = (props: CommonFlow) => {
         }
     })
 
-    const onNodeCreated = (data: Node) => {
-        const index = nodes.findIndex(n => n.id == data.id)
-        if (index == -1) {
-            setNodes((nds) => nds.concat(data))
-            setSelectedNode(undefined)
-        }
-    } 
-
     const onDragStart = (event: any, nodeType: string) => {
         event.dataTransfer.setData('application/reactflow', nodeType)
         event.dataTransfer.effectAllowed = 'move'
@@ -145,7 +137,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
-                    <CreateNode onNodeCreated={onNodeCreated} type='custom' ></CreateNode>
+                    <CreateNode type='custom' ></CreateNode>
                     <UpdateNode selectedNode={selectedNode}></UpdateNode>
 
                     {authService.isAuthenticated() && (
