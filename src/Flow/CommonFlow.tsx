@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useReducer } from 'react'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
     useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel,
@@ -57,9 +57,8 @@ const CommonFlow = (props: CommonFlow) => {
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
-            if (nodes.length > 0) {
-                const selected = nodes[0]
-                setSelectedNode(selected)
+            if (nodes.length == 1) {
+                setSelectedNode(nodes[0])
             } else {
                 setSelectedNode(undefined)
             }
@@ -70,35 +69,9 @@ const CommonFlow = (props: CommonFlow) => {
         const index = nodes.findIndex(n => n.id == data.id)
         if (index == -1) {
             setNodes((nds) => nds.concat(data))
-            if (selectedNode) {
-                setSelectedNode(undefined)
-            }
-        }
-    }
-
-    // ModifyNode callback
-    const onNodeUpdated = (data: Node) => {
-        const node = {
-            ...data,
-            selected: false,
-        }
-
-        setNodes((nds) =>
-            nds.map((n) => {
-                if (n.id === node.id) {
-                    n = {
-                        ...node,
-                    }
-                }
-
-                return n
-            })
-        )
-
-        if (selectedNode) {
             setSelectedNode(undefined)
         }
-    }
+    } 
 
     const onDragStart = (event: any, nodeType: string) => {
         event.dataTransfer.setData('application/reactflow', nodeType)
@@ -139,6 +112,15 @@ const CommonFlow = (props: CommonFlow) => {
         [rfInstance]
     )
 
+    // useEffect(() => {
+    //     const node = nodes.filter(p => p.selected)
+    //     if (node && node.length == 1) {
+    //         setSelectedNode(node[0])
+    //     } else {
+    //         setSelectedNode(undefined)
+    //     }
+    // }, [nodes])
+
     return (
         <div style={{ width: '100%', height: '100%' }} ref={reactFlowWrapper}>
             <ReactFlow
@@ -164,7 +146,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
                     <CreateNode onNodeCreated={onNodeCreated} type='custom' ></CreateNode>
-                    <UpdateNode onNodeUpdated={onNodeUpdated} selectedNode={selectedNode}></UpdateNode>
+                    <UpdateNode selectedNode={selectedNode}></UpdateNode>
 
                     {authService.isAuthenticated() && (
                         <>
@@ -188,4 +170,4 @@ function FlowWithProvider(props: CommonFlow) {
     )
 }
 
-export default React.memo(FlowWithProvider)
+export default React.memo(FlowWithProvider) 

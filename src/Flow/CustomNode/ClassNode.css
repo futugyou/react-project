@@ -18,8 +18,20 @@
     height: 100%;
 }
 
+
 .node-container-selected {
     border-color: #ff0000;
+    animation: bounce 1600ms infinite ease-out;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
 }
 
 .class-name {
