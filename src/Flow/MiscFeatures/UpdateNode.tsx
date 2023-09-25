@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from '@/Flow/CustomNode/ClassNode'
-import { Node, useReactFlow, useOnSelectionChange } from 'reactflow'
+import { Node, useReactFlow, useOnSelectionChange, useUpdateNodeInternals } from 'reactflow'
 import { useAuth } from '@/Auth/index'
 
 import MiniModal from '@/Common/MiniModal'
@@ -18,6 +18,7 @@ const UpdateNode = (props: UpdateNodeProps) => {
     }
 
     const { setNodes } = useReactFlow()
+    const updateNodeInternals = useUpdateNodeInternals()
     const [showModal, setShowModal] = useState(false)
     const title = props.title ?? 'updateNode'
     const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
@@ -50,6 +51,7 @@ const UpdateNode = (props: UpdateNodeProps) => {
             })
         )
 
+        updateNodeInternals(data.id)
         setShowModal(false)
     }
 
