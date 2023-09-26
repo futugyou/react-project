@@ -60,9 +60,6 @@ const FloatingEdge = (props: EdgeProps<EdgeData>) => {
             break
     }
 
-
-
-
     return (
         <path id={props.id} className="react-flow__edge-path"
             d={edgePath} markerEnd={props.markerEnd}

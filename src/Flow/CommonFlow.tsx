@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
-    useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel, Connection
+    useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel, Connection,
+    useOnSelectionChange
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -48,7 +49,7 @@ const CommonFlow = (props: CommonFlow) => {
 
     const onConnect = useCallback((params: any) => {
         // setEdges((eds) => addEdge(params, eds))
-        setEdges((eds) => addEdge({ ...params, type: 'floating', animated: true, markerEnd: { type: MarkerType.Arrow, color: 'black', } }, eds))
+        setEdges((eds) => addEdge({ ...params, type: 'floating', markerEnd: { type: MarkerType.Arrow, color: 'black', } }, eds))
     }, [setEdges])
 
     const onEdgeUpdate = useCallback(
@@ -92,6 +93,30 @@ const CommonFlow = (props: CommonFlow) => {
         },
         [rfInstance]
     )
+
+    useOnSelectionChange({
+        onChange: ({ edges }) => {
+            if (edges.length == 1) {
+                const e = edges[0]
+                setEdges((eds) => eds.map((n) => {
+                    let animated = false
+                    if (n.id === e.id) {
+                        animated = true
+                    }
+
+                    return { ...n, animated: animated }
+                }))
+            } else {
+                setEdges((eds) => eds.map((n) => {
+                    n = {
+                        ...n,
+                        animated: false
+                    }
+                    return n
+                }))
+            }
+        },
+    })
 
     return (
         <div style={{ width: '100%', height: '100%' }} ref={reactFlowWrapper}>
