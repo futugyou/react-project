@@ -7,6 +7,8 @@ import ReactFlow, {
 import 'reactflow/dist/style.css'
 
 import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
+import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
+import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
 
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 import StashFlow from '@/Flow/MiscFeatures/StashFlow'
@@ -26,6 +28,10 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
     },
 }
 
+const edgeTypes = {
+    floating: FloatingEdge,
+}
+
 interface CommonFlow {
     id: string
     title: string
@@ -41,7 +47,8 @@ const CommonFlow = (props: CommonFlow) => {
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
     const onConnect = useCallback((params: any) => {
-        setEdges((eds) => addEdge(params, eds))
+        // setEdges((eds) => addEdge(params, eds))
+        setEdges((eds) => addEdge({ ...params, type: 'floating', markerEnd: { type: MarkerType.Arrow ,color: 'black',} }, eds))
     }, [setEdges])
 
     const onEdgeUpdate = useCallback(
@@ -101,6 +108,8 @@ const CommonFlow = (props: CommonFlow) => {
                 onInit={setRfInstance}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
+                edgeTypes={edgeTypes}
+                connectionLineComponent={FloatingConnectionLine}
             >
                 <Panel position="top-left">
                     <h2>{props.title}</h2>
