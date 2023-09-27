@@ -19,9 +19,10 @@ import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 import CreateNode from '@/Flow/MiscFeatures/CreateNode'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
 import DragNode, { DragNodeType } from '@/Flow/MiscFeatures/DragNode'
+import EdgeStyleGroup from '@/Flow/MiscFeatures/EdgeStyleGroup'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
-    style: { strokeWidth: 2, stroke: 'black' },
+    style: { strokeWidth: 1, stroke: 'black' },
     type: 'default',
     markerEnd: {
         type: MarkerType.ArrowClosed,
@@ -150,6 +151,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <DownloadFlow />
                 </Panel>
                 <Controls />
+                <EdgeStyleGroup />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>
