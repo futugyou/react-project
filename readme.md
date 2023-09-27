@@ -12,6 +12,8 @@
 
 [lodashjs](https://www.lodashjs.com/)
 
+[react-color](https://github.com/uiwjs/react-color/)
+
 #### update all package
 ```
 npx npm-check-updates -u
