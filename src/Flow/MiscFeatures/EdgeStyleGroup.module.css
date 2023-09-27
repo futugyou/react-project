@@ -39,3 +39,23 @@
     border: 1px solid silver;
     border-radius: 5px;
 }
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.groupLayerItem:hover {
+    border-style: dashed;
+    animation: bounce 1600ms infinite ease-out;
+    cursor: pointer;
+}
+
+.groupLayerItem.selected {
+    border-color: red;
+}
