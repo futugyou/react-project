@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@micro-zoe/micro-app": "^1.0.0-rc.0",
+    "@uiw/react-color": "^1.4.2",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
     "buffer": "^6.0.3",
@@ -35,7 +36,7 @@
     "@types/randombytes": "^2.0.1",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.8",
-    "@types/react-reconciler": "^0.28.4",
+    "@types/react-reconciler": "^0.28.5",
     "@types/sha.js": "^2.4.2",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@vitejs/plugin-react-swc": "^3.4.0",

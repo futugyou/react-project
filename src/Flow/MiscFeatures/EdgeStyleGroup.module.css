@@ -38,6 +38,7 @@
     padding: 5px;
     border: 1px solid silver;
     border-radius: 5px;
+    width: 100%;
 }
 
 @keyframes bounce {
@@ -58,4 +59,9 @@
 
 .groupLayerItem.selected {
     border-color: red;
+}
+
+.groupLayerItem.color {
+    align-items: center;
+    display: flex;
 }

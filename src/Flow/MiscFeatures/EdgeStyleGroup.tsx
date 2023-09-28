@@ -1,4 +1,8 @@
 import styles from './EdgeStyleGroup.module.css'
+import { useState } from 'react'
+import { Sketch, ColorResult } from '@uiw/react-color'
+import MiniModal from '@/Common/MiniModal'
+
 
 export interface EdgeStyleGroupProps {
     edgeType?: string
@@ -11,8 +15,20 @@ export interface EdgeStyleGroupProps {
 }
 
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
+    const [hex, setHex] = useState("#000000")
+    const [showModal, setShowModal] = useState(false)
+    const onColorChange = (color: ColorResult) => {
+        setHex(color.hex)
+    }
+
+    const onColorClick = () => {
+        setShowModal(true)
+    }
     return (
         <>
+            <MiniModal show={showModal} setShow={setShowModal}  >
+                <Sketch color={hex} onChange={onColorChange} />
+            </MiniModal>
             <div className={styles.groupContainer}>
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EdgeType</div>
@@ -73,7 +89,11 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <path d="M 20 10 L 20 35" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>Color</div>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`}>
+                            <div onClick={onColorClick} style={{ width: '100%', height: '50%', backgroundColor: hex, color: hex }} >
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.groupLayerContainer}>
