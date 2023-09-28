@@ -9,7 +9,7 @@ import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 
 interface UpdateNodeProps {
     title?: string
-    selectedNode?: ClassNodeType
+    selectedNode?: Node
 }
 
 const UpdateNode = (props: UpdateNodeProps) => {

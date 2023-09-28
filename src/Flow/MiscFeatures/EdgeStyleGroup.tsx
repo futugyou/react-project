@@ -1,25 +1,27 @@
 import styles from './EdgeStyleGroup.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Edge } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'
 
 
 export interface EdgeStyleGroupProps {
-    edgeType?: string
-    edgeColor?: string
-    animated?: boolean
-    startMarkerType?: string
-    startMarkerColor?: string
-    endMarkerType?: string
-    endMarkerColor?: string
-    selectedEdge?: Edge
+    // edgeType?: string
+    // edgeColor?: string
+    // animated?: boolean
+    // startMarkerType?: string
+    // startMarkerColor?: string
+    // endMarkerType?: string
+    // endMarkerColor?: string
+    selectedEdge: Edge
 }
 
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
+    const [selectedEdge, setSelectedEdge] = useState(props.selectedEdge)
+    const [edgeType, setEdgeType] = useState(props.selectedEdge.data?.edgeType ?? "bezier")
+
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
-    const { setEdges, getEdges } = useReactFlow()
 
     const onColorChange = (color: ColorResult) => {
         setHex(color.hex)
@@ -29,9 +31,27 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
         setShowModal(true)
     }
 
-    if (props.selectedEdge == undefined) {
-        return null
+    const onChangeEdgeType = (edgeType: string) => {
+        setEdgeType(edgeType)
+        let edge: Edge = { ...selectedEdge!, animated: true, selected: true, data: { edgeType: edgeType } }
+        setSelectedEdge(edge)
     }
+
+    const { setEdges } = useReactFlow()
+    useEffect(() => {
+        if (selectedEdge) {
+            setEdges((eds) => eds.map((n) => {
+                if (n.id === selectedEdge.id) {
+                    return { ...n, ...selectedEdge }
+                }
+
+                return n
+            }))
+        }
+    }, [selectedEdge, setEdges])
+
+    // console.log(props.selectedEdge)
+
 
     return (
         <>
@@ -42,13 +62,15 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EdgeType</div>
                     <div className={styles.groupLayer}>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${edgeType == 'bezier' ? styles.selected : ''}`}
+                            onClick={() => onChangeEdgeType('bezier')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Bezier</title>
                                 <path d="M 0 0 Q 0 40, 40 40" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${edgeType == 'smoothStep' ? styles.selected : ''}`}
+                            onClick={() => onChangeEdgeType('smoothStep')} >
                             <svg width="40" height="40" xmlns="http://wwww.w3.org/2000/svg">
                                 <title>SmoothStep</title>
                                 <path d="M 5 0 V 10" stroke="black" fill="transparent"></path>
@@ -58,13 +80,15 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <path d="M 35 30 V 40" stroke="black" fill="transparent"></path>
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${edgeType == 'straight' ? styles.selected : ''}`}
+                            onClick={() => onChangeEdgeType('straight')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Straight</title>
                                 <path d="M 0 0 L 40 40" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${edgeType == 'step' ? styles.selected : ''}`}
+                            onClick={() => onChangeEdgeType('step')}>
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Step</title>
                                 <path d="M 10 0 V 20" stroke="black" fill="transparent" />

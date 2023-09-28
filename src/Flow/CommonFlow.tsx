@@ -7,7 +7,7 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
-import { DefaultClassNodeType, getNodeId, ClassNodeType } from '@/Flow/CustomNode/ClassNode'
+import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
 import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
 import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
 
@@ -22,7 +22,7 @@ import DragNode, { DragNodeType } from '@/Flow/MiscFeatures/DragNode'
 import EdgeStyleGroup from '@/Flow/MiscFeatures/EdgeStyleGroup'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
-    style: { strokeWidth: 1, stroke: 'black' },
+    style: { strokeWidth: 2, stroke: 'black' },
     type: 'default',
     markerEnd: {
         type: MarkerType.ArrowClosed,
@@ -95,7 +95,7 @@ const CommonFlow = (props: CommonFlow) => {
         [rfInstance]
     )
 
-    const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
+    const [selectedNode, setSelectedNode] = useState<Node>()
     const [selectedEdge, setSelectedEdge] = useState<Edge>()
 
     useOnSelectionChange({
@@ -161,7 +161,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <DownloadFlow />
                 </Panel>
                 <Controls />
-                <EdgeStyleGroup selectedEdge={selectedEdge}/>
+                {selectedEdge && (<EdgeStyleGroup selectedEdge={selectedEdge} key={selectedEdge?.id ?? getNodeId()} />)}
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>
