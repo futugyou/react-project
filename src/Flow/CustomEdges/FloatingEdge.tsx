@@ -6,7 +6,7 @@ import { useStore, getBezierPath, EdgeProps, getSmoothStepPath, getStraightPath 
 import { getEdgeParams } from './utils'
 
 export interface EdgeData {
-    pathType: 'bezier' | 'smoothStep' | 'straight' | 'step'
+    pathType: 'bezier' | 'smoothstep' | 'straight' | 'step'
 }
 
 const FloatingEdge = (props: EdgeProps<EdgeData>) => {
@@ -21,7 +21,7 @@ const FloatingEdge = (props: EdgeProps<EdgeData>) => {
 
     let edgePath = ''
     switch (props.data?.pathType) {
-        case 'smoothStep':
+        case 'smoothstep':
             edgePath = getSmoothStepPath({
                 sourceX: sx,
                 sourceY: sy,

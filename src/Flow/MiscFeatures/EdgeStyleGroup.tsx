@@ -16,10 +16,32 @@ export interface EdgeStyleGroupProps {
     selectedEdge: Edge
 }
 
+const baseEdgeTypes = ['default', 'bezier', 'straight', 'step', 'smoothstep']
+
+const getEdgeTypeUtils = (t?: string) => {
+    if (t == undefined || baseEdgeTypes.includes(t)) {
+        return 'default'
+    }
+
+    return t
+}
+
+const setEdgeTypeUtils = (edge: string, path: string) => {
+    if (edge == 'floating') {
+        return { edge: 'floating', path: path }
+    }
+
+    if (path == 'bezier') {
+        return { edge: 'default', path: path }
+    }
+
+    return { edge: path, path: path }
+}
+
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const [selectedEdge, setSelectedEdge] = useState(props.selectedEdge)
-    const [pathType, setPathType] = useState(props.selectedEdge.data?.pathType ?? "bezier")
-    const [edgeType, setEdgeType] = useState(props.selectedEdge.type ?? "default")
+    const [edgeType, setEdgeType] = useState(getEdgeTypeUtils(props.selectedEdge.type))
+    const [pathType, setPathType] = useState<string>(props.selectedEdge.data?.pathType ?? "bezier")
 
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
@@ -32,15 +54,19 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
         setShowModal(true)
     }
 
-    const onChangePathType = (pathType: string) => {
-        setPathType(pathType)
-        let edge: Edge = { ...selectedEdge!, data: { pathType: pathType } }
+    const onChangeEdgeType = (edgeType: string) => {
+        const e = setEdgeTypeUtils(edgeType, pathType)
+        let edge: Edge = { ...selectedEdge!, type: e.edge, data: { pathType: e.path } }
+        setEdgeType(e.edge)
+        setPathType(e.path)
         setSelectedEdge(edge)
     }
 
-    const onChangeEdgeType = (edgeType: string) => {
-        setEdgeType(edgeType)
-        let edge: Edge = { ...selectedEdge!, type: edgeType }
+    const onChangePathType = (pathType: string) => {
+        const e = setEdgeTypeUtils(edgeType, pathType)
+        let edge: Edge = { ...selectedEdge!, type: e.edge, data: { pathType: e.path } }
+        setEdgeType(e.edge)
+        setPathType(e.path)
         setSelectedEdge(edge)
     }
 
@@ -73,14 +99,14 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                             onClick={() => onChangeEdgeType('default')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>default</title>
-                                <text x="9" y="24" >Def</text>
+                                <text x="8" y="25" >Def</text>
                             </svg>
                         </div>
                         <div className={`${styles.groupLayerItem} ${edgeType == 'floating' ? styles.selected : ''}`}
                             onClick={() => onChangeEdgeType('floating')} >
                             <svg width="40" height="40" xmlns="http://wwww.w3.org/2000/svg">
                                 <title>floating</title>
-                                <text x="9" y="24" >Flo</text>
+                                <text x="8" y="25" >Flo</text>
                             </svg>
                         </div>
                         <div className={styles.groupLayerItem}></div>
@@ -98,8 +124,8 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <path d="M 0 0 Q 0 40, 40 40" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={`${styles.groupLayerItem} ${pathType == 'smoothStep' ? styles.selected : ''}`}
-                            onClick={() => onChangePathType('smoothStep')} >
+                        <div className={`${styles.groupLayerItem} ${pathType == 'smoothstep' ? styles.selected : ''}`}
+                            onClick={() => onChangePathType('smoothstep')} >
                             <svg width="40" height="40" xmlns="http://wwww.w3.org/2000/svg">
                                 <title>SmoothStep</title>
                                 <path d="M 5 0 V 10" stroke="black" fill="transparent"></path>
