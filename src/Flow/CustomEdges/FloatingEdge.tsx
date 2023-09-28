@@ -1,3 +1,5 @@
+import styles from './FloatingEdge.module.css'
+
 import { useCallback } from 'react'
 import { useStore, getBezierPath, EdgeProps, getSmoothStepPath, getStraightPath } from 'reactflow'
 
@@ -61,8 +63,8 @@ const FloatingEdge = (props: EdgeProps<EdgeData>) => {
     }
 
     return (
-        <path id={props.id} className="react-flow__edge-path"
-            d={edgePath} markerEnd={props.markerEnd}
+        <path id={props.id} className={props.selected ? "react-flow__edge-path " + styles.pathanimated : "react-flow__edge-path"}
+            d={edgePath} markerEnd={props.markerEnd} markerStart={props.markerStart}
             style={props.style} />
     )
 }

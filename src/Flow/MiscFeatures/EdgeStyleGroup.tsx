@@ -33,7 +33,7 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
 
     const onChangeEdgeType = (edgeType: string) => {
         setEdgeType(edgeType)
-        let edge: Edge = { ...selectedEdge!, animated: true, selected: true, data: { edgeType: edgeType } }
+        let edge: Edge = { ...selectedEdge!, data: { edgeType: edgeType } }
         setSelectedEdge(edge)
     }
 
@@ -55,10 +55,10 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
 
     return (
         <>
-            <MiniModal show={showModal} setShow={setShowModal}  >
+            <MiniModal show={showModal} setShow={setShowModal} >
                 <Sketch color={hex} onChange={onColorChange} />
             </MiniModal>
-            <div className={styles.groupContainer}>
+            <div className={styles.groupContainer} >
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EdgeType</div>
                     <div className={styles.groupLayer}>

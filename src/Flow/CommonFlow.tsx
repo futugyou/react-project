@@ -106,25 +106,9 @@ const CommonFlow = (props: CommonFlow) => {
                 setSelectedNode(undefined)
             }
             if (edges.length == 1) {
-                const e = edges[0]
-                setSelectedEdge(e)
-                setEdges((eds) => eds.map((n) => {
-                    let animated = false
-                    if (n.id === e.id) {
-                        animated = true
-                    }
-
-                    return { ...n, animated: animated }
-                }))
+                setSelectedEdge(edges[0])
             } else {
                 setSelectedEdge(undefined)
-                setEdges((eds) => eds.map((n) => {
-                    n = {
-                        ...n,
-                        animated: false
-                    }
-                    return n
-                }))
             }
         }
     })
