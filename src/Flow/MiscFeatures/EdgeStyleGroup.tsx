@@ -6,7 +6,7 @@ import MiniModal from '@/Common/MiniModal'
 
 
 export interface EdgeStyleGroupProps {
-    // edgeType?: string
+    // pathType?: string
     // edgeColor?: string
     // animated?: boolean
     // startMarkerType?: string
@@ -18,7 +18,8 @@ export interface EdgeStyleGroupProps {
 
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const [selectedEdge, setSelectedEdge] = useState(props.selectedEdge)
-    const [edgeType, setEdgeType] = useState(props.selectedEdge.data?.edgeType ?? "bezier")
+    const [pathType, setPathType] = useState(props.selectedEdge.data?.pathType ?? "bezier")
+    const [edgeType, setEdgeType] = useState(props.selectedEdge.type ?? "default")
 
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
@@ -31,9 +32,15 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
         setShowModal(true)
     }
 
+    const onChangePathType = (pathType: string) => {
+        setPathType(pathType)
+        let edge: Edge = { ...selectedEdge!, data: { pathType: pathType } }
+        setSelectedEdge(edge)
+    }
+
     const onChangeEdgeType = (edgeType: string) => {
         setEdgeType(edgeType)
-        let edge: Edge = { ...selectedEdge!, data: { edgeType: edgeType } }
+        let edge: Edge = { ...selectedEdge!, type: edgeType }
         setSelectedEdge(edge)
     }
 
@@ -62,15 +69,37 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EdgeType</div>
                     <div className={styles.groupLayer}>
-                        <div className={`${styles.groupLayerItem} ${edgeType == 'bezier' ? styles.selected : ''}`}
-                            onClick={() => onChangeEdgeType('bezier')} >
+                        <div className={`${styles.groupLayerItem} ${edgeType == 'default' ? styles.selected : ''}`}
+                            onClick={() => onChangeEdgeType('default')} >
+                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
+                                <title>default</title>
+                                <text x="9" y="24" >Def</text>
+                            </svg>
+                        </div>
+                        <div className={`${styles.groupLayerItem} ${edgeType == 'floating' ? styles.selected : ''}`}
+                            onClick={() => onChangeEdgeType('floating')} >
+                            <svg width="40" height="40" xmlns="http://wwww.w3.org/2000/svg">
+                                <title>floating</title>
+                                <text x="9" y="24" >Flo</text>
+                            </svg>
+                        </div>
+                        <div className={styles.groupLayerItem}></div>
+                        <div className={styles.groupLayerItem}></div>
+                    </div>
+                </div>
+
+                <div className={styles.groupLayerContainer}>
+                    <div className={styles.groupLayerTitle}>PathType</div>
+                    <div className={styles.groupLayer}>
+                        <div className={`${styles.groupLayerItem} ${pathType == 'bezier' ? styles.selected : ''}`}
+                            onClick={() => onChangePathType('bezier')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Bezier</title>
                                 <path d="M 0 0 Q 0 40, 40 40" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={`${styles.groupLayerItem} ${edgeType == 'smoothStep' ? styles.selected : ''}`}
-                            onClick={() => onChangeEdgeType('smoothStep')} >
+                        <div className={`${styles.groupLayerItem} ${pathType == 'smoothStep' ? styles.selected : ''}`}
+                            onClick={() => onChangePathType('smoothStep')} >
                             <svg width="40" height="40" xmlns="http://wwww.w3.org/2000/svg">
                                 <title>SmoothStep</title>
                                 <path d="M 5 0 V 10" stroke="black" fill="transparent"></path>
@@ -80,15 +109,15 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <path d="M 35 30 V 40" stroke="black" fill="transparent"></path>
                             </svg>
                         </div>
-                        <div className={`${styles.groupLayerItem} ${edgeType == 'straight' ? styles.selected : ''}`}
-                            onClick={() => onChangeEdgeType('straight')} >
+                        <div className={`${styles.groupLayerItem} ${pathType == 'straight' ? styles.selected : ''}`}
+                            onClick={() => onChangePathType('straight')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Straight</title>
                                 <path d="M 0 0 L 40 40" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={`${styles.groupLayerItem} ${edgeType == 'step' ? styles.selected : ''}`}
-                            onClick={() => onChangeEdgeType('step')}>
+                        <div className={`${styles.groupLayerItem} ${pathType == 'step' ? styles.selected : ''}`}
+                            onClick={() => onChangePathType('step')}>
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Step</title>
                                 <path d="M 10 0 V 20" stroke="black" fill="transparent" />
@@ -157,7 +186,7 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                     </div>
                 </div>
                 <div className={styles.groupLayerContainer}>
-                    <div className={styles.groupLayerTitle}>EdgeType</div>
+                    <div className={styles.groupLayerTitle}>pathType</div>
                     <div className={styles.groupLayer}>
                         <div>bezier</div>
                         <div>smoothStep</div>
