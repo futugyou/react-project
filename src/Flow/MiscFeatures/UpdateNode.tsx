@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from '@/Flow/CustomNode/ClassNode'
-import { Node, useReactFlow, useOnSelectionChange, useUpdateNodeInternals } from 'reactflow'
+import { Node, useReactFlow, useUpdateNodeInternals } from 'reactflow'
 import { useAuth } from '@/Auth/index'
 
 import MiniModal from '@/Common/MiniModal'
@@ -9,6 +9,7 @@ import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 
 interface UpdateNodeProps {
     title?: string
+    selectedNode?: ClassNodeType
 }
 
 const UpdateNode = (props: UpdateNodeProps) => {
@@ -21,17 +22,7 @@ const UpdateNode = (props: UpdateNodeProps) => {
     const updateNodeInternals = useUpdateNodeInternals()
     const [showModal, setShowModal] = useState(false)
     const title = props.title ?? 'updateNode'
-    const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
 
-    useOnSelectionChange({
-        onChange: ({ nodes, edges }) => {
-            if (nodes.length == 1) {
-                setSelectedNode(nodes[0])
-            } else {
-                setSelectedNode(undefined)
-            }
-        }
-    })
 
     const onNodeChange = () => {
         setShowModal(true)
@@ -58,9 +49,9 @@ const UpdateNode = (props: UpdateNodeProps) => {
     return (
         <>
             <MiniModal show={showModal} setShow={setShowModal}  >
-                <ModifyNode data={selectedNode!} updateNode={updateNode} ></ModifyNode>
+                <ModifyNode data={props.selectedNode!} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
-            <button onClick={onNodeChange} disabled={selectedNode == undefined}>{title}</button>
+            <button onClick={onNodeChange} disabled={props.selectedNode == undefined}>{title}</button>
         </>
 
     )

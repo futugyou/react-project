@@ -1,6 +1,7 @@
 import styles from './EdgeStyleGroup.module.css'
 import { useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
+import { useReactFlow, Edge } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'
 
 
@@ -12,11 +13,14 @@ export interface EdgeStyleGroupProps {
     startMarkerColor?: string
     endMarkerType?: string
     endMarkerColor?: string
+    selectedEdge?: Edge
 }
 
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
+    const { setEdges, getEdges } = useReactFlow()
+
     const onColorChange = (color: ColorResult) => {
         setHex(color.hex)
     }
@@ -24,6 +28,11 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const onColorClick = () => {
         setShowModal(true)
     }
+
+    if (props.selectedEdge == undefined) {
+        return null
+    }
+
     return (
         <>
             <MiniModal show={showModal} setShow={setShowModal}  >

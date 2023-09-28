@@ -7,7 +7,7 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
-import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
+import { DefaultClassNodeType, getNodeId, ClassNodeType } from '@/Flow/CustomNode/ClassNode'
 import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
 import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
 
@@ -95,10 +95,19 @@ const CommonFlow = (props: CommonFlow) => {
         [rfInstance]
     )
 
+    const [selectedNode, setSelectedNode] = useState<ClassNodeType>()
+    const [selectedEdge, setSelectedEdge] = useState<Edge>()
+
     useOnSelectionChange({
-        onChange: ({ edges }) => {
+        onChange: ({ nodes, edges }) => {
+            if (nodes.length == 1) {
+                setSelectedNode(nodes[0])
+            } else {
+                setSelectedNode(undefined)
+            }
             if (edges.length == 1) {
                 const e = edges[0]
+                setSelectedEdge(e)
                 setEdges((eds) => eds.map((n) => {
                     let animated = false
                     if (n.id === e.id) {
@@ -108,6 +117,7 @@ const CommonFlow = (props: CommonFlow) => {
                     return { ...n, animated: animated }
                 }))
             } else {
+                setSelectedEdge(undefined)
                 setEdges((eds) => eds.map((n) => {
                     n = {
                         ...n,
@@ -116,7 +126,7 @@ const CommonFlow = (props: CommonFlow) => {
                     return n
                 }))
             }
-        },
+        }
     })
 
     return (
@@ -146,12 +156,12 @@ const CommonFlow = (props: CommonFlow) => {
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
                     <CreateNode type='custom' ></CreateNode>
-                    <UpdateNode />
+                    <UpdateNode selectedNode={selectedNode} />
                     <DragNode />
                     <DownloadFlow />
                 </Panel>
                 <Controls />
-                <EdgeStyleGroup />
+                <EdgeStyleGroup selectedEdge={selectedEdge}/>
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>
