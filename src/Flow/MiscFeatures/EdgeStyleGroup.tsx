@@ -90,14 +90,32 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const [startMarker, setStartMarker] = useState<EdgeMarker | undefined>(getEdgeMarker(props.selectedEdge.markerStart))
     const [endMarker, setEndMarker] = useState<EdgeMarker | undefined>(getEdgeMarker(props.selectedEdge.markerEnd))
 
+    const [colorMark, setColorMark] = useState('start')
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
 
     const onColorChange = (color: ColorResult) => {
-        setHex(color.hex)
+        if (!!startMarker && colorMark == 'start') {
+            const start = { ...startMarker, color: color.hex }
+            setStartMarker(start)
+            setSelectedEdge({ ...selectedEdge, markerStart: start })
+        }
+
+        if (!!endMarker && colorMark == 'end') {
+            const end = { ...endMarker, color: color.hex }
+            setEndMarker(end)
+            setSelectedEdge({ ...selectedEdge, markerEnd: end })
+        }
     }
 
-    const onColorClick = () => {
+    const onColorClick = (mark: string) => {
+        if (mark == 'start') {
+            setHex(startMarker?.color ?? "#000000")
+        } else if (mark == 'end') {
+            setHex(endMarker?.color ?? "#000000")
+        }
+
+        setColorMark(mark)
         setShowModal(true)
     }
 
@@ -242,13 +260,13 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                             </svg>
                         </div>
                         <div className={`${styles.groupLayerItem} ${styles.color}`}>
-                            <div onClick={onColorClick} style={{ width: '100%', height: '50%', backgroundColor: hex, color: hex }} >
+                            <div onClick={() => onColorClick('start')} style={{ width: '100%', height: '50%', backgroundColor: startMarker?.color, color: startMarker?.color }} >
 
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EndMarker</div>
                     <div className={styles.groupLayer}>
@@ -276,7 +294,11 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <path d="M 20 10 L 20 35" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>Color</div>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`}>
+                            <div onClick={() => onColorClick('end')} style={{ width: '100%', height: '50%', backgroundColor: endMarker?.color, color: endMarker?.color }} >
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.groupLayerContainer}>
