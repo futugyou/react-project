@@ -58,11 +58,37 @@ const getEdgeMarker = (marker: EdgeMarkerType | undefined) => {
     return { ...marker }
 }
 
+const changeMarkerType = (mark: string, marker: EdgeMarker | undefined) => {
+    let tmp = marker
+    if (mark == '') {
+        tmp = undefined
+    }
+
+    if (mark == 'arrow') {
+        if (tmp == undefined) {
+            tmp = { type: MarkerType.Arrow, color: 'black' }
+        } else {
+            tmp = { ...tmp, type: MarkerType.Arrow }
+        }
+    }
+
+    if (mark == 'arrowclosed') {
+        if (tmp == undefined) {
+            tmp = { type: MarkerType.ArrowClosed, color: 'black' }
+        } else {
+            tmp = { ...tmp, type: MarkerType.ArrowClosed }
+        }
+    }
+
+    return tmp
+}
+
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const [selectedEdge, setSelectedEdge] = useState(props.selectedEdge)
     const [edgeType, setEdgeType] = useState(getEdgeTypeUtils(props.selectedEdge.type))
     const [pathType, setPathType] = useState<string>(props.selectedEdge.data?.pathType ?? "bezier")
     const [startMarker, setStartMarker] = useState<EdgeMarker | undefined>(getEdgeMarker(props.selectedEdge.markerStart))
+    const [endMarker, setEndMarker] = useState<EdgeMarker | undefined>(getEdgeMarker(props.selectedEdge.markerEnd))
 
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
@@ -92,29 +118,16 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     }
 
     const changeStartMarkerType = (mark: string) => {
-        let markerStart = startMarker
-        if (mark == '') {
-            markerStart = undefined
-        }
-
-        if (mark == 'arrow') {
-            if (markerStart == undefined) {
-                markerStart = { type: MarkerType.Arrow, color: 'black' }
-            } else {
-                markerStart = { ...markerStart, type: MarkerType.Arrow }
-            }
-        }
-
-        if (mark == 'arrowclosed') {
-            if (markerStart == undefined) {
-                markerStart = { type: MarkerType.ArrowClosed, color: 'black' }
-            } else {
-                markerStart = { ...markerStart, type: MarkerType.ArrowClosed }
-            }
-        }
-
+        let markerStart = changeMarkerType(mark, startMarker)
         setStartMarker(markerStart)
         let edge: Edge = { ...selectedEdge!, markerStart: markerStart }
+        setSelectedEdge(edge)
+    }
+
+    const changeEndMarkerType = (mark: string) => {
+        let markerEnd = changeMarkerType(mark, endMarker)
+        setEndMarker(markerEnd)
+        let edge: Edge = { ...selectedEdge!, markerEnd: markerEnd }
         setSelectedEdge(edge)
     }
 
@@ -132,7 +145,6 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     }, [selectedEdge, setEdges])
 
     // console.log(props.selectedEdge)
-
 
     return (
         <>
@@ -236,24 +248,28 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                         </div>
                     </div>
                 </div>
+                
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EndMarker</div>
                     <div className={styles.groupLayer}>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${endMarker == undefined ? styles.selected : ''}`}
+                            onClick={() => changeEndMarkerType('')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Empty</title>
                                 <circle cx="20" cy="20" r="15" stroke="silver" fill="transparent" />
                                 <path d="M 6 20 H 36" stroke="silver" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${endMarker?.type == 'arrowclosed' ? styles.selected : ''}`}
+                            onClick={() => changeEndMarkerType('arrowclosed')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>ArrowClosed</title>
                                 <path d="M 20 35 L 10 25 L 30 25 L 20 35" stroke="black" fill="black" />
                                 <path d="M 20 10 L 20 35" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${endMarker?.type == 'arrow' ? styles.selected : ''}`}
+                            onClick={() => changeEndMarkerType('arrow')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Arrow</title>
                                 <path d="M 10 25 L 20 35 L 30 25" stroke="black" fill="transparent" />
