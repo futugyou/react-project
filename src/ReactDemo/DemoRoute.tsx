@@ -31,7 +31,7 @@ export const DemoRoute: RouteObject = {
             element: <Game />,
         },
         {
-            path: "from",
+            path: "form",
             element: <NameForm />,
         },
         {
