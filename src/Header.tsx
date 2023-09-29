@@ -1,14 +1,52 @@
 import './Header.css'
-
-import React from "react"
-import { NavLink } from "react-router-dom"
-
-import { User } from "./User/User";
+import React, { useState } from "react"
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import { User } from "./User/User"
 
 const Header = (props: any) => {
+    const [activeKey, setActiveKey] = useState('/home')
+    const handleSelect = (eventKey: any) => {
+        setActiveKey(eventKey)
+    }
+
     return (
+
         <div className='header-container'>
             <div className="header-nav">
+                <Nav variant="pills" activeKey={activeKey} onSelect={handleSelect}>
+                    <Nav.Item>
+                        <Nav.Link eventKey="/home" href="/" title="Home">
+                            Home
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="/aws" href="/aws" title="AWS">
+                            AWS
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="/flow" href="/flow" title="Flow">
+                            Flow
+                        </Nav.Link>
+                    </Nav.Item>
+                    <NavDropdown title="OpenAI" id="OpenAI">
+                        <NavDropdown.Item eventKey="/examples" href="/examples" title="Flow">Examples</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/playground" href="/playground" title="Flow">Playground</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="BaseDemo" id="nav-dropdown">
+                        <NavDropdown.Item eventKey="/demo/app" href="/demo/app" >App</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/game" href="/demo/game" >Game</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/form" href="/demo/form" >Form</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/calculator" href="/demo/calculator" >Calculator</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/dialog" href="/demo/dialog" >Dialog</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/split" href="/demo/split" >Split</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/bailout" href="/demo/bailout" >Bailout</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/demo/withbailout" href="/demo/withbailout" >Withbailout</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
+            </div>
+            {/* <div className="header-nav">
                 <div className="header-route-container">
                     <NavLink to="/">Home</NavLink>
                 </div>
@@ -58,7 +96,7 @@ const Header = (props: any) => {
                         </li>
                     </ul>
                 </div>
-            </div >
+            </div > */}
             <div className="header-user">
                 <User></User>
             </div>

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 
+// import 'bootstrap'
 import React, { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
