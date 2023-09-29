@@ -1,7 +1,7 @@
 import styles from './EdgeStyleGroup.module.css'
 import { useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
-import { useReactFlow, Edge } from 'reactflow'
+import { useReactFlow, Edge, EdgeMarkerType, MarkerType, EdgeMarker } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'
 
 
@@ -38,10 +38,31 @@ const setEdgeTypeUtils = (edge: string, path: string) => {
     return { edge: path, path: path }
 }
 
+const getMarkerType = (t: string) => {
+    if (t == "arrow") {
+        return MarkerType.Arrow
+    } else {
+        return MarkerType.ArrowClosed
+    }
+}
+
+const getEdgeMarker = (marker: EdgeMarkerType | undefined) => {
+    if (marker == undefined) {
+        return undefined
+    }
+
+    if (typeof marker == "string") {
+        return { type: getMarkerType(marker), color: 'black' }
+    }
+
+    return { ...marker }
+}
+
 const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     const [selectedEdge, setSelectedEdge] = useState(props.selectedEdge)
     const [edgeType, setEdgeType] = useState(getEdgeTypeUtils(props.selectedEdge.type))
     const [pathType, setPathType] = useState<string>(props.selectedEdge.data?.pathType ?? "bezier")
+    const [startMarker, setStartMarker] = useState<EdgeMarker | undefined>(getEdgeMarker(props.selectedEdge.markerStart))
 
     const [hex, setHex] = useState("#000000")
     const [showModal, setShowModal] = useState(false)
@@ -70,6 +91,33 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
         setSelectedEdge(edge)
     }
 
+    const changeStartMarkerType = (mark: string) => {
+        let markerStart = startMarker
+        if (mark == '') {
+            markerStart = undefined
+        }
+
+        if (mark == 'arrow') {
+            if (markerStart == undefined) {
+                markerStart = { type: MarkerType.Arrow, color: 'black' }
+            } else {
+                markerStart = { ...markerStart, type: MarkerType.Arrow }
+            }
+        }
+
+        if (mark == 'arrowclosed') {
+            if (markerStart == undefined) {
+                markerStart = { type: MarkerType.ArrowClosed, color: 'black' }
+            } else {
+                markerStart = { ...markerStart, type: MarkerType.ArrowClosed }
+            }
+        }
+
+        setStartMarker(markerStart)
+        let edge: Edge = { ...selectedEdge!, markerStart: markerStart }
+        setSelectedEdge(edge)
+    }
+
     const { setEdges } = useReactFlow()
     useEffect(() => {
         if (selectedEdge) {
@@ -88,7 +136,7 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
 
     return (
         <>
-            <MiniModal show={showModal} setShow={setShowModal} >
+            <MiniModal show={showModal} setShow={setShowModal} size='auto'>
                 <Sketch color={hex} onChange={onColorChange} />
             </MiniModal>
             <div className={styles.groupContainer} >
@@ -153,24 +201,28 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                         </div>
                     </div>
                 </div>
+
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>StartMarker</div>
                     <div className={styles.groupLayer}>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${startMarker == undefined ? styles.selected : ''}`}
+                            onClick={() => changeStartMarkerType('')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Empty</title>
                                 <circle cx="20" cy="20" r="15" stroke="silver" fill="transparent" />
                                 <path d="M 6 20 H 36" stroke="silver" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${startMarker?.type == 'arrowclosed' ? styles.selected : ''}`}
+                            onClick={() => changeStartMarkerType('arrowclosed')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>ArrowClosed</title>
                                 <path d="M 20 10 L 10 20 L 30 20 L 20 10" stroke="black" fill="black" />
                                 <path d="M 20 10 L 20 35" stroke="black" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}>
+                        <div className={`${styles.groupLayerItem} ${startMarker?.type == 'arrow' ? styles.selected : ''}`}
+                            onClick={() => changeStartMarkerType('arrow')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>Arrow</title>
                                 <path d="M 10 20 L 20 10 L 30 20" stroke="black" fill="transparent" />

@@ -39,12 +39,14 @@
 
 .mini-modal-content.modal-small {
     width: 40%;
-    min-width: 40%;
+    min-width: 40%; 
+    min-height: auto;
 }
 
 .mini-modal-content.modal-auto {
     width: auto;
-    min-width: auto;
+    min-width: auto; 
+    min-height: auto;
 }
 
 .mini-modal-body {
