@@ -36,6 +36,7 @@ html {
 
 .header {
   height: var(--app-header-height);
+  background-color: aliceblue;
 }
 
 a {

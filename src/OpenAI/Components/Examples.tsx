@@ -5,11 +5,26 @@ import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "@/Common/Dropdown"
-
+import MiniModal from '@/Common/MiniModal'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 
 const ExampleDetail = lazy(() => import('./ExampleDetail'))
 const ExampleEdit = lazy(() => import('./ExampleEdit'))
+
+const ModalExampleDetail = (props: any) => {
+    return (
+        <MiniModal show={props.showModal} setShow={props.setShowModal}  >
+            <ExampleDetail data={props.exampleData} onEidtClick={() => props.onModeChange(true)}></ExampleDetail>
+        </MiniModal>
+    )
+}
+const ModalExampleEdit = (props: any) => {
+    return (
+        <MiniModal show={props.showModal} setShow={props.setShowModal}  >
+            <ExampleEdit data={props.exampleData} onCancelClick={() => props.onModeChange(false)} onSaveClick={props.handleSaveClick}></ExampleEdit>
+        </MiniModal>
+    )
+}
 
 const Examples = (props: any) => {
     let loaderdata = useLoaderData() as ExampleModel[]
@@ -19,6 +34,7 @@ const Examples = (props: any) => {
     const [exampleList, setExampleList] = useState(loaderdata)
     const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
     const [searchFilter, setSearchFilter] = useState({ key: "", category: "chooseAll" })
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const list = loaderdata
@@ -68,10 +84,15 @@ const Examples = (props: any) => {
         },
     ]
 
+    const onExampleClick = (item: ExampleModel) => {
+        setExampleData({ ...DefaultExampleModel, ...item })
+        setEditMode(false)
+        setShowModal(true)
+    }
 
     const exampleItems = exampleList.map(item => {
         return (
-            <div key={item.key} className="example-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-key={item.key}>
+            <div key={item.key} className="example-item" onClick={() => onExampleClick(item)}>
                 <div className="example-item-left">
                     <BsSearch></BsSearch>
                 </div>
@@ -81,23 +102,6 @@ const Examples = (props: any) => {
                 </div>
             </div>
         )
-    })
-
-    useEffect(() => {
-        const exampleModal = document.getElementById("exampleModal")
-        if (exampleModal) {
-            exampleModal.addEventListener("show.bs.modal", (event: any) => {
-                const div = event.relatedTarget
-                const key = div.getAttribute("data-bs-key")
-
-                let data = exampleList.find(p => p.key === key) ?? DefaultExampleModel
-                data = {
-                    ...DefaultExampleModel,
-                    ...data,
-                }
-                setExampleData(data)
-            })
-        }
     })
 
     const HandleCategoryChange = (category: string) => {
@@ -128,6 +132,9 @@ const Examples = (props: any) => {
 
     return (
         <div className="example-page">
+            <ModalExampleDetail key={exampleData.key + 'Detail'} showModal={showModal && !editMode} setShowModal={setShowModal} onModeChange={onModeChange} exampleData={exampleData} ></ModalExampleDetail>
+            <ModalExampleEdit key={exampleData.key + 'Edit'} showModal={showModal && editMode} setShowModal={setShowModal} onModeChange={onModeChange} exampleData={exampleData} handleSaveClick={handleSaveClick}></ModalExampleEdit>
+
             <div className="example-container">
                 <div className="example-header">
                     <h1 className="text-title">Examples</h1>
@@ -146,21 +153,6 @@ const Examples = (props: any) => {
                     {exampleItems}
                 </div>
             </div>
-
-            <div className="modal fade" id="exampleModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false">
-                <div className="modal-dialog" style={{ maxWidth: "max-content" }}>
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title"></h5>
-                            <button type="button" className="btn-close" id="closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            {!editMode && (<ExampleDetail data={exampleData} onEidtClick={() => onModeChange(true)}></ExampleDetail>)}
-                            {editMode && (<ExampleEdit data={exampleData} onCancelClick={() => onModeChange(false)} onSaveClick={handleSaveClick}></ExampleEdit>)}
-                        </div>
-                    </div>
-                </div>
-            </div >
         </div >
     )
 }
