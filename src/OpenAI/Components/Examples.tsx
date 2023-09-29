@@ -13,14 +13,14 @@ const ExampleEdit = lazy(() => import('./ExampleEdit'))
 
 const ModalExampleDetail = (props: any) => {
     return (
-        <MiniModal show={props.showModal} setShow={props.setShowModal}  >
+        <MiniModal show={props.showModal} setShow={props.setShowModal} size='middle' >
             <ExampleDetail data={props.exampleData} onEidtClick={() => props.onModeChange(true)}></ExampleDetail>
         </MiniModal>
     )
 }
 const ModalExampleEdit = (props: any) => {
     return (
-        <MiniModal show={props.showModal} setShow={props.setShowModal}  >
+        <MiniModal show={props.showModal} setShow={props.setShowModal} size='middle'  >
             <ExampleEdit data={props.exampleData} onCancelClick={() => props.onModeChange(false)} onSaveClick={props.handleSaveClick}></ExampleEdit>
         </MiniModal>
     )
