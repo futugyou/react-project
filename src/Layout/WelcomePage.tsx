@@ -13,7 +13,9 @@ const WelcomePage = (props: any) => {
     }
 
     const imageList = [
-        { src: '', alt: 'chapter-001', file: '' }
+        { src: './images/wu-chapter-001.jpg', alt: 'chapter-001', file: './epub/wu-chapter-001.epub' },
+        { src: './images/wu-chapter-002.jpg', alt: 'chapter-002', file: './epub/wu-chapter-002.epub' },
+        { src: './images/wu-chapter-003.jpg', alt: 'chapter-003', file: './epub/wu-chapter-003.epub' },
     ]
 
     const chooseBook = (b: any) => {
