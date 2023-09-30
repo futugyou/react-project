@@ -106,6 +106,10 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
             setEndMarker(end)
             setSelectedEdge({ ...selectedEdge, markerEnd: end })
         }
+
+        if (colorMark == 'line') {
+            setSelectedEdge({ ...selectedEdge, style: { ...selectedEdge.style, stroke: color.hex } })
+        }
     }
 
     const onColorClick = (mark: string) => {
@@ -113,6 +117,8 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
             setHex(startMarker?.color ?? "#000000")
         } else if (mark == 'end') {
             setHex(endMarker?.color ?? "#000000")
+        } else {
+            setHex(selectedEdge.style?.stroke ?? "#000000")
         }
 
         setColorMark(mark)
@@ -149,6 +155,19 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
         setSelectedEdge(edge)
     }
 
+    const changeLineType = (line: string) => {
+        let edge: Edge = { ...selectedEdge }
+        if (line == 'straight') {
+            edge = { ...edge, animated: false, style: { ...edge.style, strokeDasharray: undefined } }
+        } else if (line == 'dashed') {
+            edge = { ...edge, animated: false, style: { ...edge.style, strokeDasharray: 5 } }
+        } else {
+            edge.animated = true
+        }
+
+        setSelectedEdge(edge)
+    }
+
     const { setEdges } = useReactFlow()
     useEffect(() => {
         if (selectedEdge) {
@@ -161,8 +180,6 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
             }))
         }
     }, [selectedEdge, setEdges])
-
-    // console.log(props.selectedEdge)
 
     return (
         <>
@@ -228,6 +245,40 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <path d="M 10 20 H 30" stroke="black" fill="transparent" />
                                 <path d="M 30 20 V 40" stroke="black" fill="transparent" />
                             </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.groupLayerContainer}>
+                    <div className={styles.groupLayerTitle}>PathStyle</div>
+                    <div className={styles.groupLayer}>
+                        <div className={`${styles.groupLayerItem} ${!selectedEdge.style?.strokeDasharray && !selectedEdge.animated ? styles.selected : ''}`}
+                            onClick={() => changeLineType('straight')} >
+                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
+                                <title>straight</title>
+                                <path d="M 5 5 L 35 35" stroke="silver" />
+                            </svg>
+                        </div>
+                        <div className={`${styles.groupLayerItem} ${selectedEdge.style?.strokeDasharray && !selectedEdge.animated ? styles.selected : ''}`}
+                            onClick={() => changeLineType('dashed')} >
+                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
+                                <title>dashed</title>
+                                <path d="M 5 5 L 35 35" stroke="silver" strokeDasharray="4" />
+                            </svg>
+                        </div>
+                        <div className={`${styles.groupLayerItem} ${selectedEdge.animated ? styles.selected : ''}`}
+                            onClick={() => changeLineType('animated')} >
+                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
+                                <title>animated</title>
+                                <path d="M 5 5 L 35 35" stroke="silver" strokeDasharray="4" >
+                                    <animate attributeName="stroke-dashoffset" values="100;0" dur="5s" calcMode="linear" repeatCount="indefinite" />
+                                </path>
+                            </svg>
+                        </div>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`}>
+                            <div onClick={() => onColorClick('line')} style={{ width: '100%', height: '50%', backgroundColor: selectedEdge.style?.stroke, color: selectedEdge.style?.stroke }} >
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -301,16 +352,6 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                         </div>
                     </div>
                 </div>
-                <div className={styles.groupLayerContainer}>
-                    <div className={styles.groupLayerTitle}>pathType</div>
-                    <div className={styles.groupLayer}>
-                        <div>bezier</div>
-                        <div>smoothStep</div>
-                        <div>straight</div>
-                        <div>step</div>
-                    </div>
-                </div>
-
             </div>
         </>
     )
