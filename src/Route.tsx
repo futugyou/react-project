@@ -1,13 +1,14 @@
 import { lazy } from 'react'
 import { createBrowserRouter, RouteObject, Navigate } from 'react-router-dom'
-import Layout from "./Layout"
+import Layout from "@/Layout/Layout"
 
-import { DemoRoute } from './ReactDemo/DemoRoute'
-import { FlowRoute } from './Flow/FlowRoute'
-import { OpenAIRoute } from './OpenAI/OpenAIRoute'
-import { MicroAppRoute } from './MicroApp/MicroAppRoute'
+import { DemoRoute } from '@/ReactDemo/DemoRoute'
+import { FlowRoute } from '@/Flow/FlowRoute'
+import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
+import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
 
-const ErrorPage = lazy(() => import('./ErrorPage'))
+const WelcomePage = lazy(() => import('@/Layout/WelcomePage'))
+const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -27,10 +28,6 @@ const ErrorPage = lazy(() => import('./ErrorPage'))
 //     </Route>
 //   )
 // );
-
-const WelcomePage = () => {
-    return <div className='WelcomePage'></div>
-}
 
 let childrenRoute: RouteObject[] = [
     {

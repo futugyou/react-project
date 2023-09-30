@@ -4,7 +4,7 @@ import { RouteObject } from 'react-router-dom'
 
 import { playgroundLoader } from './Components/PlaygroundLoader'
 import { examplesLoader } from './Components/ExamplesLoader'
-import GuardedRoute from '../GuardedRoute'
+import GuardedRoute from '@/Common/GuardedRoute'
 
 const Playground = lazy(() => import('./Components/Playground'))
 const Examples = lazy(() => import('./Components/Examples'))

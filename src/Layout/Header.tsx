@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { useLocation } from "react-router-dom"
 
-import { User } from "./User/User"
+import { User } from "@/User/User"
 
 const Header = (props: any) => {
     const location = useLocation()

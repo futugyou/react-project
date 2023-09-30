@@ -5,7 +5,7 @@ import './index.css'
 import React, { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
-import Loading from './Loading'
+import Loading from './Common/Loading'
 
 import { AuthProvider, authService } from './Auth/index'
 

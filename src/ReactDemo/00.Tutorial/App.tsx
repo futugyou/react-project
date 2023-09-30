@@ -1,6 +1,4 @@
 import './App.css'
-import reactLogo from '../../assets/react.svg'
-
 import { useState } from 'react'
 
 const App = () => {
@@ -10,10 +8,10 @@ const App = () => {
     <div className="App">
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
+          <img src="/assets/react.svg" className="logo" alt="Vite logo" />
         </a>
         <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src='/assets/react.svg' className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Vite + React</h1>
