@@ -7,7 +7,7 @@ import { ReactReader } from 'react-reader'
 const EpubReader = (props: any) => {
     const [location, setLocation] = useState<any>(null)
     const [firstRenderDone, setFirstRenderDone] = useState(false)
-    const renditionRef = useRef(null)
+    const renditionRef = useRef<any>(null)
     const [fullWindow, setFullWindow] = useState(false)
 
     const locationChanged = (epubcifi: any) => {
@@ -19,7 +19,7 @@ const EpubReader = (props: any) => {
         // If you block this function from running (i.e not letting it change the page on the first render) your app crashes.
 
         if (!firstRenderDone) {
-            setLocation(localStorage.getItem(props.key)) // getItem returns null if the item is not found.
+            setLocation(localStorage.getItem(props.epubcfikey)) // getItem returns null if the item is not found.
             setFirstRenderDone(true)
             return
         }

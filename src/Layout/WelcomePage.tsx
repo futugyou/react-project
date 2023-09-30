@@ -44,7 +44,7 @@ const WelcomePage = (props: any) => {
                     }
                 </Carousel>
             </div>
-            <EpubReader key={currentBook?.alt ?? 'fake-id'} url={currentBook?.file}></EpubReader>
+            <EpubReader key={currentBook?.alt ?? 'fake-id'} epubcfikey={currentBook?.alt ?? 'fake-id'} url={currentBook?.file}></EpubReader>
         </div >
     )
 }
