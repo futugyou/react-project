@@ -110,6 +110,14 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
         if (colorMark == 'line') {
             setSelectedEdge({ ...selectedEdge, style: { ...selectedEdge.style, stroke: color.hex } })
         }
+
+        if (colorMark == 'lable') {
+            if (edgeType == 'default') {
+                setSelectedEdge({ ...selectedEdge, labelStyle: { ...selectedEdge.labelStyle, fill: color.hex, color: color.hex } })
+            } else {
+                setSelectedEdge({ ...selectedEdge, labelStyle: { ...selectedEdge.labelStyle, color: color.hex } })
+            }
+        }
     }
 
     const onColorClick = (mark: string) => {
@@ -117,8 +125,10 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
             setHex(startMarker?.color ?? "#000000")
         } else if (mark == 'end') {
             setHex(endMarker?.color ?? "#000000")
-        } else {
+        } else if (mark == 'line') {
             setHex(selectedEdge.style?.stroke ?? "#000000")
+        } else if (mark == 'lable') {
+            setHex(selectedEdge.labelStyle?.color ?? "#000000")
         }
 
         setColorMark(mark)
@@ -165,6 +175,12 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
             edge.animated = true
         }
 
+        setSelectedEdge(edge)
+    }
+
+    const onLableChange = (e: any) => {
+        const l = e.target.value
+        let edge: Edge = { ...selectedEdge, label: l }
         setSelectedEdge(edge)
     }
 
@@ -347,6 +363,26 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                         </div>
                         <div className={`${styles.groupLayerItem} ${styles.color}`}>
                             <div onClick={() => onColorClick('end')} style={{ width: '100%', height: '50%', backgroundColor: endMarker?.color, color: endMarker?.color }} >
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className={styles.groupLayerContainer}>
+                    <div className={styles.groupLayerTitle}>PathLable</div>
+                    <div className={styles.groupLayer}>
+                        <div className={`${styles.groupLayerItem}`} style={{ flex: '1' }} >
+                            <input className={styles.lableinput} value={selectedEdge.label as string ?? ''} onChange={onLableChange} />
+                        </div>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`} style={{ width: '52px', height: '52px' }}>
+                            <div onClick={() => onColorClick('lable')}
+                                style={{
+                                    width: '100%', height: '50%',
+                                    backgroundColor: selectedEdge.labelStyle?.color ?? "#000000",
+                                    color: selectedEdge.labelStyle?.color ?? "#000000"
+                                }} >
 
                             </div>
                         </div>
