@@ -8,3 +8,20 @@
         stroke-dashoffset: 10;
     }
 }
+
+.pathselected {
+    transform: scale(1);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bounce 1600ms linear infinite forwards;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4);
+    }
+}

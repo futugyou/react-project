@@ -63,9 +63,15 @@ const FloatingEdge = (props: EdgeProps<EdgeData>) => {
     }
 
     return (
-        <path id={props.id} className={props.selected ? "react-flow__edge-path " + styles.pathanimated : "react-flow__edge-path"}
-            d={edgePath} markerEnd={props.markerEnd} markerStart={props.markerStart}
-            style={props.style} />
+        <>
+            {props.selected && (<circle className={styles.pathselected} cx={sx} cy={sy} r={4} stroke="silver" fill="silver" />)}
+            {props.selected && (<circle className={styles.pathselected} cx={tx} cy={ty} r={4} stroke="silver" fill="silver" />)}
+
+            <path id={props.id} className={"react-flow__edge-path"}
+                d={edgePath} markerEnd={props.markerEnd} markerStart={props.markerStart}
+                style={props.style} />
+        </>
+
     )
 }
 
