@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from '@/Flow/CustomNode/ClassNode'
 import { Node, useReactFlow, useUpdateNodeInternals } from 'reactflow'
-import { useAuth } from '@/Auth/index'
 
 import MiniModal from '@/Common/MiniModal'
 
@@ -13,11 +12,6 @@ interface UpdateNodeProps {
 }
 
 const UpdateNode = (props: UpdateNodeProps) => {
-    const { authService } = useAuth()
-    if (!authService.isAuthenticated()) {
-        return null
-    }
-
     const { setNodes } = useReactFlow()
     const updateNodeInternals = useUpdateNodeInternals()
     const [showModal, setShowModal] = useState(false)
