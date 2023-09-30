@@ -10,6 +10,7 @@ import 'reactflow/dist/style.css'
 import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
 import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
 import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
+import DefaultEdgePlus from '@/Flow/CustomEdges/DefaultEdgePlus'
 
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 import StashFlow from '@/Flow/MiscFeatures/StashFlow'
@@ -31,6 +32,11 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
 }
 
 const edgeTypes = {
+    default: DefaultEdgePlus,
+    straight: DefaultEdgePlus,
+    step: DefaultEdgePlus,
+    smoothstep: DefaultEdgePlus,
+    simplebezier: DefaultEdgePlus,
     floating: FloatingEdge,
 }
 
