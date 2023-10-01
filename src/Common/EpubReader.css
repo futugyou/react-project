@@ -6,7 +6,10 @@
 }
 
 .ReaderContainer.fix {
+    /* padding */
     width: calc(100% - 40px);
+    /* header + padding */
+    height: calc(100% - 105.5px);
     position: absolute;
     z-index: 5;
 }

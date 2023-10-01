@@ -26,7 +26,7 @@ const EpubReader = (props: any) => {
 
         // This is the code that runs everytime the page changes, after the initial render.
         // Saving the current epubcifi on storage...
-        localStorage.setItem(props.key, epubcifi)
+        localStorage.setItem(props.epubcfikey, epubcifi)
         // And then rendering it.
         setLocation(epubcifi) // Or setLocation(localStorage.getItem("book-progress"))
     }
