@@ -21,6 +21,7 @@ import CreateNode from '@/Flow/MiscFeatures/CreateNode'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
 import DragNode, { DragNodeType } from '@/Flow/MiscFeatures/DragNode'
 import EdgeStyleGroup from '@/Flow/MiscFeatures/EdgeStyleGroup'
+import NodeStyleGroup from '@/Flow/MiscFeatures/NodeStyleGroup'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -152,6 +153,7 @@ const CommonFlow = (props: CommonFlow) => {
                 </Panel>
                 <Controls />
                 {selectedEdge && (<EdgeStyleGroup selectedEdge={selectedEdge} key={selectedEdge?.id ?? getNodeId()} />)}
+                {selectedNode && (<NodeStyleGroup selectedNode={selectedNode} key={selectedNode?.id ?? getNodeId()} />)}
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>
