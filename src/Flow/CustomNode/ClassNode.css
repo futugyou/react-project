@@ -5,7 +5,6 @@
     text-align: left;
     flex-direction: column;
     padding: 10px;
-    padding-bottom: 0px;
     border-radius: 3px;
     color: #222;
     border-width: 1px;
@@ -16,11 +15,11 @@
     min-width: 300px;
     min-height: 50px;
     height: 100%;
+    gap: 10px;
 }
 
 
 .node-container-selected {
-    border-color: #ff0000;
     animation: bounce 1600ms infinite ease-out;
 }
 
@@ -45,6 +44,8 @@
 .list-display {
     padding-left: 0px;
     list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .customHandle {

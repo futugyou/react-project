@@ -1,7 +1,9 @@
 import './ClassNode.css'
 
-import { ReactElement, ReactNode, useState, useEffect } from 'react'
-import { Handle, Position, Node, NodeProps, HandleType, NodeResizer } from 'reactflow'
+import { useState, useEffect } from 'react'
+import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
+
+import NodeResize from '@/Flow/CustomNode/NodeResize'
 
 export type ClassNodeData = {
     id: string
@@ -78,7 +80,8 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
 
     return (
         <div className={selected ? 'node-container node-container-selected' : 'node-container'}>
-            <NodeResizer color="#ff0071" isVisible={selected} minWidth={300} minHeight={50} />
+            <NodeResize isVisible={selected} minWidth={300} minHeight={50} />
+
             <div className='class-name' style={emptyBody} >
                 {data.name} {data.parent ? " : " + data.parent : ""}
             </div>
