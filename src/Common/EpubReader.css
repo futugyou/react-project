@@ -31,3 +31,7 @@
 .ReaderClose:hover {
     color: silver;
 }
+
+.carousel-indicators [data-bs-target].active{
+    background-color: red !important;
+}
