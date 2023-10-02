@@ -1,5 +1,5 @@
 import styles from './NodeStyleGroup.module.css'
-import { useEffect, useState } from 'react'
+import { CSSProperties, useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Node } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'
@@ -8,18 +8,62 @@ export interface NodeStyleGroupProps {
     selectedNode: Node
 }
 
+const getBorderStyle = (style: CSSProperties | undefined) => {
+    if (style == undefined) {
+        return 'solid'
+    }
+
+    if (style.borderWidth == 0) {
+        return 'none'
+    }
+
+    if (style.borderStyle) {
+        return style.borderStyle as string
+    }
+    return 'solid'
+}
+
 const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
+    const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode.style))
     const [borderColor, setBorderColor] = useState<string>(selectedNode.style?.borderColor ?? "#000000")
+    const [backgroundColor, setBackgroundColor] = useState<string>(selectedNode.style?.backgroundColor ?? "transparent")
+    const [color, setColor] = useState<string>(selectedNode.style?.color ?? "#000000")
+    const [colorSelect, setColorSelect] = useState('start')
 
-    const [hex, setHex] = useState("#000000")
+    const [hex, setHex] = useState("transparent")
     const [showModal, setShowModal] = useState(false)
 
     const onColorChange = (color: ColorResult) => {
-        setHex(color.hex)
+        let style = selectedNode.style ?? {}
+        if (colorSelect == 'border-color') {
+            setBorderColor(color.hex)
+            style.borderColor = color.hex
+        }
+
+        if (colorSelect == 'background-color') {
+            setBackgroundColor(color.hex)
+            style.backgroundColor = color.hex
+        }
+
+        if (colorSelect == 'color') {
+            setColor(color.hex)
+            style.color = color.hex
+        }
+
+        setSelectedNode({ ...selectedNode, style: style })
     }
 
-    const onColorClick = (mark: string) => {
+    const onColorClick = (selected: string) => {
+        if (selected == 'border-color') {
+            setHex(borderColor)
+        } else if (selected == 'background-color') {
+            setHex(backgroundColor)
+        } else if (selected == 'color') {
+            setHex(color)
+        }
+
+        setColorSelect(selected)
         setShowModal(true)
     }
 
@@ -27,7 +71,8 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
         let style = selectedNode.style ?? {}
         if (t == 'none') {
             style.borderWidth = 0
-        } else if (t == 'straight') {
+            style.borderStyle = undefined
+        } else if (t == 'solid') {
             style.borderWidth = '1px'
             style.borderStyle = 'solid'
             style.borderColor = borderColor
@@ -37,6 +82,7 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
             style.borderColor = borderColor
         }
 
+        setBorderStyle(t)
         setSelectedNode({ ...selectedNode, style: style })
     }
 
@@ -63,22 +109,22 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
             <div className={styles.groupContainer} >
 
                 <div className={styles.groupLayerContainer}>
-                    <div className={styles.groupLayerTitle}>NodeBorder</div>
+                    <div className={styles.groupLayerTitle}>node border</div>
                     <div className={styles.groupLayer}>
-                        <div className={`${styles.groupLayerItem}`} onClick={() => onChangeBorder('none')} >
+                        <div className={`${styles.groupLayerItem} ${borderStyle == 'none' ? styles.selected : ''}`} onClick={() => onChangeBorder('none')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
-                                <title>noborder</title>
+                                <title>none</title>
                                 <circle cx="20" cy="20" r="15" stroke="silver" fill="transparent" />
                                 <path d="M 6 20 H 36" stroke="silver" fill="transparent" />
                             </svg>
                         </div>
-                        <div className={`${styles.groupLayerItem}`} onClick={() => onChangeBorder('straight')} >
+                        <div className={`${styles.groupLayerItem} ${borderStyle == 'solid' ? styles.selected : ''}`} onClick={() => onChangeBorder('solid')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
-                                <title>straight</title>
+                                <title>solid</title>
                                 <path d="M 5 5 L 35 35" stroke="silver" />
                             </svg>
                         </div>
-                        <div className={`${styles.groupLayerItem}`} onClick={() => onChangeBorder('dashed')} >
+                        <div className={`${styles.groupLayerItem} ${borderStyle == 'dashed' ? styles.selected : ''}`} onClick={() => onChangeBorder('dashed')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>dashed</title>
                                 <path d="M 5 5 L 35 35" stroke="silver" strokeDasharray="4" />
@@ -94,20 +140,30 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
                 </div>
 
                 <div className={styles.groupLayerContainer}>
-                    <div className={styles.groupLayerTitle}>Color</div>
+                    <div className={styles.groupLayerTitle}>background color</div>
                     <div className={styles.groupLayer} style={{ height: '52px' }}>
                         <div className={`${styles.groupLayerItem} ${styles.color}`}>
-                            <div onClick={() => onColorClick('background-color')} style={{ width: '100%', height: '50%', backgroundColor: selectedNode.style?.backgroundColor, color: selectedNode.style?.backgroundColor }} >
+                            <div onClick={() => onColorClick('background-color')} style={{ width: '100%', height: '50%', backgroundColor: backgroundColor, color: backgroundColor }} >
 
                             </div>
                         </div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                    </div>
+                </div>
+
+                <div className={styles.groupLayerContainer}>
+                    <div className={styles.groupLayerTitle}>font color</div>
+                    <div className={styles.groupLayer} style={{ height: '52px' }}>
                         <div className={`${styles.groupLayerItem} ${styles.color}`}>
-                            <div onClick={() => onColorClick('color')} style={{ width: '100%', height: '50%', backgroundColor: selectedNode.style?.color, color: selectedNode.style?.color }} >
+                            <div onClick={() => onColorClick('color')} style={{ width: '100%', height: '50%', backgroundColor: color, color: color }} >
 
                             </div>
                         </div>
-                        <div className={styles.groupLayerItem}></div>
-                        <div className={styles.groupLayerItem}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
                     </div>
                 </div>
             </div>

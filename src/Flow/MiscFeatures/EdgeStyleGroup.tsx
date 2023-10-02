@@ -220,8 +220,8 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                 <text x="8" y="25" >Flo</text>
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem}></div>
-                        <div className={styles.groupLayerItem}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
                     </div>
                 </div>
 
