@@ -1,7 +1,7 @@
 import './ClassNode.css'
 
 import { useState, useEffect } from 'react'
-import { Handle, Position, Node, NodeProps, HandleType } from 'reactflow'
+import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow } from 'reactflow'
 
 import NodeResize from '@/Flow/CustomNode/NodeResize'
 
@@ -38,7 +38,7 @@ export const DefaultClassNodeType: ClassNodeType = {
 
 export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
     const [emptyBody, setEmptyBody] = useState({})
-
+    const className = (selected ? 'node-container node-container-selected ' : 'node-container ')
     let methods: JSX.Element[] = []
     if (data.methods) {
         methods = data.methods.map((t: string) => {
@@ -79,7 +79,7 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
     }, [data.methods, data.properties])
 
     return (
-        <div className={selected ? 'node-container node-container-selected' : 'node-container'}>
+        <div className={className}>
             <NodeResize isVisible={selected} minWidth={300} minHeight={50} />
 
             <div className='class-name' style={emptyBody} >
