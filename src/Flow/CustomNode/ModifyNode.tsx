@@ -22,14 +22,6 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
         })
     }
 
-    const HandleIdChange = (value: string) => {
-        value = value.trim()
-        setNodeData({
-            ...nodeData,
-            id: value,
-        })
-    }
-
     const HandleNameChange = (value: string) => {
         value = value.trim()
         setNodeData({
@@ -141,13 +133,8 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     }
 
     const HandeSaveNode = () => {
-        if (!nodeData.id) {
-            return
-        }
-
         const newData = {
             ...data,
-            id: nodeData.id
         }
 
         newData.data = nodeData
@@ -157,21 +144,10 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
     return (
         <div className={styles.nodeContainer}>
             <div className={styles.nodeItemContainer}>
-                {/* class node id */}
+                {/* class name */}
                 <div className={styles.nodeItem}>
                     <div className={styles.nodeItemLable}>
-                        <label htmlFor="nodeid">NodeId:</label >
-                    </div>
-                    <div className={styles.nodeItemContent}>
-                        <input id="nodeid" className={styles.textInput} value={nodeData.id}
-                            onChange={e => HandleIdChange(e.target.value)}></input>
-                    </div>
-                </div>
-
-                {/* class node name */}
-                <div className={styles.nodeItem}>
-                    <div className={styles.nodeItemLable}>
-                        <label htmlFor="nodeName2">NodeName:</label >
+                        <label htmlFor="nodeName2">ClassName:</label >
                     </div>
                     {/* nodeName is special id, it will cause 'TypeError elem.nodeName.toLowerCase is not a function' */}
                     <div className={styles.nodeItemContent}>

@@ -383,7 +383,6 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
                                     backgroundColor: selectedEdge.labelStyle?.color ?? "#000000",
                                     color: selectedEdge.labelStyle?.color ?? "#000000"
                                 }} >
-
                             </div>
                         </div>
                     </div>

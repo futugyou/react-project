@@ -6,7 +6,6 @@ import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow 
 import NodeResize from '@/Flow/CustomNode/NodeResize'
 
 export type ClassNodeData = {
-    id: string
     name: string
     parent?: string
     methods?: string[]
@@ -31,7 +30,6 @@ export const DefaultClassNodeType: ClassNodeType = {
     },
     type: 'custom',
     data: {
-        id: '',
         name: '',
     }
 }
