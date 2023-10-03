@@ -10,6 +10,13 @@ export interface FlowRouteData {
 }
 
 export const FlowRouteDataList: FlowRouteData[] = [{
+    name: 'Demo',
+    display: 'Demo',
+    group: 'Demo',
+    linkpath: '/flow/demo',
+    path: 'demo',
+    element: lazy(() => import('./DemoFlow')),
+}, {
     name: 'DependencyInjection',
     display: 'DI',
     group: 'NetCore',

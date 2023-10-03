@@ -4,12 +4,12 @@ import { RouteObject } from 'react-router-dom'
 import { FlowRouteDataList } from './FlowRouteData'
 
 const FlowPanel = lazy(() => import('./FlowPanel'))
-const DI = lazy(() => import('./Dotnet/DependencyInjection/Flow'))
+const DemoFlow = lazy(() => import('./DemoFlow'))
 
 let childern: RouteObject[] = [
     {
         index: true,
-        element: <DI />,
+        element: <DemoFlow />,
     }]
 
 childern = childern.concat(FlowRouteDataList.map(p => {

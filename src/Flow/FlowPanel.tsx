@@ -7,11 +7,13 @@ import { useAnimate } from "framer-motion"
 
 import { FlowRouteDataList } from './FlowRouteData'
 
+const defaultPage = '/flow/demo'
+
 const FlowPanel = (props: any) => {
     const [showIndex, setShowIndex] = useState(0)
     const [scope, animate] = useAnimate()
     const location = useLocation()
-    const [currentPage, setCurrentPage] = useState('/flow/dotnet/di')
+    const [currentPage, setCurrentPage] = useState(defaultPage)
     const refs = FlowRouteDataList.reduce((acc: any, value) => {
         acc[value.linkpath] = React.createRef();
         return acc;
@@ -46,7 +48,7 @@ const FlowPanel = (props: any) => {
     useEffect(() => {
         const pathname = location.pathname.split('/',)
         if (pathname.length < 4) {
-            setCurrentPage('/flow/dotnet/di')
+            setCurrentPage(defaultPage)
             return
         }
 
