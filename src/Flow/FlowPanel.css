@@ -69,3 +69,7 @@
     color: #2c36fe;
     background-color: #57d5d5;
 }
+
+.react-flow__node.selected.selectable {
+    box-shadow: none !important;
+}

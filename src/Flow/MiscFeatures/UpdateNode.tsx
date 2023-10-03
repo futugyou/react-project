@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ClassNodeData, ClassNodeType, DefaultClassNodeType } from '@/Flow/CustomNode/ClassNode'
+import { ClassNodeType } from '@/Flow/CustomNode/ClassNode'
 import { Node, useReactFlow, useUpdateNodeInternals } from 'reactflow'
 
 import MiniModal from '@/Common/MiniModal'
@@ -28,7 +28,9 @@ const UpdateNode = (props: UpdateNodeProps) => {
                 if (n.id === data.id) {
                     n = {
                         ...data,
-                        selected: false
+                        selected: false,
+                        position: n.position,
+                        positionAbsolute: n.positionAbsolute,
                     }
                 }
 
@@ -45,7 +47,7 @@ const UpdateNode = (props: UpdateNodeProps) => {
             <MiniModal show={showModal} setShow={setShowModal}  >
                 <ModifyNode data={props.selectedNode!} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
-            <button onClick={onNodeChange} disabled={props.selectedNode == undefined}>{title}</button>
+            <button onClick={onNodeChange} disabled={props.selectedNode == undefined || props.selectedNode.type != 'custom'}>{title}</button>
         </>
 
     )

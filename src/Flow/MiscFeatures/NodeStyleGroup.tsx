@@ -23,8 +23,17 @@ const getBorderStyle = (style: CSSProperties | undefined) => {
     return 'solid'
 }
 
+const getNodeType = (t: string | undefined) => {
+    if (t == undefined || t == 'input' || t == 'default' || t == 'output') {
+        return 'default'
+    }
+
+    return t
+}
+
 const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
+    const [nodeType, setNodeType] = useState(getNodeType(props.selectedNode.type))
     const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode.style))
     const [borderColor, setBorderColor] = useState<string>(selectedNode.style?.borderColor ?? "#000000")
     const [backgroundColor, setBackgroundColor] = useState<string>(selectedNode.style?.backgroundColor ?? "transparent")
@@ -86,14 +95,20 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
         setSelectedNode({ ...selectedNode, style: style })
     }
 
+    const onLableChange = (e: any) => {
+        const l = e.target.value
+        setSelectedNode({ ...selectedNode, data: { label: l } })
+    }
+
     const { setNodes } = useReactFlow()
 
     useEffect(() => {
         if (selectedNode) {
             setNodes((eds) => eds.map((node) => {
                 if (node.id === selectedNode.id) {
-                    node = { ...selectedNode }
+                    // node = { ...selectedNode }
                     node.style = { ...selectedNode.style }
+                    node.data = { ...selectedNode.data }
                 }
 
                 return node
@@ -156,7 +171,7 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>font color</div>
                     <div className={styles.groupLayer} style={{ height: '52px' }}>
-                        <div className={`${styles.groupLayerItem} ${styles.color}`}>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`} >
                             <div onClick={() => onColorClick('color')} style={{ width: '100%', height: '50%', backgroundColor: color, color: color }} >
 
                             </div>
@@ -166,6 +181,19 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
                         <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
                     </div>
                 </div>
+
+                {nodeType == 'default' && (
+                    <div className={styles.groupLayerContainer}>
+                        <div className={styles.groupLayerTitle}>lable</div>
+                        <div className={styles.groupLayer} style={{ height: '52px' }}>
+                            <div className={`${styles.groupLayerItem}`} style={{ flex: '1' }} >
+                                <input className={styles.lableinput} value={selectedNode.data?.label as string ?? ''} onChange={onLableChange} />
+                            </div>
+                            <div className={`${styles.groupLayerItem}`} style={{ border: 0, width: '52px', height: '52px' }}>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     )
