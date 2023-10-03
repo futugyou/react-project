@@ -39,12 +39,14 @@ const EpubReader = (props: any) => {
         <div className={fullWindow ? 'ReaderContainer fix' : 'ReaderContainer'} >
             {fullWindow && (<div className='ReaderClose' onClick={fullDisplay}>x</div>)}
             {!fullWindow && (<div className='ReaderClose' onClick={fullDisplay}>+</div>)}
-            <ReactReader
+            <ReactReader key={props.url + fullWindow}
                 location={location}
                 locationChanged={locationChanged}
                 epubOptions={{
                     allowPopups: true,
                     allowScriptedContent: true,
+                    flow: 'scrolled',
+                    manager: 'continuous',
                 }}
                 url={props.url}
                 getRendition={rendition => (renditionRef.current = rendition)}
