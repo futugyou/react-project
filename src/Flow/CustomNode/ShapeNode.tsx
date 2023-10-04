@@ -6,6 +6,7 @@ import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow,
 interface ShapeNodeData {
     color?: string
     shape?: 'diamond' | 'circle'
+    label?: ''
 }
 
 const getPathD = (width: number, height: number, shape: string) => {
@@ -69,7 +70,9 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '04'} key={props.id + '04'} position={Position.Right} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '05'} key={props.id + '05'} style={{ top: height / 2, left: width / 2 }} position={Position.Top} type='target' className={styles.nodeHandleHidden} />
-
+            <div className={styles.nodeDisplayContainer}>
+                <div className={styles.nodeDisplayLable}>{props.data.label}</div>
+            </div>
             <svg width={width} height={height}  >
                 <path d={d} fill={backgroundColor} strokeWidth="2" stroke="#fff"></path>
             </svg >

@@ -24,13 +24,19 @@ const getBorderStyle = (style: CSSProperties | undefined) => {
 }
 
 const getNodeType = (t: string | undefined) => {
-    if (t == undefined || t == 'input' || t == 'default' || t == 'output') {
+    if (t == undefined) {
         return 'default'
     }
 
     return t
 }
+const checkNodeLableDisplay = (t: string) => {
+    if (t == 'default' || t == 'input' || t == 'shape' || t == 'output') {
+        return true
+    }
 
+    return false
+}
 const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
     const [nodeType, setNodeType] = useState(getNodeType(props.selectedNode.type))
@@ -182,7 +188,7 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
                     </div>
                 </div>
 
-                {nodeType == 'default' && (
+                {checkNodeLableDisplay(nodeType) && (
                     <div className={styles.groupLayerContainer}>
                         <div className={styles.groupLayerTitle}>lable</div>
                         <div className={styles.groupLayer} style={{ height: '52px' }}>
