@@ -4,7 +4,6 @@ import { useState, useEffect, CSSProperties } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
 
 interface ShapeNodeData {
-    color?: string
     shape?: 'diamond' | 'circle'
     label?: ''
 }
@@ -15,6 +14,7 @@ const getPathD = (width: number, height: number, shape: string) => {
     }
 
     if (shape == 'circle') {
+        //TODO
         return "M0," + height / 2 + " L" + width / 2 + ",0 L" + width + "," + height / 2 + " L" + width / 2 + "," + height + " z"
     }
 
@@ -37,7 +37,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
 
     let [width, setWidth] = useState(getStyleNumber(node.style?.width as string))
     let [height, setHeight] = useState(getStyleNumber(node.style?.height as string))
-    let backgroundColor = props.data?.color ?? "#ff6700"
+    // let backgroundColor = props.data?.color ?? "#ff6700"
 
     let [d, setD] = useState(getPathD(width, height, shape))
 
@@ -71,10 +71,10 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
             <Handle id={props.id + '04'} key={props.id + '04'} position={Position.Right} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '05'} key={props.id + '05'} style={{ top: height / 2, left: width / 2 }} position={Position.Top} type='target' className={styles.nodeHandleHidden} />
             <div className={styles.nodeDisplayContainer}>
-                <div className={styles.nodeDisplayLable}>{props.data.label}</div>
+                <div className={styles.nodeDisplayLable} style={{ color: node.style?.color }}>{props.data.label}</div>
             </div>
-            <svg width={width} height={height}  >
-                <path d={d} fill={backgroundColor} strokeWidth="2" stroke="#fff"></path>
+            <svg width={width} height={height} >
+                <path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth="2" stroke={node.style?.stroke ?? '#fff'}  ></path>
             </svg >
         </div >
     )
