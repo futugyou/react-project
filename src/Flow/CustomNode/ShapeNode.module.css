@@ -1,0 +1,8 @@
+.nodeHandleDisplay {
+    background: silver
+}
+
+.nodeHandleHidden {
+    opacity: 0;
+    pointer-events: none;
+}

@@ -20,7 +20,7 @@ const initialNodes = [
     },
     {
         id: '3',
-        data: { shape: 'World' },
+        data: { shape: 'diamond', label: 'Hello World' },
         position: { x: 100, y: 100 },
         type: 'shape',
     },
