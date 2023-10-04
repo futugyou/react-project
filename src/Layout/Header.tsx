@@ -39,6 +39,8 @@ const Header = (props: any) => {
         const path = location.pathname
         if (path == '/') {
             setActiveKey('/home')
+        } else if (path.startsWith('/flow')) {
+            setActiveKey('/flow')
         } else {
             setActiveKey(path)
         }

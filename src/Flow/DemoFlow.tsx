@@ -3,6 +3,7 @@ import { NodeTypes } from 'reactflow'
 
 import CommonFlow from '@/Flow/CommonFlow'
 import { ClassNode } from '@/Flow/CustomNode/ClassNode'
+import ShapeNode from '@/Flow/CustomNode/ShapeNode'
 
 
 const initialNodes = [
@@ -17,12 +18,19 @@ const initialNodes = [
         data: { label: 'World' },
         position: { x: 100, y: 100 },
     },
+    {
+        id: '3',
+        data: { shape: 'World' },
+        position: { x: 100, y: 100 },
+        type: 'shape',
+    },
 ]
 
 const initialEdges = [{ id: '1-2', source: '1', target: '2', label: 'to the', type: 'step' }]
 
 const nodeTypes: NodeTypes = {
     custom: ClassNode,
+    shape: ShapeNode,
 }
 
 export default function DemoFlow() {
