@@ -37,14 +37,41 @@ const checkNodeLableDisplay = (t: string) => {
 
     return false
 }
+
+const getBackgroundColor = (node: Node) => {
+    const t = node.type
+    let color = ''
+
+    if (t == 'shape') {
+        color = node.style?.fill ?? '#ff6700'
+    } else {
+        color = node.style?.backgroundColor ?? 'transparent'
+    }
+
+    return color
+}
+
+const getBorderColor = (node: Node) => {
+    const t = node.type
+    let color = ''
+
+    if (t == 'shape') {
+        color = node.style?.stroke ?? '#fff'
+    } else {
+        color = node.style?.borderColor ?? '#000000'
+    }
+
+    return color
+}
+
 const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
     const [nodeType, setNodeType] = useState(getNodeType(props.selectedNode.type))
     const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode.style))
-    const [borderColor, setBorderColor] = useState<string>(selectedNode.style?.borderColor ?? "#000000")
-    const [backgroundColor, setBackgroundColor] = useState<string>(selectedNode.style?.backgroundColor ?? "transparent")
+    const [borderColor, setBorderColor] = useState<string>(getBorderColor(selectedNode))
+    const [backgroundColor, setBackgroundColor] = useState<string>(getBackgroundColor(selectedNode))
     const [color, setColor] = useState<string>(selectedNode.style?.color ?? "#000000")
-    const [colorSelect, setColorSelect] = useState('start')
+    const [colorSelect, setColorSelect] = useState('color')
 
     const [hex, setHex] = useState("transparent")
     const [showModal, setShowModal] = useState(false)
@@ -53,12 +80,22 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
         let style = selectedNode.style ?? {}
         if (colorSelect == 'border-color') {
             setBorderColor(color.hex)
-            style.borderColor = color.hex
+            if (selectedNode.type == 'shape') {
+                style.stroke = color.hex
+                style.borderWidth = 0
+            } else {
+                style.borderColor = color.hex
+            }
         }
 
         if (colorSelect == 'background-color') {
             setBackgroundColor(color.hex)
-            style.backgroundColor = color.hex
+            if (selectedNode.type == 'shape') {
+                style.fill = color.hex
+                style.borderWidth = 0
+            } else {
+                style.backgroundColor = color.hex
+            }
         }
 
         if (colorSelect == 'color') {
