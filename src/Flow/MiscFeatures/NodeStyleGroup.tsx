@@ -8,19 +8,31 @@ export interface NodeStyleGroupProps {
     selectedNode: Node
 }
 
-const getBorderStyle = (style: CSSProperties | undefined) => {
+const getBorderStyle = (node: Node) => {
+    const style = node.style
     if (style == undefined) {
         return 'solid'
     }
 
-    if (style.borderWidth == 0) {
-        return 'none'
-    }
+    if (node.type == 'shape') {
+        if (style.strokeWidth == 0) {
+            return 'none'
+        }
 
-    if (style.borderStyle) {
-        return style.borderStyle as string
+        if (style.strokeDasharray as number > 0) {
+            return 'dashed'
+        }
+        return 'solid'
+    } else {
+        if (style.borderWidth == 0) {
+            return 'none'
+        }
+
+        if (style.borderStyle) {
+            return style.borderStyle as string
+        }
+        return 'solid'
     }
-    return 'solid'
 }
 
 const getNodeType = (t: string | undefined) => {
@@ -67,7 +79,7 @@ const getBorderColor = (node: Node) => {
 const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
     const [nodeType, setNodeType] = useState(getNodeType(props.selectedNode.type))
-    const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode.style))
+    const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode))
     const [borderColor, setBorderColor] = useState<string>(getBorderColor(selectedNode))
     const [backgroundColor, setBackgroundColor] = useState<string>(getBackgroundColor(selectedNode))
     const [color, setColor] = useState<string>(selectedNode.style?.color ?? "#000000")
@@ -82,7 +94,6 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
             setBorderColor(color.hex)
             if (selectedNode.type == 'shape') {
                 style.stroke = color.hex
-                style.borderWidth = 0
             } else {
                 style.borderColor = color.hex
             }
@@ -92,7 +103,6 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
             setBackgroundColor(color.hex)
             if (selectedNode.type == 'shape') {
                 style.fill = color.hex
-                style.borderWidth = 0
             } else {
                 style.backgroundColor = color.hex
             }
@@ -122,16 +132,32 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const onChangeBorder = (t: string) => {
         let style = selectedNode.style ?? {}
         if (t == 'none') {
-            style.borderWidth = 0
-            style.borderStyle = undefined
+            if (selectedNode.type == 'shape') {
+                style.strokeWidth = 0
+            } else {
+                style.borderWidth = 0
+                style.borderStyle = undefined
+            }
         } else if (t == 'solid') {
-            style.borderWidth = '1px'
-            style.borderStyle = 'solid'
-            style.borderColor = borderColor
+            if (selectedNode.type == 'shape') {
+                style.strokeWidth = 1
+                style.strokeDasharray = 0
+                style.stroke = borderColor
+            } else {
+                style.borderWidth = '1px'
+                style.borderStyle = 'solid'
+                style.borderColor = borderColor
+            }
         } else if (t == 'dashed') {
-            style.borderWidth = '1px'
-            style.borderStyle = 'dashed'
-            style.borderColor = borderColor
+            if (selectedNode.type == 'shape') {
+                style.strokeWidth = 1
+                style.strokeDasharray = 4
+                style.stroke = borderColor
+            } else {
+                style.borderWidth = '1px'
+                style.borderStyle = 'dashed'
+                style.borderColor = borderColor
+            }
         }
 
         setBorderStyle(t)

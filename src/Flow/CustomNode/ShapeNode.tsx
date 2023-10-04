@@ -74,7 +74,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
                 <div className={styles.nodeDisplayLable} style={{ color: node.style?.color }}>{props.data.label}</div>
             </div>
             <svg width={width} height={height} >
-                <path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth="2" stroke={node.style?.stroke ?? '#fff'}  ></path>
+                <path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} ></path>
             </svg >
         </div >
     )
