@@ -63,13 +63,13 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
     }, [node.style?.width, node.style?.height])
 
     return (
-        <div >
+        <div className={styles.ShapeNode}>
             <NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} />
             <Handle id={props.id + '01'} key={props.id + '01'} position={Position.Top} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '02'} key={props.id + '02'} position={Position.Bottom} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '04'} key={props.id + '04'} position={Position.Right} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
-            <Handle id={props.id + '05'} key={props.id + '05'} style={{ top: height / 2, left: width / 2 }} position={Position.Top} type='target' className={styles.nodeHandleHidden} />
+            <Handle id={props.id + '05'} key={props.id + '05'} style={{ top: height / 2, left: width / 2 }} position={Position.Top} type='target' className={styles.nodeHandleHidden2} />
             <div className={styles.nodeDisplayContainer}>
                 <div className={styles.nodeDisplayLable} style={{ color: node.style?.color }}>{props.data.label}</div>
             </div>
