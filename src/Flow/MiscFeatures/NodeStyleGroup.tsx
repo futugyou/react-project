@@ -76,13 +76,23 @@ const getBorderColor = (node: Node) => {
     return color
 }
 
+const getColor = (node: Node) => {
+    const t = node.type
+    let color = node.style?.color ?? "#000000"
+
+    if (t == 'shape') {
+        color = 'white'
+    }
+    return color
+}
+
 const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
     const [nodeType, setNodeType] = useState(getNodeType(props.selectedNode.type))
     const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode))
     const [borderColor, setBorderColor] = useState<string>(getBorderColor(selectedNode))
     const [backgroundColor, setBackgroundColor] = useState<string>(getBackgroundColor(selectedNode))
-    const [color, setColor] = useState<string>(selectedNode.style?.color ?? "#000000")
+    const [color, setColor] = useState<string>(getColor(selectedNode))
     const [colorSelect, setColorSelect] = useState('color')
 
     const [hex, setHex] = useState("transparent")

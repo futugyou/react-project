@@ -4,17 +4,12 @@ import { useState, useEffect, CSSProperties } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
 
 interface ShapeNodeData {
-    shape?: 'diamond' | 'circle'
+    shape?: 'diamond' | 'circle' | 'ellipse'
     label?: ''
 }
 
 const getPathD = (width: number, height: number, shape: string) => {
     if (shape == 'diamond') {
-        return "M0," + height / 2 + " L" + width / 2 + ",0 L" + width + "," + height / 2 + " L" + width / 2 + "," + height + " z"
-    }
-
-    if (shape == 'circle') {
-        //TODO
         return "M0," + height / 2 + " L" + width / 2 + ",0 L" + width + "," + height / 2 + " L" + width / 2 + "," + height + " z"
     }
 
@@ -33,6 +28,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
     const nodeId = useNodeId()!
     const { getNode } = useReactFlow()
     const node = getNode(nodeId)!
+
     const shape = props.data?.shape ?? 'diamond'
 
     let [width, setWidth] = useState(getStyleNumber(node.style?.width as string))
@@ -64,7 +60,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
 
     return (
         <div className={styles.ShapeNode}>
-            <NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} />
+            <NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} keepAspectRatio={shape == 'circle' ? true : false} />
             <Handle id={props.id + '01'} key={props.id + '01'} position={Position.Top} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '02'} key={props.id + '02'} position={Position.Bottom} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
@@ -73,8 +69,10 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
             <div className={styles.nodeDisplayContainer}>
                 <div className={styles.nodeDisplayLable} style={{ color: node.style?.color }}>{props.data.label}</div>
             </div>
-            <svg width={width} height={height} >
-                <path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} ></path>
+            <svg width={width} height={height} className={styles.svg}>
+                {shape == 'diamond' && (<path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} ></path>)}
+                {shape == 'circle' && (<circle cx={width / 2} cy={height / 2} r={(width + height) / 4} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}
+                {shape == 'ellipse' && (<ellipse cx={width / 2} cy={height / 2} rx={width / 2} ry={height / 2} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}
             </svg >
         </div >
     )
