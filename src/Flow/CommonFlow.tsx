@@ -17,11 +17,10 @@ import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 import RestoreFlow from '@/Flow/MiscFeatures/RestoreFlow'
 import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
-import CreateNode from '@/Flow/MiscFeatures/CreateNode'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
-import DragNode, { DragNodeType } from '@/Flow/MiscFeatures/DragNode'
-import EdgeStyleGroup from '@/Flow/MiscFeatures/EdgeStyleGroup'
-import NodeStyleGroup from '@/Flow/MiscFeatures/NodeStyleGroup'
+import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
+import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
+import FlowStyle, { DragNodeType } from '@/Flow/MiscFeatures/FlowStyle'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -78,10 +77,10 @@ const CommonFlow = (props: CommonFlow) => {
             event.preventDefault()
 
             const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
-            const type = event.dataTransfer.getData(DragNodeType)
+            const nodeType = JSON.parse(event.dataTransfer.getData(DragNodeType) ?? '{}')
 
             // check if the dropped element is valid
-            if (typeof type === 'undefined' || !type) {
+            if (typeof nodeType.type === 'undefined' || !nodeType.type) {
                 return
             }
 
@@ -90,10 +89,12 @@ const CommonFlow = (props: CommonFlow) => {
                 y: event.clientY - reactFlowBounds.top,
             })
 
-            const newNode = {
+            const newNode: Node = {
                 ...DefaultClassNodeType,
                 id: getNodeId(),
-                type,
+                type: nodeType.type,
+                data: { ...DefaultClassNodeType.data, shape: nodeType.shape },
+                resizing: true,
                 position,
             }
 
@@ -146,14 +147,13 @@ const CommonFlow = (props: CommonFlow) => {
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
-                    <CreateNode type='custom' ></CreateNode>
                     <UpdateNode selectedNode={selectedNode} />
-                    <DragNode />
                     <DownloadFlow />
                 </Panel>
                 <Controls />
-                {selectedEdge && (<EdgeStyleGroup selectedEdge={selectedEdge} key={selectedEdge?.id ?? getNodeId()} />)}
-                {selectedNode && (<NodeStyleGroup selectedNode={selectedNode} key={selectedNode?.id ?? getNodeId()} />)}
+                {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getNodeId()} />)}
+                {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getNodeId()} />)}
+                {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>

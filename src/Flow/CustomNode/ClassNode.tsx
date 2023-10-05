@@ -34,7 +34,7 @@ export const DefaultClassNodeType: ClassNodeType = {
     }
 }
 
-export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
+export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
     const [emptyBody, setEmptyBody] = useState({})
     const className = (selected ? 'node-container node-container-selected ' : 'node-container ')
     let methods: JSX.Element[] = []
@@ -63,7 +63,7 @@ export const ClassNode = ({ data, selected }: NodeProps<ClassNodeData>) => {
     if (data.connects) {
         connects = data.connects.map((t: ConnectInfo) => {
             return (
-                <Handle className='customHandle' id={data.name + t.position + t.type} key={data.name + t.position + t.type} position={t.position} type={t.type} />
+                <Handle className='customHandle' id={id + t.position + t.type} key={id + t.position + t.type} position={t.position} type={t.type} />
             )
         })
     }

@@ -1,11 +1,11 @@
-import styles from './EdgeStyleGroup.module.css'
+import styles from './EdgeStyle.module.css'
 import { useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Edge, EdgeMarkerType, MarkerType, EdgeMarker } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'
 
 
-export interface EdgeStyleGroupProps {
+export interface EdgeStyleProps {
     // pathType?: string
     // edgeColor?: string
     // animated?: boolean
@@ -83,7 +83,7 @@ const changeMarkerType = (mark: string, marker: EdgeMarker | undefined) => {
     return tmp
 }
 
-const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
+const EdgeStyle = (props: EdgeStyleProps) => {
     const [selectedEdge, setSelectedEdge] = useState(props.selectedEdge)
     const [edgeType, setEdgeType] = useState(getEdgeTypeUtils(props.selectedEdge.type))
     const [pathType, setPathType] = useState<string>(props.selectedEdge.data?.pathType ?? "bezier")
@@ -392,4 +392,4 @@ const EdgeStyleGroup = (props: EdgeStyleGroupProps) => {
     )
 }
 
-export default EdgeStyleGroup
+export default EdgeStyle

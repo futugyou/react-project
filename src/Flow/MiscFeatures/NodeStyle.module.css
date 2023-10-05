@@ -1,0 +1,78 @@
+.groupContainer {
+    right: 0;
+    bottom: 20px;
+    display: flex;
+    position: absolute;
+    z-index: 5;
+    pointer-events: all;
+    margin: 10px;
+    border: 1px dashed silver;
+    border-radius: 10px;
+    flex-direction: column;
+    height: 730px;
+    width: 245px;
+    background-color: ghostwhite;
+}
+
+.groupLayerContainer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.groupLayerContainer:last-child {
+    margin-bottom: 0px;
+}
+
+.groupLayerTitle {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.groupLayer {
+    display: flex;
+    gap: 5px;
+}
+
+.groupLayerItem {
+    padding: 5px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    width: 100%;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.groupLayerItem:hover {
+    border-style: dashed;
+    animation: bounce 1600ms infinite ease-out;
+    cursor: pointer;
+}
+
+.groupLayerItem.selected {
+    border-color: red;
+}
+
+.groupLayerItem.color {
+    align-items: center;
+    display: flex;
+}
+
+.lableinput {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.lableinput:focus {
+    outline: none;
+}

@@ -1,10 +1,10 @@
-import styles from './NodeStyleGroup.module.css'
+import styles from './NodeStyle.module.css'
 import { CSSProperties, useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Node } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'
 
-export interface NodeStyleGroupProps {
+export interface NodeStyleProps {
     selectedNode: Node
 }
 
@@ -86,7 +86,7 @@ const getColor = (node: Node) => {
     return color
 }
 
-const NodeStyleGroup = (props: NodeStyleGroupProps) => {
+const NodeStyle = (props: NodeStyleProps) => {
     const [selectedNode, setSelectedNode] = useState(props.selectedNode)
     const [nodeType, setNodeType] = useState(getNodeType(props.selectedNode.type))
     const [borderStyle, setBorderStyle] = useState(getBorderStyle(selectedNode))
@@ -278,4 +278,4 @@ const NodeStyleGroup = (props: NodeStyleGroupProps) => {
     )
 }
 
-export default NodeStyleGroup
+export default NodeStyle
