@@ -72,6 +72,29 @@ const initialNodes = [
         type: 'shape',
         style: { width: 120, height: 60 }
     },
+    {
+        id: '11',
+        data: {
+            "name": "IDirectoryContents",
+            "parent": "IEnumerable<IFileInfo>",
+            "properties": [
+                "bool Exists { get; }"
+            ],
+            "connects": [
+                {
+                    "position": "top",
+                    "type": "target"
+                },
+                {
+                    "position": "left",
+                    "type": "source"
+                }
+            ],
+            "id": "IDirectoryContents"
+        },
+        position: { x: -100, y: 400 },
+        type: 'custom',
+    },
 ]
 
 const initialEdges = [{ id: '1-2', source: '1', target: '2', label: 'to the', type: 'step' }]

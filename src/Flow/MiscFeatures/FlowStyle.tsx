@@ -29,23 +29,23 @@ const FlowStyle = (props: FlowStyleProps) => {
                         <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'default')}  >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>default</title>
-                                <circle cx="20" cy="10" r="2" stroke="black" fill="black" />
-                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="black" fill="transparent" />
-                                <circle cx="20" cy="30" r="2" stroke="black" fill="black" />
+                                <circle cx="20" cy="10" r="2" stroke="#ff6700" fill="#ff6700" />
+                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
+                                <circle cx="20" cy="30" r="2" stroke="#ff6700" fill="#ff6700" />
                             </svg>
                         </div>
                         <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'input')}  >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>input</title>
-                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="black" fill="transparent" />
-                                <circle cx="20" cy="30" r="2" stroke="black" fill="black" />
+                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
+                                <circle cx="20" cy="30" r="2" stroke="#ff6700" fill="#ff6700" />
                             </svg>
                         </div>
                         <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'output')}  >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>output</title>
-                                <circle cx="20" cy="10" r="2" stroke="black" fill="black" />
-                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="black" fill="transparent" />
+                                <circle cx="20" cy="10" r="2" stroke="#ff6700" fill="#ff6700" />
+                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
                             </svg>
                         </div>
                         <div className={styles.groupLayerItem} style={{ border: 0 }} >
@@ -122,9 +122,9 @@ const FlowStyle = (props: FlowStyleProps) => {
                         <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'custom')}  >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>class node</title>
-                                <path d="M0,0 L0,40 L40,40 L40,0 z" stroke='red' fill="transparent"></path>
-                                <path d="M0,14 L40,14" stroke='red' fill="transparent"></path>
-                                <text x="4" y="12" >class</text>
+                                <path d="M0,0 L0,40 L40,40 L40,0 z" stroke='#ff6700' fill="transparent"></path>
+                                <path d="M0,14 L40,14" stroke='#ff6700' fill="transparent"></path>
+                                <text x="4" y="12" fill='#ff6700'>class</text>
                             </svg>
                         </div>
                         <div className={styles.groupLayerItem} style={{ border: 0 }}></div>

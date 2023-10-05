@@ -176,7 +176,7 @@ const NodeStyle = (props: NodeStyleProps) => {
 
     const onLableChange = (e: any) => {
         const l = e.target.value
-        setSelectedNode({ ...selectedNode, data: { label: l } })
+        setSelectedNode({ ...selectedNode, data: { ...selectedNode.data, label: l } })
     }
 
     const { setNodes } = useReactFlow()
