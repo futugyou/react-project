@@ -1,7 +1,7 @@
 import styles from './ShapeNode.module.css'
 
-import { useState, useEffect, CSSProperties } from 'react'
-import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
+import { useState, useEffect } from 'react'
+import { Handle, useStore, ReactFlowState, Position, NodeProps, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
 
 interface ShapeNodeData {
     shape?: 'diamond' | 'circle' | 'ellipse' | 'parallelogram' | 'rect' | 'radiusrect' | 'db' | 'bus'
@@ -12,17 +12,17 @@ const ratio = 0.2
 
 const getPathD = (width: number, height: number, shape: string) => {
     if (shape == 'diamond') {
-        return "M0," + height / 2 + " L" + width / 2 + ",0 L" + width + "," + height / 2 + " L" + width / 2 + "," + height + " z"
+        return `M0,${height / 2} L${width / 2},0 L${width},${height / 2} L ${width / 2},${height} z`
     }
 
     if (shape == 'parallelogram') {
-        return "M0," + height + " L" + width * ratio + ",0 L" + width + ",0 L" + width * (1 - ratio) + "," + height + " z"
+        return `M0,${height} L${width * ratio},0 L${width},0 L ${width * (1 - ratio)},${height} z`
     }
 
     if (shape == 'db') {
         const h = height * ratio / 2
         const w = width * ratio / 2
-        //M0,10  L 0,70 A 50 10 0 1 0 100 70 L 100,10 A 50 10 0 1 1 0 10 A 50 10 0 1 1 100 10 A 50 10 0 1 1 0 10 z
+
         return `
         M0,${h}  
         L 0,${height - h} 
@@ -36,7 +36,7 @@ const getPathD = (width: number, height: number, shape: string) => {
     if (shape == 'bus') {
         const h = height * ratio / 2
         const w = width * ratio / 2
-        //M0,10  L 0,70 A 50 10 0 1 0 100 70 L 100,10 A 50 10 0 1 1 0 10 A 50 10 0 1 1 100 10 A 50 10 0 1 1 0 10 z
+
         return `
         M ${width - w},0
         L ${w},0
@@ -58,7 +58,13 @@ const getStyleNumber = (t: string) => {
     return n
 }
 
+const connectionNodeIdSelector = (state: ReactFlowState) => state.connectionNodeId
+
 const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
+    const connectionNodeId = useStore(connectionNodeIdSelector)
+    const isConnecting = !!connectionNodeId
+    const isTarget = connectionNodeId && connectionNodeId !== props.id
+
     const nodeId = useNodeId()!
     const { getNode } = useReactFlow()
     const node = getNode(nodeId)!
@@ -67,7 +73,6 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
 
     let [width, setWidth] = useState(getStyleNumber(node.style?.width as string))
     let [height, setHeight] = useState(getStyleNumber(node.style?.height as string))
-    // let backgroundColor = props.data?.color ?? "#ff6700"
 
     let [d, setD] = useState(getPathD(width, height, shape))
 
@@ -94,12 +99,16 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
 
     return (
         <div className={styles.ShapeNode}>
-            <NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} keepAspectRatio={shape == 'circle' ? true : false} />
+            <NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} keepAspectRatio={shape == 'circle' ? true : false} lineClassName={styles.ShapeNodeResizerLine} handleClassName={styles.ShapeNodeResizerHandle} />
             <Handle id={props.id + '01'} key={props.id + '01'} position={Position.Top} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '02'} key={props.id + '02'} position={Position.Bottom} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '04'} key={props.id + '04'} position={Position.Right} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
-            <Handle id={props.id + '05'} key={props.id + '05'} style={{ top: height / 2, left: width / 2 }} position={Position.Top} type='target' className={styles.nodeHandleHidden2} />
+            {/* <Handle id={props.id + '05'} key={props.id + '05'} style={{ top: height / 2, left: width / 2 }} position={Position.Top} type='target' className={styles.nodeHandleHidden2} /> */}
+            <Handle id={props.id + '05'} key={props.id + '05'} position={Position.Top} type='target' className={styles.nodeHandleHidden2} />
+            <Handle id={props.id + '06'} key={props.id + '06'} position={Position.Bottom} type='target' className={styles.nodeHandleHidden2} />
+            <Handle id={props.id + '07'} key={props.id + '07'} position={Position.Left} type='target' className={styles.nodeHandleHidden2} />
+            <Handle id={props.id + '08'} key={props.id + '08'} position={Position.Right} type='target' className={styles.nodeHandleHidden2} />
             <div className={styles.nodeDisplayContainer}>
                 <div className={styles.nodeDisplayLable} style={{ color: node.style?.color }}>{props.data.label}</div>
             </div>

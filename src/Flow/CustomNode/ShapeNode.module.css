@@ -1,20 +1,20 @@
 .nodeHandleDisplay {
-    background: silver
+    background: silver;
 }
 
 .nodeHandleHidden {
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none !important;
 }
 
 .nodeHandleHidden2 {
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none !important;
 }
 
 .ShapeNode:hover>div.nodeHandleHidden {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: all !important;
     background: silver
 }
 
@@ -39,4 +39,14 @@
 .svg {
     display: block;
     overflow: visible;
+}
+
+.ShapeNodeResizerLine {
+    border-style: dashed !important;
+}
+
+.ShapeNodeResizerHandle {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 100% !important;
 }
