@@ -20,21 +20,28 @@ const initialNodes = [
     },
     {
         id: '3',
-        data: { shape: 'diamond', label: 'Hello World' },
-        position: { x: 200, y: 200 },
+        data: { shape: 'diamond', label: 'diamond' },
+        position: { x: 100, y: 200 },
         type: 'shape',
     },
     {
         id: '4',
-        data: { shape: 'circle', label: 'Hello World1' },
+        data: { shape: 'circle', label: 'circle' },
         position: { x: 200, y: 300 },
         type: 'shape',
     },
     {
         id: '5',
-        data: { shape: 'ellipse', label: 'Hello World2' },
+        data: { shape: 'ellipse', label: 'ellipse' },
         position: { x: 300, y: 200 },
         type: 'shape',
+    },
+    {
+        id: '6',
+        data: { shape: 'parallelogram', label: 'parallelogram' },
+        position: { x: -100, y: 200 },
+        type: 'shape',
+        style: { width:  150  , height:  80  }
     },
 ]
 

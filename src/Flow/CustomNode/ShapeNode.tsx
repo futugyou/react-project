@@ -4,13 +4,18 @@ import { useState, useEffect, CSSProperties } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
 
 interface ShapeNodeData {
-    shape?: 'diamond' | 'circle' | 'ellipse'
+    shape?: 'diamond' | 'circle' | 'ellipse' | 'parallelogram'
     label?: ''
 }
 
 const getPathD = (width: number, height: number, shape: string) => {
     if (shape == 'diamond') {
         return "M0," + height / 2 + " L" + width / 2 + ",0 L" + width + "," + height / 2 + " L" + width / 2 + "," + height + " z"
+    }
+
+    if (shape == 'parallelogram') {
+        const ratio = 0.2
+        return "M0," + height + " L" + width * ratio + ",0 L" + width + ",0 L" + width * (1 - ratio) + "," + height + " z"
     }
 
     return ''
@@ -70,7 +75,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
                 <div className={styles.nodeDisplayLable} style={{ color: node.style?.color }}>{props.data.label}</div>
             </div>
             <svg width={width} height={height} className={styles.svg}>
-                {shape == 'diamond' && (<path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} ></path>)}
+                {(shape == 'diamond' || shape == 'parallelogram') && (<path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} ></path>)}
                 {shape == 'circle' && (<circle cx={width / 2} cy={height / 2} r={(width + height) / 4} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}
                 {shape == 'ellipse' && (<ellipse cx={width / 2} cy={height / 2} rx={width / 2} ry={height / 2} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}
             </svg >
