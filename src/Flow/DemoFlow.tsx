@@ -35,13 +35,28 @@ const initialNodes = [
         data: { shape: 'ellipse', label: 'ellipse' },
         position: { x: 300, y: 200 },
         type: 'shape',
+        style: { width: 150, height: 80 }
     },
     {
         id: '6',
         data: { shape: 'parallelogram', label: 'parallelogram' },
         position: { x: -100, y: 200 },
         type: 'shape',
-        style: { width:  150  , height:  80  }
+        style: { width: 150, height: 80 }
+    },
+    {
+        id: '7',
+        data: { shape: 'rect', label: 'rect' },
+        position: { x: -60, y: 100 },
+        type: 'shape',
+        style: { width: 150, height: 80 }
+    },
+    {
+        id: '8',
+        data: { shape: 'radiusrect', label: 'radius-rect' },
+        position: { x: 200, y: 0 },
+        type: 'shape',
+        style: { width: 150, height: 80 }
     },
 ]
 
