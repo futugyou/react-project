@@ -7,17 +7,19 @@ import ReactFlow, {
 
 import 'reactflow/dist/style.css'
 
-import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
+import { DefaultClassNodeType, getNodeId, ClassNode } from '@/Flow/CustomNode/ClassNode'
+import ShapeNode from '@/Flow/CustomNode/ShapeNode'
 import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
 import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
 import DefaultEdgePlus from '@/Flow/CustomEdges/DefaultEdgePlus'
 
-import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
-import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 import RestoreFlow from '@/Flow/MiscFeatures/RestoreFlow'
+import StashFlow from '@/Flow/MiscFeatures/StashFlow'
 import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
+import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
+
 import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
 import FlowStyle, { DragNodeType } from '@/Flow/MiscFeatures/FlowStyle'
@@ -40,17 +42,21 @@ const edgeTypes = {
     floating: FloatingEdge,
 }
 
+let nodeTypes: NodeTypes = {
+    custom: ClassNode,
+    shape: ShapeNode,
+}
+
 interface CommonFlow {
     id: string
     title: string
     initialNodes: Node[]
     initialEdges: Edge[]
-    nodeTypes: NodeTypes
+    nodeTypes?: NodeTypes
     children?: React.ReactNode
 }
 
 const CommonFlow = (props: CommonFlow) => {
-
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -132,7 +138,7 @@ const CommonFlow = (props: CommonFlow) => {
                 onEdgeUpdate={onEdgeUpdate}
                 defaultEdgeOptions={defaultEdgeOptions}
                 fitView
-                nodeTypes={props.nodeTypes}
+                nodeTypes={nodeTypes}
                 onInit={setRfInstance}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
