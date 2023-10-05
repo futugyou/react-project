@@ -4,7 +4,7 @@ import { useState, useEffect, CSSProperties } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
 
 interface ShapeNodeData {
-    shape?: 'diamond' | 'circle' | 'ellipse' | 'parallelogram' | 'rect' | 'radiusrect' | 'db'
+    shape?: 'diamond' | 'circle' | 'ellipse' | 'parallelogram' | 'rect' | 'radiusrect' | 'db' | 'bus'
     label?: ''
 }
 
@@ -31,6 +31,20 @@ const getPathD = (width: number, height: number, shape: string) => {
         A ${width / 2} ${h} 0 1 1 0 ${h} 
         A ${width / 2} ${h} 0 1 1 ${width} ${h} 
         A ${width / 2} ${h} 0 1 1 0 ${h} z`
+    }
+
+    if (shape == 'bus') {
+        const h = height * ratio / 2
+        const w = width * ratio / 2
+        //M0,10  L 0,70 A 50 10 0 1 0 100 70 L 100,10 A 50 10 0 1 1 0 10 A 50 10 0 1 1 100 10 A 50 10 0 1 1 0 10 z
+        return `
+        M ${width - w},0
+        L ${w},0
+        A ${w} ${height / 2} 0 1 0 ${w} ${height} 
+        L ${width - w},${height} 
+        A ${w} ${height / 2} 0 1 1 ${width - w},0
+        A ${w} ${height / 2} 0 1 1 ${width - w},${height} 
+        A ${w} ${height / 2} 0 1 1 ${width - w},0 z`
     }
 
     return ''
@@ -91,7 +105,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
             </div>
             <svg width={width} height={height} className={styles.svg}>
                 {(shape == 'diamond' || shape == 'parallelogram') && (<path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} ></path>)}
-                {(shape == 'db') && (<path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth ?? 1} stroke={node.style?.stroke ?? "#fff"} strokeDasharray={node.style?.strokeDasharray} ></path>)}
+                {(shape == 'db' || shape == 'bus') && (<path d={d} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth ?? 1} stroke={node.style?.stroke ?? "#fff"} strokeDasharray={node.style?.strokeDasharray} ></path>)}
                 {shape == 'circle' && (<circle cx={width / 2} cy={height / 2} r={(width + height) / 4} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}
                 {shape == 'ellipse' && (<ellipse cx={width / 2} cy={height / 2} rx={width / 2} ry={height / 2} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}
                 {shape == 'rect' && (<rect x="0" y="0" width={width} height={height} fill={node.style?.fill ?? '#ff6700'} strokeWidth={node.style?.strokeWidth} stroke={node.style?.stroke} strokeDasharray={node.style?.strokeDasharray} />)}

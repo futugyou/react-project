@@ -65,6 +65,13 @@ const initialNodes = [
         type: 'shape',
         style: { width: 90, height: 80 }
     },
+    {
+        id: '10',
+        data: { shape: 'bus', label: 'service bus' },
+        position: { x: 350, y: 100 },
+        type: 'shape',
+        style: { width: 120, height: 60 }
+    },
 ]
 
 const initialEdges = [{ id: '1-2', source: '1', target: '2', label: 'to the', type: 'step' }]
