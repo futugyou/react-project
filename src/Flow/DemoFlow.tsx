@@ -21,7 +21,7 @@ const initialNodes = [
     {
         id: '3',
         data: { shape: 'diamond', label: 'diamond' },
-        position: { x: 100, y: 200 },
+        position: { x: 80, y: 200 },
         type: 'shape',
     },
     {
@@ -57,6 +57,13 @@ const initialNodes = [
         position: { x: 200, y: 0 },
         type: 'shape',
         style: { width: 150, height: 80 }
+    },
+    {
+        id: '9',
+        data: { shape: 'db', label: 'database' },
+        position: { x: 200, y: 200 },
+        type: 'shape',
+        style: { width: 90, height: 80 }
     },
 ]
 
