@@ -2,10 +2,12 @@ import styles from './ShapeNode.module.css'
 
 import { useState, useEffect } from 'react'
 import { Handle, useStore, ReactFlowState, Position, NodeProps, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
+import { NodeOperation } from './utils'
 
 interface ShapeNodeData {
     shape?: 'diamond' | 'circle' | 'ellipse' | 'parallelogram' | 'rect' | 'radiusrect' | 'db' | 'bus'
     label?: ''
+    op?: NodeOperation
 }
 
 const ratio = 0.2
@@ -64,12 +66,12 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
     const connectionNodeId = useStore(connectionNodeIdSelector)
     const isConnecting = !!connectionNodeId
     const isTarget = connectionNodeId && connectionNodeId !== props.id
-
     const nodeId = useNodeId()!
     const { getNode } = useReactFlow()
     const node = getNode(nodeId)!
 
     const shape = props.data?.shape ?? 'diamond'
+    const keepAspectRatio = shape == 'circle' ? true : props.data?.op?.keepAspectRatio
 
     let [width, setWidth] = useState(getStyleNumber(node.style?.width as string))
     let [height, setHeight] = useState(getStyleNumber(node.style?.height as string))
@@ -99,7 +101,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
 
     return (
         <div className={styles.ShapeNode}>
-            <NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} keepAspectRatio={shape == 'circle' ? true : false} lineClassName={styles.ShapeNodeResizerLine} handleClassName={styles.ShapeNodeResizerHandle} />
+            {(props.data?.op?.allowResizer ?? true) && (<NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} keepAspectRatio={keepAspectRatio} lineClassName={styles.ShapeNodeResizerLine} handleClassName={styles.ShapeNodeResizerHandle} />)}
             <Handle id={props.id + '01'} key={props.id + '01'} position={Position.Top} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '02'} key={props.id + '02'} position={Position.Bottom} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />

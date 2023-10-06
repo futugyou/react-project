@@ -2,11 +2,11 @@ import styles from './DefaultNodePlus.module.css'
 
 import { useState, useEffect } from 'react'
 import { Handle, useStore, ReactFlowState, Position, NodeProps, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
+import { NodeOperation } from './utils'
 
 interface DefaultNodePlusData {
     label?: ''
-    keepAspectRatio?: boolean
-    allowResizer?: boolean
+    op?: NodeOperation
 }
 
 
@@ -15,7 +15,7 @@ const DefaultNodePlus = (props: NodeProps<DefaultNodePlusData>) => {
 
     return (
         <div className={styles.DefaultNodePlus}>
-            {(props.data?.allowResizer ?? true) && (<NodeResizer minWidth={30} minHeight={30} isVisible={props.selected} keepAspectRatio={props.data?.keepAspectRatio} lineClassName={styles.DefaultNodePlusResizerLine} handleClassName={styles.DefaultNodePlusResizerHandle} />)}
+            {(props.data?.op?.allowResizer ?? true) && (<NodeResizer minWidth={30} minHeight={30} isVisible={props.selected} keepAspectRatio={props.data?.op?.keepAspectRatio} lineClassName={styles.DefaultNodePlusResizerLine} handleClassName={styles.DefaultNodePlusResizerHandle} />)}
             <Handle id={props.id + '01'} key={props.id + '01'} position={Position.Top} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '02'} key={props.id + '02'} position={Position.Bottom} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />

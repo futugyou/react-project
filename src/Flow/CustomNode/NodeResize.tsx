@@ -28,19 +28,20 @@ const ResizeIcon = () => {
     )
 }
 interface NodeResizeProps {
+    keepAspectRatio?: boolean
     isVisible?: boolean
     color?: string
     minWidth?: number
     minHeight?: number
 }
 
-const NodeResize = ({ isVisible, color, minWidth, minHeight }: NodeResizeProps) => {
+const NodeResize = ({ isVisible, color, minWidth, minHeight, keepAspectRatio }: NodeResizeProps) => {
     if (!isVisible) {
         return null
     }
 
     return (
-        <NodeResizeControl style={controlStyle} color={color} minWidth={minWidth ?? 100} minHeight={minHeight ?? 50}>
+        <NodeResizeControl style={controlStyle} keepAspectRatio={keepAspectRatio} color={color} minWidth={minWidth ?? 100} minHeight={minHeight ?? 50}>
             <ResizeIcon />
         </NodeResizeControl>
     )

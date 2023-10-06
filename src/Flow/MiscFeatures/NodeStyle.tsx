@@ -94,6 +94,8 @@ const NodeStyle = (props: NodeStyleProps) => {
     const [backgroundColor, setBackgroundColor] = useState<string>(getBackgroundColor(selectedNode))
     const [color, setColor] = useState<string>(getColor(selectedNode))
     const [colorSelect, setColorSelect] = useState('color')
+    const [resizer, setResizer] = useState<boolean>(selectedNode?.data?.op?.allowResizer == undefined ? true : selectedNode?.data?.op?.allowResizer)
+    const [keepAspectRatio, setKeepAspectRatio] = useState<boolean>(selectedNode?.data?.op?.keepAspectRatio == undefined ? true : selectedNode?.data?.op?.keepAspectRatio)
 
     const [hex, setHex] = useState("transparent")
     const [showModal, setShowModal] = useState(false)
@@ -179,6 +181,20 @@ const NodeStyle = (props: NodeStyleProps) => {
         setSelectedNode({ ...selectedNode, data: { ...selectedNode.data, label: l } })
     }
 
+    const ChangeResizerState = () => {
+        const data = { ...selectedNode.data, op: { ...selectedNode?.data?.op, allowResizer: !resizer } }
+
+        setResizer(!resizer)
+        setSelectedNode({ ...selectedNode, data: data })
+    }
+
+    const ChangeRatioState = () => {
+        const data = { ...selectedNode.data, op: { ...selectedNode?.data?.op, keepAspectRatio: !keepAspectRatio } }
+
+        setKeepAspectRatio(!keepAspectRatio)
+        setSelectedNode({ ...selectedNode, data: data })
+    }
+
     const { setNodes } = useReactFlow()
 
     useEffect(() => {
@@ -258,6 +274,24 @@ const NodeStyle = (props: NodeStyleProps) => {
                         <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
                         <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
                         <div className={styles.groupLayerItem} style={{ border: 0 }}></div>
+                    </div>
+                </div>
+
+                <div className={styles.groupLayerContainer}>
+                    <div className={styles.groupLayerTitle}>resizer and aspect ratio</div>
+                    <div className={styles.groupLayer} style={{ height: '52px' }}>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`} >
+                            <input id="resizer" type="checkbox" value="" checked={resizer} onChange={ChangeResizerState} style={{ flex: 0.3 }} />
+                            <label htmlFor='resizer' style={{ flex: 1 }} >
+                                {resizer ? 'allow resizer' : 'forbid resizer'}
+                            </label>
+                        </div>
+                        <div className={`${styles.groupLayerItem} ${styles.color}`} >
+                            <input id="keepAspectRatio" type="checkbox" value="" disabled={!resizer} checked={keepAspectRatio} onChange={ChangeRatioState} style={{ flex: 0.3 }} />
+                            <label htmlFor='keepAspectRatio' style={{ flex: 1 }} >
+                                {keepAspectRatio ? 'keep ratio' : 'not keep ratio'}
+                            </label>
+                        </div>
                     </div>
                 </div>
 

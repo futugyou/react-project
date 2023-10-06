@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow } from 'reactflow'
 
 import NodeResize from '@/Flow/CustomNode/NodeResize'
+import { NodeOperation } from './utils'
 
 export type ClassNodeData = {
     name: string
@@ -11,6 +12,7 @@ export type ClassNodeData = {
     methods?: string[]
     properties?: string[]
     connects?: ConnectInfo[]
+    op?: NodeOperation
 }
 
 export type ConnectInfo = {
@@ -78,7 +80,7 @@ export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
 
     return (
         <div className={className}>
-            <NodeResize isVisible={selected} minWidth={300} minHeight={50} />
+            {(data?.op?.allowResizer ?? true) && (<NodeResize isVisible={selected} keepAspectRatio={data?.op?.keepAspectRatio} minWidth={300} minHeight={50} />)}
 
             <div className='class-name' style={emptyBody} >
                 {data.name} {data.parent ? " : " + data.parent : ""}
