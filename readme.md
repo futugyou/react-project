@@ -14,6 +14,8 @@
 
 [react-color](https://github.com/uiwjs/react-color/)
 
+[react-reader](https://github.com/gerhardsletten/react-reader)
+
 #### update all package
 ```
 npx npm-check-updates -u
