@@ -11,7 +11,7 @@ const initialNodes = [
         id: '1',
         data: { label: 'Hello' },
         position: { x: 0, y: 0 },
-        type: 'input',
+        type: 'default',
     },
     {
         id: '2',

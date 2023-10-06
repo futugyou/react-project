@@ -27,26 +27,18 @@ const FlowStyle = (props: FlowStyleProps) => {
                     <div className={styles.groupLayerTitle}>base node type</div>
                     <div className={styles.groupLayer}>
                         <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'default')}  >
-                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
+                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg' style={{ overflow: 'visible' }}>
                                 <title>default</title>
-                                <circle cx="20" cy="10" r="2" stroke="#ff6700" fill="#ff6700" />
                                 <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
+                                <circle cx="20" cy="10" r="2" stroke="#ff6700" fill="#ff6700" />
                                 <circle cx="20" cy="30" r="2" stroke="#ff6700" fill="#ff6700" />
+                                <circle cx="0" cy="20" r="2" stroke="#ff6700" fill="#ff6700" />
+                                <circle cx="40" cy="20" r="2" stroke="#ff6700" fill="#ff6700" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'input')}  >
-                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
-                                <title>input</title>
-                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
-                                <circle cx="20" cy="30" r="2" stroke="#ff6700" fill="#ff6700" />
-                            </svg>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }} >
                         </div>
-                        <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'output')}  >
-                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
-                                <title>output</title>
-                                <circle cx="20" cy="10" r="2" stroke="#ff6700" fill="#ff6700" />
-                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
-                            </svg>
+                        <div className={styles.groupLayerItem} style={{ border: 0 }} >
                         </div>
                         <div className={styles.groupLayerItem} style={{ border: 0 }} >
                         </div>
