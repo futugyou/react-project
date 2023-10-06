@@ -55,7 +55,7 @@
 .groupLayerItem:hover {
     border-style: dashed;
     animation: bounce 1600ms infinite ease-out;
-    cursor: pointer;
+    cursor: grab;
 }
 
 .groupLayerItem.selected {
