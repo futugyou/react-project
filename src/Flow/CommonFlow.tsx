@@ -9,6 +9,7 @@ import 'reactflow/dist/style.css'
 
 import { DefaultClassNodeType, getNodeId, ClassNode } from '@/Flow/CustomNode/ClassNode'
 import ShapeNode from '@/Flow/CustomNode/ShapeNode'
+import DefaultNodePlus from '@/Flow/CustomNode/DefaultNodePlus'
 import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
 import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
 import DefaultEdgePlus from '@/Flow/CustomEdges/DefaultEdgePlus'
@@ -43,6 +44,10 @@ const edgeTypes = {
 }
 
 let nodeTypes: NodeTypes = {
+    input: DefaultNodePlus,
+    default: DefaultNodePlus,
+    output: DefaultNodePlus,
+    group: DefaultNodePlus,
     custom: ClassNode,
     shape: ShapeNode,
 }

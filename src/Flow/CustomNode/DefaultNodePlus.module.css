@@ -1,0 +1,52 @@
+.nodeHandleDisplay {
+    background: silver;
+}
+
+.nodeHandleHidden {
+    opacity: 0;
+    pointer-events: none !important;
+}
+
+.nodeHandleHidden2 {
+    opacity: 0;
+    pointer-events: none !important;
+}
+
+.DefaultNodePlus:hover>div.nodeHandleHidden {
+    opacity: 1;
+    pointer-events: all !important;
+    background: silver
+}
+
+.nodeDisplayContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.nodeDisplayLable {
+    font-family: monospace;
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
+}
+
+.svg {
+    display: block;
+    overflow: visible;
+}
+
+.DefaultNodePlusResizerLine {
+    border-style: dashed !important;
+}
+
+.DefaultNodePlusResizerHandle {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 100% !important;
+}
