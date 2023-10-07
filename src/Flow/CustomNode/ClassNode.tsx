@@ -1,7 +1,7 @@
 import './ClassNode.css'
 
 import { useState, useEffect } from 'react'
-import { Handle, Position, Node, NodeProps, HandleType, useNodeId, useReactFlow } from 'reactflow'
+import { Handle, Position, Node, NodeProps } from 'reactflow'
 
 import NodeResize from '@/Flow/CustomNode/NodeResize'
 import { NodeOperation } from './utils'
@@ -11,13 +11,7 @@ export type ClassNodeData = {
     parent?: string
     methods?: string[]
     properties?: string[]
-    connects?: ConnectInfo[]
     op?: NodeOperation
-}
-
-export type ConnectInfo = {
-    position: Position
-    type: HandleType
 }
 
 export type ClassNodeType = Node<ClassNodeData>
@@ -38,7 +32,6 @@ export const DefaultClassNodeType: ClassNodeType = {
 
 export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
     const [emptyBody, setEmptyBody] = useState({})
-    const className = (selected ? 'node-container node-container-selected ' : 'node-container ')
     let methods: JSX.Element[] = []
     if (data.methods) {
         methods = data.methods.map((t: string) => {
@@ -61,15 +54,6 @@ export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
         })
     }
 
-    let connects: JSX.Element[] = []
-    if (data.connects) {
-        connects = data.connects.map((t: ConnectInfo) => {
-            return (
-                <Handle className='customHandle' id={id + t.position + t.type} key={id + t.position + t.type} position={t.position} type={t.type} />
-            )
-        })
-    }
-
     useEffect(() => {
         if ((data.methods && data.methods.length > 0) || (data.properties && data.properties.length > 0)) {
             setEmptyBody({})
@@ -79,7 +63,7 @@ export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
     }, [data.methods, data.properties])
 
     return (
-        <div className={className}>
+        <div className='node-container'>
             {(data?.op?.allowResizer ?? true) && (<NodeResize isVisible={selected} keepAspectRatio={data?.op?.keepAspectRatio} minWidth={300} minHeight={50} />)}
 
             <div className='class-name' style={emptyBody} >
@@ -102,11 +86,14 @@ export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
                 </div>
             )}
 
-            {connects.length > 0 && (
-                <>
-                    {connects}
-                </>
-            )}
+            <Handle id={id + 'topsource'} key={id + 'topsource'} position={Position.Top} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
+            <Handle id={id + 'bottomsource'} key={id + 'bottomsource'} position={Position.Bottom} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
+            <Handle id={id + 'leftsource'} key={id + 'leftsource'} position={Position.Left} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
+            <Handle id={id + 'rightsource'} key={id + 'rightsource'} position={Position.Right} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
+            <Handle id={id + 'toptarget'} key={id + 'toptarget'} position={Position.Top} type='target' className={'nodeHandleHidden2'} />
+            <Handle id={id + 'bottomtarget'} key={id + 'bottomtarget'} position={Position.Bottom} type='target' className={'nodeHandleHidden2'} />
+            <Handle id={id + 'lefttarget'} key={id + 'lefttarget'} position={Position.Left} type='target' className={'nodeHandleHidden2'} />
+            <Handle id={id + 'righttarget'} key={id + 'righttarget'} position={Position.Right} type='target' className={'nodeHandleHidden2'} />
         </div>
     )
 }

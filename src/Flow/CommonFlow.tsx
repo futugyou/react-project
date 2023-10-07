@@ -67,7 +67,7 @@ const CommonFlow = (props: CommonFlow) => {
 
     const onConnect = useCallback((params: any) => {
         // setEdges((eds) => addEdge(params, eds))
-        setEdges((eds) => addEdge({ ...params, type: 'default', markerEnd: { type: MarkerType.Arrow, color: 'black', } }, eds))
+        setEdges((eds) => addEdge({ ...params, type: 'default', markerEnd: { type: MarkerType.ArrowClosed, color: 'black', } }, eds))
     }, [setEdges])
 
     const onEdgeUpdate = useCallback(
