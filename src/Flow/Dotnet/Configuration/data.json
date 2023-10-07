@@ -2,12 +2,12 @@
     "nodes": [
         {
             "width": 361,
-            "height": 42,
+            "height": 52,
             "id": "IFileInfo",
             "type": "custom",
             "position": {
-                "x": 0.20268016256005694,
-                "y": 175.76357622478795
+                "x": 5.28567602876592,
+                "y": 162.54778697265283
             },
             "data": {
                 "name": "IConfigurationSource",
@@ -31,19 +31,20 @@
                 ]
             },
             "positionAbsolute": {
-                "x": 0.20268016256005694,
-                "y": 175.76357622478795
+                "x": 5.28567602876592,
+                "y": 162.54778697265283
             },
             "selected": false,
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 344,
-            "height": 104,
+            "height": 96,
             "id": "IConfigurationBuilder",
             "position": {
-                "x": 9.629914229493352,
-                "y": 324.4235495857445
+                "x": 13.696310922457997,
+                "y": 325.4401487589857
             },
             "type": "custom",
             "data": {
@@ -74,18 +75,19 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 9.629914229493352,
-                "y": 324.4235495857445
+                "x": 13.696310922457997,
+                "y": 325.4401487589857
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 531,
-            "height": 106,
+            "height": 102,
             "id": "IConfigurationProvider",
             "position": {
-                "x": 582.9673817034067,
-                "y": 143.79521567645645
+                "x": 534.1706213878308,
+                "y": 174.29319087369137
             },
             "type": "custom",
             "data": {
@@ -111,18 +113,19 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 582.9673817034067,
-                "y": 143.79521567645645
+                "x": 534.1706213878308,
+                "y": 174.29319087369137
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 340,
-            "height": 72,
+            "height": 64,
             "id": "IConfigurationRoot",
             "position": {
-                "x": -466.9490114716814,
-                "y": 79.3616190742812
+                "x": -497.4469866689163,
+                "y": 93.59400749965751
             },
             "type": "custom",
             "data": {
@@ -148,14 +151,15 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -466.9490114716814,
-                "y": 79.3616190742812
+                "x": -497.4469866689163,
+                "y": 93.59400749965751
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 606,
-            "height": 184,
+            "height": 176,
             "id": "IConfiguration",
             "type": "custom",
             "position": {
@@ -201,12 +205,12 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 74,
+            "width": 302,
+            "height": 70,
             "id": "IConfigurationSection",
             "position": {
-                "x": -475.62405281914016,
-                "y": -38.34856295075599
+                "x": -503.0722304966516,
+                "y": -38.34856295075598
             },
             "type": "custom",
             "data": {
@@ -227,26 +231,25 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -475.62405281914016,
-                "y": -38.34856295075599
+                "x": -503.0722304966516,
+                "y": -38.34856295075598
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
-            "width": 300,
-            "height": 26,
+            "width": 388,
+            "height": 66,
             "id": "IConfigurationManager",
             "position": {
-                "x": -463.5290150121043,
-                "y": 363.0289346893902
+                "x": -498.0933869023039,
+                "y": 370.14512890207834
             },
             "type": "custom",
             "data": {
                 "name": "IConfigurationManager",
                 "parent": "IConfiguration, IConfigurationBuilder",
-                "properties": [
-                    " "
-                ],
+                "properties": [],
                 "connects": [
                     {
                         "position": "right",
@@ -257,14 +260,19 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": -463.5290150121043,
-                "y": 363.0289346893902
+                "x": -498.0933869023039,
+                "y": 370.14512890207834
             },
-            "dragging": false
+            "dragging": false,
+            "style": {
+                "width": 388,
+                "height": 66
+            },
+            "resizing": false
         },
         {
             "width": 463,
-            "height": 104,
+            "height": 96,
             "id": "ConfigurationReloadToken",
             "type": "custom",
             "position": {
@@ -300,79 +308,9 @@
             },
             "selected": false,
             "dragging": false
-        },
-        {
-            "width": 361,
-            "height": 42,
-            "id": "IConfigurationSource",
-            "type": "custom",
-            "position": {
-                "x": 0.20268016256005694,
-                "y": 175.76357622478795
-            },
-            "data": {
-                "name": "IConfigurationSource",
-                "properties": [],
-                "methods": [
-                    "IConfigurationProvider Build(IConfigurationBuilder builder)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ],
-                "id": "IConfigurationSource"
-            },
-            "positionAbsolute": {
-                "x": 0.20268016256005694,
-                "y": 175.76357622478795
-            },
-            "selected": false,
-            "dragging": false
         }
     ],
     "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IFileInfo",
-            "sourceHandle": "IConfigurationSourcerightsource",
-            "target": "IConfigurationProvider",
-            "targetHandle": "IConfigurationProviderlefttarget",
-            "id": "reactflow__edge-IFileInfoIConfigurationSourcerightsource-IConfigurationProviderIConfigurationProviderlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IFileInfo",
-            "sourceHandle": "IConfigurationSourcebottomsource",
-            "target": "IConfigurationBuilder",
-            "targetHandle": "IConfigurationBuildertoptarget",
-            "id": "reactflow__edge-IFileInfoIConfigurationSourcebottomsource-IConfigurationBuilderIConfigurationBuildertoptarget"
-        },
         {
             "style": {
                 "strokeWidth": 2,
@@ -483,12 +421,47 @@
             "sourceHandle": "IConfigurationProvidertopsource",
             "target": "ConfigurationReloadToken",
             "targetHandle": "ConfigurationReloadTokenbottomtarget",
-            "id": "reactflow__edge-IConfigurationProviderIConfigurationProvidertopsource-ConfigurationReloadTokenConfigurationReloadTokenbottomtarget"
+            "id": "reactflow__edge-IConfigurationProviderIConfigurationProvidertopsource-ConfigurationReloadTokenConfigurationReloadTokenbottomtarget",
+            "selected": false
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IFileInfo",
+            "sourceHandle": "IFileInforightsource",
+            "target": "IConfigurationProvider",
+            "targetHandle": "IConfigurationProviderlefttarget",
+            "id": "reactflow__edge-IFileInfoIFileInforightsource-IConfigurationProviderIConfigurationProviderlefttarget",
+            "selected": false
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "IFileInfo",
+            "sourceHandle": "IFileInfobottomsource",
+            "target": "IConfigurationBuilder",
+            "targetHandle": "IConfigurationBuildertoptarget",
+            "id": "reactflow__edge-IFileInfoIFileInfobottomsource-IConfigurationBuilderIConfigurationBuildertoptarget",
+            "selected": false
         }
     ],
     "viewport": {
-        "x": 542.5386487956946,
-        "y": 290.821148661569,
-        "zoom": 0.993669935798503
+        "x": 575.287331242702,
+        "y": 287.42827310344313,
+        "zoom": 0.9881394418652818
     }
 }
