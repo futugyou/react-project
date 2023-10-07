@@ -1108,8 +1108,8 @@
             "source": "OutputCacheMiddleware",
             "sourceHandle": "OutputCacheMiddlewareleftsource",
             "target": "WorkDispatcher",
-            "targetHandle": "WorkDispatcher<TKey, TValue>toptarget",
-            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewareleftsource-WorkDispatcherWorkDispatcher<TKey, TValue>toptarget"
+            "targetHandle": "WorkDispatchertoptarget",
+            "id": "reactflow__edge-OutputCacheMiddlewareOutputCacheMiddlewareleftsource-WorkDispatcherWorkDispatchertoptarget"
         }
     ],
     "viewport": {

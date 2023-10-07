@@ -2,7 +2,7 @@
     "nodes": [
         {
             "width": 685,
-            "height": 152,
+            "height": 144,
             "id": "IApplicationBuilder",
             "position": {
                 "x": 903.8724699807588,
@@ -47,7 +47,7 @@
         },
         {
             "width": 568,
-            "height": 152,
+            "height": 144,
             "id": "IFeatureCollection",
             "position": {
                 "x": 1717.1098161929074,
@@ -89,7 +89,7 @@
         },
         {
             "width": 365,
-            "height": 42,
+            "height": 52,
             "id": "RequestDelegate",
             "position": {
                 "x": 1493.112234217998,
@@ -126,7 +126,7 @@
         },
         {
             "width": 373,
-            "height": 184,
+            "height": 176,
             "id": "HttpContext",
             "position": {
                 "x": 1198.807717462817,
@@ -173,7 +173,7 @@
         },
         {
             "width": 335,
-            "height": 88,
+            "height": 80,
             "id": "IEndpointRouteBuilder",
             "position": {
                 "x": 542.9535951854779,
@@ -210,7 +210,7 @@
         },
         {
             "width": 537,
-            "height": 184,
+            "height": 176,
             "id": "WebApplication",
             "position": {
                 "x": 543.2983249300087,
@@ -250,7 +250,7 @@
         },
         {
             "width": 347,
-            "height": 58,
+            "height": 54,
             "id": "IHttpContextFactory",
             "position": {
                 "x": 1345.476859351867,
@@ -284,7 +284,7 @@
         },
         {
             "width": 407,
-            "height": 104,
+            "height": 96,
             "id": "DefaultHttpContextFactory",
             "position": {
                 "x": 1786.3001626967123,
@@ -331,7 +331,7 @@
         },
         {
             "width": 678,
-            "height": 200,
+            "height": 192,
             "id": "DefaultHttpContext",
             "position": {
                 "x": 1651.159540408743,
@@ -375,8 +375,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IHttpContextAccessor",
             "position": {
                 "x": 1840.2923029242138,
@@ -409,7 +409,7 @@
         },
         {
             "width": 464,
-            "height": 58,
+            "height": 54,
             "id": "HttpContextAccessor",
             "position": {
                 "x": 1291.4798553790192,
@@ -443,8 +443,8 @@
             "dragging": false
         },
         {
-            "width": 635,
-            "height": 88,
+            "width": 566,
+            "height": 80,
             "id": "IServer",
             "position": {
                 "x": 2112.4290784027617,
@@ -482,7 +482,7 @@
         },
         {
             "width": 374,
-            "height": 74,
+            "height": 70,
             "id": "IHttpApplication",
             "position": {
                 "x": 2366.4833716464627,
@@ -517,7 +517,7 @@
         },
         {
             "width": 440,
-            "height": 90,
+            "height": 86,
             "id": "HostingApplication",
             "position": {
                 "x": 2303.083570477964,
@@ -554,7 +554,7 @@
         },
         {
             "width": 520,
-            "height": 136,
+            "height": 128,
             "id": "ApplicationBuilder",
             "position": {
                 "x": 540.7489609504728,
@@ -595,7 +595,7 @@
         },
         {
             "width": 411,
-            "height": 42,
+            "height": 52,
             "id": "IApplicationBuilderFactory",
             "position": {
                 "x": 822.0974438934016,
@@ -628,7 +628,7 @@
         },
         {
             "width": 450,
-            "height": 58,
+            "height": 54,
             "id": "ApplicationBuilderFactory",
             "position": {
                 "x": 547.44812571161,
@@ -659,7 +659,7 @@
         },
         {
             "width": 404,
-            "height": 234,
+            "height": 230,
             "id": "GenericWebHostService",
             "position": {
                 "x": 969.0051074132925,
@@ -709,7 +709,7 @@
         },
         {
             "width": 447,
-            "height": 42,
+            "height": 52,
             "id": "IStartupFilter",
             "position": {
                 "x": 1442.6981581660202,
@@ -738,7 +738,7 @@
         },
         {
             "width": 513,
-            "height": 104,
+            "height": 96,
             "id": "GenericWebHostBuilder",
             "position": {
                 "x": 1422.3484595423347,
@@ -773,7 +773,7 @@
         },
         {
             "width": 587,
-            "height": 90,
+            "height": 86,
             "id": "ISupportsStartup",
             "position": {
                 "x": 2148.389375731557,
@@ -805,7 +805,7 @@
         },
         {
             "width": 762,
-            "height": 122,
+            "height": 118,
             "id": "WebHostBuilderBase",
             "position": {
                 "x": 1983.8186649209993,
@@ -844,7 +844,7 @@
         },
         {
             "width": 676,
-            "height": 42,
+            "height": 52,
             "id": "ISupportsUseDefaultServiceProvider",
             "position": {
                 "x": 2069.212205358168,
@@ -873,7 +873,7 @@
         },
         {
             "width": 339,
-            "height": 122,
+            "height": 118,
             "id": "GenericFlow",
             "position": {
                 "x": 547.3578491456399,
@@ -897,7 +897,10 @@
                 "x": 547.3578491456399,
                 "y": 960.1860678900257
             },
-            "dragging": false
+            "dragging": false,
+            "style": {
+                "backgroundColor": "#b8e986"
+            }
         }
     ],
     "edges": [
@@ -1106,8 +1109,8 @@
             "source": "IServer",
             "sourceHandle": "IServerbottomsource",
             "target": "IHttpApplication",
-            "targetHandle": "IHttpApplication<TContext>toptarget",
-            "id": "reactflow__edge-IServerIServerbottomsource-IHttpApplicationIHttpApplication<TContext>toptarget"
+            "targetHandle": "IHttpApplicationtoptarget",
+            "id": "reactflow__edge-IServerIServerbottomsource-IHttpApplicationIHttpApplicationtoptarget"
         },
         {
             "style": {
@@ -1122,8 +1125,8 @@
             "source": "HostingApplication",
             "sourceHandle": "HostingApplicationtopsource",
             "target": "IHttpApplication",
-            "targetHandle": "IHttpApplication<TContext>bottomtarget",
-            "id": "reactflow__edge-HostingApplicationHostingApplicationtopsource-IHttpApplicationIHttpApplication<TContext>bottomtarget"
+            "targetHandle": "IHttpApplicationbottomtarget",
+            "id": "reactflow__edge-HostingApplicationHostingApplicationtopsource-IHttpApplicationIHttpApplicationbottomtarget"
         },
         {
             "style": {
@@ -1304,8 +1307,8 @@
         }
     ],
     "viewport": {
-        "x": -301.2649895089587,
-        "y": 1.4478430408072995,
-        "zoom": 0.6999408035310081
+        "x": -305.2685269107833,
+        "y": -8.052139729759745,
+        "zoom": 0.7091097214844613
     }
 }

@@ -384,14 +384,17 @@
                 "x": 1278.9273087936365,
                 "y": 1440.9053344483104
             },
-            "dragging": false
+            "dragging": false,
+            "style": {
+                "backgroundColor": "#b8e986"
+            }
         },
         {
             "width": 302,
             "height": 118,
             "id": "StopAsync",
             "position": {
-                "x": 1286.1970343108803,
+                "x": 1282.2819868314648,
                 "y": 1605.8552720612706
             },
             "type": "custom",
@@ -409,10 +412,13 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1286.1970343108803,
+                "x": 1282.2819868314648,
                 "y": 1605.8552720612706
             },
-            "dragging": false
+            "dragging": false,
+            "style": {
+                "backgroundColor": "#b8e986"
+            }
         },
         {
             "width": 373,
