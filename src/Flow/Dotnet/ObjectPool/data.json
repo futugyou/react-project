@@ -1,8 +1,8 @@
 {
     "nodes": [
         {
-            "width": 300,
-            "height": 58,
+            "width": 302,
+            "height": 54,
             "id": "ObjectPool",
             "position": {
                 "x": 1044.2474805985037,
@@ -36,7 +36,7 @@
         },
         {
             "width": 699,
-            "height": 90,
+            "height": 86,
             "id": "ObjectPoolProvider",
             "position": {
                 "x": 1043.0794948697705,
@@ -72,7 +72,7 @@
         },
         {
             "width": 482,
-            "height": 88,
+            "height": 80,
             "id": "DefaultObjectPool",
             "position": {
                 "x": 1379.9911661605843,
@@ -113,8 +113,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "DefaultObjectPoolProvider",
             "position": {
                 "x": 1788.6854203752182,
@@ -147,8 +147,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 58,
+            "width": 302,
+            "height": 54,
             "id": "IPooledObjectPolicy",
             "position": {
                 "x": 1050.2253941767367,
@@ -181,8 +181,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 58,
+            "width": 302,
+            "height": 54,
             "id": "PooledObjectPolicy",
             "position": {
                 "x": 1483.1868284435652,
@@ -216,8 +216,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 58,
+            "width": 302,
+            "height": 54,
             "id": "DefaultPooledObjectPolicy",
             "position": {
                 "x": 1968.075975742986,
@@ -251,8 +251,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 72,
+            "width": 302,
+            "height": 64,
             "id": "DisposableObjectPool",
             "position": {
                 "x": 1921.8575917319254,
@@ -289,7 +289,7 @@
         },
         {
             "width": 364,
-            "height": 104,
+            "height": 96,
             "id": "StringBuilderPooledObjectPolicy",
             "position": {
                 "x": 1897.9892797229418,
@@ -324,7 +324,7 @@
         },
         {
             "width": 446,
-            "height": 104,
+            "height": 96,
             "id": "DependencyInjectionPooledObjectPolicy",
             "position": {
                 "x": 1400.7360458803948,
@@ -362,12 +362,12 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IResettable",
             "position": {
-                "x": 1712.8541611264034,
-                "y": 964.8270028428924
+                "x": 1746.3273922554233,
+                "y": 953.2138410226202
             },
             "type": "custom",
             "data": {
@@ -385,10 +385,11 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1712.8541611264034,
-                "y": 964.8270028428924
+                "x": 1746.3273922554233,
+                "y": 953.2138410226202
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         }
     ],
     "edges": [
@@ -405,8 +406,8 @@
             "source": "ObjectPoolProvider",
             "sourceHandle": "ObjectPoolProviderbottomsource",
             "target": "ObjectPool",
-            "targetHandle": "ObjectPool<T>toptarget",
-            "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-ObjectPoolObjectPool<T>toptarget"
+            "targetHandle": "ObjectPooltoptarget",
+            "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-ObjectPoolObjectPooltoptarget"
         },
         {
             "style": {
@@ -419,10 +420,10 @@
                 "color": "black"
             },
             "source": "DefaultObjectPool",
-            "sourceHandle": "DefaultObjectPool<T> leftsource",
+            "sourceHandle": "DefaultObjectPoolleftsource",
             "target": "ObjectPool",
-            "targetHandle": "ObjectPool<T>righttarget",
-            "id": "reactflow__edge-DefaultObjectPoolDefaultObjectPool<T> leftsource-ObjectPoolObjectPool<T>righttarget"
+            "targetHandle": "ObjectPoolrighttarget",
+            "id": "reactflow__edge-DefaultObjectPoolDefaultObjectPoolleftsource-ObjectPoolObjectPoolrighttarget"
         },
         {
             "style": {
@@ -453,8 +454,8 @@
             "source": "DefaultObjectPoolProvider",
             "sourceHandle": "DefaultObjectPoolProviderbottomsource",
             "target": "DefaultObjectPool",
-            "targetHandle": "DefaultObjectPool<T> toptarget",
-            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DefaultObjectPoolDefaultObjectPool<T> toptarget"
+            "targetHandle": "DefaultObjectPooltoptarget",
+            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DefaultObjectPoolDefaultObjectPooltoptarget"
         },
         {
             "style": {
@@ -469,8 +470,8 @@
             "source": "ObjectPoolProvider",
             "sourceHandle": "ObjectPoolProviderbottomsource",
             "target": "IPooledObjectPolicy",
-            "targetHandle": "IPooledObjectPolicy<T>toptarget",
-            "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-IPooledObjectPolicyIPooledObjectPolicy<T>toptarget"
+            "targetHandle": "IPooledObjectPolicytoptarget",
+            "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-IPooledObjectPolicyIPooledObjectPolicytoptarget"
         },
         {
             "style": {
@@ -483,10 +484,10 @@
                 "color": "black"
             },
             "source": "PooledObjectPolicy",
-            "sourceHandle": "PooledObjectPolicy<T>leftsource",
+            "sourceHandle": "PooledObjectPolicyleftsource",
             "target": "IPooledObjectPolicy",
-            "targetHandle": "IPooledObjectPolicy<T>righttarget",
-            "id": "reactflow__edge-PooledObjectPolicyPooledObjectPolicy<T>leftsource-IPooledObjectPolicyIPooledObjectPolicy<T>righttarget"
+            "targetHandle": "IPooledObjectPolicyrighttarget",
+            "id": "reactflow__edge-PooledObjectPolicyPooledObjectPolicyleftsource-IPooledObjectPolicyIPooledObjectPolicyrighttarget"
         },
         {
             "style": {
@@ -499,10 +500,10 @@
                 "color": "black"
             },
             "source": "DefaultPooledObjectPolicy",
-            "sourceHandle": "DefaultPooledObjectPolicy<T>leftsource",
+            "sourceHandle": "DefaultPooledObjectPolicyleftsource",
             "target": "PooledObjectPolicy",
-            "targetHandle": "PooledObjectPolicy<T>righttarget",
-            "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicy<T>leftsource-PooledObjectPolicyPooledObjectPolicy<T>righttarget"
+            "targetHandle": "PooledObjectPolicyrighttarget",
+            "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicyrighttarget"
         },
         {
             "style": {
@@ -515,10 +516,10 @@
                 "color": "black"
             },
             "source": "DisposableObjectPool",
-            "sourceHandle": "DisposableObjectPool<T>leftsource",
+            "sourceHandle": "DisposableObjectPoolleftsource",
             "target": "DefaultObjectPool",
-            "targetHandle": "DefaultObjectPool<T> righttarget",
-            "id": "reactflow__edge-DisposableObjectPoolDisposableObjectPool<T>leftsource-DefaultObjectPoolDefaultObjectPool<T> righttarget"
+            "targetHandle": "DefaultObjectPoolrighttarget",
+            "id": "reactflow__edge-DisposableObjectPoolDisposableObjectPoolleftsource-DefaultObjectPoolDefaultObjectPoolrighttarget"
         },
         {
             "style": {
@@ -533,8 +534,8 @@
             "source": "DefaultObjectPoolProvider",
             "sourceHandle": "DefaultObjectPoolProviderbottomsource",
             "target": "DisposableObjectPool",
-            "targetHandle": "DisposableObjectPool<T>toptarget",
-            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DisposableObjectPoolDisposableObjectPool<T>toptarget"
+            "targetHandle": "DisposableObjectPooltoptarget",
+            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DisposableObjectPoolDisposableObjectPooltoptarget"
         },
         {
             "style": {
@@ -549,8 +550,8 @@
             "source": "StringBuilderPooledObjectPolicy",
             "sourceHandle": "StringBuilderPooledObjectPolicyleftsource",
             "target": "PooledObjectPolicy",
-            "targetHandle": "PooledObjectPolicy<T>righttarget",
-            "id": "reactflow__edge-StringBuilderPooledObjectPolicyStringBuilderPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicy<T>righttarget"
+            "targetHandle": "PooledObjectPolicyrighttarget",
+            "id": "reactflow__edge-StringBuilderPooledObjectPolicyStringBuilderPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicyrighttarget"
         },
         {
             "style": {
@@ -563,10 +564,10 @@
                 "color": "black"
             },
             "source": "DependencyInjectionPooledObjectPolicy",
-            "sourceHandle": "DependencyInjectionPooledObjectPolicy<T,TImpl>leftsource",
+            "sourceHandle": "DependencyInjectionPooledObjectPolicyleftsource",
             "target": "IPooledObjectPolicy",
-            "targetHandle": "IPooledObjectPolicy<T>righttarget",
-            "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicy<T,TImpl>leftsource-IPooledObjectPolicyIPooledObjectPolicy<T>righttarget"
+            "targetHandle": "IPooledObjectPolicyrighttarget",
+            "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicyleftsource-IPooledObjectPolicyIPooledObjectPolicyrighttarget"
         },
         {
             "style": {
@@ -579,10 +580,10 @@
                 "color": "black"
             },
             "source": "DependencyInjectionPooledObjectPolicy",
-            "sourceHandle": "DependencyInjectionPooledObjectPolicy<T,TImpl>bottomsource",
+            "sourceHandle": "DependencyInjectionPooledObjectPolicybottomsource",
             "target": "IResettable",
-            "targetHandle": "IResettabletoptarget",
-            "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicy<T,TImpl>bottomsource-IResettableIResettabletoptarget"
+            "targetHandle": "IResettablelefttarget",
+            "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicybottomsource-IResettableIResettablelefttarget"
         },
         {
             "style": {
@@ -595,15 +596,15 @@
                 "color": "black"
             },
             "source": "DefaultPooledObjectPolicy",
-            "sourceHandle": "DefaultPooledObjectPolicy<T>bottomsource",
+            "sourceHandle": "DefaultPooledObjectPolicybottomsource",
             "target": "IResettable",
-            "targetHandle": "IResettabletoptarget",
-            "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicy<T>bottomsource-IResettableIResettabletoptarget"
+            "targetHandle": "IResettablerighttarget",
+            "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicybottomsource-IResettableIResettablerighttarget"
         }
     ],
     "viewport": {
-        "x": -1259.077213450907,
-        "y": -654.1015776263098,
-        "zoom": 1.2823784520501627
+        "x": -1251.077926052405,
+        "y": -642.0636902161236,
+        "zoom": 1.2743609195387193
     }
 }
