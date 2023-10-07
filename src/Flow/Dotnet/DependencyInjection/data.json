@@ -2,11 +2,11 @@
     "nodes": [
         {
             "width": 876,
-            "height": 168,
+            "height": 160,
             "id": "IServiceCollection",
             "position": {
-                "x": -174.04605411482453,
-                "y": 581.2021577711065
+                "x": -175.04605411482447,
+                "y": 580.2021577711065
             },
             "type": "custom",
             "data": {
@@ -41,15 +41,16 @@
                 "id": "IServiceCollection"
             },
             "positionAbsolute": {
-                "x": -174.04605411482453,
-                "y": 581.2021577711065
+                "x": -175.04605411482447,
+                "y": 580.2021577711065
             },
             "selected": false,
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 649,
-            "height": 216,
+            "height": 208,
             "id": "ServiceDescriptor",
             "type": "custom",
             "position": {
@@ -90,7 +91,7 @@
         },
         {
             "width": 555,
-            "height": 216,
+            "height": 208,
             "id": "ServiceProvider",
             "type": "custom",
             "position": {
@@ -144,7 +145,7 @@
         },
         {
             "width": 453,
-            "height": 58,
+            "height": 54,
             "id": "IServiceProviderFactory",
             "position": {
                 "x": 732.0047436172911,
@@ -178,7 +179,7 @@
         },
         {
             "width": 646,
-            "height": 122,
+            "height": 118,
             "id": "ActivatorUtilities",
             "position": {
                 "x": 989.3496792211852,
@@ -206,7 +207,7 @@
         },
         {
             "width": 722,
-            "height": 250,
+            "height": 246,
             "id": "IServiceProvider",
             "position": {
                 "x": 434.55099040334915,
@@ -256,7 +257,7 @@
         },
         {
             "width": 426,
-            "height": 58,
+            "height": 54,
             "id": "IKeyedServiceProvider",
             "position": {
                 "x": 1233.1298979008266,
@@ -290,8 +291,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IServiceProviderIsService",
             "position": {
                 "x": 1351.210667324162,
@@ -324,7 +325,7 @@
         },
         {
             "width": 354,
-            "height": 42,
+            "height": 52,
             "id": "IServiceProviderIsKeyedService",
             "position": {
                 "x": 1301.931761606597,
@@ -353,8 +354,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IServiceScope",
             "position": {
                 "x": 1344.7607289334721,
@@ -388,8 +389,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IServiceScopeFactory",
             "position": {
                 "x": 1345.674591507047,
@@ -417,8 +418,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "ISupportRequiredService",
             "position": {
                 "x": 1353.6511767920363,
@@ -441,7 +442,7 @@
         },
         {
             "width": 551,
-            "height": 58,
+            "height": 54,
             "id": "ObjectFactory",
             "position": {
                 "x": 1092.504397458192,
@@ -466,7 +467,7 @@
         },
         {
             "width": 366,
-            "height": 90,
+            "height": 86,
             "id": "ServiceCollection",
             "position": {
                 "x": -386.4082370951434,
@@ -503,11 +504,11 @@
         },
         {
             "width": 423,
-            "height": 72,
+            "height": 64,
             "id": "DefaultServiceProviderFactory",
             "position": {
-                "x": 1237.9078282985884,
-                "y": 574.7949618037499
+                "x": 1235.9078282985884,
+                "y": 576.7949618037499
             },
             "type": "custom",
             "data": {
@@ -529,14 +530,15 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 1237.9078282985884,
-                "y": 574.7949618037499
+                "x": 1235.9078282985884,
+                "y": 576.7949618037499
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 337,
-            "height": 88,
+            "height": 80,
             "id": "AsyncServiceScope",
             "position": {
                 "x": 1145.5905590440852,
@@ -570,7 +572,7 @@
         },
         {
             "width": 693,
-            "height": 232,
+            "height": 224,
             "id": "CallSiteVisitor",
             "position": {
                 "x": -381.52704507490034,
@@ -612,7 +614,7 @@
         },
         {
             "width": 603,
-            "height": 88,
+            "height": 80,
             "id": "CallSiteValidator",
             "position": {
                 "x": -337.31086796489944,
@@ -650,7 +652,7 @@
         },
         {
             "width": 484,
-            "height": 90,
+            "height": 86,
             "id": "CallSiteFactory",
             "position": {
                 "x": 574.441107145752,
@@ -688,7 +690,7 @@
         },
         {
             "width": 586,
-            "height": 42,
+            "height": 52,
             "id": "ServiceProviderEngine",
             "position": {
                 "x": -351.9538777704648,
@@ -717,7 +719,7 @@
         },
         {
             "width": 479,
-            "height": 120,
+            "height": 112,
             "id": "ServiceProviderEngineScope",
             "position": {
                 "x": 354.51744408057084,
@@ -753,36 +755,6 @@
         }
     ],
     "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "id": "IServiceCollection-ServiceDescriptor",
-            "source": "IServiceCollection",
-            "target": "ServiceDescriptor"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IServiceProviderFactory",
-            "sourceHandle": "IServiceProviderFactory<TContainerBuilder>bottomsource",
-            "target": "IServiceProvider",
-            "targetHandle": "IServiceProvidertoptarget",
-            "id": "reactflow__edge-IServiceProviderFactoryIServiceProviderFactory<TContainerBuilder>bottomsource-IServiceProviderIServiceProvidertoptarget"
-        },
         {
             "style": {
                 "strokeWidth": 2,
@@ -905,22 +877,6 @@
                 "type": "arrowclosed",
                 "color": "black"
             },
-            "source": "DefaultServiceProviderFactory",
-            "sourceHandle": "DefaultServiceProviderFactoryleftsource",
-            "target": "IServiceProviderFactory",
-            "targetHandle": "IServiceProviderFactory<TContainerBuilder>righttarget",
-            "id": "reactflow__edge-DefaultServiceProviderFactoryDefaultServiceProviderFactoryleftsource-IServiceProviderFactoryIServiceProviderFactory<TContainerBuilder>righttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
             "source": "ServiceProvider",
             "sourceHandle": "ServiceProviderrightsource",
             "target": "IServiceScope",
@@ -942,22 +898,6 @@
             "target": "IServiceScope",
             "targetHandle": "IServiceScopelefttarget",
             "id": "reactflow__edge-AsyncServiceScopeAsyncServiceScopetopsource-IServiceScopeIServiceScopelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CallSiteValidator",
-            "sourceHandle": "CallSiteValidatortopsource",
-            "target": "CallSiteVisitor",
-            "targetHandle": "CallSiteVisitor<TArgument, TResult>bottomtarget",
-            "id": "reactflow__edge-CallSiteValidatorCallSiteValidatortopsource-CallSiteVisitorCallSiteVisitor<TArgument, TResult>bottomtarget"
         },
         {
             "style": {
@@ -1055,11 +995,75 @@
             "target": "ServiceProviderEngineScope",
             "targetHandle": "ServiceProviderEngineScopetoptarget",
             "id": "reactflow__edge-ServiceProviderServiceProviderbottomsource-ServiceProviderEngineScopeServiceProviderEngineScopetoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrow",
+                "color": "black"
+            },
+            "source": "IServiceProviderFactory",
+            "sourceHandle": "IServiceProviderFactorybottomsource",
+            "target": "IServiceProvider",
+            "targetHandle": "IServiceProvidertoptarget",
+            "id": "reactflow__edge-IServiceProviderFactoryIServiceProviderFactorybottomsource-IServiceProviderIServiceProvidertoptarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrow",
+                "color": "black"
+            },
+            "source": "DefaultServiceProviderFactory",
+            "sourceHandle": "DefaultServiceProviderFactoryleftsource",
+            "target": "IServiceProviderFactory",
+            "targetHandle": "IServiceProviderFactoryrighttarget",
+            "id": "reactflow__edge-DefaultServiceProviderFactoryDefaultServiceProviderFactoryleftsource-IServiceProviderFactoryIServiceProviderFactoryrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrow",
+                "color": "black"
+            },
+            "source": "CallSiteValidator",
+            "sourceHandle": "CallSiteValidatortopsource",
+            "target": "CallSiteVisitor",
+            "targetHandle": "CallSiteVisitorbottomtarget",
+            "id": "reactflow__edge-CallSiteValidatorCallSiteValidatortopsource-CallSiteVisitorCallSiteVisitorbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrow",
+                "color": "black"
+            },
+            "source": "IServiceCollection",
+            "sourceHandle": "IServiceCollectionbottomsource",
+            "target": "ServiceDescriptor",
+            "targetHandle": "ServiceDescriptortoptarget",
+            "id": "reactflow__edge-IServiceCollectionIServiceCollectionbottomsource-ServiceDescriptorServiceDescriptortoptarget"
         }
     ],
     "viewport": {
-        "x": 375.0371505348464,
-        "y": -378.73422484061655,
-        "zoom": 0.7673016968227521
+        "x": 200.77292176610217,
+        "y": -515.6868588033699,
+        "zoom": 0.9999999999999999
     }
 }
