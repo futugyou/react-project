@@ -4,14 +4,17 @@ import React, { useState, useEffect } from "react"
 import { Outlet, NavLink, useLocation } from "react-router-dom"
 import _ from 'lodash-es'
 import { useAnimate } from "framer-motion"
+import { BsListUl } from "react-icons/bs"
 
 import { FlowRouteDataList } from './FlowRouteData'
 
 const defaultPage = '/flow/demo'
 
 const FlowPanel = (props: any) => {
+    const [showMenu, setShowMenu] = useState(false)
     const [showIndex, setShowIndex] = useState(0)
     const [scope, animate] = useAnimate()
+    const [menuScope = scope, menuAnimate = animate] = useAnimate()
     const location = useLocation()
     const [currentPage, setCurrentPage] = useState(defaultPage)
     const refs = FlowRouteDataList.reduce((acc: any, value) => {
@@ -51,7 +54,7 @@ const FlowPanel = (props: any) => {
 
     useEffect(() => {
         let path = location.pathname
-        if (path == '/flow') {
+        if (path == '/flow' || path == '/flow/') {
             path = '/flow/demo'
         }
 
@@ -59,6 +62,24 @@ const FlowPanel = (props: any) => {
         setShowIndex(i)
         setCurrentPage(path)
     }, [location])
+
+    useEffect(() => {
+        const menus = document.getElementsByClassName("flow-panel-menu")
+        if (menus.length <= 0) {
+            return
+        }
+
+        const enterAnimation = () => {
+            const current = menus[0]
+            if (showMenu) {
+                menuAnimate(current, { opacity: 1, display: 'inline' }, { duration: 0.7 })
+            } else {
+                menuAnimate(current, { opacity: 0, display: 'none' }, { duration: 0.7 })
+            }
+        }
+
+        enterAnimation()
+    }, [showMenu])
 
     useEffect(() => {
         refs[currentPage].current?.scrollIntoView({
@@ -103,7 +124,8 @@ const FlowPanel = (props: any) => {
     return (
         <>
             <div className="flow-panel-container">
-                <div className="flow-panel-menu" >
+                <div className='flow-panel-controller' onClick={() => setShowMenu(a => !a)}><BsListUl /></div>
+                <div className="flow-panel-menu" ref={menuScope} >
                     {groupedLinks}
                 </div>
                 <div className="flow-panel-content" ref={scope}>
