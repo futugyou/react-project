@@ -129,6 +129,35 @@
             "style": {}
         },
         {
+            "width": 861,
+            "height": 50,
+            "id": "OptionsMonitor",
+            "position": {
+                "x": -42.00399739627494,
+                "y": 214.21546384322556
+            },
+            "type": "custom",
+            "data": {
+                "name": "OptionsMonitor<TOptions>",
+                "parent": "IOptionsMonitor<TOptions>,IDisposable",
+                "properties": [],
+                "methods": [
+                    "public OptionsMonitor(IOptionsFactory<TOptions>, IEnumerable<IOptionsChangeTokenSource<TOptions>>, IOptionsMonitorCache<TOptions>)"
+                ]
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -42.00399739627494,
+                "y": 214.21546384322556
+            },
+            "dragging": false,
+            "style": {
+                "width": 861,
+                "height": 50
+            },
+            "resizing": false
+        },
+        {
             "width": 329,
             "height": 54,
             "id": "OptionsManager",
@@ -421,8 +450,8 @@
             "height": 144,
             "id": "OptionsBuilder",
             "position": {
-                "x": 231.20953206622391,
-                "y": 270.17298113716356
+                "x": 200.9908960633203,
+                "y": 311.90347847450676
             },
             "type": "custom",
             "data": {
@@ -452,10 +481,11 @@
             },
             "selected": false,
             "positionAbsolute": {
-                "x": 231.20953206622391,
-                "y": 270.17298113716356
+                "x": 200.9908960633203,
+                "y": 311.90347847450676
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 427,
@@ -731,11 +761,27 @@
             "target": "IOptionsSnapshot",
             "targetHandle": "IOptionsSnapshotbottomtarget",
             "id": "reactflow__edge-UnnamedOptionsManagerUnnamedOptionsManagertopsource-IOptionsSnapshotIOptionsSnapshotbottomtarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "OptionsMonitor",
+            "sourceHandle": "OptionsMonitorleftsource",
+            "target": "IOptionsMonitor",
+            "targetHandle": "IOptionsMonitorrighttarget",
+            "id": "reactflow__edge-OptionsMonitorOptionsMonitorleftsource-IOptionsMonitorIOptionsMonitorrighttarget"
         }
     ],
     "viewport": {
-        "x": 605.1255745454887,
-        "y": 342.4364982477849,
-        "zoom": 1.0533251035440467
+        "x": 608.89878026906,
+        "y": 339.7911875084836,
+        "zoom": 1.0608674878335966
     }
 }

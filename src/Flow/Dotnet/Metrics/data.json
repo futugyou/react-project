@@ -1,8 +1,8 @@
 {
     "nodes": [
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IMeterFactory",
             "position": {
                 "x": 1101.3947978772017,
@@ -32,11 +32,12 @@
                 "x": 1101.3947978772017,
                 "y": 752.806781924818
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 420,
-            "height": 90,
+            "height": 86,
             "id": "MeterOptions",
             "position": {
                 "x": 1442.1795935438486,
@@ -68,7 +69,7 @@
         },
         {
             "width": 948,
-            "height": 232,
+            "height": 224,
             "id": "Meter",
             "position": {
                 "x": 1001.7666494603593,
@@ -115,11 +116,12 @@
                 "x": 1001.7666494603593,
                 "y": 873.0621840280409
             },
-            "dragging": false
+            "dragging": false,
+            "style": {}
         },
         {
             "width": 397,
-            "height": 168,
+            "height": 160,
             "id": "Instrument",
             "position": {
                 "x": 1003.3416450298455,
@@ -165,7 +167,7 @@
         },
         {
             "width": 586,
-            "height": 152,
+            "height": 144,
             "id": "MeterListener",
             "position": {
                 "x": 1001.0362875372496,
@@ -202,8 +204,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "Counter",
             "position": {
                 "x": 2179.1795194521983,
@@ -236,8 +238,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "Histogram",
             "position": {
                 "x": 2183.224059226733,
@@ -270,8 +272,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "UpDownCounter",
             "position": {
                 "x": 2180.2055041747103,
@@ -305,7 +307,7 @@
         },
         {
             "width": 633,
-            "height": 58,
+            "height": 54,
             "id": "Instrument_1",
             "position": {
                 "x": 1443.5484734108836,
@@ -340,7 +342,7 @@
         },
         {
             "width": 384,
-            "height": 72,
+            "height": 64,
             "id": "ObservableInstrument",
             "position": {
                 "x": 1551.2768692746745,
@@ -377,7 +379,7 @@
         },
         {
             "width": 385,
-            "height": 42,
+            "height": 52,
             "id": "ObservableUpDownCounter",
             "position": {
                 "x": 2179.1795194521983,
@@ -411,7 +413,7 @@
         },
         {
             "width": 385,
-            "height": 42,
+            "height": 52,
             "id": "ObservableCounter",
             "position": {
                 "x": 2180.2055041747108,
@@ -445,7 +447,7 @@
         },
         {
             "width": 385,
-            "height": 42,
+            "height": 52,
             "id": "ObservableGauge",
             "position": {
                 "x": 2182.2574736197357,
@@ -479,7 +481,7 @@
         },
         {
             "width": 363,
-            "height": 58,
+            "height": 54,
             "id": "Measurement",
             "position": {
                 "x": 1741.4182035365757,
@@ -509,7 +511,7 @@
         },
         {
             "width": 557,
-            "height": 136,
+            "height": 128,
             "id": "IMetricsBuilder",
             "position": {
                 "x": 1001.9887717502411,
@@ -550,7 +552,7 @@
         },
         {
             "width": 478,
-            "height": 120,
+            "height": 112,
             "id": "IMetricsListener",
             "position": {
                 "x": 1620.225247859206,
@@ -596,8 +598,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IObservableInstrumentsSource",
             "position": {
                 "x": 2197.4801760141277,
@@ -625,8 +627,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 106,
+            "width": 302,
+            "height": 102,
             "id": "InstrumentRule",
             "position": {
                 "x": 1650.3918661930256,
@@ -659,7 +661,7 @@
         },
         {
             "width": 415,
-            "height": 138,
+            "height": 134,
             "id": "MeasurementHandlers",
             "position": {
                 "x": 2051.846018015174,
@@ -694,7 +696,7 @@
         },
         {
             "width": 555,
-            "height": 88,
+            "height": 80,
             "id": "MetricsOptions",
             "position": {
                 "x": 1004.0302558419917,
@@ -806,10 +808,10 @@
                 "color": "black"
             },
             "source": "Instrument_1",
-            "sourceHandle": "Instrument<T>leftsource",
+            "sourceHandle": "Instrument_1leftsource",
             "target": "Instrument",
             "targetHandle": "Instrumentrighttarget",
-            "id": "reactflow__edge-Instrument_1Instrument<T>leftsource-InstrumentInstrumentrighttarget"
+            "id": "reactflow__edge-Instrument_1Instrument_1leftsource-InstrumentInstrumentrighttarget"
         },
         {
             "style": {
@@ -822,26 +824,10 @@
                 "color": "black"
             },
             "source": "ObservableInstrument",
-            "sourceHandle": "ObservableInstrument<T>leftsource",
+            "sourceHandle": "ObservableInstrumentleftsource",
             "target": "Instrument",
             "targetHandle": "Instrumentrighttarget",
-            "id": "reactflow__edge-ObservableInstrumentObservableInstrument<T>leftsource-InstrumentInstrumentrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ObservableUpDownCounter",
-            "sourceHandle": "ObservableUpDownCounter<T>leftsource",
-            "target": "ObservableInstrument",
-            "targetHandle": "ObservableInstrument<T>righttarget",
-            "id": "reactflow__edge-ObservableUpDownCounterObservableUpDownCounter<T>leftsource-ObservableInstrumentObservableInstrument<T>righttarget"
+            "id": "reactflow__edge-ObservableInstrumentObservableInstrumentleftsource-InstrumentInstrumentrighttarget"
         },
         {
             "style": {
@@ -854,10 +840,26 @@
                 "color": "black"
             },
             "source": "ObservableCounter",
-            "sourceHandle": "ObservableCounter<T>leftsource",
+            "sourceHandle": "ObservableCounterleftsource",
             "target": "ObservableInstrument",
-            "targetHandle": "ObservableInstrument<T>righttarget",
-            "id": "reactflow__edge-ObservableCounterObservableCounter<T>leftsource-ObservableInstrumentObservableInstrument<T>righttarget"
+            "targetHandle": "ObservableInstrumentrighttarget",
+            "id": "reactflow__edge-ObservableCounterObservableCounterleftsource-ObservableInstrumentObservableInstrumentrighttarget"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "ObservableUpDownCounter",
+            "sourceHandle": "ObservableUpDownCounterleftsource",
+            "target": "ObservableInstrument",
+            "targetHandle": "ObservableInstrumentrighttarget",
+            "id": "reactflow__edge-ObservableUpDownCounterObservableUpDownCounterleftsource-ObservableInstrumentObservableInstrumentrighttarget"
         },
         {
             "style": {
@@ -870,10 +872,10 @@
                 "color": "black"
             },
             "source": "ObservableGauge",
-            "sourceHandle": "ObservableGauge<T>leftsource",
+            "sourceHandle": "ObservableGaugeleftsource",
             "target": "ObservableInstrument",
-            "targetHandle": "ObservableInstrument<T>righttarget",
-            "id": "reactflow__edge-ObservableGaugeObservableGauge<T>leftsource-ObservableInstrumentObservableInstrument<T>righttarget"
+            "targetHandle": "ObservableInstrumentrighttarget",
+            "id": "reactflow__edge-ObservableGaugeObservableGaugeleftsource-ObservableInstrumentObservableInstrumentrighttarget"
         },
         {
             "style": {
@@ -886,10 +888,10 @@
                 "color": "black"
             },
             "source": "Counter",
-            "sourceHandle": "Counter<T>leftsource",
+            "sourceHandle": "Counterleftsource",
             "target": "Instrument_1",
-            "targetHandle": "Instrument<T>righttarget",
-            "id": "reactflow__edge-CounterCounter<T>leftsource-Instrument_1Instrument<T>righttarget"
+            "targetHandle": "Instrument_1righttarget",
+            "id": "reactflow__edge-CounterCounterleftsource-Instrument_1Instrument_1righttarget"
         },
         {
             "style": {
@@ -902,10 +904,10 @@
                 "color": "black"
             },
             "source": "Histogram",
-            "sourceHandle": "Histogram<T>leftsource",
+            "sourceHandle": "Histogramleftsource",
             "target": "Instrument_1",
-            "targetHandle": "Instrument<T>righttarget",
-            "id": "reactflow__edge-HistogramHistogram<T>leftsource-Instrument_1Instrument<T>righttarget"
+            "targetHandle": "Instrument_1righttarget",
+            "id": "reactflow__edge-HistogramHistogramleftsource-Instrument_1Instrument_1righttarget"
         },
         {
             "style": {
@@ -918,10 +920,10 @@
                 "color": "black"
             },
             "source": "UpDownCounter",
-            "sourceHandle": "UpDownCounter<T>leftsource",
+            "sourceHandle": "UpDownCounterleftsource",
             "target": "Instrument_1",
-            "targetHandle": "Instrument<T>righttarget",
-            "id": "reactflow__edge-UpDownCounterUpDownCounter<T>leftsource-Instrument_1Instrument<T>righttarget"
+            "targetHandle": "Instrument_1righttarget",
+            "id": "reactflow__edge-UpDownCounterUpDownCounterleftsource-Instrument_1Instrument_1righttarget"
         },
         {
             "style": {
@@ -936,8 +938,8 @@
             "source": "Meter",
             "sourceHandle": "Meterrightsource",
             "target": "Counter",
-            "targetHandle": "Counter<T>bottomtarget",
-            "id": "reactflow__edge-MeterMeterrightsource-CounterCounter<T>bottomtarget"
+            "targetHandle": "Counterlefttarget",
+            "id": "reactflow__edge-MeterMeterrightsource-CounterCounterlefttarget"
         },
         {
             "style": {
@@ -952,8 +954,8 @@
             "source": "Meter",
             "sourceHandle": "Meterrightsource",
             "target": "Histogram",
-            "targetHandle": "Histogram<T>bottomtarget",
-            "id": "reactflow__edge-MeterMeterrightsource-HistogramHistogram<T>bottomtarget"
+            "targetHandle": "Histogramlefttarget",
+            "id": "reactflow__edge-MeterMeterrightsource-HistogramHistogramlefttarget"
         },
         {
             "style": {
@@ -968,8 +970,8 @@
             "source": "Meter",
             "sourceHandle": "Meterrightsource",
             "target": "UpDownCounter",
-            "targetHandle": "UpDownCounter<T>toptarget",
-            "id": "reactflow__edge-MeterMeterrightsource-UpDownCounterUpDownCounter<T>toptarget"
+            "targetHandle": "UpDownCounterlefttarget",
+            "id": "reactflow__edge-MeterMeterrightsource-UpDownCounterUpDownCounterlefttarget"
         },
         {
             "style": {
@@ -984,8 +986,8 @@
             "source": "Meter",
             "sourceHandle": "Meterrightsource",
             "target": "ObservableUpDownCounter",
-            "targetHandle": "ObservableUpDownCounter<T>toptarget",
-            "id": "reactflow__edge-MeterMeterrightsource-ObservableUpDownCounterObservableUpDownCounter<T>toptarget"
+            "targetHandle": "ObservableUpDownCounterlefttarget",
+            "id": "reactflow__edge-MeterMeterrightsource-ObservableUpDownCounterObservableUpDownCounterlefttarget"
         },
         {
             "style": {
@@ -1000,8 +1002,8 @@
             "source": "Meter",
             "sourceHandle": "Meterrightsource",
             "target": "ObservableCounter",
-            "targetHandle": "ObservableCounter<T>toptarget",
-            "id": "reactflow__edge-MeterMeterrightsource-ObservableCounterObservableCounter<T>toptarget"
+            "targetHandle": "ObservableCounterlefttarget",
+            "id": "reactflow__edge-MeterMeterrightsource-ObservableCounterObservableCounterlefttarget"
         },
         {
             "style": {
@@ -1016,8 +1018,8 @@
             "source": "Meter",
             "sourceHandle": "Meterrightsource",
             "target": "ObservableGauge",
-            "targetHandle": "ObservableGauge<T>toptarget",
-            "id": "reactflow__edge-MeterMeterrightsource-ObservableGaugeObservableGauge<T>toptarget"
+            "targetHandle": "ObservableGaugelefttarget",
+            "id": "reactflow__edge-MeterMeterrightsource-ObservableGaugeObservableGaugelefttarget"
         },
         {
             "style": {
@@ -1030,10 +1032,10 @@
                 "color": "black"
             },
             "source": "IMetricsListener",
-            "sourceHandle": "IMetricsListenertopsource",
+            "sourceHandle": "IMetricsListenerleftsource",
             "target": "Instrument",
             "targetHandle": "Instrumentrighttarget",
-            "id": "reactflow__edge-IMetricsListenerIMetricsListenertopsource-InstrumentInstrumentrighttarget"
+            "id": "reactflow__edge-IMetricsListenerIMetricsListenerleftsource-InstrumentInstrumentrighttarget"
         },
         {
             "style": {
@@ -1064,8 +1066,8 @@
             "source": "IMetricsBuilder",
             "sourceHandle": "IMetricsBuilderrightsource",
             "target": "IMetricsListener",
-            "targetHandle": "IMetricsListenerlefttarget",
-            "id": "reactflow__edge-IMetricsBuilderIMetricsBuilderrightsource-IMetricsListenerIMetricsListenerlefttarget"
+            "targetHandle": "IMetricsListenerbottomtarget",
+            "id": "reactflow__edge-IMetricsBuilderIMetricsBuilderrightsource-IMetricsListenerIMetricsListenerbottomtarget"
         },
         {
             "style": {
@@ -1110,15 +1112,15 @@
                 "color": "black"
             },
             "source": "IMetricsListener",
-            "sourceHandle": "IMetricsListenerbottomsource",
+            "sourceHandle": "IMetricsListenerrightsource",
             "target": "MeasurementHandlers",
-            "targetHandle": "MeasurementHandlerslefttarget",
-            "id": "reactflow__edge-IMetricsListenerIMetricsListenerbottomsource-MeasurementHandlersMeasurementHandlerslefttarget"
+            "targetHandle": "MeasurementHandlerstoptarget",
+            "id": "reactflow__edge-IMetricsListenerIMetricsListenerrightsource-MeasurementHandlersMeasurementHandlerstoptarget"
         }
     ],
     "viewport": {
-        "x": -400.58023392155155,
-        "y": -478.0911610217314,
-        "zoom": 0.7087870666295835
+        "x": -413.28847465149556,
+        "y": -481.66889295272483,
+        "zoom": 0.713667965632204
     }
 }
