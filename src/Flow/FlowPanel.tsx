@@ -19,6 +19,10 @@ const FlowPanel = (props: any) => {
         return acc;
     }, {});
 
+    const groups = _.mapValues(_.groupBy(FlowRouteDataList, 'group'),
+        clist => clist.map(car => _.omit(car, 'group')))
+    const keys = _.keys(groups)
+
     useEffect(() => {
         const menus = document.getElementsByClassName("nav nav-pills flex-column")
         if (menus.length <= 0) {
@@ -46,13 +50,14 @@ const FlowPanel = (props: any) => {
     }, [showIndex])
 
     useEffect(() => {
-        const pathname = location.pathname.split('/',)
-        if (pathname.length < 4) {
-            setCurrentPage(defaultPage)
-            return
+        let path = location.pathname
+        if (path == '/flow') {
+            path = '/flow/demo'
         }
 
-        setCurrentPage(location.pathname)
+        const i = keys.findIndex(k => k == FlowRouteDataList.find(p => p.linkpath == path)?.group)
+        setShowIndex(i)
+        setCurrentPage(path)
     }, [location])
 
     useEffect(() => {
@@ -69,9 +74,6 @@ const FlowPanel = (props: any) => {
 
         return false
     }
-
-    const groups = _.mapValues(_.groupBy(FlowRouteDataList, 'group'),
-        clist => clist.map(car => _.omit(car, 'group')))
 
     const groupedLinks = _.keys(groups).map((group, index) => {
         return (
