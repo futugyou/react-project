@@ -572,8 +572,8 @@
             "source": "RateLimiterOptions",
             "sourceHandle": "RateLimiterOptionsbottomsource",
             "target": "IRateLimiterPolicy",
-            "targetHandle": "IRateLimiterPolicy<TPartitionKey>toptarget",
-            "id": "reactflow__edge-RateLimiterOptionsRateLimiterOptionsbottomsource-IRateLimiterPolicyIRateLimiterPolicy<TPartitionKey>toptarget"
+            "targetHandle": "IRateLimiterPolicytoptarget",
+            "id": "reactflow__edge-RateLimiterOptionsRateLimiterOptionsbottomsource-IRateLimiterPolicyIRateLimiterPolicytoptarget"
         },
         {
             "style": {
@@ -588,8 +588,8 @@
             "source": "DefaultRateLimiterPolicy",
             "sourceHandle": "DefaultRateLimiterPolicytopsource",
             "target": "IRateLimiterPolicy",
-            "targetHandle": "IRateLimiterPolicy<TPartitionKey>bottomtarget",
-            "id": "reactflow__edge-DefaultRateLimiterPolicyDefaultRateLimiterPolicytopsource-IRateLimiterPolicyIRateLimiterPolicy<TPartitionKey>bottomtarget"
+            "targetHandle": "IRateLimiterPolicybottomtarget",
+            "id": "reactflow__edge-DefaultRateLimiterPolicyDefaultRateLimiterPolicytopsource-IRateLimiterPolicyIRateLimiterPolicybottomtarget"
         },
         {
             "style": {
@@ -796,8 +796,8 @@
             "source": "RateLimitingMiddleware",
             "sourceHandle": "RateLimitingMiddlewarebottomsource",
             "target": "PartitionedRateLimiter",
-            "targetHandle": "PartitionedRateLimiter<TResource>toptarget",
-            "id": "reactflow__edge-RateLimitingMiddlewareRateLimitingMiddlewarebottomsource-PartitionedRateLimiterPartitionedRateLimiter<TResource>toptarget"
+            "targetHandle": "PartitionedRateLimitertoptarget",
+            "id": "reactflow__edge-RateLimitingMiddlewareRateLimitingMiddlewarebottomsource-PartitionedRateLimiterPartitionedRateLimitertoptarget"
         }
     ],
     "viewport": {

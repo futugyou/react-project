@@ -1337,10 +1337,10 @@
                 "color": "black"
             },
             "source": "AuthenticationHandler",
-            "sourceHandle": "AuthenticationHandler<TOptions>leftsource",
+            "sourceHandle": "AuthenticationHandlerleftsource",
             "target": "AuthenticationSchemeOptions",
             "targetHandle": "AuthenticationSchemeOptionsrighttarget",
-            "id": "reactflow__edge-AuthenticationHandlerAuthenticationHandler<TOptions>leftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
+            "id": "reactflow__edge-AuthenticationHandlerAuthenticationHandlerleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
         },
         {
             "style": {
@@ -1353,10 +1353,10 @@
                 "color": "black"
             },
             "source": "SignInAuthenticationHandler",
-            "sourceHandle": "SignInAuthenticationHandler<TOptions>topsource",
+            "sourceHandle": "SignInAuthenticationHandlertopsource",
             "target": "SignOutAuthenticationHandler",
-            "targetHandle": "SignOutAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-SignInAuthenticationHandlerSignInAuthenticationHandler<TOptions>topsource-SignOutAuthenticationHandlerSignOutAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "SignOutAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-SignInAuthenticationHandlerSignInAuthenticationHandlertopsource-SignOutAuthenticationHandlerSignOutAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1385,10 +1385,10 @@
                 "color": "black"
             },
             "source": "SignOutAuthenticationHandler",
-            "sourceHandle": "SignOutAuthenticationHandler<TOptions>leftsource",
+            "sourceHandle": "SignOutAuthenticationHandlerleftsource",
             "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandler<TOptions>righttarget",
-            "id": "reactflow__edge-SignOutAuthenticationHandlerSignOutAuthenticationHandler<TOptions>leftsource-AuthenticationHandlerAuthenticationHandler<TOptions>righttarget"
+            "targetHandle": "AuthenticationHandlerrighttarget",
+            "id": "reactflow__edge-SignOutAuthenticationHandlerSignOutAuthenticationHandlerleftsource-AuthenticationHandlerAuthenticationHandlerrighttarget"
         },
         {
             "style": {
@@ -1403,8 +1403,8 @@
             "source": "BearerTokenHandler",
             "sourceHandle": "BearerTokenHandlertopsource",
             "target": "SignInAuthenticationHandler",
-            "targetHandle": "SignInAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-BearerTokenHandlerBearerTokenHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "SignInAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-BearerTokenHandlerBearerTokenHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1435,8 +1435,8 @@
             "source": "PolicySchemeHandler",
             "sourceHandle": "PolicySchemeHandlerrightsource",
             "target": "SignInAuthenticationHandler",
-            "targetHandle": "SignInAuthenticationHandler<TOptions>lefttarget",
-            "id": "reactflow__edge-PolicySchemeHandlerPolicySchemeHandlerrightsource-SignInAuthenticationHandlerSignInAuthenticationHandler<TOptions>lefttarget"
+            "targetHandle": "SignInAuthenticationHandlerlefttarget",
+            "id": "reactflow__edge-PolicySchemeHandlerPolicySchemeHandlerrightsource-SignInAuthenticationHandlerSignInAuthenticationHandlerlefttarget"
         },
         {
             "style": {
@@ -1451,8 +1451,8 @@
             "source": "CookieAuthenticationHandler",
             "sourceHandle": "CookieAuthenticationHandlertopsource",
             "target": "SignInAuthenticationHandler",
-            "targetHandle": "SignInAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-CookieAuthenticationHandlerCookieAuthenticationHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "SignInAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-CookieAuthenticationHandlerCookieAuthenticationHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1483,8 +1483,8 @@
             "source": "JwtBearerHandler",
             "sourceHandle": "JwtBearerHandlertopsource",
             "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-JwtBearerHandlerJwtBearerHandlertopsource-AuthenticationHandlerAuthenticationHandler<TOptions>bottomtarget",
+            "targetHandle": "AuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-JwtBearerHandlerJwtBearerHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget",
             "selected": false
         },
         {
@@ -1514,10 +1514,10 @@
                 "color": "black"
             },
             "source": "OAuthHandler",
-            "sourceHandle": "OAuthHandler<TOptions>leftsource",
+            "sourceHandle": "OAuthHandlerleftsource",
             "target": "OAuthOptions",
             "targetHandle": "OAuthOptionsrighttarget",
-            "id": "reactflow__edge-OAuthHandlerOAuthHandler<TOptions>leftsource-OAuthOptionsOAuthOptionsrighttarget"
+            "id": "reactflow__edge-OAuthHandlerOAuthHandlerleftsource-OAuthOptionsOAuthOptionsrighttarget"
         },
         {
             "style": {
@@ -1530,10 +1530,10 @@
                 "color": "black"
             },
             "source": "RemoteAuthenticationHandler",
-            "sourceHandle": "RemoteAuthenticationHandler<TOptions>topsource",
+            "sourceHandle": "RemoteAuthenticationHandlertopsource",
             "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandler<TOptions>topsource-AuthenticationHandlerAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "AuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1562,10 +1562,10 @@
                 "color": "black"
             },
             "source": "OAuthHandler",
-            "sourceHandle": "OAuthHandler<TOptions>rightsource",
+            "sourceHandle": "OAuthHandlerrightsource",
             "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-OAuthHandlerOAuthHandler<TOptions>rightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-OAuthHandlerOAuthHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1580,8 +1580,8 @@
             "source": "FacebookHandler",
             "sourceHandle": "FacebookHandlertopsource",
             "target": "OAuthHandler",
-            "targetHandle": "OAuthHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-FacebookHandlerFacebookHandlertopsource-OAuthHandlerOAuthHandler<TOptions>bottomtarget"
+            "targetHandle": "OAuthHandlerbottomtarget",
+            "id": "reactflow__edge-FacebookHandlerFacebookHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
         },
         {
             "style": {
@@ -1628,8 +1628,8 @@
             "source": "GoogleHandler",
             "sourceHandle": "GoogleHandlertopsource",
             "target": "OAuthHandler",
-            "targetHandle": "OAuthHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-GoogleHandlerGoogleHandlertopsource-OAuthHandlerOAuthHandler<TOptions>bottomtarget"
+            "targetHandle": "OAuthHandlerbottomtarget",
+            "id": "reactflow__edge-GoogleHandlerGoogleHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
         },
         {
             "style": {
@@ -1676,8 +1676,8 @@
             "source": "MicrosoftAccountHandler",
             "sourceHandle": "MicrosoftAccountHandlertopsource",
             "target": "OAuthHandler",
-            "targetHandle": "OAuthHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-MicrosoftAccountHandlerMicrosoftAccountHandlertopsource-OAuthHandlerOAuthHandler<TOptions>bottomtarget"
+            "targetHandle": "OAuthHandlerbottomtarget",
+            "id": "reactflow__edge-MicrosoftAccountHandlerMicrosoftAccountHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
         },
         {
             "style": {
@@ -1724,8 +1724,8 @@
             "source": "NegotiateHandler",
             "sourceHandle": "NegotiateHandlertopsource",
             "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-NegotiateHandlerNegotiateHandlertopsource-AuthenticationHandlerAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "AuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-NegotiateHandlerNegotiateHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1772,8 +1772,8 @@
             "source": "WsFederationHandler",
             "sourceHandle": "WsFederationHandlerrightsource",
             "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-WsFederationHandlerWsFederationHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-WsFederationHandlerWsFederationHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1820,8 +1820,8 @@
             "source": "TwitterHandler",
             "sourceHandle": "TwitterHandlertopsource",
             "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-TwitterHandlerTwitterHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-TwitterHandlerTwitterHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1836,8 +1836,8 @@
             "source": "OpenIdConnectHandler",
             "sourceHandle": "OpenIdConnectHandlertopsource",
             "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandler<TOptions>bottomtarget",
-            "id": "reactflow__edge-OpenIdConnectHandlerOpenIdConnectHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandler<TOptions>bottomtarget"
+            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+            "id": "reactflow__edge-OpenIdConnectHandlerOpenIdConnectHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1979,10 +1979,10 @@
                 "color": "black"
             },
             "source": "RemoteAuthenticationHandler",
-            "sourceHandle": "RemoteAuthenticationHandler<TOptions>leftsource",
+            "sourceHandle": "RemoteAuthenticationHandlerleftsource",
             "target": "RemoteAuthenticationOptions",
             "targetHandle": "RemoteAuthenticationOptionsrighttarget",
-            "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandler<TOptions>leftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsrighttarget"
+            "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandlerleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsrighttarget"
         }
     ],
     "viewport": {

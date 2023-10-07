@@ -2,7 +2,7 @@
     "nodes": [
         {
             "width": 824,
-            "height": 74,
+            "height": 70,
             "id": "IAuthorizationService",
             "position": {
                 "x": 1048.1391951306287,
@@ -36,7 +36,7 @@
         },
         {
             "width": 426,
-            "height": 106,
+            "height": 102,
             "id": "DefaultAuthorizationService",
             "position": {
                 "x": 1247.1310727056728,
@@ -81,8 +81,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "IAuthorizationRequirement",
             "position": {
                 "x": 736.6621051132511,
@@ -115,7 +115,7 @@
         },
         {
             "width": 348,
-            "height": 42,
+            "height": 52,
             "id": "IAuthorizationHandler",
             "position": {
                 "x": 1059.0158535223838,
@@ -152,7 +152,7 @@
         },
         {
             "width": 475,
-            "height": 200,
+            "height": 192,
             "id": "AuthorizationHandlerContext",
             "position": {
                 "x": 2095.325339879858,
@@ -192,7 +192,7 @@
         },
         {
             "width": 830,
-            "height": 42,
+            "height": 52,
             "id": "DefaultAuthorizationHandlerContextFactory",
             "position": {
                 "x": 1917.9706322014183,
@@ -226,7 +226,7 @@
         },
         {
             "width": 613,
-            "height": 42,
+            "height": 52,
             "id": "IAuthorizationHandlerProvider",
             "position": {
                 "x": 1462.6719450505545,
@@ -259,7 +259,7 @@
         },
         {
             "width": 552,
-            "height": 72,
+            "height": 64,
             "id": "DefaultAuthorizationHandlerProvider",
             "position": {
                 "x": 1493.0424294457314,
@@ -292,7 +292,7 @@
         },
         {
             "width": 385,
-            "height": 74,
+            "height": 70,
             "id": "IAuthorizationPolicyProvider",
             "position": {
                 "x": 2044.807376660478,
@@ -327,7 +327,7 @@
         },
         {
             "width": 508,
-            "height": 72,
+            "height": 64,
             "id": "DefaultAuthorizationPolicyProvider",
             "position": {
                 "x": 1982.965931544252,
@@ -360,7 +360,7 @@
         },
         {
             "width": 527,
-            "height": 136,
+            "height": 128,
             "id": "AuthorizationOptions",
             "position": {
                 "x": 712.1514774749157,
@@ -390,7 +390,7 @@
         },
         {
             "width": 695,
-            "height": 136,
+            "height": 128,
             "id": "AuthorizationPolicy",
             "position": {
                 "x": 1704.396031950797,
@@ -426,7 +426,7 @@
         },
         {
             "width": 616,
-            "height": 280,
+            "height": 272,
             "id": "AuthorizationPolicyBuilder",
             "position": {
                 "x": 2459.880527241997,
@@ -471,7 +471,7 @@
         },
         {
             "width": 408,
-            "height": 120,
+            "height": 112,
             "id": "AuthorizationResult",
             "position": {
                 "x": 578.2595024699219,
@@ -500,7 +500,7 @@
         },
         {
             "width": 422,
-            "height": 42,
+            "height": 52,
             "id": "PassThroughAuthorizationHandler",
             "position": {
                 "x": 1474.1812470502177,
@@ -530,7 +530,7 @@
         },
         {
             "width": 409,
-            "height": 42,
+            "height": 52,
             "id": "IAuthorizationEvaluator",
             "position": {
                 "x": 646.8278008604549,
@@ -563,7 +563,7 @@
         },
         {
             "width": 448,
-            "height": 42,
+            "height": 52,
             "id": "DefaultAuthorizationEvaluator",
             "position": {
                 "x": 627.773915602473,
@@ -593,7 +593,7 @@
         },
         {
             "width": 320,
-            "height": 106,
+            "height": 102,
             "id": "ServiceFlow",
             "position": {
                 "x": 201.02912990109502,
@@ -619,8 +619,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 74,
+            "width": 302,
+            "height": 70,
             "id": "IAuthorizeData",
             "position": {
                 "x": 229.52248065835738,
@@ -651,7 +651,7 @@
         },
         {
             "width": 302,
-            "height": 74,
+            "height": 70,
             "id": "AuthorizeAttribute",
             "position": {
                 "x": 227.07304643110405,
@@ -683,7 +683,7 @@
         },
         {
             "width": 571,
-            "height": 58,
+            "height": 54,
             "id": "AuthorizationHandler1",
             "position": {
                 "x": 889.2841148806611,
@@ -722,7 +722,7 @@
         },
         {
             "width": 636,
-            "height": 58,
+            "height": 54,
             "id": "AuthorizationHandler2",
             "position": {
                 "x": 798.5082104934816,
@@ -753,7 +753,7 @@
         },
         {
             "width": 682,
-            "height": 104,
+            "height": 96,
             "id": "ClaimsAuthorizationRequirement",
             "position": {
                 "x": 346.3000613597601,
@@ -788,7 +788,7 @@
         },
         {
             "width": 742,
-            "height": 42,
+            "height": 52,
             "id": "DenyAnonymousAuthorizationRequirement",
             "position": {
                 "x": 1050.108715511673,
@@ -818,7 +818,7 @@
         },
         {
             "width": 678,
-            "height": 72,
+            "height": 64,
             "id": "NameAuthorizationRequirement",
             "position": {
                 "x": 56.16233609961637,
@@ -850,8 +850,8 @@
             "dragging": false
         },
         {
-            "width": 300,
-            "height": 42,
+            "width": 302,
+            "height": 52,
             "id": "OperationAuthorizationRequirement",
             "position": {
                 "x": 308.4378503288315,
@@ -881,7 +881,7 @@
         },
         {
             "width": 674,
-            "height": 72,
+            "height": 64,
             "id": "RolesAuthorizationRequirement",
             "position": {
                 "x": 57.37251315295612,
@@ -914,7 +914,7 @@
         },
         {
             "width": 677,
-            "height": 138,
+            "height": 134,
             "id": "MiddlewareFlow",
             "position": {
                 "x": 195.5713038836443,
@@ -939,11 +939,14 @@
                 "x": 195.5713038836443,
                 "y": -168.92066304140567
             },
-            "dragging": false
+            "dragging": false,
+            "style": {
+                "backgroundColor": "#b8e986"
+            }
         },
         {
             "width": 378,
-            "height": 42,
+            "height": 52,
             "id": "IAuthorizationRequirementData",
             "position": {
                 "x": 535.3318866828346,
@@ -966,7 +969,7 @@
         },
         {
             "width": 372,
-            "height": 58,
+            "height": 54,
             "id": "AuthorizationMiddleware",
             "position": {
                 "x": 1100.411765438255,
@@ -1000,7 +1003,7 @@
         },
         {
             "width": 920,
-            "height": 58,
+            "height": 54,
             "id": "IPolicyEvaluator",
             "position": {
                 "x": 1593.6116837783075,
@@ -1034,7 +1037,7 @@
         },
         {
             "width": 358,
-            "height": 42,
+            "height": 52,
             "id": "PolicyEvaluator",
             "position": {
                 "x": 1874.9606159717418,
@@ -1064,7 +1067,7 @@
         },
         {
             "width": 782,
-            "height": 42,
+            "height": 52,
             "id": "IAuthorizationMiddlewareResultHandler",
             "position": {
                 "x": 895.7020830363772,
@@ -1097,7 +1100,7 @@
         },
         {
             "width": 821,
-            "height": 42,
+            "height": 52,
             "id": "AuthorizationMiddlewareResultHandler",
             "position": {
                 "x": 877.2118911023351,
@@ -1127,7 +1130,7 @@
         },
         {
             "width": 529,
-            "height": 168,
+            "height": 160,
             "id": "PolicyAuthorizationResult",
             "position": {
                 "x": 1783.4937123848622,
@@ -1159,7 +1162,7 @@
         },
         {
             "width": 613,
-            "height": 120,
+            "height": 112,
             "id": "AuthorizationPolicyCache",
             "position": {
                 "x": 2440.233749779066,
@@ -1408,10 +1411,10 @@
                 "color": "black"
             },
             "source": "AuthorizationHandler1",
-            "sourceHandle": "AuthorizationHandler<TRequirement>topsource",
+            "sourceHandle": "AuthorizationHandler1topsource",
             "target": "IAuthorizationHandler",
             "targetHandle": "IAuthorizationHandlerbottomtarget",
-            "id": "reactflow__edge-AuthorizationHandler1AuthorizationHandler<TRequirement>topsource-IAuthorizationHandlerIAuthorizationHandlerbottomtarget"
+            "id": "reactflow__edge-AuthorizationHandler1AuthorizationHandler1topsource-IAuthorizationHandlerIAuthorizationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1424,10 +1427,10 @@
                 "color": "black"
             },
             "source": "AuthorizationHandler2",
-            "sourceHandle": "AuthorizationHandler<TRequirement, TResource>topsource",
+            "sourceHandle": "AuthorizationHandler2topsource",
             "target": "IAuthorizationHandler",
             "targetHandle": "IAuthorizationHandlerbottomtarget",
-            "id": "reactflow__edge-AuthorizationHandler2AuthorizationHandler<TRequirement, TResource>topsource-IAuthorizationHandlerIAuthorizationHandlerbottomtarget"
+            "id": "reactflow__edge-AuthorizationHandler2AuthorizationHandler2topsource-IAuthorizationHandlerIAuthorizationHandlerbottomtarget"
         },
         {
             "style": {
@@ -1442,8 +1445,8 @@
             "source": "ClaimsAuthorizationRequirement",
             "sourceHandle": "ClaimsAuthorizationRequirementtopsource",
             "target": "AuthorizationHandler1",
-            "targetHandle": "AuthorizationHandler<TRequirement>bottomtarget",
-            "id": "reactflow__edge-ClaimsAuthorizationRequirementClaimsAuthorizationRequirementtopsource-AuthorizationHandler1AuthorizationHandler<TRequirement>bottomtarget"
+            "targetHandle": "AuthorizationHandler1bottomtarget",
+            "id": "reactflow__edge-ClaimsAuthorizationRequirementClaimsAuthorizationRequirementtopsource-AuthorizationHandler1AuthorizationHandler1bottomtarget"
         },
         {
             "style": {
@@ -1458,8 +1461,8 @@
             "source": "DenyAnonymousAuthorizationRequirement",
             "sourceHandle": "DenyAnonymousAuthorizationRequirementtopsource",
             "target": "AuthorizationHandler1",
-            "targetHandle": "AuthorizationHandler<TRequirement>bottomtarget",
-            "id": "reactflow__edge-DenyAnonymousAuthorizationRequirementDenyAnonymousAuthorizationRequirementtopsource-AuthorizationHandler1AuthorizationHandler<TRequirement>bottomtarget"
+            "targetHandle": "AuthorizationHandler1bottomtarget",
+            "id": "reactflow__edge-DenyAnonymousAuthorizationRequirementDenyAnonymousAuthorizationRequirementtopsource-AuthorizationHandler1AuthorizationHandler1bottomtarget"
         },
         {
             "style": {
@@ -1474,8 +1477,8 @@
             "source": "NameAuthorizationRequirement",
             "sourceHandle": "NameAuthorizationRequirementrightsource",
             "target": "AuthorizationHandler1",
-            "targetHandle": "AuthorizationHandler<TRequirement>lefttarget",
-            "id": "reactflow__edge-NameAuthorizationRequirementNameAuthorizationRequirementrightsource-AuthorizationHandler1AuthorizationHandler<TRequirement>lefttarget"
+            "targetHandle": "AuthorizationHandler1lefttarget",
+            "id": "reactflow__edge-NameAuthorizationRequirementNameAuthorizationRequirementrightsource-AuthorizationHandler1AuthorizationHandler1lefttarget"
         },
         {
             "style": {
@@ -1506,8 +1509,8 @@
             "source": "RolesAuthorizationRequirement",
             "sourceHandle": "RolesAuthorizationRequirementrightsource",
             "target": "AuthorizationHandler1",
-            "targetHandle": "AuthorizationHandler<TRequirement>lefttarget",
-            "id": "reactflow__edge-RolesAuthorizationRequirementRolesAuthorizationRequirementrightsource-AuthorizationHandler1AuthorizationHandler<TRequirement>lefttarget"
+            "targetHandle": "AuthorizationHandler1lefttarget",
+            "id": "reactflow__edge-RolesAuthorizationRequirementRolesAuthorizationRequirementrightsource-AuthorizationHandler1AuthorizationHandler1lefttarget"
         },
         {
             "style": {
@@ -1575,8 +1578,8 @@
         }
     ],
     "viewport": {
-        "x": 48.50098919731852,
-        "y": 224.32936372200808,
-        "zoom": 0.5114866211939937
+        "x": 49.100471700640355,
+        "y": 223.53710038591444,
+        "zoom": 0.5178087042105174
     }
 }
