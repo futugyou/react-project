@@ -1,9 +1,10 @@
 import './ClassNode.css'
 
 import { useState, useEffect } from 'react'
-import { Handle, Position, Node, NodeProps } from 'reactflow'
+import { Node, NodeProps } from 'reactflow'
 
 import NodeResize from '@/Flow/CustomNode/NodeResize'
+import HandlePlus from './HandlePlus'
 import { NodeOperation } from './utils'
 
 export type ClassNodeData = {
@@ -86,14 +87,7 @@ export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
                 </div>
             )}
 
-            <Handle id={id + 'topsource'} key={id + 'topsource'} position={Position.Top} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
-            <Handle id={id + 'bottomsource'} key={id + 'bottomsource'} position={Position.Bottom} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
-            <Handle id={id + 'leftsource'} key={id + 'leftsource'} position={Position.Left} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
-            <Handle id={id + 'rightsource'} key={id + 'rightsource'} position={Position.Right} type='source' className={`${selected ? 'nodeHandleDisplay' : 'nodeHandleHidden'}`} />
-            <Handle id={id + 'toptarget'} key={id + 'toptarget'} position={Position.Top} type='target' className={'nodeHandleHidden2'} />
-            <Handle id={id + 'bottomtarget'} key={id + 'bottomtarget'} position={Position.Bottom} type='target' className={'nodeHandleHidden2'} />
-            <Handle id={id + 'lefttarget'} key={id + 'lefttarget'} position={Position.Left} type='target' className={'nodeHandleHidden2'} />
-            <Handle id={id + 'righttarget'} key={id + 'righttarget'} position={Position.Right} type='target' className={'nodeHandleHidden2'} />
+            <HandlePlus id={id} selected={selected} type='custom'></HandlePlus>
         </div>
     )
 }

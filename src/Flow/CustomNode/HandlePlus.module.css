@@ -17,3 +17,33 @@ div:hover>div.hiddenSource {
     pointer-events: all !important;
     background: silver
 }
+
+[data-handlepos] {
+    width: 10px;
+    height: 10px;
+}
+
+[data-handlepos="right"] {
+    right: -5px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+[data-handlepos="left"] {
+    top: 50%;
+    left: -5px;
+    transform: translate(0, -50%);
+}
+
+[data-handlepos="top"] {
+    left: 50%;
+    top: -5px;
+    transform: translate(-50%, 0);
+}
+
+[data-handlepos="bottom"] {
+    top: auto;
+    left: 50%;
+    bottom: -5px;
+    transform: translate(-50%, 0);
+}
