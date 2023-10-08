@@ -67,7 +67,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
     const isConnecting = !!connectionNodeId
     const isTarget = connectionNodeId && connectionNodeId !== props.id
     const nodeId = useNodeId()!
-    const { getNode } = useReactFlow()
+    const { getNode, setNodes } = useReactFlow()
     const node = getNode(nodeId)!
 
     const shape = props.data?.shape ?? 'diamond'
@@ -88,6 +88,16 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
         // setD(getPathD(params.width, params.height, shape))
     }
 
+    const onResizeEnd = (event: ResizeDragEvent, params: ResizeParams) => {
+        // setNodes(ns => ns.map(n => {
+        //     if (n.id == props.id) {
+        //         return { ...n, selected: false }
+        //     } else {
+        //         return { ...n }
+        //     }
+        // }))
+    }
+
     useEffect(() => {
         if (node.style?.width && node.style?.height) {
             const w = getStyleNumber(node.style.width as string)
@@ -101,7 +111,7 @@ const ShapeNode = (props: NodeProps<ShapeNodeData>) => {
 
     return (
         <div className={styles.ShapeNode}>
-            {(props.data?.op?.allowResizer ?? true) && (<NodeResizer minWidth={30} minHeight={30} onResize={onResize} isVisible={props.selected} keepAspectRatio={keepAspectRatio} lineClassName={styles.ShapeNodeResizerLine} handleClassName={styles.ShapeNodeResizerHandle} />)}
+            {(props.data?.op?.allowResizer ?? true) && (<NodeResizer minWidth={30} minHeight={30} onResize={onResize} onResizeEnd={onResizeEnd} isVisible={props.selected} keepAspectRatio={keepAspectRatio} lineClassName={styles.ShapeNodeResizerLine} handleClassName={styles.ShapeNodeResizerHandle} />)}
             <Handle id={props.id + '01'} key={props.id + '01'} position={Position.Top} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '02'} key={props.id + '02'} position={Position.Bottom} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />
             <Handle id={props.id + '03'} key={props.id + '03'} position={Position.Left} type='source' className={`${props.selected ? styles.nodeHandleDisplay : styles.nodeHandleHidden}`} />

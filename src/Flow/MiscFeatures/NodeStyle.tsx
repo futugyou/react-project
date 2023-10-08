@@ -95,7 +95,7 @@ const NodeStyle = (props: NodeStyleProps) => {
     const [color, setColor] = useState<string>(getColor(selectedNode))
     const [colorSelect, setColorSelect] = useState('color')
     const [resizer, setResizer] = useState<boolean>(selectedNode?.data?.op?.allowResizer == undefined ? true : selectedNode?.data?.op?.allowResizer)
-    const [keepAspectRatio, setKeepAspectRatio] = useState<boolean>(selectedNode?.data?.op?.keepAspectRatio == undefined ? true : selectedNode?.data?.op?.keepAspectRatio)
+    const [keepAspectRatio, setKeepAspectRatio] = useState<boolean>(selectedNode?.data?.op?.keepAspectRatio == undefined ? false : selectedNode?.data?.op?.keepAspectRatio)
 
     const [hex, setHex] = useState("transparent")
     const [showModal, setShowModal] = useState(false)
@@ -210,6 +210,10 @@ const NodeStyle = (props: NodeStyleProps) => {
             }))
         }
     }, [selectedNode, setNodes])
+
+    useEffect(() => {
+        setSelectedNode({ ...props.selectedNode })
+    }, [props.selectedNode])
 
     return (
         <>

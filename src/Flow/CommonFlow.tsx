@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { flushSync } from 'react-dom'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
     useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel, Connection,
-    useOnSelectionChange
+    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeChange, EdgeChange,
+    NodeDimensionChange, NodeSelectionChange
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -62,11 +64,31 @@ interface CommonFlow {
 }
 
 const CommonFlow = (props: CommonFlow) => {
-    const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
-    const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
+    // const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
+    // const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
+
+    const [selectedNode, setSelectedNode] = useState<Node>()
+    const [selectedEdge, setSelectedEdge] = useState<Edge>()
+
+    const [nodes, setNodes] = useState(props.initialNodes)
+    const [edges, setEdges] = useState(props.initialEdges)
+
+    const onNodesChange = useCallback((changes: NodeChange[]) => {
+        setNodes((nds) => {
+            const change = changes.find(p => p.type == 'dimensions') as NodeDimensionChange
+            if (change && change.dimensions) {
+                const n = nds.find(p => p.id == change.id)!
+                setSelectedNode({ ...n, style: { ...n.style, width: change.dimensions.width, height: change.dimensions.height } })
+            }
+
+            const nodes = applyNodeChanges(changes, nds)
+            return nodes
+        })
+    }, [])
+
+    const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)), [])
 
     const onConnect = useCallback((params: any) => {
-        // setEdges((eds) => addEdge(params, eds))
         setEdges((eds) => addEdge({ ...params, type: 'default', markerEnd: { type: MarkerType.ArrowClosed, color: 'black', } }, eds))
     }, [setEdges])
 
@@ -114,8 +136,6 @@ const CommonFlow = (props: CommonFlow) => {
         [rfInstance]
     )
 
-    const [selectedNode, setSelectedNode] = useState<Node>()
-    const [selectedEdge, setSelectedEdge] = useState<Edge>()
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
