@@ -1,23 +1,3 @@
-.nodeHandleDisplay {
-    background: silver;
-}
-
-.nodeHandleHidden {
-    opacity: 0;
-    pointer-events: none !important;
-}
-
-.nodeHandleHidden2 {
-    opacity: 0;
-    pointer-events: none !important;
-}
-
-.DefaultNodePlus:hover>div.nodeHandleHidden {
-    opacity: 1;
-    pointer-events: all !important;
-    background: silver
-}
-
 .nodeDisplayContainer {
     display: flex;
     justify-content: center;
