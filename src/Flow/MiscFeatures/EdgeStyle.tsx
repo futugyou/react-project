@@ -19,7 +19,7 @@ export interface EdgeStyleProps {
 const baseEdgeTypes = ['default', 'bezier', 'straight', 'step', 'smoothstep']
 
 const getEdgeTypeUtils = (t?: string) => {
-    if (t == undefined || baseEdgeTypes.includes(t)) {
+    if (t == undefined || t == 'bezier') {
         return 'default'
     }
 
@@ -206,7 +206,7 @@ const EdgeStyle = (props: EdgeStyleProps) => {
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>EdgeType</div>
                     <div className={styles.groupLayer}>
-                        <div className={`${styles.groupLayerItem} ${edgeType == 'default' ? styles.selected : ''}`}
+                        <div className={`${styles.groupLayerItem} ${edgeType != 'floating' ? styles.selected : ''}`}
                             onClick={() => onChangeEdgeType('default')} >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>default</title>

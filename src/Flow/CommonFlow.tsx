@@ -76,15 +76,14 @@ const CommonFlow = (props: CommonFlow) => {
     const onNodesChange = useCallback((changes: NodeChange[]) => {
         setNodes((nds) => {
             const change = changes.find(p => p.type == 'dimensions') as NodeDimensionChange
-            if (change && change.dimensions) {
-                const n = nds.find(p => p.id == change.id)!
-                setSelectedNode({ ...n, style: { ...n.style, width: change.dimensions.width, height: change.dimensions.height } })
+            if (change && change.dimensions && selectedNode) {
+                setSelectedNode({ ...selectedNode, style: { ...selectedNode.style, width: change.dimensions.width, height: change.dimensions.height } })
             }
 
             const nodes = applyNodeChanges(changes, nds)
             return nodes
         })
-    }, [])
+    }, [selectedNode])
 
     const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)), [])
 
