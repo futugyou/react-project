@@ -1,6 +1,7 @@
 .groupContainer {
+    top: 0;
     right: 0;
-    bottom: 20px;
+    bottom: 0;
     display: flex;
     position: absolute;
     z-index: 5;
@@ -9,7 +10,6 @@
     border: 1px dashed silver;
     border-radius: 10px;
     flex-direction: column;
-    height: 730px;
     width: 245px;
     background-color: ghostwhite;
 }

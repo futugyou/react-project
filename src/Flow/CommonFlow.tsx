@@ -77,7 +77,8 @@ const CommonFlow = (props: CommonFlow) => {
         setNodes((nds) => {
             const change = changes.find(p => p.type == 'dimensions') as NodeDimensionChange
             if (change && change.dimensions && selectedNode) {
-                setSelectedNode({ ...selectedNode, style: { ...selectedNode.style, width: change.dimensions.width, height: change.dimensions.height } })
+                const n = nds.find(p => p.id == change.id)!
+                setSelectedNode({ ...n, style: { ...n.style, width: change.dimensions.width, height: change.dimensions.height } })
             }
 
             const nodes = applyNodeChanges(changes, nds)
@@ -170,15 +171,15 @@ const CommonFlow = (props: CommonFlow) => {
                 connectionLineComponent={FloatingConnectionLine}
             >
                 <Panel position="top-left">
-                    <h2>{props.title}</h2>
-                </Panel>
-                <Panel position="top-right">
                     <RestoreFlow id={props.id} />
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />
                     <UpdateNode selectedNode={selectedNode} />
                     <DownloadFlow />
+                </Panel>
+                <Panel position="top-center" >
+                    <h2>{props.title}</h2>
                 </Panel>
                 <Controls />
                 {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getNodeId()} />)}
