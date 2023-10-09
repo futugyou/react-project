@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useCallback, useRef, MouseEvent } from 'react'
+import React, { useState, useCallback, useRef, MouseEvent } from 'react'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
-    useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel, Connection,
-    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeChange, EdgeChange,
-    NodeDimensionChange, useReactFlow, XYPosition
+    updateEdge, addEdge, BackgroundVariant, Panel, Connection, NodeChange, EdgeChange, XYPosition,
+    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeDimensionChange, useReactFlow
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
 
-import { DefaultClassNodeType, getNodeId, ClassNode } from '@/Flow/CustomNode/ClassNode'
+import ClassNode from '@/Flow/CustomNode/ClassNode'
 import ShapeNode from '@/Flow/CustomNode/ShapeNode'
 import DefaultNodePlus from '@/Flow/CustomNode/DefaultNodePlus'
+
 import FloatingConnectionLine from '@/Flow/CustomEdges/FloatingConnectionLine'
 import FloatingEdge from '@/Flow/CustomEdges/FloatingEdge'
 import DefaultEdgePlus from '@/Flow/CustomEdges/DefaultEdgePlus'
@@ -25,6 +25,8 @@ import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
 import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
 import FlowStyle, { DragNodeType } from '@/Flow/MiscFeatures/FlowStyle'
+
+import { getRandomId } from '@/Flow/utils'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -123,11 +125,9 @@ const CommonFlow = (props: CommonFlow) => {
             })
 
             const newNode: Node = {
-                ...DefaultClassNodeType,
-                id: getNodeId(),
+                id: getRandomId(),
                 type: nodeType.type,
-                data: { ...DefaultClassNodeType.data, shape: nodeType.shape },
-                resizing: true,
+                data: { shape: nodeType.shape },
                 position,
             }
 
@@ -229,8 +229,8 @@ const CommonFlow = (props: CommonFlow) => {
                     <h2>{props.title}</h2>
                 </Panel>
                 <Controls />
-                {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getNodeId()} />)}
-                {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getNodeId()} />)}
+                {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
+                {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
                 {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>

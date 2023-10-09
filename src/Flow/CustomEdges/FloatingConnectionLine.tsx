@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { getBezierPath, ConnectionLineComponentProps } from 'reactflow'
 
 function FloatingConnectionLine(props: ConnectionLineComponentProps) {

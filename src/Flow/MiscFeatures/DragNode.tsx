@@ -1,4 +1,3 @@
-import React from 'react'
 
 interface DragNodeProps {
     title?: string
@@ -6,7 +5,8 @@ interface DragNodeProps {
 
 export const DragNodeType: string = 'application/reactflow'
 
-function DragNode(props: DragNodeProps) {
+// this component is unused
+const DragNode = (props: DragNodeProps) => {
     const title = props.title ?? 'Class Node'
 
     const onDragStart = (event: any, nodeType: string) => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { NodeTypes } from 'reactflow'
 
 import CommonFlow from '@/Flow/CommonFlow'
-import { ClassNode } from '@/Flow/CustomNode/ClassNode'
+import ClassNode from '@/Flow/CustomNode/ClassNode'
 import ShapeNode from '@/Flow/CustomNode/ShapeNode'
 
 
@@ -79,16 +79,6 @@ const initialNodes = [
             "parent": "IEnumerable<IFileInfo>",
             "properties": [
                 "bool Exists { get; }"
-            ],
-            "connects": [
-                {
-                    "position": "top",
-                    "type": "target"
-                },
-                {
-                    "position": "left",
-                    "type": "source"
-                }
             ],
             "id": "IDirectoryContents"
         },

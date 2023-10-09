@@ -6,13 +6,6 @@ import MiniModal from '@/Common/MiniModal'
 
 
 export interface EdgeStyleProps {
-    // pathType?: string
-    // edgeColor?: string
-    // animated?: boolean
-    // startMarkerType?: string
-    // startMarkerColor?: string
-    // endMarkerType?: string
-    // endMarkerColor?: string
     selectedEdge: Edge
 }
 

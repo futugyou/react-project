@@ -1,9 +1,8 @@
 import styles from './DefaultNodePlus.module.css'
 
-import { useState, useEffect } from 'react'
-import { Handle, useStore, ReactFlowState, Position, NodeProps, useNodeId, useReactFlow, NodeResizer, ResizeDragEvent, ResizeParams } from 'reactflow'
-import { NodeOperation } from './utils'
-import HandlePlus from './HandlePlus'
+import { NodeProps, NodeResizer } from 'reactflow'
+import { NodeOperation } from '@/Flow/CustomNode/utils'
+import HandlePlus from '@/Flow/CustomNode/HandlePlus'
 
 interface DefaultNodePlusData {
     label?: ''

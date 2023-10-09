@@ -5,8 +5,8 @@ import {
     useStore, ReactFlowState, NodeProps, useNodeId, useReactFlow, NodeResizer,
     ResizeDragEvent, ResizeParams
 } from 'reactflow'
-import { NodeOperation } from './utils'
-import HandlePlus from './HandlePlus'
+import { NodeOperation } from '@/Flow/CustomNode/utils'
+import HandlePlus from '@/Flow/CustomNode/HandlePlus'
 
 interface ShapeNodeData {
     shape?: 'diamond' | 'circle' | 'ellipse' | 'parallelogram' | 'rect' | 'radiusrect' | 'db' | 'bus'

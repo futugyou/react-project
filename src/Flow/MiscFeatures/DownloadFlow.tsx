@@ -1,4 +1,3 @@
-import React from 'react'
 import { useReactFlow, getRectOfNodes, getTransformForBounds } from 'reactflow'
 import { toPng } from 'html-to-image'
 

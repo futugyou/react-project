@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
 
 export interface FlowRouteData {
     name: string
@@ -156,56 +156,56 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     linkpath: '/flow/dotnet/session',
     path: 'dotnet/session',
     element: lazy(() => import('./Dotnet/Session/Flow')),
-},{
+}, {
     name: 'https',
     display: 'Https',
     group: 'NetCore',
     linkpath: '/flow/dotnet/https',
     path: 'dotnet/https',
     element: lazy(() => import('./Dotnet/Https/Flow')),
-},{
+}, {
     name: 'rewrite',
     display: 'Rewrite',
     group: 'NetCore',
     linkpath: '/flow/dotnet/rewrite',
     path: 'dotnet/rewrite',
     element: lazy(() => import('./Dotnet/Rewrite/Flow')),
-},{
+}, {
     name: 'ratelimiting',
     display: 'RateLimiting',
     group: 'NetCore',
     linkpath: '/flow/dotnet/ratelimiting',
     path: 'dotnet/ratelimiting',
     element: lazy(() => import('./Dotnet/RateLimiting/Flow')),
-},{
+}, {
     name: 'cors',
     display: 'Cors',
     group: 'NetCore',
     linkpath: '/flow/dotnet/cors',
     path: 'dotnet/cors',
     element: lazy(() => import('./Dotnet/Cors/Flow')),
-},{
+}, {
     name: 'healthchecks',
     display: 'HealthChecks',
     group: 'NetCore',
     linkpath: '/flow/dotnet/healthchecks',
     path: 'dotnet/healthchecks',
     element: lazy(() => import('./Dotnet/HealthChecks/Flow')),
-},{
+}, {
     name: 'authentication',
     display: 'Authentication',
     group: 'NetCore',
     linkpath: '/flow/dotnet/authentication',
     path: 'dotnet/authentication',
     element: lazy(() => import('./Dotnet/Authentication/Flow')),
-},{
+}, {
     name: 'authenticationhandler',
     display: 'Auth-Handler',
     group: 'NetCore',
     linkpath: '/flow/dotnet/authenticationhandler',
     path: 'dotnet/authenticationhandler',
     element: lazy(() => import('./Dotnet/AuthenticationHandler/Flow')),
-},{
+}, {
     name: 'authorization',
     display: 'Authorization',
     group: 'NetCore',

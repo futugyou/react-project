@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ClassNodeType } from '@/Flow/CustomNode/ClassNode'
 import { Node, useReactFlow, useUpdateNodeInternals } from 'reactflow'
 

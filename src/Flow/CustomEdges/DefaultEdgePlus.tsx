@@ -1,6 +1,5 @@
 import styles from './DefaultEdgePlus.module.css'
 
-import { useCallback } from 'react'
 import { StraightEdge, BezierEdge, StepEdge, SimpleBezierEdge, SmoothStepEdge, EdgeProps } from 'reactflow'
 
 const DefaultEdgePlus = (props: EdgeProps) => {

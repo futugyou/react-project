@@ -1,8 +1,4 @@
 import styles from './FlowStyle.module.css'
-import { CSSProperties, useEffect, useState } from 'react'
-import { Sketch, ColorResult } from '@uiw/react-color'
-import { useReactFlow, Node } from 'reactflow'
-import MiniModal from '@/Common/MiniModal'
 
 export interface FlowStyleProps {
 
@@ -18,9 +14,6 @@ const FlowStyle = (props: FlowStyleProps) => {
 
     return (
         <>
-            {/* <MiniModal show={showModal} setShow={setShowModal} size='auto'>
-                <Sketch color={hex} onChange={onColorChange} />
-            </MiniModal> */}
             <div className={styles.groupContainer} >
                 {/* base node type */}
                 <div className={styles.groupLayerContainer}>

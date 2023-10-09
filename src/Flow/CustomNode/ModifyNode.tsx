@@ -124,7 +124,7 @@ export const ModifyNode = ({ data, updateNode }: ModifyNodeProps) => {
                     </div>
                     {/* nodeName is special id, it will cause 'TypeError elem.nodeName.toLowerCase is not a function' */}
                     <div className={styles.nodeItemContent}>
-                        <input id="nodeName2" className={styles.textInput} value={nodeData.name}
+                        <input id="nodeName2" className={styles.textInput} value={nodeData.name ?? ''}
                             onChange={e => HandleNameChange(e.target.value)}></input>
                     </div>
                 </div>

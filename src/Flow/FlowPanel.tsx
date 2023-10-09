@@ -6,7 +6,7 @@ import _ from 'lodash-es'
 import { useAnimate } from "framer-motion"
 import { BsListUl } from "react-icons/bs"
 
-import { FlowRouteDataList } from './FlowRouteData'
+import { FlowRouteDataList } from '@/Flow/FlowRouteData'
 
 const defaultPage = '/flow/demo'
 

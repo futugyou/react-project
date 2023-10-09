@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react'
 import { Node, NodeProps } from 'reactflow'
 
 import NodeResize from '@/Flow/CustomNode/NodeResize'
-import HandlePlus from './HandlePlus'
-import { NodeOperation } from './utils'
+import HandlePlus from '@/Flow/CustomNode/HandlePlus'
+import { NodeOperation } from '@/Flow/CustomNode/utils'
+import { getRandomId } from '@/Flow/utils'
 
 export type ClassNodeData = {
-    name: string
+    name?: string
     parent?: string
     methods?: string[]
     properties?: string[]
@@ -17,21 +18,20 @@ export type ClassNodeData = {
 
 export type ClassNodeType = Node<ClassNodeData>
 
-export const getNodeId = () => `randomnode_${+new Date()}`
-
-export const DefaultClassNodeType: ClassNodeType = {
-    id: '',
-    position: {
-        x: Math.random() * window.innerWidth - 100,
-        y: Math.random() * window.innerHeight,
-    },
-    type: 'custom',
-    data: {
-        name: '',
+export const getClassNodeInitData = (): ClassNodeType => {
+    return {
+        id: getRandomId(),
+        position: {
+            x: Math.random() * window.innerWidth - 100,
+            y: Math.random() * window.innerHeight,
+        },
+        type: 'custom',
+        data: {
+        }
     }
 }
 
-export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
+const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
     const [emptyBody, setEmptyBody] = useState({})
     let methods: JSX.Element[] = []
     if (data.methods) {
@@ -91,3 +91,5 @@ export const ClassNode = ({ data, selected, id }: NodeProps<ClassNodeData>) => {
         </div>
     )
 }
+
+export default ClassNode

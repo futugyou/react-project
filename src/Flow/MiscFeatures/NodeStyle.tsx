@@ -1,5 +1,6 @@
 import styles from './NodeStyle.module.css'
-import { CSSProperties, useEffect, useState } from 'react'
+
+import { useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Node } from 'reactflow'
 import MiniModal from '@/Common/MiniModal'

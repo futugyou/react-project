@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DefaultClassNodeType, getNodeId } from '@/Flow/CustomNode/ClassNode'
+import { getClassNodeInitData } from '@/Flow/CustomNode/ClassNode'
 import { Node, useReactFlow } from 'reactflow'
 
 import MiniModal from '@/Common/MiniModal'
@@ -11,10 +11,9 @@ interface CreateNodeProps {
     title?: string
 }
 
+// this component is unused
 const CreateNode = (props: CreateNodeProps) => {
-    // TODO: initNodeData should init by props.type
-    const initNodeData = DefaultClassNodeType
-    initNodeData.id = getNodeId()
+    const initNodeData = getClassNodeInitData() 
     
     const { setNodes, getNodes } = useReactFlow()
     const title = props.title ?? 'addNode'

@@ -3,7 +3,7 @@ import styles from './FloatingEdge.module.css'
 import { useCallback } from 'react'
 import { useStore, getBezierPath, EdgeProps, getSmoothStepPath, getStraightPath, EdgeLabelRenderer } from 'reactflow'
 
-import { getEdgeParams } from './utils'
+import { getEdgeParams } from '@/Flow/CustomEdges/utils'
 
 export interface EdgeData {
     pathType: 'bezier' | 'smoothstep' | 'straight' | 'step'
