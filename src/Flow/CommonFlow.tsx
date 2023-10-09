@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { flushSync } from 'react-dom'
+import React, { useState, useEffect, useCallback, useRef, MouseEvent } from 'react'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
     useNodesState, useEdgesState, updateEdge, addEdge, BackgroundVariant, Panel, Connection,
     useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeChange, EdgeChange,
-    NodeDimensionChange, NodeSelectionChange
+    NodeDimensionChange, useReactFlow, XYPosition
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -69,6 +68,7 @@ const CommonFlow = (props: CommonFlow) => {
 
     const [selectedNode, setSelectedNode] = useState<Node>()
     const [selectedEdge, setSelectedEdge] = useState<Edge>()
+    const { getIntersectingNodes } = useReactFlow()
 
     const [nodes, setNodes] = useState(props.initialNodes)
     const [edges, setEdges] = useState(props.initialEdges)
@@ -136,6 +136,52 @@ const CommonFlow = (props: CommonFlow) => {
         [rfInstance]
     )
 
+    const onNodeDragStop = useCallback(
+        (event: MouseEvent, node: Node) => {
+            const intersections = getIntersectingNodes(node).filter(p => p.type == 'group').map((n) => n.id)
+
+            if (intersections.length == 0 && node.parentNode) {
+                setNodes((ns) =>
+                    ns.map(p => {
+                        if (p.id == node.id) {
+                            return {
+                                ...node,
+                                parentNode: undefined,
+                                position: node.positionAbsolute!,
+                                positionAbsolute: node.positionAbsolute,
+                                style: { ...node.style, zIndex: 1000 }
+                            }
+                        } else {
+                            return p
+                        }
+                    })
+                )
+            }
+
+            if (intersections.length == 1 && node.parentNode != intersections[0]) {
+                const parentNode = nodes.find(p => p.id == intersections[0])!
+                setNodes((ns) =>
+                    ns.map(p => {
+                        if (p.id == node.id) {
+                            const position: XYPosition = {
+                                x: (node.positionAbsolute?.x ?? node.position.x) - parentNode.position.x,
+                                y: (node.positionAbsolute?.y ?? node.position.y) - parentNode.position.y,
+                            }
+                            return {
+                                ...node,
+                                parentNode: intersections[0],
+                                position: position,
+                                style: { ...node.style, zIndex: 1001 }
+                            }
+                        } else {
+                            return p
+                        }
+                    })
+                )
+            }
+
+        }, [nodes]
+    )
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
@@ -166,6 +212,7 @@ const CommonFlow = (props: CommonFlow) => {
                 nodeTypes={nodeTypes}
                 onInit={setRfInstance}
                 onDrop={onDrop}
+                onNodeDragStop={onNodeDragStop}
                 onDragOver={onDragOver}
                 edgeTypes={edgeTypes}
                 connectionLineComponent={FloatingConnectionLine}

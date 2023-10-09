@@ -36,7 +36,11 @@ const FlowStyle = (props: FlowStyleProps) => {
                                 <circle cx="40" cy="20" r="2" stroke="#ff6700" fill="#ff6700" />
                             </svg>
                         </div>
-                        <div className={styles.groupLayerItem} style={{ border: 0 }} >
+                        <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'group')}  >
+                            <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg' style={{ overflow: 'visible' }}>
+                                <title>group</title>
+                                <rect x="0" y="10" width='40' rx='3' ry='3' height='20' stroke="#ff6700" fill="transparent" />
+                            </svg>
                         </div>
                         <div className={styles.groupLayerItem} style={{ border: 0 }} >
                         </div>
