@@ -27,7 +27,7 @@
     "react-reconciler": "^0.29.0",
     "react-router-dom": "^6.16.0",
     "react-simple-animate": "^3.5.2",
-    "reactflow": "^11.9.2",
+    "reactflow": "^11.9.3",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
