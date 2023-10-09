@@ -71,7 +71,7 @@ const CommonFlow = (props: CommonFlow) => {
 
     const [selectedNode, setSelectedNode] = useState<Node>()
     const [selectedEdge, setSelectedEdge] = useState<Edge>()
-    const { getIntersectingNodes } = useReactFlow()
+    const { getNodes, getIntersectingNodes } = useReactFlow()
 
     const [nodes, setNodes] = useState(props.initialNodes)
     const [edges, setEdges] = useState(props.initialEdges)
@@ -144,6 +144,10 @@ const CommonFlow = (props: CommonFlow) => {
                 position,
             }
 
+            if (newNode.type == 'group') {
+                newNode.style = { ...newNode.style, height: 200, width: 200 }
+            }
+
             setNodes((nds) => nds.concat(newNode))
         },
         [rfInstance]
@@ -151,8 +155,10 @@ const CommonFlow = (props: CommonFlow) => {
 
     const onNodeDragStop = useCallback(
         (event: MouseEvent, node: Node) => {
-            const intersections = getIntersectingNodes(node).filter(p => p.type == 'group').map((n) => n.id)
+            const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
+            const intersections = getIntersectingNodes(node).filter(p => p.type == 'group' && !children.includes(p.id)).map((n) => n.id)
 
+            // remove parentNode
             if (intersections.length == 0 && node.parentNode) {
                 setNodes((ns) =>
                     ns.map(p => {
@@ -172,7 +178,7 @@ const CommonFlow = (props: CommonFlow) => {
             }
 
             if (intersections.length == 1 && node.parentNode != intersections[0]) {
-                const parentNode = nodes.find(p => p.id == intersections[0])!
+                const parentNode = getNodes().find(p => p.id == intersections[0])!
                 setNodes((ns) =>
                     ns.map(p => {
                         if (p.id == node.id) {
@@ -193,7 +199,7 @@ const CommonFlow = (props: CommonFlow) => {
                 )
             }
 
-        }, [nodes]
+        }, []
     )
 
     useOnSelectionChange({
