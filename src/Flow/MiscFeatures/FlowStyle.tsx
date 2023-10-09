@@ -108,7 +108,7 @@ const FlowStyle = (props: FlowStyleProps) => {
                 <div className={styles.groupLayerContainer}>
                     <div className={styles.groupLayerTitle}>class node type</div>
                     <div className={styles.groupLayer}>
-                        <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'custom')}  >
+                        <div className={styles.groupLayerItem} draggable onDragStart={(event) => onDragStart(event, 'class')}  >
                             <svg width='40' height='40' xmlns='http://wwww.w3.org/2000/svg'>
                                 <title>class node</title>
                                 <path d="M0,0 L0,40 L40,40 L40,0 z" stroke='#ff6700' fill="transparent"></path>

@@ -8,7 +8,7 @@ interface HandlePlusProps {
 }
 
 const getids = (id: string, type?: string) => {
-    if (type == 'custom') {
+    if (type == 'custom'||type == 'class') {
         return ['topsource', 'bottomsource', 'leftsource', 'rightsource',
             'toptarget', 'bottomtarget', 'lefttarget', 'righttarget'].map(p => id + p)
     } else {

@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useRef, MouseEvent } from 'react'
+import React, { useState, useCallback, useRef, MouseEvent, DragEvent } from 'react'
 import ReactFlow, {
-    ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, Edge, Node, Controls, Background,
+    ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, EdgeTypes, Edge, Node, Controls, Background,
     updateEdge, addEdge, BackgroundVariant, Panel, Connection, NodeChange, EdgeChange, XYPosition,
     useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeDimensionChange, useReactFlow
 } from 'reactflow'
@@ -37,7 +37,7 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
     },
 }
 
-const edgeTypes = {
+const edgeTypes: EdgeTypes = {
     default: DefaultEdgePlus,
     straight: DefaultEdgePlus,
     step: DefaultEdgePlus,
@@ -46,12 +46,13 @@ const edgeTypes = {
     floating: FloatingEdge,
 }
 
-let nodeTypes: NodeTypes = {
+const nodeTypes: NodeTypes = {
     input: DefaultNodePlus,
     default: DefaultNodePlus,
     output: DefaultNodePlus,
     group: DefaultNodePlus,
     custom: ClassNode,
+    class: ClassNode,
     shape: ShapeNode,
 }
 
@@ -79,8 +80,16 @@ const CommonFlow = (props: CommonFlow) => {
         setNodes((nds) => {
             const change = changes.find(p => p.type == 'dimensions') as NodeDimensionChange
             if (change && change.dimensions && selectedNode) {
+                // this is called when node resizer
                 const n = nds.find(p => p.id == change.id)!
-                setSelectedNode({ ...n, style: { ...n.style, width: change.dimensions.width, height: change.dimensions.height } })
+                setSelectedNode({
+                    ...n,
+                    style: {
+                        ...n.style,
+                        width: change.dimensions.width,
+                        height: change.dimensions.height
+                    }
+                })
             }
 
             const nodes = applyNodeChanges(changes, nds)
@@ -88,30 +97,33 @@ const CommonFlow = (props: CommonFlow) => {
         })
     }, [selectedNode])
 
-    const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)), [])
+    const onEdgesChange = useCallback((changes: EdgeChange[]) => {
+        setEdges((eds) => applyEdgeChanges(changes, eds))
+    }, [])
 
-    const onConnect = useCallback((params: any) => {
-        setEdges((eds) => addEdge({ ...params, type: 'default', markerEnd: { type: MarkerType.ArrowClosed, color: 'black', } }, eds))
+    const onConnect = useCallback((params: Connection) => {
+        setEdges((eds) => addEdge({
+            ...params,
+            ...defaultEdgeOptions,
+        }, eds))
     }, [setEdges])
 
-    const onEdgeUpdate = useCallback(
-        (oldEdge: Edge<any>, newConnection: Connection) => setEdges((els) => updateEdge(oldEdge, newConnection, els)),
-        []
-    )
+    const onEdgeUpdate = useCallback((oldEdge: Edge, newConnection: Connection) => {
+        setEdges((els) => updateEdge(oldEdge, newConnection, els))
+    }, [])
 
     const [rfInstance, setRfInstance] = useState<any>(null)
     const reactFlowWrapper = useRef<any>(null)
 
-    const onDragOver = useCallback((event: any) => {
+    const onDragOver = useCallback((event: DragEvent) => {
         event.preventDefault()
         event.dataTransfer.dropEffect = 'move'
     }, [])
 
     const onDrop = useCallback(
-        (event: any) => {
+        (event: DragEvent) => {
             event.preventDefault()
 
-            const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
             const nodeType = JSON.parse(event.dataTransfer.getData(DragNodeType) ?? '{}')
 
             // check if the dropped element is valid
@@ -119,6 +131,7 @@ const CommonFlow = (props: CommonFlow) => {
                 return
             }
 
+            const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
             const position = rfInstance.project({
                 x: event.clientX - reactFlowBounds.left,
                 y: event.clientY - reactFlowBounds.top,

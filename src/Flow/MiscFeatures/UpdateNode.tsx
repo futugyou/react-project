@@ -16,7 +16,8 @@ const UpdateNode = (props: UpdateNodeProps) => {
     const updateNodeInternals = useUpdateNodeInternals()
     const [showModal, setShowModal] = useState(false)
     const title = props.title ?? 'updateNode'
-
+    const disabled = props.selectedNode == undefined ||
+        (props.selectedNode.type != 'custom' && props.selectedNode.type != 'class')
 
     const onNodeChange = () => {
         setShowModal(true)
@@ -47,7 +48,7 @@ const UpdateNode = (props: UpdateNodeProps) => {
             <MiniModal show={showModal} setShow={setShowModal}  >
                 <ModifyNode data={props.selectedNode!} updateNode={updateNode} ></ModifyNode>
             </MiniModal>
-            <button onClick={onNodeChange} disabled={props.selectedNode == undefined || props.selectedNode.type != 'custom'}>{title}</button>
+            <button onClick={onNodeChange} disabled={disabled}>{title}</button>
         </>
 
     )
