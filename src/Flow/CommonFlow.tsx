@@ -1,3 +1,5 @@
+import './CommonFlow.css'
+
 import React, { useState, useCallback, useRef, MouseEvent, DragEvent } from 'react'
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, EdgeTypes, Edge, Node, Controls, Background,
@@ -120,87 +122,113 @@ const CommonFlow = (props: CommonFlow) => {
         event.dataTransfer.dropEffect = 'move'
     }, [])
 
-    const onDrop = useCallback(
-        (event: DragEvent) => {
-            event.preventDefault()
+    const onDrop = useCallback((event: DragEvent) => {
+        event.preventDefault()
+        const nodeType = JSON.parse(event.dataTransfer.getData(DragNodeType) ?? '{}')
 
-            const nodeType = JSON.parse(event.dataTransfer.getData(DragNodeType) ?? '{}')
+        // check if the dropped element is valid
+        if (typeof nodeType.type === 'undefined' || !nodeType.type) {
+            return
+        }
 
-            // check if the dropped element is valid
-            if (typeof nodeType.type === 'undefined' || !nodeType.type) {
-                return
-            }
+        const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
+        const position = rfInstance.project({
+            x: event.clientX - reactFlowBounds.left,
+            y: event.clientY - reactFlowBounds.top,
+        })
 
-            const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
-            const position = rfInstance.project({
-                x: event.clientX - reactFlowBounds.left,
-                y: event.clientY - reactFlowBounds.top,
-            })
+        const newNode: Node = {
+            id: getRandomId(),
+            type: nodeType.type,
+            data: { shape: nodeType.shape },
+            position,
+        }
 
-            const newNode: Node = {
-                id: getRandomId(),
-                type: nodeType.type,
-                data: { shape: nodeType.shape },
-                position,
-            }
+        if (newNode.type == 'group') {
+            newNode.style = { ...newNode.style, height: 200, width: 200 }
+        }
 
-            if (newNode.type == 'group') {
-                newNode.style = { ...newNode.style, height: 200, width: 200 }
-            }
+        setNodes((nds) => nds.concat(newNode))
+    }, [rfInstance])
 
-            setNodes((nds) => nds.concat(newNode))
-        },
-        [rfInstance]
-    )
+    const onNodeDragStop = useCallback((event: MouseEvent, node: Node) => {
+        const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
+        const intersections = getIntersectingNodes(node)
+            .filter(p => p.type == 'group' && !children.includes(p.id))
+            .map((n) => n.id)
 
-    const onNodeDragStop = useCallback(
-        (event: MouseEvent, node: Node) => {
-            const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
-            const intersections = getIntersectingNodes(node).filter(p => p.type == 'group' && !children.includes(p.id)).map((n) => n.id)
-
-            // remove parentNode
-            if (intersections.length == 0 && node.parentNode) {
-                setNodes((ns) =>
-                    ns.map(p => {
-                        if (p.id == node.id) {
-                            return {
-                                ...node,
-                                parentNode: undefined,
-                                position: node.positionAbsolute!,
-                                positionAbsolute: node.positionAbsolute,
-                                style: { ...node.style, zIndex: 1000 }
-                            }
+        // remove parentNode
+        if (intersections.length == 0 && node.parentNode) {
+            setNodes((ns) =>
+                ns.map(p => {
+                    if (p.id == node.id) {
+                        let zIndex = node.style?.zIndex as number
+                        if (zIndex == undefined || zIndex <= 1000) {
+                            zIndex = 1000
                         } else {
-                            return p
+                            zIndex = zIndex - 1
                         }
-                    })
-                )
-            }
 
-            if (intersections.length == 1 && node.parentNode != intersections[0]) {
-                const parentNode = getNodes().find(p => p.id == intersections[0])!
-                setNodes((ns) =>
-                    ns.map(p => {
-                        if (p.id == node.id) {
-                            const position: XYPosition = {
-                                x: (node.positionAbsolute?.x ?? node.position.x) - parentNode.position.x,
-                                y: (node.positionAbsolute?.y ?? node.position.y) - parentNode.position.y,
-                            }
-                            return {
-                                ...node,
-                                parentNode: intersections[0],
-                                position: position,
-                                style: { ...node.style, zIndex: 1001 }
-                            }
+                        return {
+                            ...node,
+                            parentNode: undefined,
+                            position: node.positionAbsolute!,
+                            positionAbsolute: node.positionAbsolute,
+                            style: { ...node.style, zIndex: zIndex },
+                            className: '',
+                        }
+                    } else {
+                        return { ...p, className: '' }
+                    }
+                })
+            )
+        }
+
+        if (intersections.length == 1 && node.parentNode != intersections[0]) {
+            const parentNode = getNodes().find(p => p.id == intersections[0])!
+            setNodes((ns) =>
+                ns.map(p => {
+                    if (p.id == node.id) {
+                        const position: XYPosition = {
+                            x: (node.positionAbsolute?.x ?? node.position.x) - parentNode.position.x,
+                            y: (node.positionAbsolute?.y ?? node.position.y) - parentNode.position.y,
+                        }
+
+                        let zIndex = node.style?.zIndex as number
+                        if (zIndex == undefined) {
+                            zIndex = 1001
                         } else {
-                            return p
+                            zIndex = zIndex + 1
                         }
-                    })
-                )
-            }
 
-        }, []
-    )
+                        return {
+                            ...node,
+                            parentNode: intersections[0],
+                            position: position,
+                            style: { ...node.style, zIndex: zIndex },
+                            className: '',
+                        }
+                    } else {
+                        return { ...p, className: '' }
+                    }
+                })
+            )
+        }
+    }, [])
+
+    const onNodeDrag = useCallback((event: MouseEvent, node: Node) => {
+        const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
+        const intersections = getIntersectingNodes(node)
+            .filter(p => p.type == 'group' && !children.includes(p.id))
+            .map((n) => n.id)
+
+        setNodes((ns) =>
+            ns.map((n) => ({
+                ...n,
+                className: intersections.includes(n.id) ? 'highlight' : '',
+            }))
+        )
+    }, [])
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
@@ -232,6 +260,7 @@ const CommonFlow = (props: CommonFlow) => {
                 onInit={setRfInstance}
                 onDrop={onDrop}
                 onNodeDragStop={onNodeDragStop}
+                onNodeDrag={onNodeDrag}
                 onDragOver={onDragOver}
                 edgeTypes={edgeTypes}
                 connectionLineComponent={FloatingConnectionLine}
