@@ -4,7 +4,7 @@ import React, { useState, useCallback, useRef, MouseEvent, DragEvent } from 'rea
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, EdgeTypes, Edge, Node, Controls, Background,
     updateEdge, addEdge, BackgroundVariant, Panel, Connection, NodeChange, EdgeChange, XYPosition,
-    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeDimensionChange, useReactFlow, useStoreApi
+    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeDimensionChange, useReactFlow
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -23,6 +23,7 @@ import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
+import HelpLine from '@/Flow/MiscFeatures/HelpLine'
 
 import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
@@ -68,7 +69,6 @@ interface CommonFlow {
 }
 
 const CommonFlow = (props: CommonFlow) => {
-    const store = useStoreApi()
     // const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     // const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -117,6 +117,7 @@ const CommonFlow = (props: CommonFlow) => {
 
     const [rfInstance, setRfInstance] = useState<any>(null)
     const reactFlowWrapper = useRef<any>(null)
+    const helpLine = useRef<any>(null)
 
     const onDragOver = useCallback((event: DragEvent) => {
         event.preventDefault()
@@ -211,12 +212,10 @@ const CommonFlow = (props: CommonFlow) => {
                 })
             )
         }
-        setLeft(0)
-        setTop(0)
+
+        helpLine.current.clearHelpLinePosition()
     }, [])
 
-    const [left, setLeft] = useState(0)
-    const [top, setTop] = useState(0)
     const onNodeDrag = useCallback((event: MouseEvent, node: Node) => {
         const nodes = getNodes()
         const children = getAllChildrens(nodes, node).map((n) => n.id)
@@ -257,33 +256,8 @@ const CommonFlow = (props: CommonFlow) => {
             })
         )
 
-        const { transform } = store.getState()
-        const xs = nodes.filter(p => p.id !== node.id)
-            .map(p => [p.positionAbsolute?.x!, p.positionAbsolute?.x! + (p.width ?? 0), p.positionAbsolute?.x! + (p.width ?? 0) / 2])
-            .flatMap(p => p)
-            .map(p => p - node.positionAbsolute?.x!)
-            .sort((a, b) => a - b)
-            .filter(p => p < 2 && p > -2)
-        if (xs.length > 0) {
-            const p = rendererPointToPoint({ x: xs[0] + node.positionAbsolute?.x!, y: 0 }, transform)
-            setLeft(p.x)
-        } else {
-            setLeft(0)
-        }
-
-        const ys = nodes.filter(p => p.id !== node.id)
-            .map(p => [p.positionAbsolute?.y!, p.positionAbsolute?.y! + (p.height ?? 0), p.positionAbsolute?.y! + (p.height ?? 0) / 2])
-            .flatMap(p => p)
-            .map(p => p - node.positionAbsolute?.y!)
-            .sort((a, b) => a - b)
-            .filter(p => p < 2 && p > -2)
-        if (ys.length > 0) {
-            const p = rendererPointToPoint({ y: ys[0] + node.positionAbsolute?.y!, x: 0 }, transform)
-            setTop(p.y)
-        } else {
-            setTop(0)
-        }
-    }, [rfInstance])
+        helpLine.current.execHelpLinePosition(node)
+    }, [])
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
@@ -332,8 +306,9 @@ const CommonFlow = (props: CommonFlow) => {
                     <h2>{props.title}</h2>
                 </Panel>
                 <Controls />
-                <div style={{ position: 'absolute', zIndex: 1000, top: 0, bottom: 0, width: 1, backgroundColor: 'blue', left: left }} ></div>
-                <div style={{ position: 'absolute', zIndex: 1000, left: 0, right: 0, height: 1, backgroundColor: 'blue', top: top }} ></div>
+                <HelpLine ref={helpLine} ></HelpLine>
+                {/* <div style={{ position: 'absolute', zIndex: 1000, top: 0, bottom: 0, width: 1, backgroundColor: 'blue', left: left }} ></div>
+                <div style={{ position: 'absolute', zIndex: 1000, left: 0, right: 0, height: 1, backgroundColor: 'blue', top: top }} ></div> */}
                 {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
                 {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
                 {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}
