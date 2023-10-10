@@ -155,62 +155,58 @@ const CommonFlow = (props: CommonFlow) => {
         const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
         const intersections = getIntersectingNodes(node)
             .filter(p => p.type == 'group' && !children.includes(p.id))
-            .map((n) => n.id)
+            .sort((a, b) => (b.style?.zIndex as number ?? 1000) - (a.style?.zIndex as number ?? 1000))
+
+        let parentNode: Node | undefined
+        if (intersections.length > 0) {
+            parentNode = intersections[0]
+        }
 
         // remove parentNode
-        if (intersections.length == 0 && node.parentNode) {
+        if (parentNode == undefined && node.parentNode) {
             setNodes((ns) =>
                 ns.map(p => {
+                    let className = (p.className ?? '').replaceAll('highlight', '').trim()
                     if (p.id == node.id) {
-                        let zIndex = node.style?.zIndex as number
-                        if (zIndex == undefined || zIndex <= 1000) {
-                            zIndex = 1000
-                        } else {
-                            zIndex = zIndex - 1
-                        }
-
                         return {
                             ...node,
                             parentNode: undefined,
                             position: node.positionAbsolute!,
                             positionAbsolute: node.positionAbsolute,
-                            style: { ...node.style, zIndex: zIndex },
-                            className: '',
+                            className: className,
                         }
                     } else {
-                        return { ...p, className: '' }
+                        return { ...p, className: className }
                     }
                 })
             )
-        }
-
-        if (intersections.length == 1 && node.parentNode != intersections[0]) {
-            const parentNode = getNodes().find(p => p.id == intersections[0])!
+        } else if (parentNode != undefined && node.parentNode != parentNode.id) {
+            const parent = parentNode
             setNodes((ns) =>
                 ns.map(p => {
+                    let className = (p.className ?? '').replaceAll('highlight', '').trim()
                     if (p.id == node.id) {
+                        // Theoretically, the positionAbsolute cannot be undefined
                         const position: XYPosition = {
-                            x: (node.positionAbsolute?.x ?? node.position.x) - parentNode.position.x,
-                            y: (node.positionAbsolute?.y ?? node.position.y) - parentNode.position.y,
+                            x: (node.positionAbsolute?.x ?? node.position.x) - (parent.positionAbsolute?.x ?? parent.position.x),
+                            y: (node.positionAbsolute?.y ?? node.position.y) - (parent.positionAbsolute?.y ?? parent.position.y),
                         }
-
-                        let zIndex = node.style?.zIndex as number
-                        if (zIndex == undefined) {
-                            zIndex = 1001
-                        } else {
-                            zIndex = zIndex + 1
-                        }
-
                         return {
                             ...node,
-                            parentNode: intersections[0],
+                            parentNode: parent.id,
                             position: position,
-                            style: { ...node.style, zIndex: zIndex },
-                            className: '',
+                            className: className,
                         }
                     } else {
-                        return { ...p, className: '' }
+                        return { ...p, className: className }
                     }
+                })
+            )
+        } else {
+            setNodes((ns) =>
+                ns.map(p => {
+                    let className = (p.className ?? '').replaceAll('highlight', '').trim()
+                    return { ...p, className: className }
                 })
             )
         }
@@ -220,13 +216,39 @@ const CommonFlow = (props: CommonFlow) => {
         const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
         const intersections = getIntersectingNodes(node)
             .filter(p => p.type == 'group' && !children.includes(p.id))
-            .map((n) => n.id)
+            .sort((a, b) => (b.style?.zIndex as number ?? 1000) - (a.style?.zIndex as number ?? 1000))
 
+        let parentNode: Node | undefined
+        let zIndex = 1000
+        if (intersections.length > 0) {
+            parentNode = intersections[0]
+            const pzindex = parentNode.style?.zIndex
+            if (pzindex) {
+                zIndex = (pzindex as number) + 1
+            } else {
+                zIndex = 1001
+            }
+        }
         setNodes((ns) =>
-            ns.map((n) => ({
-                ...n,
-                className: intersections.includes(n.id) ? 'highlight' : '',
-            }))
+            ns.map((n) => {
+                let className = n.className ?? ''
+                let style = n.style
+                if (parentNode != undefined && parentNode.id == n.id) {
+                    if (!className.includes('highlight')) {
+                        className = className + ' highlight'
+                    }
+                } else {
+                    if (n.id == node.id) {
+                        style = { ...style, zIndex: zIndex }
+                    }
+                    className = className.replaceAll('highlight', '').trim()
+                }
+                return {
+                    ...n,
+                    className: className,
+                    style: style,
+                }
+            })
         )
     }, [])
 
