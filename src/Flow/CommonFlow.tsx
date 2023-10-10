@@ -4,7 +4,7 @@ import React, { useState, useCallback, useRef, MouseEvent, DragEvent } from 'rea
 import ReactFlow, {
     ReactFlowProvider, DefaultEdgeOptions, MarkerType, NodeTypes, EdgeTypes, Edge, Node, Controls, Background,
     updateEdge, addEdge, BackgroundVariant, Panel, Connection, NodeChange, EdgeChange, XYPosition,
-    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeDimensionChange, useReactFlow
+    useOnSelectionChange, applyEdgeChanges, applyNodeChanges, NodeDimensionChange, useReactFlow, useStoreApi
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -28,7 +28,7 @@ import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
 import FlowStyle, { DragNodeType } from '@/Flow/MiscFeatures/FlowStyle'
 
-import { getRandomId, getAllChildrens } from '@/Flow/utils'
+import { getRandomId, getAllChildrens, rendererPointToPoint } from '@/Flow/utils'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -68,6 +68,7 @@ interface CommonFlow {
 }
 
 const CommonFlow = (props: CommonFlow) => {
+    const store = useStoreApi()
     // const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     // const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
 
@@ -210,10 +211,14 @@ const CommonFlow = (props: CommonFlow) => {
                 })
             )
         }
+        setLeft(0)
     }, [])
 
+    const [left, setLeft] = useState(0)
+    const [top, setTop] = useState(0)
     const onNodeDrag = useCallback((event: MouseEvent, node: Node) => {
-        const children = getAllChildrens(getNodes(), node).map((n) => n.id)
+        const nodes = getNodes()
+        const children = getAllChildrens(nodes, node).map((n) => n.id)
         const intersections = getIntersectingNodes(node)
             .filter(p => p.type == 'group' && !children.includes(p.id))
             .sort((a, b) => (b.style?.zIndex as number ?? 1000) - (a.style?.zIndex as number ?? 1000))
@@ -250,7 +255,21 @@ const CommonFlow = (props: CommonFlow) => {
                 }
             })
         )
-    }, [])
+
+        const { transform } = store.getState()
+        const xs = nodes.filter(p => p.id !== node.id)
+            .map(p => [p.positionAbsolute?.x!, p.positionAbsolute?.x! + (p.width ?? 0), p.positionAbsolute?.x! + (p.width ?? 0) / 2])
+            .flatMap(p => p)
+            .map(p => p - node.positionAbsolute?.x!)
+            .sort((a, b) => a - b)
+            .filter(p => p < 2 && p > -2)
+        if (xs.length > 0) {
+            const p = rendererPointToPoint({ x: xs[0] + node.positionAbsolute?.x!, y: 0 }, transform)
+            setLeft(p.x)
+        } else {
+            setLeft(0)
+        }
+    }, [rfInstance])
 
     useOnSelectionChange({
         onChange: ({ nodes, edges }) => {
@@ -299,6 +318,7 @@ const CommonFlow = (props: CommonFlow) => {
                     <h2>{props.title}</h2>
                 </Panel>
                 <Controls />
+                <div style={{ position: 'absolute', zIndex: 1000, top: 0, bottom: 0, width: 1, backgroundColor: 'blue', left: left }} ></div>
                 {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
                 {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
                 {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}

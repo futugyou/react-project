@@ -1,5 +1,5 @@
 
-import { Node, XYPosition } from "reactflow"
+import { Node, XYPosition, Transform } from "reactflow"
 
 export const initPosition = () => {
     const p: XYPosition = {
@@ -18,4 +18,10 @@ export const getAllChildrens = (list: Node[], parentNode: Node) => {
         result = result.concat(getAllChildrens(list, sub))
     }
     return result
+}
+export const rendererPointToPoint = ({ x, y }: XYPosition, [tx, ty, tScale]: Transform): XYPosition => {
+    return {
+        x: x * tScale + tx,
+        y: y * tScale + ty,
+    }
 }
