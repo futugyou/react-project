@@ -212,6 +212,7 @@ const CommonFlow = (props: CommonFlow) => {
             )
         }
         setLeft(0)
+        setTop(0)
     }, [])
 
     const [left, setLeft] = useState(0)
@@ -269,6 +270,19 @@ const CommonFlow = (props: CommonFlow) => {
         } else {
             setLeft(0)
         }
+
+        const ys = nodes.filter(p => p.id !== node.id)
+            .map(p => [p.positionAbsolute?.y!, p.positionAbsolute?.y! + (p.height ?? 0), p.positionAbsolute?.y! + (p.height ?? 0) / 2])
+            .flatMap(p => p)
+            .map(p => p - node.positionAbsolute?.y!)
+            .sort((a, b) => a - b)
+            .filter(p => p < 2 && p > -2)
+        if (ys.length > 0) {
+            const p = rendererPointToPoint({ y: ys[0] + node.positionAbsolute?.y!, x: 0 }, transform)
+            setTop(p.y)
+        } else {
+            setTop(0)
+        }
     }, [rfInstance])
 
     useOnSelectionChange({
@@ -319,6 +333,7 @@ const CommonFlow = (props: CommonFlow) => {
                 </Panel>
                 <Controls />
                 <div style={{ position: 'absolute', zIndex: 1000, top: 0, bottom: 0, width: 1, backgroundColor: 'blue', left: left }} ></div>
+                <div style={{ position: 'absolute', zIndex: 1000, left: 0, right: 0, height: 1, backgroundColor: 'blue', top: top }} ></div>
                 {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
                 {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
                 {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}
