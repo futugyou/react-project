@@ -28,7 +28,7 @@ import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
 import FlowStyle, { DragNodeType } from '@/Flow/MiscFeatures/FlowStyle'
 
-import { getRandomId } from '@/Flow/utils'
+import { getRandomId, getAllChildrens } from '@/Flow/utils'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -152,7 +152,7 @@ const CommonFlow = (props: CommonFlow) => {
     }, [rfInstance])
 
     const onNodeDragStop = useCallback((event: MouseEvent, node: Node) => {
-        const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
+        const children = getAllChildrens(getNodes(), node).map((n) => n.id)
         const intersections = getIntersectingNodes(node)
             .filter(p => p.type == 'group' && !children.includes(p.id))
             .sort((a, b) => (b.style?.zIndex as number ?? 1000) - (a.style?.zIndex as number ?? 1000))
@@ -213,7 +213,7 @@ const CommonFlow = (props: CommonFlow) => {
     }, [])
 
     const onNodeDrag = useCallback((event: MouseEvent, node: Node) => {
-        const children = getNodes().filter(p => p.parentNode == node.id).map((n) => n.id)
+        const children = getAllChildrens(getNodes(), node).map((n) => n.id)
         const intersections = getIntersectingNodes(node)
             .filter(p => p.type == 'group' && !children.includes(p.id))
             .sort((a, b) => (b.style?.zIndex as number ?? 1000) - (a.style?.zIndex as number ?? 1000))
