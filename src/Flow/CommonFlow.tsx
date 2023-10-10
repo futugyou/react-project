@@ -23,7 +23,7 @@ import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
-import HelpLine from '@/Flow/MiscFeatures/HelpLine'
+import HelpLine, { HelpLineHandler } from '@/Flow/MiscFeatures/HelpLine'
 
 import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
@@ -117,7 +117,7 @@ const CommonFlow = (props: CommonFlow) => {
 
     const [rfInstance, setRfInstance] = useState<any>(null)
     const reactFlowWrapper = useRef<any>(null)
-    const helpLine = useRef<any>(null)
+    const helpLine = useRef<HelpLineHandler>({} as HelpLineHandler)
 
     const onDragOver = useCallback((event: DragEvent) => {
         event.preventDefault()
@@ -307,8 +307,6 @@ const CommonFlow = (props: CommonFlow) => {
                 </Panel>
                 <Controls />
                 <HelpLine ref={helpLine} ></HelpLine>
-                {/* <div style={{ position: 'absolute', zIndex: 1000, top: 0, bottom: 0, width: 1, backgroundColor: 'blue', left: left }} ></div>
-                <div style={{ position: 'absolute', zIndex: 1000, left: 0, right: 0, height: 1, backgroundColor: 'blue', top: top }} ></div> */}
                 {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
                 {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
                 {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}

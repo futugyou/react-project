@@ -5,11 +5,14 @@ import { useStoreApi, useReactFlow, Node } from 'reactflow'
 import { rendererPointToPoint } from '@/Flow/utils'
 
 interface HelpLineProps {
-    left?: number
-    top?: number
 }
 
-const HelpLine = forwardRef((props: HelpLineProps, ref) => {
+export interface HelpLineHandler {
+    execHelpLinePosition(node: Node): void
+    clearHelpLinePosition(): void
+}
+
+const HelpLine = forwardRef<HelpLineHandler, HelpLineProps>((props, ref) => {
     const store = useStoreApi()
     const { getNodes } = useReactFlow()
     const { transform } = store.getState()
