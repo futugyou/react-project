@@ -65,6 +65,11 @@ const Header = (props: any) => {
                             Flow
                         </Nav.Link>
                     </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="/cytoscape" href="/cytoscape" title="Cytoscape">
+                            Cytoscape
+                        </Nav.Link>
+                    </Nav.Item>
                     <NavDropdown title="OpenAI" id="OpenAI" active={checkActive('openai')}>
                         <NavDropdown.Item eventKey="/examples" href="/examples" title="Flow">Examples</NavDropdown.Item>
                         <NavDropdown.Item eventKey="/playground" href="/playground" title="Flow">Playground</NavDropdown.Item>
