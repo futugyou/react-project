@@ -5,16 +5,9 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Select from "@cloudscape-design/components/select"
 
 import Cytoscape from 'cytoscape'
-import COSEBilkent from 'cytoscape-cose-bilkent'
-import cola from 'cytoscape-cola'
 import avsdf from 'cytoscape-avsdf'
-import cise from 'cytoscape-cise'
-import cosmos from "cosmos-over-cytoscape"
-import d3Force from 'cytoscape-d3-force'
-import dagre from 'cytoscape-dagre'
 import euler from 'cytoscape-euler'
 import fcose from 'cytoscape-fcose'
-import klay from 'cytoscape-klay'
 
 import CytoscapeComponent from 'react-cytoscapejs'
 
@@ -22,19 +15,12 @@ import { graphStyle } from './Styling/GraphStyling'
 
 import data from './data/data.json'
 
-Cytoscape.use(COSEBilkent)
-Cytoscape.use(cola)
-Cytoscape.use(avsdf)
-Cytoscape.use(cise)
-Cytoscape.use(cosmos)
-Cytoscape.use(d3Force)
-Cytoscape.use(dagre)
+Cytoscape.use(avsdf) 
 Cytoscape.use(euler)
-Cytoscape.use(fcose)
-Cytoscape.use(klay)
+Cytoscape.use(fcose) 
 
 const CytoscapePanel = () => {
-    const [selectedOption, setSelectedOption] = React.useState({ label: "cose-bilkent", value: "cose-bilkent" })
+    const [selectedOption, setSelectedOption] = React.useState({ label: "fcose", value: "fcose" })
 
     const onSelectChange = ({ detail }: any) => {
         setSelectedOption(detail.selectedOption)
@@ -71,17 +57,10 @@ const CytoscapePanel = () => {
                 <Select
                     selectedOption={selectedOption}
                     onChange={onSelectChange}
-                    options={[
-                        { label: "cose-bilkent", value: "cose-bilkent" },
-                        { label: "cola", value: "cola" },
-                        { label: "avsdf", value: "avsdf" },
-                        { label: "cise", value: "cise" },
-                        { label: "cosmos", value: "cosmos" },
-                        { label: "d3Force", value: "d3-force" },
-                        { label: "dagre", value: "dagre" },
+                    options={[ 
+                        { label: "avsdf", value: "avsdf" },                        
                         { label: "euler", value: "euler" },
-                        { label: "fcose", value: "fcose" },
-                        { label: "klay", value: "klay" },
+                        { label: "fcose", value: "fcose" }, 
                         { label: "random", value: "random" },
                         { label: "grid", value: "grid" },
                         { label: "circle", value: "circle" },
