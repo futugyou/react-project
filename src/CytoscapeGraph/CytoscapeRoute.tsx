@@ -1,17 +1,17 @@
 
 import { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
-const Demo = lazy(() => import('./Demo'))
+const CytoscapePanel = lazy(() => import('./CytoscapePanel'))
 
 let childern: RouteObject[] = [
     {
         index: true,
-        element: <Demo />,
+        element: <CytoscapePanel />,
     }]
 
 
 export const CytoscapeRoute: RouteObject = {
     path: "/cytoscape",
-    element: <Demo />,
+    element: <CytoscapePanel />,
     // children: childern,
 }

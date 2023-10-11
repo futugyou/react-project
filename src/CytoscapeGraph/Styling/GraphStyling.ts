@@ -41,7 +41,7 @@ export const graphStyle: cytoscape.Stylesheet[] = [
             'text-background-opacity': 1,
             'text-background-shape': 'rectangle',
             'text-background-padding': '5px',
-            'background-image': 'data(image)',
+            'background-image': 'data(image)??""',
             'text-margin-y': -4.5,
             'text-border-width': 2,
             shape: 'roundrectangle',
