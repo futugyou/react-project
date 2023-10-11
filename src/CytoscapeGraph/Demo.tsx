@@ -1,8 +1,11 @@
 import './Demo.css'
 
+import React, { useCallback, useEffect, useState } from 'react'
 import Cytoscape from 'cytoscape'
 import COSEBilkent from 'cytoscape-cose-bilkent'
 import CytoscapeComponent from 'react-cytoscapejs'
+import { graphStyle } from './Styling/GraphStyling'
+import data from './data/data.json'
 
 Cytoscape.use(COSEBilkent)
 
@@ -14,8 +17,8 @@ const Demo = () => {
     ]
     const elements2 = {
         nodes: [
-            { data: { id: 'one', label: 'Node 1' },   },
-            { data: { id: 'two', label: 'Node 2' },   }
+            { data: { id: 'one', label: 'Node 1' }, },
+            { data: { id: 'two', label: 'Node 2' }, }
         ],
         edges: [
             {
@@ -23,31 +26,29 @@ const Demo = () => {
             }
         ]
     }
+
+    const elements3: any = data
+
     const layout = { name: 'cose-bilkent' }
-    return <CytoscapeComponent
-        elements={CytoscapeComponent.normalizeElements(elements2)}
-        layout={layout}
-        style={{
-            width: '100%',
-            height: `100%`,
-            boxSizing: 'border-box',
-            zIndex: 0,
-            border: '1px solid #dedede',
-        }}
-        stylesheet={[
-            {
-                selector: 'node',
-                style: {
-                    shape: 'rectangle'
-                }
-            },
-            {
-                selector: 'edge',
-                style: {
-                }
-            }
-        ]}
-    />
+
+    const cyCallback = useCallback((cy: Cytoscape.Core) => {
+        cy.on('resize', () => cy.fit(undefined, 20))
+    }, [])
+    return (
+        <CytoscapeComponent
+            cy={cyCallback}
+            elements={elements3}
+            layout={layout}
+            style={{
+                width: '100%',
+                height: `100%`,
+                boxSizing: 'border-box',
+                zIndex: 0,
+                border: '1px solid #dedede',
+            }}
+            stylesheet={graphStyle}
+        />
+    )
 }
 
 export default Demo
