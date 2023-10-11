@@ -11,6 +11,10 @@ canvas[data-id] {
     position: relative;
 }
 
+.__________cytoscape_container>div {
+    width: auto !important;
+}
+
 .layoutSelector {
     position: absolute;
     left: 10px;

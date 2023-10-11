@@ -17,6 +17,13 @@ export const FlowRouteDataList: FlowRouteData[] = [{
     path: 'demo',
     element: lazy(() => import('./DemoFlow')),
 }, {
+    name: 'Cytoscape',
+    display: 'Cytoscape',
+    group: 'Cytoscape',
+    linkpath: '/flow/cytoscape',
+    path: 'cytoscape',
+    element: lazy(() => import('@/CytoscapeGraph/CytoscapePanel')),
+}, {
     name: 'DependencyInjection',
     display: 'DI',
     group: 'NetCore',

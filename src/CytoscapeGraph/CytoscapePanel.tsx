@@ -15,9 +15,9 @@ import { graphStyle } from './Styling/GraphStyling'
 
 import data from './data/data.json'
 
-Cytoscape.use(avsdf) 
+Cytoscape.use(avsdf)
 Cytoscape.use(euler)
-Cytoscape.use(fcose) 
+Cytoscape.use(fcose)
 
 const CytoscapePanel = () => {
     const [selectedOption, setSelectedOption] = React.useState({ label: "fcose", value: "fcose" })
@@ -57,10 +57,10 @@ const CytoscapePanel = () => {
                 <Select
                     selectedOption={selectedOption}
                     onChange={onSelectChange}
-                    options={[ 
-                        { label: "avsdf", value: "avsdf" },                        
+                    options={[
+                        { label: "avsdf", value: "avsdf" },
                         { label: "euler", value: "euler" },
-                        { label: "fcose", value: "fcose" }, 
+                        { label: "fcose", value: "fcose" },
                         { label: "random", value: "random" },
                         { label: "grid", value: "grid" },
                         { label: "circle", value: "circle" },
@@ -74,9 +74,11 @@ const CytoscapePanel = () => {
                 cy={cyCallback}
                 elements={elements3}
                 layout={layout}
+                zoomingEnabled={true}
+                userZoomingEnabled={true}
                 style={{
                     width: '100%',
-                    height: `100%`,
+                    height: '100%',
                     boxSizing: 'border-box',
                     zIndex: 0,
                     border: '1px solid #dedede',
