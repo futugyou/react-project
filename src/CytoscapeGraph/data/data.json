@@ -767,7 +767,7 @@
             "sbgnlabel": "1,3 BPG",
             "sbgnstatesandinfos": [],
             "ports": [],
-            "image":"assets/react.svg"
+            "image":"/assets/react.svg"
         },
         "position": {
             "x": 713.4639263718316,

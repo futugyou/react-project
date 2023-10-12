@@ -41,11 +41,61 @@ export const graphStyle: cytoscape.Stylesheet[] = [
             'text-background-opacity': 1,
             'text-background-shape': 'rectangle',
             'text-background-padding': '5px',
-            'background-image': 'data(image)??""',
+            'background-image': function (ele) { return ele.data('image') ?? 'none' },
             'text-margin-y': -4.5,
             'text-border-width': 2,
             shape: 'roundrectangle',
             color: '#fafafa',
+        },
+    },
+    {
+        selector: '.node[sbgnclass = "simple chemical"]:active',
+        style: {
+            'overlay-color': '#683dc2',
+            'overlay-opacity': 0.45,
+        },
+    },
+    {
+        selector: 'node[sbgnclass = "simple chemical"]:selected',
+        style: {
+            'overlay-color': '#683dc2',
+            'overlay-opacity': 0.25,
+        },
+    }, {
+        selector: 'edge',
+        style: {
+            'curve-style': 'bezier',
+            'target-arrow-shape': 'none',
+            width: '1px',
+            'line-style': 'solid',
+            'line-color': '#545B64',
+        },
+    },
+    {
+        selector: 'edge.hidden',
+        style: {
+            width: '1px',
+            'line-opacity': 0,
+        },
+    },
+    {
+        selector: 'edge.highlight',
+        style: {
+            'curve-style': 'bezier',
+            'target-arrow-shape': 'none',
+            width: '2px',
+            'line-style': 'dashed',
+            'line-color': '#545B64',
+        },
+    },
+    {
+        selector: 'edge.cy-expand-collapse-meta-edge',
+        style: {
+            'curve-style': 'unbundled-bezier',
+            'control-point-distances': '0 0 0',
+            'line-style': 'dashed',
+            'line-color': '#ec7211',
+            width: '2px',
         },
     },
 ]
