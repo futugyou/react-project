@@ -98,6 +98,7 @@ const CytoscapePanel = () => {
         cy.on('dbltap', 'node', handleDoubleTap)
         cy.on('select', 'node', handleTap)
         cy.on('resize', () => cy.fit(undefined, 120))
+ 
         cy.minZoom(0.25)
         cy.maxZoom(2.0)
         cy.on('tapdragover', 'node', function (evt) {
@@ -114,7 +115,22 @@ const CytoscapePanel = () => {
             node.descendants().lock()
             node.descendants().ungrabify()
         })
+
+        cyRef.current = cy
     }, [handleDoubleTap, handleTap])
+
+    const cyRef = React.useRef<cytoscape.Core>()
+    const downLoad = () => {
+        if (cyRef && cyRef.current) {
+            cyRef.current.resize()
+            const j = cyRef.current.json()
+            console.log(j)
+            var png64 = cyRef.current.png({ full: true })
+            document.querySelector('#png-eg')!.setAttribute('src', png64)
+            var jpg64 = cyRef.current.jpg({ full: true })
+            document.querySelector('#jpg-eg')!.setAttribute('src', jpg64)
+        }
+    }
 
     return (
         <div className="cytoscapePanel">
@@ -141,9 +157,21 @@ const CytoscapePanel = () => {
                 <div className='controllerItem'>
                     <div className="itemDescription">download image</div>
                     <div className="itemContent">
-                        <Button>
+                        <Button onClick={downLoad}>
                             Download
                         </Button>
+                    </div>
+                </div>
+                <div className='controllerItem'>
+                    <div className="itemDescription">png</div>
+                    <div className="itemContent">
+                        <img id="png-eg" />
+                    </div>
+                </div>
+                <div className='controllerItem'>
+                    <div className="itemDescription">jpg</div>
+                    <div className="itemContent">
+                        <img id="jpg-eg" />
                     </div>
                 </div>
             </div>
