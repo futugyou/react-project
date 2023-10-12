@@ -98,7 +98,7 @@ const CytoscapePanel = () => {
         cy.on('dbltap', 'node', handleDoubleTap)
         cy.on('select', 'node', handleTap)
         cy.on('resize', () => cy.fit(undefined, 120))
- 
+
         cy.minZoom(0.25)
         cy.maxZoom(2.0)
         cy.on('tapdragover', 'node', function (evt) {
@@ -129,7 +129,16 @@ const CytoscapePanel = () => {
             document.querySelector('#png-eg')!.setAttribute('src', png64)
             var jpg64 = cyRef.current.jpg({ full: true })
             document.querySelector('#jpg-eg')!.setAttribute('src', jpg64)
+            downloadImage(png64, "graph.png")
+            downloadImage(jpg64, "graph.jpg")
         }
+    }
+
+    const downloadImage = (dataUrl: string, name: string) => {
+        const a = document.createElement('a')
+        a.setAttribute('download', name)
+        a.setAttribute('href', dataUrl)
+        a.click()
     }
 
     return (
