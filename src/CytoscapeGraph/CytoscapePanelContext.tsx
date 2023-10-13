@@ -1,10 +1,15 @@
-import React, { createContext, useRef, useContext, ReactElement } from 'react'
+import React, { createContext, useState, useContext, ReactElement } from 'react'
 
 import cytoscape from 'cytoscape'
 
-export const CytoscapePanelContext = createContext<React.MutableRefObject<cytoscape.Core> | undefined>(undefined)
+export const CytoscapePanelContext = createContext<CytoscapeProps | undefined>(undefined)
 
-export const useCytoscapeCore = (): React.MutableRefObject<cytoscape.Core> => {
+interface CytoscapeProps {
+    cy: cytoscape.Core
+    setCy: React.Dispatch<React.SetStateAction<cytoscape.Core>>
+}
+
+export const useCytoscapeCore = (): CytoscapeProps => {
     const context = useContext(CytoscapePanelContext)
     if (context === undefined) {
         throw new Error('useCytoscapeCore must be used within a CytoscapePanelProvider')
@@ -14,9 +19,9 @@ export const useCytoscapeCore = (): React.MutableRefObject<cytoscape.Core> => {
 
 export const CytoscapePanelProvider = (props: any): ReactElement => {
     const { children } = props
-    const cyRef = useRef(cytoscape({}))
+    const [cy, setCy] = useState(cytoscape({}))
     return (
-        <CytoscapePanelContext.Provider value={cyRef}>
+        <CytoscapePanelContext.Provider value={{ cy, setCy }}>
             {children}
         </CytoscapePanelContext.Provider>
     )

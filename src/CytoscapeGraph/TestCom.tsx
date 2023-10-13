@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import { useCytoscapeCore } from './CytoscapePanelContext'
 
 const TestCom = () => {
-    const cy = useCytoscapeCore()
-    console.log(cy?.current?.elements()?.length)
+    const { cy, setCy } = useCytoscapeCore()
+    console.log(cy?.elements()?.length)
     useEffect(() => {
-        if (cy && cy.current) {
-            console.log("useEffect: ", cy.current.elements().length)
+        if (cy) {
+            console.log("useEffect: ", cy.elements().length)
         }
     }, [cy])
     return <div>1</div>

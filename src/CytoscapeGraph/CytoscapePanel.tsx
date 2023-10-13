@@ -27,6 +27,7 @@ cytoscape.use(fcose)
 gridGuide(cytoscape)
 
 const CytoscapePanel = () => {
+    const { cy, setCy } = useCytoscapeCore()
     const [selectedOption, setSelectedOption] = React.useState({ label: "fcose", value: "fcose" })
     const [dataOption, setDataOption] = React.useState({ label: "aws-data-1", value: "aws-data-1" })
 
@@ -38,13 +39,13 @@ const CytoscapePanel = () => {
         setDataOption(detail.selectedOption)
         const key: string = detail.selectedOption.value
         if (key == "aws-data-1") {
-            cyRef.current?.collection(singleAccount as any)
+            cy?.collection(singleAccount as any)
         }
 
         if (key == "aws-data-2") {
-            cyRef.current?.collection(singleAccountDuplicates as any)
+            cy?.collection(singleAccountDuplicates as any)
         }
-        cyRef.current?.layout(layout).run()
+        cy?.layout(layout).run()
     }
 
     const elements = [
@@ -177,7 +178,6 @@ const CytoscapePanel = () => {
             // Parent Padding
             parentSpacing: -1 // -1 to set paddings of parents to gridSpacing
         })
-        cyRef.current = cy
 
         cy.collection(singleAccount as any)
         cy.ready(() => {
@@ -189,18 +189,17 @@ const CytoscapePanel = () => {
             cy.layout(layout).run()
             return () => clearTimeout(removeHighlight)
         })
-
+        setCy(cy)
     }, [handleDoubleTap, handleTap])
 
-    const cyRef = useCytoscapeCore()
     const downLoad = () => {
-        if (cyRef && cyRef.current) {
-            cyRef.current.resize()
-            const j = cyRef.current.json()
+        if (cy) {
+            cy.resize()
+            const j = cy.json()
             console.log(j)
-            var png64 = cyRef.current.png({ full: true })
+            var png64 = cy.png({ full: true })
             document.querySelector('#png-eg')!.setAttribute('src', png64)
-            var jpg64 = cyRef.current.jpg({ full: true })
+            var jpg64 = cy.jpg({ full: true })
             document.querySelector('#jpg-eg')!.setAttribute('src', jpg64)
             downloadImage(png64, "graph.png")
             downloadImage(jpg64, "graph.jpg")
@@ -216,8 +215,8 @@ const CytoscapePanel = () => {
 
     useEffect(() => {
         return () => {
-            if (cyRef.current) {
-                cyRef.current.removeAllListeners()
+            if (cy) {
+                cy.removeAllListeners()
             }
         }
     }, [])
