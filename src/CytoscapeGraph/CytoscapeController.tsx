@@ -13,7 +13,7 @@ import singleAccountDuplicates from './data/singleAccountDuplicates.json'
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()
     const [selectedOption, setSelectedOption] = useState({ label: "fcose", value: "fcose" })
-    const [dataOption, setDataOption] = useState({ label: "aws-data-1", value: "aws-data-1" })
+    const [dataOption, setDataOption] = useState(null)
 
     const onSelectChange = ({ detail }: any) => {
         setSelectedOption(detail.selectedOption)
@@ -54,20 +54,6 @@ const CytoscapeController = () => {
         a.click()
     }
 
-    useEffect(() => {
-        cy.ready(() => {
-            const removeHighlight = setTimeout(
-                () => {
-                    cy.collection(singleAccount as any)
-                    cy.layout({ name: selectedOption.value }).run()
-                    console.log("init panel")
-                },
-                5000
-            )
-            return () => clearTimeout(removeHighlight)
-        })
-    }, [cy])
-
     return (
         <div className='layoutController'>
             <div className='controllerItem'>
@@ -80,6 +66,8 @@ const CytoscapeController = () => {
                             { label: "aws-data-1", value: "aws-data-1" },
                             { label: "aws-data-2", value: "aws-data-2" },
                         ]}
+                        placeholder="Choose an option"
+                        empty="No options"
                     />
                 </div>
             </div>
