@@ -4,6 +4,9 @@ import '@cloudscape-design/global-styles/index.css'
 import React, { useCallback, useEffect, useState } from 'react'
 import Select from "@cloudscape-design/components/select"
 import Button from "@cloudscape-design/components/button"
+import { CytoscapePanelProvider, useCytoscapeCore } from './CytoscapePanelContext'
+
+import TestCom from './TestCom'
 
 import cytoscape from 'cytoscape'
 import avsdf from 'cytoscape-avsdf'
@@ -182,14 +185,14 @@ const CytoscapePanel = () => {
                 () => cy.elements().removeClass('highlight'),
                 2000
             )
-            
+
             cy.layout(layout).run()
             return () => clearTimeout(removeHighlight)
         })
 
     }, [handleDoubleTap, handleTap])
 
-    const cyRef = React.useRef<cytoscape.Core>()
+    const cyRef = useCytoscapeCore()
     const downLoad = () => {
         if (cyRef && cyRef.current) {
             cyRef.current.resize()
@@ -215,13 +218,13 @@ const CytoscapePanel = () => {
         return () => {
             if (cyRef.current) {
                 cyRef.current.removeAllListeners()
-                cyRef.current = undefined
             }
         }
     }, [])
 
     return (
         <div className="cytoscapePanel">
+            <TestCom></TestCom>
             <div className='layoutController'>
                 <div className='controllerItem'>
                     <div className="itemDescription">change layout</div>
@@ -277,7 +280,6 @@ const CytoscapePanel = () => {
                     </div>
                 </div>
             </div>
-
             <CytoscapeComponent
                 cy={cyCallback}
                 elements={CytoscapeComponent.normalizeElements([])}
@@ -293,9 +295,17 @@ const CytoscapePanel = () => {
                 }}
                 stylesheet={graphStyle}
             />
-        </div>
 
+        </div>
     )
 }
 
-export default CytoscapePanel
+const CytoscapeProvider = () => {
+    return (
+        <CytoscapePanelProvider>
+            <CytoscapePanel></CytoscapePanel>
+        </CytoscapePanelProvider>
+    )
+}
+
+export default React.memo(CytoscapeProvider)
