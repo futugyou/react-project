@@ -14,8 +14,9 @@ import gridGuide from 'cytoscape-grid-guide'
 import CytoscapeComponent from 'react-cytoscapejs'
 
 import { graphStyle } from './Styling/GraphStyling'
-
-import data from './data/data.json'
+ 
+import singleAccount from './data/singleAccountDuplicates.json'
+import singleAccountDuplicates from './data/singleAccountDuplicates.json' 
 
 cytoscape.use(avsdf)
 cytoscape.use(euler)
@@ -47,7 +48,7 @@ const CytoscapePanel = () => {
         ]
     }
 
-    const elements3: any = data
+    const elements3: any = singleAccount
 
     const layout = { name: selectedOption.value }
 
