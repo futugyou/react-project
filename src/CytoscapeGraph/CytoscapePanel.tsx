@@ -14,9 +14,9 @@ import gridGuide from 'cytoscape-grid-guide'
 import CytoscapeComponent from 'react-cytoscapejs'
 
 import { graphStyle } from './Styling/GraphStyling'
- 
-import singleAccount from './data/singleAccountDuplicates.json'
-import singleAccountDuplicates from './data/singleAccountDuplicates.json' 
+
+import singleAccount from './data/singleAccount.json'
+import singleAccountDuplicates from './data/singleAccountDuplicates.json'
 
 cytoscape.use(avsdf)
 cytoscape.use(euler)
@@ -25,9 +25,23 @@ gridGuide(cytoscape)
 
 const CytoscapePanel = () => {
     const [selectedOption, setSelectedOption] = React.useState({ label: "fcose", value: "fcose" })
+    const [dataOption, setDataOption] = React.useState({ label: "aws-data-1", value: "aws-data-1" })
 
     const onSelectChange = ({ detail }: any) => {
         setSelectedOption(detail.selectedOption)
+    }
+
+    const onDataChange = ({ detail }: any) => {
+        setDataOption(detail.selectedOption)
+        const key: string = detail.selectedOption.value
+        if (key == "aws-data-1") {
+            cyRef.current?.collection(singleAccount as any)
+        }
+
+        if (key == "aws-data-2") {
+            cyRef.current?.collection(singleAccountDuplicates as any)
+        }
+        cyRef.current?.layout(layout).run()
     }
 
     const elements = [
@@ -48,51 +62,51 @@ const CytoscapePanel = () => {
         ]
     }
 
-    const elements3: any = singleAccount
+    const elements3: any = singleAccountDuplicates
 
     const layout = { name: selectedOption.value }
 
     const handleDoubleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
         const node = event.target
-        let position = node.position()
-        console.log('handleDoubleTap', node)
-        const nodeid = `random_nodeid_${+new Date()}`
-        const edgeid = `random_edgeid_${+new Date()}`
-        event.cy.add({
-            group: 'nodes',
-            data: { id: nodeid, weight: 75 },
-            position: { x: position.x + 30, y: position.y + 30 },
-            "selected": false,
-            "selectable": true,
-            "locked": false,
-            "grabbable": true,
-            "classes": ""
-        })
+        // let position = node.position()
+        // console.log('handleDoubleTap', node)
+        // const nodeid = `random_nodeid_${+new Date()}`
+        // const edgeid = `random_edgeid_${+new Date()}`
+        // event.cy.add({
+        //     group: 'nodes',
+        //     data: { id: nodeid, weight: 75 },
+        //     position: { x: position.x + 30, y: position.y + 30 },
+        //     "selected": false,
+        //     "selectable": true,
+        //     "locked": false,
+        //     "grabbable": true,
+        //     "classes": ""
+        // })
 
-        event.cy.add({
-            "data": {
-                "id": edgeid,
-                "sbgnclass": "consumption",
-                "sbgncardinality": 0,
-                "source": nodeid,
-                "target": node.id(),
-                "portsource": nodeid,
-                "porttarget": node.id()
-            },
-            "group": "edges",
-            "selected": false,
-            "selectable": true,
-            "locked": false,
-            "grabbable": true,
-            "classes": ""
-        })
+        // event.cy.add({
+        //     "data": {
+        //         "id": edgeid,
+        //         "sbgnclass": "consumption",
+        //         "sbgncardinality": 0,
+        //         "source": nodeid,
+        //         "target": node.id(),
+        //         "portsource": nodeid,
+        //         "porttarget": node.id()
+        //     },
+        //     "group": "edges",
+        //     "selected": false,
+        //     "selectable": true,
+        //     "locked": false,
+        //     "grabbable": true,
+        //     "classes": ""
+        // })
 
-        node.layout(layout).run()
+        // node.layout(layout).run()
     }, [])
 
     const handleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
         const node = event.target
-        console.log('handleTap', node)
+        // console.log('handleTap', node)
     }, [])
 
     const cyCallback = useCallback((cy: cytoscape.Core) => {
@@ -161,6 +175,18 @@ const CytoscapePanel = () => {
             parentSpacing: -1 // -1 to set paddings of parents to gridSpacing
         })
         cyRef.current = cy
+
+        cy.collection(singleAccount as any)
+        cy.ready(() => {
+            const removeHighlight = setTimeout(
+                () => cy.elements().removeClass('highlight'),
+                2000
+            )
+            
+            cy.layout(layout).run()
+            return () => clearTimeout(removeHighlight)
+        })
+
     }, [handleDoubleTap, handleTap])
 
     const cyRef = React.useRef<cytoscape.Core>()
@@ -185,9 +211,32 @@ const CytoscapePanel = () => {
         a.click()
     }
 
+    useEffect(() => {
+        return () => {
+            if (cyRef.current) {
+                cyRef.current.removeAllListeners()
+                cyRef.current = undefined
+            }
+        }
+    }, [])
+
     return (
         <div className="cytoscapePanel">
             <div className='layoutController'>
+                <div className='controllerItem'>
+                    <div className="itemDescription">change layout</div>
+                    <div className="itemContent">
+                        <Select
+                            selectedOption={dataOption}
+                            onChange={onDataChange}
+                            options={[
+                                { label: "aws-data-1", value: "aws-data-1" },
+                                { label: "aws-data-2", value: "aws-data-2" },
+                            ]}
+                        />
+                    </div>
+                </div>
+
                 <div className='controllerItem'>
                     <div className="itemDescription">change layout</div>
                     <div className="itemContent">
@@ -231,7 +280,7 @@ const CytoscapePanel = () => {
 
             <CytoscapeComponent
                 cy={cyCallback}
-                elements={elements3}
+                elements={CytoscapeComponent.normalizeElements([])}
                 layout={layout}
                 zoomingEnabled={true}
                 userZoomingEnabled={true}
