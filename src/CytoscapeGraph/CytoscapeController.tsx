@@ -9,11 +9,18 @@ import Button from "@cloudscape-design/components/button"
 
 import singleAccount from './data/singleAccount.json'
 import singleAccountDuplicates from './data/singleAccountDuplicates.json'
+import { useGetResourceGraph } from './useGetResourceGraph'
 
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()
-    const [selectedOption, setSelectedOption] = useState({ label: "fcose", value: "fcose" })
+
+    const [selectOptions, setSelectOptions] = useState([
+        { label: "aws-data-1", value: "aws-data-1" },
+        { label: "aws-data-2", value: "aws-data-2" },
+    ])
+    const [selectedOption, setSelectedOption] = useState(selectOptions[0])
     const [dataOption, setDataOption] = useState(null)
+    const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph()
 
     const onSelectChange = ({ detail }: any) => {
         setSelectedOption(detail.selectedOption)
@@ -30,6 +37,7 @@ const CytoscapeController = () => {
         if (key == "aws-data-2") {
             cy.collection(singleAccountDuplicates as any)
         }
+
         cy.layout({ name: selectedOption.value }).run()
     }
 
@@ -54,6 +62,12 @@ const CytoscapeController = () => {
         a.click()
     }
 
+    useEffect(() => {
+        if (nodeData && !isError) {
+            console.log(nodeData)
+            console.log(isLoading, isFetching, isError, status)
+        }
+    }, [nodeData, isError])
     return (
         <div className='layoutController'>
             <div className='controllerItem'>
@@ -78,16 +92,7 @@ const CytoscapeController = () => {
                     <Select
                         selectedOption={selectedOption}
                         onChange={onSelectChange}
-                        options={[
-                            { label: "avsdf", value: "avsdf" },
-                            { label: "euler", value: "euler" },
-                            { label: "fcose", value: "fcose" },
-                            { label: "random", value: "random" },
-                            { label: "grid", value: "grid" },
-                            { label: "circle", value: "circle" },
-                            { label: "concentric", value: "concentric" },
-                            { label: "cose", value: "cose" },
-                        ]}
+                        options={selectOptions}
                     />
                 </div>
             </div>
