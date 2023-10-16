@@ -10,9 +10,11 @@ import Button from "@cloudscape-design/components/button"
 import singleAccount from './data/singleAccount.json'
 import singleAccountDuplicates from './data/singleAccountDuplicates.json'
 import { useGetResourceGraph } from './useGetResourceGraph'
+import { useAuth } from '@/Auth/index'
 
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()
+    const { authService } = useAuth()
 
     const [selectOptions, setSelectOptions] = useState([
         { label: "aws-data-1", value: "aws-data-1" },
@@ -20,7 +22,7 @@ const CytoscapeController = () => {
     ])
     const [selectedOption, setSelectedOption] = useState(selectOptions[0])
     const [dataOption, setDataOption] = useState(null)
-    const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph()
+    const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph({ enabled: !!authService.isAuthenticated() })
 
     const onSelectChange = ({ detail }: any) => {
         setSelectedOption(detail.selectedOption)

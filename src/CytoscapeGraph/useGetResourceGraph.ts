@@ -5,7 +5,7 @@ const configserver = import.meta.env.REACT_APP_FLOW_SERVER
 
 const configPath = 'v1/awsconfig'
 
-export function useGetResourceGraph() {
+export function useGetResourceGraph(config = {}) {
     const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const options: AxiosRequestConfig = {
         url: configserver + configPath,
@@ -20,6 +20,7 @@ export function useGetResourceGraph() {
     const { isLoading, isError, data, refetch, isFetching } = useQuery({
         queryKey: [configPath],
         queryFn: () => axios(options).then(x => x.data),
+        ...config,
     })
 
     return {
