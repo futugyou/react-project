@@ -11,36 +11,57 @@ import singleAccount from './data/singleAccount.json'
 import singleAccountDuplicates from './data/singleAccountDuplicates.json'
 import { useGetResourceGraph } from './useGetResourceGraph'
 import { useAuth } from '@/Auth/index'
+import { processElements } from './NodeFactory/APIProcessors'
 
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()
     const { authService } = useAuth()
 
-    const [selectOptions, setSelectOptions] = useState([
+    const layoutSelection = [
+        { label: "avsdf", value: "avsdf" },
+        { label: "euler", value: "euler" },
+        { label: "fcose", value: "fcose" },
+        { label: "random", value: "random" },
+        { label: "grid", value: "grid" },
+        { label: "circle", value: "circle" },
+        { label: "concentric", value: "concentric" },
+        { label: "cose", value: "cose" },
+    ]
+
+    const dataSelection = [
         { label: "aws-data-1", value: "aws-data-1" },
         { label: "aws-data-2", value: "aws-data-2" },
-    ])
-    const [selectedOption, setSelectedOption] = useState(selectOptions[0])
-    const [dataOption, setDataOption] = useState(null)
+        { label: "aws-config", value: "aws-config" },
+    ]
+
+    const [selectedLayout, setSelectedLayout] = useState(layoutSelection[2])
+    const [selectedData, setSelectedData] = useState(null)
+
+
+    const [awsconfigData, setAwsconfigData] = useState()
     const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph({ enabled: !!authService.isAuthenticated() })
 
-    const onSelectChange = ({ detail }: any) => {
-        setSelectedOption(detail.selectedOption)
+    const onLayoutSelectChange = ({ detail }: any) => {
+        setSelectedLayout(detail.selectedOption)
         cy.layout({ name: detail.selectedOption.value }).run()
     }
 
-    const onDataChange = ({ detail }: any) => {
-        setDataOption(detail.selectedOption)
+    const onDataSelectChange = ({ detail }: any) => {  
+        setSelectedData(detail.selectedOption)
         const key: string = detail.selectedOption.value
-        if (key == "aws-data-1") {
+        if (key == "aws-data-1") { 
             cy.collection(singleAccount as any)
         }
 
-        if (key == "aws-data-2") {
+        if (key == "aws-data-2") { 
             cy.collection(singleAccountDuplicates as any)
         }
 
-        cy.layout({ name: selectedOption.value }).run()
+        if (key == "aws-config") {
+            cy.collection(awsconfigData as any)
+        }
+
+        cy.layout({ name: selectedLayout.value }).run()
     }
 
     const downLoad = () => {
@@ -66,8 +87,14 @@ const CytoscapeController = () => {
 
     useEffect(() => {
         if (nodeData && !isError) {
-            console.log(nodeData)
-            console.log(isLoading, isFetching, isError, status)
+            const data = processElements(nodeData)
+            const nodes = data.filter(p => p.group == "nodes")
+            const edges = data.filter(p => p.group == "edges"
+                && nodes.findIndex(a => a.data.id == p.data.source) >= 0
+                && nodes.findIndex(a => a.data.id == p.data.target) >= 0)
+            const d = nodes.concat(edges)
+            console.log(d)
+            setAwsconfigData(d as any)
         }
     }, [nodeData, isError])
     return (
@@ -76,12 +103,9 @@ const CytoscapeController = () => {
                 <div className="itemDescription">change data</div>
                 <div className="itemContent">
                     <Select
-                        selectedOption={dataOption}
-                        onChange={onDataChange}
-                        options={[
-                            { label: "aws-data-1", value: "aws-data-1" },
-                            { label: "aws-data-2", value: "aws-data-2" },
-                        ]}
+                        selectedOption={selectedData}
+                        onChange={onDataSelectChange}
+                        options={dataSelection}
                         placeholder="Choose an option"
                         empty="No options"
                     />
@@ -92,9 +116,9 @@ const CytoscapeController = () => {
                 <div className="itemDescription">change layout</div>
                 <div className="itemContent">
                     <Select
-                        selectedOption={selectedOption}
-                        onChange={onSelectChange}
-                        options={selectOptions}
+                        selectedOption={selectedLayout}
+                        onChange={onLayoutSelectChange}
+                        options={layoutSelection}
                     />
                 </div>
             </div>
