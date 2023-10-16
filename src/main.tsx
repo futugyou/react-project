@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom/client'
 import Loading from './Common/Loading'
 
 import { AuthProvider, authService } from './Auth/index'
+import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
 
 import { router } from './Route'
 
@@ -28,13 +29,24 @@ microApp.start({
   }
 })
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchInterval: 60000,
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+})
 
 ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement).render(
   <React.StrictMode>
-    <Suspense fallback={<Loading />}>
-      <AuthProvider authService={authService} >
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </Suspense>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<Loading />}>
+        <AuthProvider authService={authService} >
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </Suspense>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

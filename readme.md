@@ -20,6 +20,8 @@
 
 [cloudscape](https://cloudscape.design/)
 
+[react-query](https://tanstack.com/query/latest/docs/react/overview)
+
 #### update all package
 ```
 npx npm-check-updates -u
