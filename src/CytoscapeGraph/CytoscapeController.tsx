@@ -46,19 +46,22 @@ const CytoscapeController = () => {
         cy.layout({ name: detail.selectedOption.value }).run()
     }
 
-    const onDataSelectChange = ({ detail }: any) => {  
+    const onDataSelectChange = ({ detail }: any) => {
         setSelectedData(detail.selectedOption)
         const key: string = detail.selectedOption.value
-        if (key == "aws-data-1") { 
-            cy.collection(singleAccount as any)
+
+        cy.elements().remove()
+
+        if (key == "aws-data-1") {
+            cy.add(singleAccount as any)
         }
 
-        if (key == "aws-data-2") { 
-            cy.collection(singleAccountDuplicates as any)
+        if (key == "aws-data-2") {
+            cy.add(singleAccountDuplicates as any)
         }
 
         if (key == "aws-config") {
-            cy.collection(awsconfigData as any)
+            cy.add(awsconfigData as any)
         }
 
         cy.layout({ name: selectedLayout.value }).run()
