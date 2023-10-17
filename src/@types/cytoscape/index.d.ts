@@ -3,6 +3,7 @@ import { Core } from "cytoscape"
 declare module "cytoscape" {
     interface Core {
         gridGuide(opt: GridGuideOptions): any
+        expandCollapse(opt: any): any
     }
 }
 
