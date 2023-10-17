@@ -16,7 +16,7 @@ import { graphStyle } from './Styling/GraphStyling'
 import { useCytoscapeCore, CytoscapePanelProvider } from '@/CytoscapeGraph/CytoscapePanelContext'
 import CytoscapeController from '@/CytoscapeGraph/CytoscapeController'
 import expandCollapse from 'cytoscape-expand-collapse'
-import { getExpandCollapseGraphLayout, getGridGuide } from './CytoscapeLayoutextend'
+import { getExpandCollapseGraphLayout, getGridGuide } from './CytoscapeLayoutExtend'
 
 cytoscape.use(avsdf)
 cytoscape.use(euler)
