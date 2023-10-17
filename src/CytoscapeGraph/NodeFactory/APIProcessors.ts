@@ -7,15 +7,15 @@ const isRegional = R.includes(R.__, ['Not Applicable', 'Regional'])
 const isSubnetOrVpc = R.includes(R.__, ['AWS_EC2_VPC', 'AWS_EC2_Subnet', 'AWS::EC2::VPC', 'AWS::EC2::Subnet'])
 
 const createParent = ({ accountId, awsRegion, availabilityZone, vpcId, subnetId }: any) => {
-    if (subnetId != null) {
-        return `arn:aws:ec2:${awsRegion}:${accountId}:subnet/${subnetId}`//.replace(/:/g, '-')
-    } else if (vpcId != null && subnetId == null) {
-        const vpcArn = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`//.replace(/:/g, '-')
+    if (subnetId != "") {
+        return `arn:aws:ec2:${awsRegion}:${accountId}:subnet/${subnetId}`.replace(/:/g, '-')
+    } else if (vpcId != "" && subnetId == "") {
+        const vpcArn = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`.replace(/:/g, '-')
         if (!isRegional(availabilityZone)) {
             return `${vpcArn}-${availabilityZone}`
         }
         return vpcArn
-    } else if (vpcId == null && subnetId == null && availabilityZone != null && !isRegional(availabilityZone)) {
+    } else if (vpcId == "" && subnetId == "" && availabilityZone != "" && !isRegional(availabilityZone)) {
         return `${accountId}-${awsRegion}-${availabilityZone}`
     } else {
         return `${accountId}-${awsRegion}`
@@ -33,9 +33,9 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const regionsBoundingBoxes = nodes.reduce((acc: any, { id, properties }: any) => {
+    const regionsBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { accountId, awsRegion } = properties
-        // const id = `${accountId}-${awsRegion}`
+        const id = `${accountId}-${awsRegion}`
         if (!acc.has(id)) {
             acc.set(id, buildBoundingBox({
                 id, type: 'region', label: awsRegion, properties
@@ -44,11 +44,11 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const availabilityZonesBoundingBoxes = nodes.reduce((acc: any, { id, properties }: any) => {
+    const availabilityZonesBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { accountId, awsRegion, availabilityZone, vpcId } = properties
-        // const id = `${accountId}-${awsRegion}-${availabilityZone}`
+        const id = `${accountId}-${awsRegion}-${availabilityZone}`
         const parent = `${accountId}-${awsRegion}`
-        if (availabilityZone != null && vpcId == null && !isRegional(availabilityZone) && !acc.has(id)) {
+        if (availabilityZone != "" && vpcId == "" && !isRegional(availabilityZone) && !acc.has(id)) {
             acc.set(id, buildBoundingBox({
                 id, type: 'availabilityZone', label: availabilityZone, properties
             }, parent))
@@ -56,16 +56,14 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const vpcBoundingBoxes = nodes.reduce((acc: any, { id, properties }: any) => {
+    const vpcBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { resourceType, vpcId, accountId, awsRegion, availabilityZone, arn, title } = properties
 
-        if (resourceType === 'AWS::EC2::VPC' || vpcId != null) {
+        if (resourceType === 'AWS::EC2::VPC' || vpcId != "") {
             const vpcArn = (resourceType === 'AWS::EC2::VPC' ? arn : `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`)
-            // const vpcBbId = vpcArn.replace(/:/g, '-')
-            // const azId = `${vpcBbId}-${availabilityZone}`
-            const vpcBbId = id
+            const vpcBbId = vpcArn.replace(/:/g, '-')
             const azId = `${vpcBbId}-${availabilityZone}`
-            if (availabilityZone != null && !isRegional(availabilityZone) && !acc.has(azId)) {
+            if (availabilityZone != "" && !isRegional(availabilityZone) && !acc.has(azId)) {
                 acc.set(azId, buildBoundingBox({
                     id: azId, type: 'availabilityZone', label: availabilityZone, properties
                 }, vpcBbId))
@@ -84,15 +82,15 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const subnetBoundingBoxes = nodes.reduce((acc: any, { id, properties }: any) => {
+    const subnetBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { resourceType, accountId, awsRegion, availabilityZone, vpcId, private: isPrivate, arn, title } = properties
         if (resourceType === 'AWS::EC2::Subnet') {
 
-            // const id = arn.replace(/:/g, '-')
-            const parent = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`//.replace(/:/g, '-')
+            const id = arn.replace(/:/g, '-')
+            const parent = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`.replace(/:/g, '-')
             const azId = `${id}-${availabilityZone}`
 
-            if (availabilityZone != null && !['Not Applicable', 'Regional', 'Multiple Availability Zones'].includes(availabilityZone) && !acc.has(azId)) {
+            if (availabilityZone != "" && !['Not Applicable', 'Regional', 'Multiple Availability Zones'].includes(availabilityZone) && !acc.has(azId)) {
                 acc.set(azId, buildBoundingBox({
                     id: azId, type: 'availabilityZone', label: availabilityZone, properties
                 }, parent))
@@ -118,6 +116,7 @@ export const processElements = ({ nodes, edges }: any) => {
             const parent = createParent(properties)
 
             const bbId = `${bbLabel}-${parent}`
+
             if (!typeBoundingBoxes.has(bbId)) {
                 typeBoundingBoxes.set(bbId, buildBoundingBox({
                     id: bbId, type: 'type', label: bbLabel, properties
@@ -150,27 +149,27 @@ export const processElements = ({ nodes, edges }: any) => {
 
 
 const removeEmptyBoundingBoxes = (nodes: any): any => {
-    const typeMap = new Map(nodes.map(({ data: { id, type } }: any) => [id, type]));
+    const typeMap = new Map(nodes.map(({ data: { id, type } }: any) => [id, type]))
 
     const adjList = nodes.reduce((acc: any, { data: { id } }: any) => {
-        acc.set(id, new Set());
-        return acc;
-    }, new Map());
+        acc.set(id, new Set())
+        return acc
+    }, new Map())
 
     nodes.forEach(({ data: { id, parent } }: any) => {
-        if (parent != null) {
-            adjList.get(parent)?.add(id);
+        if (parent != "") {
+            adjList.get(parent)?.add(id)
         }
-    });
+    })
 
-    const toDelete = new Set();
+    const toDelete = new Set()
     for (const [id, edges] of adjList.entries()) {
         if (isBoundingBox(typeMap.get(id) as string) && edges.size === 0) {
-            toDelete.add(id);
+            toDelete.add(id)
         }
     }
 
-    toDelete.forEach(id => adjList.delete(id));
+    toDelete.forEach(id => adjList.delete(id))
 
-    return toDelete.size === 0 ? nodes : removeEmptyBoundingBoxes(nodes.filter((x: any) => adjList.has(x.data.id)));
+    return toDelete.size === 0 ? nodes : removeEmptyBoundingBoxes(nodes.filter((x: any) => adjList.has(x.data.id)))
 }
