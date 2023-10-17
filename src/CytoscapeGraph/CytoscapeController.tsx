@@ -28,11 +28,10 @@ const CytoscapeController = () => {
         { label: "cose", value: "cose" },
     ]
 
-    const dataSelection = [
+    const [dataSelection, setDataSelection] = useState([
         { label: "aws-data-1", value: "aws-data-1" },
         { label: "aws-data-2", value: "aws-data-2" },
-        { label: "aws-config", value: "aws-config" },
-    ]
+    ])
 
     const [selectedLayout, setSelectedLayout] = useState(layoutSelection[2])
     const [selectedData, setSelectedData] = useState(null)
@@ -98,6 +97,18 @@ const CytoscapeController = () => {
             const d = nodes.concat(edges)
             console.log(d)
             setAwsconfigData(d as any)
+            if (dataSelection.findIndex(p => p.value == 'aws-config') == -1) {
+                const s = dataSelection.concat({ label: "aws-config", value: "aws-config" })
+                setDataSelection(s)
+            }
+        }
+        if (isError || !!!nodeData) {
+            const index = dataSelection.findIndex(p => p.value == 'aws-config')
+            if (index > -1) {
+                const s = dataSelection
+                s.splice(index, 1)
+                setDataSelection(s)
+            }
         }
     }, [nodeData, isError])
     return (
