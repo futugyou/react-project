@@ -2,9 +2,11 @@
 import * as R from 'ramda'
 import { buildBoundingBox, buildNode } from "./NodeFactory"
 
-const isBoundingBox = R.includes(R.__, ['account', 'region', 'availabilityZone', 'vpc', 'subnet'])
+const isBoundingBox = R.includes(R.__, ['account', 'region', 'availabilityZone', 'vpc', 'subnet', 'ecsCluster'])
 const isRegional = R.includes(R.__, ['Not Applicable', 'Regional'])
 const isSubnetOrVpc = R.includes(R.__, ['AWS_EC2_VPC', 'AWS_EC2_Subnet', 'AWS::EC2::VPC', 'AWS::EC2::Subnet'])
+const isEcsOrService = R.includes(R.__, ['AWS_ECS_Service', 'AWS_ECS_Cluster', 'AWS::ECS::Service', 'AWS::ECS::Cluster'])
+const isEcsService = R.includes(R.__, ['AWS_ECS_Service', 'AWS::ECS::Service'])
 
 const createParent = ({ accountId, awsRegion, availabilityZone, vpcId, subnetId }: any) => {
     if (subnetId != "") {
@@ -20,6 +22,11 @@ const createParent = ({ accountId, awsRegion, availabilityZone, vpcId, subnetId 
     } else {
         return `${accountId}-${awsRegion}`
     }
+}
+
+const createEcsParent = ({ configuration }: any) => {
+    const c = JSON.parse(configuration)
+    return c.Cluster
 }
 
 export const processElements = ({ nodes, edges }: any) => {
@@ -105,10 +112,36 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const typeBoundingBoxes = new Map()
+    const ecsBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
+        const { resourceType, accountId, awsRegion, arn, title } = properties
+        if (resourceType === 'AWS::ECS::Cluster') {
+            const id = arn
+            const parent = `${accountId}-${awsRegion}`
 
+            if (!acc.has(id)) {
+                acc.set(id, buildBoundingBox({
+                    id, type: 'ecsCluster', label: title, properties
+                }, parent))
+            }
+        }
+        return acc
+    }, new Map())
+
+    const ecsServiceElements = nodes
+        .filter((x: any) => isEcsService(x.properties.resourceType))
+        .map((resource: any) => {
+            const { properties } = resource
+            const [, , bbLabel] = properties.resourceType.split('::')
+
+            const parent = createEcsParent(properties) 
+            return buildNode(resource, parent, false)
+        })
+
+
+    const typeBoundingBoxes = new Map()
     const elements = nodes
-        .filter((x: any) => !isSubnetOrVpc(x.properties.resourceType))
+        .filter((x: any) => !isSubnetOrVpc(x.properties.resourceType) &&
+            !isEcsOrService(x.properties.resourceType))
         .map((resource: any) => {
             const { properties } = resource
             const [, , bbLabel] = properties.resourceType.split('::')
@@ -132,13 +165,15 @@ export const processElements = ({ nodes, edges }: any) => {
         ...Array.from(availabilityZonesBoundingBoxes.values()),
         ...Array.from(vpcBoundingBoxes.values()),
         ...Array.from(subnetBoundingBoxes.values()),
+        ...Array.from(ecsBoundingBoxes.values()),
         ...Array.from(typeBoundingBoxes.values()),
-        ...elements
+        ...elements,
+        ...ecsServiceElements,
     ]
 
     return [
         ...allNodes,
-        // ...removeEmptyBoundingBoxes(allNodes),
+        ...removeEmptyBoundingBoxes(allNodes),
         ...edges
             .filter((x: any) => !(isSubnetOrVpc(x.target.label) || isSubnetOrVpc(x.source.label)))
             .map(({ id, source, target }: any) => {

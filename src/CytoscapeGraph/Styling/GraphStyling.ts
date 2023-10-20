@@ -1,5 +1,3 @@
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
 
 export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     {
@@ -60,7 +58,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': '#683dc2',
             'overlay-opacity': 0.45,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -71,7 +68,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': '#683dc2',
             'overlay-opacity': 0.25,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -160,7 +156,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('regionColour') ?? '#fafafa' },
             'overlay-opacity': 0.45,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -171,7 +166,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('regionColour') ?? '#fafafa' },
             'overlay-opacity': 0.25,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -207,7 +201,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.25,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -218,7 +211,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.45,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -253,7 +245,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('accountColour') ?? 'rgba(234, 220, 23, 0.5)' },
             'overlay-opacity': 0.45,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -264,7 +255,6 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('accountColour') ?? 'rgba(234, 220, 23, 0.5)' },
             'overlay-opacity': 0.25,
-            // 'padding': '200px',
             'shape': 'roundrectangle',
             'color': '#fafafa',
         },
@@ -349,11 +339,55 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
         },
     },
     {
+        selector: '.ecsCluster:selected',
+        style: {
+            'label': 'data(label)',
+            'overlay-color': '#f7991f',
+            'overlay-opacity': 0.25,
+            'shape': 'roundrectangle',
+            'color': '#fafafa',
+        },
+    },
+    {
+        selector: '.ecsCluster:active',
+        style: {
+            'label': 'data(label)',
+            'overlay-color': '#f7991f',
+            'overlay-opacity': 0.45,
+            'shape': 'roundrectangle',
+            'color': '#fafafa',
+        },
+    },
+    {
+        selector: '.ecsCluster',
+        style: {
+            'label': 'data(label)',
+            'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
+            'font-size': '7rem',
+            'text-valign': 'top',
+            'text-halign': 'center',
+            'background-color': function (ele: any) { return ele.data('color') ?? '#000' },
+            'background-opacity': function (ele: any) { return ele.data('opacity') ?? 1 },
+            'border-style': 'dashed',
+            'border-width': 1,
+            'border-color': '#f7991f',
+            'text-margin-y': '-4.5%' as any,
+            'text-border-width': '2px' as any,
+            'text-background-opacity': 1,
+            'text-border-color': '#f7991f',
+            'text-background-color': '#f7991f',
+            'text-background-shape': 'rectangle',
+            'text-background-padding': '5px',
+            'shape': 'rectangle',
+            'color': '#000',
+        },
+    },
+    {
         selector: 'edge',
         style: {
             'curve-style': 'bezier',
             'target-arrow-shape': 'none',
-            width: '1px',
+            'width': '1px',
             'line-style': 'solid',
             'line-color': '#545B64',
         },
@@ -361,7 +395,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     {
         selector: 'edge.hidden',
         style: {
-            width: '1px',
+            'width': '1px',
             'line-opacity': 0,
         },
     },
@@ -370,7 +404,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
         style: {
             'curve-style': 'bezier',
             'target-arrow-shape': 'none',
-            width: '2px',
+            'width': '2px',
             'line-style': 'dashed',
             'line-color': '#545B64',
         },
@@ -382,7 +416,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'control-point-distances': '0 0 0',
             'line-style': 'dashed',
             'line-color': '#ec7211',
-            width: '2px',
+            'width': '2px',
         },
     },
     {
