@@ -2,11 +2,13 @@
 import * as R from 'ramda'
 import { buildBoundingBox, buildNode } from "./NodeFactory"
 
-const isBoundingBox = R.includes(R.__, ['account', 'region', 'availabilityZone', 'vpc', 'subnet', 'ecsCluster'])
+const isBoundingBox = R.includes(R.__, ['account', 'region', 'availabilityZone', 'vpc', 'subnet', 'ecsCluster', 'cloudmap'])
 const isRegional = R.includes(R.__, ['Not Applicable', 'Regional'])
 const isSubnetOrVpc = R.includes(R.__, ['AWS_EC2_VPC', 'AWS_EC2_Subnet', 'AWS::EC2::VPC', 'AWS::EC2::Subnet'])
 const isEcsOrService = R.includes(R.__, ['AWS_ECS_Service', 'AWS_ECS_Cluster', 'AWS::ECS::Service', 'AWS::ECS::Cluster'])
 const isEcsService = R.includes(R.__, ['AWS_ECS_Service', 'AWS::ECS::Service'])
+const isCloudMapOrService = R.includes(R.__, ['AWS_ServiceDiscovery_Service', 'AWS::ServiceDiscovery::Service', 'AWS_ServiceDiscovery_Namespace', 'AWS::ServiceDiscovery::Namespace'])
+const isCloudMapService = R.includes(R.__, ['AWS_ServiceDiscovery_Service', 'AWS::ServiceDiscovery::Service'])
 
 const createParent = ({ accountId, awsRegion, availabilityZone, vpcId, subnetId }: any) => {
     if (subnetId != "") {
@@ -27,6 +29,11 @@ const createParent = ({ accountId, awsRegion, availabilityZone, vpcId, subnetId 
 const createEcsParent = ({ configuration }: any) => {
     const c = JSON.parse(configuration)
     return c.Cluster
+}
+
+const createCloudMapParent = ({ accountId, awsRegion, vpcId, configuration }: any) => {
+    const c = JSON.parse(configuration)
+    return `${accountId}-${awsRegion}-${vpcId}-${c.NamespaceId}`
 }
 
 export const processElements = ({ nodes, edges }: any) => {
@@ -127,21 +134,43 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
+    const cloudMapBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
+        const { resourceType, accountId, awsRegion, vpcId, resourceId, title, } = properties
+        if (resourceType === 'AWS::ServiceDiscovery::Namespace') {
+            const parent = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`.replace(/:/g, '-')
+            const id = `${accountId}-${awsRegion}-${vpcId}-${resourceId}`
+            if (!acc.has(id)) {
+                acc.set(id, buildBoundingBox({
+                    id, type: 'cloudmap', label: title, properties
+                }, parent))
+            }
+        }
+        return acc
+    }, new Map())
+
     const ecsServiceElements = nodes
         .filter((x: any) => isEcsService(x.properties.resourceType))
         .map((resource: any) => {
             const { properties } = resource
-            const [, , bbLabel] = properties.resourceType.split('::')
-
-            const parent = createEcsParent(properties) 
+            const parent = createEcsParent(properties)
             return buildNode(resource, parent, false)
         })
 
+    const cloudMapServiceElements = nodes
+        .filter((x: any) => isCloudMapService(x.properties.resourceType))
+        .map((resource: any) => {
+            const { properties } = resource
+
+            const parent = createCloudMapParent(properties)
+            return buildNode(resource, parent, false)
+        })
 
     const typeBoundingBoxes = new Map()
     const elements = nodes
-        .filter((x: any) => !isSubnetOrVpc(x.properties.resourceType) &&
-            !isEcsOrService(x.properties.resourceType))
+        .filter((x: any) =>
+            !isSubnetOrVpc(x.properties.resourceType) &&
+            !isEcsOrService(x.properties.resourceType) &&
+            !isCloudMapOrService(x.properties.resourceType))
         .map((resource: any) => {
             const { properties } = resource
             const [, , bbLabel] = properties.resourceType.split('::')
@@ -166,13 +195,14 @@ export const processElements = ({ nodes, edges }: any) => {
         ...Array.from(vpcBoundingBoxes.values()),
         ...Array.from(subnetBoundingBoxes.values()),
         ...Array.from(ecsBoundingBoxes.values()),
+        ...Array.from(cloudMapBoundingBoxes.values()),
         ...Array.from(typeBoundingBoxes.values()),
         ...elements,
         ...ecsServiceElements,
+        ...cloudMapServiceElements,
     ]
 
     return [
-        ...allNodes,
         ...removeEmptyBoundingBoxes(allNodes),
         ...edges
             .filter((x: any) => !(isSubnetOrVpc(x.target.label) || isSubnetOrVpc(x.source.label)))

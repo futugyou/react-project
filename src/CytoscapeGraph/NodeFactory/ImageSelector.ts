@@ -665,7 +665,8 @@ const serviceIconMap = {
     'Res_AWS-Elastic-Beanstalk_Application_48': 'AWS::ElasticBeanstalk::ApplicationVersion',
     'Res_AWS-Elastic-Beanstalk_Deployment_48-ApplicationVersion': 'AWS::ElasticBeanstalk::Application',
     'Arch_Amazon-EC2_64-SubnetRouteTableAssociation': 'AWS::EC2::SubnetRouteTableAssociation',
-    'Arch_AWS-AppConfig_64-DeploymentStrategy': 'AWS::AppConfig::DeploymentStrategy'
+    'Arch_AWS-AppConfig_64-DeploymentStrategy': 'AWS::AppConfig::DeploymentStrategy',
+    'Res_Amazon-Route-53-Hosted-Zone_48_Light': 'AWS::ServiceDiscovery::Service',
 }
 
 const icons = new Map()
