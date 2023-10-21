@@ -3,15 +3,15 @@ import './CytoscapeController.css'
 import { useEffect, useState } from 'react'
 import { useCytoscapeCore } from '@/CytoscapeGraph/CytoscapePanelContext'
 
-
 import Select from "@cloudscape-design/components/select"
 import Button from "@cloudscape-design/components/button"
 
-import singleAccount from './data/singleAccount.json'
-import singleAccountDuplicates from './data/singleAccountDuplicates.json'
-import { useGetResourceGraph } from './useGetResourceGraph'
 import { useAuth } from '@/Auth/index'
-import { processElements } from './Processors/APIProcessors'
+
+import singleAccount from '@/CytoscapeGraph/data/singleAccount.json'
+import singleAccountDuplicates from '@/CytoscapeGraph/data/singleAccountDuplicates.json'
+import { useGetResourceGraph } from '@/CytoscapeGraph/Hooks/useGetResourceGraph'
+import { processElements } from '@/CytoscapeGraph/Processors/APIProcessors'
 
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()
@@ -35,7 +35,6 @@ const CytoscapeController = () => {
 
     const [selectedLayout, setSelectedLayout] = useState(layoutSelection[2])
     const [selectedData, setSelectedData] = useState(null)
-
 
     const [awsconfigData, setAwsconfigData] = useState()
     const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph({ enabled: !!authService.isAuthenticated() })

@@ -1,6 +1,6 @@
 
 import * as R from 'ramda'
-import { buildBoundingBox, buildNode } from "../NodeFactory/NodeFactory"
+import { buildBoundingBox, buildNode } from "@/CytoscapeGraph/NodeFactory/NodeFactory"
 
 const isBoundingBox = R.includes(R.__, ['account', 'region', 'availabilityZone', 'vpc', 'subnet', 'ecsCluster', 'cloudmap'])
 const isRegional = R.includes(R.__, ['Not Applicable', 'Regional'])

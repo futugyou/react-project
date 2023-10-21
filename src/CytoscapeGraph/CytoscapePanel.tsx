@@ -3,7 +3,7 @@ import '@cloudscape-design/global-styles/index.css'
 import * as R from 'ramda'
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { CollectionPreferences, ColumnLayout, SpaceBetween, Box, Modal } from '@cloudscape-design/components'
+import { Modal } from '@cloudscape-design/components'
 import cytoscape from 'cytoscape'
 import avsdf from 'cytoscape-avsdf'
 import euler from 'cytoscape-euler'
@@ -12,12 +12,12 @@ import gridGuide from 'cytoscape-grid-guide'
 
 import CytoscapeComponent from 'react-cytoscapejs'
 
-import { graphStyle } from './Styling/GraphStyling'
+import { graphStyle } from '@/CytoscapeGraph/Styling/GraphStyling'
 
 import { useCytoscapeCore, CytoscapePanelProvider } from '@/CytoscapeGraph/CytoscapePanelContext'
 import CytoscapeController from '@/CytoscapeGraph/CytoscapeController'
 import expandCollapse from 'cytoscape-expand-collapse'
-import { getExpandCollapseGraphLayout, getGridGuide } from './CytoscapeLayoutExtend'
+import { getExpandCollapseGraphLayout, getGridGuide } from '@/CytoscapeGraph/Layouting/CytoscapeLayout'
 
 cytoscape.use(avsdf)
 cytoscape.use(euler)
@@ -27,9 +27,10 @@ expandCollapse(cytoscape)
 
 const CytoscapePanel = () => {
     const { cy, setCy } = useCytoscapeCore()
+    
     const [visible, setVisible] = React.useState(false)
     const [selectedNode, setSelectedNode] = useState(null)
-    const layout = { name: "fcose" }
+    
     const expandAPI = React.useRef<any>()
 
     const handleDoubleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {

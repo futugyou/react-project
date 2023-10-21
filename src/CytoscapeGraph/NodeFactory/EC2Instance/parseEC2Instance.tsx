@@ -1,7 +1,7 @@
 import React from 'react'
 import * as R from 'ramda'
-import { fetchImage } from '../ImageSelector'
-import { InstanceItem } from './InstanceDetails/InstanceItem'
+import { fetchImage } from '@/CytoscapeGraph/NodeFactory/ImageSelector'
+import { InstanceItem } from '@/CytoscapeGraph/NodeFactory/EC2Instance/InstanceDetails/InstanceItem'
 
 export const parseEC2Instance = (node: any) => {
     const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')

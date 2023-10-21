@@ -1,4 +1,4 @@
-import { fetchImage } from "./NodeFactory/ImageSelector"
+import { fetchImage } from "@/CytoscapeGraph/NodeFactory/ImageSelector"
 
 export const getExpandCollapseGraphLayout = () => {
     return {

@@ -1,10 +1,17 @@
 
-import { parseEC2Instance } from "./EC2Instance/parseEC2Instance"
-import { fetchImage } from "./ImageSelector"
+import { parseEC2Instance } from "@/CytoscapeGraph/NodeFactory/EC2Instance/parseEC2Instance"
+import { fetchImage } from "@/CytoscapeGraph/NodeFactory/ImageSelector"
+
+const nodeParsers = new Map()
+const buildNodeParserFactory = () => {
+    nodeParsers.set('AWS::EC2::Instance', parseEC2Instance)
+}
+buildNodeParserFactory()
 
 export const parseNode = (properties: any, node: any) => {
-    if (properties.resourceType == "AWS::EC2::Instance") {
-        return parseEC2Instance(node)
+    const parser = nodeParsers.get(properties.resourceType)
+    if (parser) {
+        return parser(node)
     }
     return {
         styling: {

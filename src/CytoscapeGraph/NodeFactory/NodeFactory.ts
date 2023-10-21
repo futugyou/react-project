@@ -1,8 +1,8 @@
 
 import * as R from 'ramda'
 
-import { fetchImage, getAccountColour, getRegionColour } from "./ImageSelector"
-import { parseNode } from "./NodeParserHandler"
+import { fetchImage, getAccountColour, getRegionColour } from "@/CytoscapeGraph/NodeFactory/ImageSelector"
+import { parseNode } from "@/CytoscapeGraph/NodeFactory/NodeParserHandler"
 
 export const buildBoundingBox = ({ id, type, label, properties }: any, parent?: string) => {
     try {
