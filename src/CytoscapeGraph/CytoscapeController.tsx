@@ -11,7 +11,7 @@ import singleAccount from './data/singleAccount.json'
 import singleAccountDuplicates from './data/singleAccountDuplicates.json'
 import { useGetResourceGraph } from './useGetResourceGraph'
 import { useAuth } from '@/Auth/index'
-import { processElements } from './NodeFactory/APIProcessors'
+import { processElements } from './Processors/APIProcessors'
 
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()

@@ -1,6 +1,11 @@
+
+import { parseEC2Instance } from "./EC2Instance/parseEC2Instance"
 import { fetchImage } from "./ImageSelector"
 
 export const parseNode = (properties: any, node: any) => {
+    if (properties.resourceType == "AWS::EC2::Instance") {
+        return parseEC2Instance(node)
+    }
     return {
         styling: {
             borderStyle: 'solid',

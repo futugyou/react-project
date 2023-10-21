@@ -1,8 +1,9 @@
 import './CytoscapePanel.css'
 import '@cloudscape-design/global-styles/index.css'
-
+import * as R from 'ramda'
 import React, { useCallback, useEffect, useState } from 'react'
 
+import { CollectionPreferences, ColumnLayout, SpaceBetween, Box, Modal } from '@cloudscape-design/components'
 import cytoscape from 'cytoscape'
 import avsdf from 'cytoscape-avsdf'
 import euler from 'cytoscape-euler'
@@ -26,7 +27,8 @@ expandCollapse(cytoscape)
 
 const CytoscapePanel = () => {
     const { cy, setCy } = useCytoscapeCore()
-
+    const [visible, setVisible] = React.useState(false)
+    const [selectedNode, setSelectedNode] = useState(null)
     const layout = { name: "fcose" }
     const expandAPI = React.useRef<any>()
 
@@ -75,6 +77,17 @@ const CytoscapePanel = () => {
             node.descendants().ungrabify()
         })
 
+        cy.on('click', 'node', function (evt) {
+            const node = evt.target;
+            if (node.data().hoverComponent) {
+                setSelectedNode(node.data().hoverComponent)
+                setVisible(true)
+            } else {
+                setSelectedNode(null)
+                setVisible(false)
+            }
+            console.log(node.data())
+        })
         expandAPI.current = cy.expandCollapse(getExpandCollapseGraphLayout())
 
         cy.gridGuide(getGridGuide())
@@ -100,6 +113,9 @@ const CytoscapePanel = () => {
 
     return (
         <div className="cytoscapePanel">
+            <Modal onDismiss={() => setVisible(false)} visible={visible}>
+                {selectedNode}
+            </Modal>
             <CytoscapeController></CytoscapeController>
             <CytoscapeComponent
                 cy={cyCallback}

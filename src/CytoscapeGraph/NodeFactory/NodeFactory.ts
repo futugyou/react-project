@@ -105,7 +105,8 @@ export const buildNode = (node: any, parent: any, clickedNode: any) => {
                 softDelete: properties.softDelete,
                 // cost: Number(getCostData(node)),
                 private: properties.private,
-                // ...({ detailsComponent: parsedNode.detailsComponent } ?? {}),
+                ...({ detailsComponent: (parsedNode as any).detailsComponent } ?? {}),
+                ...({ hoverComponent: (parsedNode as any).detailsComponent } ?? {}),
                 // ...({ hoverComponent: parsedNode.hoverComponent } ?? {}),
                 resource: {
                     id: properties.resourceId,
