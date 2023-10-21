@@ -52,11 +52,24 @@ const CytoscapePanel = () => {
         // node.removeClass('selected')
     }, [])
 
+    const handleClick = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
+        const node = event.target;
+        if (node.data().detailsComponent) {
+            setSelectedNode(node.data().detailsComponent)
+            setVisible(true)
+        } else {
+            setSelectedNode(null)
+            setVisible(false)
+        }
+    }, [])
+
     const cyCallback = useCallback((cy: cytoscape.Core) => {
         cy.removeListener('select', 'node')
         cy.removeListener('dbltap', 'node')
+        cy.removeListener('click', 'node')
         cy.on('dbltap', 'node', handleDoubleTap)
         cy.on('select', 'node', handleTap)
+        cy.on('click', 'node', handleClick)
         cy.on('unselect', 'node, node.cy-expand-collapse-collapsed-node', handleUnselect)
         cy.on('resize', () => cy.fit(undefined, 120))
 
@@ -77,17 +90,6 @@ const CytoscapePanel = () => {
             node.descendants().ungrabify()
         })
 
-        cy.on('click', 'node', function (evt) {
-            const node = evt.target;
-            if (node.data().hoverComponent) {
-                setSelectedNode(node.data().hoverComponent)
-                setVisible(true)
-            } else {
-                setSelectedNode(null)
-                setVisible(false)
-            }
-            console.log(node.data())
-        })
         expandAPI.current = cy.expandCollapse(getExpandCollapseGraphLayout())
 
         cy.gridGuide(getGridGuide())

@@ -106,7 +106,6 @@ export const buildNode = (node: any, parent: any, clickedNode: any) => {
                 // cost: Number(getCostData(node)),
                 private: properties.private,
                 ...({ detailsComponent: (parsedNode as any).detailsComponent } ?? {}),
-                ...({ hoverComponent: (parsedNode as any).detailsComponent } ?? {}),
                 // ...({ hoverComponent: parsedNode.hoverComponent } ?? {}),
                 resource: {
                     id: properties.resourceId,
