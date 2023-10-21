@@ -1,11 +1,10 @@
 import React from 'react'
 import * as R from 'ramda'
-import { fetchImage } from '../ImageSelector' 
- 
+import { fetchImage } from '../ImageSelector'
+import { InstanceItem } from './InstanceDetails/InstanceItem'
+
 export const parseEC2Instance = (node: any) => {
-    const properties = R.hasPath(['properties'], node)
-        ? node.properties
-        : node.data('properties')
+    const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')
 
     const getImageType = () => {
         try {
@@ -23,12 +22,9 @@ export const parseEC2Instance = (node: any) => {
         }
     }
 
-
     const state = getState(properties)
     let configuration = JSON.parse(properties.configuration)
-    configuration = R.is(Object, configuration)
-        ? configuration
-        : JSON.parse(configuration)
+    configuration = R.is(Object, configuration) ? configuration : JSON.parse(configuration)
 
     return {
         styling: {
@@ -40,6 +36,7 @@ export const parseEC2Instance = (node: any) => {
             colour: state.color,
         },
         state: state,
-        icon: fetchImage(getImageType(), state), 
+        icon: fetchImage(getImageType(), state),
+        detailsComponent: React.createElement(InstanceItem, configuration),
     }
 }
