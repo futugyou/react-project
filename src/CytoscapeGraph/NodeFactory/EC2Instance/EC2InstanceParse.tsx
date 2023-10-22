@@ -3,7 +3,7 @@ import * as R from 'ramda'
 import { fetchImage } from '@/CytoscapeGraph/NodeFactory/ImageSelector'
 import { InstanceItem } from '@/CytoscapeGraph/NodeFactory/EC2Instance/InstanceDetails/InstanceItem'
 
-export const parseEC2Instance = (node: any) => {
+export const EC2InstanceParse = (node: any) => {
     const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')
 
     const getImageType = () => {

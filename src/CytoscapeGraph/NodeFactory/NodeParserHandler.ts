@@ -1,10 +1,12 @@
 
-import { parseEC2Instance } from "@/CytoscapeGraph/NodeFactory/EC2Instance/parseEC2Instance"
+import { DatabaseInstanceParse } from "@/CytoscapeGraph/NodeFactory/DatabaseInstance/DatabaseInstanceParse"
+import { EC2InstanceParse } from "@/CytoscapeGraph/NodeFactory/EC2Instance/EC2InstanceParse"
 import { fetchImage } from "@/CytoscapeGraph/NodeFactory/ImageSelector"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
-    nodeParsers.set('AWS::EC2::Instance', parseEC2Instance)
+    nodeParsers.set('AWS::EC2::Instance', EC2InstanceParse)
+    nodeParsers.set('AWS::RDS::DBInstance', DatabaseInstanceParse)
 }
 buildNodeParserFactory()
 

@@ -3,17 +3,11 @@ import { ColumnLayout, SpaceBetween, Box } from '@cloudscape-design/components'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLabel'
+
 dayjs.extend(localizedFormat)
 dayjs.extend(relativeTime)
 
-const ValueWithLabel = ({ label, children }: any) => (
-    <div>
-        <Box margin={{ bottom: 'xxxs' }} color='text-label'>
-            {label}
-        </Box>
-        <div>{children}</div>
-    </div>
-)
 
 export const InstanceItem = (configuration: any) => {
     const parsedConfig = configuration
