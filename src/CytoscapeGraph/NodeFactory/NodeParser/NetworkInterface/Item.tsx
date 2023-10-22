@@ -3,7 +3,6 @@ import React from 'react'
 import { ColumnLayout, SpaceBetween, } from '@cloudscape-design/components'
 import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLabel'
 
-
 export const Item = (configuration: any) => {
   const parsedConfig = configuration
 

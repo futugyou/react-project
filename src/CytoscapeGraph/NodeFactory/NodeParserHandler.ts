@@ -5,6 +5,7 @@ import DatabaseInstanceParse from "./NodeParser/DatabaseInstance/Parse"
 import EC2InstanceParse from "./NodeParser/EC2Instance/Parse"
 import LoadBalancerParse from "./NodeParser/LoadBalancers/Parse"
 import NetworkInterfaceParse from "./NodeParser/NetworkInterface/Parse"
+import RouteTableParse from "./NodeParser/RouteTable/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -12,6 +13,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::RDS::DBInstance', DatabaseInstanceParse)
     nodeParsers.set('AWS::ElasticLoadBalancingV2::LoadBalancer', LoadBalancerParse)
     nodeParsers.set('AWS::EC2::NetworkInterface', NetworkInterfaceParse)
+    nodeParsers.set('AWS::EC2::RouteTable', RouteTableParse)
 }
 buildNodeParserFactory()
 
