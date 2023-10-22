@@ -2,6 +2,7 @@
 import * as R from 'ramda'
 import React from 'react'
 import { fetchImage } from '../ImageSelector'
+import { getStateInformation } from '../Utils/ResourceStateParser'
 import DatabaseInstanceItem from './DatabaseInstanceDetails/DatabaseInstanceItem'
 
 export const DatabaseInstanceParse = (node: any) => {
@@ -11,11 +12,7 @@ export const DatabaseInstanceParse = (node: any) => {
 
   configuration = R.is(Object, configuration) ? configuration : JSON.parse(configuration)
 
-  const state = {
-    status: 'status-warning',
-    text: 'no state data',
-    color: '#FF9900',
-  }
+  const state = getStateInformation(configuration.dBInstanceStatus)
 
   const getEngineType = () => {
     if (configuration.engine) {

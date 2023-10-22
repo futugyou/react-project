@@ -2,6 +2,7 @@ import React from 'react'
 import * as R from 'ramda'
 import { fetchImage } from '@/CytoscapeGraph/NodeFactory/ImageSelector'
 import { InstanceItem } from '@/CytoscapeGraph/NodeFactory/EC2Instance/InstanceDetails/InstanceItem'
+import { getStateInformation } from '../Utils/ResourceStateParser'
 
 export const EC2InstanceParse = (node: any) => {
     const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')
@@ -14,17 +15,10 @@ export const EC2InstanceParse = (node: any) => {
         }
     }
 
-    const getState = (properties: any) => {
-        return {
-            status: 'status-warning',
-            text: 'no state data',
-            color: '#FF9900',
-        }
-    }
-
-    const state = getState(properties)
     let configuration = JSON.parse(properties.configuration)
     configuration = R.is(Object, configuration) ? configuration : JSON.parse(configuration)
+
+    const state = getStateInformation(configuration.state.name)
 
     return {
         styling: {

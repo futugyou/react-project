@@ -100,7 +100,7 @@ export const buildNode = (node: any, parent: any, clickedNode: any) => {
                 borderSize: parsedNode.styling.borderSize,
                 opacity: '0',
                 clickedId: node.id,
-                // ...({ state: parsedNode.state } ?? {}),
+                ...({ state: parsedNode.state } ?? {}),
                 image: parsedNode.icon,
                 softDelete: properties.softDelete,
                 // cost: Number(getCostData(node)),
