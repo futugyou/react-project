@@ -1,0 +1,33 @@
+
+import * as R from 'ramda'
+import React from 'react'
+import { fetchImage } from '../ImageSelector'
+import { getStateInformation } from '../Utils/ResourceStateParser'
+import LoadBalancerItem from './LoadBalancerDetails/LoadBalancerItem'
+
+export const LoadBalancerParse = (node: any) => {
+  const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')
+  let configuration = JSON.parse(properties.configuration)
+
+  configuration = R.is(Object, configuration) ? configuration : JSON.parse(configuration)
+
+  const getLoadBalancerType = (properties: any) => {
+    return configuration.type ? `${properties.resourceType}-${configuration.type}` : `${properties.resourceType}`
+  }
+
+  const state = getStateInformation(configuration.state.code)
+
+  return {
+    styling: {
+      borderStyle: 'dotted',
+      borderColour: state.color,
+      borderOpacity: 0.25,
+      borderSize: 1,
+      message: state.text,
+      colour: state.color,
+    },
+    state: state,
+    icon: fetchImage(getLoadBalancerType(properties), state),
+    detailsComponent: React.createElement(LoadBalancerItem, configuration),
+  }
+}
