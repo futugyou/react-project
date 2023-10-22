@@ -8,8 +8,7 @@ import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLab
 dayjs.extend(localizedFormat)
 dayjs.extend(relativeTime)
 
-
-export const InstanceItem = (configuration: any) => {
+const Item = (configuration: any) => {
     const parsedConfig = configuration
     return (
         <ColumnLayout columns={2} variant='text-grid'>
@@ -54,3 +53,5 @@ export const InstanceItem = (configuration: any) => {
         </ColumnLayout>
     )
 }
+
+export default Item

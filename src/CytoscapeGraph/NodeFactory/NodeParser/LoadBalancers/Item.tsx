@@ -1,10 +1,9 @@
 
 import React from 'react'
 import { ColumnLayout, SpaceBetween, } from '@cloudscape-design/components'
-import { ValueWithLabel } from '../../Shared/ValueWithLabel'
+import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLabel'
 
-
-export const LoadBalancerItem = (configuration: any) => {
+const Item = (configuration: any) => {
   const parsedConfig = configuration
 
   return (
@@ -22,4 +21,4 @@ export const LoadBalancerItem = (configuration: any) => {
   )
 }
 
-export default LoadBalancerItem
+export default Item

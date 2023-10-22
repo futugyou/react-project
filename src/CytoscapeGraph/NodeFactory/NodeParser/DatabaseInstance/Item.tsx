@@ -2,7 +2,7 @@
 import { ColumnLayout, SpaceBetween, } from '@cloudscape-design/components'
 import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLabel'
 
-export const DatabaseInstanceItem = (configuration: any) => {
+export const Item = (configuration: any) => {
   const parsedConfig = configuration
 
   return (
@@ -42,4 +42,4 @@ export const DatabaseInstanceItem = (configuration: any) => {
   )
 }
 
-export default DatabaseInstanceItem
+export default Item

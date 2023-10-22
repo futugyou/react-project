@@ -1,10 +1,10 @@
 import React from 'react'
 import * as R from 'ramda'
 import { fetchImage } from '@/CytoscapeGraph/NodeFactory/ImageSelector'
-import { InstanceItem } from '@/CytoscapeGraph/NodeFactory/EC2Instance/InstanceDetails/InstanceItem'
-import { getStateInformation } from '../Utils/ResourceStateParser'
+import { getStateInformation } from '../../Utils/ResourceStateParser'
+import Item from './Item'
 
-export const EC2InstanceParse = (node: any) => {
+const Parse = (node: any) => {
     const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')
 
     const getImageType = () => {
@@ -31,6 +31,8 @@ export const EC2InstanceParse = (node: any) => {
         },
         state: state,
         icon: fetchImage(getImageType(), state),
-        detailsComponent: React.createElement(InstanceItem, configuration),
+        detailsComponent: React.createElement(Item, configuration),
     }
 }
+
+export default Parse

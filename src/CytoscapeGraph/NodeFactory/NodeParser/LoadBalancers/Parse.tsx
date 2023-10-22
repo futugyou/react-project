@@ -1,11 +1,11 @@
 
 import * as R from 'ramda'
 import React from 'react'
-import { fetchImage } from '../ImageSelector'
-import { getStateInformation } from '../Utils/ResourceStateParser'
-import LoadBalancerItem from './LoadBalancerDetails/LoadBalancerItem'
+import { fetchImage } from '../../ImageSelector'
+import { getStateInformation } from '../../Utils/ResourceStateParser'
+import Item from './Item'
 
-export const LoadBalancerParse = (node: any) => {
+const Parse = (node: any) => {
   const properties = R.hasPath(['properties'], node) ? node.properties : node.data('properties')
   let configuration = JSON.parse(properties.configuration)
 
@@ -28,6 +28,8 @@ export const LoadBalancerParse = (node: any) => {
     },
     state: state,
     icon: fetchImage(getLoadBalancerType(properties), state),
-    detailsComponent: React.createElement(LoadBalancerItem, configuration),
+    detailsComponent: React.createElement(Item, configuration),
   }
 }
+
+export default Parse
