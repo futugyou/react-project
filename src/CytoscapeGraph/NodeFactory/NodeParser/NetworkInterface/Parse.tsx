@@ -26,7 +26,7 @@ const Parse = (node: any) => {
       colour: state.color,
     },
     state: state,
-    icon: fetchImage(getType(properties), state),
+    icon: fetchImage(getType(properties)),
     detailsComponent: React.createElement(Item, configuration),
   }
 }

@@ -5,9 +5,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import { Modal } from '@cloudscape-design/components'
 import cytoscape from 'cytoscape'
-import avsdf from 'cytoscape-avsdf'
-import euler from 'cytoscape-euler'
-import fcose from 'cytoscape-fcose'
 import gridGuide from 'cytoscape-grid-guide'
 
 import CytoscapeComponent from 'react-cytoscapejs'
@@ -19,9 +16,6 @@ import CytoscapeController from '@/CytoscapeGraph/CytoscapeController'
 import expandCollapse from 'cytoscape-expand-collapse'
 import { getExpandCollapseGraphLayout, getGridGuide } from '@/CytoscapeGraph/Layouting/CytoscapeLayout'
 
-cytoscape.use(avsdf)
-cytoscape.use(euler)
-cytoscape.use(fcose)
 gridGuide(cytoscape)
 expandCollapse(cytoscape)
 

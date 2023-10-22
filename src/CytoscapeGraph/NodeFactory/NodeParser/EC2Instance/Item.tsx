@@ -44,10 +44,10 @@ const Item = (configuration: any) => {
                     {parsedConfig.platform}
                 </ValueWithLabel>
                 <ValueWithLabel label='CPU cores'>
-                    {parsedConfig.cpuOptions.coreCount}
+                    {parsedConfig.cpuOptions?.coreCount}
                 </ValueWithLabel>
                 <ValueWithLabel label='CPU threads per core'>
-                    {parsedConfig.cpuOptions.threadsPerCore}
+                    {parsedConfig.cpuOptions?.threadsPerCore}
                 </ValueWithLabel>
             </SpaceBetween>
         </ColumnLayout>

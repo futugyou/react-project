@@ -1,7 +1,11 @@
 import './CytoscapeController.css'
 
 import { useEffect, useState } from 'react'
-import { useCytoscapeCore } from '@/CytoscapeGraph/CytoscapePanelContext'
+
+import cytoscape from 'cytoscape'
+import avsdf from 'cytoscape-avsdf'
+import euler from 'cytoscape-euler'
+import fcose from 'cytoscape-fcose'
 
 import Select from "@cloudscape-design/components/select"
 import Button from "@cloudscape-design/components/button"
@@ -12,6 +16,11 @@ import singleAccount from '@/CytoscapeGraph/data/singleAccount.json'
 import singleAccountDuplicates from '@/CytoscapeGraph/data/singleAccountDuplicates.json'
 import { useGetResourceGraph } from '@/CytoscapeGraph/Hooks/useGetResourceGraph'
 import { processElements } from '@/CytoscapeGraph/Processors/APIProcessors'
+import { useCytoscapeCore } from '@/CytoscapeGraph/CytoscapePanelContext'
+
+cytoscape.use(avsdf)
+cytoscape.use(euler)
+cytoscape.use(fcose)
 
 const CytoscapeController = () => {
     const { cy } = useCytoscapeCore()
