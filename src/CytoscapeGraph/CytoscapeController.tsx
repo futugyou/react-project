@@ -59,6 +59,7 @@ const CytoscapeController = () => {
 
         cy.elements().remove()
 
+        let collapse = false
         if (key == "aws-data-1") {
             cy.add(singleAccount as any)
         }
@@ -69,9 +70,15 @@ const CytoscapeController = () => {
 
         if (key == "aws-config") {
             cy.add(awsconfigData as any)
+            collapse = true
         }
 
         cy.layout({ name: selectedLayout.value }).run()
+        if (collapse){
+            var api = cy.expandCollapse('get')
+            // api.collapseAll()
+            api.collapseRecursively(cy.elements('node[type = "type"]'))
+        }
     }
 
     const downLoad = () => {

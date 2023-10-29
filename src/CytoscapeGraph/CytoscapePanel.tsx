@@ -28,12 +28,12 @@ const CytoscapePanel = () => {
     const expandAPI = React.useRef<any>()
 
     const handleDoubleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
-        // const node = event.target
-        // if (expandAPI.current?.isCollapsible(node)) {
-        //     expandAPI.current.collapseRecursively(node)
-        // } else if (expandAPI.current?.isExpandable(node)) {
-        //     expandAPI.current.expandRecursively(node)
-        // }
+        const node = event.target
+        if (expandAPI.current?.isCollapsible(node)) {
+            expandAPI.current.collapseRecursively(node)
+        } else if (expandAPI.current?.isExpandable(node)) {
+            expandAPI.current.expandRecursively(node)
+        }
     }, [])
 
     const handleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
