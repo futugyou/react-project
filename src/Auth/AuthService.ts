@@ -2,7 +2,7 @@
 import { createPKCECodes, PKCECodePair } from './pkce'
 import { toUrlEncoded, btoa } from './util'
 
-import jwtDecode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 
 export interface AuthServiceProps {
   clientId: string
