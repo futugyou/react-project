@@ -7,10 +7,22 @@ const isRegional = R.includes(R.__, ['Not Applicable', 'Regional'])
 const isSubnetOrVpc = R.includes(R.__, ['AWS_EC2_VPC', 'AWS_EC2_Subnet', 'AWS::EC2::VPC', 'AWS::EC2::Subnet'])
 const isEcsOrService = R.includes(R.__, ['AWS_ECS_Service', 'AWS_ECS_Cluster', 'AWS::ECS::Service', 'AWS::ECS::Cluster'])
 const isEcsService = R.includes(R.__, ['AWS_ECS_Service', 'AWS::ECS::Service'])
-const isCloudMapOrService = R.includes(R.__, ['AWS_ServiceDiscovery_Service', 'AWS::ServiceDiscovery::Service', 'AWS_ServiceDiscovery_Namespace', 'AWS::ServiceDiscovery::Namespace'])
+const isCloudMapOrService = R.includes(R.__, ['AWS_ServiceDiscovery_Namespace', 'AWS::ServiceDiscovery::Namespace'])
 const isCloudMapService = R.includes(R.__, ['AWS_ServiceDiscovery_Service', 'AWS::ServiceDiscovery::Service'])
 
-const createParent = ({ accountId, awsRegion, availabilityZone, vpcId, subnetId }: any) => {
+const createParent = ({ accountId, awsRegion, resourceId, availabilityZone, vpcId, subnetId, resourceType, configuration }: any, nodes: any[]) => {
+    if (resourceType == "AWS::ServiceDiscovery::Service") {
+        const c = JSON.parse(configuration)
+        return `${accountId}-${awsRegion}-${c.NamespaceId}`
+    }
+    if (resourceType == "AWS::ServiceDiscovery::Instance") {
+        const sid = resourceId.split("|")[0]
+        const service = nodes.find(p => p.properties.resourceId == sid)
+        if (service) {
+            const c = JSON.parse(service.properties.configuration)
+            return `${accountId}-${awsRegion}-${c.NamespaceId}`
+        }
+    }
     if (subnetId != "") {
         return `arn:aws:ec2:${awsRegion}:${accountId}:subnet/${subnetId}`.replace(/:/g, '-')
     } else if (vpcId != "" && subnetId == "") {
@@ -33,10 +45,11 @@ const createEcsParent = ({ configuration }: any) => {
 
 const createCloudMapParent = ({ accountId, awsRegion, vpcId, configuration }: any) => {
     const c = JSON.parse(configuration)
-    return `${accountId}-${awsRegion}-${vpcId}-${c.NamespaceId}`
+    return `${accountId}-${awsRegion}-${c.NamespaceId}`
 }
 
 export const processElements = ({ nodes, edges }: any) => {
+    // 1. account bounding
     const accountsBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { accountId } = properties
         if (!acc.has(accountId)) {
@@ -47,6 +60,7 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
+    // 2. region bounding
     const regionsBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { accountId, awsRegion } = properties
         const id = `${accountId}-${awsRegion}`
@@ -58,6 +72,7 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
+    // 3. availabilityZone bounding
     const availabilityZonesBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { accountId, awsRegion, availabilityZone, vpcId } = properties
         const id = `${accountId}-${awsRegion}-${availabilityZone}`
@@ -70,6 +85,7 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
+    // 4. vpc bounding
     const vpcBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { resourceType, vpcId, accountId, awsRegion, availabilityZone, arn, title } = properties
 
@@ -96,6 +112,7 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
+    // 5. subnet bounding
     const subnetBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { resourceType, accountId, awsRegion, availabilityZone, vpcId, private: isPrivate, arn, title } = properties
         if (resourceType === 'AWS::EC2::Subnet') {
@@ -119,6 +136,35 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
+    const typeBoundingBoxes = new Map()
+
+    // 6. cloudMap bounding
+    const cloudMapBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
+        const { resourceType, accountId, awsRegion, vpcId, resourceId, title, } = properties
+        if (resourceType === 'AWS::ServiceDiscovery::Namespace') {
+            let parent = `${accountId}-${awsRegion}`
+            if (vpcId) {
+                parent = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`.replace(/:/g, '-')
+            }
+            const id = `${accountId}-${awsRegion}-${resourceId}`
+            if (!acc.has(id)) {
+                acc.set(id, buildBoundingBox({
+                    id, type: 'cloudmap', label: title, properties
+                }, parent))
+            }
+        }
+        return acc
+    }, new Map())
+
+    // const cloudMapServiceElements = nodes
+    //     .filter((x: any) => isCloudMapService(x.properties.resourceType))
+    //     .map((resource: any) => {
+    //         const { properties } = resource
+
+    //         const parent = createCloudMapParent(properties)
+    //         return buildNode(resource, parent, false)
+    //     })
+
     const ecsBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { resourceType, accountId, awsRegion, arn, title } = properties
         if (resourceType === 'AWS::ECS::Cluster') {
@@ -134,20 +180,6 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const cloudMapBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
-        const { resourceType, accountId, awsRegion, vpcId, resourceId, title, } = properties
-        if (resourceType === 'AWS::ServiceDiscovery::Namespace') {
-            const parent = `arn:aws:ec2:${awsRegion}:${accountId}:vpc/${vpcId}`.replace(/:/g, '-')
-            const id = `${accountId}-${awsRegion}-${vpcId}-${resourceId}`
-            if (!acc.has(id)) {
-                acc.set(id, buildBoundingBox({
-                    id, type: 'cloudmap', label: title, properties
-                }, parent))
-            }
-        }
-        return acc
-    }, new Map())
-
     const ecsServiceElements = nodes
         .filter((x: any) => isEcsService(x.properties.resourceType))
         .map((resource: any) => {
@@ -156,16 +188,6 @@ export const processElements = ({ nodes, edges }: any) => {
             return buildNode(resource, parent, false)
         })
 
-    const cloudMapServiceElements = nodes
-        .filter((x: any) => isCloudMapService(x.properties.resourceType))
-        .map((resource: any) => {
-            const { properties } = resource
-
-            const parent = createCloudMapParent(properties)
-            return buildNode(resource, parent, false)
-        })
-
-    const typeBoundingBoxes = new Map()
     const elements = nodes
         .filter((x: any) =>
             !isSubnetOrVpc(x.properties.resourceType) &&
@@ -175,7 +197,7 @@ export const processElements = ({ nodes, edges }: any) => {
             const { properties } = resource
             const [, , bbLabel] = properties.resourceType.split('::')
 
-            const parent = createParent(properties)
+            const parent = createParent(properties, nodes)
 
             const bbId = `${bbLabel}-${parent}`
 
@@ -199,7 +221,7 @@ export const processElements = ({ nodes, edges }: any) => {
         ...Array.from(typeBoundingBoxes.values()),
         ...elements,
         ...ecsServiceElements,
-        ...cloudMapServiceElements,
+        // ...cloudMapServiceElements,
     ]
 
     return [

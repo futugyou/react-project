@@ -667,6 +667,7 @@ const serviceIconMap = {
     'Arch_Amazon-EC2_64-SubnetRouteTableAssociation': 'AWS::EC2::SubnetRouteTableAssociation',
     'Arch_AWS-AppConfig_64-DeploymentStrategy': 'AWS::AppConfig::DeploymentStrategy',
     'Res_Amazon-Route-53-Hosted-Zone_48_Light': 'AWS::ServiceDiscovery::Service',
+    'Res_Amazon-Route-53_Resolver_48_Light': 'AWS::ServiceDiscovery::Instance',
     'Res_Amazon-Route-53_Resolver-Query-Logging_48_Light': 'cloudmap',
     'ecsCluster': 'ecsCluster',
 }

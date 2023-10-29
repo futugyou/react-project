@@ -19,7 +19,7 @@ export const buildBoundingBox = ({ id, type, label, properties }: any, parent?: 
                 color: '#fff',
                 borderColour: '#AAB7B8',
                 opacity: '0',
-                image: fetchImage(type),
+                image: fetchImage(type) ?? fetchImage(properties.resourceType),
                 clickedId: id,
                 cost: Number(0),
                 accountColour: getAccountColour(
