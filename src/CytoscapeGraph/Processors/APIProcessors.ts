@@ -5,10 +5,8 @@ import { buildBoundingBox, buildNode } from "@/CytoscapeGraph/NodeFactory/NodeFa
 const isBoundingBox = R.includes(R.__, ['account', 'region', 'availabilityZone', 'vpc', 'subnet', 'ecsCluster', 'cloudmap'])
 const isRegional = R.includes(R.__, ['Not Applicable', 'Regional'])
 const isSubnetOrVpc = R.includes(R.__, ['AWS_EC2_VPC', 'AWS_EC2_Subnet', 'AWS::EC2::VPC', 'AWS::EC2::Subnet'])
-const isEcsOrService = R.includes(R.__, ['AWS_ECS_Service', 'AWS_ECS_Cluster', 'AWS::ECS::Service', 'AWS::ECS::Cluster'])
-const isEcsService = R.includes(R.__, ['AWS_ECS_Service', 'AWS::ECS::Service'])
-const isCloudMapOrService = R.includes(R.__, ['AWS_ServiceDiscovery_Namespace', 'AWS::ServiceDiscovery::Namespace'])
-const isCloudMapService = R.includes(R.__, ['AWS_ServiceDiscovery_Service', 'AWS::ServiceDiscovery::Service'])
+const isEcs = R.includes(R.__, ['AWS_ECS_Cluster', 'AWS::ECS::Cluster'])
+const isCloudMap = R.includes(R.__, ['AWS_ServiceDiscovery_Namespace', 'AWS::ServiceDiscovery::Namespace'])
 
 const createParent = ({ accountId, awsRegion, resourceId, availabilityZone, vpcId, subnetId, resourceType, configuration }: any, nodes: any[]) => {
     if (resourceType == "AWS::ServiceDiscovery::Service") {
@@ -23,6 +21,16 @@ const createParent = ({ accountId, awsRegion, resourceId, availabilityZone, vpcI
             return `${accountId}-${awsRegion}-${c.NamespaceId}`
         }
     }
+    if (resourceType == "AWS::ECS::Task") {
+        const c = JSON.parse(configuration)
+        if (vpcId && subnetId) {
+            return c.ClusterArn + "-" + vpcId + "-" + subnetId
+        }
+        if (vpcId) {
+            return c.ClusterArn + "-" + vpcId
+        }
+        return c.ClusterArn
+    }
     if (subnetId != "") {
         return `arn:aws:ec2:${awsRegion}:${accountId}:subnet/${subnetId}`.replace(/:/g, '-')
     } else if (vpcId != "" && subnetId == "") {
@@ -36,16 +44,6 @@ const createParent = ({ accountId, awsRegion, resourceId, availabilityZone, vpcI
     } else {
         return `${accountId}-${awsRegion}`
     }
-}
-
-const createEcsParent = ({ configuration }: any) => {
-    const c = JSON.parse(configuration)
-    return c.Cluster
-}
-
-const createCloudMapParent = ({ accountId, awsRegion, vpcId, configuration }: any) => {
-    const c = JSON.parse(configuration)
-    return `${accountId}-${awsRegion}-${c.NamespaceId}`
 }
 
 export const processElements = ({ nodes, edges }: any) => {
@@ -136,8 +134,6 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    const typeBoundingBoxes = new Map()
-
     // 6. cloudMap bounding
     const cloudMapBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
         const { resourceType, accountId, awsRegion, vpcId, resourceId, title, } = properties
@@ -156,17 +152,10 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    // const cloudMapServiceElements = nodes
-    //     .filter((x: any) => isCloudMapService(x.properties.resourceType))
-    //     .map((resource: any) => {
-    //         const { properties } = resource
-
-    //         const parent = createCloudMapParent(properties)
-    //         return buildNode(resource, parent, false)
-    //     })
-
+    // 7. ecs
+    const ecsinBoundingBoxes = new Map()
     const ecsBoundingBoxes = nodes.reduce((acc: any, { properties }: any) => {
-        const { resourceType, accountId, awsRegion, arn, title } = properties
+        const { resourceType, accountId, awsRegion, arn, title, configuration, vpcId, subnetId } = properties
         if (resourceType === 'AWS::ECS::Cluster') {
             const id = arn
             const parent = `${accountId}-${awsRegion}`
@@ -177,22 +166,42 @@ export const processElements = ({ nodes, edges }: any) => {
                 }, parent))
             }
         }
+        if (resourceType === 'AWS::ECS::Task') {
+            const c = JSON.parse(configuration)
+            const id = arn
+            const parent = c.ClusterArn
+            const ecsvpc = c.ClusterArn + "-" + vpcId
+            const ecssunbet = c.ClusterArn + "-" + vpcId + "-" + subnetId
+
+            if (!acc.has(ecsvpc)) {
+                const vpc: any = Array.from(vpcBoundingBoxes.values())
+                    .find((p: any) => p.data?.properties?.resourceId == vpcId)
+                if (vpc) {
+                    acc.set(ecsvpc, buildBoundingBox({
+                        id: ecsvpc, type: 'vpc', label: vpc.data.title, properties
+                    }, parent))
+                }
+            }
+            if (!acc.has(ecssunbet)) {
+                const subnet: any = Array.from(subnetBoundingBoxes.values())
+                    .find((p: any) => p.data?.properties?.resourceId == subnetId)
+                if (subnet) {
+                    acc.set(ecssunbet, buildBoundingBox({
+                        id: ecssunbet, type: 'subnet', label: subnet.data.title, properties
+                    }, ecsvpc))
+                }
+            }
+        }
         return acc
     }, new Map())
 
-    const ecsServiceElements = nodes
-        .filter((x: any) => isEcsService(x.properties.resourceType))
-        .map((resource: any) => {
-            const { properties } = resource
-            const parent = createEcsParent(properties)
-            return buildNode(resource, parent, false)
-        })
+    const typeBoundingBoxes = new Map()
 
     const elements = nodes
         .filter((x: any) =>
             !isSubnetOrVpc(x.properties.resourceType) &&
-            !isEcsOrService(x.properties.resourceType) &&
-            !isCloudMapOrService(x.properties.resourceType))
+            !isEcs(x.properties.resourceType) &&
+            !isCloudMap(x.properties.resourceType))
         .map((resource: any) => {
             const { properties } = resource
             const [, , bbLabel] = properties.resourceType.split('::')
@@ -220,8 +229,6 @@ export const processElements = ({ nodes, edges }: any) => {
         ...Array.from(cloudMapBoundingBoxes.values()),
         ...Array.from(typeBoundingBoxes.values()),
         ...elements,
-        ...ecsServiceElements,
-        // ...cloudMapServiceElements,
     ]
 
     return [
