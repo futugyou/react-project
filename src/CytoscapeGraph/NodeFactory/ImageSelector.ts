@@ -577,6 +577,7 @@ const serviceIconMap = {
     'Res_Amazon-EC2_Instances_48-NetworkInsightsPath': 'AWS::EC2::NetworkInsightsPath',
     'Res_Amazon-EC2_Instances_48-TrafficMirrorFilter': 'AWS::EC2::TrafficMirrorFilter',
     'Res_Amazon-EventBridge-Event_48-Rule': 'AWS::Events::Rule',
+    'Res_Amazon-EventBridge_EventBus': 'AWS::Events::EventBus',
     'Arch_Amazon-HealthLake_64-FHIRDatastore': 'AWS::HealthLake::FHIRDatastore',
     'Arch_AWS-IoT-TwinMaker_64-Scene': 'AWS::IoTTwinMaker::Scene',
     'Arch_Amazon-Kinesis-Video-Streams_64-SignalingChannel': 'AWS::KinesisVideo::SignalingChannel',
@@ -670,6 +671,7 @@ const serviceIconMap = {
     'Res_Amazon-Route-53_Resolver_48_Light': 'AWS::ServiceDiscovery::Instance',
     'Res_Amazon-Route-53_Resolver-Query-Logging_48_Light': 'cloudmap',
     'ecsCluster': 'ecsCluster',
+    'Res_Amazon-VPC_Peering-Connection_48_Light':'AWS::EC2::VPCPeeringConnection',
 }
 
 const icons = new Map()

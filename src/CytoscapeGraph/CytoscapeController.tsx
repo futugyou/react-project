@@ -77,7 +77,7 @@ const CytoscapeController = () => {
         if (collapse){
             var api = cy.expandCollapse('get')
             // api.collapseAll()
-            api.collapseRecursively(cy.elements('node[type = "type"]'))
+            api.collapseRecursively(cy.elements('node[type = "type"], node[type = "ecsCluster"], node[type = "cloudmap"]'))
         }
     }
 
