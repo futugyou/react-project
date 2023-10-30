@@ -11,8 +11,8 @@
   "dependencies": {
     "@cloudscape-design/components": "^3.0.418",
     "@cloudscape-design/global-styles": "^1.0.15",
-    "@micro-zoe/micro-app": "^1.0.0-rc.1",
-    "@tanstack/react-query": "^5.0.5",
+    "@micro-zoe/micro-app": "^1.0.0-rc.2",
+    "@tanstack/react-query": "^5.4.3",
     "@types/react-cytoscapejs": "^1.2.4",
     "@uiw/react-color": "^1.4.3",
     "axios": "^1.6.0",

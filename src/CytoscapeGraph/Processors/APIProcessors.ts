@@ -245,7 +245,6 @@ export const processElements = ({ nodes, edges }: any) => {
         return acc
     }, new Map())
 
-    // 00. other
     const typeBoundingBoxes = new Map()
     const elements = nodes
         .filter((x: any) =>
