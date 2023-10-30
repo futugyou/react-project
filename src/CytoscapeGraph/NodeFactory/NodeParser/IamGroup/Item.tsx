@@ -5,8 +5,7 @@ import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLab
 export const Item = (configuration: any) => {
   const parsedConfig = configuration
   const mps = parsedConfig.attachedManagedPolicies.map((p: any) => <li key={p.policyName}>{p.policyName}</li>)
-  const ups = parsedConfig.userPolicyList.map((p: any) => <li key={p.policyName}>{p.policyName}</li>)
-  const gs = parsedConfig.groupList.map((p: any) => <li key={p}>{p}</li>)
+  const ups = parsedConfig.groupPolicyList.map((p: any) => <li key={p.policyName}>{p.policyName}</li>)
 
   return (
     <ColumnLayout columns={2} variant='text-grid'>
@@ -14,11 +13,11 @@ export const Item = (configuration: any) => {
         <ValueWithLabel label='arn'>
           {parsedConfig.arn}
         </ValueWithLabel>
-        <ValueWithLabel label='userId'>
-          {parsedConfig.userId}
+        <ValueWithLabel label='groupId'>
+          {parsedConfig.groupId}
         </ValueWithLabel>
-        <ValueWithLabel label='userName'>
-          {parsedConfig.userName}
+        <ValueWithLabel label='groupName'>
+          {parsedConfig.groupName}
         </ValueWithLabel>
         <ValueWithLabel label='createDate'>
           {parsedConfig.createDate}
@@ -33,14 +32,9 @@ export const Item = (configuration: any) => {
             {mps}
           </ul>
         </ValueWithLabel>
-        <ValueWithLabel label='userPolicyList'>
+        <ValueWithLabel label='groupPolicyList'>
           <ul>
             {ups}
-          </ul>
-        </ValueWithLabel>
-        <ValueWithLabel label='groupList'>
-          <ul>
-            {gs}
           </ul>
         </ValueWithLabel>
       </SpaceBetween>

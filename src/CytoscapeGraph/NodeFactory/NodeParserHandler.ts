@@ -8,6 +8,7 @@ import NetworkInterfaceParse from "./NodeParser/NetworkInterface/Parse"
 import RouteTableParse from "./NodeParser/RouteTable/Parse"
 import AWSManagedPolicyParse from "./NodeParser/AWSManagedPolicy/Parse"
 import IamUserParse from "./NodeParser/IamUser/Parse"
+import IamGroupParse from "./NodeParser/IamGroup/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -18,6 +19,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::RouteTable', RouteTableParse)
     nodeParsers.set('AWS::IAM::AWSManagedPolicy', AWSManagedPolicyParse)
     nodeParsers.set('AWS::IAM::User', IamUserParse)
+    nodeParsers.set('AWS::IAM::Group', IamGroupParse)
 }
 buildNodeParserFactory()
 
