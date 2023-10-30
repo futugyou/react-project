@@ -110,7 +110,7 @@ const CytoscapePanel = () => {
 
     return (
         <div className="cytoscapePanel">
-            <Modal onDismiss={() => setVisible(false)} visible={visible}>
+            <Modal onDismiss={() => setVisible(false)} visible={visible} size="large">
                 {selectedNode}
             </Modal>
             <CytoscapeController></CytoscapeController>
