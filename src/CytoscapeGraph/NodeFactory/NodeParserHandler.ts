@@ -10,6 +10,7 @@ import AWSManagedPolicyParse from "./NodeParser/AWSManagedPolicy/Parse"
 import IamUserParse from "./NodeParser/IamUser/Parse"
 import IamGroupParse from "./NodeParser/IamGroup/Parse"
 import IamRoleParse from "./NodeParser/IamRole/Parse"
+import IamPolicyParse from "./NodeParser/IamPolicy/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -22,6 +23,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::IAM::User', IamUserParse)
     nodeParsers.set('AWS::IAM::Group', IamGroupParse)
     nodeParsers.set('AWS::IAM::Role', IamRoleParse)
+    nodeParsers.set('AWS::IAM::Policy', IamPolicyParse)
 }
 buildNodeParserFactory()
 
