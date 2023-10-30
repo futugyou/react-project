@@ -6,6 +6,7 @@ import EC2InstanceParse from "./NodeParser/EC2Instance/Parse"
 import LoadBalancerParse from "./NodeParser/LoadBalancers/Parse"
 import NetworkInterfaceParse from "./NodeParser/NetworkInterface/Parse"
 import RouteTableParse from "./NodeParser/RouteTable/Parse"
+import AWSManagedPolicyParse from "./NodeParser/AWSManagedPolicy/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -14,6 +15,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::ElasticLoadBalancingV2::LoadBalancer', LoadBalancerParse)
     nodeParsers.set('AWS::EC2::NetworkInterface', NetworkInterfaceParse)
     nodeParsers.set('AWS::EC2::RouteTable', RouteTableParse)
+    nodeParsers.set('AWS::IAM::AWSManagedPolicy', AWSManagedPolicyParse)
 }
 buildNodeParserFactory()
 
