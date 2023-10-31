@@ -85,8 +85,10 @@ const CytoscapePanel = () => {
             node.descendants().lock()
             node.descendants().ungrabify()
         })
-
-        expandAPI.current = cy.expandCollapse(getExpandCollapseGraphLayout())
+        var api = cy.expandCollapse('get')
+        if (!api) {
+            expandAPI.current = cy.expandCollapse(getExpandCollapseGraphLayout())
+        }
 
         cy.gridGuide(getGridGuide())
 
