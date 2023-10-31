@@ -9,6 +9,7 @@ import fcose from 'cytoscape-fcose'
 
 import Select from "@cloudscape-design/components/select"
 import Button from "@cloudscape-design/components/button"
+import { BsListUl } from "react-icons/bs"
 
 import { useAuth } from '@/Auth/index'
 
@@ -22,7 +23,12 @@ cytoscape.use(avsdf)
 cytoscape.use(euler)
 cytoscape.use(fcose)
 
-const CytoscapeController = () => {
+interface CytoscapeControllerProps {
+    setVisible: (state: boolean) => void
+    visible: boolean
+}
+
+const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) => {
     const { cy } = useCytoscapeCore()
     const { authService } = useAuth()
 
@@ -74,7 +80,7 @@ const CytoscapeController = () => {
         }
 
         cy.layout({ name: selectedLayout.value }).run()
-        if (collapse){
+        if (collapse) {
             var api = cy.expandCollapse('get')
             // api.collapseAll()
             api.collapseRecursively(cy.elements('node[type = "type"], node[type = "ecsCluster"], node[type = "cloudmap"]'))
@@ -126,8 +132,23 @@ const CytoscapeController = () => {
             }
         }
     }, [nodeData, isError])
+
+    if (!visible) {
+        return (
+            <div className='layoutController'>
+                <BsListUl className="itemIcon" onClick={() => setVisible(true)} />
+            </div>)
+    }
+
     return (
         <div className='layoutController'>
+            <div className='controllerHead'>
+                <div className="itemDescription">Cytoscape Controller</div>
+                <div className="itemContent">
+                    <BsListUl className="itemIcon" onClick={() => setVisible(false)} />
+                </div>
+            </div>
+
             <div className='controllerItem'>
                 <div className="itemDescription">change data</div>
                 <div className="itemContent">

@@ -24,4 +24,27 @@
 
 .itemContent>* {
     width: 100%;
+    cursor: pointer;
+}
+
+.controllerHead {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+.itemIcon:hover {
+    width: 25px;
+    height: 25px;
+}
+
+.itemIcon:hover {
+    width: 30px;
+    height: 30px;
+    border: 1px solid bisque;
 }

@@ -1,7 +1,7 @@
 import './CytoscapePanel.css'
 import '@cloudscape-design/global-styles/index.css'
 import * as R from 'ramda'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 
 import { Modal } from '@cloudscape-design/components'
 import cytoscape from 'cytoscape'
@@ -21,11 +21,12 @@ expandCollapse(cytoscape)
 
 const CytoscapePanel = () => {
     const { cy, setCy } = useCytoscapeCore()
-    
-    const [visible, setVisible] = React.useState(false)
+
+    const [visible, setVisible] = useState(false)
+    const [controllerVisible, setControllerVisible] = useState(false)
     const [selectedNode, setSelectedNode] = useState(null)
-    
-    const expandAPI = React.useRef<any>()
+
+    const expandAPI = useRef<any>()
 
     const handleDoubleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
         const node = event.target
@@ -113,7 +114,7 @@ const CytoscapePanel = () => {
             <Modal onDismiss={() => setVisible(false)} visible={visible} size="large">
                 {selectedNode}
             </Modal>
-            <CytoscapeController></CytoscapeController>
+            <CytoscapeController setVisible={(state) => setControllerVisible(state)} visible={controllerVisible}></CytoscapeController>
             <CytoscapeComponent
                 cy={cyCallback}
                 elements={CytoscapeComponent.normalizeElements([])}
