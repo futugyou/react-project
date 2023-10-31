@@ -1,6 +1,6 @@
 import './CytoscapeController.css'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import cytoscape from 'cytoscape'
 import avsdf from 'cytoscape-avsdf'
@@ -196,4 +196,4 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
     )
 }
 
-export default CytoscapeController
+export default React.memo(CytoscapeController)

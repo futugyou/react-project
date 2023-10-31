@@ -11,6 +11,7 @@ import IamUserParse from "./NodeParser/IamUser/Parse"
 import IamGroupParse from "./NodeParser/IamGroup/Parse"
 import IamRoleParse from "./NodeParser/IamRole/Parse"
 import IamPolicyParse from "./NodeParser/IamPolicy/Parse"
+import KmsKeyParse from "./NodeParser/KmsKey/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -24,6 +25,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::IAM::Group', IamGroupParse)
     nodeParsers.set('AWS::IAM::Role', IamRoleParse)
     nodeParsers.set('AWS::IAM::Policy', IamPolicyParse)
+    nodeParsers.set('AWS::KMS::Key', KmsKeyParse)
 }
 buildNodeParserFactory()
 
