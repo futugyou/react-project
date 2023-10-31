@@ -9,7 +9,7 @@ import fcose from 'cytoscape-fcose'
 
 import Select from "@cloudscape-design/components/select"
 import Button from "@cloudscape-design/components/button"
-import { BsListUl } from "react-icons/bs"
+import { BsListUl, BsChevronCompactLeft } from "react-icons/bs"
 
 import { useAuth } from '@/Auth/index'
 
@@ -145,7 +145,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
             <div className='controllerHead'>
                 <div className="itemDescription">Cytoscape Controller</div>
                 <div className="itemContent">
-                    <BsListUl className="itemIcon" onClick={() => setVisible(false)} />
+                    <BsChevronCompactLeft className="itemIcon" onClick={() => setVisible(false)} />
                 </div>
             </div>
 
