@@ -18,6 +18,7 @@ import FunctionParse from "./NodeParser/Function/Parse"
 import DynamoDBParse from "./NodeParser/DynamoDB/Parse"
 import NetworkAclParse from "./NodeParser/NetworkAcl/Parse"
 import CertificateParse from "./NodeParser/Certificate/Parse"
+import ECSServiceParse from "./NodeParser/ECSService/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -38,6 +39,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::DynamoDB::Table', DynamoDBParse)
     nodeParsers.set('AWS::EC2::NetworkAcl', NetworkAclParse)
     nodeParsers.set('AWS::ACM::Certificate', CertificateParse)
+    nodeParsers.set('AWS::ECS::Service', ECSServiceParse)
 }
 
 buildNodeParserFactory()
