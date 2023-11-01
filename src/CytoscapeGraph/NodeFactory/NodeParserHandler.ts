@@ -21,6 +21,7 @@ import CertificateParse from "./NodeParser/Certificate/Parse"
 import ECSServiceParse from "./NodeParser/ECSService/Parse"
 import MQBrokerParse from "./NodeParser/MQBroker/Parse"
 import TaskDefinitionParse from "./NodeParser/TaskDefinition/Parse"
+import EIPParse from "./NodeParser/EIP/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -44,6 +45,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::ECS::Service', ECSServiceParse)
     nodeParsers.set('AWS::AmazonMQ::Broker', MQBrokerParse)
     nodeParsers.set('AWS::ECS::TaskDefinition', TaskDefinitionParse)
+    nodeParsers.set('AWS::EC2::EIP', EIPParse)
 }
 
 buildNodeParserFactory()
