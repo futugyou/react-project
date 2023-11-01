@@ -15,6 +15,7 @@ import KmsKeyParse from "./NodeParser/KmsKey/Parse"
 import VpcPeerParse from "./NodeParser/VpcPeer/Parse"
 import EventRuleParse from "./NodeParser/EventRule/Parse"
 import FunctionParse from "./NodeParser/Function/Parse"
+import DynamoDBParse from "./NodeParser/DynamoDB/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -32,6 +33,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::VPCPeeringConnection', VpcPeerParse)
     nodeParsers.set('AWS::Events::Rule', EventRuleParse)
     nodeParsers.set('AWS::Lambda::Function', FunctionParse)
+    nodeParsers.set('AWS::DynamoDB::Table', DynamoDBParse)
 }
 
 buildNodeParserFactory()
