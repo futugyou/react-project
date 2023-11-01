@@ -1,7 +1,14 @@
 
 const getGreenState = (state: string) => {
     return new RegExp(
-        ['available', 'running', 'in-use', 'active', 'successful'].join('|')
+        [
+            'available',
+            'running',
+            'in-use',
+            'active',
+            'successful',
+            'issued',
+        ].join('|')
     ).exec(state)
 }
 
@@ -14,7 +21,7 @@ const getRedState = (state: string) => {
             'terminated',
             'stopping',
             'failed',
-            'disabled'
+            'disabled',
         ].join('|')
     ).exec(state)
 }
