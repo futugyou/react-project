@@ -16,6 +16,7 @@ import VpcPeerParse from "./NodeParser/VpcPeer/Parse"
 import EventRuleParse from "./NodeParser/EventRule/Parse"
 import FunctionParse from "./NodeParser/Function/Parse"
 import DynamoDBParse from "./NodeParser/DynamoDB/Parse"
+import NetworkAclParse from "./NodeParser/NetworkAcl/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -34,6 +35,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::Events::Rule', EventRuleParse)
     nodeParsers.set('AWS::Lambda::Function', FunctionParse)
     nodeParsers.set('AWS::DynamoDB::Table', DynamoDBParse)
+    nodeParsers.set('AWS::EC2::NetworkAcl', NetworkAclParse)
 }
 
 buildNodeParserFactory()
