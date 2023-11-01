@@ -13,7 +13,8 @@ const getRedState = (state: string) => {
             'shutting-down',
             'terminated',
             'stopping',
-            'failed'
+            'failed',
+            'disabled'
         ].join('|')
     ).exec(state)
 }
