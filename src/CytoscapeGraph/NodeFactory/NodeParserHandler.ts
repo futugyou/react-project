@@ -14,6 +14,7 @@ import IamPolicyParse from "./NodeParser/IamPolicy/Parse"
 import KmsKeyParse from "./NodeParser/KmsKey/Parse"
 import VpcPeerParse from "./NodeParser/VpcPeer/Parse"
 import EventRuleParse from "./NodeParser/EventRule/Parse"
+import FunctionParse from "./NodeParser/Function/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -30,7 +31,9 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::KMS::Key', KmsKeyParse)
     nodeParsers.set('AWS::EC2::VPCPeeringConnection', VpcPeerParse)
     nodeParsers.set('AWS::Events::Rule', EventRuleParse)
+    nodeParsers.set('AWS::Lambda::Function', FunctionParse)
 }
+
 buildNodeParserFactory()
 
 export const parseNode = (properties: any, node: any) => {
