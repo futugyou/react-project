@@ -19,6 +19,7 @@ import DynamoDBParse from "./NodeParser/DynamoDB/Parse"
 import NetworkAclParse from "./NodeParser/NetworkAcl/Parse"
 import CertificateParse from "./NodeParser/Certificate/Parse"
 import ECSServiceParse from "./NodeParser/ECSService/Parse"
+import MQBrokerParse from "./NodeParser/MQBroker/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -40,6 +41,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::NetworkAcl', NetworkAclParse)
     nodeParsers.set('AWS::ACM::Certificate', CertificateParse)
     nodeParsers.set('AWS::ECS::Service', ECSServiceParse)
+    nodeParsers.set('AWS::AmazonMQ::Broker', MQBrokerParse)
 }
 
 buildNodeParserFactory()
