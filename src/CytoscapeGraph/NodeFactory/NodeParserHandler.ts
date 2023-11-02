@@ -25,6 +25,7 @@ import EIPParse from "./NodeParser/EIP/Parse"
 import FileSystemParse from "./NodeParser/FileSystem/Parse"
 import AccessPointParse from "./NodeParser/AccessPoint/Parse"
 import InternetGatewayParse from "./NodeParser/InternetGateway/Parse"
+import NatGatewayParse from "./NodeParser/NatGateway/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -51,7 +52,8 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::EIP', EIPParse)
     nodeParsers.set('AWS::EFS::FileSystem', FileSystemParse)
     nodeParsers.set('AWS::EFS::AccessPoint', AccessPointParse)
-    nodeParsers.set('AWS::EFS::AWS::EC2::InternetGateway', InternetGatewayParse)
+    nodeParsers.set('AWS::EC2::InternetGateway', InternetGatewayParse)
+    nodeParsers.set('AWS::EC2::NatGateway', NatGatewayParse)
 }
 
 buildNodeParserFactory()
