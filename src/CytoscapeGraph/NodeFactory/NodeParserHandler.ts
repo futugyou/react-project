@@ -28,6 +28,7 @@ import InternetGatewayParse from "./NodeParser/InternetGateway/Parse"
 import NatGatewayParse from "./NodeParser/NatGateway/Parse"
 import EcsClusterParse from "./NodeParser/EcsCluster/Parse"
 import SecurityGroupParse from "./NodeParser/SecurityGroup/Parse"
+import ServiceDiscoveryServiceParse from "./NodeParser/ServiceDiscoveryService/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -58,6 +59,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::NatGateway', NatGatewayParse)
     nodeParsers.set('AWS::ECS::Cluster', EcsClusterParse)
     nodeParsers.set('AWS::EC2::SecurityGroup', SecurityGroupParse)
+    nodeParsers.set('AWS::ServiceDiscovery::Service', ServiceDiscoveryServiceParse)
 }
 
 buildNodeParserFactory()
