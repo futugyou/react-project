@@ -30,6 +30,7 @@ import EcsClusterParse from "./NodeParser/EcsCluster/Parse"
 import SecurityGroupParse from "./NodeParser/SecurityGroup/Parse"
 import ServiceDiscoveryServiceParse from "./NodeParser/ServiceDiscoveryService/Parse"
 import ServiceDiscoveryInstanceParse from "./NodeParser/ServiceDiscoveryInstance/Parse"
+import SubnetParse from "./NodeParser/Subnet/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -62,6 +63,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::SecurityGroup', SecurityGroupParse)
     nodeParsers.set('AWS::ServiceDiscovery::Service', ServiceDiscoveryServiceParse)
     nodeParsers.set('AWS::ServiceDiscovery::Instance', ServiceDiscoveryInstanceParse)
+    nodeParsers.set('AWS::EC2::Subnet', SubnetParse)
 }
 
 buildNodeParserFactory()
