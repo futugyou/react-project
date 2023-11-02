@@ -23,6 +23,7 @@ import MQBrokerParse from "./NodeParser/MQBroker/Parse"
 import TaskDefinitionParse from "./NodeParser/TaskDefinition/Parse"
 import EIPParse from "./NodeParser/EIP/Parse"
 import FileSystemParse from "./NodeParser/FileSystem/Parse"
+import AccessPointParse from "./NodeParser/AccessPoint/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -48,6 +49,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::ECS::TaskDefinition', TaskDefinitionParse)
     nodeParsers.set('AWS::EC2::EIP', EIPParse)
     nodeParsers.set('AWS::EFS::FileSystem', FileSystemParse)
+    nodeParsers.set('AWS::EFS::AccessPoint', AccessPointParse)
 }
 
 buildNodeParserFactory()
