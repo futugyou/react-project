@@ -4,12 +4,9 @@ import { ValueWithLabel } from '@/CytoscapeGraph/NodeFactory/Shared/ValueWithLab
 
 export const Item = (configuration: any) => {
   const parsedConfig = configuration
-  const images = parsedConfig.ContainerDefinitions?.map((p: any) => <li key={p.Image}>{p.Image}</li>)
-  const secrets = R.flatten(parsedConfig.ContainerDefinitions?.map((p: any) => p.Secrets))
-  const volumes = parsedConfig.Volumes?.map((p: any) => <li key={p.Name}>{p.Name}</li>)
 
   return (
-    <ColumnLayout columns={1} variant='text-grid'>
+    <ColumnLayout columns={2} variant='text-grid'>
       <SpaceBetween size='l'>
         <ValueWithLabel label='InstanceId'>
           {parsedConfig.InstanceId}
@@ -17,6 +14,8 @@ export const Item = (configuration: any) => {
         <ValueWithLabel label='ServiceId'>
           {parsedConfig.ServiceId}
         </ValueWithLabel>
+      </SpaceBetween>
+      <SpaceBetween size='l'>
         <ValueWithLabel label='AVAILABILITY_ZONE'>
           {parsedConfig.InstanceAttributes.AVAILABILITY_ZONE}
         </ValueWithLabel>
