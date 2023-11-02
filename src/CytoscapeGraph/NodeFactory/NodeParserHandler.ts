@@ -32,6 +32,7 @@ import ServiceDiscoveryServiceParse from "./NodeParser/ServiceDiscoveryService/P
 import ServiceDiscoveryInstanceParse from "./NodeParser/ServiceDiscoveryInstance/Parse"
 import SubnetParse from "./NodeParser/Subnet/Parse"
 import VolumeParse from "./NodeParser/EC2Volume/Parse"
+import VPCParse from "./NodeParser/EC2VPC/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -66,6 +67,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::ServiceDiscovery::Instance', ServiceDiscoveryInstanceParse)
     nodeParsers.set('AWS::EC2::Subnet', SubnetParse)
     nodeParsers.set('AWS::EC2::Volume', VolumeParse)
+    nodeParsers.set('AWS::EC2::VPC', VPCParse)
 }
 
 buildNodeParserFactory()
