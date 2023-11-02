@@ -7,7 +7,7 @@ export const Item = (configuration: any) => {
   const loadBalancers = parsedConfig.LoadBalancerArns?.map((p: any) => <li key={p}>{p}</li>)
 
   return (
-    <ColumnLayout columns={1} variant='text-grid'>
+    <ColumnLayout columns={2} variant='text-grid'>
       <SpaceBetween size='l'>
         <ValueWithLabel label='HealthCheckPath'>
           {parsedConfig.HealthCheckPath}

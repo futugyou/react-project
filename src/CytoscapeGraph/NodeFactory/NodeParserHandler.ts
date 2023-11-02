@@ -36,6 +36,7 @@ import VPCParse from "./NodeParser/EC2VPC/Parse"
 import VPCEndpointParse from "./NodeParser/VPCEndpoint/Parse"
 import EcsTaskParse from "./NodeParser/EcsTask/Parse"
 import TargetGroupParse from "./NodeParser/TargetGroup/Parse"
+import LBListenerParse from "./NodeParser/LBListener/Parse"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -74,6 +75,7 @@ const buildNodeParserFactory = () => {
     nodeParsers.set('AWS::EC2::VPCEndpoint', VPCEndpointParse)
     nodeParsers.set('AWS::ECS::Task', EcsTaskParse)
     nodeParsers.set('AWS::ElasticLoadBalancingV2::TargetGroup', TargetGroupParse)
+    nodeParsers.set('AWS::ElasticLoadBalancingV2::Listener', LBListenerParse)
 }
 
 buildNodeParserFactory()
