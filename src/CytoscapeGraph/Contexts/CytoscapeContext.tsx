@@ -31,7 +31,7 @@ export const CytoscapePanelProvider = (props: any): ReactElement => {
     }, [state, dispatch])
 
     return (
-        <CytoscapePanelContext.Provider value={{ state, dispatch }}>
+        <CytoscapePanelContext.Provider value={contextValue}>
             {children}
         </CytoscapePanelContext.Provider>
     )

@@ -12,6 +12,7 @@ import CytoscapeComponent from 'react-cytoscapejs'
 import { graphStyle } from '@/CytoscapeGraph/Styling/GraphStyling'
 
 import { useCytoscapeCore, CytoscapePanelProvider } from '@/CytoscapeGraph/Contexts/CytoscapeContext'
+import { ActionType } from '@/CytoscapeGraph/Contexts/Reducers/CytoscapeReducer'
 import CytoscapeController from '@/CytoscapeGraph/CytoscapeController'
 import expandCollapse from 'cytoscape-expand-collapse'
 import { getExpandCollapseGraphLayout, getGridGuide } from '@/CytoscapeGraph/Layouting/CytoscapeLayout'
@@ -62,7 +63,7 @@ const CytoscapePanel = () => {
 
     const updateCytoscapeCore = useCallback((cy: cytoscape.Core) => {
         dispatch({
-            type: 'setCyCore',
+            type: ActionType.SetCyCore,
             Core: cy,
         })
     }, [dispatch])
