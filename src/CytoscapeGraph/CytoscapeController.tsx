@@ -17,7 +17,7 @@ import singleAccount from '@/CytoscapeGraph/data/singleAccount.json'
 import singleAccountDuplicates from '@/CytoscapeGraph/data/singleAccountDuplicates.json'
 import { useGetResourceGraph } from '@/CytoscapeGraph/Hooks/useGetResourceGraph'
 import { processElements } from '@/CytoscapeGraph/Processors/APIProcessors'
-import { useCytoscapeCore } from '@/CytoscapeGraph/CytoscapePanelContext'
+import { useCytoscapeCore } from '@/CytoscapeGraph/Contexts/CytoscapeContext'
 
 cytoscape.use(avsdf)
 cytoscape.use(euler)
@@ -29,7 +29,7 @@ interface CytoscapeControllerProps {
 }
 
 const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) => {
-    const { cy } = useCytoscapeCore()
+    const { state: { Core: cy }, } = useCytoscapeCore()
     const { authService } = useAuth()
 
     const layoutSelection = [

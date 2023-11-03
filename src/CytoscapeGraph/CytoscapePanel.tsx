@@ -11,7 +11,7 @@ import CytoscapeComponent from 'react-cytoscapejs'
 
 import { graphStyle } from '@/CytoscapeGraph/Styling/GraphStyling'
 
-import { useCytoscapeCore, CytoscapePanelProvider } from '@/CytoscapeGraph/CytoscapePanelContext'
+import { useCytoscapeCore, CytoscapePanelProvider } from '@/CytoscapeGraph/Contexts/CytoscapeContext'
 import CytoscapeController from '@/CytoscapeGraph/CytoscapeController'
 import expandCollapse from 'cytoscape-expand-collapse'
 import { getExpandCollapseGraphLayout, getGridGuide } from '@/CytoscapeGraph/Layouting/CytoscapeLayout'
@@ -20,13 +20,14 @@ gridGuide(cytoscape)
 expandCollapse(cytoscape)
 
 const CytoscapePanel = () => {
-    const { cy, setCy } = useCytoscapeCore()
+    const { state: { Core: cy }, dispatch } = useCytoscapeCore()
 
     const [visible, setVisible] = useState(false)
     const [controllerVisible, setControllerVisible] = useState(false)
     const [selectedNode, setSelectedNode] = useState(null)
 
     const expandAPI = useRef<any>()
+    const cyRef = useRef<any>()
 
     const handleDoubleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
         const node = event.target
@@ -43,13 +44,13 @@ const CytoscapePanel = () => {
     }, [])
 
     const handleUnselect = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
-        // const node = event.target;
-        // node.lock();
+        // const node = event.target
+        // node.lock()
         // node.removeClass('selected')
     }, [])
 
     const handleClick = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
-        const node = event.target;
+        const node = event.target
         if (node.data().detailsComponent) {
             setSelectedNode(node.data().detailsComponent)
             setVisible(true)
@@ -58,6 +59,13 @@ const CytoscapePanel = () => {
             setVisible(false)
         }
     }, [])
+
+    const updateCytoscapeCore = useCallback((cy: cytoscape.Core) => {
+        dispatch({
+            type: 'setCyCore',
+            Core: cy,
+        })
+    }, [dispatch])
 
     const cyCallback = useCallback((cy: cytoscape.Core) => {
         cy.removeListener('select', 'node')
@@ -97,10 +105,11 @@ const CytoscapePanel = () => {
                 () => cy.elements().removeClass('highlight'),
                 2000
             )
-
+            cyRef.current = cy
             return () => clearTimeout(removeHighlight)
         })
-        setCy(cy)
+
+
     }, [handleDoubleTap, handleTap, handleUnselect])
 
     useEffect(() => {
@@ -110,6 +119,12 @@ const CytoscapePanel = () => {
             }
         }
     }, [])
+
+    useEffect(() => {
+        if (cyRef.current) {
+            updateCytoscapeCore(cyRef.current)
+        }
+    }, [cyRef, updateCytoscapeCore])
 
     return (
         <div className="cytoscapePanel">
