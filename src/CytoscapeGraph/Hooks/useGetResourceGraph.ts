@@ -5,7 +5,7 @@ const configserver = import.meta.env.REACT_APP_FLOW_SERVER
 
 const configPath = 'v1/awsconfig'
 
-export function useGetResourceGraph(config = {}) {
+export const useGetResourceGraph = (config = {}) => {
     const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
     const options: AxiosRequestConfig = {
         url: configserver + configPath,

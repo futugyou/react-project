@@ -3,7 +3,10 @@ import cytoscape from 'cytoscape'
 
 export interface CytoscapeState {
     Core: cytoscape.Core
+    Data: CytoscapeData
 }
+
+export type CytoscapeData = cytoscape.ElementDefinition[]
 
 export enum ActionType {
     SetCyCore,
@@ -16,7 +19,7 @@ export interface SetCyCoreAction {
 }
 
 export interface SetResourceAction {
-    Data: cytoscape.Collection
+    Data: CytoscapeData
     type: ActionType.SetResource
 }
 
@@ -30,6 +33,11 @@ export const CytoscapePanelReducer = (state: CytoscapeState, action: CytoscapeAc
             return {
                 ...state,
                 Core: action.Core,
+            }
+        case ActionType.SetResource:
+            return {
+                ...state,
+                Data: action.Data,
             }
         default:
             return state

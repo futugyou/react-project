@@ -3,7 +3,10 @@ import React, { createContext, useState, useContext, ReactElement, useReducer, u
 import cytoscape from 'cytoscape'
 import { CytoscapePanelReducer, CytoscapeState, CytoscapeAction } from './Reducers/CytoscapeReducer'
 
-const initialState: CytoscapeState = { Core: cytoscape({}) }
+const initialState: CytoscapeState = {
+    Core: cytoscape({}),
+    Data: []
+}
 
 export const CytoscapePanelContext = createContext<CytoscapeProps>({
     state: initialState,
