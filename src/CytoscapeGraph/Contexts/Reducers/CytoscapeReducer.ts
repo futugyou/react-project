@@ -4,6 +4,7 @@ import cytoscape from 'cytoscape'
 export interface CytoscapeState {
     Core: cytoscape.Core
     Data: CytoscapeData
+    Layout: string
 }
 
 export type CytoscapeData = cytoscape.ElementDefinition[]
@@ -11,6 +12,7 @@ export type CytoscapeData = cytoscape.ElementDefinition[]
 export enum ActionType {
     SetCyCore,
     SetResource,
+    ChangeLayout,
 }
 
 export interface SetCyCoreAction {
@@ -23,9 +25,15 @@ export interface SetResourceAction {
     type: ActionType.SetResource
 }
 
+export interface ChangeLayoutAction {
+    Layout: string
+    type: ActionType.ChangeLayout
+}
+
 export type CytoscapeAction =
     | SetCyCoreAction
     | SetResourceAction
+    | ChangeLayoutAction
 
 export const CytoscapePanelReducer = (state: CytoscapeState, action: CytoscapeAction): CytoscapeState => {
     switch (action.type) {
@@ -38,6 +46,11 @@ export const CytoscapePanelReducer = (state: CytoscapeState, action: CytoscapeAc
             return {
                 ...state,
                 Data: action.Data,
+            }
+        case ActionType.ChangeLayout:
+            return {
+                ...state,
+                Layout: action.Layout,
             }
         default:
             return state

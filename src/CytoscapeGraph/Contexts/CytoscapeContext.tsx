@@ -5,7 +5,8 @@ import { CytoscapePanelReducer, CytoscapeState, CytoscapeAction } from './Reduce
 
 const initialState: CytoscapeState = {
     Core: cytoscape({}),
-    Data: []
+    Data: [],
+    Layout: 'cose',
 }
 
 export const CytoscapePanelContext = createContext<CytoscapeProps>({
