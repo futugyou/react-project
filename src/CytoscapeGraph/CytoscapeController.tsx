@@ -1,6 +1,6 @@
 import './CytoscapeController.css'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 
 import cytoscape from 'cytoscape'
 import avsdf from 'cytoscape-avsdf'
@@ -18,6 +18,7 @@ import singleAccountDuplicates from '@/CytoscapeGraph/data/singleAccountDuplicat
 import { useGetResourceGraph } from '@/CytoscapeGraph/Hooks/useGetResourceGraph'
 import { processElements } from '@/CytoscapeGraph/Processors/APIProcessors'
 import { useCytoscapeCore } from '@/CytoscapeGraph/Contexts/CytoscapeContext'
+import { ActionType, CytoscapeData } from './Contexts/Reducers/CytoscapeReducer'
 
 cytoscape.use(avsdf)
 cytoscape.use(euler)
@@ -29,7 +30,7 @@ interface CytoscapeControllerProps {
 }
 
 const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) => {
-    const { state: { Core: cy }, } = useCytoscapeCore()
+    const { state: { Core: cy }, dispatch } = useCytoscapeCore()
     const { authService } = useAuth()
 
     const layoutSelection = [
@@ -132,6 +133,20 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
             }
         }
     }, [nodeData, isError])
+
+    const updateCytoscapeData = useCallback((data: CytoscapeData) => {
+        dispatch({
+            type: ActionType.SetResource,
+            Data: data,
+        })
+    }, [dispatch])
+
+    const updateCytoscapeLayout = useCallback((layout: string) => {
+        dispatch({
+            type: ActionType.ChangeLayout,
+            Layout: layout,
+        })
+    }, [dispatch])
 
     if (!visible) {
         return (
