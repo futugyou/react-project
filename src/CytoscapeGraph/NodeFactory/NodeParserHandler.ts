@@ -37,6 +37,7 @@ import VPCEndpointParse from "./NodeParser/VPCEndpoint/Parse"
 import EcsTaskParse from "./NodeParser/EcsTask/Parse"
 import TargetGroupParse from "./NodeParser/TargetGroup/Parse"
 import LBListenerParse from "./NodeParser/LBListener/Parse"
+import { ConfigProperties,Node } from "../Processors/APIModel"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -80,7 +81,7 @@ const buildNodeParserFactory = () => {
 
 buildNodeParserFactory()
 
-export const parseNode = (properties: any, node: any) => {
+export const parseNode = (properties: ConfigProperties, node: Node) => {
     const parser = nodeParsers.get(properties.resourceType)
     if (parser) {
         return parser(node)

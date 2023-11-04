@@ -3,10 +3,17 @@ import * as R from 'ramda'
 
 import { fetchImage, getAccountColour, getRegionColour } from "@/CytoscapeGraph/NodeFactory/ImageSelector"
 import { parseNode } from "@/CytoscapeGraph/NodeFactory/NodeParserHandler"
+import { Node, ConfigProperties } from '../Processors/APIModel'
 
-export const buildBoundingBox = ({ id, type, label, properties }: any, parent?: string) => {
+interface buildBoundingBoxProps {
+    id: string
+    type: string
+    label: string
+    properties: ConfigProperties
+}
+export const buildBoundingBox = ({ id, type, label, properties }: buildBoundingBoxProps, parent?: string) => {
     try {
-        const boundingBox = {
+        const boundingBox: cytoscape.ElementDefinition = {
             group: "nodes",
             data: {
                 id,
@@ -29,7 +36,7 @@ export const buildBoundingBox = ({ id, type, label, properties }: any, parent?: 
                     type === 'region' ? label : 'Multi-Region'
                 ),
                 aZColour: '#00A1C9',
-                subnetColour: subnetColour({ data: { properties } }),
+                subnetColour: subnetColour(properties),
                 properties: {},
                 resource: {}
             },
@@ -46,7 +53,7 @@ export const buildBoundingBox = ({ id, type, label, properties }: any, parent?: 
                 tags: properties.tags,
                 arn: properties.arn,
                 region: properties.awsRegion ?? 'Multi-Region',
-                state: properties.state,
+                // state: properties.state,
                 // loggedInURL: properties.loggedInURL,
                 // loginURL: properties.loginURL,
                 accountId: properties.accountId ?? 'global'
@@ -58,22 +65,19 @@ export const buildBoundingBox = ({ id, type, label, properties }: any, parent?: 
     }
 }
 
-const subnetColour = (node: any) => {
-    if (node.data) {
-        if (node.data.properties.private) {
-            return '#147eba'
-        }
-        else return '#248814'
+const subnetColour = (properties: ConfigProperties) => {
+    if (properties) {
+        return '#248814'
     }
     return '#545B64'
 }
 
 
-export const buildNode = (node: any, parent: any, clickedNode: any) => {
+export const buildNode = (node: Node, parent: string, clickedNode: boolean) => {
     try {
-        const properties = node.data ? node.data.properties : node.properties
+        const properties = node.properties
         const parsedNode = parseNode(properties, node)
-        const builtNode = {
+        const builtNode: cytoscape.ElementDefinition = {
             group: "nodes",
             data: {
                 arn: properties.arn,
@@ -102,20 +106,20 @@ export const buildNode = (node: any, parent: any, clickedNode: any) => {
                 clickedId: node.id,
                 ...({ state: parsedNode.state } ?? {}),
                 image: parsedNode.icon,
-                softDelete: properties.softDelete,
+                // softDelete: properties.softDelete,
                 // cost: Number(getCostData(node)),
-                private: properties.private,
+                // private: properties.private,
                 ...({ detailsComponent: (parsedNode as any).detailsComponent } ?? {}),
                 // ...({ hoverComponent: parsedNode.hoverComponent } ?? {}),
                 resource: {
                     id: properties.resourceId,
                     name: properties.resourceName,
-                    value: properties.resourceValue,
+                    // value: properties.resourceValue,
                     type: properties.resourceType,
                     tags: properties.tags,
                     arn: properties.arn,
                     region: properties.awsRegion ? properties.awsRegion : 'Multi-Region',
-                    state: properties.state,
+                    // state: properties.state,
                     loggedInURL: properties.loggedInURL,
                     loginURL: properties.loginURL,
                     accountId: properties.accountId ? properties.accountId : 'global',
@@ -127,7 +131,7 @@ export const buildNode = (node: any, parent: any, clickedNode: any) => {
             classes: [`resource`],
         }
         if (builtNode.data.type === 'resource') {
-            builtNode.classes.push(...createClasses(builtNode, clickedNode))
+            (builtNode.classes as string[]).push(...createClasses(builtNode, clickedNode))
         }
         return builtNode
     } catch (e) {
@@ -136,27 +140,7 @@ export const buildNode = (node: any, parent: any, clickedNode: any) => {
     }
 }
 
-const findARN = (properties: any) => {
-    return R.head(
-        R.reduce(
-            (acc: any, val: any) => {
-                if (R.startsWith('arn:', val)) acc.push(val)
-                return acc
-            },
-            [],
-            R.filter((e: any) => !R.isNil(e), R.values(properties))
-        )
-    )
-}
-
-const buildResourceId = (properties: any) =>
-    Array.of(
-        properties.resourceId,
-        !R.isNil(properties.arn) ? properties.arn : findARN(properties)
-    )
-
-
-const createClasses = (builtNode: any, clickedNode: any) => {
+const createClasses = (builtNode: cytoscape.ElementDefinition, clickedNode: boolean) => {
     return R.reject(R.isNil, [
         builtNode.data.highlight ? 'highlight' : undefined,
         builtNode.data.existing ? 'existing' : undefined,

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import axios, { AxiosRequestConfig } from 'axios'
+import { ConfigResourceData } from '../Processors/APIModel'
 
 const configserver = import.meta.env.REACT_APP_FLOW_SERVER
 
@@ -19,7 +20,7 @@ export const useGetResourceGraph = (config = {}) => {
 
     const { isLoading, isError, data, refetch, isFetching } = useQuery({
         queryKey: [configPath],
-        queryFn: () => axios(options).then(x => x.data),
+        queryFn: () => axios<ConfigResourceData>(options).then(x => x.data),
         ...config,
     })
 
