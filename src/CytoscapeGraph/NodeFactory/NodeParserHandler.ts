@@ -37,7 +37,7 @@ import VPCEndpointParse from "./NodeParser/VPCEndpoint/Parse"
 import EcsTaskParse from "./NodeParser/EcsTask/Parse"
 import TargetGroupParse from "./NodeParser/TargetGroup/Parse"
 import LBListenerParse from "./NodeParser/LBListener/Parse"
-import { ConfigProperties,Node } from "../Processors/APIModel"
+import { ConfigProperties, Node } from "../Processors/APIModel"
 
 const nodeParsers = new Map()
 const buildNodeParserFactory = () => {
@@ -81,7 +81,29 @@ const buildNodeParserFactory = () => {
 
 buildNodeParserFactory()
 
-export const parseNode = (properties: ConfigProperties, node: Node) => {
+interface parseNodeResult {
+    styling: parseNodeStyling
+    icon?: string
+    state?: parseNodeState
+    detailsComponent?: React.ReactElement<any>
+}
+
+interface parseNodeStyling {
+    borderStyle: string
+    borderColour: string
+    borderOpacity: number
+    borderSize: number
+    message: string
+    colour: string
+}
+
+interface parseNodeState {
+    status: string
+    text: string
+    color: string
+}
+
+export const parseNode = (properties: ConfigProperties, node: Node): parseNodeResult => {
     const parser = nodeParsers.get(properties.resourceType)
     if (parser) {
         return parser(node)

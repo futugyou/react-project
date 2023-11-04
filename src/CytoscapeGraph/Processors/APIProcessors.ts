@@ -288,7 +288,7 @@ export const processElements = ({ nodes, edges }: ConfigResourceData) => {
             .filter((x) => !(isEcs(x.target.resourceType) || isEcs(x.source.resourceType)))
             .filter((x) => !(isCloudMap(x.target.resourceType) || isCloudMap(x.source.resourceType)))
             .map(({ id, source, target }) => {
-                return { group: "edges", data: { id, source: source.id, target: target.id } }
+                return { group: "edges", data: { id, source: source.id, target: target.id } } as cytoscape.ElementDefinition
             })
     ]
 }

@@ -52,7 +52,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
     const [selectedLayout, setSelectedLayout] = useState(layoutSelection[2])
     const [selectedData, setSelectedData] = useState(null)
 
-    const [awsconfigData, setAwsconfigData] = useState()
+    const [awsconfigData, setAwsconfigData] = useState<cytoscape.ElementDefinition[]>()
     const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph({ enabled: !!authService.isAuthenticated() })
 
     const onLayoutSelectChange = ({ detail }: any) => {
@@ -68,15 +68,15 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
 
         let collapse = false
         if (key == "aws-data-1") {
-            cy.add(singleAccount as any)
+            cy.add(singleAccount as cytoscape.ElementDefinition[])
         }
 
         if (key == "aws-data-2") {
-            cy.add(singleAccountDuplicates as any)
+            cy.add(singleAccountDuplicates as cytoscape.ElementDefinition[])
         }
 
-        if (key == "aws-config") {
-            cy.add(awsconfigData as any)
+        if (key == "aws-config" && awsconfigData) {
+            cy.add(awsconfigData)
             collapse = true
         }
 
@@ -118,7 +118,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
                 && nodes.findIndex(a => a.data.id == p.data.target) >= 0)
             const d = nodes.concat(edges)
             console.log(d)
-            setAwsconfigData(d as any)
+            setAwsconfigData(d)
             if (dataSelection.findIndex(p => p.value == 'aws-config') == -1) {
                 const s = dataSelection.concat({ label: "aws-config", value: "aws-config" })
                 setDataSelection(s)
