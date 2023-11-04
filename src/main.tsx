@@ -9,7 +9,8 @@ import Loading from './Common/Loading'
 
 import { AuthProvider, authService } from './Auth/index'
 import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
-
+import { persistQueryClient } from '@tanstack/react-query-persist-client'
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import { router } from './Route'
 
 import microApp from '@micro-zoe/micro-app'
@@ -35,8 +36,16 @@ const queryClient = new QueryClient({
       refetchInterval: 60000,
       refetchOnWindowFocus: false,
       retry: 1,
+      gcTime: 1000 * 60 * 60 * 1, // 1 hours
     },
   },
+})
+
+const localStoragePersister = createSyncStoragePersister({ storage: window.localStorage })
+
+persistQueryClient({
+  queryClient,
+  persister: localStoragePersister,
 })
 
 ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement).render(
