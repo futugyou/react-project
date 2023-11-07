@@ -1,3 +1,9 @@
+# React Project State
+
+[![CodeQL](https://github.com/futugyou/react-project/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/futugyou/react-project/actions/workflows/codeql.yml)
+[![Dependabot](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml/badge.svg?branch=master)](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml)
+
+
 [react](https://react.dev/)
 
 [reacr route](https://reactrouter.com/en/main)
