@@ -4,15 +4,15 @@ import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import { useState } from 'react'
 import { useAuth } from '../Auth/index'
 
-interface VueDemoData {
+interface VueProjectData {
     Msg: string,
     Authorization: string,
     CreateAt: string,
 }
 
-const reacteVueDemoData = () => {
+const reacteVueProjectData = () => {
     const token = JSON.parse(window.localStorage.getItem('auth') || '{}')
-    let data: VueDemoData = {
+    let data: VueProjectData = {
         Msg: 'new data from base app',
         Authorization: '',
         CreateAt: Date()
@@ -25,10 +25,10 @@ const reacteVueDemoData = () => {
     return data
 }
 
-const VueDemo = () => {
+const VueProject = () => {
     const { authService } = useAuth()
 
-    const [microAppData, changeMicroAppData] = useState<VueDemoData>(reacteVueDemoData())
+    const [microAppData, changeMicroAppData] = useState<VueProjectData>(reacteVueProjectData())
 
     const vueawsapp_address = import.meta.env.REACT_APP_VUEAWS_APP_ADDRESS
 
@@ -44,7 +44,7 @@ const VueDemo = () => {
         console.log(5, 'vueawsapp rendered')
 
         setTimeout(() => {
-            let data: VueDemoData = reacteVueDemoData()
+            let data: VueProjectData = reacteVueProjectData()
             changeMicroAppData(data)
         }, 2000)
     }
@@ -89,4 +89,4 @@ const VueDemo = () => {
     )
 }
 
-export default VueDemo
+export default VueProject

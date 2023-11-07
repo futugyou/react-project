@@ -16,6 +16,7 @@ import { router } from './Route'
 import microApp from '@micro-zoe/micro-app'
 
 microApp.start({
+  'keep-alive': true,
   plugins: {
     modules: {
       'appname-react17': [{
