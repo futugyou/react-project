@@ -48,7 +48,7 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.8",
+    "@types/bootstrap": "^5.2.9",
     "@types/crypto-js": "^4.2.1",
     "@types/cytoscape-avsdf": "^1.0.2",
     "@types/cytoscape-euler": "^1.2.2",
