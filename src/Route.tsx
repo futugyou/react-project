@@ -36,10 +36,9 @@ let childrenRoute: RouteObject[] = [
     },
     FlowRoute,
     DemoRoute,
-    MicroAppRoute,
+    ...MicroAppRoute,
+    ...OpenAIRoute,
 ]
-
-childrenRoute = childrenRoute.concat(OpenAIRoute)
 
 const router = createBrowserRouter([
     {

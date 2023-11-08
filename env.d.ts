@@ -10,6 +10,7 @@ interface ImportMetaEnv {
     readonly REACT_APP_TOKEN: string
     readonly REACT_APP_ADDRESS: string
     readonly REACT_APP_VUEAWS_APP_ADDRESS: string
+    readonly REACT_APP_NEXTJS_APP_ADDRESS: string
     readonly REACT_APP_FLOW_SERVER: string    
 }
 
