@@ -55,7 +55,7 @@
     "@types/cytoscape-fcose": "^2.2.4",
     "@types/jwt-decode": "^3.1.0",
     "@types/lodash-es": "^4.17.11",
-    "@types/object-hash": "^3.0.5",
+    "@types/object-hash": "^3.0.6",
     "@types/ramda": "^0.29.7",
     "@types/randombytes": "^2.0.2",
     "@types/randomcolor": "^0.5.8",
