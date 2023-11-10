@@ -3,6 +3,7 @@
 import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'
 import { useState } from 'react'
 import { useAuth } from '../Auth/index'
+import './subapp.css'
 
 interface NextjsProjectData {
     Msg: string,
@@ -82,7 +83,7 @@ const NextjsProject = () => {
             onUnmount={handleUnmount}
             onError={handleError}
             onDataChange={handleDataChange}
-            style={{ height: "100%" }}
+            class="subappcontainer"
             clear-data
         ></ micro-app>
     )
