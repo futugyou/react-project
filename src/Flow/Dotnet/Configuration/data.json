@@ -36,7 +36,8 @@
             },
             "selected": false,
             "dragging": false,
-            "style": {}
+            "style": {},
+            "className": ""
         },
         {
             "width": 344,
@@ -79,7 +80,8 @@
                 "y": 325.4401487589857
             },
             "dragging": false,
-            "style": {}
+            "style": {},
+            "className": ""
         },
         {
             "width": 531,
@@ -117,7 +119,8 @@
                 "y": 174.29319087369137
             },
             "dragging": false,
-            "style": {}
+            "style": {},
+            "className": ""
         },
         {
             "width": 340,
@@ -155,7 +158,8 @@
                 "y": 93.59400749965751
             },
             "dragging": false,
-            "style": {}
+            "style": {},
+            "className": ""
         },
         {
             "width": 606,
@@ -202,7 +206,8 @@
                 "y": -94.95496938704275
             },
             "selected": false,
-            "dragging": false
+            "dragging": false,
+            "className": ""
         },
         {
             "width": 302,
@@ -235,7 +240,8 @@
                 "y": -38.34856295075598
             },
             "dragging": false,
-            "style": {}
+            "style": {},
+            "className": ""
         },
         {
             "width": 388,
@@ -268,7 +274,8 @@
                 "width": 388,
                 "height": 66
             },
-            "resizing": false
+            "resizing": false,
+            "className": ""
         },
         {
             "width": 463,
@@ -307,7 +314,165 @@
                 "y": -55.30238819761669
             },
             "selected": false,
-            "dragging": false
+            "dragging": false,
+            "className": ""
+        },
+        {
+            "width": 184,
+            "height": 43,
+            "id": "random_id_1699952293127",
+            "type": "default",
+            "data": {
+                "label": "source"
+            },
+            "position": {
+                "x": 46.55213429510235,
+                "y": 38.45611093943228
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -443.5480587793963,
+                "y": 508.09805339700904
+            },
+            "style": {
+                "zIndex": 1001,
+                "width": 184,
+                "height": 43
+            },
+            "dragging": false,
+            "className": "",
+            "resizing": false,
+            "parentNode": "random_id_1699952353872"
+        },
+        {
+            "width": 622,
+            "height": 345,
+            "id": "random_id_1699952353872",
+            "type": "group",
+            "data": {},
+            "position": {
+                "x": -490.10019307449863,
+                "y": 469.64194245757676
+            },
+            "style": {
+                "height": 345,
+                "width": 622,
+                "zIndex": 1000
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -490.10019307449863,
+                "y": 469.64194245757676
+            },
+            "dragging": false,
+            "className": "",
+            "resizing": false
+        },
+        {
+            "width": 246,
+            "height": 40,
+            "id": "random_id_1699952376272",
+            "type": "default",
+            "data": {
+                "label": "provider Data->Reload->token.cancel"
+            },
+            "position": {
+                "x": 16.192046711339913,
+                "y": 133.5843853685543
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -473.9081463631587,
+                "y": 603.2263278261311
+            },
+            "style": {
+                "zIndex": 1001,
+                "width": 246,
+                "height": 40
+            },
+            "dragging": false,
+            "className": "",
+            "parentNode": "random_id_1699952353872",
+            "resizing": false
+        },
+        {
+            "width": 150,
+            "height": 54,
+            "id": "random_id_1699952535927",
+            "type": "default",
+            "data": {
+                "label": "configurationManager token.cancel"
+            },
+            "position": {
+                "x": 64.76818684535976,
+                "y": 223.65264520038284
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -425.33200622913887,
+                "y": 693.2945876579596
+            },
+            "style": {
+                "zIndex": 1001,
+                "width": 150,
+                "height": 54
+            },
+            "dragging": false,
+            "className": "",
+            "parentNode": "random_id_1699952353872"
+        },
+        {
+            "width": 255,
+            "height": 54,
+            "id": "random_id_1699952592536",
+            "type": "default",
+            "data": {
+                "label": "configurationReloadTokenSource: IOptionTokenSource"
+            },
+            "position": {
+                "x": 318.78091962950464,
+                "y": 221.62863936146516
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -171.319273444994,
+                "y": 691.2705818190419
+            },
+            "style": {
+                "zIndex": 1001,
+                "width": 255,
+                "height": 54
+            },
+            "dragging": false,
+            "className": "",
+            "parentNode": "random_id_1699952353872",
+            "resizing": false
+        },
+        {
+            "width": 150,
+            "height": 38,
+            "id": "random_id_1699952671486",
+            "type": "default",
+            "data": {
+                "label": "IOptionMontor"
+            },
+            "position": {
+                "x": 371.4050714413594,
+                "y": 87.03225107345224
+            },
+            "selected": false,
+            "positionAbsolute": {
+                "x": -118.69512163313925,
+                "y": 556.674193531029
+            },
+            "style": {
+                "width": 150,
+                "height": 38,
+                "zIndex": 1001
+            },
+            "dragging": false,
+            "className": "",
+            "parentNode": "random_id_1699952353872"
         }
     ],
     "edges": [
@@ -457,11 +622,75 @@
             "targetHandle": "IConfigurationBuildertoptarget",
             "id": "reactflow__edge-IFileInfoIFileInfobottomsource-IConfigurationBuilderIConfigurationBuildertoptarget",
             "selected": false
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "random_id_1699952293127",
+            "sourceHandle": "random_id_169995229312702",
+            "target": "random_id_1699952376272",
+            "targetHandle": "random_id_169995237627205",
+            "id": "reactflow__edge-random_id_1699952293127random_id_169995229312702-random_id_1699952376272random_id_169995237627205"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "random_id_1699952376272",
+            "sourceHandle": "random_id_169995237627202",
+            "target": "random_id_1699952535927",
+            "targetHandle": "random_id_169995253592705",
+            "id": "reactflow__edge-random_id_1699952376272random_id_169995237627202-random_id_1699952535927random_id_169995253592705"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "random_id_1699952535927",
+            "sourceHandle": "random_id_169995253592704",
+            "target": "random_id_1699952592536",
+            "targetHandle": "random_id_169995259253607",
+            "id": "reactflow__edge-random_id_1699952535927random_id_169995253592704-random_id_1699952592536random_id_169995259253607"
+        },
+        {
+            "style": {
+                "strokeWidth": 2,
+                "stroke": "black"
+            },
+            "type": "default",
+            "markerEnd": {
+                "type": "arrowclosed",
+                "color": "black"
+            },
+            "source": "random_id_1699952592536",
+            "sourceHandle": "random_id_169995259253601",
+            "target": "random_id_1699952671486",
+            "targetHandle": "random_id_169995267148606",
+            "id": "reactflow__edge-random_id_1699952592536random_id_169995259253601-random_id_1699952671486random_id_169995267148606"
         }
     ],
     "viewport": {
-        "x": 575.287331242702,
-        "y": 287.42827310344313,
-        "zoom": 0.9881394418652818
+        "x": 597.3715723641251,
+        "y": 128.00530312164165,
+        "zoom": 0.9114926604242223
     }
 }
