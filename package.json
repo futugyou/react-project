@@ -17,7 +17,7 @@
     "@tanstack/react-query-persist-client": "^5.8.3",
     "@types/react-cytoscapejs": "^1.2.5",
     "@uiw/react-color": "^2.0.2",
-    "axios": "^1.6.1",
+    "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "buffer": "^6.0.3",
     "cytoscape": "^3.27.0",
