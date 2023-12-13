@@ -5,6 +5,9 @@ import './index.css'
 import React, { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
+
 import Loading from './Common/Loading'
 
 import { AuthProvider, authService } from './Auth/index'
@@ -55,6 +58,8 @@ ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement).r
       <Suspense fallback={<Loading />}>
         <AuthProvider authService={authService} >
           <RouterProvider router={router} />
+          <Analytics></Analytics>
+          <SpeedInsights></SpeedInsights>
         </AuthProvider>
       </Suspense>
     </QueryClientProvider>
