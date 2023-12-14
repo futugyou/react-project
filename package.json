@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cloudscape-design/components": "^3.0.457",
-    "@cloudscape-design/global-styles": "^1.0.17",
+    "@cloudscape-design/components": "^3.0.461",
+    "@cloudscape-design/global-styles": "^1.0.18",
     "@micro-zoe/micro-app": "^1.0.0-rc.2",
     "@tanstack/query-sync-storage-persister": "^5.13.4",
     "@tanstack/react-query": "^5.13.4",
