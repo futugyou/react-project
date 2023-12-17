@@ -2,7 +2,9 @@
 
 [![CodeQL](https://github.com/futugyou/react-project/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/futugyou/react-project/actions/workflows/codeql.yml)
 [![Dependabot](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml/badge.svg?branch=master)](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml)
-
+[![Markdown](https://github.com/futugyou/react-project/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/futugyou/react-project/actions/workflows/markdownlint.yml)
+![GitHub deployments](https://img.shields.io/github/deployments/futugyou/react-project/Preview?logo=vercel&label=Vercel%20Preview)
+![GitHub deployments](https://img.shields.io/github/deployments/futugyou/react-project/Production?logo=vercel&label=Vercel%20Production)
 
 [react](https://react.dev/)
 
@@ -28,8 +30,9 @@
 
 [react-query](https://tanstack.com/query/latest/docs/react/overview)
 
-#### update all package
-```
+## update all package
+
+```sh
 npx npm-check-updates -u
 npm install 
 ```
