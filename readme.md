@@ -49,3 +49,10 @@ npm install '@microsoft/kiota-serialization-text'
 npm install '@microsoft/kiota-serialization-multipart'
 kiota generate -l typescript -d https://github.com/futugyou/goproject/blob/master/openai-web/swagger/openapi.yml -c PostsClient -o ./src/kiota-client
 ```
+
+## fluid-framework
+
+```sh
+npm install fluid-framework
+npm install '@fluidframework/tinylicious-client'
+```

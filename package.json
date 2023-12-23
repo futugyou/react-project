@@ -11,6 +11,7 @@
   "dependencies": {
     "@cloudscape-design/components": "^3.0.469",
     "@cloudscape-design/global-styles": "^1.0.20",
+    "@fluidframework/tinylicious-client": "^1.3.7",
     "@micro-zoe/micro-app": "^1.0.0-rc.3",
     "@microsoft/kiota-abstractions": "^1.0.0-preview.36",
     "@microsoft/kiota-http-fetchlibrary": "^1.0.0-preview.35",
@@ -35,6 +36,7 @@
     "cytoscape-fcose": "^2.2.0",
     "cytoscape-grid-guide": "^2.3.3",
     "dayjs": "^1.11.10",
+    "fluid-framework": "^1.3.7",
     "framer-motion": "^10.16.16",
     "html-to-image": "^1.11.11",
     "jwt-decode": "^4.0.0",
