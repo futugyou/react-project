@@ -13,7 +13,7 @@ const getFluidData = async () => {
     const containerId = location.hash.substring(1)
     if (!containerId) {
         ({ container } = await client.createContainer(containerSchema));
-        (container.initialObjects.sharedTimestamp as SharedMap).set("time", Date.now().toString());
+        // (container.initialObjects.sharedTimestamp as SharedMap).set("time", Date.now().toString());
         const id = await container.attach()
         location.hash = id
     } else {

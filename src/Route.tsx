@@ -6,6 +6,7 @@ import { DemoRoute } from '@/ReactDemo/DemoRoute'
 import { FlowRoute } from '@/Flow/FlowRoute'
 import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
 import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
+import { BoardRoute } from '@/Whiteboards/Route'
 
 const WelcomePage = lazy(() => import('@/Layout/WelcomePage'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
@@ -36,6 +37,7 @@ let childrenRoute: RouteObject[] = [
     },
     FlowRoute,
     DemoRoute,
+    BoardRoute,
     ...MicroAppRoute,
     ...OpenAIRoute,
 ]
