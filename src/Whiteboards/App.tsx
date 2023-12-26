@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { TinyliciousClient } from "@fluidframework/tinylicious-client"
 import { SharedCell } from "@fluidframework/cell"
+import { SignalManager } from "@fluid-experimental/data-objects"
 import { SharedMap, LoadableObjectRecord, ContainerSchema, IMember } from "fluid-framework"
 
 const containerSchema: ContainerSchema = {
     initialObjects: {
         sharedTimestamp: SharedMap,
         map: SharedMap,
+        signalManager: SignalManager,
     },
     dynamicObjectTypes: [SharedCell],
 }
@@ -38,7 +40,7 @@ const getFluidData = async () => {
     map.set("cell-id", newCell.handle)
 
     // 3: Return the Fluid timestamp object.
-    return { initialObjects: container.initialObjects, members: audience.getMembers() }
+    return { initialObjects: container.initialObjects, members: audience.getMembers(), getMyself: audience.getMyself() }
 }
 
 const App = () => {
@@ -46,6 +48,7 @@ const App = () => {
     const [localTimestamp, setLocalTimestamp] = useState<any>()
     const [localDynamicMap, setDynamicMap] = useState<any>()
     const [members, setMembers] = useState<any>()
+    const [myself, setMyself] = useState<any>()
 
     useEffect(() => {
         getFluidData()
@@ -56,6 +59,7 @@ const App = () => {
                     ils.push(<li key={k}>{v.userId} : {v.userName}</li>)
                 });
                 setMembers(ils)
+                setMyself(data.getMyself)
             })
     }, [])
 
@@ -128,6 +132,10 @@ const App = () => {
                     <ul>
                         {members}
                     </ul>
+                </div>
+                <h1>-</h1>
+                <div>
+                    {myself?.userName}
                 </div>
             </div>
         )
