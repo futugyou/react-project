@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { TinyliciousClient } from "@fluidframework/tinylicious-client"
 import { SharedCell } from "@fluidframework/cell"
-import { SharedMap, LoadableObjectRecord, ContainerSchema } from "fluid-framework"
+import { SharedMap, LoadableObjectRecord, ContainerSchema, IMember } from "fluid-framework"
 
 const containerSchema: ContainerSchema = {
     initialObjects: {
@@ -10,22 +10,27 @@ const containerSchema: ContainerSchema = {
     },
     dynamicObjectTypes: [SharedCell],
 }
+export interface TinyliciousMember extends IMember {
+    userName: string;
+}
 
 const getFluidData = async () => {
     // 1: Configure the container.
     const client = new TinyliciousClient()
 
     // 2: Get the container from the Fluid service.
-    let container
+    let container, services
     const containerId = location.hash.substring(1)
     if (!containerId) {
-        ({ container } = await client.createContainer(containerSchema));
+        ({ container, services } = await client.createContainer(containerSchema));
         (container.initialObjects.sharedTimestamp as SharedMap).set("time", Date.now().toString());
         const id = await container.attach()
         location.hash = id
     } else {
-        ({ container } = await client.getContainer(containerId, containerSchema))
+        ({ container, services } = await client.getContainer(containerId, containerSchema))
     }
+
+    const audience = services.audience
 
     const map = container.initialObjects.map as SharedMap
     const newCell = await container.create(SharedCell)
@@ -33,18 +38,28 @@ const getFluidData = async () => {
     map.set("cell-id", newCell.handle)
 
     // 3: Return the Fluid timestamp object.
-    return container.initialObjects
+    return { initialObjects: container.initialObjects, members: audience.getMembers() }
 }
 
 const App = () => {
     const [fluidSharedObjects, setFluidSharedObjects] = useState<LoadableObjectRecord>()
     const [localTimestamp, setLocalTimestamp] = useState<any>()
     const [localDynamicMap, setDynamicMap] = useState<any>()
+    const [members, setMembers] = useState<any>()
 
     useEffect(() => {
         getFluidData()
-            .then(data => setFluidSharedObjects(data))
+            .then(data => {
+                setFluidSharedObjects(data.initialObjects)
+                const ils: any[] = []
+                data.members?.forEach((v: any, k: any) => {
+                    ils.push(<li key={k}>{v.userId} : {v.userName}</li>)
+                });
+                setMembers(ils)
+            })
     }, [])
+
+
 
     useEffect(() => {
         if (fluidSharedObjects) {
@@ -62,14 +77,14 @@ const App = () => {
             const handle = dynamicMap.get("cell-id")
             handle.get().then((cell: SharedCell) => {
                 cell.on("valueChanged", (d) => {
-                    console.log("valueChanged on dynamic cell: ",d)
+                    console.log("valueChanged on dynamic cell: ", d)
                 })
             })
-            dynamicMap.on("valueChanged",   (changed) => {
+            dynamicMap.on("valueChanged", (changed) => {
                 if (changed.key === "cell-id") {
                     const handle = dynamicMap.get(changed.key);
-                    handle.get().then((cell: SharedCell) => { 
-                            console.log("valueChanged on map: ",cell.get()) 
+                    handle.get().then((cell: SharedCell) => {
+                        console.log("valueChanged on map: ", cell.get())
                     })
                 }
             })
@@ -87,12 +102,12 @@ const App = () => {
             const { sharedTimestamp, map } = fluidSharedObjects
             const sharedMap = sharedTimestamp as SharedMap
             sharedMap.set("time", Date.now().toString())
-            
-            
+
+
             const dynamicMap = map as SharedMap
             const cell = await dynamicMap.get("cell-id").get() as SharedCell
             cell.set(Date.now().toString())// this will not trigger valueChanged
-            
+
             const containerId = location.hash.substring(1)
             const client = new TinyliciousClient()
             const { container } = await client.getContainer(containerId, containerSchema)
@@ -109,6 +124,11 @@ const App = () => {
                     Get Time
                 </button>
                 <span>{localTimestamp.time}</span>
+                <div>
+                    <ul>
+                        {members}
+                    </ul>
+                </div>
             </div>
         )
     } else {
