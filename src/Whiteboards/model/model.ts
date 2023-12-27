@@ -1,23 +1,20 @@
-import { TinyliciousClient, ITinyliciousAudience, TinyliciousContainerServices }
+import { ITinyliciousAudience, TinyliciousContainerServices }
     from "@fluidframework/tinylicious-client"
 import { SharedCell } from "@fluidframework/cell"
 import { ISharedMap, IFluidContainer } from "fluid-framework"
-import { containerSchema, TinyliciousMember } from "./types"
+import { TinyliciousMember } from "./types"
+import { createContainer, getContainer } from "./utils"
 
 export const getFluidData = async () => {
-    // 1: Configure the container.
-    const client = new TinyliciousClient()
-
-    // 2: Get the container from the Fluid service.
     let container, services
     const containerId = location.hash.substring(1)
     if (!containerId) {
-        ({ container, services } = await client.createContainer(containerSchema));
+        ({ container, services } = await createContainer());
         (container.initialObjects.sharedTimestamp as ISharedMap).set("time", Date.now().toString())
         const id = await container.attach()
         location.hash = id
     } else {
-        ({ container, services } = await client.getContainer(containerId, containerSchema))
+        ({ container, services } = await getContainer(containerId))
     }
 
     const audience = services.audience
