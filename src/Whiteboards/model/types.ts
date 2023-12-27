@@ -12,5 +12,5 @@ export const containerSchema: ContainerSchema = {
 }
 
 export interface TinyliciousMember extends IMember {
-    userName: string;
+    userName: string
 }
