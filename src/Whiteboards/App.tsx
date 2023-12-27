@@ -3,7 +3,7 @@ import { TinyliciousClient } from "@fluidframework/tinylicious-client"
 import { SharedCell } from "@fluidframework/cell"
 import { SignalManager } from "@fluid-experimental/data-objects"
 import { SharedMap, LoadableObjectRecord, ContainerSchema, IMember } from "fluid-framework"
-import { getFluidData, containerSchema } from "./model/model"
+import { getFluidData, containerSchema } from "./model"
 
 const App = () => {
     const [fluidSharedObjects, setFluidSharedObjects] = useState<LoadableObjectRecord>()
