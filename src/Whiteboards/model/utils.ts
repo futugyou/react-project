@@ -12,6 +12,11 @@ export const createContainer = async () => {
 }
 
 export const getContainer = async (containerId: string) => {
-    const { container, services } = await client.getContainer(containerId, containerSchema)
-    return { container, services }
+    try {
+        const { container, services } = await client.getContainer(containerId, containerSchema)
+        return { container, services }
+    } catch (error) {
+        console.log(error)
+        return { container: undefined, services: undefined }
+    }
 }
