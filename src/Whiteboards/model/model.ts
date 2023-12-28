@@ -5,39 +5,18 @@ import { ISharedMap, IFluidContainer } from "fluid-framework"
 import { TinyliciousMember } from "./types"
 import { createContainer, getContainer } from "./utils"
 
-export const getFluidData = async () => {
-    let container, services
-    const containerId = location.hash.substring(1)
-    if (!containerId) {
-        ({ container, services } = await createContainer());
-        (container.initialObjects.sharedTimestamp as ISharedMap).set("time", Date.now().toString())
-        const id = await container.attach()
-        location.hash = id
-    } else {
-        ({ container, services } = await getContainer(containerId))
-    }
-
-    const audience = services.audience
-
-    const map = container.initialObjects.map as ISharedMap
-    const newCell = await container.create(SharedCell)
-    newCell.set("test data")
-    map.set("cell-id", newCell.handle)
-
-    // 3: Return the Fluid timestamp object.
-    return { initialObjects: container.initialObjects, members: audience.getMembers(), getMyself: audience.getMyself() }
-}
-
-
 export class FluidModel {
     private sharedTimestamp: ISharedMap
+    private dynamicMap: ISharedMap
     private audience: ITinyliciousAudience
     constructor(
         private container: IFluidContainer,
         private services: TinyliciousContainerServices,
     ) {
         this.sharedTimestamp = container.initialObjects.sharedTimestamp as ISharedMap
+        this.dynamicMap = container.initialObjects.dynamicMap as ISharedMap
         this.audience = services.audience
+
         this.sharedTimestamp.on("valueChanged", (changed, local, target) => {
             console.log("valueChanged: ", changed, local, target)
         })
@@ -49,11 +28,43 @@ export class FluidModel {
         this.audience.on("memberRemoved", (members) => {
             console.log("memberRemoved: ", members)
         })
+
+        this.dynamicMap.on("valueChanged", (changed, local, target) => {
+            const handle = this.dynamicMap.get(changed.key)
+            handle.get().then((cell: SharedCell) => {
+                console.log("valueChanged on map: ", cell.get())
+                cell.on("valueChanged", (d) => {
+                    console.log("valueChanged on dynamic cell: ", d)
+                })
+            })
+        })
     }
 
-    public getAudience = (): TinyliciousMember[] => {
+    public getMembers = (): TinyliciousMember[] => {
         const members = Array.from(this.audience.getMembers().values())
-
         return members
+    }
+
+    public getMyself = (): TinyliciousMember | undefined => {
+        return this.audience.getMyself()
+    }
+
+    public setDynamicRefData = async (key: string, value: string) => {
+        const newCell = await this.container.create(SharedCell)
+        newCell.set(value)
+        this.dynamicMap.set(key, newCell.handle)
+    }
+
+    public setDynamicData = async (key: string, value: string) => {
+        const cell = await this.dynamicMap.get("cell-id").get() as SharedCell
+        cell.set(Date.now().toString())
+    }
+
+    public setSharedTimestamp = () => {
+        this.sharedTimestamp.set("time", Date.now().toString())
+    }
+
+    public getSharedTimestamp = () => {
+        return this.sharedTimestamp.get("time")
     }
 }

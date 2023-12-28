@@ -5,7 +5,7 @@ import { SharedMap,  ContainerSchema, IMember } from "fluid-framework"
 export const containerSchema: ContainerSchema = {
     initialObjects: {
         sharedTimestamp: SharedMap,
-        map: SharedMap,
+        dynamicMap: SharedMap,
         signalManager: SignalManager,
     },
     dynamicObjectTypes: [SharedCell],
