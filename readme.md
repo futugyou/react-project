@@ -57,3 +57,7 @@ npm install fluid-framework
 npm install '@fluidframework/tinylicious-client'
 npx '@fluidframework/azure-local-service'
 ```
+
+## FluidExamples
+
+[FluidExamples](https://github.com/microsoft/FluidExamples.git/)

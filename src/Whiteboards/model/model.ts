@@ -1,11 +1,17 @@
 import { ITinyliciousAudience, TinyliciousContainerServices }
     from "@fluidframework/tinylicious-client"
 import { SharedCell } from "@fluidframework/cell"
-import { ISharedMap, IFluidContainer } from "fluid-framework"
+import { ISharedMap, IFluidContainer, IValueChanged } from "fluid-framework"
 import { TinyliciousMember } from "./types"
-import { createContainer, getContainer } from "./utils"
+import { EventEmitter } from "events"
 
-export class FluidModel {
+export type EventPayload = {
+    type: string
+    changed: IValueChanged
+    data?: any
+}
+
+export class FluidModel extends EventEmitter {
     private sharedTimestamp: ISharedMap
     private dynamicMap: ISharedMap
     private audience: ITinyliciousAudience
@@ -13,6 +19,7 @@ export class FluidModel {
         private container: IFluidContainer,
         private services: TinyliciousContainerServices,
     ) {
+        super()
         this.sharedTimestamp = container.initialObjects.sharedTimestamp as ISharedMap
         this.dynamicMap = container.initialObjects.dynamicMap as ISharedMap
         this.audience = services.audience
