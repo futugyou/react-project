@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cloudscape-design/components": "^3.0.471",
+    "@cloudscape-design/components": "^3.0.473",
     "@cloudscape-design/global-styles": "^1.0.20",
     "@fluid-experimental/data-objects": "^1.3.7",
     "@fluidframework/cell": "^1.3.7",
