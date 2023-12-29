@@ -1,4 +1,4 @@
-import { useMemo, ReactElement, useState, useEffect } from "react"
+import { ReactElement, useState, useEffect } from "react"
 import { ModelContext, ModelContextProps } from './fluidContext'
 import { FluidModel, getContainer, createContainer } from '../model'
 
@@ -8,11 +8,15 @@ export const FluidProvider = (props: any): ReactElement => {
     const containerId = location.hash.substring(1)
     useEffect(() => {
         const loadModel = async () => {
-            let id
-            let { container, services } = await getContainer(containerId)
+            let id, container, services
+            if (!!containerId) {
+                ({ container, services } = await getContainer(containerId))
+            }
+
             if (!container || !services) {
                 ({ container, services, id } = await createContainer())
                 location.hash = id
+
             }
 
             setModel({ model: new FluidModel(container, services) })
@@ -20,10 +24,9 @@ export const FluidProvider = (props: any): ReactElement => {
         loadModel()
     }, [containerId])
 
-    // const memoModel = useMemo(() => {
-    //     return model
-    // }, [model])
-
+    if (!model) {
+        return <div />
+    }
 
     return (
         <ModelContext.Provider value={model}>
