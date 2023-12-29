@@ -87,14 +87,14 @@ const App = () => {
     // }
 
     const updateTime = () => {
-        model.model?.setSharedTimestamp()
+        model?.setSharedTimestamp()
     }
     return (
         <div className="App">
             <button onClick={() => updateTime()}>
                 Get Time
             </button>
-            <span>{model.model?.getSharedTimestamp()}</span>
+            <span>{model?.getSharedTimestamp()}</span>
             <div>
                 <ul>
                     {/* {members} */}

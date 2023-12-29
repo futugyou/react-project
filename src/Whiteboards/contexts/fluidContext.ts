@@ -1,8 +1,4 @@
-import { createContext ,ReactElement} from "react"
+import { createContext } from "react"
 import { FluidModel } from "../model"
 
-export interface ModelContextProps {
-    model: FluidModel
-}
-
-export const ModelContext = createContext<ModelContextProps>({} as ModelContextProps)
+export const ModelContext = createContext<FluidModel>({} as FluidModel)

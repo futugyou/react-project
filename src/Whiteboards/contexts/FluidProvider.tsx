@@ -1,9 +1,9 @@
 import { ReactElement, useState, useEffect } from "react"
-import { ModelContext, ModelContextProps } from './fluidContext'
+import { ModelContext } from './fluidContext'
 import { FluidModel, getContainer, createContainer } from '../model'
 
 export const FluidProvider = (props: any): ReactElement => {
-    const [model, setModel] = useState<ModelContextProps>({} as ModelContextProps)
+    const [model, setModel] = useState<FluidModel | undefined>()
     const { children } = props
     const containerId = location.hash.substring(1)
     useEffect(() => {
@@ -19,7 +19,7 @@ export const FluidProvider = (props: any): ReactElement => {
 
             }
 
-            setModel({ model: new FluidModel(container, services) })
+            setModel(new FluidModel(container, services))
         }
         loadModel()
     }, [containerId])
