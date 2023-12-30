@@ -25,13 +25,8 @@ export class FluidModel extends EventEmitter {
         this.audience = services.audience
 
         this.sharedTimestamp.on("valueChanged", (changed, local, target) => {
-            if (!this.nodeExists(changed.key)) {
-                const deleteNodePayload: EventPayload = { type: "singleDelete", changed }
-                this.emit("modelChanged", deleteNodePayload)
-            } else {
-                const changedNodePayload: EventPayload = { type: "singleChange", changed }
-                this.emit("modelChanged", changedNodePayload)
-            }
+            const changeNodePayload: EventPayload = { type: "timestampChange", changed }
+            this.emit("modelChanged", changeNodePayload)
         })
 
         this.audience.on("memberAdded", (members) => {
@@ -56,12 +51,12 @@ export class FluidModel extends EventEmitter {
     }
 
     public getAllNodeIds = (): string[] => {
-		return Array.from(this.sharedTimestamp.keys());
-	}
+        return Array.from(this.sharedTimestamp.keys())
+    }
 
     private nodeExists = (id: string) => {
-		return this.getAllNodeIds().includes(id)
-	}
+        return this.getAllNodeIds().includes(id)
+    }
 
     public getMembers = (): TinyliciousMember[] => {
         const members = Array.from(this.audience.getMembers().values())
@@ -87,7 +82,7 @@ export class FluidModel extends EventEmitter {
         this.sharedTimestamp.set("time", Date.now().toString())
     }
 
-    public getSharedTimestamp = () => {
-        return this.sharedTimestamp.get("time")
+    public getSharedTimestamp = (): string => {
+        return this.sharedTimestamp.get("time") ?? ""
     }
 }
