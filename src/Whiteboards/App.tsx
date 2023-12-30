@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { FluidProvider } from "./contexts/FluidProvider"
-import { useGetTimestampStore } from "./store"
+import Timestamp from "./components/Timestamp"
 
 const App = () => {
-    const {
-        dispatch,
-        actions: { editTimestamp },
-        queries: { getTimestamp },
-    } = useGetTimestampStore()
 
-    const currentTimestamp = getTimestamp()
-
-    const updateTime = () => {
-        dispatch(
-            editTimestamp(),
-        )
-    }
     return (
         <div className="App">
-            <button onClick={() => updateTime()}>
-                Get Time
-            </button>
-            {/* <span>{model?.getSharedTimestamp()}</span> */}
-            <span>{currentTimestamp}</span>
+            <Timestamp></Timestamp>
             <div>
                 <ul>
                     {/* {members} */}
