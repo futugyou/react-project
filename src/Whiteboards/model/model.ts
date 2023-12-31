@@ -63,6 +63,13 @@ export class FluidModel extends EventEmitter {
         return members
     }
 
+    public setMembers = (userId: string, userName: string) => {
+        let member = this.audience.getMembers().get(userId)
+        if (member) {
+            member.userName = userName
+        }
+    }
+
     public getMyself = (): TinyliciousMember | undefined => {
         return this.audience.getMyself()
     }
@@ -73,9 +80,14 @@ export class FluidModel extends EventEmitter {
         this.dynamicMap.set(key, newCell.handle)
     }
 
+    public getDynamicData = async (key: string): Promise<string> => {
+        const cell = await this.dynamicMap.get(key).get() as SharedCell
+        return cell.get() ?? ""
+    }
+
     public setDynamicData = async (key: string, value: string) => {
-        const cell = await this.dynamicMap.get("cell-id").get() as SharedCell
-        cell.set(Date.now().toString())
+        const cell = await this.dynamicMap.get(key).get() as SharedCell
+        cell.set(value)
     }
 
     public setSharedTimestamp = () => {

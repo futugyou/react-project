@@ -16,7 +16,6 @@ export const FluidProvider = (props: any): ReactElement => {
             if (!container || !services) {
                 ({ container, services, id } = await createContainer())
                 location.hash = id
-
             }
 
             setModel(new FluidModel(container, services))
