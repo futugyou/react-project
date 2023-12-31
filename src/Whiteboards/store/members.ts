@@ -1,5 +1,6 @@
 import { TinyliciousMember } from "../model"
 import { useGetStore } from "../hooks"
+import { Draft } from "immer"
 
 type IMembersQueries = {
     getMembers: () => TinyliciousMember[]
@@ -18,10 +19,18 @@ export const useGetMembersStore = () =>
         },
 
         actions: {
-            updateName: (model, param) => model.getMembers
+            updateName: (model, param) => model.setMembers(param.userId, param.userName)
         },
 
-        reducer: (model, draft, { type, changed }) => {
-            return model.getMembers()
+        reducer: (model, draft, { type, changed, data }) => {
+            switch (type) {
+                case "memberChange":
+                    const todo = draft.find(todo => todo.userId === data.userId) as Draft<TinyliciousMember>
+                    if (todo) {
+                        todo.userName = data.userName
+                    }
+
+                    break
+            }
         },
     }) 

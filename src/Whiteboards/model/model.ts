@@ -66,7 +66,10 @@ export class FluidModel extends EventEmitter {
     public setMembers = (userId: string, userName: string) => {
         let member = this.audience.getMembers().get(userId)
         if (member) {
+            //TODO: this not work, tinylicious-client have no method to change member name.
             member.userName = userName
+            const memberPayload: EventPayload = { type: "memberChange", data: member }
+            this.emit("modelChanged", memberPayload)
         }
     }
 
