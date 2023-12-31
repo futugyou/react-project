@@ -1,6 +1,5 @@
-import { TinyliciousClient }
-    from "@fluidframework/tinylicious-client"
-
+import { TinyliciousClient } from "@fluidframework/tinylicious-client"
+import { ConnectionState } from "fluid-framework"
 import { containerSchema } from "./types"
 
 const client = new TinyliciousClient()
@@ -14,6 +13,14 @@ export const createContainer = async () => {
 export const getContainer = async (containerId: string) => {
     try {
         const { container, services } = await client.getContainer(containerId, containerSchema)
+        if (container.connectionState !== ConnectionState.Connected) {
+            await new Promise<void>((resolve) => {
+                container.once("connected", () => {
+                    resolve()
+                })
+            })
+        }
+        
         return { container, services }
     } catch (error) {
         console.log(error)
