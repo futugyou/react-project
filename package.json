@@ -13,8 +13,9 @@
     "@cloudscape-design/global-styles": "^1.0.20",
     "@fluid-experimental/data-objects": "^1.3.7",
     "@fluid-experimental/react-inputs": "^1.3.7",
+    "@fluidframework/azure-client": "^1.1.1",
     "@fluidframework/cell": "^1.3.7",
-    "@fluidframework/tinylicious-client": "^1.3.7",
+    "@fluidframework/test-client-utils": "^1.3.7",
     "@micro-zoe/micro-app": "^1.0.0-rc.3",
     "@microsoft/kiota-abstractions": "^1.0.0-preview.36",
     "@microsoft/kiota-http-fetchlibrary": "^1.0.0-preview.35",
@@ -60,7 +61,8 @@
     "react-simple-animate": "^3.5.2",
     "reactflow": "^11.10.1",
     "sha.js": "^2.4.11",
-    "use-immer": "^0.9.0"
+    "use-immer": "^0.9.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
@@ -78,6 +80,7 @@
     "@types/react-dom": "^18.2.18",
     "@types/react-reconciler": "^0.28.8",
     "@types/sha.js": "^2.4.4",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.56.0",

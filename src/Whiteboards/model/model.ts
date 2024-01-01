@@ -1,5 +1,5 @@
-import { ITinyliciousAudience, TinyliciousContainerServices }
-    from "@fluidframework/tinylicious-client"
+import { IAzureAudience, AzureContainerServices }
+    from "@fluidframework/azure-client"
 import { SharedCell } from "@fluidframework/cell"
 import { ISharedMap, IFluidContainer, IValueChanged, SharedString } from "fluid-framework"
 import { TinyliciousMember } from "./types"
@@ -14,11 +14,11 @@ export type EventPayload = {
 export class FluidModel extends EventEmitter {
     private sharedTimestamp: ISharedMap
     private dynamicMap: ISharedMap
-    private audience: ITinyliciousAudience
+    private audience: IAzureAudience
     private sharedString: SharedString
     constructor(
         private container: IFluidContainer,
-        private services: TinyliciousContainerServices,
+        private services: AzureContainerServices,
     ) {
         super()
         this.sharedTimestamp = container.initialObjects.sharedTimestamp as ISharedMap

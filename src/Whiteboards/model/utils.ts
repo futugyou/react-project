@@ -1,8 +1,44 @@
-import { TinyliciousClient } from "@fluidframework/tinylicious-client"
+
 import { ConnectionState } from "fluid-framework"
+
+import {
+    AzureClient,
+    AzureClientProps,
+    AzureLocalConnectionConfig,
+    AzureRemoteConnectionConfig,
+} from "@fluidframework/azure-client"
+import { getRandomName } from "@fluidframework/server-services-client"
+import { InsecureTokenProvider } from "@fluidframework/test-client-utils"
+
+import { v4 as uuid } from "uuid"
+
 import { containerSchema } from "./types"
 
-const client = new TinyliciousClient()
+export const useAzure = import.meta.env.REACT_APP_FLUID_CLIENT === "azure"
+
+const userConfig = {
+    id: uuid(),
+    name: getRandomName(),
+}
+
+const remoteConnectionConfig: AzureRemoteConnectionConfig = {
+    type: "remote",
+    tenantId: import.meta.env.REACT_APP_FLUID_REMOTE_TENANT_ID, // REPLACE WITH YOUR TENANT ID
+    tokenProvider: new InsecureTokenProvider("" /* REPLACE WITH YOUR PRIMARY KEY */, userConfig),
+    endpoint: import.meta.env.REACT_APP_FLUID_REMOTE_ENDPOINT, // REPLACE WITH YOUR AZURE ENDPOINT
+}
+
+const localConnectionConfig: AzureLocalConnectionConfig = {
+    type: "local",
+    tokenProvider: new InsecureTokenProvider("", userConfig),
+    endpoint: import.meta.env.REACT_APP_FLUID_LOCAL_ENDPOINT,
+}
+
+const connectionConfig: AzureClientProps = {
+    connection: useAzure ? remoteConnectionConfig : localConnectionConfig,
+}
+
+const client = new AzureClient(connectionConfig)
 
 export const createContainer = async () => {
     const { container, services } = await client.createContainer(containerSchema)
@@ -20,7 +56,7 @@ export const getContainer = async (containerId: string) => {
                 })
             })
         }
-        
+
         return { container, services }
     } catch (error) {
         console.log(error)

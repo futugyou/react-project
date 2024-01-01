@@ -54,7 +54,8 @@ kiota generate -l typescript -d https://github.com/futugyou/goproject/blob/maste
 
 ```sh
 npm install fluid-framework
-npm install '@fluidframework/tinylicious-client'
+# npm install '@fluidframework/tinylicious-client'
+npm install '@fluidframework/azure-client'
 npx '@fluidframework/azure-local-service'
 ```
 
