@@ -1,7 +1,7 @@
 import { ITinyliciousAudience, TinyliciousContainerServices }
     from "@fluidframework/tinylicious-client"
 import { SharedCell } from "@fluidframework/cell"
-import { ISharedMap, IFluidContainer, IValueChanged } from "fluid-framework"
+import { ISharedMap, IFluidContainer, IValueChanged, SharedString } from "fluid-framework"
 import { TinyliciousMember } from "./types"
 import { EventEmitter } from "events"
 
@@ -15,6 +15,7 @@ export class FluidModel extends EventEmitter {
     private sharedTimestamp: ISharedMap
     private dynamicMap: ISharedMap
     private audience: ITinyliciousAudience
+    private sharedString: SharedString
     constructor(
         private container: IFluidContainer,
         private services: TinyliciousContainerServices,
@@ -23,6 +24,7 @@ export class FluidModel extends EventEmitter {
         this.sharedTimestamp = container.initialObjects.sharedTimestamp as ISharedMap
         this.dynamicMap = container.initialObjects.dynamicMap as ISharedMap
         this.audience = services.audience
+        this.sharedString = container.initialObjects.sharedString as SharedString
 
         this.sharedTimestamp.on("valueChanged", (changed, local, target) => {
             const changeNodePayload: EventPayload = { type: "timestampChange", changed }
@@ -100,4 +102,6 @@ export class FluidModel extends EventEmitter {
     public getSharedTimestamp = (): string => {
         return this.sharedTimestamp.get("time") ?? ""
     }
+
+    get getCollaborativeText() { return this.sharedString }
 }
