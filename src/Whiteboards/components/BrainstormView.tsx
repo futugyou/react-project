@@ -3,6 +3,9 @@ import React, { useMemo, useCallback, useState, useEffect } from "react"
 import { AzureContainerServices } from "@fluidframework/azure-client"
 import { IFluidContainer } from "fluid-framework"
 
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
+
 import { BrainstormModel, createBrainstormModel } from "../model"
 import { Header } from './Header'
 import { NoteSpace } from './NoteSpace'
@@ -43,7 +46,9 @@ export const BrainstormView = (props: {
     return (
         <div>
             <Header model={model} author={authorInfo} members={members} />
-            <NoteSpace model={model} author={authorInfo} />
+            <DndProvider backend={HTML5Backend}>
+                <NoteSpace model={model} author={authorInfo} />
+            </DndProvider>
         </div>
     )
 }
