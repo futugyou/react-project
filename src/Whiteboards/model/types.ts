@@ -1,6 +1,7 @@
 import { SharedCell } from "@fluidframework/cell"
 import { SignalManager } from "@fluid-experimental/data-objects"
 import { SharedMap, ContainerSchema, IMember, SharedString } from "fluid-framework"
+import { AzureMember } from "@fluidframework/azure-client"
 
 export const containerSchema: ContainerSchema = {
     initialObjects: {
@@ -8,6 +9,7 @@ export const containerSchema: ContainerSchema = {
         dynamicMap: SharedMap,
         signalManager: SignalManager,
         sharedString: SharedString,
+        map: SharedMap,
     },
     dynamicObjectTypes: [SharedCell],
 }
@@ -15,3 +17,18 @@ export const containerSchema: ContainerSchema = {
 export interface TinyliciousMember extends IMember {
     userName: string
 }
+
+export type Position = Readonly<{ x: number; y: number }>
+
+export type NoteData = Readonly<{
+    id: any
+    lastEdited: { userId: string; userName: string; time: number }
+    text?: string
+    author: AzureMember
+    position: Position
+    numLikesCalculated: number
+    didILikeThisCalculated: boolean
+    color: ColorId
+}>
+
+export type ColorId = "Blue" | "Green" | "Yellow" | "Pink" | "Purple" | "Orange"
