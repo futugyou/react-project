@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fluid": "concurrently -k -n w: npm:start:*",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:client": "vite",
+    "start:server": "npx @fluidframework/azure-local-service"
   },
   "dependencies": {
     "@cloudscape-design/components": "^3.0.474",
@@ -34,6 +37,7 @@
     "axios": "^1.6.3",
     "bootstrap": "^5.3.2",
     "buffer": "^6.0.3",
+    "concurrently": "^8.2.2",
     "cytoscape": "^3.28.1",
     "cytoscape-avsdf": "^1.0.0",
     "cytoscape-euler": "^1.2.2",
