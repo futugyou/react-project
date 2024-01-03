@@ -5,6 +5,6 @@ import { RouteObject } from 'react-router-dom'
 const BoardPage = lazy(() => import('./App'))
 
 export const BoardRoute: RouteObject = {
-    path: "/whiteboards",
+    path: "/fluid",
     element: <BoardPage />,
 }

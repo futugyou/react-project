@@ -24,6 +24,14 @@ const Header = (props: any) => {
             }
         }
 
+        if (t == 'whiteboard') {
+            if (path == '/fluid' || path == '/excalidraw') {
+                return true
+            } else {
+                return false
+            }
+        }
+
         if (t == 'base') {
             if (path.startsWith('/demo')) {
                 return true
@@ -70,16 +78,10 @@ const Header = (props: any) => {
                             Flow
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="/whiteboards" href="/whiteboards" title="Whiteboard">
-                            Whiteboard
-                        </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="/excalidraw" href="/excalidraw" title="Excalidraw">
-                            Excalidraw
-                        </Nav.Link>
-                    </Nav.Item>
+                    <NavDropdown title="Whiteboard" id="Whiteboard" active={checkActive('whiteboard')}>
+                        <NavDropdown.Item eventKey="/fluid" href="/fluid" title="Fluid">Fluid</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/excalidraw" href="/excalidraw" title="Excalidraw">Excalidraw</NavDropdown.Item>
+                    </NavDropdown>
                     <NavDropdown title="OpenAI" id="OpenAI" active={checkActive('openai')}>
                         <NavDropdown.Item eventKey="/examples" href="/examples" title="Flow">Examples</NavDropdown.Item>
                         <NavDropdown.Item eventKey="/playground" href="/playground" title="Flow">Playground</NavDropdown.Item>
