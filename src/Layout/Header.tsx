@@ -1,5 +1,5 @@
 import './Header.css'
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { useLocation } from "react-router-dom"
@@ -14,7 +14,7 @@ const Header = (props: any) => {
         setActiveKey(eventKey)
     }
 
-    const checkActive = (t: string) => {
+    const checkActive = useCallback((t: string) => {
         const path = location.pathname
         if (t == 'openai') {
             if (path == '/examples' || path == '/playground') {
@@ -41,7 +41,7 @@ const Header = (props: any) => {
         }
 
         return false
-    }
+    }, [])
 
     useEffect(() => {
         const path = location.pathname
@@ -52,7 +52,8 @@ const Header = (props: any) => {
         } else {
             setActiveKey(path)
         }
-    }, [location])
+    }, [location, checkActive])
+    
     return (
 
         <div className='header-container'>
