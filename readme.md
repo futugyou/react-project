@@ -31,6 +31,10 @@
 
 [react-query](https://tanstack.com/query/latest/docs/react/overview)
 
+[fluidframework](https://fluidframework.com/)
+
+[excalidraw](https://docs.excalidraw.com/docs)
+
 ## update all package
 
 ```sh
@@ -47,7 +51,10 @@ npm install '@microsoft/kiota-serialization-form'
 npm install '@microsoft/kiota-serialization-json'
 npm install '@microsoft/kiota-serialization-text'
 npm install '@microsoft/kiota-serialization-multipart'
-kiota generate -l typescript -d https://github.com/futugyou/goproject/blob/master/openai-web/swagger/openapi.yml -c PostsClient -o ./src/kiota-client
+kiota generate -l typescript \
+-d https://github.com/futugyou/goproject/blob/master/openai-web/swagger/openapi.yml \
+-c PostsClient \
+-o ./src/kiota-client
 ```
 
 ## fluid-framework

@@ -8,7 +8,7 @@ import path from 'path'
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   console.log(process.env.NODE_ENV)
-
+  
   return {
     plugins: [react(),],
     envPrefix: "REACT_APP_",
@@ -26,6 +26,9 @@ export default defineConfig(({ command, mode }) => {
         exposedHeaders: ["Access-Control-Allow-Origin", "Origin", "Authorization", "Access-Control-Allow-Headers", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "x-requested-with"],
         credentials: true
       }
+    },
+    define: {
+      'process.env': {}
     },
     build: {
       rollupOptions: {
