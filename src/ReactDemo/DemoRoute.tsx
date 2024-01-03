@@ -15,7 +15,7 @@ const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module 
 
 
 export const DemoRoute: RouteObject = {
-    path: "/demo",
+    path: "/basic",
     element: <DemoPanel />,
     children: [
         {

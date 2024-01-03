@@ -6,7 +6,7 @@ const VueProject = lazy(() => import('./VueProject'))
 const NextjsProject = lazy(() => import('./NextjsProject'))
 
 export const MicroAppRoute: RouteObject[] = [{
-    path: "/aws",
+    path: "/vue",
     element: <VueProject />
 }, {
     path: "/nextjs",

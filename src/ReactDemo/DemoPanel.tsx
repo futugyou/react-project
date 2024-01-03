@@ -42,28 +42,28 @@ const DemoPanel = (props: any) => {
                     <div className="left-menu" >
                         <ul className="nav nav-pills flex-column mb-auto">
                             <li className="nav-item">
-                                <NavLink to="/demo/app" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
+                                <NavLink to="/basic/app" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >App</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/game" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Game</NavLink>
+                                <NavLink to="/basic/game" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Game</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/from" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >NameForm</NavLink>
+                                <NavLink to="/basic/form" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >NameForm</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/calculator" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Calculator</NavLink>
+                                <NavLink to="/basic/calculator" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Calculator</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/dialog" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WelcomeDialog</NavLink>
+                                <NavLink to="/basic/dialog" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WelcomeDialog</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/split" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >SplitPaneApp</NavLink>
+                                <NavLink to="/basic/split" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >SplitPaneApp</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/bailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Bailout</NavLink>
+                                <NavLink to="/basic/bailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >Bailout</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/demo/withbailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WithoutBailout</NavLink>
+                                <NavLink to="/basic/withbailout" className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >WithoutBailout</NavLink>
                             </li>
                         </ul>
                     </div>

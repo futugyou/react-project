@@ -32,8 +32,8 @@ const Header = (props: any) => {
             }
         }
 
-        if (t == 'base') {
-            if (path.startsWith('/demo')) {
+        if (t == 'basic') {
+            if (path.startsWith('/basic')) {
                 return true
             } else {
                 return false
@@ -53,7 +53,7 @@ const Header = (props: any) => {
             setActiveKey(path)
         }
     }, [location, checkActive])
-    
+
     return (
 
         <div className='header-container'>
@@ -65,8 +65,8 @@ const Header = (props: any) => {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="/aws" href="/aws" title="AWS">
-                            AWS
+                        <Nav.Link eventKey="/vue" href="/vue" title="Vue">
+                            Vue
                         </Nav.Link>
                     </Nav.Item>
                     {/* <Nav.Item>
@@ -87,15 +87,15 @@ const Header = (props: any) => {
                         <NavDropdown.Item eventKey="/examples" href="/examples" title="Flow">Examples</NavDropdown.Item>
                         <NavDropdown.Item eventKey="/playground" href="/playground" title="Flow">Playground</NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="BaseDemo" id="nav-dropdown" active={checkActive('base')}>
-                        <NavDropdown.Item eventKey="/demo/app" href="/demo/app" >App</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/game" href="/demo/game" >Game</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/form" href="/demo/form" >Form</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/calculator" href="/demo/calculator" >Calculator</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/dialog" href="/demo/dialog" >Dialog</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/split" href="/demo/split" >Split</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/bailout" href="/demo/bailout" >Bailout</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/demo/withbailout" href="/demo/withbailout" >Withbailout</NavDropdown.Item>
+                    <NavDropdown title="Basic" id="basic" active={checkActive('basic')}>
+                        <NavDropdown.Item eventKey="/basic/app" href="/basic/app" >App</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/game" href="/basic/game" >Game</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/form" href="/basic/form" >Form</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/calculator" href="/basic/calculator" >Calculator</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/dialog" href="/basic/dialog" >Dialog</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/split" href="/basic/split" >Split</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/bailout" href="/basic/bailout" >Bailout</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/withbailout" href="/basic/withbailout" >Withbailout</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </div>
