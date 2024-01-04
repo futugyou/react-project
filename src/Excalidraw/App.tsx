@@ -1,11 +1,16 @@
-import data from './data.json'
+import styles from './App.module.css'
+
+import init from './data/init.json'
+import scene from './data/scene.json'
 
 import { Excalidraw } from "@excalidraw/excalidraw"
-import { ExcalidrawInitialDataState } from "@excalidraw/excalidraw/types/types"
+import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState } from "@excalidraw/excalidraw/types/types"
+import { useState } from 'react'
+import Button from "@cloudscape-design/components/button"
 
-const elements = data.elements
-const appState = data.appState
-const scrollToContent = data.scrollToContent
+const elements = init.elements
+const appState = init.appState
+const scrollToContent = init.scrollToContent
 
 const initialData: ExcalidrawInitialDataState = {
     elements: elements as any,
@@ -14,11 +19,43 @@ const initialData: ExcalidrawInitialDataState = {
 }
 
 const App = () => {
+    const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
+
+    const updateScene = () => {
+        if (!excalidrawAPI) {
+            return
+        }
+
+        const elements = scene.elements
+        const appState = scene.appState
+        const sceneData = {
+            elements: elements,
+            appState: appState,
+        }
+
+        excalidrawAPI.updateScene(sceneData as any)
+    }
+
+    const initState = () => {
+        if (!excalidrawAPI) {
+            return
+        }
+ 
+        excalidrawAPI.updateScene(initialData as any)
+    }
+
     return (
         <>
-            <h1 style={{ textAlign: "center" }}>Excalidraw Example</h1>
-            <div style={{ height: "100%", width: "100%" }}>
-                <Excalidraw initialData={initialData} />
+            <div className={styles.container}>
+                <div className={styles.header}>
+                    <Button onClick={initState}>InitState</Button>
+                    <Button onClick={updateScene}>updateScene</Button>
+                </div>
+                <div className={styles.excalidrawContainer}>
+                    <Excalidraw
+                        initialData={initialData}
+                        excalidrawAPI={(api) => setExcalidrawAPI(api)} />
+                </div>
             </div>
         </>
     )
