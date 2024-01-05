@@ -161,3 +161,11 @@ ul {
   width: 40px;
   filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
 }
+
+.excalidraw .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  margin-top: 0.25rem;
+  display: block;
+  padding: 0;
+}
