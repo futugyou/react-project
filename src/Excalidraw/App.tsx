@@ -1,14 +1,18 @@
 import styles from './App.module.css'
+import { useRef, useState } from 'react'
+
+import { Excalidraw } from "@excalidraw/excalidraw"
+import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState }
+    from "@excalidraw/excalidraw/types/types"
+
+import Button from "@cloudscape-design/components/button"
+
+import { AppMainMenu } from "./menu/AppMainMenu"
+import { MenuItem } from "./menu/MenuItem"
 
 import init from './data/init.json'
 import scene from './data/scene.json'
-
 import { libraryItems } from './data/library'
-
-import { Excalidraw } from "@excalidraw/excalidraw"
-import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState } from "@excalidraw/excalidraw/types/types"
-import { useState } from 'react'
-import Button from "@cloudscape-design/components/button"
 
 const elements = init.elements
 const appState = init.appState
@@ -22,6 +26,7 @@ const initialData: ExcalidrawInitialDataState = {
 
 const App = () => {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
+    const excalidrawref = useRef()
 
     const updateScene = () => {
         if (!excalidrawAPI) {
@@ -62,15 +67,21 @@ const App = () => {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.header}>
+                {/* <div className={styles.header}>
                     <Button onClick={initState}>InitState</Button>
                     <Button onClick={updateScene}>UpdateScene</Button>
                     <Button onClick={loadLibrary}>LoadLibrary</Button>
-                </div>
+                </div> */}
                 <div className={styles.excalidrawContainer}>
                     <Excalidraw
                         initialData={initialData}
-                        excalidrawAPI={(api) => setExcalidrawAPI(api)} />
+                        excalidrawAPI={(api) => setExcalidrawAPI(api)} >
+                        <AppMainMenu>
+                            <MenuItem onClick={initState} Text="InitState" ></MenuItem>
+                            <MenuItem onClick={updateScene} Text="UpdateScene" ></MenuItem>
+                            <MenuItem onClick={loadLibrary} Text="LoadLibrary" ></MenuItem>
+                        </AppMainMenu>
+                    </Excalidraw>
                 </div>
             </div>
         </>
