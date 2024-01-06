@@ -1,7 +1,7 @@
 import styles from './App.module.css'
 import { useRef, useState } from 'react'
 
-import { Excalidraw } from "@excalidraw/excalidraw"
+import { Excalidraw, serializeAsJSON } from "@excalidraw/excalidraw"
 import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState }
     from "@excalidraw/excalidraw/types/types"
 
@@ -23,6 +23,8 @@ const initialData: ExcalidrawInitialDataState = {
     scrollToContent: scrollToContent,
 }
 
+const excalidraw_storage_key = "excalidraw_storage_key"
+
 const App = () => {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
 
@@ -31,8 +33,10 @@ const App = () => {
             return
         }
 
-        const elements = scene.elements
-        const appState = scene.appState
+        const state = JSON.parse(window.localStorage.getItem(excalidraw_storage_key) || '{}')
+
+        const elements = state.elements
+        const appState = state.appState
         const sceneData = {
             elements: elements,
             appState: appState,
@@ -62,6 +66,21 @@ const App = () => {
         })
     }
 
+    const exportJson = () => {
+        if (!excalidrawAPI) {
+            return
+        }
+
+        const state = serializeAsJSON(
+            excalidrawAPI.getSceneElementsIncludingDeleted(),
+            excalidrawAPI.getAppState(),
+            {},
+            "local",
+        )
+
+        window.localStorage.setItem(excalidraw_storage_key, state)
+    }
+
     return (
         <>
             <div className={styles.container}>
@@ -70,11 +89,17 @@ const App = () => {
                         // initialData={initialData}
                         excalidrawAPI={(api) => setExcalidrawAPI(api)} >
                         <AppMainMenu>
-                            <MenuItem onClick={initState} Text="InitState" ></MenuItem>
-                            <MenuItem onClick={updateScene} Text="UpdateScene" ></MenuItem>
+                            <MenuItem onClick={initState} Text="Default Data" ></MenuItem>
+                            <MenuItem onClick={updateScene} Text="Load Local" ></MenuItem>
                             <MenuItem onClick={loadLibrary} Text="LoadLibrary" ></MenuItem>
+                            <MenuItem onClick={exportJson} Text="Save Local" ></MenuItem>
                         </AppMainMenu>
-                        <AppWelcomeScreen items={[{ text: "InitState", onSelect: initState }]}>
+                        <AppWelcomeScreen items={
+                            [
+                                { text: "Default Data", onSelect: initState },
+                                { text: "Load Local", onSelect: updateScene }
+                            ]
+                        }>
                         </AppWelcomeScreen>
                     </Excalidraw>
                 </div>
