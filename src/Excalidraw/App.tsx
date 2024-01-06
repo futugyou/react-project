@@ -1,8 +1,8 @@
 import styles from './App.module.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
-import { Excalidraw, serializeAsJSON } from "@excalidraw/excalidraw"
-import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState }
+import { Excalidraw, serializeAsJSON, useHandleLibrary } from "@excalidraw/excalidraw"
+import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState, LibraryItem, LibraryItemsSource }
     from "@excalidraw/excalidraw/types/types"
 
 import { AppMainMenu } from "./menu/AppMainMenu"
@@ -27,6 +27,19 @@ const excalidraw_storage_key = "excalidraw_storage_key"
 
 const App = () => {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
+    const [librarys, setLibrarys] = useState<LibraryItem[]>(libraryItems as any)
+
+    const getInitialLibraryItems = (): LibraryItem[] => {
+        if (!excalidrawAPI) {
+            return librarys
+        }
+        return librarys
+    }
+
+    useHandleLibrary({
+        excalidrawAPI: excalidrawAPI as any,
+        getInitialLibraryItems: () => getInitialLibraryItems,
+    })
 
     const updateScene = () => {
         if (!excalidrawAPI) {
@@ -59,7 +72,7 @@ const App = () => {
         }
 
         excalidrawAPI.updateLibrary({
-            libraryItems: libraryItems as any,
+            libraryItems: librarys as any,
             openLibraryMenu: true,
             merge: true,
             // prompt: true,
@@ -74,7 +87,7 @@ const App = () => {
         const state = serializeAsJSON(
             excalidrawAPI.getSceneElementsIncludingDeleted(),
             excalidrawAPI.getAppState(),
-            {},
+            excalidrawAPI.getFiles(),
             "local",
         )
 
@@ -90,8 +103,8 @@ const App = () => {
                         excalidrawAPI={(api) => setExcalidrawAPI(api)} >
                         <AppMainMenu>
                             <MenuItem onClick={initState} Text="Default Data" ></MenuItem>
+                            <MenuItem onClick={loadLibrary} Text="Load Library" ></MenuItem>
                             <MenuItem onClick={updateScene} Text="Load Local" ></MenuItem>
-                            <MenuItem onClick={loadLibrary} Text="LoadLibrary" ></MenuItem>
                             <MenuItem onClick={exportJson} Text="Save Local" ></MenuItem>
                         </AppMainMenu>
                         <AppWelcomeScreen items={
