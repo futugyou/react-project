@@ -1,6 +1,7 @@
 import { parseLibraryTokensFromUrl, mergeLibraryItems, loadLibraryFromBlob } from "@excalidraw/excalidraw"
 import { ExcalidrawImperativeAPI, LibraryItem, LibraryItems, LibraryItemsSource } from "@excalidraw/excalidraw/types/types"
 import { useEffect, useRef } from "react"
+import uniqBy from "lodash/uniqBy"
 
 export const APP_NAME = "Excalidraw"
 
@@ -63,7 +64,14 @@ export const useHandleLibrary = ({
                     openLibraryMenu: true,
                 })
 
-                window.localStorage.setItem("excalidraw_library_storage_key", JSON.stringify(libraryItems))
+                if (getInitialLibraryRef.current) {
+                    const currLibrary = getInitialLibraryRef.current()
+                    if (currLibrary.length > 0)
+                        libraryItems = currLibrary.concat(libraryItems)
+                }
+
+                const uniqueLibrary = uniqBy(libraryItems, (o) => o.id)
+                window.localStorage.setItem("excalidraw_library_storage_key", JSON.stringify(uniqueLibrary))
             } catch (error) {
                 throw error
             } finally {

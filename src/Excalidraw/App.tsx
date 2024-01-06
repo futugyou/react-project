@@ -4,13 +4,13 @@ import { useRef, useState, useEffect } from 'react'
 import { Excalidraw, serializeAsJSON } from "@excalidraw/excalidraw"
 import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState, LibraryItem, LibraryItems, LibraryItemsSource }
     from "@excalidraw/excalidraw/types/types"
+import uniqBy from "lodash/uniqBy"
 
-import { AppMainMenu } from "./menu/AppMainMenu"
-import { AppWelcomeScreen } from "./menu/AppWelcomeScreen"
-import { MenuItem } from "./menu/MenuItem"
+import { AppMainMenu } from "./components/AppMainMenu"
+import { AppWelcomeScreen } from "./components/AppWelcomeScreen"
+import { MenuItem } from "./components/MenuItem"
 
 import init from './data/init.json'
-import scene from './data/scene.json'
 import { libraryItems } from './data/library'
 import { useHandleLibrary } from './hook/library'
 
@@ -31,13 +31,15 @@ const App = () => {
     const [librarys, setLibrarys] = useState<LibraryItem[]>(libraryItems as any)
 
     const getInitialLibraryItems = (): LibraryItem[] => {
+        let currentLibrary = librarys
         let items: LibraryItem[] = JSON.parse(window.localStorage.getItem("excalidraw_library_storage_key") || '[]')
 
         if (items.length > 0) {
-            return librarys.concat(items)
+            currentLibrary = currentLibrary.concat(items)
         }
 
-        return librarys
+        const uniqueLibrary = uniqBy(currentLibrary, (o) => o.id)
+        return uniqueLibrary
     }
 
     useHandleLibrary({
