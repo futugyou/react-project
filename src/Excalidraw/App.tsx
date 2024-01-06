@@ -5,9 +5,8 @@ import { Excalidraw } from "@excalidraw/excalidraw"
 import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState }
     from "@excalidraw/excalidraw/types/types"
 
-import Button from "@cloudscape-design/components/button"
-
 import { AppMainMenu } from "./menu/AppMainMenu"
+import { AppWelcomeScreen } from "./menu/AppWelcomeScreen"
 import { MenuItem } from "./menu/MenuItem"
 
 import init from './data/init.json'
@@ -26,7 +25,6 @@ const initialData: ExcalidrawInitialDataState = {
 
 const App = () => {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
-    const excalidrawref = useRef()
 
     const updateScene = () => {
         if (!excalidrawAPI) {
@@ -67,20 +65,17 @@ const App = () => {
     return (
         <>
             <div className={styles.container}>
-                {/* <div className={styles.header}>
-                    <Button onClick={initState}>InitState</Button>
-                    <Button onClick={updateScene}>UpdateScene</Button>
-                    <Button onClick={loadLibrary}>LoadLibrary</Button>
-                </div> */}
                 <div className={styles.excalidrawContainer}>
                     <Excalidraw
-                        initialData={initialData}
+                        // initialData={initialData}
                         excalidrawAPI={(api) => setExcalidrawAPI(api)} >
                         <AppMainMenu>
                             <MenuItem onClick={initState} Text="InitState" ></MenuItem>
                             <MenuItem onClick={updateScene} Text="UpdateScene" ></MenuItem>
                             <MenuItem onClick={loadLibrary} Text="LoadLibrary" ></MenuItem>
                         </AppMainMenu>
+                        <AppWelcomeScreen items={[{ text: "InitState", onSelect: initState }]}>
+                        </AppWelcomeScreen>
                     </Excalidraw>
                 </div>
             </div>
