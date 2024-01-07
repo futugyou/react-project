@@ -1,7 +1,7 @@
 import styles from './App.module.css'
 import { useRef, useState, useEffect } from 'react'
 
-import { Excalidraw, serializeAsJSON, Sidebar, exportToCanvas }
+import { Excalidraw, serializeAsJSON, Sidebar, exportToCanvas, exportToClipboard }
     from "@excalidraw/excalidraw"
 import {
     ExcalidrawImperativeAPI, ExcalidrawInitialDataState,
@@ -30,6 +30,7 @@ const initialData: ExcalidrawInitialDataState = {
 }
 
 const excalidraw_storage_key = "excalidraw_storage_key"
+const export_canvas_key = "export_canvas_key"
 
 const App = () => {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
@@ -110,11 +111,22 @@ const App = () => {
         })
         const ctx = canvas.getContext("2d")!
         setCanvasUrl(canvas.toDataURL())
+        exportToClipboard({
+            elements,
+            appState: {
+                ...initialData.appState,
+                exportWithDarkMode: false,
+            },
+            files: excalidrawAPI.getFiles(),
+            mimeType: "image/png",
+            type: "png"
+        })
     }
+
     const renderTopRightUI = (isMobile: boolean, appState: UIAppState) => {
         return (
             <>
-                <SidebarTriggerItem text="Default Data" name='custom' onToggle={exportCanvas} />
+                <SidebarTriggerItem text="Default Data" name={export_canvas_key} onToggle={exportCanvas} />
             </>
         )
     }
@@ -141,7 +153,7 @@ const App = () => {
                     <Excalidraw renderTopRightUI={renderTopRightUI}
                         // initialData={initialData}
                         excalidrawAPI={(api) => setExcalidrawAPI(api)} >
-                        <Sidebar name="custom" docked={docked} onDock={setDocked}>
+                        <Sidebar name={export_canvas_key} docked={docked} onDock={setDocked}>
                             <Sidebar.Header />
                             <Sidebar.Tabs >
                                 <div className="export export-canvas">
