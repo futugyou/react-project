@@ -1,13 +1,16 @@
 import styles from './App.module.css'
 import { useRef, useState, useEffect } from 'react'
 
-import { Excalidraw, serializeAsJSON, Sidebar, exportToCanvas, exportToClipboard }
-    from "@excalidraw/excalidraw"
+import {
+    Excalidraw, serializeAsJSON, Sidebar, exportToCanvas, exportToClipboard,
+    convertToExcalidrawElements,
+} from "@excalidraw/excalidraw"
 import {
     ExcalidrawImperativeAPI, ExcalidrawInitialDataState,
-    LibraryItem, UIAppState
-}
-    from "@excalidraw/excalidraw/types/types"
+    LibraryItem, UIAppState,
+} from "@excalidraw/excalidraw/types/types"
+import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw"
+
 import uniqBy from "lodash/uniqBy"
 
 import { AppMainMenu } from "./components/AppMainMenu"
@@ -18,6 +21,7 @@ import { SidebarTriggerItem } from "./components/SidebarTriggerItem"
 import init from './data/init.json'
 import { libraryItems } from './data/library'
 import { useHandleLibrary } from './hook/library'
+import { mermaid_string } from './data/mermaid'
 
 const elements = init.elements
 const appState = init.appState
@@ -80,6 +84,23 @@ const App = () => {
         excalidrawAPI.updateScene(initialData as any)
     }
 
+    const loadMermaid = async () => {
+        if (!excalidrawAPI) {
+            return
+        }
+
+        const { elements, files } = await parseMermaidToExcalidraw(mermaid_string, {
+            fontSize: 20,
+        })
+        const excalidrawElements = convertToExcalidrawElements(elements)
+        excalidrawAPI.updateScene({
+            elements: excalidrawElements,
+        })
+        excalidrawAPI.scrollToContent(excalidrawAPI.getSceneElements(), {
+            fitToContent: true,
+        })
+    }
+
     const loadLibrary = () => {
         if (!excalidrawAPI) {
             return
@@ -126,7 +147,7 @@ const App = () => {
     const renderTopRightUI = (isMobile: boolean, appState: UIAppState) => {
         return (
             <>
-                <SidebarTriggerItem text="Default Data" name={export_canvas_key} onToggle={exportCanvas} />
+                <SidebarTriggerItem text="ToClipboard" name={export_canvas_key} onToggle={exportCanvas} />
             </>
         )
     }
@@ -171,7 +192,7 @@ const App = () => {
                         <AppWelcomeScreen items={
                             [
                                 { text: "Default Data", onSelect: initState },
-                                { text: "Load Local", onSelect: updateScene }
+                                { text: "Load Mermaid ", onSelect: loadMermaid }
                             ]
                         }>
                         </AppWelcomeScreen>
