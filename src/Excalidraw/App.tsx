@@ -1,14 +1,19 @@
 import styles from './App.module.css'
 import { useRef, useState, useEffect } from 'react'
 
-import { Excalidraw, serializeAsJSON } from "@excalidraw/excalidraw"
-import { ExcalidrawImperativeAPI, ExcalidrawInitialDataState, LibraryItem, LibraryItems, LibraryItemsSource }
+import { Excalidraw, serializeAsJSON, Sidebar, exportToCanvas }
+    from "@excalidraw/excalidraw"
+import {
+    ExcalidrawImperativeAPI, ExcalidrawInitialDataState,
+    LibraryItem, UIAppState
+}
     from "@excalidraw/excalidraw/types/types"
 import uniqBy from "lodash/uniqBy"
 
 import { AppMainMenu } from "./components/AppMainMenu"
 import { AppWelcomeScreen } from "./components/AppWelcomeScreen"
 import { MenuItem } from "./components/MenuItem"
+import { SidebarTriggerItem } from "./components/SidebarTriggerItem"
 
 import init from './data/init.json'
 import { libraryItems } from './data/library'
@@ -29,6 +34,8 @@ const excalidraw_storage_key = "excalidraw_storage_key"
 const App = () => {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>()
     const [librarys, setLibrarys] = useState<LibraryItem[]>(libraryItems as any)
+    const [docked, setDocked] = useState(false)
+    const [canvasUrl, setCanvasUrl] = useState("")
 
     const getInitialLibraryItems = (): LibraryItem[] => {
         let currentLibrary = librarys
@@ -85,6 +92,33 @@ const App = () => {
         })
     }
 
+    const exportCanvas = async (open: boolean) => {
+        if (!excalidrawAPI || !open) {
+            return
+        }
+        const elements = excalidrawAPI.getSceneElements()
+        if (!elements || !elements.length) {
+            return
+        }
+        const canvas = await exportToCanvas({
+            elements,
+            appState: {
+                ...initialData.appState,
+                exportWithDarkMode: false,
+            },
+            files: excalidrawAPI.getFiles(),
+        })
+        const ctx = canvas.getContext("2d")!
+        setCanvasUrl(canvas.toDataURL())
+    }
+    const renderTopRightUI = (isMobile: boolean, appState: UIAppState) => {
+        return (
+            <>
+                <SidebarTriggerItem text="Default Data" name='custom' onToggle={exportCanvas} />
+            </>
+        )
+    }
+
     const exportJson = () => {
         if (!excalidrawAPI) {
             return
@@ -104,14 +138,23 @@ const App = () => {
         <>
             <div className={styles.container}>
                 <div className={styles.excalidrawContainer}>
-                    <Excalidraw
+                    <Excalidraw renderTopRightUI={renderTopRightUI}
                         // initialData={initialData}
                         excalidrawAPI={(api) => setExcalidrawAPI(api)} >
+                        <Sidebar name="custom" docked={docked} onDock={setDocked}>
+                            <Sidebar.Header />
+                            <Sidebar.Tabs >
+                                <div className="export export-canvas">
+                                    <img src={canvasUrl} alt="" />
+                                </div>
+                            </Sidebar.Tabs>
+                        </Sidebar>
+
                         <AppMainMenu>
-                            <MenuItem onClick={initState} Text="Default Data" ></MenuItem>
-                            <MenuItem onClick={loadLibrary} Text="Load Library" ></MenuItem>
-                            <MenuItem onClick={updateScene} Text="Load Local" ></MenuItem>
-                            <MenuItem onClick={exportJson} Text="Save Local" ></MenuItem>
+                            <MenuItem onClick={initState} text="Default Data" ></MenuItem>
+                            <MenuItem onClick={loadLibrary} text="Load Library" ></MenuItem>
+                            <MenuItem onClick={updateScene} text="Load Local" ></MenuItem>
+                            <MenuItem onClick={exportJson} text="Save Local" ></MenuItem>
                         </AppMainMenu>
                         <AppWelcomeScreen items={
                             [
