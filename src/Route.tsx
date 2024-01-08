@@ -8,6 +8,7 @@ import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
 import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
 import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
+import { TldrawRoute } from '@/Tldraw/Route'
 
 const WelcomePage = lazy(() => import('@/Layout/WelcomePage'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
@@ -40,6 +41,7 @@ let childrenRoute: RouteObject[] = [
     DemoRoute,
     BoardRoute,
     ExcalidrawRoute,
+    TldrawRoute,
     ...MicroAppRoute,
     ...OpenAIRoute,
 ]
