@@ -6,12 +6,26 @@ import {
 	Tldraw,
 	createShapeId,
 	useEditor,
+	TLEventInfo,
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
+import { useCallback, useState } from 'react'
 
 import { InsideOfEditorContext } from './InsideOfEditorContext'
+import { components } from './CustomComponent'
+import { CardShapeUtil } from './CardShape/CardShapeUtil'
+import { CardShapeTool } from './CardShape/CardShapeTool'
+import { uiOverrides } from './ui-overrides'
+
+const customShapeUtils = [CardShapeUtil]
+const customTools = [CardShapeTool]
 
 export default function () {
+	const [events, setEvents] = useState<string[]>([])
+	const handleEvent = useCallback((data: TLEventInfo) => {
+		setEvents((events) => [JSON.stringify(data, null, 2), ...events.slice(0, 100)])
+	}, [])
+
 	const handleMount = (editor: Editor) => {
 		// Create a shape id
 		const id = createShapeId('hello')
@@ -60,10 +74,18 @@ export default function () {
 
 		// Zoom the camera to fit both shapes
 		editor.zoomToFit()
+
+		editor.on('event', (event) => handleEvent(event))
 	}
 	return (
 		<div style={{ inset: 0 }}>
-			<Tldraw onMount={handleMount}  >
+			<Tldraw
+				onMount={handleMount}
+				shapeUtils={customShapeUtils}
+				tools={customTools}
+				components={components}
+				overrides={uiOverrides}
+			>
 				<InsideOfEditorContext />
 			</Tldraw>
 		</div>
