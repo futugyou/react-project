@@ -9,6 +9,8 @@ import {
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 
+import { InsideOfEditorContext } from './InsideOfEditorContext'
+
 export default function () {
 	const handleMount = (editor: Editor) => {
 		// Create a shape id
@@ -61,7 +63,9 @@ export default function () {
 	}
 	return (
 		<div style={{ inset: 0 }}>
-			<Tldraw onMount={handleMount} />
+			<Tldraw onMount={handleMount}  >
+				<InsideOfEditorContext />
+			</Tldraw>
 		</div>
 	)
 }
