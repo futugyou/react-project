@@ -9,7 +9,7 @@ import {
 import { useState } from 'react'
 import { cardShapeMigrations } from './card-shape-migrations'
 import { cardShapeProps } from './card-shape-props'
-import { ICardShape } from './card-shape-types'
+import { ICardShape,MyFilterStyle } from './card-shape-types'
 
 // There's a guide at the bottom of this file!
 
@@ -31,6 +31,7 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
             w: 300,
             h: 300,
             color: 'black' as never,
+            filter: 'none',
         }
     }
 
@@ -63,6 +64,7 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
                     justifyContent: 'center',
                     pointerEvents: 'all',
                     backgroundColor: c.semi,
+                    filter: this.filterStyleToCss(shape.props.filter),
                     color: c.solid,
                 }}
             >
@@ -87,4 +89,11 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
     override onResize: TLOnResizeHandler<ICardShape> = (shape, info) => {
         return resizeBox(shape, info)
     }
+    
+	filterStyleToCss(filter: MyFilterStyle) {
+		if (filter === 'invert') return 'invert(100%)'
+		if (filter === 'grayscale') return 'grayscale(100%)'
+		if (filter === 'blur') return 'blur(10px)'
+		return 'none'
+	}
 }
