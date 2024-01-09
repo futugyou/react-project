@@ -33,7 +33,7 @@ export type BrainstormModel = Readonly<{
 export function createBrainstormModel(fluid: IFluidContainer): BrainstormModel {
 	// Global sharedMap that stores attributes of all the notes.
 	// The sharedMap can be updated by any user connected to the session
-	const sharedMap: ISharedMap = fluid.initialObjects.map as SharedMap
+	const sharedMap: ISharedMap = fluid.initialObjects.map as any
 
 	// check if note is complete (if it has a page position and an author)
 	const IsCompleteNote = (noteId: string) => {

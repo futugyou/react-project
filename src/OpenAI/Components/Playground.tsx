@@ -193,7 +193,7 @@ const Playground = () => {
             return
         }
 
-        const promptsuffix = (playgroundModel.prompt + playgroundModel.suffix ?? "").split("[insert]")
+        const promptsuffix = (playgroundModel.prompt + playgroundModel.suffix).split("[insert]")
         let suffix = ""
         if (promptsuffix.length > 1) {
             suffix = promptsuffix[1]
