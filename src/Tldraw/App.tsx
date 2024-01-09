@@ -12,6 +12,7 @@ import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useState } from 'react'
 
 import { InsideOfEditorContext } from './InsideOfEditorContext'
+import { FilterStyleUi } from './FilterStyleUi'
 import { components } from './CustomComponent'
 import { CardShapeUtil } from './CardShape/CardShapeUtil'
 import { CardShapeTool } from './CardShape/CardShapeTool'
@@ -87,6 +88,7 @@ export default function () {
 				overrides={uiOverrides}
 			>
 				<InsideOfEditorContext />
+				<FilterStyleUi />
 			</Tldraw>
 		</div>
 	)
