@@ -1,7 +1,7 @@
 import { track, useEditor } from '@tldraw/tldraw'
 import { MyFilterStyle } from './CardShape/card-shape-types'
 
-export const FilterStyleUi = track(function FilterStyleUi() {
+export const FilterStyleUi = track(() => {
     const editor = useEditor()
     const filterStyle = editor.getSharedStyles().get(MyFilterStyle)
     if (!filterStyle) return null
