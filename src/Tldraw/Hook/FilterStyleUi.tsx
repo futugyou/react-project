@@ -1,5 +1,5 @@
 import { track, useEditor } from '@tldraw/tldraw'
-import { MyFilterStyle } from './CardShape/card-shape-types'
+import { MyFilterStyle } from '../Shape/CardShape/card-shape-types'
 
 export const FilterStyleUi = track(() => {
     const editor = useEditor()

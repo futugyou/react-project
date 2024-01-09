@@ -1,88 +1,37 @@
 import {
-	DefaultColorStyle,
 	Editor,
-	TLGeoShape,
-	TLShapePartial,
 	Tldraw,
-	createShapeId,
-	useEditor,
-	TLEventInfo,
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useState } from 'react'
 
-import { InsideOfEditorContext } from './InsideOfEditorContext'
-import { FilterStyleUi } from './FilterStyleUi'
-import { components } from './CustomComponent'
-import { CardShapeUtil } from './CardShape/CardShapeUtil'
-import { HtmlShapeUtil } from './HtmlShape/HtmlShapeUtil'
-import { CardShapeTool } from './CardShape/CardShapeTool'
+import { InsideOfEditorContext } from './Hook/InsideOfEditorContext'
+import { FilterStyleUi } from './Hook/FilterStyleUi'
+import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
+import { components } from './Component/CustomComponent'
+import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
+import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
+import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
 import { uiOverrides } from './ui-overrides'
+import { Hello } from './Mount/Hello'
+import { Html } from './Mount/Html'
+import { LocalImages } from './Mount/LocalImages'
 
 const customShapeUtils = [CardShapeUtil, HtmlShapeUtil]
 const customTools = [CardShapeTool]
 
-export default function () {
-	const [events, setEvents] = useState<string[]>([])
-	const handleEvent = useCallback((data: TLEventInfo) => {
-		setEvents((events) => [JSON.stringify(data, null, 2), ...events.slice(0, 100)])
-	}, [])
-
+let initflag = false
+const App = () => {
 	const handleMount = useCallback((editor: Editor) => {
-		const id = createShapeId('hello')
-		const shape = editor.getShape<TLGeoShape>(id)
-		if (!shape) {
-			editor.createShapes<TLGeoShape>([
-				{
-					id,
-					type: 'geo',
-					x: 128 + Math.random() * 500,
-					y: 128 + Math.random() * 500,
-					props: {
-						geo: 'rectangle' as any,
-						w: 100,
-						h: 100,
-						dash: 'draw' as any,
-						color: 'blue' as any,
-						size: 'm' as any,
-					},
-				},
-			])
-			const shape = editor.getShape<TLGeoShape>(id)!
-			const shapeUpdate: TLShapePartial<TLGeoShape> = {
-				id,
-				type: 'geo',
-				props: {
-					h: shape.props.h * 3,
-					text: 'hello world!',
-				},
-			}
-
-			editor.updateShapes([shapeUpdate])
-			editor.select(id)
-			editor.rotateShapesBy([id], Math.PI / 8)
-			editor.selectNone()
-			editor.zoomToFit()
+		if (initflag) {
+			return
 		}
 
-		editor.on('event', (event) => handleEvent(event))
-		editor.registerExternalContentHandler('text', async ({ point, sources }) => {
-			const htmlSource = sources?.find((s) => s.type === 'text' && s.subtype === 'html')
-
-			if (htmlSource) {
-				const center = point ?? editor.getViewportPageCenter()
-
-				editor.createShape({
-					type: 'html',
-					x: center.x - 250,
-					y: center.y - 150,
-					props: {
-						html: htmlSource.data,
-					},
-				})
-			}
-		})
-	}, [])
+		Hello(editor)
+		editor.registerExternalContentHandler('text', ({ point, sources }) => Html(editor, point, sources))
+		LocalImages(editor)
+		initflag = true
+	}, [Hello, LocalImages])
 
 	return (
 		<div style={{ inset: 0 }}>
@@ -95,7 +44,10 @@ export default function () {
 			>
 				{/* <InsideOfEditorContext /> */}
 				<FilterStyleUi />
+				<SneakyFloatyHook />
 			</Tldraw>
 		</div>
 	)
 }
+
+export default App 
