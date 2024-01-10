@@ -16,19 +16,23 @@ import { uiOverrides } from './ui-overrides'
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
 import { LocalImages } from './Mount/LocalImages'
+import { MetaUi } from './Hook/MetaUi'
+import { Meta } from './Mount/Meta'
 
 const customShapeUtils = [CardShapeUtil, HtmlShapeUtil]
 const customTools = [CardShapeTool]
 
 let initflag = false
 const App = () => {
-	const handleMount = useCallback((editor: Editor) => {
+	const handleMount = useCallback((editor: Editor) => {		
+		Meta(editor)
+		editor.registerExternalContentHandler('text', ({ point, sources }) => Html(editor, point, sources))
+		
 		if (initflag) {
 			return
 		}
 
 		Hello(editor)
-		editor.registerExternalContentHandler('text', ({ point, sources }) => Html(editor, point, sources))
 		LocalImages(editor)
 		initflag = true
 	}, [Hello, LocalImages])
@@ -45,6 +49,7 @@ const App = () => {
 				{/* <InsideOfEditorContext /> */}
 				<FilterStyleUi />
 				<SneakyFloatyHook />
+				<MetaUi />
 			</Tldraw>
 		</div>
 	)

@@ -12,7 +12,7 @@ export const FilterStyleUi = track(() => {
             style={{
                 position: 'absolute',
                 zIndex: 300,
-                top: 50,
+                top: 140,
                 left: 8,
                 padding: 15,
                 display: 'flex',
