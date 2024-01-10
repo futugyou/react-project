@@ -41,7 +41,7 @@ let childrenRoute: RouteObject[] = [
     DemoRoute,
     BoardRoute,
     ExcalidrawRoute,
-    TldrawRoute,
+    ...TldrawRoute,
     ...MicroAppRoute,
     ...OpenAIRoute,
 ]
