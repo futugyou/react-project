@@ -6,6 +6,7 @@ import {
 	throttle,
 	TLAnyShapeUtilConstructor,
 	TLStateNodeConstructor,
+	TLUiEventHandler,
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useLayoutEffect, useState } from 'react'
@@ -33,6 +34,7 @@ const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, Sp
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
 const App = () => {
+	const [uiEvents, setUiEvents] = useState<string[]>([])
 	const handleMount = useCallback((editor: Editor) => {
 		Meta(editor)
 		editor.registerExternalContentHandler('text', ({ point, sources }) => Html(editor, point, sources))
@@ -46,6 +48,11 @@ const App = () => {
 	>({
 		status: 'loading',
 	})
+
+	const handleUiEvent = useCallback<TLUiEventHandler>((name, data) => {
+		console.log(`${name} ${JSON.stringify(data)}`)
+		setUiEvents((events) => [`${name} ${JSON.stringify(data)}`, ...events])
+	}, [])
 
 	useLayoutEffect(() => {
 		setLoadingState({ status: 'loading' })
@@ -105,6 +112,7 @@ const App = () => {
 				overrides={UIOverrides}
 				store={store}
 				assetUrls={CustomAssetUrls}
+				onUiEvent={handleUiEvent}
 			>
 				{/* <InsideOfEditorContext /> */}
 				<FilterStyleUi />
