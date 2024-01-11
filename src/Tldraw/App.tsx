@@ -25,20 +25,13 @@ import { Meta } from './Mount/Meta'
 const customShapeUtils = [CardShapeUtil, HtmlShapeUtil]
 const customTools = [CardShapeTool]
 
-let initflag = false
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 const App = () => {
 	const handleMount = useCallback((editor: Editor) => {
 		Meta(editor)
 		editor.registerExternalContentHandler('text', ({ point, sources }) => Html(editor, point, sources))
-
-		if (initflag) {
-			return
-		}
-
 		Hello(editor)
 		LocalImages(editor)
-		initflag = true
 	}, [Hello, LocalImages])
 
 	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...customShapeUtils] }))

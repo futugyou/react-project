@@ -1,6 +1,12 @@
-import { AssetRecordType, Editor } from "@tldraw/tldraw"
+import { AssetRecordType, Editor,createShapeId } from "@tldraw/tldraw"
 
 export const LocalImages = (editor: Editor) => {
+	const id = createShapeId('local-image')
+	const shape = editor.getShape(id)
+	if (shape) {
+		return
+	}
+
 	const assetId = AssetRecordType.createId()
 	const imageWidth = 200
 	const imageHeight = 200
@@ -22,6 +28,7 @@ export const LocalImages = (editor: Editor) => {
 		},
 	])
 	editor.createShape({
+		id:id,
 		type: 'image',
 		// Let's center the image in the editor
 		x: (window.innerWidth - imageWidth) / 2,
