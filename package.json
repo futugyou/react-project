@@ -32,7 +32,7 @@
     "@tanstack/react-query": "^5.17.9",
     "@tanstack/react-query-persist-client": "^5.17.9",
     "@tldraw/tldraw": "^2.0.0-canary.f5b95d5df295",
-    "@tldraw/utils": "^2.0.0-canary.f5b95d5df295",
+    "@tldraw/utils": "^2.0.0-canary.89914684467c",
     "@types/react-cytoscapejs": "^1.2.5",
     "@uiw/react-color": "^2.0.5",
     "@vercel/analytics": "^1.1.1",
