@@ -4,6 +4,8 @@ import {
 	Editor,
 	Tldraw,
 	throttle,
+	TLAnyShapeUtilConstructor,
+	TLStateNodeConstructor,
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useLayoutEffect, useState } from 'react'
@@ -22,11 +24,14 @@ import { LocalImages } from './Mount/LocalImages'
 import { MetaUi } from './Hook/MetaUi'
 import { Meta } from './Mount/Meta'
 import { ScreenshotTool } from './Tools/ScreenshotTool'
+import { SpeechBubbleUtil } from './Shape/SpeechBubble/SpeechBubbleUtil'
+import { SpeechBubbleTool } from './Shape/SpeechBubble/SpeechBubbleTool'
 
-const customShapeUtils = [CardShapeUtil, HtmlShapeUtil]
-const customTools = [CardShapeTool, ScreenshotTool]
+const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, SpeechBubbleUtil]
+const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, SpeechBubbleTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
+
 const App = () => {
 	const handleMount = useCallback((editor: Editor) => {
 		Meta(editor)
