@@ -1,8 +1,6 @@
-import { TLUiMenuGroup, TLUiOverrides, menuItem, toolbarItem } from '@tldraw/tldraw'
+import { TLUiMenuGroup, TLUiOverrides, menuItem, toolbarItem, TLUiAssetUrlOverrides } from '@tldraw/tldraw'
 
-// There's a guide at the bottom of this file!
-
-export const uiOverrides: TLUiOverrides = {
+export const UIOverrides: TLUiOverrides = {
     tools(editor, tools) {
         // Create a tool item in the ui's context.
         tools.card = {
@@ -15,11 +13,22 @@ export const uiOverrides: TLUiOverrides = {
                 editor.setCurrentTool('card')
             },
         }
+        tools.screenshot = {
+            id: 'screenshot',
+            label: 'Screenshot',
+            readonlyOk: false,
+            icon: 'tool-screenshot',
+            kbd: 'j',
+            onSelect() {
+                editor.setCurrentTool('screenshot')
+            },
+        }
         return tools
     },
     toolbar(_app, toolbar, { tools }) {
         // Add the tool item from the context to the toolbar.
         toolbar.splice(4, 0, toolbarItem(tools.card))
+        toolbar.splice(4, 0, toolbarItem(tools.screenshot))
         return toolbar
     },
     keyboardShortcutsMenu(_app, keyboardShortcutsMenu, { tools }) {
@@ -30,4 +39,10 @@ export const uiOverrides: TLUiOverrides = {
         toolsGroup.children.push(menuItem(tools.card))
         return keyboardShortcutsMenu
     },
-} 
+}
+
+export const CustomAssetUrls: TLUiAssetUrlOverrides = {
+    icons: {
+        'tool-screenshot': './tldraw/tool-screenshot.svg',
+    },
+}

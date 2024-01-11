@@ -15,15 +15,16 @@ import { components } from './Component/CustomComponent'
 import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
 import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
 import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
-import { uiOverrides } from './ui-overrides'
+import { CustomAssetUrls, UIOverrides } from './UiOverride/ui-overrides'
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
 import { LocalImages } from './Mount/LocalImages'
 import { MetaUi } from './Hook/MetaUi'
 import { Meta } from './Mount/Meta'
+import { ScreenshotTool } from './Tools/ScreenshotTool'
 
 const customShapeUtils = [CardShapeUtil, HtmlShapeUtil]
-const customTools = [CardShapeTool]
+const customTools = [CardShapeTool, ScreenshotTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 const App = () => {
@@ -96,8 +97,9 @@ const App = () => {
 				shapeUtils={customShapeUtils}
 				tools={customTools}
 				components={components}
-				overrides={uiOverrides}
+				overrides={UIOverrides}
 				store={store}
+				assetUrls={CustomAssetUrls}
 			>
 				{/* <InsideOfEditorContext /> */}
 				<FilterStyleUi />

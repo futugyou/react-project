@@ -1,5 +1,6 @@
 import { Tldraw, TLEditorComponents } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
+import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLEditorComponents = {
 	Brush: ({ brush }) => {
@@ -29,4 +30,7 @@ export const components: TLEditorComponents = {
 		)
 	},
 	SnapLine: null,
+	InFrontOfTheCanvas: () => {
+		return <ScreenshotBox />
+	},
 }
