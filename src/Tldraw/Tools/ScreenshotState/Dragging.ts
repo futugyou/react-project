@@ -1,4 +1,4 @@
-import { Box2d, StateNode, atom, copyAs, exportAs } from '@tldraw/tldraw'
+import { Box, StateNode, atom, copyAs, exportAs } from '@tldraw/tldraw'
 
 // There's a guide at the bottom of this file!
 
@@ -8,7 +8,7 @@ export class ScreenshotDragging extends StateNode {
     // This state has a reactive property (an Atom) called "screenshotBox".
     // This is the box that the user is drawing on the screen as they drag their pointer.
     // We use an Atom here so that our UI can subscribe to this property using `useValue`
-    screenshotBox = atom('screenshot brush', new Box2d())
+    screenshotBox = atom('screenshot brush', new Box())
 
     // When the user enters this state, or when they move their pointer, 
     // we update the screenshotBox property to be drawn between the place 
@@ -36,7 +36,7 @@ export class ScreenshotDragging extends StateNode {
             inputs: { shiftKey, altKey, originPagePoint, currentPagePoint },
         } = this.editor
 
-        const box = Box2d.FromPoints([originPagePoint, currentPagePoint])
+        const box = Box.FromPoints([originPagePoint, currentPagePoint])
 
         if (shiftKey) {
             if (box.w > box.h * (16 / 9)) {

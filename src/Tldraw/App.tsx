@@ -7,11 +7,11 @@ import {
 	TLAnyShapeUtilConstructor,
 	TLStateNodeConstructor,
 	TLUiEventHandler,
+	OfflineIndicator,
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useLayoutEffect, useState } from 'react'
 
-import { InsideOfEditorContext } from './Hook/InsideOfEditorContext'
 import { FilterStyleUi } from './Hook/FilterStyleUi'
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { components } from './Component/CustomComponent'
@@ -27,6 +27,7 @@ import { Meta } from './Mount/Meta'
 import { ScreenshotTool } from './Tools/ScreenshotTool'
 import { SpeechBubbleUtil } from './Shape/SpeechBubble/SpeechBubbleUtil'
 import { SpeechBubbleTool } from './Shape/SpeechBubble/SpeechBubbleTool'
+import { HostedImages } from './Mount/HostedImages'
 
 const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, SpeechBubbleUtil]
 const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, SpeechBubbleTool]
@@ -40,6 +41,7 @@ const App = () => {
 		editor.registerExternalContentHandler('text', ({ point, sources }) => Html(editor, point, sources))
 		Hello(editor)
 		LocalImages(editor)
+		HostedImages(editor)
 	}, [Hello, LocalImages])
 
 	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...customShapeUtils] }))
@@ -113,8 +115,8 @@ const App = () => {
 				store={store}
 				assetUrls={CustomAssetUrls}
 				onUiEvent={handleUiEvent}
+				shareZone={<OfflineIndicator />}
 			>
-				{/* <InsideOfEditorContext /> */}
 				<FilterStyleUi />
 				<SneakyFloatyHook />
 				<MetaUi />
