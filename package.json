@@ -67,7 +67,7 @@
     "react-icons": "^5.0.0",
     "react-reader": "^2.0.4",
     "react-reconciler": "^0.29.0",
-    "react-router-dom": "^6.21.1",
+    "react-router-dom": "^6.21.2",
     "react-simple-animate": "^3.5.2",
     "reactflow": "^11.10.1",
     "sha.js": "^2.4.11",
