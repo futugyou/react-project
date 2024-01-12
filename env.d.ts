@@ -16,6 +16,10 @@ interface ImportMetaEnv {
     readonly REACT_APP_FLUID_REMOTE_TENANT_ID: string
     readonly REACT_APP_FLUID_REMOTE_ENDPOINT: string
     readonly REACT_APP_FLUID_LOCAL_ENDPOINT: string
+    readonly REACT_APP_PUSHER_APP_ID: string
+    readonly REACT_APP_PUSHER_KEY: string
+    readonly REACT_APP_PUSHER_SECRET: string
+    readonly REACT_APP_PUSHER_CLUSTER: string
 }
 
 interface ImportMeta {
