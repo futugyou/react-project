@@ -1,7 +1,7 @@
 # React Project State
 
 [![CodeQL](https://github.com/futugyou/react-project/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/futugyou/react-project/actions/workflows/codeql.yml)
-[![Dependabot](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml/badge.svg?branch=master)](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml)
+[![Dependabot](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml/badge.svg)](https://github.com/futugyou/react-project/actions/workflows/dependabot-auto.yml)
 [![Markdown](https://github.com/futugyou/react-project/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/futugyou/react-project/actions/workflows/markdownlint.yml)
 ![CircleCI](https://img.shields.io/circleci/build/github/futugyou/react-project/master?logo=CircleCI&label=circle-ci)
 ![GitHub deployments](https://img.shields.io/github/deployments/futugyou/react-project/Preview?logo=vercel&label=Vercel%20Preview)
