@@ -98,6 +98,7 @@ const Header = (props: any) => {
                         <NavDropdown.Item eventKey="/basic/split" href="/basic/split" >Split</NavDropdown.Item>
                         <NavDropdown.Item eventKey="/basic/bailout" href="/basic/bailout" >Bailout</NavDropdown.Item>
                         <NavDropdown.Item eventKey="/basic/withbailout" href="/basic/withbailout" >Withbailout</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/basic/pusher" href="/basic/pusher" >Pusher</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </div>
