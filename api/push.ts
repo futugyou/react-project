@@ -14,9 +14,9 @@ const pusher = new Pusher({
     cluster: cluster!,
 })
 
-export const config = {
-    runtime: 'nodejs', // this is a pre-requisite
-}
+// export const config = {
+//     runtime: 'nodejs', // this is a pre-requisite
+// }
 
 export default async function handler(req, res) {
     const { x0, x1, y0, y1, color } = req.body
