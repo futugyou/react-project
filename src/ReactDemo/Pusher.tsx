@@ -115,7 +115,7 @@ const PusherComponent = () => {
 
     const updateColor = (e: any) => {
         current.color = e.target.className.split(' ')[1]
-        pushDrawData({})
+        // pushDrawData({})
     }
 
     const handleResize = () => {

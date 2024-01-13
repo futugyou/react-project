@@ -1,7 +1,7 @@
 import Pusher from 'pusher'
 
 const {
-    REACT_APP_FLUID_LOCAL_ENDPOINT: appId,
+    REACT_APP_PUSHER_APP_ID: appId,
     REACT_APP_PUSHER_KEY: key,
     REACT_APP_PUSHER_SECRET: secret,
     REACT_APP_PUSHER_CLUSTER: cluster,
