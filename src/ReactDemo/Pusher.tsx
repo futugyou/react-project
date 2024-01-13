@@ -1,16 +1,24 @@
 import './Pusher.css'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Pusher from 'pusher-js'
 
 const PusherComponent = () => {
-    let canvas = document.querySelector('.whiteboard')! as HTMLCanvasElement
-    let colors = document.querySelectorAll('.color')
-    let context = canvas.getContext('2d')!
+    const whiteboardRef = useRef<HTMLCanvasElement>(null)
 
     var pusher = new Pusher(import.meta.env.REACT_APP_PUSHER_KEY, {
         cluster: import.meta.env.REACT_APP_PUSHER_CLUSTER
     })
+
+    const onDrawingEvent = ({ x0, x1, y0, y1, color }: any) => {
+        if (!whiteboardRef.current) {
+            return
+        }
+
+        let w = whiteboardRef.current.width
+        let h = whiteboardRef.current.height
+        drawLine(x0 * w, x1 * w, y0 * h, y1 * h, color, false)
+    }
 
     var channel = pusher.subscribe('my-channel')
     channel.bind('my-event', onDrawingEvent)
@@ -23,38 +31,29 @@ const PusherComponent = () => {
 
     let drawing = false
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    const drawLine = (x0: any, x1: any, y0: any, y1: any, color: any, emit: any) => {
+        if (!whiteboardRef.current) {
+            return
+        }
+        const context = whiteboardRef.current.getContext('2d')
+        if (!context) {
+            return
+        }
 
-    canvas.addEventListener('mousedown', onMouseDown, false)
-    canvas.addEventListener('mouseup', onMouseUp, false)
-    canvas.addEventListener('mouseout', onMouseUp, false)
-    canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false)
-
-    canvas.addEventListener('touchstart', onMouseDown, false)
-    canvas.addEventListener('touchend', onMouseUp, false)
-    canvas.addEventListener('touchcancel', onMouseUp, false)
-    canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false)
-
-    for (var i = 0; i < colors.length; i++) {
-        colors[i].addEventListener('click', updateColor, false)
-    }
-
-    function drawLine(x0: any, x1: any, y0: any, y1: any, color: any, emit: any) {
         context.beginPath()
         context.moveTo(x0, y0)
         context.lineTo(x1, y1)
         context.strokeStyle = color
         context.lineWidth = 2
-        context.stroke()
         context.closePath()
+        context.stroke()
 
         if (!emit) {
             return
         }
 
-        let w = canvas.width
-        let h = canvas.height
+        let w = whiteboardRef.current.width
+        let h = whiteboardRef.current.height
 
         pushDrawData({
             x0: x0 / w,
@@ -65,44 +64,44 @@ const PusherComponent = () => {
         });
     }
 
-    function onMouseDown(e: any) {
+    const onMouseDown = (e: any) => {
         drawing = true
-        current.x = e.clientX || e.touches[0].clientX
-        current.y = e.clientY || e.toches[0].clientY
+        current.x = (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft)
+        current.y = (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop)
     }
 
-    function onMouseUp(e: any) {
+    const onMouseUp = (e: any) => {
         if (!drawing) {
             return
         }
         drawing = false
         drawLine(
             current.x,
-            e.clientX || e.touches[0].clientX,
+            (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft),
             current.y,
-            e.clientY || e.touches[0].clientY,
+            (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop),
             current.color,
             true
         )
     }
 
-    function onMouseMove(e: any) {
+    const onMouseMove = (e: any) => {
         if (!drawing) {
             return
         }
         drawLine(
             current.x,
-            e.clientX || e.touches[0].clientX,
+            (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft),
             current.y,
-            e.clientY || e.touches[0].clientY,
+            (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop),
             current.color,
             true
         )
-        current.x = e.clientX || e.touches[0].clientX
-        current.y = e.clientY || e.touches[0].clientY
+        current.x = (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft)
+        current.y = (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop)
     }
 
-    function throttle(callback: any, delay: any) {
+    const throttle = (callback: any, delay: any) => {
         let previousCall = Date.now()
         return function () {
             let time = Date.now()
@@ -114,23 +113,22 @@ const PusherComponent = () => {
         }
     }
 
-    function updateColor(e: any) {
-        pushDrawData({})
+    const updateColor = (e: any) => {
         current.color = e.target.className.split(' ')[1]
+        pushDrawData({})
     }
 
-    function onDrawingEvent({ x0, x1, y0, y1, color }: any) {
-        let w = canvas.width
-        let h = canvas.height
-        drawLine(x0 * w, x1 * w, y0 * h, y1 * h, color, false)
+    const handleResize = () => {
+        if (!whiteboardRef.current) {
+            return
+        }
+
+        const perent = document.querySelector('.pusher-container')!
+        whiteboardRef.current.width = perent.clientWidth
+        whiteboardRef.current.height = perent.clientHeight
     }
 
-    function onResize() {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-    }
-
-    async function pushDrawData(data: any) {
+    const pushDrawData = async (data: any) => {
         const res = await fetch('/api/push', {
             method: 'POST',
             headers: {
@@ -143,9 +141,38 @@ const PusherComponent = () => {
         }
     }
 
+    useEffect(() => {
+        if (!whiteboardRef.current) {
+            return
+        }
+
+        handleResize()
+
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [whiteboardRef.current])
+
     return <>
         <div className="pusher-container">
-            <canvas className="whiteboard" ></canvas>
+            <canvas className="whiteboard" ref={whiteboardRef}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                onMouseOut={onMouseUp}
+                onMouseMove={throttle(onMouseMove, 10)}
+                onTouchStart={onMouseDown}
+                onTouchEnd={onMouseUp}
+                onTouchCancel={onMouseUp}
+                onTouchMove={throttle(onMouseMove, 10)}
+            ></canvas>
+            <div className="colors">
+                <div className="color black" onClick={updateColor}></div>
+                <div className="color red" onClick={updateColor}></div>
+                <div className="color green" onClick={updateColor}></div>
+                <div className="color blue" onClick={updateColor}></div>
+                <div className="color yellow" onClick={updateColor}></div>
+            </div>
         </div>
     </>
 }
