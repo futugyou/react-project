@@ -12,14 +12,12 @@ const pusher = new Pusher({
     key: key!,
     secret: secret!,
     cluster: cluster!,
+    useTLS: true
 })
-
-// export const config = {
-//     runtime: 'nodejs', // this is a pre-requisite
-// }
 
 export default async function handler(req, res) {
     const { x0, x1, y0, y1, color } = req.body
+    console.log(appId, cluster, x0, x1, y0, y1, color)
     try {
         const response = await pusher.trigger('my-channel', 'my-event',
             { x0, x1, y0, y1, color },
@@ -27,7 +25,8 @@ export default async function handler(req, res) {
         if (response.ok) {
             res.status(200).end('sent event succesfully')
         } else {
-            res.status(response.status).end('sent event succesfully')
+            const text = await response.text()
+            res.status(response.status).end(text)
         }
 
     } catch (e) {
