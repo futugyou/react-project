@@ -4,13 +4,21 @@ import { Editor, PositionedOnCanvas, TldrawEditor, createShapeId, track } from '
 import { MiniBoxShapeUtil } from './Shape/MiniBox/MiniBoxShape'
 import { MiniSelectTool } from './Tools/MiniSelectTool'
 
+import { useYjsStore } from './Store/useYjsStore'
+import { Tldraw, useEditor } from '@tldraw/tldraw'
+
 const myTools = [MiniSelectTool]
 const myShapeUtils = [MiniBoxShapeUtil]
 
 const MiniApp = () => {
+    const store = useYjsStore({
+        roomId: 'yjs-demo',
+    })
+
     return (
         <div className="tldraw__editor">
             <TldrawEditor
+                autoFocus store={store}
                 tools={myTools}
                 shapeUtils={myShapeUtils}
                 initialState="select"
@@ -30,7 +38,9 @@ const MiniApp = () => {
                 components={{
                     Background: BackgroundComponent,
                 }}
-            />
+            >
+                <NameEditor />
+            </TldrawEditor>
         </div>
     )
 }
@@ -45,6 +55,35 @@ const BackgroundComponent = track(() => {
             <p>Click or Shift+Click to select shapes.</p>
             <p>Click and drag to move shapes.</p>
         </PositionedOnCanvas>
+    )
+})
+
+
+const NameEditor = track(() => {
+    const editor = useEditor()
+
+    const { color, name } = editor.user.getUserPreferences()
+
+    return (
+        <div style={{ pointerEvents: 'all', display: 'flex' }}>
+            <input
+                type="color"
+                value={color}
+                onChange={(e) => {
+                    editor.user.updateUserPreferences({
+                        color: e.currentTarget.value,
+                    })
+                }}
+            />
+            <input
+                value={name}
+                onChange={(e) => {
+                    editor.user.updateUserPreferences({
+                        name: e.currentTarget.value,
+                    })
+                }}
+            />
+        </div>
     )
 })
 
