@@ -22,7 +22,8 @@
 }
 
 .header-nav div a {
-    text-decoration: unset;
+    text-decoration: unset;    
+    text-transform: capitalize;
 }
 
 .header-route-container {

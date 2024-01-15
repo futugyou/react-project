@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { useLocation } from "react-router-dom"
 
+import { DemoRoute } from '@/ReactDemo/DemoRoute'
 import { User } from "@/User/User"
 
 const Header = (props: any) => {
@@ -43,6 +44,26 @@ const Header = (props: any) => {
         return false
     }, [])
 
+    const DemoNavDropdownItems = DemoRoute.children?.filter(p => p.path)
+        .filter(p => p.show && p.show() || !p.show).map(p => {
+            let href = p.href
+            if (!href) {
+                href = DemoRoute.path + "/" + p.path
+            }
+
+            let display = p.display
+            if (!display) {
+                display = p.path
+            }
+            return (
+                <NavDropdown.Item key={href} eventKey={href} href={href} >{display}</NavDropdown.Item>
+            )
+        })
+
+    const DemoNavDropdown = <NavDropdown title={DemoRoute.display} id={DemoRoute.display} active={DemoRoute.checkActive!(location.pathname)}>
+        {DemoNavDropdownItems}
+    </NavDropdown>
+
     useEffect(() => {
         const path = location.pathname
         if (path == '/') {
@@ -55,7 +76,6 @@ const Header = (props: any) => {
     }, [location, checkActive])
 
     return (
-
         <div className='header-container'>
             <div className="header-nav">
                 <Nav variant="pills" activeKey={activeKey} onSelect={handleSelect}>
@@ -89,17 +109,7 @@ const Header = (props: any) => {
                         <NavDropdown.Item eventKey="/examples" href="/examples" title="Flow">Examples</NavDropdown.Item>
                         <NavDropdown.Item eventKey="/playground" href="/playground" title="Flow">Playground</NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Basic" id="basic" active={checkActive('basic')}>
-                        <NavDropdown.Item eventKey="/basic/app" href="/basic/app" >App</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/game" href="/basic/game" >Game</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/form" href="/basic/form" >Form</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/calculator" href="/basic/calculator" >Calculator</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/dialog" href="/basic/dialog" >Dialog</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/split" href="/basic/split" >Split</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/bailout" href="/basic/bailout" >Bailout</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/withbailout" href="/basic/withbailout" >Withbailout</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/basic/pusher" href="/basic/pusher" >Pusher</NavDropdown.Item>
-                    </NavDropdown>
+                    {DemoNavDropdown}
                 </Nav>
             </div>
             <div className="header-user">

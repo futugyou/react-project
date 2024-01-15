@@ -9,6 +9,7 @@ import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
 import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
+import { ToRouteObject } from './RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/WelcomePage'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
@@ -38,7 +39,7 @@ let childrenRoute: RouteObject[] = [
         element: <WelcomePage />,
     },
     FlowRoute,
-    DemoRoute,
+    ToRouteObject(DemoRoute),
     BoardRoute,
     ExcalidrawRoute,
     ...TldrawRoute,

@@ -1,7 +1,6 @@
 
+import { RouteDescription } from '@/RouteDescription'
 import { lazy } from 'react'
-import { RouteObject } from 'react-router-dom'
-
 
 const DemoPanel = lazy(() => import('./DemoPanel'))
 const App = lazy(() => import('./00.Tutorial/App'))
@@ -15,9 +14,17 @@ const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module 
 const Pusher = lazy(() => import('./Pusher'))
 const PlateEditor = lazy(() => import('./PlateEditor'))
 
-export const DemoRoute: RouteObject = {
+export const DemoRoute: RouteDescription = {
+    display: "Basic",
     path: "/basic",
     element: <DemoPanel />,
+    checkActive: (path: string) => {
+        if (path.startsWith('/basic')) {
+            return true
+        } else {
+            return false
+        }
+    },
     children: [
         {
             index: true,
@@ -33,26 +40,33 @@ export const DemoRoute: RouteObject = {
         },
         {
             path: "form",
+            display: "Form",
+            show: () => process.env.NODE_ENV == "development",
             element: <NameForm />,
         },
         {
             path: "calculator",
+            show: () => process.env.NODE_ENV == "development",
             element: <Calculator />,
         },
         {
             path: "dialog",
+            show: () => process.env.NODE_ENV == "development",
             element: <WelcomeDialog />,
         },
         {
             path: "split",
+            show: () => process.env.NODE_ENV == "development",
             element: <SplitPaneApp />,
         },
         {
             path: "bailout",
+            show: () => process.env.NODE_ENV == "development",
             element: <Bailout />,
         },
         {
             path: "withbailout",
+            show: () => process.env.NODE_ENV == "development",
             element: <WithoutBailout />,
         },
         {
