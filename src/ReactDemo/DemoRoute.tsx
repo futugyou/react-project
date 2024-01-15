@@ -18,13 +18,7 @@ export const DemoRoute: RouteDescription = {
     display: "Basic",
     path: "/basic",
     element: <DemoPanel />,
-    checkActive: (path: string) => {
-        if (path.startsWith('/basic')) {
-            return true
-        } else {
-            return false
-        }
-    },
+    checkActive: (path: string) => path.startsWith('/basic'),
     children: [
         {
             index: true,
