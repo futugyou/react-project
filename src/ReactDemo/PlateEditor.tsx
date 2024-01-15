@@ -1,9 +1,10 @@
-import { Plate, PlateContent } from '@udecode/plate-common'
+import { Plate   } from '@udecode/plate-common'
+import { Editor } from '@/plate-components/plate-ui/editor'
 
 const BasicEditor = () => {
     return (
         <Plate>
-            <PlateContent placeholder="Type..." />
+            <Editor placeholder="Type..." />
         </Plate>
     )
 }
