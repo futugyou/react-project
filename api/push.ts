@@ -17,7 +17,6 @@ const pusher = new Pusher({
 
 export default async function handler(req, res) {
     const { x0, x1, y0, y1, color } = req.body
-    console.log(appId, cluster, x0, x1, y0, y1, color)
     try {
         const response = await pusher.trigger('my-channel', 'my-event',
             { x0, x1, y0, y1, color },

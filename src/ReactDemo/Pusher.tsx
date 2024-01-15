@@ -1,7 +1,15 @@
 import './Pusher.css'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, MouseEvent, TouchEvent } from 'react'
 import Pusher from 'pusher-js'
+
+export interface PusherDataType {
+    x0: number,
+    x1: number,
+    y0: number,
+    y1: number,
+    color: string
+}
 
 const PusherComponent = () => {
     const whiteboardRef = useRef<HTMLCanvasElement>(null)
@@ -10,7 +18,7 @@ const PusherComponent = () => {
         cluster: import.meta.env.REACT_APP_PUSHER_CLUSTER
     })
 
-    const onDrawingEvent = ({ x0, x1, y0, y1, color }: any) => {
+    const onDrawingEvent = ({ x0, x1, y0, y1, color }: PusherDataType) => {
         if (!whiteboardRef.current) {
             return
         }
@@ -31,7 +39,7 @@ const PusherComponent = () => {
 
     let drawing = false
 
-    const drawLine = (x0: any, x1: any, y0: any, y1: any, color: any, emit: any) => {
+    const drawLine = (x0: number, x1: number, y0: number, y1: number, color: string, emit: boolean) => {
         if (!whiteboardRef.current) {
             return
         }
@@ -64,44 +72,95 @@ const PusherComponent = () => {
         });
     }
 
-    const onMouseDown = (e: any) => {
+    const onMouseDown = (e: MouseEvent) => {
         drawing = true
-        current.x = (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft)
-        current.y = (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop)
+        const t = e.target as HTMLElement
+        current.x = e.clientX - t.offsetLeft
+        current.y = e.clientY - t.offsetTop
     }
 
-    const onMouseUp = (e: any) => {
+    const onTouchStart = (e: TouchEvent) => {
+        drawing = true
+        const t = e.target as HTMLElement
+        var rect = t.getBoundingClientRect()
+        current.x = e.touches[0].clientX - rect.x
+        current.y = e.touches[0].clientY - rect.y
+    }
+
+    const onMouseUp = (e: MouseEvent) => {
         if (!drawing) {
             return
         }
+
         drawing = false
+        const t = e.target as HTMLElement
         drawLine(
             current.x,
-            (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft),
+            e.clientX - t.offsetLeft,
             current.y,
-            (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop),
+            e.clientY - t.offsetTop,
             current.color,
             true
         )
     }
 
-    const onMouseMove = (e: any) => {
+    const onTouchEnd = (e: TouchEvent) => {
         if (!drawing) {
             return
         }
+
+        drawing = false
+        const t = e.target as HTMLElement
+        var rect = t.getBoundingClientRect()
         drawLine(
             current.x,
-            (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft),
+            e.touches[0].clientX - rect.x,
             current.y,
-            (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop),
+            e.touches[0].clientY - rect.y,
             current.color,
             true
         )
-        current.x = (e.clientX || e.touches[0].clientX) - (e.target.offsetLeft || e.touches[0].offsetLeft)
-        current.y = (e.clientY || e.toches[0].clientY) - (e.target.offsetTop || e.touches[0].offsetTop)
     }
 
-    const throttle = (callback: any, delay: any) => {
+    const onMouseMove = (e: MouseEvent) => {
+        if (!drawing) {
+            return
+        }
+
+        const t = e.target as HTMLElement
+        drawLine(
+            current.x,
+            e.clientX - t.offsetLeft,
+            current.y,
+            e.clientY - t.offsetTop,
+            current.color,
+            true
+        )
+
+        current.x = e.clientX - t.offsetLeft
+        current.y = e.clientY - t.offsetTop
+    }
+
+    const onTouchMove = (e: TouchEvent) => {
+        if (!drawing) {
+            return
+        }
+
+        const t = e.target as HTMLElement
+        var rect = t.getBoundingClientRect()
+        drawLine(
+            current.x,
+            e.touches[0].clientX - rect.x,
+            current.y,
+            e.touches[0].clientY - rect.y,
+            current.color,
+            true
+        )
+        current.x = e.touches[0].clientX - rect.x
+        current.y = e.touches[0].clientY - rect.y
+    }
+
+    const throttle = (callback: any, delay: number) => {
         let previousCall = Date.now()
         return function () {
             let time = Date.now()
@@ -113,8 +172,9 @@ const PusherComponent = () => {
         }
     }
 
-    const updateColor = (e: any) => {
-        current.color = e.target.className.split(' ')[1]
+    const updateColor = (e: MouseEvent) => {
+        const t = e.target as HTMLElement
+        current.color = t.className.split(' ')[1]
         // pushDrawData({})
     }
 
@@ -128,7 +188,7 @@ const PusherComponent = () => {
         whiteboardRef.current.height = perent.clientHeight
     }
 
-    const pushDrawData = async (data: any) => {
+    const pushDrawData = async (data: PusherDataType) => {
         const res = await fetch('/api/push', {
             method: 'POST',
             headers: {
@@ -161,10 +221,10 @@ const PusherComponent = () => {
                 onMouseUp={onMouseUp}
                 onMouseOut={onMouseUp}
                 onMouseMove={throttle(onMouseMove, 10)}
-                onTouchStart={onMouseDown}
-                onTouchEnd={onMouseUp}
-                onTouchCancel={onMouseUp}
-                onTouchMove={throttle(onMouseMove, 10)}
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+                onTouchCancel={onTouchEnd}
+                onTouchMove={throttle(onTouchMove, 10)}
             ></canvas>
             <div className="colors">
                 <div className="color black" onClick={updateColor}></div>
