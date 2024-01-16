@@ -19,3 +19,27 @@ updates:
       react-query:
         patterns:
         - "@tanstack/*"
+      excalidraw:
+        patterns:
+        - "@excalidraw*"
+      fluid:
+        patterns:
+        - "@fluid*"
+      microsoft:
+        patterns:
+        - "@microsoft*"
+      radix-ui:
+        patterns:
+        - "@radix-ui*"
+      udecode:
+        patterns:
+        - "@udecode*"
+      vercel:
+        patterns:
+        - "@vercel*"
+      slate:
+        patterns:
+        - "slate*"
+      tailwind:
+        patterns:
+        - "tailwind*"
