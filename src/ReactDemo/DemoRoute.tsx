@@ -12,7 +12,7 @@ const SplitPaneApp = lazy(() => import('./11.Compose/SplitPane'))
 const Bailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.Bailout })))
 const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.WithoutBailout })))
 const Pusher = lazy(() => import('./Pusher'))
-const PlateEditor = lazy(() => import('./PlateEditor'))
+const PlateEditor = lazy(() => import('@/Plate/PlateEditor'))
 
 export const DemoRoute: RouteDescription = {
     display: "Basic",
