@@ -10,7 +10,7 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/plate-components",
-    "plate-ui": "@/plate-components/plate-ui"
+    "components": "@/components",
+    "plate-ui": "@/components/plate-ui"
   }
 }
