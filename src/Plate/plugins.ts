@@ -12,6 +12,7 @@ import { createCodeBlockPlugin } from '@udecode/plate-code-block'
 import { createPlugins } from '@udecode/plate-common'
 import { createHeadingPlugin } from '@udecode/plate-heading'
 import { createParagraphPlugin } from '@udecode/plate-paragraph'
+import { createAmazingPlugin, KEY_AMAZING, ParagraphElement } from './Plugins/Amazing'
 
 export const plugins = createPlugins(
     [
@@ -28,5 +29,16 @@ export const plugins = createPlugins(
     ],
     {
         components: createPlateUI(),
+    }
+)
+
+export const CustomPlugins = createPlugins(
+    [
+        createAmazingPlugin(),
+    ],
+    {
+        components: {
+            [KEY_AMAZING]: ParagraphElement,
+        },
     }
 )
