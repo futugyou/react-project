@@ -26,8 +26,8 @@ export const WhiteRoute: RouteDescription = {
 }
 
 export const TotalRouteDescriptions: RouteDescription[] = [
-    DemoRoute,
     WhiteRoute,
+    DemoRoute,
 ]
 
 const childrenRoute: RouteObject[] = [
