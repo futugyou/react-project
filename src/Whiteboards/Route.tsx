@@ -1,10 +1,12 @@
 
 import { lazy } from 'react'
-import { RouteObject } from 'react-router-dom'
+import { RouteDescription } from '@/RouteDescription'
 
 const BoardPage = lazy(() => import('./App'))
 
-export const BoardRoute: RouteObject = {
-    path: "/fluid",
+export const BoardRoute: RouteDescription = {
+    path: "fluid",
+    display: "Fluid",
+    show: () => process.env.NODE_ENV == "development",
     element: <BoardPage />,
 }
