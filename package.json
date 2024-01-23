@@ -125,7 +125,7 @@
     "@types/cytoscape-fcose": "^2.2.4",
     "@types/lodash-es": "^4.17.12",
     "@types/object-hash": "^3.0.6",
-    "@types/ramda": "^0.29.9",
+    "@types/ramda": "^0.29.10",
     "@types/randombytes": "^2.0.3",
     "@types/randomcolor": "^0.5.9",
     "@types/react": "^18.2.48",
