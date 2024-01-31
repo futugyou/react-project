@@ -10,7 +10,7 @@ import {
     TLDefaultSizeStyle,
     TLHandle,
     TLOnBeforeUpdateHandler,
-    TLOnHandleChangeHandler,
+    TLOnHandleDragHandler,
     TLOnResizeHandler,
     Vec,
     deepCopy,
@@ -170,7 +170,7 @@ export class SpeechBubbleUtil extends ShapeUtil<SpeechBubbleShape> {
         return next
     }
 
-    override onHandleChange: TLOnHandleChangeHandler<SpeechBubbleShape> = (
+    override onHandleDrag: TLOnHandleDragHandler<SpeechBubbleShape> = (
         _,
         { handle, initial }
     ) => {
