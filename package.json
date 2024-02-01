@@ -12,8 +12,8 @@
     "start:server": "npx @fluidframework/azure-local-service"
   },
   "dependencies": {
-    "@cloudscape-design/components": "^3.0.512",
-    "@cloudscape-design/global-styles": "^1.0.21",
+    "@cloudscape-design/components": "^3.0.513",
+    "@cloudscape-design/global-styles": "^1.0.22",
     "@excalidraw/excalidraw": "^0.17.2",
     "@excalidraw/mermaid-to-excalidraw": "^0.2.0",
     "@fluid-experimental/data-objects": "^1.3.7",
