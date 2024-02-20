@@ -43,3 +43,7 @@ updates:
       tailwind:
         patterns:
         - "tailwind*"
+      eslint:
+        patterns:
+        - "eslint*"
+        - "@typescript-eslint*"
