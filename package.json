@@ -44,7 +44,7 @@
     "@udecode/plate-basic-marks": "^30.5.3",
     "@udecode/plate-block-quote": "^30.5.3",
     "@udecode/plate-caption": "^30.5.3",
-    "@udecode/plate-code-block": "^30.5.3",
+    "@udecode/plate-code-block": "^30.7.0",
     "@udecode/plate-comments": "^30.5.3",
     "@udecode/plate-common": "^30.4.5",
     "@udecode/plate-dnd": "^30.5.3",
