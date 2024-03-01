@@ -30,7 +30,6 @@ export const components: TLEditorComponents = {
 			</svg>
 		)
 	},
-	SnapLine: null,
 	InFrontOfTheCanvas: ScreenshotBox,
 	OnTheCanvas: CountComponent,
 }

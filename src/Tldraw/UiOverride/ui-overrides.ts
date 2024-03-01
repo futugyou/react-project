@@ -1,4 +1,4 @@
-import { TLUiMenuGroup, TLUiOverrides, menuItem, toolbarItem, TLUiAssetUrlOverrides } from '@tldraw/tldraw'
+import { TLUiOverrides, toolbarItem, TLUiAssetUrlOverrides } from '@tldraw/tldraw'
 
 export const UIOverrides: TLUiOverrides = {
     tools(editor, tools) {
@@ -24,15 +24,15 @@ export const UIOverrides: TLUiOverrides = {
             },
         }
         tools.speech = {
-			id: 'speech-bubble',
-			icon: 'speech-bubble',
-			label: 'Speech Bubble',
-			kbd: 's',
-			readonlyOk: false,
-			onSelect: () => {
-				editor.setCurrentTool('speech-bubble')
-			},
-		}
+            id: 'speech-bubble',
+            icon: 'speech-bubble',
+            label: 'Speech Bubble',
+            kbd: 's',
+            readonlyOk: false,
+            onSelect: () => {
+                editor.setCurrentTool('speech-bubble')
+            },
+        }
         return tools
     },
     toolbar(_app, toolbar, { tools }) {
@@ -41,16 +41,6 @@ export const UIOverrides: TLUiOverrides = {
         toolbar.splice(4, 0, toolbarItem(tools.screenshot))
         toolbar.splice(4, 0, toolbarItem(tools.speech))
         return toolbar
-    },
-    keyboardShortcutsMenu(_app, keyboardShortcutsMenu, { tools }) {
-        // Add the tool item from the context to the keyboard shortcuts dialog.
-        const toolsGroup = keyboardShortcutsMenu.find(
-            (group) => group.id === 'shortcuts-dialog.tools'
-        ) as TLUiMenuGroup
-        toolsGroup.children.push(menuItem(tools.card))
-        toolsGroup.children.push(menuItem(tools.screenshot))
-        toolsGroup.children.push(menuItem(tools.speech))
-        return keyboardShortcutsMenu
     },
 }
 
