@@ -12,7 +12,6 @@ import {
 import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useLayoutEffect, useState } from 'react'
 
-import { FilterStyleUi } from './Hook/FilterStyleUi'
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { components } from './Component/CustomComponent'
 import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
@@ -115,9 +114,7 @@ const App = () => {
 				store={store}
 				assetUrls={CustomAssetUrls}
 				onUiEvent={handleUiEvent}
-				shareZone={<OfflineIndicator />}
 			>
-				<FilterStyleUi />
 				<SneakyFloatyHook />
 				<MetaUi />
 			</Tldraw>

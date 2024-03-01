@@ -95,7 +95,7 @@ export class SpeechBubbleUtil extends ShapeUtil<SpeechBubbleShape> {
                     type: 'vertex',
                     canBind: true,
                     canSnap: true,
-                    index: 'a1',
+                    index: 'a1' as never,
                     x: 0.5,
                     y: 1.5,
                 },
