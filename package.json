@@ -61,7 +61,7 @@
     "@udecode/plate-paragraph": "^30.5.3",
     "@udecode/plate-resizable": "^30.5.3",
     "@udecode/plate-table": "^30.5.3",
-    "@uiw/react-color": "^2.1.0",
+    "@uiw/react-color": "^2.1.1",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.7",
