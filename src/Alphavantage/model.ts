@@ -215,6 +215,17 @@ export interface Commodities {
     Value: string
 }
 
+export interface StockSeries {
+    Id: string
+    Symbol: string
+    Time: Date
+    Open: number
+    High: number
+    Low: number
+    Close: number
+    Volume: number
+}
+
 export enum CommoditiesEnum {
     Wti = "wti",
     Brent = "brent",
