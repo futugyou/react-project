@@ -1,54 +1,74 @@
 import { useQuery } from '@tanstack/react-query'
 import axios, { AxiosRequestConfig } from 'axios'
 
-import { News, Company } from './model'
+import { News, Company, Balance, Cash, Earnings, Expected, Income } from './model'
 
 const alphavantage_server = import.meta.env.REACT_APP_ALPHAVANTAGE
 
 const keyPerfix = 'alphavantage-'
 
-export const useAlphavantageNewsData = (ticker: string, config = {}) => {
-    const options: AxiosRequestConfig = {
-        url: alphavantage_server + 'v1/news/' + ticker,
-        method: "GET",
-        headers: {
-        },
-    }
+export const useNewsData = (ticker: string, config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/news/' + ticker, keyPerfix + 'v1/news/' + ticker, config)
 
-    const { isLoading, isError, data, refetch, isFetching } = useQuery({
-        queryKey: [keyPerfix + 'v1/news/' + ticker],
-        queryFn: () => axios<News[]>(options).then(x => x.data),
-        ...config,
-    })
-
-    return {
-        data,
-        isLoading,
-        isFetching,
-        isError,
-        refetch,
-    }
+    return { data: data as News[], isLoading, isFetching, isError, refetch }
 }
 
-export const useAlphavantageCompanyData = (config = {}) => {
+export const useCompanyData = (config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/company', keyPerfix + 'v1/company', config)
+
+    return { data: data as Company[], isLoading, isFetching, isError, refetch }
+}
+
+export const useBalanceData = (config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/fundamentals/balance', keyPerfix + 'v1/fundamentals/balance', config)
+
+    return { data: data as Balance[], isLoading, isFetching, isError, refetch }
+}
+
+export const useCashData = (config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/fundamentals/cash', keyPerfix + 'v1/fundamentals/cash', config)
+
+    return { data: data as Cash[], isLoading, isFetching, isError, refetch }
+}
+
+export const useEarningsData = (config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/fundamentals/earnings', keyPerfix + 'v1/fundamentals/earnings', config)
+
+    return { data: data as Earnings[], isLoading, isFetching, isError, refetch }
+}
+
+export const useExpectedData = (config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/fundamentals/expected', keyPerfix + 'v1/fundamentals/expected', config)
+
+    return { data: data as Expected[], isLoading, isFetching, isError, refetch }
+}
+
+export const useIncomeData = (config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/fundamentals/income', keyPerfix + 'v1/fundamentals/income', config)
+
+    return { data: data as Income[], isLoading, isFetching, isError, refetch }
+}
+
+const useQueryToGetData = (url: string, key: string, config = {}) => {
     const options: AxiosRequestConfig = {
-        url: alphavantage_server + 'v1/company',
+        url: url,
         method: "GET",
         headers: {
         },
     }
 
     const { isLoading, isError, data, refetch, isFetching } = useQuery({
-        queryKey: [keyPerfix + 'v1/company'],
-        queryFn: () => axios<Company[]>(options).then(x => x.data),
+        queryKey: [key],
+        queryFn: () => axios(options).then(x => x.data),
         ...config,
     })
 
-    return {
-        data,
-        isLoading,
-        isFetching,
-        isError,
-        refetch,
-    }
+    return { data, isLoading, isFetching, isError, refetch }
 }

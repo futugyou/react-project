@@ -71,3 +71,136 @@ export interface Company {
     DividendDate: string
     ExDividendDate: string
 }
+
+export interface Balance {
+    Id: string
+    Symbol: string
+    DataType: string
+    FiscalDateEnding: string
+    ReportedCurrency: string
+    TotalAssets: string
+    TotalCurrentAssets: string
+    CashAndCashEquivalentsAtCarryingValue: string
+    CashAndShortTermInvestments: string
+    Inventory: string
+    CurrentNetReceivables: string
+    TotalNonCurrentAssets: string
+    PropertyPlantEquipment: string
+    AccumulatedDepreciationAmortizationPPE: string
+    IntangibleAssets: string
+    IntangibleAssetsExcludingGoodwill: string
+    Goodwill: string
+    Investments: string
+    LongTermInvestments: string
+    ShortTermInvestments: string
+    OtherCurrentAssets: string
+    OtherNonCurrentAssets: string
+    TotalLiabilities: string
+    TotalCurrentLiabilities: string
+    CurrentAccountsPayable: string
+    DeferredRevenue: string
+    CurrentDebt: string
+    ShortTermDebt: string
+    TotalNonCurrentLiabilities: string
+    CapitalLeaseObligations: string
+    LongTermDebt: string
+    CurrentLongTermDebt: string
+    LongTermDebtNoncurrent: string
+    ShortLongTermDebtTotal: string
+    OtherCurrentLiabilities: string
+    OtherNonCurrentLiabilities: string
+    TotalShareholderEquity: string
+    TreasuryStock: string
+    RetainedEarnings: string
+    CommonStock: string
+    CommonStockSharesOutstanding: string
+}
+
+export interface Cash {
+    Id: string
+    Symbol: string
+    DataType: string
+    FiscalDateEnding: string
+    ReportedCurrency: string
+    OperatingCashflow: string
+    PaymentsForOperatingActivities: string
+    ProceedsFromOperatingActivities: string
+    ChangeInOperatingLiabilities: string
+    ChangeInOperatingAssets: string
+    DepreciationDepletionAndAmortization: string
+    CapitalExpenditures: string
+    ChangeInReceivables: string
+    ChangeInInventory: string
+    ProfitLoss: string
+    CashflowFromInvestment: string
+    CashflowFromFinancing: string
+    ProceedsFromRepaymentsOfShortTermDebt: string
+    PaymentsForRepurchaseOfCommonStock: string
+    PaymentsForRepurchaseOfEquity: string
+    PaymentsForRepurchaseOfPreferredStock: string
+    DividendPayout: string
+    DividendPayoutCommonStock: string
+    DividendPayoutPreferredStock: string
+    ProceedsFromIssuanceOfCommonStock: string
+    ProceedsFromIssuanceOfLongTermDebtAndCapitalSecuritiesNet: string
+    ProceedsFromIssuanceOfPreferredStock: string
+    ProceedsFromRepurchaseOfEquity: string
+    ProceedsFromSaleOfTreasuryStock: string
+    ChangeInCashAndCashEquivalents: string
+    ChangeInExchangeRate: string
+    NetIncome: string
+}
+
+export interface Earnings {
+    Id: string
+    Symbol: string
+    DataType: string
+    FiscalDateEnding: string
+    ReportedDate: string
+    ReportedEPS: string
+    EstimatedEPS: string
+    Surprise: string
+    SurprisePercentage: string
+}
+
+export interface Expected {
+    Id: string
+    Symbol: string
+    Name: string
+    ReportDate: string
+    FiscalDateEnding: string
+    Estimate: number
+    Currency: string
+}
+
+export interface Income {
+    Id: string
+    Symbol: string
+    DataType: string
+    FiscalDateEnding: string
+    ReportedCurrency: string
+    GrossProfit: string
+    TotalRevenue: string
+    CostOfRevenue: string
+    CostofGoodsAndServicesSold: string
+    OperatingIncome: string
+    SellingGeneralAndAdministrative: string
+    ResearchAndDevelopment: string
+    OperatingExpenses: string
+    InvestmentIncomeNet: string
+    NetInterestIncome: string
+    InterestIncome: string
+    InterestExpense: string
+    NonInterestIncome: string
+    OtherNonOperatingIncome: string
+    Depreciation: string
+    DepreciationAndAmortization: string
+    IncomeBeforeTax: string
+    IncomeTaxExpense: string
+    InterestAndDebtExpense: string
+    NetIncomeFromContinuingOperations: string
+    ComprehensiveIncomeNetOfTax: string
+    Ebit: string
+    Ebitda: string
+    NetIncome: string
+}
