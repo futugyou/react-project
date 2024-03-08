@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios, { AxiosRequestConfig } from 'axios'
 
-import { News, Company, Balance, Cash, Earnings, Expected, Income } from './model'
+import { News, Company, Balance, Cash, Earnings, Expected, Income, Commodities, CommoditiesEnum, EconomicIndicatorsEnum } from './model'
 
 const alphavantage_server = import.meta.env.REACT_APP_ALPHAVANTAGE
 
@@ -54,6 +54,22 @@ export const useIncomeData = (config = {}) => {
         = useQueryToGetData(alphavantage_server + 'v1/fundamentals/income', keyPerfix + 'v1/fundamentals/income', config)
 
     return { data: data as Income[], isLoading, isFetching, isError, refetch }
+}
+
+// current type include: wti brent gas copper aluminum wheat corn cotton sugar coffee all 
+export const useCommoditiesData = (type: CommoditiesEnum, config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/commodities/' + type, keyPerfix + 'v1/commodities/' + type, config)
+
+    return { data: data as Commodities[], isLoading, isFetching, isError, refetch }
+}
+
+// current type include: realgdp realgdpcapita treasury interest cpi inflation retail durable unemployment payroll
+export const useEconomicIndicatorsData = (type: EconomicIndicatorsEnum, config = {}) => {
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + 'v1/commodities/' + type, keyPerfix + 'v1/commodities/' + type, config)
+
+    return { data: data as Commodities[], isLoading, isFetching, isError, refetch }
 }
 
 const useQueryToGetData = (url: string, key: string, config = {}) => {

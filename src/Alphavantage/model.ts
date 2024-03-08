@@ -204,3 +204,40 @@ export interface Income {
     Ebitda: string
     NetIncome: string
 }
+
+export interface Commodities {
+    Id: string
+    Name: string
+    DataType: string
+    Interval: string
+    Unit: string
+    Date: string
+    Value: string
+}
+
+export enum CommoditiesEnum {
+    Wti = "wti",
+    Brent = "brent",
+    Gas = "gas",
+    Copper = "copper",
+    Aluminum = "aluminum",
+    Wheat = "wheat",
+    Corn = "corn",
+    Cotton = "cotton",
+    Sugar = "sugar",
+    Coffee = "coffee",
+    All = "all"
+}
+
+export enum EconomicIndicatorsEnum {
+    Realgdp = "realgdp",
+    Realgdpcapita = "realgdpcapita",
+    Treasury = "treasury",
+    Interest = "interest",
+    Cpi = "cpi",
+    Inflation = "inflation",
+    Retail = "retail",
+    Durable = "durable",
+    Unemployment = "unemployment",
+    Payroll = "payroll"
+}
