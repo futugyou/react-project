@@ -20,6 +20,7 @@ interface ImportMetaEnv {
     readonly REACT_APP_PUSHER_KEY: string
     readonly REACT_APP_PUSHER_SECRET: string
     readonly REACT_APP_PUSHER_CLUSTER: string
+    readonly REACT_APP_ALPHAVANTAGE: string
 }
 
 interface ImportMeta {
