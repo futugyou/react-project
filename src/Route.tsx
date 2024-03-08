@@ -9,19 +9,21 @@ import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
 import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
+import { ChatRoute } from '@/Alphavantage/Route'
 import { RouteDescription, ToRouteObject } from './RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/WelcomePage'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
 
 export const WhiteRoute: RouteDescription = {
-    display: "Boards",
+    display: "Dashboard",
     path: "/w",
     checkActive: (path: string) => path.startsWith('/w'),
     children: [
         BoardRoute,
         ExcalidrawRoute,
         ...TldrawRoute,
+        ...ChatRoute,
     ]
 }
 

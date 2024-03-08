@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import axios, { AxiosRequestConfig } from 'axios'
 
-import { News, Company, Balance, Cash, Earnings, Expected, Income, Commodities, CommoditiesEnum, EconomicIndicatorsEnum } from './model'
+import {
+    News, Company, Balance, Cash, Earnings, Expected, Income, Commodities, CommoditiesEnum, EconomicIndicatorsEnum, StockSeries
+} from './model'
 
 const alphavantage_server = import.meta.env.REACT_APP_ALPHAVANTAGE
 
@@ -70,6 +72,15 @@ export const useEconomicIndicatorsData = (type: EconomicIndicatorsEnum, config =
         = useQueryToGetData(alphavantage_server + 'v1/commodities/' + type, keyPerfix + 'v1/commodities/' + type, config)
 
     return { data: data as Commodities[], isLoading, isFetching, isError, refetch }
+}
+
+// year start from 2000
+export const useStockSeriesData = (symbol: string, year: number, config = {}) => {
+    const path = 'v1/stock?symbol=' + symbol + '&year=' + year
+    const { data, isLoading, isFetching, isError, refetch }
+        = useQueryToGetData(alphavantage_server + path, keyPerfix + path, config)
+
+    return { data: data as StockSeries[], isLoading, isFetching, isError, refetch }
 }
 
 const useQueryToGetData = (url: string, key: string, config = {}) => {
