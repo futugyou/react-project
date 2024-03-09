@@ -1,28 +1,10 @@
-import './chart.css'
 
-import React, { useEffect, useState, useMemo, useCallback } from "react"
-
-import LineChart from "@cloudscape-design/components/line-chart"
-import { AreaChartProps, Link, Select, SelectProps } from "@cloudscape-design/components"
-
-import _, { isNaN } from 'lodash-es'
-import moment from 'moment'
+import React from "react"
 
 import { useCashData } from '@/Alphavantage/service'
-import EmptyChart from '@/Alphavantage/EmptyChart'
-import NoMatchChart from '@/Alphavantage/NoMatchChart'
-import Dropdown, { DropdownItem } from "@/Common/Dropdown"
-import { NonCancelableCustomEvent, NonCancelableEventHandler } from "@cloudscape-design/components/internal/events"
+import BaseFundamentalsChart from '@/Alphavantage/BaseFundamentalsChart'
 
-const numberFormatter = (e: number) => {
-    return Intl.NumberFormat('en-US').format(e)
-}
-
-const createRoutePath = (title: string, time: Date) => {
-    return "#title=" + title + "&month=" + moment(time).format("yyyy-MM")
-}
-
-const dataTypes = [
+const DataTypes = [
     { label: "Operating Cashflow", value: "OperatingCashflow", },
     { label: "Payments For Operating Activities", value: "PaymentsForOperatingActivities", },
     { label: "Proceeds From Operating Activities", value: "ProceedsFromOperatingActivities", },
@@ -52,115 +34,17 @@ const dataTypes = [
     { label: "Net Income", value: "NetIncome", },
 ]
 
-const dateGapTypes = [
-    { value: "Quarterly", label: "Quarterly", },
-    { value: "Annual", label: "Annual", },
-]
-
 const CashChart = () => {
     const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError } = useCashData()
-    const [Series, SetSeries] = useState<any[]>([])
-    const [selectedDataTypeOption, setSelectedDataTypeOption] = useState({ value: "OperatingCashflow", label: "Operating Cash flow", })
-    const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState({ value: "Quarterly", label: "Quarterly", })
-
-    const HandleDataTypeChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
-        setSelectedDataTypeOption(event.detail.selectedOption as any)
-    }, [])
-
-    const HandleDataGapTypeChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
-        setSelectedDataGapTypeOption(event.detail.selectedOption as any)
-    }, [])
-
-    const HandleFilterChange = useCallback((_: any) => {
-
-    }, []);
-
-    useEffect(() => {
-        if (nodeData && !isError) {
-            const dic = _.groupBy(nodeData, 'Symbol')
-            var s: any[] = []
-            for (const key in dic) {
-                const d = _.map(
-                    _.orderBy(
-                        _.filter(
-                            dic[key],
-                            a => a.DataType == selectedDataGapTypeOption.value && !isNaN(parseFloat(_.get(a, selectedDataTypeOption.value)))
-                        ),
-                        a => a.FiscalDateEnding),
-                    a => {
-                        let va = parseFloat(_.get(a, selectedDataTypeOption.value))
-                        return { x: new Date(a.FiscalDateEnding), y: va }
-                    })
-
-                s.push({
-                    title: key,
-                    type: "line",
-                    data: d,
-                    valueFormatter: numberFormatter
-                })
-            }
-
-            SetSeries(s)
-        } else {
-            SetSeries([])
-        }
-    }, [nodeData, isError, selectedDataTypeOption, selectedDataGapTypeOption])
-
-    const NoMatch = useMemo(NoMatchChart, [])
-    const Empty = useMemo(EmptyChart, [])
 
     return (
-        <LineChart
-            series={Series}
-            visibleSeries={Series}
-            i18nStrings={
-                {
-                    xTickFormatter: e => {
-                        if (e instanceof Date) {
-                            return moment(e).format("yyyy-MM")
-                        }
-                        return ""
-                    },
-
-                    yTickFormatter: numberFormatter
-                }
-            }
-            xScaleType="time"
-            yTitle={"Cash " + selectedDataGapTypeOption.label + " (" + selectedDataTypeOption.label + ") Data (USD)"}
-            empty={Empty}
-            noMatch={NoMatch}
-            statusType={isLoading ? "loading" : "finished"}
-            detailPopoverSeriesContent={({ series, x, y }) => ({
-                key: (
-                    <Link external={true} href={createRoutePath(series.title, x as Date)}>
-                        {series.title}
-                    </Link>
-                ),
-                value: numberFormatter(y)
-            })}
-            additionalFilters={
-                <div className='drop-down-group'>
-                    <div style={{ width: "300px" }}>
-                        <Select
-                            options={dataTypes}
-                            selectedOption={selectedDataTypeOption}
-                            placeholder="Cash Data Type"
-                            onChange={HandleDataTypeChange}
-                        />
-                    </div>
-                    <div style={{ width: "300px" }}>
-                        <Select
-                            options={dateGapTypes}
-                            selectedOption={selectedDataGapTypeOption}
-                            placeholder="Cash Data Gap Type"
-                            onChange={HandleDataGapTypeChange}
-                        />
-                    </div>
-                </div>
-            }
-            onFilterChange={HandleFilterChange}
-        />
-
+        <BaseFundamentalsChart
+            ChartName="Cash"
+            Data={nodeData}
+            IsError={isError}
+            IsLoading={isLoading}
+            DataTypes={DataTypes}>
+        </BaseFundamentalsChart>
     )
 }
 
