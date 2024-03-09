@@ -1,0 +1,6 @@
+.drop-down-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 4px;
+}

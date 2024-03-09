@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useMemo } from "react"
+import './chart.css'
+
+import React, { useEffect, useState, useMemo, useCallback } from "react"
 
 import LineChart from "@cloudscape-design/components/line-chart"
-import { Link, Select, SelectProps } from "@cloudscape-design/components"
+import { AreaChartProps, Link, Select, SelectProps } from "@cloudscape-design/components"
 
 import _, { isNaN } from 'lodash-es'
 import moment from 'moment'
@@ -21,51 +23,61 @@ const createRoutePath = (title: string, time: Date) => {
 }
 
 const dataTypes = [
-    { value: "TotalAssets", label: "TotalAssets", },
-    { value: "TotalCurrentAssets", label: "TotalCurrentAssets", },
-    { value: "CashAndCashEquivalentsAtCarryingValue", label: "CashAndCashEquivalentsAtCarryingValue", },
-    { value: "CashAndShortTermInvestments", label: "CashAndShortTermInvestments", },
+    { value: "TotalAssets", label: "Total Assets", },
+    { value: "TotalCurrentAssets", label: "Total Current Assets", },
+    { value: "CashAndCashEquivalentsAtCarryingValue", label: "Cash And Cash Equivalents At Carrying Value", },
+    { value: "CashAndShortTermInvestments", label: "Cash And Short Term Investments", },
     { value: "Inventory", label: "Inventory", },
-    { value: "CurrentNetReceivables", label: "CurrentNetReceivables", },
-    { value: "TotalNonCurrentAssets", label: "TotalNonCurrentAssets", },
-    { value: "PropertyPlantEquipment", label: "PropertyPlantEquipment", },
-    { value: "AccumulatedDepreciationAmortizationPPE", label: "AccumulatedDepreciationAmortizationPPE", },
-    { value: "IntangibleAssets", label: "IntangibleAssets", },
-    { value: "IntangibleAssetsExcludingGoodwill", label: "IntangibleAssetsExcludingGoodwill", },
+    { value: "CurrentNetReceivables", label: "Current Net Receivables", },
+    { value: "TotalNonCurrentAssets", label: "Total Non Current Assets", },
+    { value: "PropertyPlantEquipment", label: "Property Plant Equipment", },
+    { value: "AccumulatedDepreciationAmortizationPPE", label: "Accumulated Depreciation Amortization PPE", },
+    { value: "IntangibleAssets", label: "Intangible Assets", },
+    { value: "IntangibleAssetsExcludingGoodwill", label: "Intangible Assets Excluding Goodwill", },
     { value: "Goodwill", label: "Goodwill", },
     { value: "Investments", label: "Investments", },
-    { value: "LongTermInvestments", label: "LongTermInvestments", },
-    { value: "ShortTermInvestments", label: "ShortTermInvestments", },
-    { value: "OtherCurrentAssets", label: "OtherCurrentAssets", },
-    { value: "OtherNonCurrentAssets", label: "OtherNonCurrentAssets", },
-    { value: "TotalLiabilities", label: "TotalLiabilities", },
-    { value: "TotalCurrentLiabilities", label: "TotalCurrentLiabilities", },
-    { value: "CurrentAccountsPayable", label: "CurrentAccountsPayable", },
-    { value: "DeferredRevenue", label: "DeferredRevenue", },
-    { value: "CurrentDebt", label: "CurrentDebt", },
-    { value: "ShortTermDebt", label: "ShortTermDebt", },
-    { value: "TotalNonCurrentLiabilities", label: "TotalNonCurrentLiabilities", },
-    { value: "CapitalLeaseObligations", label: "CapitalLeaseObligations", },
-    { value: "LongTermDebt", label: "LongTermDebt", },
-    { value: "CurrentLongTermDebt", label: "CurrentLongTermDebt", },
-    { value: "LongTermDebtNoncurrent", label: "LongTermDebtNoncurrent", },
-    { value: "ShortLongTermDebtTotal", label: "ShortLongTermDebtTotal", },
-    { value: "OtherCurrentLiabilities", label: "OtherCurrentLiabilities", },
-    { value: "OtherNonCurrentLiabilities", label: "OtherNonCurrentLiabilities", },
-    { value: "TotalShareholderEquity", label: "TotalShareholderEquity", },
-    { value: "TreasuryStock", label: "TreasuryStock", },
-    { value: "RetainedEarnings", label: "RetainedEarnings", },
-    { value: "CommonStock", label: "CommonStock", },
-    { value: "CommonStockSharesOutstanding", label: "CommonStockSharesOutstanding", }
+    { value: "LongTermInvestments", label: "Long Term Investments", },
+    { value: "ShortTermInvestments", label: "Short Term Investments", },
+    { value: "OtherCurrentAssets", label: "Other Current Assets", },
+    { value: "OtherNonCurrentAssets", label: "Other Non CurrentAssets", },
+    { value: "TotalLiabilities", label: "Total Liabilities", },
+    { value: "TotalCurrentLiabilities", label: "Total Current Liabilities", },
+    { value: "CurrentAccountsPayable", label: "Current Accounts Payable", },
+    { value: "DeferredRevenue", label: "Deferred Revenue", },
+    { value: "CurrentDebt", label: "Current Debt", },
+    { value: "ShortTermDebt", label: "Short Term Debt", },
+    { value: "TotalNonCurrentLiabilities", label: "Total Non Current Liabilities", },
+    { value: "CapitalLeaseObligations", label: "Capital Lease Obligations", },
+    { value: "LongTermDebt", label: "Long Term Debt", },
+    { value: "CurrentLongTermDebt", label: "Current Long Term Debt", },
+    { value: "LongTermDebtNoncurrent", label: "Long Term Debt Noncurrent", },
+    { value: "ShortLongTermDebtTotal", label: "Short Long Term Debt Total", },
+    { value: "OtherCurrentLiabilities", label: "Other Current Liabilities", },
+    { value: "OtherNonCurrentLiabilities", label: "Other Non Current Liabilities", },
+    { value: "TotalShareholderEquity", label: "Total Shareholder Equity", },
+    { value: "TreasuryStock", label: "Treasury Stock", },
+    { value: "RetainedEarnings", label: "Retained Earnings", },
+    { value: "CommonStock", label: "Common Stock", },
+    { value: "CommonStockSharesOutstanding", label: "Common Stock Shares Outstanding", }
+]
+
+const dateGapTypes = [
+    { value: "Quarterly", label: "Quarterly", },
+    { value: "Annual", label: "Annual", },
 ]
 
 const BalanceChart = () => {
     const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError } = useBalanceData()
     const [Series, SetSeries] = useState<any[]>([])
     const [selectedDataTypeOption, setSelectedDataTypeOption] = useState({ value: "TotalAssets", label: "TotalAssets", })
+    const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState({ value: "Quarterly", label: "Quarterly", })
 
     const HandleDataTypeChange = (event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
         setSelectedDataTypeOption(event.detail.selectedOption as any)
+    }
+
+    const HandleDataGapTypeChange = (event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
+        setSelectedDataGapTypeOption(event.detail.selectedOption as any)
     }
 
     useEffect(() => {
@@ -77,7 +89,7 @@ const BalanceChart = () => {
                     _.orderBy(
                         _.filter(
                             dic[key],
-                            a => a.DataType == "Quarterly" // && !isNaN(parseFloat(_.get(a, selectedDataTypeOption.value)))
+                            a => a.DataType == selectedDataGapTypeOption.value // && !isNaN(parseFloat(_.get(a, selectedDataTypeOption.value)))
                         ),
                         a => a.FiscalDateEnding),
                     a => {
@@ -100,7 +112,7 @@ const BalanceChart = () => {
         } else {
             SetSeries([])
         }
-    }, [nodeData, isError, selectedDataTypeOption])
+    }, [nodeData, isError, selectedDataTypeOption, selectedDataGapTypeOption])
 
     const NoMatch = useMemo(NoMatchChart, [])
     const Empty = useMemo(EmptyChart, [])
@@ -121,7 +133,7 @@ const BalanceChart = () => {
                 }
             }
             xScaleType="time"
-            yTitle={"Balance Quarterly " + selectedDataTypeOption.label + " Data (USD)"}
+            yTitle={"Balance " + selectedDataGapTypeOption.label + " (" + selectedDataTypeOption.label + ") Data (USD)"}
             empty={Empty}
             noMatch={NoMatch}
             statusType={isLoading ? "loading" : "finished"}
@@ -134,13 +146,23 @@ const BalanceChart = () => {
                 value: numberFormatter(y)
             })}
             additionalFilters={
-                <div style={{ padding: "4px", width: "300px" }}>
-                    <Select
-                        options={dataTypes}
-                        selectedOption={selectedDataTypeOption}
-                        placeholder="Balance Data Type"
-                        onChange={HandleDataTypeChange}
-                    />
+                <div className='drop-down-group'>
+                    <div style={{ width: "300px" }}>
+                        <Select
+                            options={dataTypes}
+                            selectedOption={selectedDataTypeOption}
+                            placeholder="Balance Data Type"
+                            onChange={HandleDataTypeChange}
+                        />
+                    </div>
+                    <div style={{ width: "300px" }}>
+                        <Select
+                            options={dateGapTypes}
+                            selectedOption={selectedDataGapTypeOption}
+                            placeholder="Balance Data Gap Type"
+                            onChange={HandleDataGapTypeChange}
+                        />
+                    </div>
                 </div>
             }
         />
