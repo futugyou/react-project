@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueries } from '@tanstack/react-query'
 import axios, { AxiosRequestConfig } from 'axios'
 
 import {
     News, Company, Balance, Cash, Earnings, Expected, Income, Commodities, CommoditiesEnum, EconomicIndicatorsEnum, StockSeries
-} from './model'
+} from '@/Alphavantage/model'
 
 const alphavantage_server = import.meta.env.REACT_APP_ALPHAVANTAGE
 
@@ -73,6 +73,39 @@ export const useEconomicIndicatorsData = (type: EconomicIndicatorsEnum, config =
 
     return { data: data as Commodities[], isLoading, isFetching, isError, refetch }
 }
+
+export const useAllCommoditiesData = (config = {}) => {
+    let queries = []
+    for (const t of Object.values(CommoditiesEnum)) {
+        const options: AxiosRequestConfig = {
+            url: alphavantage_server + 'v1/commodities/' + t,
+            method: "GET",
+            headers: {
+            },
+        }
+
+        queries.push({
+            queryKey: [keyPerfix + 'v1/commodities/' + t],
+            queryFn: () => axios(options).then(x => x.data),
+            ...config
+        })
+    }
+
+    const results = useQueries({
+        queries: queries,
+        combine: (results) => {
+            return {
+                data: results.map((result) => result.data as Commodities[]),
+                isLoading: results.some((result) => result.isLoading),
+                isFetching: results.some((result) => result.isFetching),
+                isError: results.some((result) => result.isError),
+            }
+        },
+    })
+
+    return { data: results.data, isLoading: results.isLoading, isFetching: results.isFetching, isError: results.isError }
+}
+
 
 // year start from 2000
 export const useStockSeriesData = (symbol: string, year: number, config = {}) => {
