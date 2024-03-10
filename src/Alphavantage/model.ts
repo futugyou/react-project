@@ -236,8 +236,7 @@ export enum CommoditiesEnum {
     Corn = "corn",
     Cotton = "cotton",
     Sugar = "sugar",
-    Coffee = "coffee",
-    All = "all"
+    Coffee = "coffee"
 }
 
 export enum EconomicIndicatorsEnum {

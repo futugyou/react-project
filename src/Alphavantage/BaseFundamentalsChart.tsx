@@ -39,9 +39,9 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
     const [series, setSeries] = useState<any[]>([])
     const [visibleSeries, setVisibleSeries] = useState<any[]>([])
     const [selectedDataTypeOption, setSelectedDataTypeOption] = useState(props.DataTypes[0])
-    const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState(TimeIntervals[0])
+    const [selectedTimeIntervalsOption, setSelectedTimeIntervalsOption] = useState(TimeIntervals[0])
 
-    let yTitle: string = props.ChartName + " " + selectedDataGapTypeOption.label + " (" + selectedDataTypeOption.label + ") Data (USD)"
+    let yTitle: string = props.ChartName + " " + selectedTimeIntervalsOption.label + " (" + selectedDataTypeOption.label + ") Data (USD)"
     if (props.NoDateGapType) {
         yTitle = props.ChartName + " (" + selectedDataTypeOption.label + ") Data (USD)"
     }
@@ -50,8 +50,8 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
         setSelectedDataTypeOption(event.detail.selectedOption as any)
     }, [])
 
-    const HandleDataGapTypeChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
-        setSelectedDataGapTypeOption(event.detail.selectedOption as any)
+    const HandleTimeIntervalsChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
+        setSelectedTimeIntervalsOption(event.detail.selectedOption as any)
     }, [])
 
     const HandleFilterChange = useCallback(({ detail }: { detail: any }) => {
@@ -67,7 +67,7 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
                     _.orderBy(
                         _.filter(
                             dic[key],
-                            a => (props.NoDateGapType == true || a.DataType == selectedDataGapTypeOption.value) && !isNaN(parseFloat(_.get(a, selectedDataTypeOption.value)))
+                            a => (props.NoDateGapType == true || a.DataType == selectedTimeIntervalsOption.value) && !isNaN(parseFloat(_.get(a, selectedDataTypeOption.value)))
                         ),
                         a => a.FiscalDateEnding),
                     a => {
@@ -89,7 +89,7 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
             setSeries([])
             setVisibleSeries([])
         }
-    }, [props.Data, props.IsError, selectedDataTypeOption, selectedDataGapTypeOption])
+    }, [props.Data, props.IsError, selectedDataTypeOption, selectedTimeIntervalsOption])
 
     const NoMatch = useMemo(NoMatchChart, [])
     const Empty = useMemo(EmptyChart, [])
@@ -139,9 +139,9 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
                         <div style={{ width: "300px" }}>
                             <Select
                                 options={TimeIntervals}
-                                selectedOption={selectedDataGapTypeOption}
-                                placeholder={props.ChartName + " Data Gap Type"}
-                                onChange={HandleDataGapTypeChange}
+                                selectedOption={selectedTimeIntervalsOption}
+                                placeholder={props.ChartName + " Time Intervals Type"}
+                                onChange={HandleTimeIntervalsChange}
                             />
                         </div>
                     )}

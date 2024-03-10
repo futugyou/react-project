@@ -17,10 +17,6 @@ const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
 }
 
-const createRoutePath = (title: string, time: Date) => {
-    return "#title=" + title + "&month=" + moment(time).format("yyyy-MM")
-}
-
 export interface IBaseCommoditiesCharttProp {
     ChartName: string
     Data: Commodities[][]
@@ -33,23 +29,18 @@ export interface IBaseCommoditiesCharttProp {
 
 const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
     const [series, setSeries] = useState<any[]>([])
-    const [visibleSeries, setVisibleSeries] = useState<any[]>([])
-    const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState(props.TimeIntervals[0])
+    const [selectedTimeIntervalsOption, setSelectedTimeIntervalsOption] = useState(props.TimeIntervals[0])
     const [selectedUnitTypesOption, setselectedUnitTypesOption] = useState(props.UnitTypes[0])
 
-    let yTitle: string = props.ChartName + " " + selectedDataGapTypeOption.label + " Data (" + selectedUnitTypesOption.label + ")"
+    let yTitle: string = props.ChartName + " " + selectedTimeIntervalsOption.label + " Data (" + selectedUnitTypesOption.label + ")"
 
-    const HandleDataGapTypeChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
-        setSelectedDataGapTypeOption(event.detail.selectedOption as any)
+    const HandleTimeIntervalsChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
+        setSelectedTimeIntervalsOption(event.detail.selectedOption as any)
     }, [])
 
     const HandleUnitTypesChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
         setselectedUnitTypesOption(event.detail.selectedOption as any)
     }, [])
-
-    const HandleFilterChange = useCallback(({ detail }: { detail: any }) => {
-        setVisibleSeries(detail.visibleSeries)
-    }, []);
 
     useEffect(() => {
         if (props.Data && !props.IsLoading) {
@@ -62,7 +53,7 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
                     _.orderBy(
                         _.filter(
                             ds,
-                            a => a.Interval == selectedDataGapTypeOption.value
+                            a => a.Interval == selectedTimeIntervalsOption.value
                                 && !isNaN(parseFloat(a.Value))
                                 && a.Unit == selectedUnitTypesOption.value
                         ),
@@ -81,10 +72,17 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
                 }
             }
             s = _.reverse(_.sortBy(s, (o) => o.data.length))
+            if (s.length == 0) {
+                s = [{
+                    title: "wti",
+                    type: "area",
+                    data: [{ x: new Date(), y: 0 }],
+                    valueFormatter: numberFormatter
+                }]
+            }
             setSeries(s)
-            setVisibleSeries(s)
         }
-    }, [props.Data, props.IsLoading, selectedDataGapTypeOption, selectedUnitTypesOption])
+    }, [props.Data, props.IsLoading, selectedTimeIntervalsOption, selectedUnitTypesOption])
 
     const NoMatch = useMemo(NoMatchChart, [])
     const Empty = useMemo(EmptyChart, [])
@@ -92,12 +90,15 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
     return (
         <AreaChart
             series={series}
-            visibleSeries={visibleSeries}
             i18nStrings={
                 {
                     xTickFormatter: e => {
                         if (e instanceof Date) {
-                            return moment(e).format("yyyy-MM")
+                            if (selectedTimeIntervalsOption.value == "monthly") {
+                                return moment(e).format("yyyy-MM")
+                            } else {
+                                return moment(e).format("yyyy-MM-D")
+                            }
                         }
                         return ""
                     },
@@ -116,9 +117,9 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
                     <div style={{ width: "300px" }}>
                         <Select
                             options={props.TimeIntervals}
-                            selectedOption={selectedDataGapTypeOption}
-                            placeholder={props.ChartName + " Data Gap Type"}
-                            onChange={HandleDataGapTypeChange}
+                            selectedOption={selectedTimeIntervalsOption}
+                            placeholder={props.ChartName + " Time Intervals Type"}
+                            onChange={HandleTimeIntervalsChange}
                         />
                     </div>
                     <div style={{ width: "300px" }}>
@@ -131,7 +132,6 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
                     </div>
                 </div>
             }
-            onFilterChange={HandleFilterChange}
         />
 
     )
