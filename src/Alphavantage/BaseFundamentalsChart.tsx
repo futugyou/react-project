@@ -4,13 +4,13 @@ import React, { useEffect, useState, useMemo, useCallback } from "react"
 
 import LineChart from "@cloudscape-design/components/line-chart"
 import { Link, Select, SelectProps } from "@cloudscape-design/components"
+import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
 
 import _, { isNaN } from 'lodash-es'
 import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
-import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
@@ -36,8 +36,8 @@ export interface IBaseFundamentalsChartProp {
 }
 
 const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
-    const [Series, SetSeries] = useState<any[]>(props.Data)
-    const [VisibleSeries, SetVisibleSeries] = useState<any[]>(props.Data)
+    const [series, setSeries] = useState<any[]>(props.Data)
+    const [visibleSeries, setVisibleSeries] = useState<any[]>(props.Data)
     const [selectedDataTypeOption, setSelectedDataTypeOption] = useState(props.DataTypes[0])
     const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState(dateGapTypes[0])
 
@@ -55,7 +55,7 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
     }, [])
 
     const HandleFilterChange = useCallback(({ detail }: { detail: any }) => {
-        SetVisibleSeries(detail.visibleSeries)
+        setVisibleSeries(detail.visibleSeries)
     }, []);
 
     useEffect(() => {
@@ -83,11 +83,11 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
                 })
             }
 
-            SetSeries(s)
-            SetVisibleSeries(s)
+            setSeries(s)
+            setVisibleSeries(s)
         } else {
-            SetSeries([])
-            SetVisibleSeries([])
+            setSeries([])
+            setVisibleSeries([])
         }
     }, [props.Data, props.IsError, selectedDataTypeOption, selectedDataGapTypeOption])
 
@@ -96,8 +96,8 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
 
     return (
         <LineChart
-            series={Series}
-            visibleSeries={VisibleSeries}
+            series={series}
+            visibleSeries={visibleSeries}
             i18nStrings={
                 {
                     xTickFormatter: e => {
