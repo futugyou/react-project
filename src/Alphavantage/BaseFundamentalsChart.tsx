@@ -20,7 +20,7 @@ const createRoutePath = (title: string, time: Date) => {
     return "#title=" + title + "&month=" + moment(time).format("yyyy-MM")
 }
 
-const dateGapTypes = [
+const TimeIntervals = [
     { value: "Quarterly", label: "Quarterly", },
     { value: "Annual", label: "Annual", },
 ]
@@ -36,10 +36,10 @@ export interface IBaseFundamentalsChartProp {
 }
 
 const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
-    const [series, setSeries] = useState<any[]>(props.Data)
-    const [visibleSeries, setVisibleSeries] = useState<any[]>(props.Data)
+    const [series, setSeries] = useState<any[]>([])
+    const [visibleSeries, setVisibleSeries] = useState<any[]>([])
     const [selectedDataTypeOption, setSelectedDataTypeOption] = useState(props.DataTypes[0])
-    const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState(dateGapTypes[0])
+    const [selectedDataGapTypeOption, setSelectedDataGapTypeOption] = useState(TimeIntervals[0])
 
     let yTitle: string = props.ChartName + " " + selectedDataGapTypeOption.label + " (" + selectedDataTypeOption.label + ") Data (USD)"
     if (props.NoDateGapType) {
@@ -138,7 +138,7 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
                     {!props.NoDateGapType && (
                         <div style={{ width: "300px" }}>
                             <Select
-                                options={dateGapTypes}
+                                options={TimeIntervals}
                                 selectedOption={selectedDataGapTypeOption}
                                 placeholder={props.ChartName + " Data Gap Type"}
                                 onChange={HandleDataGapTypeChange}

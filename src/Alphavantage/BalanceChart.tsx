@@ -42,7 +42,6 @@ const DataTypes = [
     { value: "CommonStockSharesOutstanding", label: "Common Stock Shares Outstanding", }
 ]
 
-
 const BalanceChart = () => {
     const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError } = useBalanceData()
 

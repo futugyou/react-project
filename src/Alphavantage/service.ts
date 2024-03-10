@@ -75,37 +75,12 @@ export const useEconomicIndicatorsData = (type: EconomicIndicatorsEnum, config =
 }
 
 export const useAllCommoditiesData = (config = {}) => {
-    let queries = []
-    for (const t of Object.values(CommoditiesEnum)) {
-        const options: AxiosRequestConfig = {
-            url: alphavantage_server + 'v1/commodities/' + t,
-            method: "GET",
-            headers: {
-            },
-        }
-
-        queries.push({
-            queryKey: [keyPerfix + 'v1/commodities/' + t],
-            queryFn: () => axios(options).then(x => x.data),
-            ...config
-        })
-    }
-
-    const results = useQueries({
-        queries: queries,
-        combine: (results) => {
-            return {
-                data: results.map((result) => result.data as Commodities[]),
-                isLoading: results.some((result) => result.isLoading),
-                isFetching: results.some((result) => result.isFetching),
-                isError: results.some((result) => result.isError),
-            }
-        },
-    })
-
-    return { data: results.data, isLoading: results.isLoading, isFetching: results.isFetching, isError: results.isError }
+    return useQuerysToGetData<Commodities>(
+        alphavantage_server + 'v1/commodities/',
+        keyPerfix + 'v1/commodities/',
+        config,
+        CommoditiesEnum)
 }
-
 
 // year start from 2000
 export const useStockSeriesData = (symbol: string, year: number, config = {}) => {
@@ -132,3 +107,35 @@ const useQueryToGetData = (url: string, key: string, config = {}) => {
 
     return { data, isLoading, isFetching, isError, refetch }
 }
+
+const useQuerysToGetData = <T>(urlPerfix: string, queryKeyPerfix: string, config = {}, enumVariable: { [key in string]: string }) => {
+    let queries = []
+    for (const t of Object.values(enumVariable)) {
+        const options: AxiosRequestConfig = {
+            url: urlPerfix + t,
+            method: "GET",
+            headers: {
+            },
+        }
+
+        queries.push({
+            queryKey: [queryKeyPerfix + t],
+            queryFn: () => axios(options).then(x => x.data),
+            ...config
+        })
+    }
+
+    const results = useQueries({
+        queries: queries,
+        combine: (results) => {
+            return {
+                data: results.map((result) => result.data as T[]),
+                isLoading: results.some((result) => result.isLoading),
+                isFetching: results.some((result) => result.isFetching),
+                isError: results.some((result) => result.isError),
+            }
+        },
+    })
+
+    return { data: results.data, isLoading: results.isLoading, isFetching: results.isFetching, isError: results.isError }
+} 
