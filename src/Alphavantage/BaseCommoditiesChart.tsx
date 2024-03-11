@@ -11,11 +11,13 @@ import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
-import { Commodities } from '@/Alphavantage/model'
+import { Commodities, CommoditiesEnum } from '@/Alphavantage/model'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
 }
+
+type CommoditiesEnumT = keyof typeof CommoditiesEnum
 
 export interface IBaseCommoditiesChartProp {
     ChartName: string
@@ -64,7 +66,7 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
 
                 if (d.length > 0) {
                     s.push({
-                        title: ds[0].DataType,
+                        title: CommoditiesEnum[ds[0].DataType as CommoditiesEnumT],
                         type: "area",
                         data: d,
                         valueFormatter: numberFormatter

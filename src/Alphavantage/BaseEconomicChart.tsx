@@ -11,11 +11,13 @@ import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
-import { Commodities } from '@/Alphavantage/model'
+import { Commodities, EconomicIndicatorsEnum } from '@/Alphavantage/model'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
 }
+
+type EconomicIndicatorsEnumT = keyof typeof EconomicIndicatorsEnum
 
 export interface IBaseEconomicChartProp {
     ChartName: string
@@ -64,7 +66,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
 
                 if (d.length > 0) {
                     s.push({
-                        title: ds[0].DataType,
+                        title: EconomicIndicatorsEnum[ds[0].DataType as EconomicIndicatorsEnumT],
                         type: "bar",
                         data: d,
                         valueFormatter: numberFormatter

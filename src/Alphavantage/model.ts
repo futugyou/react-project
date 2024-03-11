@@ -227,27 +227,27 @@ export interface StockSeries {
 }
 
 export enum CommoditiesEnum {
-    Wti = "wti",
-    Brent = "brent",
-    Gas = "gas",
-    Copper = "copper",
-    Aluminum = "aluminum",
-    Wheat = "wheat",
-    Corn = "corn",
-    Cotton = "cotton",
-    Sugar = "sugar",
-    Coffee = "coffee"
+    wti = "West Texas Intermediate (WTI) crude oil prices",
+    brent = "Brent (Europe) crude oil prices",
+    gas = "Henry Hub natural gas spot prices",
+    copper = "Global price of Copper",
+    aluminum = "Global price of Aluminum",
+    wheat = "Global price of Wheat",
+    corn = "Global price of Corn",
+    cotton = "Global price of Cotton",
+    sugar = "Global price of Sugar",
+    coffee = "Global price of Coffee"
 }
 
 export enum EconomicIndicatorsEnum {
-    Realgdp = "realgdp",
-    Realgdpcapita = "realgdpcapita",
-    Treasury = "treasury",
-    Interest = "interest",
-    Cpi = "cpi",
-    Inflation = "inflation",
-    Retail = "retail",
-    Durable = "durable",
-    Unemployment = "unemployment",
-    Payroll = "payroll"
+    realgdp = "Real GDP",
+    realgdpcapita = "Real GDP per Capita",
+    treasury = "Treasury Yield",
+    interest = "Federal Funds Rate (Interest Rate)",
+    cpi = "Consumer Price Index (CPI)",
+    inflation = "Annual Inflation Rates (Consumer Prices)",
+    retail = "Monthly Advance Retail Sales",
+    durable = "Monthly Manufacturers' New Orders of Durable Goods",
+    unemployment = "Monthly Unemployment Data",
+    payroll = "Monthly Total Nonfarm Payroll"
 }

@@ -118,7 +118,7 @@ const useQueryToGetData = (url: string, key: string, config = {}) => {
 
 const useQuerysToGetData = <T>(urlPerfix: string, queryKeyPerfix: string, config = {}, enumVariable: { [key in string]: string }) => {
     let queries = []
-    for (const t of Object.values(enumVariable)) {
+    for (const t of Object.keys(enumVariable)) {
         const options: AxiosRequestConfig = {
             url: urlPerfix + t,
             method: "GET",
