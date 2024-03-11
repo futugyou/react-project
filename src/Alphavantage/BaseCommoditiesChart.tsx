@@ -17,7 +17,7 @@ const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
 }
 
-export interface IBaseCommoditiesCharttProp {
+export interface IBaseCommoditiesChartProp {
     ChartName: string
     Data: Commodities[][]
     IsError: boolean
@@ -27,7 +27,7 @@ export interface IBaseCommoditiesCharttProp {
     children?: React.ReactNode
 }
 
-const BaseCommoditiesChart = (props: IBaseCommoditiesCharttProp) => {
+const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
     const [series, setSeries] = useState<any[]>([])
     const [selectedTimeIntervalsOption, setSelectedTimeIntervalsOption] = useState(props.TimeIntervals[0])
     const [selectedUnitTypesOption, setselectedUnitTypesOption] = useState(props.UnitTypes[0])
