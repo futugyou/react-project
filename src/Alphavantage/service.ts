@@ -82,6 +82,14 @@ export const useAllCommoditiesData = (config = {}) => {
         CommoditiesEnum)
 }
 
+export const useAllEconomicData = (config = {}) => {
+    return useQuerysToGetData<Commodities>(
+        alphavantage_server + 'v1/commodities/',
+        keyPerfix + 'v1/commodities/',
+        config,
+        EconomicIndicatorsEnum)
+}
+
 // year start from 2000
 export const useStockSeriesData = (symbol: string, year: number, config = {}) => {
     const path = 'v1/stock?symbol=' + symbol + '&year=' + year
