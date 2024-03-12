@@ -37,10 +37,11 @@ microApp.start({
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchInterval: 60000,
+      // refetchInterval: 60000, // ms
       refetchOnWindowFocus: false,
       retry: 1,
-      gcTime: 1000 * 60 * 60 * 1, // 1 hours
+      gcTime: Infinity,
+      staleTime: 1000 * 60 * 60 * 1, // 1 hours
     },
   },
 })
