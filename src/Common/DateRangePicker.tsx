@@ -1,7 +1,10 @@
+
+
+
 import DateRangePicker, { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker"
-import { NonCancelableEventHandler } from "@cloudscape-design/components/internal/events"
-
-
+import { NonCancelableCustomEvent, NonCancelableEventHandler } from "@cloudscape-design/components/internal/events"
+import moment from "moment"
+import { useCallback, useState } from "react"
 
 const formatRelativeRange = (range: DateRangePickerProps.RelativeValue): string => {
     const unit = range.amount === 1 ? range.unit : `${range.unit}s`
@@ -39,18 +42,66 @@ const i18nStrings: DateRangePickerProps['i18nStrings'] = {
 const i18nStringsDateOnly: DateRangePickerProps['i18nStrings'] = { ...i18nStrings, dateTimeConstraintText: "For date, use YYYY/MM/DD", }
 
 interface DateRangePickerItem {
-    OnChange: NonCancelableEventHandler<DateRangePickerProps.ChangeDetail>
-    Value: DateRangePickerProps.Value
+    StartDate: Date
+    SetStartDate: React.Dispatch<React.SetStateAction<Date>>
+    EndDate: Date
+    SetEndDate: React.Dispatch<React.SetStateAction<Date>>
     DateOnly?: boolean
+    InitData?: DateRangePickerProps.Value
 }
 
 const DateRangePickerEx = (prop: DateRangePickerItem) => {
     let i18n = prop.DateOnly ? i18nStringsDateOnly : i18nStrings
 
+    let initData = prop.InitData ?? {
+        type: "absolute",
+        startDate: prop.DateOnly ? moment(prop.StartDate).format("yyyy-MM-DD") : prop.StartDate.toISOString(),
+        endDate: prop.DateOnly ? moment(prop.EndDate).format("yyyy-MM-DD") : prop.EndDate.toISOString(),
+    }
+
+    const [dataRangeValue, setDataRangeValue] = useState<DateRangePickerProps.Value>(initData)
+
+    const HandleDateRangePickerChange = useCallback((event: NonCancelableCustomEvent<DateRangePickerProps.ChangeDetail>) => {
+        if (event.detail.value == null) {
+            return
+        }
+
+        setDataRangeValue(event.detail.value)
+        if (event.detail.value.type == "relative") {
+            prop.SetEndDate(moment().year(new Date().getFullYear() + 1).dayOfYear(0).toDate())
+            const amount = event.detail.value?.amount
+            let tmp = new Date()
+            switch (event.detail.value.unit) {
+                case 'day':
+                    tmp = moment().day(tmp.getDay() - amount).hour(0).minute(0).second(0).toDate()
+                    break
+                case 'week':
+                    tmp = moment().week(moment().week() - amount).hour(0).minute(0).second(0).toDate()
+                    break
+                case 'month':
+                    tmp = moment().month(tmp.getMonth() - amount).hour(0).minute(0).second(0).toDate()
+                    break
+                case 'year':
+                    tmp = moment().year(tmp.getFullYear() - amount).dayOfYear(1).hour(0).minute(0).second(0).toDate()
+                    break
+                default:
+                    break
+            }
+            prop.SetStartDate(tmp)
+        }
+
+        if (event.detail.value.type == "absolute") {
+            let start = moment(event.detail.value.startDate)
+            let end = moment(event.detail.value.endDate).add(1, "day")
+            prop.SetStartDate(start.toDate())
+            prop.SetEndDate(end.toDate())
+        }
+    }, [])
+
     return (
         <DateRangePicker
-            onChange={prop.OnChange}
-            value={prop.Value}
+            onChange={HandleDateRangePickerChange}
+            value={dataRangeValue}
             i18nStrings={i18n}
             dateOnly={prop.DateOnly}
             expandToViewport
