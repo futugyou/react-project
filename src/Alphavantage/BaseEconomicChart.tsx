@@ -12,6 +12,7 @@ import moment from 'moment'
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
 import { Commodities, EconomicIndicatorsEnum } from '@/Alphavantage/model'
+import DateRangePicker from '@/Common/DateRangePicker'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
@@ -33,6 +34,9 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
     const [series, setSeries] = useState<any[]>([])
     const [selectedTimeIntervalsOption, setSelectedTimeIntervalsOption] = useState(props.TimeIntervals[0])
     const [selectedUnitTypesOption, setselectedUnitTypesOption] = useState(props.UnitTypes[0])
+
+    const [startDate, setStartDate] = useState(moment().year(new Date().getFullYear() - 5).dayOfYear(1).toDate())
+    const [endDate, setEndDate] = useState(moment().year(new Date().getFullYear() + 1).dayOfYear(0).toDate())
 
     let yTitle: string = props.ChartName + " " + selectedTimeIntervalsOption.label + " Data (" + selectedUnitTypesOption.label + ")"
 
@@ -58,6 +62,8 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                             a => a.Interval == selectedTimeIntervalsOption.value
                                 && !isNaN(parseFloat(a.Value))
                                 && a.Unit == selectedUnitTypesOption.value
+                                && new Date(a.Date) >= startDate
+                                && new Date(a.Date) <= endDate
                         ),
                         a => a.Date),
                     a => {
@@ -84,7 +90,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
             }
             setSeries(s)
         }
-    }, [props.Data, props.IsLoading, selectedTimeIntervalsOption, selectedUnitTypesOption])
+    }, [props.Data, props.IsLoading, selectedTimeIntervalsOption, selectedUnitTypesOption, startDate, endDate])
 
     const NoMatch = useMemo(NoMatchChart, [])
     const Empty = useMemo(EmptyChart, [])
@@ -130,6 +136,20 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                             placeholder={props.ChartName + " Unit Type"}
                             onChange={HandleUnitTypesChange}
                         />
+                    </div>
+                    <div>
+                        <DateRangePicker
+                            StartDate={startDate}
+                            SetStartDate={setStartDate}
+                            EndDate={endDate}
+                            SetEndDate={setEndDate}
+                            DateOnly
+                            InitData={{
+                                type: "relative",
+                                amount: 5,
+                                unit: "year"
+                            }}>
+                        </DateRangePicker>
                     </div>
                 </div>
             }
