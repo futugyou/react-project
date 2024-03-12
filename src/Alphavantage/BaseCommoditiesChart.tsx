@@ -3,7 +3,7 @@ import './chart.css'
 import React, { useEffect, useState, useMemo, useCallback } from "react"
 
 import AreaChart from "@cloudscape-design/components/area-chart"
-import { Select, SelectProps, DateRangePicker, DateRangePickerProps } from "@cloudscape-design/components"
+import { Select, SelectProps } from "@cloudscape-design/components"
 import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
 
 import _, { isNaN } from 'lodash-es'
@@ -12,6 +12,7 @@ import moment from 'moment'
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
 import { Commodities, CommoditiesEnum } from '@/Alphavantage/model'
+import DateRangePicker from '@/Common/DateRangePicker'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
@@ -29,39 +30,6 @@ export interface IBaseCommoditiesChartProp {
     children?: React.ReactNode
 }
 
-const formatRelativeRange = (range: DateRangePickerProps.RelativeValue): string => {
-    const unit = range.amount === 1 ? range.unit : `${range.unit}s`
-    return `Previous ${range.amount} ${unit}`
-}
-
-export const i18nStrings: DateRangePickerProps['i18nStrings'] = {
-    ariaLabel: 'Filter by a date and time range',
-    todayAriaLabel: 'Today',
-    nextMonthAriaLabel: 'Next month',
-    previousMonthAriaLabel: 'Previous month',
-    customRelativeRangeDurationLabel: 'Duration',
-    customRelativeRangeDurationPlaceholder: 'Enter duration',
-    customRelativeRangeOptionLabel: 'Custom range',
-    customRelativeRangeOptionDescription: 'Set a custom range in the past',
-    customRelativeRangeUnitLabel: 'Unit of time',
-    formatRelativeRange: formatRelativeRange,
-    formatUnit: (unit, value) => (value === 1 ? unit : `${unit}s`),
-    dateTimeConstraintText: "For date, use YYYY/MM/DD. For time, use 24 hr format.",
-    modeSelectionLabel: 'Date range mode',
-    relativeModeTitle: 'Relative range',
-    absoluteModeTitle: 'Absolute range',
-    relativeRangeSelectionHeading: 'Choose a range',
-    startDateLabel: 'Start date',
-    endDateLabel: 'End date',
-    startTimeLabel: 'Start time',
-    endTimeLabel: 'End time',
-    clearButtonLabel: 'Clear and dismiss',
-    cancelButtonLabel: 'Cancel',
-    applyButtonLabel: 'Apply',
-    errorIconAriaLabel: 'Error',
-    renderSelectedAbsoluteRangeAriaLive: (startDate, endDate) => `Range selected from ${startDate} to ${endDate}`,
-}
-
 const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
     const [series, setSeries] = useState<any[]>([])
     const [selectedTimeIntervalsOption, setSelectedTimeIntervalsOption] = useState(props.TimeIntervals[0])
@@ -69,11 +37,6 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
 
     const [startDate, setStartDate] = useState(moment().year(new Date().getFullYear() - 10).dayOfYear(1).toDate())
     const [endDate, setEndDate] = useState(moment().year(new Date().getFullYear() + 1).dayOfYear(0).toDate())
-    const [dataRangeValue, setDataRangeValue] = React.useState<DateRangePickerProps.Value | null>({
-        type: "relative",
-        amount: 10,
-        unit: "year"
-    })
 
     let yTitle: string = props.ChartName + " " + selectedTimeIntervalsOption.label + " Data (" + selectedUnitTypesOption.label + ")"
 
@@ -83,43 +46,6 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
 
     const HandleUnitTypesChange = useCallback((event: NonCancelableCustomEvent<SelectProps.ChangeDetail>) => {
         setselectedUnitTypesOption(event.detail.selectedOption as any)
-    }, [])
-
-    const HandleDateRangePickerChange = useCallback((event: NonCancelableCustomEvent<DateRangePickerProps.ChangeDetail>) => {
-        if (event.detail.value == null) {
-            return
-        }
-
-        setDataRangeValue(event.detail.value)
-        if (event.detail.value.type == "relative") {
-            setEndDate(moment().year(new Date().getFullYear() + 1).dayOfYear(0).toDate())
-            const amount = event.detail.value?.amount
-            let tmp = new Date()
-            switch (event.detail.value.unit) {
-                case 'day':
-                    tmp = moment().day(tmp.getDay() - amount).hour(0).minute(0).second(0).toDate()
-                    break
-                case 'week':
-                    tmp = moment().week(moment().week() - amount).hour(0).minute(0).second(0).toDate()
-                    break
-                case 'month':
-                    tmp = moment().month(tmp.getMonth() - amount).hour(0).minute(0).second(0).toDate()
-                    break
-                case 'year':
-                    tmp = moment().year(tmp.getFullYear() - amount).dayOfYear(1).hour(0).minute(0).second(0).toDate()
-                    break
-                default:
-                    break
-            }
-            setStartDate(tmp)
-        }
-
-        if (event.detail.value.type == "absolute") {
-            let start = moment(event.detail.value.startDate)
-            let end = moment(event.detail.value.endDate).add(1, "day")
-            setStartDate(start.toDate())
-            setEndDate(end.toDate())
-        }
     }, [])
 
     useEffect(() => {
@@ -214,44 +140,17 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
                     </div>
                     <div>
                         <DateRangePicker
-                            onChange={HandleDateRangePickerChange}
-                            value={dataRangeValue}
-                            i18nStrings={i18nStrings}
-                            dateOnly
-                            expandToViewport
-                            hideTimeOffset
-                            placeholder="Filter by a date and time range"
-                            isValidRange={range => {
-                                if (range != null && range.type === 'absolute') {
-                                    const [startDateWithoutTime] = range.startDate.split('T')
-                                    const [endDateWithoutTime] = range.endDate.split('T')
-
-                                    if (!startDateWithoutTime || !endDateWithoutTime) {
-                                        return {
-                                            valid: false,
-                                            errorMessage: 'The selected date range is incomplete. Select a start and end date for the date range.',
-                                        }
-                                    }
-
-                                    if (new Date(range.startDate) > new Date(range.endDate)) {
-                                        return {
-                                            valid: false,
-                                            errorMessage: 'The selected date range is invalid. The start date must be before the end date.',
-                                        }
-                                    }
-                                }
-                                if (range != null && range.type === 'relative') {
-                                    if (range.amount < 1) {
-                                        return {
-                                            valid: false,
-                                            errorMessage: 'The selected date range is invalid. The amount must big than 0.',
-                                        }
-                                    }
-                                }
-                                return { valid: true }
-                            }}
-                            relativeOptions={[]}
-                        />
+                            StartDate={startDate}
+                            SetStartDate={setStartDate}
+                            EndDate={endDate}
+                            SetEndDate={setEndDate}
+                            DateOnly
+                            InitData={{
+                                type: "relative",
+                                amount: 10,
+                                unit: "year"
+                            }}>
+                        </DateRangePicker>
                     </div>
                 </div>
             }

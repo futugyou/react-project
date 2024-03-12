@@ -4,7 +4,7 @@
 import DateRangePicker, { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker"
 import { NonCancelableCustomEvent, NonCancelableEventHandler } from "@cloudscape-design/components/internal/events"
 import moment from "moment"
-import { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 
 const formatRelativeRange = (range: DateRangePickerProps.RelativeValue): string => {
     const unit = range.amount === 1 ? range.unit : `${range.unit}s`
@@ -48,6 +48,7 @@ interface DateRangePickerItem {
     SetEndDate: React.Dispatch<React.SetStateAction<Date>>
     DateOnly?: boolean
     InitData?: DateRangePickerProps.Value
+    children?: React.ReactNode
 }
 
 const DateRangePickerEx = (prop: DateRangePickerItem) => {
