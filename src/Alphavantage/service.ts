@@ -99,6 +99,38 @@ export const useStockSeriesData = (symbol: string, year: number, config = {}) =>
     return { data: data as StockSeries[], isLoading, isFetching, isError, refetch }
 }
 
+export const useStockSeriesDataRange = (symbol: string, fromYear: number, toYear: number, config = {}) => {
+    let queries = []
+    for (let year = fromYear; year <= toYear; year++) {
+        const options: AxiosRequestConfig = {
+            url: alphavantage_server + 'v1/stock?symbol=' + symbol + '&year=' + year,
+            method: "GET",
+            headers: {
+            },
+        }
+
+        queries.push({
+            queryKey: [keyPerfix + + 'v1/stock?symbol=' + symbol + '&year=' + year],
+            queryFn: () => axios(options).then(x => x.data),
+            ...config
+        })
+    }
+
+    const results = useQueries({
+        queries: queries,
+        combine: (results) => {
+            return {
+                data: results.map((result) => result.data as StockSeries[]),
+                isLoading: results.some((result) => result.isLoading),
+                isFetching: results.some((result) => result.isFetching),
+                isError: results.some((result) => result.isError),
+            }
+        },
+    })
+
+    return { data: results.data, isLoading: results.isLoading, isFetching: results.isFetching, isError: results.isError }
+}
+
 const useQueryToGetData = (url: string, key: string, config = {}) => {
     const options: AxiosRequestConfig = {
         url: url,
