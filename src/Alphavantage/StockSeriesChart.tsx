@@ -10,7 +10,9 @@ import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
-import { useStockSeriesData } from '@/Alphavantage/service'
+import { useStockSeriesDataRange } from '@/Alphavantage/service'
+import { StockSeries } from '@/Alphavantage/model'
+import DateRangePicker from '@/Common/DateRangePicker'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
@@ -23,12 +25,18 @@ const createRoutePath = (title: string, time: Date) => {
 const StockSeriesChart = () => {
     const [series, setSeries] = useState<any[]>([])
 
-    const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError } = useStockSeriesData("IBM", 2001)
+    const [startDate, setStartDate] = useState(moment().year(2000).dayOfYear(1).toDate())
+    const [endDate, setEndDate] = useState(moment().year(2005).dayOfYear(0).toDate())
+    const { data: nodeData, isLoading, isFetching, isError } = useStockSeriesDataRange("IBM", startDate.getFullYear(), endDate.getFullYear())
 
     useEffect(() => {
         if (nodeData && !isError) {
             var s: any[] = []
-            const sd = _.orderBy(nodeData, a => a.Time)
+            let data: StockSeries[] = []
+            for (const d of nodeData) {
+                data.push(...d)
+            }
+            const sd = _.orderBy(data, a => a.Time)
 
             for (const key of ["Volume", "Open", "High", "Low", "Close"]) {// "Volume", "Open", "High", "Low", "Close"
                 const d = _.map(
@@ -90,6 +98,24 @@ const StockSeriesChart = () => {
                 ),
                 value: numberFormatter(y)
             })}
+            additionalFilters={
+                <div className='drop-down-group'>
+                    <div>
+                        <DateRangePicker
+                            StartDate={startDate}
+                            SetStartDate={setStartDate}
+                            EndDate={endDate}
+                            SetEndDate={setEndDate}
+                            DateOnly
+                            InitData={{
+                                type: "absolute",
+                                startDate: moment(startDate).format("yyyy-MM-DD"),
+                                endDate: moment(endDate).format("yyyy-MM-DD"),
+                            }}>
+                        </DateRangePicker>
+                    </div>
+                </div>
+            }
         />
 
     )
