@@ -12,3 +12,16 @@
     flex-direction: column;
     overflow: auto;
 }
+
+.absolute-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.absolute-icon:hover {
+    background-color: aliceblue;
+}

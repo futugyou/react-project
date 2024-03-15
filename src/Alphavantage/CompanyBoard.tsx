@@ -11,6 +11,7 @@ import { useCompanyData } from '@/Alphavantage/service'
 import { Header } from "@cloudscape-design/components"
 import { Company } from "./model"
 import CompanyBoardDetail from "./CompanyBoardDetail"
+import StockSeriesChart from "./StockSeriesChart"
 
 const CompanyBoard = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useCompanyData()
@@ -48,6 +49,8 @@ const CompanyBoard = () => {
                     <CompanyBoardDetail
                         Date={item.data}
                         FieldsToRemove={["Id", "Name", "Type", "MatchScore"]}>
+                        <StockSeriesChart Symbol={item.data.Symbol}>
+                        </StockSeriesChart>
                     </CompanyBoardDetail>
                 </BoardItem>
             )}
