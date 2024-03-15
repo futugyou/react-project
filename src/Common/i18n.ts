@@ -1,7 +1,7 @@
-import { BoardProps } from "@cloudscape-design/board-components/board";
-import { BoardItemProps } from "@cloudscape-design/board-components/board-item";
-import { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker";
-import { ReactNode } from "react";
+import { BoardProps } from "@cloudscape-design/board-components/board"
+import { BoardItemProps } from "@cloudscape-design/board-components/board-item"
+import { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker"
+import _ from 'lodash-es'
 
 const formatRelativeRange = (range: DateRangePickerProps.RelativeValue): string => {
     const unit = range.amount === 1 ? range.unit : `${range.unit}s`
@@ -38,64 +38,60 @@ export const dateRangeI18nStrings: DateRangePickerProps['i18nStrings'] = {
 
 export const dateRangeDateOnlyI18nStrings: DateRangePickerProps['i18nStrings'] = { ...dateRangeI18nStrings, dateTimeConstraintText: "For date, use YYYY/MM/DD", }
 
-export const boardI18nStrings: BoardProps.I18nStrings<ItemData> = {
-    liveAnnouncementDndStarted(operationType) {
-        return operationType === "resize" ? "Resizing" : "Dragging";
-    },
-    liveAnnouncementDndItemReordered(op) {
-        const columns = `column ${op.placement.x + 1}`;
-        const rows = `row ${op.placement.y + 1}`;
-        return createAnnouncement(
-            `Item moved to ${op.direction === "horizontal" ? columns : rows}.`,
-            op.conflicts,
-            op.disturbed
-        );
-    },
-    liveAnnouncementDndItemResized(op) {
-        const columnsConstraint = op.isMinimalColumnsReached ? " (minimal)" : "";
-        const rowsConstraint = op.isMinimalRowsReached ? " (minimal)" : "";
-        const sizeAnnouncement =
-            op.direction === "horizontal"
-                ? `columns ${op.placement.width}${columnsConstraint}`
-                : `rows ${op.placement.height}${rowsConstraint}`;
-        return createAnnouncement(`Item resized to ${sizeAnnouncement}.`, op.conflicts, op.disturbed);
-    },
-    liveAnnouncementDndItemInserted(op) {
-        const columns = `column ${op.placement.x + 1}`;
-        const rows = `row ${op.placement.y + 1}`;
-        return createAnnouncement(`Item inserted to ${columns}, ${rows}.`, op.conflicts, op.disturbed);
-    },
-    liveAnnouncementDndCommitted(operationType) {
-        return `${operationType} committed`;
-    },
-    liveAnnouncementDndDiscarded(operationType) {
-        return `${operationType} discarded`;
-    },
-    liveAnnouncementItemRemoved(op) {
-        return createAnnouncement(`Removed item ${op.item.data.title}.`, [], op.disturbed);
-    },
-    navigationAriaLabel: "Board navigation",
-    navigationAriaDescription: "Click on non-empty item to move focus over",
-    navigationItemAriaLabel: (item) => (item ? item.data.title : "Empty"),
+export const boardI18nStrings = <T>(file: string): BoardProps.I18nStrings<T> => {
+    return {
+        liveAnnouncementDndStarted(operationType) {
+            return operationType === "resize" ? "Resizing" : "Dragging"
+        },
+        liveAnnouncementDndItemReordered(op) {
+            const columns = `column ${op.placement.x + 1}`
+            const rows = `row ${op.placement.y + 1}`
+            return createAnnouncement(
+                `Item moved to ${op.direction === "horizontal" ? columns : rows}.`,
+                op.conflicts,
+                op.disturbed,
+                file
+            )
+        },
+        liveAnnouncementDndItemResized(op) {
+            const columnsConstraint = op.isMinimalColumnsReached ? " (minimal)" : ""
+            const rowsConstraint = op.isMinimalRowsReached ? " (minimal)" : ""
+            const sizeAnnouncement =
+                op.direction === "horizontal"
+                    ? `columns ${op.placement.width}${columnsConstraint}`
+                    : `rows ${op.placement.height}${rowsConstraint}`
+            return createAnnouncement(`Item resized to ${sizeAnnouncement}.`, op.conflicts, op.disturbed, file)
+        },
+        liveAnnouncementDndItemInserted(op) {
+            const columns = `column ${op.placement.x + 1}`
+            const rows = `row ${op.placement.y + 1}`
+            return createAnnouncement(`Item inserted to ${columns}, ${rows}.`, op.conflicts, op.disturbed, file)
+        },
+        liveAnnouncementDndCommitted(operationType) {
+            return `${operationType} committed`
+        },
+        liveAnnouncementDndDiscarded(operationType) {
+            return `${operationType} discarded`
+        },
+        liveAnnouncementItemRemoved(op) {
+            return createAnnouncement(`Removed item ${_.get(op.item.data, file)}.`, [], op.disturbed, file)
+        },
+        navigationAriaLabel: "Board navigation",
+        navigationAriaDescription: "Click on non-empty item to move focus over",
+        navigationItemAriaLabel: (item) => (item ? _.get(item.data, file) : "Empty"),
+    }
 }
 
 function createAnnouncement(
     operationAnnouncement: string,
-    conflicts: readonly BoardProps.Item<ItemData>[],
-    disturbed: readonly BoardProps.Item<ItemData>[]
+    conflicts: readonly BoardProps.Item<any>[],
+    disturbed: readonly BoardProps.Item<any>[],
+    file: string
 ) {
     const conflictsAnnouncement =
-        conflicts.length > 0 ? `Conflicts with ${conflicts.map((c) => c.data.title).join(", ")}.` : "";
-    const disturbedAnnouncement = disturbed.length > 0 ? `Disturbed ${disturbed.length} items.` : "";
-    return [operationAnnouncement, conflictsAnnouncement, disturbedAnnouncement].filter(Boolean).join(" ");
-}
-
-export interface ItemData {
-    title: string;
-    description?: string;
-    content: ReactNode;
-    footer?: ReactNode;
-    disableContentPaddings?: boolean;
+        conflicts.length > 0 ? `Conflicts with ${conflicts.map((c) => _.get(c.data, file)).join(", ")}.` : ""
+    const disturbedAnnouncement = disturbed.length > 0 ? `Disturbed ${disturbed.length} items.` : ""
+    return [operationAnnouncement, conflictsAnnouncement, disturbedAnnouncement].filter(Boolean).join(" ")
 }
 
 export const boardItemI18nStrings: BoardItemProps.I18nStrings = {

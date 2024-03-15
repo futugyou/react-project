@@ -8,6 +8,8 @@ import { boardI18nStrings, boardItemI18nStrings } from "@/Common/i18n"
 import EmptyChart from '@/Alphavantage/EmptyChart'
 
 import { useCompanyData } from '@/Alphavantage/service'
+import { Header } from "@cloudscape-design/components"
+import { Company } from "./model"
 
 const CompanyBoard = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useCompanyData()
@@ -25,10 +27,7 @@ const CompanyBoard = () => {
                     id: i + 1,
                     rowSpan: 2,
                     columnSpan: 2,
-                    data: {
-                        title: e.Symbol,
-                        content: e.Name
-                    }
+                    data: e
                 })
             }
             setItems([...d] as any)
@@ -38,15 +37,21 @@ const CompanyBoard = () => {
     return (
         <Board
             renderItem={item => (
-                <BoardItem i18nStrings={boardItemI18nStrings}                >
-                    {item.data.content}
+                <BoardItem i18nStrings={boardItemI18nStrings}
+                    header={
+                        <Header>
+                            {item.data.Name}
+                        </Header>
+                    }
+                >
+                    {item.data.Name}
                 </BoardItem>
             )}
             onItemsChange={event =>
                 setItems(event.detail.items as any)
             }
             items={items}
-            i18nStrings={boardI18nStrings}
+            i18nStrings={boardI18nStrings<Company>("Symbol")}
             empty={Empty}
         />
     )
