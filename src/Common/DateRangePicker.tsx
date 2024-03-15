@@ -2,44 +2,10 @@
 
 
 import DateRangePicker, { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker"
-import { NonCancelableCustomEvent, NonCancelableEventHandler } from "@cloudscape-design/components/internal/events"
+import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
 import moment from "moment"
 import React, { useCallback, useState } from "react"
-
-const formatRelativeRange = (range: DateRangePickerProps.RelativeValue): string => {
-    const unit = range.amount === 1 ? range.unit : `${range.unit}s`
-    return `Previous ${range.amount} ${unit}`
-}
-
-const i18nStrings: DateRangePickerProps['i18nStrings'] = {
-    ariaLabel: 'Filter by a date and time range',
-    todayAriaLabel: 'Today',
-    nextMonthAriaLabel: 'Next month',
-    previousMonthAriaLabel: 'Previous month',
-    customRelativeRangeDurationLabel: 'Duration',
-    customRelativeRangeDurationPlaceholder: 'Enter duration',
-    customRelativeRangeOptionLabel: 'Custom range',
-    customRelativeRangeOptionDescription: 'Set a custom range in the past',
-    customRelativeRangeUnitLabel: 'Unit of time',
-    formatRelativeRange: formatRelativeRange,
-    formatUnit: (unit, value) => (value === 1 ? unit : `${unit}s`),
-    dateTimeConstraintText: "For date, use YYYY/MM/DD hh:mm:ss",
-    modeSelectionLabel: 'Date range mode',
-    relativeModeTitle: 'Relative range',
-    absoluteModeTitle: 'Absolute range',
-    relativeRangeSelectionHeading: 'Choose a range',
-    startDateLabel: 'Start date',
-    endDateLabel: 'End date',
-    startTimeLabel: 'Start time',
-    endTimeLabel: 'End time',
-    clearButtonLabel: 'Clear and dismiss',
-    cancelButtonLabel: 'Cancel',
-    applyButtonLabel: 'Apply',
-    errorIconAriaLabel: 'Error',
-    renderSelectedAbsoluteRangeAriaLive: (startDate, endDate) => `Range selected from ${startDate} to ${endDate}`,
-}
-
-const i18nStringsDateOnly: DateRangePickerProps['i18nStrings'] = { ...i18nStrings, dateTimeConstraintText: "For date, use YYYY/MM/DD", }
+import { dateRangeDateOnlyI18nStrings, dateRangeI18nStrings } from "./i18n"
 
 interface DateRangePickerItem {
     StartDate: Date
@@ -52,7 +18,7 @@ interface DateRangePickerItem {
 }
 
 const DateRangePickerEx = (prop: DateRangePickerItem) => {
-    let i18n = prop.DateOnly ? i18nStringsDateOnly : i18nStrings
+    let i18n = prop.DateOnly ? dateRangeDateOnlyI18nStrings : dateRangeI18nStrings
 
     let initData = prop.InitData ?? {
         type: "absolute",
