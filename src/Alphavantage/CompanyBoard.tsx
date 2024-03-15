@@ -10,6 +10,7 @@ import EmptyChart from '@/Alphavantage/EmptyChart'
 import { useCompanyData } from '@/Alphavantage/service'
 import { Header } from "@cloudscape-design/components"
 import { Company } from "./model"
+import CompanyBoardDetail from "./CompanyBoardDetail"
 
 const CompanyBoard = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useCompanyData()
@@ -44,7 +45,10 @@ const CompanyBoard = () => {
                         </Header>
                     }
                 >
-                    {item.data.Name}
+                    <CompanyBoardDetail
+                        Date={item.data}
+                        FieldsToRemove={["Id", "Name", "Type", "MatchScore"]}>
+                    </CompanyBoardDetail>
                 </BoardItem>
             )}
             onItemsChange={event =>
