@@ -105,7 +105,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                             if (selectedTimeIntervalsOption.value == "monthly") {
                                 return moment(e).format("yyyy-MM")
                             } else {
-                                return moment(e).format("yyyy-MM-D")
+                                return moment(e).format("yyyy-MM-DD")
                             }
                         }
                         return ""
