@@ -17,8 +17,8 @@ const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)
 }
 
-const createRoutePath = (title: string, time: Date) => {
-    return "#title=" + title + "&month=" + moment(time).format("yyyy-MM-DD hh:mm")
+const createRoutePath = (symbol: string) => {
+    return '/e/news?symbol=' + symbol
 }
 
 export interface IBaseStockSeriesChartProp {
@@ -30,6 +30,7 @@ export interface IBaseStockSeriesChartProp {
     IsLoading: boolean
     IsError: boolean
     Colnum: string[]
+    Symbol: string
     children?: React.ReactNode
 }
 
@@ -102,7 +103,7 @@ const BaseStockSeriesChart = (props: IBaseStockSeriesChartProp) => {
             statusType={props.IsLoading ? "loading" : "finished"}
             detailPopoverSeriesContent={({ series, x, y }) => ({
                 key: (
-                    <Link external={true} href={createRoutePath(series.title, x as Date)}>
+                    <Link external={true} href={createRoutePath(props.Symbol)}>
                         {series.title}
                     </Link>
                 ),

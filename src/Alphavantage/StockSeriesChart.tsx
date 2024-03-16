@@ -28,7 +28,8 @@ const StockSeriesChart = (props: IStockSeriesChartProps) => {
                 NodeData={nodeData}
                 IsLoading={isLoading}
                 IsError={isError}
-                Colnum={["Volume"]}>
+                Colnum={["Volume"]}
+                Symbol={symbol}>
             </BaseStockSeriesChart>
             <BaseStockSeriesChart
                 StartDate={startDate}
@@ -38,7 +39,8 @@ const StockSeriesChart = (props: IStockSeriesChartProps) => {
                 NodeData={nodeData}
                 IsLoading={isLoading}
                 IsError={isError}
-                Colnum={["Open", "High", "Low", "Close"]}>
+                Colnum={["Open", "High", "Low", "Close"]}
+                Symbol={symbol}>
             </BaseStockSeriesChart>
         </div>
 
