@@ -1,3 +1,4 @@
+import './chart.css'
 
 import { useEffect, useMemo, useState } from "react"
 
@@ -19,16 +20,19 @@ const CompanyBoard = () => {
     const [items, setItems] = useState([])
 
     const Empty = useMemo(EmptyChart, [])
-
     useEffect(() => {
         if (nodeData && !isError) {
             let d = []
             for (let i = 0; i < nodeData.length; i++) {
+                let rowSpan = 2, columnSpan = 2
                 const e = nodeData[i]
+                if (i == 0) {
+                    rowSpan = 8, columnSpan = 8
+                }
                 d.push({
                     id: i + 1,
-                    rowSpan: 2,
-                    columnSpan: 2,
+                    rowSpan: rowSpan,
+                    columnSpan: columnSpan,
                     data: e
                 })
             }
@@ -37,7 +41,7 @@ const CompanyBoard = () => {
     }, [nodeData, isError])
 
     return (
-        <Board
+        <Board data-style="board-style"
             renderItem={item => (
                 <BoardItem i18nStrings={boardItemI18nStrings}
                     header={

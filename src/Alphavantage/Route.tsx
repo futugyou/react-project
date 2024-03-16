@@ -13,8 +13,8 @@ const StockSeriesChart = lazy(() => import('./StockSeriesChart'))
 const CompanyBoard = lazy(() => import('./CompanyBoard'))
 
 export const ChatRoute: RouteDescription[] = [{
-    path: "companyBoard",
-    display: "CompanyBoard",
+    path: "company",
+    display: "Company",
     element: <CompanyBoard />,
 },{
     path: "balance",

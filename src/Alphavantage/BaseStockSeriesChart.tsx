@@ -96,6 +96,7 @@ const BaseStockSeriesChart = (props: IBaseStockSeriesChartProp) => {
             }
             xScaleType="time"
             yScaleType='linear'
+            fitHeight={true}
             empty={Empty}
             noMatch={NoMatch}
             statusType={props.IsLoading ? "loading" : "finished"}
