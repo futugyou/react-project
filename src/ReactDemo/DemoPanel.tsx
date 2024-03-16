@@ -46,7 +46,7 @@ const DemoPanel = (props: any) => {
             }
 
             return (
-                <li className="nav-item">
+                <li className="nav-item" key={href}>
                     <NavLink key={href} to={href} className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""} >{display}</NavLink>
                 </li>
             )

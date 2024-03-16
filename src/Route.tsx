@@ -23,11 +23,11 @@ export const WhiteRoute: RouteDescription = {
         BoardRoute,
         ExcalidrawRoute,
         ...TldrawRoute,
-        ...ChatRoute,
     ]
 }
 
 export const TotalRouteDescriptions: RouteDescription[] = [
+    ChatRoute,
     WhiteRoute,
     DemoRoute,
 ]
