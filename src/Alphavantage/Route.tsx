@@ -12,6 +12,7 @@ const EconomicChart = lazy(() => import('./EconomicChart'))
 const StockSeriesChart = lazy(() => import('./StockSeriesChart'))
 const CompanyBoard = lazy(() => import('./CompanyBoard'))
 const EconomicPanel = lazy(() => import('./EconomicPanel'))
+const News = lazy(() => import('./News'))
 
 export const ChatRoute: RouteDescription = {
     display: "Economic Data",
@@ -20,8 +21,9 @@ export const ChatRoute: RouteDescription = {
     checkActive: (path: string) => path.startsWith('/e'),
     children: [
         {
+            path: "",
             index: true,
-            element: <EconomicChart />,
+            element: <BalanceChart />,
         }, {
             path: "company",
             display: "Company",
@@ -58,6 +60,10 @@ export const ChatRoute: RouteDescription = {
             path: "stockSeries",
             display: "StockSeries",
             element: <StockSeriesChart />,
+        }, {
+            path: "news",
+            display: "news",
+            element: <News />,
         },
     ]
 }
