@@ -9,10 +9,14 @@ import { boardI18nStrings, boardItemI18nStrings } from "@/Common/i18n"
 import EmptyChart from '@/Alphavantage/EmptyChart'
 
 import { useCompanyData } from '@/Alphavantage/service'
-import { Header } from "@cloudscape-design/components"
+import { Header, Link } from "@cloudscape-design/components"
 import { Company } from "./model"
 import CompanyBoardDetail from "./CompanyBoardDetail"
 import StockSeriesChart from "./StockSeriesChart"
+
+const createRoutePath = (title: string) => {
+    return '/e/news?symbol=' + title
+}
 
 const CompanyBoard = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useCompanyData()
@@ -46,7 +50,9 @@ const CompanyBoard = () => {
                 <BoardItem i18nStrings={boardItemI18nStrings}
                     header={
                         <Header>
-                            {item.data.Name}
+                            <Link external={true} href={createRoutePath(item.data.Symbol)}>
+                                {item.data.Name}
+                            </Link>
                         </Header>
                     }
                 >
