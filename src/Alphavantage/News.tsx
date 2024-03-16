@@ -2,13 +2,14 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react"
 
 import { useNewsData } from "./service"
+import Paging from "@/Common/Paging"
 
 import Table from "@cloudscape-design/components/table"
 import Box from "@cloudscape-design/components/box"
 import SpaceBetween from "@cloudscape-design/components/space-between"
 import Button from "@cloudscape-design/components/button"
 import Header from "@cloudscape-design/components/header"
-import { NonCancelableCustomEvent, Pagination, PaginationProps } from "@cloudscape-design/components"
+
 import _ from "lodash"
 
 
@@ -22,13 +23,11 @@ const News = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useNewsData(symbol, {})
     const [items, setItems] = useState([])
 
-    const HandlePageChange = (event: NonCancelableCustomEvent<PaginationProps.ChangeDetail>) => {
-        const i = event.detail.currentPageIndex
-        if (1 <= i && i <= pagesCount) {
-            setPage(i)
+    const HandlePageChange = useCallback((pageIndex: number) => {
+        if (1 <= pageIndex && pageIndex <= pagesCount) {
+            setPage(pageIndex)
         }
-    }
-
+    }, [pagesCount])
 
     useEffect(() => {
         if (nodeData && !isError) {
@@ -91,7 +90,7 @@ const News = () => {
         }
         header={<Header> Simple table </Header>}
         pagination={
-            <Pagination currentPageIndex={page} pagesCount={pagesCount} openEnd={true} onChange={HandlePageChange} />
+            <Paging Page={page} PageCount={pagesCount} OnPageChange={HandlePageChange} />
         }
     />)
 }
