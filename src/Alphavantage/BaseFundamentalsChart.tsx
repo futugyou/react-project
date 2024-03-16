@@ -17,7 +17,8 @@ const numberFormatter = (e: number) => {
 }
 
 const createRoutePath = (title: string, time: Date) => {
-    return "#title=" + title + "&month=" + moment(time).format("yyyy-MM")
+    // return "#title=" + title + "&month=" + moment(time).format("yyyy-MM")
+    return '/e/news?symbol=' + title
 }
 
 const TimeIntervals = [
