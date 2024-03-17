@@ -10,8 +10,13 @@ const alphavantage_server = import.meta.env.REACT_APP_ALPHAVANTAGE
 const keyPerfix = 'alphavantage-'
 
 export const useNewsData = (ticker: string, config = {}) => {
+    let path = 'v1/news'
+    if (ticker != "") {
+        path = 'v1/news/' + ticker
+    }
+
     const { data, isLoading, isFetching, isError, refetch }
-        = useQueryToGetData(alphavantage_server + 'v1/news/' + ticker, keyPerfix + 'v1/news/' + ticker, config)
+        = useQueryToGetData(alphavantage_server + path, keyPerfix + path, config)
 
     return { data: data as News[], isLoading, isFetching, isError, refetch }
 }

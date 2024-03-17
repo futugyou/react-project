@@ -29,6 +29,18 @@ export const ChatRoute: RouteDescription = {
             display: "Company",
             element: <CompanyBoard />,
         }, {
+            path: "news",
+            display: "news",
+            element: <NewsForCompany />,
+        }, {
+            path: "economic",
+            display: "Economic",
+            element: <EconomicChart />,
+        }, {
+            path: "commodities",
+            display: "Commodities",
+            element: <CommoditiesChart />,
+        }, {
             path: "balance",
             display: "Balance",
             element: <BalanceChart />,
@@ -49,22 +61,9 @@ export const ChatRoute: RouteDescription = {
             display: "Expected",
             element: <ExpectedChart />,
         }, {
-            path: "economic",
-            display: "Economic",
-            element: <EconomicChart />,
-        }, {
-            path: "commodities",
-            display: "Commodities",
-            element: <CommoditiesChart />,
-        }, {
             path: "stockSeries",
             display: "StockSeries",
             element: <StockSeriesChart />,
-            show: () => false,
-        }, {
-            path: "news",
-            display: "news",
-            element: <NewsForCompany />,
             show: () => false,
         },
     ]
