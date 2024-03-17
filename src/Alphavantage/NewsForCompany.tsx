@@ -11,7 +11,7 @@ import { Header, Badge, Link, Cards, SpaceBetween, TextFilter } from "@cloudscap
 import _ from "lodash"
 import moment from "moment"
 
-const News = () => {
+const NewsForCompany = () => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(10)
     const [pagesCount, setPageCount] = useState(1)
@@ -144,4 +144,4 @@ const News = () => {
     )
 }
 
-export default News
+export default NewsForCompany

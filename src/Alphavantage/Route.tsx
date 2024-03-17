@@ -12,7 +12,7 @@ const EconomicChart = lazy(() => import('./EconomicChart'))
 const StockSeriesChart = lazy(() => import('./StockSeriesChart'))
 const CompanyBoard = lazy(() => import('./CompanyBoard'))
 const EconomicPanel = lazy(() => import('./EconomicPanel'))
-const News = lazy(() => import('./News'))
+const NewsForCompany = lazy(() => import('./NewsForCompany'))
 
 export const ChatRoute: RouteDescription = {
     display: "Economic Data",
@@ -63,7 +63,7 @@ export const ChatRoute: RouteDescription = {
         }, {
             path: "news",
             display: "news",
-            element: <News />,
+            element: <NewsForCompany />,
             show: () => false,
         },
     ]
