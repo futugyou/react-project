@@ -1,12 +1,12 @@
 import './chart.css'
 
-import React, { useEffect, useState, useMemo, useCallback } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 
 import { useNewsData } from "./service"
 import { News } from "./model"
 import Paging from "@/Common/Paging"
 
-import { Table, Box, Header, Badge, Link } from "@cloudscape-design/components"
+import { Header, Badge, Link, Cards, SpaceBetween } from "@cloudscape-design/components"
 
 import _ from "lodash"
 import moment from "moment"
@@ -41,51 +41,74 @@ const News = () => {
 
     return (
         <div data-style="board-style">
-            <Table
-                columnDefinitions={[
-                    {
-                        id: "Title",
-                        header: "Title",
-                        cell: (item) => <Link href={item.URL} external={true}>{item.Title}</Link>,
-                        sortingField: "Title",
-                        isRowHeader: true
-                    },
-                    {
-                        id: "TimePublished",
-                        header: "Publication Time",
-                        cell: (item: any) => moment(item.TimePublished).format("yyyy-MM-DD hh:mm"),
-                    },
-                    {
-                        id: "Summary",
-                        header: "Summary",
-                        cell: (item: any) => <Box variant="p">{item.Summary}</Box>,
-                    },
-                    // {
-                    //     id: "BannerImage",
-                    //     header: "Image",
-                    //     cell: (item: any) => <img src={item.BannerImage} alt={item.URL}></img>,
-                    // },
-                    {
-                        id: "Source",
-                        header: "Source",
-                        cell: (item: any) => item.Source,
-                    },
-                    {
-                        id: "Authors",
-                        header: "Authors",
-                        cell: (item: any) => <>{item.Authors?.map((s: string) => <Box variant="span" key={s}>{s}</Box>)}</>,
-                    },
-                    {
-                        id: "Topics",
-                        header: "Topics",
-                        cell: (item: any) => <>{item.Topics?.map((s: string) => <Badge key={s} >{s}</Badge>)}</>,
-                    },
-                ]}
-                enableKeyboardNavigation
+            <Cards
+                cardDefinition={{
+                    header: item => (
+                        <Link href={item.URL} external={true}>{item.Title}</Link>
+                    ),
+                    sections: [
+                        {
+                            id: "Image",
+                            content: (item) => (
+                                <img
+                                    style={{ width: "100%" }}
+                                    src={item.BannerImage}
+                                    alt=""
+                                />
+                            )
+                        },
+                        {
+                            id: "TimePublished",
+                            content: item => (
+                                <div>
+                                    By {item.Authors?.map((s: string) => <strong key={s}>{s}</strong>)} –
+                                    <strong>{moment(item.TimePublished).format(" yyyy-MM-DD hh:mm")}</strong>
+                                </div>
+                            ),
+                        },
+                        {
+                            id: "Summary",
+                            header: (
+                                <div>
+                                    <span>Summary</span>
+                                </div>
+                            ),
+                            content: item => <div>{item.Summary}</div>
+                        },
+                        {
+                            id: "Source",
+                            header: (
+                                <div>
+                                    <span>Source</span>
+                                </div>
+                            ),
+                            content: item => (
+                                <Link href={"https://" + item.SourceDomain} external={true}>{item.Source}</Link>
+                            ),
+                        },
+                        {
+                            id: "Topics",
+                            header: "Topics",
+                            content: item => (
+                                <SpaceBetween direction="horizontal" size="xs">
+                                    {item.Topics?.map((s: string) => <Badge key={s} >{s}</Badge>)}
+                                </SpaceBetween>
+                            ),
+                        },
+                        {
+                            id: "Ticker",
+                            header: "Tickers",
+                            content: item => (
+                                <SpaceBetween direction="horizontal" size="xs">
+                                    {item.TickerSentiment?.map((s: string) => <Badge key={s} >{s}</Badge>)}
+                                </SpaceBetween>
+                            ),
+                        }
+                    ]
+                }}
                 items={items}
                 loading={isLoading}
                 loadingText="Loading resources"
-                sortingDisabled
                 header={<Header> Company News </Header>}
                 pagination={
                     <Paging Page={page} PageCount={pagesCount} OnPageChange={HandlePageChange} />
