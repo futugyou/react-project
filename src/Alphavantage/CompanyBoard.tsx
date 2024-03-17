@@ -20,9 +20,14 @@ const CompanyBoard = () => {
 
     useEffect(() => {
         if (nodeData && !isError) {
+            let columnSpan = 1
+            if (nodeData.length > 1) {
+                columnSpan = 2
+            }
+
+            let rowSpan = nodeData.length / columnSpan
             let d = []
             for (let i = 0; i < nodeData.length; i++) {
-                let rowSpan = 2, columnSpan = 2
                 const e = nodeData[i]
                 d.push({
                     id: i + 1,
@@ -41,12 +46,27 @@ const CompanyBoard = () => {
                 <BoardItem i18nStrings={boardItemI18nStrings}
                     header={
                         <Header actions={
-                            <SpaceBetween direction="horizontal" size="xs"                            >
+                            <SpaceBetween direction="horizontal" size="xs">
                                 <Link external={true} href={'/e/news?symbol=' + (item.data.Symbol)}>
                                     News
                                 </Link>
                                 <Link external={true} href={'/e/stockSeries?symbol=' + (item.data.Symbol)}>
                                     Stock
+                                </Link>
+                                <Link external={true} href={'/e/balance?symbol=' + (item.data.Symbol)}>
+                                    Balance
+                                </Link>
+                                <Link external={true} href={'/e/cash?symbol=' + (item.data.Symbol)}>
+                                    Cash
+                                </Link>
+                                <Link external={true} href={'/e/earnings?symbol=' + (item.data.Symbol)}>
+                                    Earnings
+                                </Link>
+                                <Link external={true} href={'/e/income?symbol=' + (item.data.Symbol)}>
+                                    Income
+                                </Link>
+                                <Link external={true} href={'/e/expected?symbol=' + (item.data.Symbol)}>
+                                    Expected
                                 </Link>
                             </SpaceBetween>
                         }>

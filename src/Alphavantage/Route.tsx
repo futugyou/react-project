@@ -23,15 +23,11 @@ export const ChatRoute: RouteDescription = {
         {
             path: "",
             index: true,
-            element: <BalanceChart />,
+            element: <CompanyBoard />,
         }, {
             path: "company",
             display: "Company",
             element: <CompanyBoard />,
-        }, {
-            path: "economic",
-            display: "Economic",
-            element: <EconomicChart />,
         }, {
             path: "balance",
             display: "Balance",
@@ -45,13 +41,17 @@ export const ChatRoute: RouteDescription = {
             display: "Earnings",
             element: <EarningsChart />,
         }, {
+            path: "income",
+            display: "Income",
+            element: <IncomeChart />,
+        }, {
             path: "expected",
             display: "Expected",
             element: <ExpectedChart />,
         }, {
-            path: "income",
-            display: "Income",
-            element: <IncomeChart />,
+            path: "economic",
+            display: "Economic",
+            element: <EconomicChart />,
         }, {
             path: "commodities",
             display: "Commodities",

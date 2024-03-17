@@ -37,6 +37,9 @@ export interface IBaseFundamentalsChartProp {
 }
 
 const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
+    let searchParams = new URLSearchParams(location.search || "")
+    let symbol = searchParams.get("symbol") ?? ""
+
     const [series, setSeries] = useState<any[]>([])
     const [visibleSeries, setVisibleSeries] = useState<any[]>([])
     const [selectedDataTypeOption, setSelectedDataTypeOption] = useState(props.DataTypes[0])
@@ -61,7 +64,12 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
 
     useEffect(() => {
         if (props.Data && !props.IsError) {
-            const dic = _.groupBy(props.Data, 'Symbol')
+            let data = props.Data
+            if (symbol != "") {
+                data = _.filter(data, a => a.Symbol == symbol)
+            }
+
+            const dic = _.groupBy(data, 'Symbol')
             var s: any[] = []
             for (const key in dic) {
                 const d = _.map(
