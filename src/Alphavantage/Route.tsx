@@ -64,6 +64,7 @@ export const ChatRoute: RouteDescription = {
             path: "news",
             display: "news",
             element: <News />,
+            show: () => false,
         },
     ]
 }

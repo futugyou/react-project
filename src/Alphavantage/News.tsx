@@ -6,16 +6,17 @@ import { useNewsData } from "./service"
 import { News } from "./model"
 import Paging from "@/Common/Paging"
 
-import { Header, Badge, Link, Cards, SpaceBetween } from "@cloudscape-design/components"
+import { Header, Badge, Link, Cards, SpaceBetween, TextFilter } from "@cloudscape-design/components"
 
 import _ from "lodash"
 import moment from "moment"
-
 
 const News = () => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(10)
     const [pagesCount, setPageCount] = useState(1)
+    const [dataCount, setDataCount] = useState(1)
+    const [filteringText, setFilteringText] = React.useState("")
 
     let searchParams = new URLSearchParams(location.search || "")
     let symbol = searchParams.get("symbol") || ""
@@ -30,14 +31,30 @@ const News = () => {
 
     useEffect(() => {
         if (nodeData && !isError) {
-            setItems(_.orderBy(_.take(_.drop(nodeData, (page - 1) * pageSize), pageSize), 'TimePublished', 'desc'))
-            let c = parseInt(nodeData.length / pageSize as any)
-            if (nodeData.length % pageSize != 0) {
+            const data = _.filter(nodeData, f => f.Title.includes(filteringText) || f.Summary.includes(filteringText))
+
+            let c = parseInt(data.length / pageSize as any)
+            if (data.length % pageSize != 0) {
                 c = c + 1
             }
+
+            setItems(_.orderBy(
+                _.take(
+                    _.drop(
+                        data,
+                        (page - 1) * pageSize),
+                    pageSize),
+                'TimePublished',
+                'desc'
+            ))
             setPageCount(c)
+            setDataCount(data.length)
         }
-    }, [nodeData, isError, page])
+    }, [nodeData, isError, page, filteringText])
+
+    useEffect(() => {
+        setPage(1)
+    }, [filteringText])
 
     return (
         <div data-style="board-style">
@@ -109,9 +126,18 @@ const News = () => {
                 items={items}
                 loading={isLoading}
                 loadingText="Loading resources"
-                header={<Header> Company News </Header>}
+                header={<Header counter={"(" + dataCount + ")"}> News for {symbol} </Header>}
                 pagination={
                     <Paging Page={page} PageCount={pagesCount} OnPageChange={HandlePageChange} />
+                }
+                filter={
+                    <TextFilter
+                        filteringText={filteringText}
+                        filteringPlaceholder="Find resources"
+                        onChange={({ detail }) =>
+                            setFilteringText(detail.filteringText)
+                        }
+                    />
                 }
             />
         </div>
