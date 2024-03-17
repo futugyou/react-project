@@ -13,7 +13,8 @@ export interface IStockSeriesChartProps {
 }
 
 const StockSeriesChart = (props: IStockSeriesChartProps) => {
-    const symbol = props.Symbol ?? "IBM"
+    let searchParams = new URLSearchParams(location.search || "")
+    let symbol = searchParams.get("symbol") ?? props.Symbol ?? "IBM"
     const [startDate, setStartDate] = useState(moment().year(2000).dayOfYear(1).toDate())
     const [endDate, setEndDate] = useState(moment().year(2005).dayOfYear(0).toDate())
     const { data: nodeData, isLoading, isFetching, isError } = useStockSeriesDataRange(symbol, startDate.getFullYear(), endDate.getFullYear())

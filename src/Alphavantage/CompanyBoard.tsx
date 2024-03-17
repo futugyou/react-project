@@ -9,30 +9,21 @@ import { boardI18nStrings, boardItemI18nStrings } from "@/Common/i18n"
 import EmptyChart from '@/Alphavantage/EmptyChart'
 
 import { useCompanyData } from '@/Alphavantage/service'
-import { Header, Link } from "@cloudscape-design/components"
+import { Header, Link, SpaceBetween } from "@cloudscape-design/components"
 import { Company } from "./model"
 import CompanyBoardDetail from "./CompanyBoardDetail"
-import StockSeriesChart from "./StockSeriesChart"
-
-const createRoutePath = (title: string) => {
-    return '/e/news?symbol=' + title
-}
 
 const CompanyBoard = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useCompanyData()
-
     const [items, setItems] = useState([])
-
     const Empty = useMemo(EmptyChart, [])
+
     useEffect(() => {
         if (nodeData && !isError) {
             let d = []
             for (let i = 0; i < nodeData.length; i++) {
                 let rowSpan = 2, columnSpan = 2
                 const e = nodeData[i]
-                if (i == 0) {
-                    rowSpan = 8, columnSpan = 8
-                }
                 d.push({
                     id: i + 1,
                     rowSpan: rowSpan,
@@ -49,18 +40,23 @@ const CompanyBoard = () => {
             renderItem={item => (
                 <BoardItem i18nStrings={boardItemI18nStrings}
                     header={
-                        <Header>
-                            <Link external={true} href={createRoutePath(item.data.Symbol)}>
-                                {item.data.Name}
-                            </Link>
+                        <Header actions={
+                            <SpaceBetween direction="horizontal" size="xs"                            >
+                                <Link external={true} href={'/e/news?symbol=' + (item.data.Symbol)}>
+                                    News
+                                </Link>
+                                <Link external={true} href={'/e/stockSeries?symbol=' + (item.data.Symbol)}>
+                                    Stock
+                                </Link>
+                            </SpaceBetween>
+                        }>
+                            {item.data.Name}
                         </Header>
                     }
                 >
                     <CompanyBoardDetail
                         Date={item.data}
                         FieldsToRemove={["Id", "Name", "Type", "MatchScore"]}>
-                        <StockSeriesChart Symbol={item.data.Symbol}>
-                        </StockSeriesChart>
                     </CompanyBoardDetail>
                 </BoardItem>
             )}

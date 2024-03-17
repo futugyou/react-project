@@ -110,7 +110,7 @@ export const useStockSeriesDataRange = (symbol: string, fromYear: number, toYear
         }
 
         queries.push({
-            queryKey: [keyPerfix + + 'v1/stock?symbol=' + symbol + '&year=' + year],
+            queryKey: [keyPerfix + 'v1/stock?symbol=' + symbol + '&year=' + year],
             queryFn: () => axios(options).then(x => x.data),
             ...config
         })

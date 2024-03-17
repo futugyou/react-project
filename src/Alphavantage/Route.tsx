@@ -60,6 +60,7 @@ export const ChatRoute: RouteDescription = {
             path: "stockSeries",
             display: "StockSeries",
             element: <StockSeriesChart />,
+            show: () => false,
         }, {
             path: "news",
             display: "news",
