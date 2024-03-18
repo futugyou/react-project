@@ -12,7 +12,7 @@
     "start:server": "npx @fluidframework/azure-local-service"
   },
   "dependencies": {
-    "@canvasjs/react-stockcharts": "^1.0.2",
+    "@canvasjs/stockcharts": "^1.7.44",
     "@cloudscape-design/board-components": "^3.0.54",
     "@cloudscape-design/components": "^3.0.576",
     "@cloudscape-design/global-styles": "^1.0.24",

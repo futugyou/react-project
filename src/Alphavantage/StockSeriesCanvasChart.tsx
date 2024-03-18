@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react"
-// @ts-ignore
-import CanvasJSReact from '@canvasjs/react-stockcharts'
+
+import CanvasJSReact from '@/@types/canvasjs/canvasjs.react'
 import moment from 'moment'
 import _ from "lodash"
 
