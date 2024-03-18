@@ -1,13 +1,13 @@
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 // @ts-ignore
 import CanvasJSReact from '@canvasjs/react-stockcharts'
 import moment from 'moment'
+import _ from "lodash"
 
 import { useStockSeriesDataRange } from '@/Alphavantage/service'
 import { StockSeries } from "./model"
-import EmptyChart from "./EmptyChart"
-import _ from "lodash"
+import Loading from "@/Common/Loading"
 
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart
 
@@ -19,13 +19,15 @@ export interface IStockSeriesCanvasChartProps {
 const StockSeriesCanvasChart = (props: IStockSeriesCanvasChartProps) => {
     let searchParams = new URLSearchParams(location.search || "")
     let symbol = searchParams.get("symbol") ?? props.Symbol ?? "IBM"
+    const startDate = moment().year(2000).dayOfYear(1).toDate()
+    const endDate = moment().year(new Date().getFullYear() + 1).dayOfYear(0).toDate()
+
     const [options, setOptions] = useState({})
-    const [startDate, setStartDate] = useState(moment().year(2000).dayOfYear(1).toDate())
-    const [endDate, setEndDate] = useState(moment().year(new Date().getFullYear()).dayOfYear(0).toDate())
     const { data: nodeData, isLoading, isFetching, isError } = useStockSeriesDataRange(symbol, startDate.getFullYear(), endDate.getFullYear())
 
     useEffect(() => {
         if (nodeData && !isError) {
+            let lastDay = new Date()
             var dps1 = [], dps2 = [], dps3 = []
             let data: StockSeries[] = []
             for (const d of nodeData) {
@@ -48,6 +50,7 @@ const StockSeriesCanvasChart = (props: IStockSeriesCanvasChartProps) => {
                 })
                 dps2.push({ x: new Date(d.Time), y: Number(d.Volume) })
                 dps3.push({ x: new Date(d.Time), y: Number(d.Close) })
+                lastDay = d.Time
             }
 
             setOptions(
@@ -59,7 +62,12 @@ const StockSeriesCanvasChart = (props: IStockSeriesCanvasChartProps) => {
                     }],
                     rangeSelector: {
                         enabled: true,
-                        selectedRangeButtonIndex: 2,
+                        // selectedRangeButtonIndex: 2,
+                        inputFields: {
+                            startValue: moment(lastDay).add(-7, "day").toDate(),
+                            endValue: new Date(lastDay)
+                        },
+                        verticalAlign: "bottom",
                     },
                     charts: [{
                         axisX: {
@@ -109,9 +117,14 @@ const StockSeriesCanvasChart = (props: IStockSeriesCanvasChartProps) => {
                         }]
                     }],
                     navigator: {
+                        dynamicUpdate: true,
+                        animationEnabled: true,
                         data: [{
                             dataPoints: dps3
                         }],
+                        slider: {
+                            outlineInverted: true,
+                        }
                     }
                 }
             )
@@ -126,7 +139,7 @@ const StockSeriesCanvasChart = (props: IStockSeriesCanvasChartProps) => {
     }
 
     if (isLoading) {
-        return <EmptyChart></EmptyChart>
+        return <Loading></Loading>
     }
 
     return (
