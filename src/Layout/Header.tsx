@@ -28,7 +28,7 @@ const Header = (props: any) => {
         return false
     }, [])
 
-    const items = TotalRouteDescriptions.map(route => {
+    const items = TotalRouteDescriptions.filter(p => p.show && p.show() || !p.show).map(route => {
         return (
             <NavDropdown key={route.display} title={route.display} id={route.display} active={route.checkActive!(location.pathname)}>
                 {

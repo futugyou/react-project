@@ -7,6 +7,7 @@ import { FlowRoute } from '@/Flow/FlowRoute'
 import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
 import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
 import { BoardRoute } from '@/Whiteboards/Route'
+import { BookshelfRoute } from '@/Bookshelf/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
 import { ChatRoute } from '@/Alphavantage/Route'
@@ -27,6 +28,7 @@ export const WhiteRoute: RouteDescription = {
 }
 
 export const TotalRouteDescriptions: RouteDescription[] = [
+    BookshelfRoute,
     ChatRoute,
     WhiteRoute,
     DemoRoute,
