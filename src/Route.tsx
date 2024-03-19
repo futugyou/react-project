@@ -13,7 +13,7 @@ import { TldrawRoute } from '@/Tldraw/Route'
 import { ChatRoute } from '@/Alphavantage/Route'
 import { RouteDescription, ToRouteObject } from './RouteDescription'
 
-const WelcomePage = lazy(() => import('@/Layout/WelcomePage'))
+const WelcomePage = lazy(() => import('@/Layout/Welcome'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
 
 export const WhiteRoute: RouteDescription = {

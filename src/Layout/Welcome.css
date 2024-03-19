@@ -1,0 +1,42 @@
+.welcome-container-bound {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.welcome-container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    gap: 4%;
+    flex-wrap: wrap;
+}
+
+.welcome-item {
+    -webkit-user-select: none;
+    user-select: none;
+    width: 30%;
+    height: 30%;
+    padding: 10px;
+    padding-top: 35px;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    position: relative;
+}
+
+.welcome-item:hover { 
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+}
+
+.welcome-desc {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+}
