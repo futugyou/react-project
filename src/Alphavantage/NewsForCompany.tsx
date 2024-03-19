@@ -23,6 +23,8 @@ const NewsForCompany = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useNewsData(symbol, {})
     const [items, setItems] = useState<News[]>([])
 
+    const headerText = "News" + symbol == "" ? "" : (" for " + symbol)
+
     const HandlePageChange = useCallback((pageIndex: number) => {
         if (1 <= pageIndex && pageIndex <= pagesCount) {
             setPage(pageIndex)
@@ -126,7 +128,7 @@ const NewsForCompany = () => {
                 items={items}
                 loading={isLoading}
                 loadingText="Loading resources"
-                header={<Header counter={"(" + dataCount + ")"}> News for {symbol} </Header>}
+                header={<Header counter={"(" + dataCount + ")"}> {headerText} </Header>}
                 pagination={
                     <Paging Page={page} PageCount={pagesCount} OnPageChange={HandlePageChange} />
                 }
