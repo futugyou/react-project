@@ -1,10 +1,17 @@
 import './EpubReader.css'
 
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import { ReactReader } from 'react-reader'
 
-const EpubReader = (props: any) => {
+export interface IEpubReaderProps {
+    epubcfikey: string
+    url: string | ArrayBuffer
+    title: string
+    children?: React.ReactNode
+}
+
+const EpubReader = (props: IEpubReaderProps) => {
     const [location, setLocation] = useState<any>(null)
     const [firstRenderDone, setFirstRenderDone] = useState(false)
     const renditionRef = useRef<any>(null)
@@ -37,9 +44,9 @@ const EpubReader = (props: any) => {
 
     return (
         <div className={fullWindow ? 'ReaderContainer fix' : 'ReaderContainer'} >
-            {fullWindow && (<div className='ReaderClose' onClick={fullDisplay}>x</div>)}
-            {!fullWindow && (<div className='ReaderClose' onClick={fullDisplay}>+</div>)}
-            <ReactReader key={props.url + fullWindow}
+            {/* {fullWindow && (<div className='ReaderClose' onClick={fullDisplay}>x</div>)}
+            {!fullWindow && (<div className='ReaderClose' onClick={fullDisplay}>+</div>)} */}
+            <ReactReader
                 location={location}
                 locationChanged={locationChanged}
                 epubOptions={{
@@ -50,7 +57,7 @@ const EpubReader = (props: any) => {
                 }}
                 url={props.url}
                 getRendition={rendition => (renditionRef.current = rendition)}
-                title="The book is sourced from the '洛琪希图书馆'"
+                title={props.title}
             />
         </div>
     )

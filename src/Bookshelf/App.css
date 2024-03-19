@@ -1,0 +1,40 @@
+.bookshelf {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+}
+
+.book-list {
+    flex: 0.2;
+    overflow-y: auto;
+}
+
+.book-list.fix {
+    flex: 1;
+}
+
+.book-content {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+}
+
+.list-display-icon {
+    position: fixed;
+    right: 40px;
+    z-index: 6;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-top: 20px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.list-display-icon:hover {
+    color: silver;
+}
