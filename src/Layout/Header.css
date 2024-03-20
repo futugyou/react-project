@@ -13,14 +13,10 @@
     display: flex;
     flex-wrap: wrap;
     padding-left: 20vh;
+    flex: 1;
     list-style: none;
-    flex: 1 1 auto;
-}
-
-@media (max-width: 1024px) {
-    .header-nav {
-        padding-left: 2vh;
-    }
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .header-nav div a {
@@ -56,4 +52,18 @@ div[data-style="variant"] {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .header-nav {
+        padding-left: 2vh;
+    }
+
+    .header-user {
+        margin-right: 5px;
+    }
+}
+
+div[class="dropdown-menu show"] {
+    position: fixed !important;
 }

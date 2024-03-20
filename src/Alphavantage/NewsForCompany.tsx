@@ -23,7 +23,7 @@ const NewsForCompany = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useNewsData(symbol, {})
     const [items, setItems] = useState<News[]>([])
 
-    const headerText = "News" + symbol == "" ? "" : (" for " + symbol)
+    const headerText = "News" + (symbol == "" ? "" : (" for " + symbol))
 
     const HandlePageChange = useCallback((pageIndex: number) => {
         if (1 <= pageIndex && pageIndex <= pagesCount) {
