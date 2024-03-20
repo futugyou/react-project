@@ -135,7 +135,7 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
             additionalFilters={
                 <div className='drop-down-group'>
                     {props.DataTypes.length > 1 && (
-                        <div style={{ width: "300px" }}>
+                        <div className='drop-down-group-item'>
                             <Select
                                 options={props.DataTypes}
                                 selectedOption={selectedDataTypeOption}
@@ -145,7 +145,7 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
                         </div>
                     )}
                     {!props.NoDateGapType && (
-                        <div style={{ width: "300px" }}>
+                        <div className='drop-down-group-item'>
                             <Select
                                 options={TimeIntervals}
                                 selectedOption={selectedTimeIntervalsOption}

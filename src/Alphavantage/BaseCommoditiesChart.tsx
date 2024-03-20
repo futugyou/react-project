@@ -122,7 +122,7 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
             statusType={props.IsLoading ? "loading" : "finished"}
             additionalFilters={
                 <div className='drop-down-group'>
-                    <div style={{ width: "300px" }}>
+                    <div className='drop-down-group-item'>
                         <Select
                             options={props.TimeIntervals}
                             selectedOption={selectedTimeIntervalsOption}
@@ -130,7 +130,7 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
                             onChange={HandleTimeIntervalsChange}
                         />
                     </div>
-                    <div style={{ width: "300px" }}>
+                    <div className='drop-down-group-item'>
                         <Select
                             options={props.UnitTypes}
                             selectedOption={selectedUnitTypesOption}
@@ -138,7 +138,7 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
                             onChange={HandleUnitTypesChange}
                         />
                     </div>
-                    <div>
+                    <div className='drop-down-group-item'>
                         <DateRangePicker
                             StartDate={startDate}
                             SetStartDate={setStartDate}

@@ -2,7 +2,15 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding: 4px;
+    flex-wrap: wrap;
+    /* padding: 4px; */
+}
+
+.drop-down-group-item {
+    width: 280px;
+    height: 36px;
+    display: inline-grid;
+    align-content: flex-end;
 }
 
 .stock-series {
@@ -32,3 +40,17 @@ div[data-style="board-style"] {
     overflow-y: auto;
     /* padding: 0; */
 }
+
+/* 
+@media (max-width: 1024px) {   
+    .drop-down-group:has(> :nth-child(3)) {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .drop-down-group-item:nth-last-child(3) {
+        flex-direction: column;
+    } 
+} 
+*/

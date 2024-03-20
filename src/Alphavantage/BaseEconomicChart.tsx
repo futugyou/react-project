@@ -121,7 +121,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
             statusType={props.IsLoading ? "loading" : "finished"}
             additionalFilters={
                 <div className='drop-down-group'>
-                    <div style={{ width: "300px" }}>
+                    <div className='drop-down-group-item'>
                         <Select
                             options={props.TimeIntervals}
                             selectedOption={selectedTimeIntervalsOption}
@@ -129,7 +129,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                             onChange={HandleTimeIntervalsChange}
                         />
                     </div>
-                    <div style={{ width: "300px" }}>
+                    <div className='drop-down-group-item'>
                         <Select
                             options={props.UnitTypes}
                             selectedOption={selectedUnitTypesOption}
@@ -137,7 +137,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                             onChange={HandleUnitTypesChange}
                         />
                     </div>
-                    <div>
+                    <div className='drop-down-group-item'>
                         <DateRangePicker
                             StartDate={startDate}
                             SetStartDate={setStartDate}
