@@ -65,7 +65,7 @@ const Header = (props: any) => {
     return (
         <div className='header-container'>
             <div className="header-nav">
-                <Nav variant="pills" activeKey={activeKey} onSelect={handleSelect}>
+                <Nav data-style="variant" variant="pills" activeKey={activeKey} onSelect={handleSelect}>
                     <Nav.Item>
                         <Nav.Link eventKey="/home" href="/" title="Home">
                             Home

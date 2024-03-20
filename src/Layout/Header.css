@@ -17,12 +17,14 @@
     flex: 1 1 auto;
 }
 
-.header-nav div {
-    margin-right: 20px;
+@media (max-width: 1024px) {
+    .header-nav {
+        padding-left: 2vh;
+    }
 }
 
 .header-nav div a {
-    text-decoration: unset;    
+    text-decoration: unset;
     text-transform: capitalize;
 }
 
@@ -47,4 +49,11 @@
     display: flex;
     align-items: center;
     margin-right: 50px;
+}
+
+div[data-style="variant"] {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
