@@ -10,7 +10,7 @@
     height: 100%;
     margin: auto;
     display: flex;
-    gap: 4%;
+    gap: 2%;
     flex-wrap: wrap;
 }
 
@@ -29,8 +29,37 @@
     position: relative;
 }
 
-.welcome-item:hover { 
+.welcome-item:hover {
     box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+}
+
+@media (max-width: 768px) {
+    .welcome-item {
+        width: 100%;
+        height: auto;
+    }
+
+    .welcome-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .welcome-item {
+        width: 49%;
+        height: auto;
+    }
+    
+    .welcome-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .welcome-item {
+        width: 32%;
+        height: 32%;
+    }
 }
 
 .welcome-desc {

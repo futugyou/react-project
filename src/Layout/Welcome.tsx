@@ -83,7 +83,7 @@ const Welcome = () => {
                     alt={i.title}
                 />
                 <div className="welcome-desc">
-                    <Link href={i.url} external={true} fontSize="heading-xl">{i.title}</Link>
+                    <Link href={i.url} external={true} fontSize="heading-m">{i.title}</Link>
                 </div>
             </div>
         )
