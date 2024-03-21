@@ -8,15 +8,17 @@ import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
-import Loading from './Common/Loading'
-
-import { AuthProvider, authService } from './Auth/index'
+import microApp from '@micro-zoe/micro-app'
 import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
 import { persistQueryClient } from '@tanstack/react-query-persist-client'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
-import { router } from './Route'
 
-import microApp from '@micro-zoe/micro-app'
+import Loading from '@/Common/Loading'
+import { ComponentProvider } from '@/Common/ComponentProvider'
+import { AuthProvider, authService } from '@/Auth/index'
+
+import { router } from '@/Route'
+
 
 microApp.start({
   'keep-alive': true,
@@ -58,9 +60,11 @@ ReactDOM.createRoot(document.getElementById('openai-web-root') as HTMLElement).r
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loading />}>
         <AuthProvider authService={authService} >
-          <RouterProvider router={router} />
-          <Analytics></Analytics>
-          <SpeedInsights></SpeedInsights>
+          <ComponentProvider >
+            <RouterProvider router={router} />
+            <Analytics></Analytics>
+            <SpeedInsights></SpeedInsights>
+          </ComponentProvider>
         </AuthProvider>
       </Suspense>
     </QueryClientProvider>
