@@ -1,18 +1,37 @@
+
 import React, { createContext, ReactElement, ReactNode, useContext, useMemo, useState } from 'react'
+import _ from 'lodash'
+
+class ComponentProviderService {
+    props: ComponentSetting
+    constructor(props: ComponentSetting) {
+        this.props = props
+    }
+
+    getSetting(): ComponentSetting {
+        var setting = JSON.parse(window.localStorage.getItem('component-setting') || '{}') as ComponentSetting
+        if (setting.select) {
+            return setting
+        }
+        return this.props
+    }
+
+    setSetting(key: string, value: string) {
+        var setting = JSON.parse(window.localStorage.getItem('component-setting') || '{}') as ComponentSetting
+        _.set(setting, key, value)
+        window.localStorage.setItem('component-setting', JSON.stringify(setting))
+    }
+}
 
 interface ComponentProps {
-    setting: ComponentSetting,
-    setSetting: React.Dispatch<React.SetStateAction<ComponentSetting>>,
+    settingService: ComponentProviderService,
 }
 
 export const initialSetting: ComponentSetting = {
     select: "custom"
 }
 
-const ComponentContext = createContext<ComponentProps>({
-    setting: initialSetting,
-    setSetting: () => { },
-})
+const ComponentContext = createContext<ComponentProps>({} as ComponentProps)
 
 export const useComponent = (): ComponentProps => {
     const context = useContext(ComponentContext)
@@ -32,14 +51,11 @@ interface ComponentProviderProps {
 
 export const ComponentProvider = (props: ComponentProviderProps): ReactElement => {
     const { children } = props
-    const [setting, setSetting] = useState(initialSetting)
-    const contextValue = useMemo(() => {
-        return { setting, setSetting }
-    }, [setting, setSetting])
 
     return (
-        <ComponentContext.Provider value={contextValue}>
+        <ComponentContext.Provider value={{ settingService: new ComponentProviderService(initialSetting) }}>
             {children}
         </ComponentContext.Provider>
     )
 }
+
