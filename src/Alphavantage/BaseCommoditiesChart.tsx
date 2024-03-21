@@ -2,7 +2,7 @@ import './chart.css'
 
 import React, { useEffect, useState, useMemo, useCallback } from "react"
 
-import AreaChart from "@cloudscape-design/components/area-chart"
+import AreaChart from "@/Common/AreaChart"
 import { Select, SelectProps } from "@cloudscape-design/components"
 import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
 
@@ -100,7 +100,7 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
             series={series}
             i18nStrings={
                 {
-                    xTickFormatter: e => {
+                    xTickFormatter: (e: any) => {
                         if (e instanceof Date) {
                             if (selectedTimeIntervalsOption.value == "monthly") {
                                 return moment(e).format("yyyy-MM")
@@ -114,13 +114,9 @@ const BaseCommoditiesChart = (props: IBaseCommoditiesChartProp) => {
                     yTickFormatter: numberFormatter
                 }
             }
-            detailPopoverSize="large"
-            xScaleType="time"
             yTitle={yTitle}
-            empty={Empty}
-            noMatch={NoMatch}
-            statusType={props.IsLoading ? "loading" : "finished"}
-            additionalFilters={
+            isLoading={props.IsLoading}
+            filters={
                 <div className='drop-down-group'>
                     <div className='drop-down-group-item'>
                         <Select
