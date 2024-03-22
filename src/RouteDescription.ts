@@ -11,6 +11,7 @@ export interface RouteDescription {
     checkActive?: (key: string) => boolean
     loader?: ({ params, request }: any) => Promise<any>
     shouldRevalidate?: () => boolean
+    archived?: boolean
     // only one layer
     children?: RouteDescription[]
 }

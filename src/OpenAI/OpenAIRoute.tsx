@@ -13,6 +13,7 @@ export const OpenAIRoute: RouteDescription = {
     display: "OpenAI",
     path: "/openai",
     checkActive: (path: string) => path.startsWith('/openai'),
+    archived: true,
     children: [
         {
             path: "",

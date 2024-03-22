@@ -15,11 +15,14 @@ const Header = (props: any) => {
         setActiveKey(eventKey)
     }
 
+    const checkActive = (path: string) => path.startsWith('/basic') || path.startsWith('/openai')
 
-    const items = TotalRouteDescriptions.filter(p => p.show && p.show() || !p.show).map(route => {
-        return (
-            <NavDropdown key={route.display} title={route.display} id={route.display} active={route.checkActive!(location.pathname)}>
-                {
+    const additionalItems =
+        <NavDropdown title={"Archived"} id={"archived"} active={checkActive(location.pathname)} >
+            {TotalRouteDescriptions
+                .filter(p => p.archived)
+                .filter(p => p.show && p.show() || !p.show)
+                .map(route =>
                     route.children?.filter(p => p.path)
                         .filter(p => p.show && p.show() || !p.show).map(p => {
                             let href = p.href
@@ -32,12 +35,36 @@ const Header = (props: any) => {
                                 display = p.path
                             }
                             return (
-                                <NavDropdown.Item key={href} eventKey={href} href={href} >{display}</NavDropdown.Item>
+                                <NavDropdown.Item key={href} eventKey={href} href={href} active={href.startsWith(location.pathname)}>{display}</NavDropdown.Item>
                             )
-                        })}
-            </NavDropdown>
-        )
-    })
+                        })
+                )}
+        </NavDropdown>
+
+    const items = TotalRouteDescriptions
+        .filter(p => p.archived == undefined || p.archived == false)
+        .filter(p => p.show && p.show() || !p.show).map(route => {
+            return (
+                <NavDropdown key={route.display} title={route.display} id={route.display} active={route.checkActive!(location.pathname)}>
+                    {
+                        route.children?.filter(p => p.path)
+                            .filter(p => p.show && p.show() || !p.show).map(p => {
+                                let href = p.href
+                                if (!href) {
+                                    href = route.path + "/" + p.path
+                                }
+
+                                let display = p.display
+                                if (!display) {
+                                    display = p.path
+                                }
+                                return (
+                                    <NavDropdown.Item key={href} eventKey={href} href={href} >{display}</NavDropdown.Item>
+                                )
+                            })}
+                </NavDropdown>
+            )
+        })
 
     useEffect(() => {
         const path = location.pathname
@@ -45,6 +72,8 @@ const Header = (props: any) => {
             setActiveKey('/home')
         } else if (path.startsWith('/flow')) {
             setActiveKey('/flow')
+        } else if (path.startsWith('/basic') || path.startsWith('/openai')) {
+            setActiveKey('/archived')
         } else {
             setActiveKey(path)
         }
@@ -70,6 +99,7 @@ const Header = (props: any) => {
                         </Nav.Link>
                     </Nav.Item>
                     {items}
+                    {additionalItems}
                 </Nav>
             </div>
             <div className="header-user">

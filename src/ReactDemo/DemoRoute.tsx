@@ -17,7 +17,8 @@ const PlateEditor = lazy(() => import('@/Plate/PlateEditor'))
 export const DemoRoute: RouteDescription = {
     display: "Basic",
     path: "/basic",
-    element: <DemoPanel />,
+    element: <DemoPanel />,    
+    archived: true,
     checkActive: (path: string) => path.startsWith('/basic'),
     children: [
         {

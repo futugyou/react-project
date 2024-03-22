@@ -16,10 +16,11 @@
     text-align: right;
 }
 
-.dropdown-menu {
+ul[class="dropdown-menu show"] il[class="dropdown-item"] {
     max-height: 50vh;
     overflow-y: auto;
     overflow-x: clip;
+    width: 100%
 }
 
 .opertion-container {
