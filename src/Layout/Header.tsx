@@ -64,11 +64,6 @@ const Header = (props: any) => {
                             Vue
                         </Nav.Link>
                     </Nav.Item>
-                    {/* <Nav.Item>
-                        <Nav.Link eventKey="/nextjs" href="/nextjs" title="Nextjs">
-                            Nextjs
-                        </Nav.Link>
-                    </Nav.Item> */}
                     <Nav.Item>
                         <Nav.Link eventKey="/flow" href="/flow" title="Flow">
                             Flow

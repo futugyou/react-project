@@ -22,7 +22,7 @@ export const OpenAIRoute: RouteDescription = {
         {
             path: "examples",
             element: <GuardedRoute><Examples /></GuardedRoute>,
-            loader: examplesLoader,
+            // loader: examplesLoader,
             shouldRevalidate: () => false,
         }, {
             path: "playground",

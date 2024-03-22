@@ -1,12 +1,13 @@
 import './Examples.css'
 
 import { useState, useEffect, lazy } from "react"
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
 import Dropdown, { DropdownItem } from "@/Common/Dropdown"
 import MiniModal from '@/Common/MiniModal'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
+import set from '../Services/Example'
 
 const ExampleDetail = lazy(() => import('./ExampleDetail'))
 const ExampleEdit = lazy(() => import('./ExampleEdit'))
@@ -26,27 +27,42 @@ const ModalExampleEdit = (props: any) => {
     )
 }
 
-const Examples = (props: any) => {
-    let loaderdata = useLoaderData() as ExampleModel[]
+const Examples = (props: any) => { 
     const navigate = useNavigate()
 
     const [editMode, setEditMode] = useState(false)
-    const [exampleList, setExampleList] = useState(loaderdata)
+    const [exampleList, setExampleList] = useState([] as ExampleModel[])
     const [exampleData, setExampleData] = useState<ExampleModel>(exampleList.length > 1 ? exampleList[0] : DefaultExampleModel)
     const [searchFilter, setSearchFilter] = useState({ key: "", category: "chooseAll" })
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        const list = loaderdata
-            .filter(p => p.tags == undefined || p.tags.findIndex(element => {
-                return element.toLowerCase() === searchFilter.category.toLowerCase()
-                    || searchFilter.category === "chooseAll";
-            }) >= 0)
-            .filter(p => searchFilter.key === ""
-                || p.title.toLowerCase().includes(searchFilter.key.toLowerCase())
-                || p.description.toLowerCase().includes(searchFilter.key.toLowerCase()))
+        const getAllExamples = async () => {
+            let lista = await set.getAllExamples()
+            lista = lista.filter((p: ExampleModel) => p.title != undefined && p.title.length > 0)
+                .sort((a: ExampleModel, b: ExampleModel) => {
+                    if (a.key > b.key) {
+                        return 1
+                    }
+                    if (a.key < b.key) {
+                        return -1
+                    }
+                    return 0
+                })
 
-        setExampleList(list)
+            const list = lista
+                .filter((p: ExampleModel) => p.tags == undefined || p.tags.findIndex(element => {
+                    return element.toLowerCase() === searchFilter.category.toLowerCase()
+                        || searchFilter.category === "chooseAll";
+                }) >= 0)
+                .filter((p: ExampleModel) => searchFilter.key === ""
+                    || p.title.toLowerCase().includes(searchFilter.key.toLowerCase())
+                    || p.description.toLowerCase().includes(searchFilter.key.toLowerCase()))
+
+            setExampleList(list)
+        }
+
+        getAllExamples()
     }, [searchFilter])
 
     const categories: DropdownItem[] = [
