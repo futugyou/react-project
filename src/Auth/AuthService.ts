@@ -85,6 +85,11 @@ export class AuthService<TIDToken = JWTIDToken> {
     if (split.length < 2) {
       return null
     }
+
+    if (split[0].endsWith("/gitalk")) {
+      return null
+    }
+
     const pairs = split[1].split('&')
     for (const pair of pairs) {
       const [key, value] = pair.split('=')

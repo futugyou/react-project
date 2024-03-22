@@ -14,6 +14,7 @@ import { ChatRoute } from '@/Alphavantage/Route'
 import { RouteDescription, ToRouteObject } from './RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/Welcome'))
+const Comment = lazy(() => import('@/Common/Comment'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
 
 export const WhiteRoute: RouteDescription = {
@@ -39,6 +40,10 @@ const childrenRoute: RouteObject[] = [
     {
         index: true,
         element: <WelcomePage />,
+    },
+    {
+        path: "/gitalk",
+        element: <Comment />,
     },
     FlowRoute,
     ...TotalRouteDescriptions.map(p => ToRouteObject(p)),
