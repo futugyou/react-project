@@ -15,14 +15,6 @@ const Header = (props: any) => {
         setActiveKey(eventKey)
     }
 
-    const checkActive = useCallback((t: string) => {
-        const path = location.pathname
-        if (t == 'openai') {
-            return path.startsWith('/openai')
-        }
-
-        return false
-    }, [])
 
     const items = TotalRouteDescriptions.filter(p => p.show && p.show() || !p.show).map(route => {
         return (
@@ -56,7 +48,7 @@ const Header = (props: any) => {
         } else {
             setActiveKey(path)
         }
-    }, [location, checkActive])
+    }, [location])
 
     return (
         <div className='header-container'>
@@ -82,10 +74,6 @@ const Header = (props: any) => {
                             Flow
                         </Nav.Link>
                     </Nav.Item>
-                    <NavDropdown title="OpenAI" id="OpenAI" active={checkActive('openai')}>
-                        <NavDropdown.Item eventKey="/openai/examples" href="/openai/examples" title="Flow">Examples</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/openai/playground" href="/openai/playground" title="Flow">Playground</NavDropdown.Item>
-                    </NavDropdown>
                     {items}
                 </Nav>
             </div>

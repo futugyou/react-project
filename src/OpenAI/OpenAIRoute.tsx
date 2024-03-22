@@ -18,6 +18,12 @@ export const OpenAIRoute: RouteDescription = {
             path: "",
             index: true,
             element: <GuardedRoute><Examples /></GuardedRoute>,
+        },
+        {
+            path: "examples",
+            element: <GuardedRoute><Examples /></GuardedRoute>,
+            loader: examplesLoader,
+            shouldRevalidate: () => false,
         }, {
             path: "playground",
             element: <GuardedRoute><Playground /></GuardedRoute>,
@@ -29,12 +35,7 @@ export const OpenAIRoute: RouteDescription = {
             element: <GuardedRoute><Playground /></GuardedRoute>,
             loader: playgroundLoader,
             shouldRevalidate: () => false,
-        },
-        {
-            path: "examples",
-            element: <GuardedRoute><Examples /></GuardedRoute>,
-            loader: examplesLoader,
-            shouldRevalidate: () => false,
+            show: () => false,
         },
     ]
 }
