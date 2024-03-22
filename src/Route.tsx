@@ -32,6 +32,7 @@ export const TotalRouteDescriptions: RouteDescription[] = [
     ChatRoute,
     WhiteRoute,
     DemoRoute,
+    OpenAIRoute,
 ]
 
 const childrenRoute: RouteObject[] = [
@@ -42,7 +43,6 @@ const childrenRoute: RouteObject[] = [
     FlowRoute,
     ...TotalRouteDescriptions.map(p => ToRouteObject(p)),
     ...MicroAppRoute,
-    ...OpenAIRoute,
 ]
 
 const router = createBrowserRouter([

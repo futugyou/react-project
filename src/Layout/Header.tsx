@@ -18,11 +18,7 @@ const Header = (props: any) => {
     const checkActive = useCallback((t: string) => {
         const path = location.pathname
         if (t == 'openai') {
-            if (path == '/examples' || path == '/playground') {
-                return true
-            } else {
-                return false
-            }
+            return path.startsWith('/openai')
         }
 
         return false
@@ -87,8 +83,8 @@ const Header = (props: any) => {
                         </Nav.Link>
                     </Nav.Item>
                     <NavDropdown title="OpenAI" id="OpenAI" active={checkActive('openai')}>
-                        <NavDropdown.Item eventKey="/examples" href="/examples" title="Flow">Examples</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="/playground" href="/playground" title="Flow">Playground</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/openai/examples" href="/openai/examples" title="Flow">Examples</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="/openai/playground" href="/openai/playground" title="Flow">Playground</NavDropdown.Item>
                     </NavDropdown>
                     {items}
                 </Nav>
