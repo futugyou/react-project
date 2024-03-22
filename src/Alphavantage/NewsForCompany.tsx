@@ -7,7 +7,8 @@ import { News } from "./model"
 import Paging from "@/Common/Paging"
 
 import { Header, Badge, Link, Cards, SpaceBetween, TextFilter } from "@cloudscape-design/components"
-
+// @ts-ignore
+import Microlink from '@microlink/react'
 import _ from "lodash"
 import moment from "moment"
 
@@ -68,13 +69,13 @@ const NewsForCompany = () => {
                     sections: [
                         {
                             id: "Image",
-                            content: (item) => (
-                                <img
-                                    style={{ width: "100%" }}
-                                    src={item.BannerImage}
-                                    alt=""
-                                />
-                            )
+                            content: (item: News) => {
+                                if (item.BannerImage) {
+                                    return <img style={{ width: "100%" }} src={item.BannerImage} alt="" />
+                                } else {
+                                    return <Microlink url={item.URL} />
+                                }
+                            },
                         },
                         {
                             id: "TimePublished",
