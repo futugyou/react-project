@@ -3,8 +3,8 @@ import { RouteObject } from 'react-router-dom'
 export interface RouteDescription {
     key?: string
     index?: boolean
-    path?: string
-    href?: string
+    path: string
+    // href?: string
     display?: string
     show?: (key?: string) => boolean
     element?: React.ReactNode

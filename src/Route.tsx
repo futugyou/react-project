@@ -18,7 +18,7 @@ const Comment = lazy(() => import('@/Common/Comment'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
 
 export const WhiteRoute: RouteDescription = {
-    display: "Dashboard",
+    display: "Whiteboard",
     path: "/w",
     checkActive: (path: string) => path.startsWith('/w'),
     children: [

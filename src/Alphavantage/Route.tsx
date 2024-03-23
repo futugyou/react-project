@@ -15,7 +15,7 @@ const EconomicPanel = lazy(() => import('./EconomicPanel'))
 const NewsForCompany = lazy(() => import('./NewsForCompany'))
 
 export const ChatRoute: RouteDescription = {
-    display: "Economic Data",
+    display: "Economic",
     path: "/e",
     element: <EconomicPanel />,
     checkActive: (path: string) => path.startsWith('/e'),
@@ -30,7 +30,7 @@ export const ChatRoute: RouteDescription = {
             element: <CompanyBoard />,
         }, {
             path: "news",
-            display: "news",
+            display: "News",
             element: <NewsForCompany />,
         }, {
             path: "economic",
