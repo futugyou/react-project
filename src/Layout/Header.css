@@ -65,4 +65,8 @@
     .header-nav {
         justify-content: flex-start;
     }
+
+    .header-user {
+        margin-right: 0px;
+    }
 }

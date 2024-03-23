@@ -40,8 +40,8 @@
 }
 
 .menu { 
-    width: 17%;
-    min-width: 100px;
+    width: 16%;
+    min-width: 120px;
     text-align: center;
     position: relative;
 }

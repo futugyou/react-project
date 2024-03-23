@@ -1,13 +1,24 @@
 import styles from './HeaderMenu.module.css'
 
-import React, { useState, useEffect, useCallback } from "react"
-import { useLocation } from "react-router-dom"
+import React from "react"
+import { Overflow, OverflowItem } from "@fluentui/react-components"
 
-import { RouteDescription, ToRouteObject } from '@/RouteDescription'
+import { RouteDescription } from '@/RouteDescription'
 
 export interface IHeaderMenuProps {
     Routes: RouteDescription[]
 }
+
+const staticRouteData = [{
+    display: "Home",
+    path: "/",
+}, {
+    display: "Vue",
+    path: "/vue",
+}, {
+    display: "Flow",
+    path: "/flow",
+}]
 
 const HeaderMenu = (props: IHeaderMenuProps) => {
 
@@ -25,11 +36,19 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
     }
 
     const checkActiveStatic = (path: string, pathname: string) => {
-        if (pathname == '/' && path == '/home') {
+        if (pathname == '/' && path == '/') {
             return true
         }
-        return pathname.startsWith(path)
+        return path != '/' && pathname.startsWith(path)
     }
+
+    const staticRoute = staticRouteData.map(route =>
+        <OverflowItem key={route.display} id={route.display}>
+            <li className={styles.menu} >
+                <a href={route.path} data-active={checkActiveStatic(route.path, location.pathname)}>{route.display}</a>
+            </li>
+        </OverflowItem>
+    )
 
     const archivedRoute = props.Routes
         .filter(p => p.archived)
@@ -40,72 +59,68 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
     }
 
     const additionalItems =
-        <li key={"Archived"} id={"archived"} className={styles.menu}  >
-            <a href="#" data-active={checkArchivedActive(location.pathname)}>Archived</a>
-            <div className={styles.sub}>
-                {archivedRoute
-                    .map(route =>
-                        route.children?.filter(p => p.path)
-                            .filter(p => p.show && p.show() || !p.show).map(p => {
-                                let href = route.path + "/" + p.path
-                                let display = p.display
-                                if (!display) {
-                                    display = p.path
-                                }
-                                return (
-                                    <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
-                                )
-                            })
-                    )}
-            </div>
-        </li>
-
+        <OverflowItem key={"Archived"} id={"archived"}>
+            <li key={"Archived"} id={"archived"} className={styles.menu}  >
+                <a href="#" data-active={checkArchivedActive(location.pathname)}>Archived</a>
+                <div className={styles.sub}>
+                    {archivedRoute
+                        .map(route =>
+                            route.children?.filter(p => p.path)
+                                .filter(p => p.show && p.show() || !p.show).map(p => {
+                                    let href = route.path + "/" + p.path
+                                    let display = p.display
+                                    if (!display) {
+                                        display = p.path
+                                    }
+                                    return (
+                                        <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
+                                    )
+                                })
+                        )}
+                </div>
+            </li>
+        </OverflowItem>
 
     const items =
         props.Routes
             .filter(p => p.archived == undefined || p.archived == false)
             .filter(p => p.show && p.show() || !p.show).map(route => {
                 return (
-                    <li key={route.display} className={styles.menu} >
-                        <a href="#" data-active={checkActive(route, location.pathname)}>{route.display}</a>
-                        {route.children && (
-                            <div className={styles.sub}>
-                                {
-                                    route.children?.filter(p => p.path)
-                                        .filter(p => p.show && p.show() || !p.show).map(p => {
-                                            let href = route.path + "/" + p.path
-                                            let display = p.display
-                                            if (!display) {
-                                                display = p.path
-                                            }
-                                            return (
-                                                <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
-                                            )
-                                        })
-                                }
-                            </div>
-                        )}
-
-
-                    </li>
+                    <OverflowItem key={route.display} id={route.display!}>
+                        <li key={route.display} className={styles.menu} >
+                            <a href="#" data-active={checkActive(route, location.pathname)}>{route.display}</a>
+                            {route.children && (
+                                <div className={styles.sub}>
+                                    {
+                                        route.children?.filter(p => p.path)
+                                            .filter(p => p.show && p.show() || !p.show).map(p => {
+                                                let href = route.path + "/" + p.path
+                                                let display = p.display
+                                                if (!display) {
+                                                    display = p.path
+                                                }
+                                                return (
+                                                    <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
+                                                )
+                                            })
+                                    }
+                                </div>
+                            )}
+                        </li>
+                    </OverflowItem>
                 )
             })
 
-    return (<div className={styles.container}>
-        <ul className={styles.menuul} >
-            <li className={styles.menu} >
-                <a href="/" data-active={checkActiveStatic("/home", location.pathname)}>Home</a>
-            </li>
-            <li className={styles.menu} >
-                <a href="/vue" data-active={checkActiveStatic("/vue", location.pathname)}>Vue</a>
-            </li>
-            <li className={styles.menu} >
-                <a href="/flow" data-active={checkActiveStatic("/flow", location.pathname)}>Flow</a>
-            </li>
-            {items}
-            {additionalItems}
-        </ul>
-    </div>)
+    return (
+        <Overflow>
+            <div className={styles.container}>
+                <ul className={styles.menuul} >
+                    {staticRoute}
+                    {items}
+                    {additionalItems}
+                </ul>
+            </div>
+        </Overflow>)
 }
 
 export default HeaderMenu
