@@ -35,11 +35,7 @@ const DemoPanel = (props: any) => {
 
     const liList = DemoRoute.children?.filter(p => p.path)
         .filter(p => p.show && p.show() || !p.show).map(p => {
-            let href = p.href
-            if (!href) {
-                href = DemoRoute.path + "/" + p.path
-            }
-
+            let href = DemoRoute.path + "/" + p.path
             let display = p.display
             if (!display) {
                 display = p.path
