@@ -39,9 +39,9 @@
     color: #fff;
 }
 
-.menu {
-    flex: 1;
+.menu { 
     width: 17%;
+    min-width: 100px;
     text-align: center;
     position: relative;
 }
@@ -82,4 +82,10 @@
 
 .menu .sub a[data-active="true"] {
     color: #f72e61;
+}
+
+@media (max-width: 768px) {
+    .menuul {
+        justify-content: flex-start;
+    }
 }

@@ -1,9 +1,11 @@
 .user-name {
     cursor: pointer;
-    border: 1px solid #c5c5d2;
-    padding: 10px;
-    border-radius: 8px;
+    /* border: 1px solid #c5c5d2;
+    border-radius: 8px; */
+    padding: 0px 10px;
+    overflow: hidden;
     background-color: #d9efee;
+    z-index: 1;
 }
 
 .user-name:hover {

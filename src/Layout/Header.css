@@ -13,7 +13,8 @@
     align-content: center;
     display: flex;
     flex-wrap: wrap;
-    flex: 1;
+    width: calc(100% - 100px);
+    /* flex: 1; */
     list-style: none;
     /* overflow-x: auto;
     overflow-y: hidden; */
@@ -44,16 +45,16 @@
 }
 
 .header-user {
+    width: 100px;
     display: flex;
     align-items: center;
     margin-right: 50px;
-    overflow: hidden;
 }
 
 @media (max-width: 1024px) {
-    .header-nav {
+    /* .header-nav {
         padding-left: 2vh;
-    }
+    } */
 
     .header-user {
         margin-right: 5px;
