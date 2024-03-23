@@ -4,13 +4,13 @@ import React    from "react"
 import { TotalRouteDescriptions } from '@/Route'
 import { User } from "@/User/User"
 
-import HeaderNav from './HeaderNav'
+import HeaderMenu from './HeaderMenu'
 
 const Header = (props: any) => {
     return (
         <div className='header-container'>
             <div className="header-nav">
-                <HeaderNav Routes={TotalRouteDescriptions}></HeaderNav>
+                <HeaderMenu Routes={TotalRouteDescriptions}></HeaderMenu>
             </div>
             <div className="header-user">
                 <User></User>

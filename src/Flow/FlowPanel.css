@@ -9,8 +9,8 @@
 
 .flow-panel-controller {
     position: fixed;
-    top: 5px;
-    left: 15px;
+    top: 0;
+    left: 0;
     cursor: pointer;
     background-color: #dff4f4;
     border-width: 1px;

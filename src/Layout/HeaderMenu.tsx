@@ -24,6 +24,13 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         return pathname.startsWith(path)
     }
 
+    const checkActiveStatic = (path: string, pathname: string) => {
+        if (pathname == '/' && path == '/home') {
+            return true
+        }
+        return pathname.startsWith(path)
+    }
+
     const archivedRoute = props.Routes
         .filter(p => p.archived)
         .filter(p => p.show && p.show() || !p.show)
@@ -86,6 +93,15 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
 
     return (<div className={styles.container}>
         <ul className={styles.menuul} >
+            <li className={styles.menu} >
+                <a href="/" data-active={checkActiveStatic("/home", location.pathname)}>Home</a>
+            </li>
+            <li className={styles.menu} >
+                <a href="/vue" data-active={checkActiveStatic("/vue", location.pathname)}>Vue</a>
+            </li>
+            <li className={styles.menu} >
+                <a href="/flow" data-active={checkActiveStatic("/flow", location.pathname)}>Flow</a>
+            </li>
             {items}
             {additionalItems}
         </ul>
