@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 export interface ISideMenuProps {
     Routes: RouteDescription[]
+    DefaultExpanded?: boolean
 }
 
 const SideMenu = (props: ISideMenuProps) => {
@@ -15,9 +16,10 @@ const SideMenu = (props: ISideMenuProps) => {
     const item = props.Routes
         .filter(p => p.show && p.show() || !p.show).map(route => {
             return ({
-                type: "link-group",
+                type: "expandable-link-group",
                 text: route.display,
                 href: route.path,
+                defaultExpanded: props.DefaultExpanded == undefined ? true : props.DefaultExpanded,
                 items: route.children == undefined ? [] :
                     route.children.filter(p => p.path)
                         .filter(p => p.show && p.show() || !p.show).map(p => {
@@ -42,7 +44,7 @@ const SideMenu = (props: ISideMenuProps) => {
     }, [activeHref])
 
     return (
-        <SideNavigation data-style-nowrap
+        <SideNavigation data-style-nowrap data-style-font-size-16
             activeHref={activeHref}
             // header={{ href: "#/", text: "Service name" }}
             onFollow={event => {
