@@ -3,8 +3,7 @@
 }
 
 .react-demo-container .left-menu {
-    flex: 1 1 10%;
-    padding: 50px
+    flex: 1 1 10%; 
 }
 
 .react-demo-container .right-content {
