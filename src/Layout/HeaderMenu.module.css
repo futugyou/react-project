@@ -25,7 +25,7 @@
 }
 
 .menuul a:hover {
-    background-color: #fc4170;
+    background-color: #881798;
 }
 
 .menuul a[data-active="true"] {
@@ -82,7 +82,8 @@
 }
 
 .menu .sub a[data-active="true"] {
-    color: #f72e61;
+    color: #b55fc1;
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {

@@ -139,13 +139,17 @@ ul {
 }
 
 .sidebar-menu-icon {
-  position: absolute;
-  top: 70px;
-  left: 1vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 50px;
-  width: 70px !important;
-  padding: 5px;
+  width: 50px;
   z-index: 99;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-menu-icon:hover {
@@ -168,4 +172,12 @@ ul {
   margin-top: 0.25rem;
   display: block;
   padding: 0;
+}
+
+*[data-style-nowrap] {
+  white-space: pre !important;
+}
+
+*[data-style-font-size-18] > *  {
+  font-size: 18px !important;
 }
