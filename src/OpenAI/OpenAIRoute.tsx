@@ -16,22 +16,27 @@ export const OpenAIRoute: RouteDescription = {
     archived: true,
     children: [
         {
+            display: "",
             path: "",
             index: true,
             element: <GuardedRoute><Examples /></GuardedRoute>,
+            show: () => false,
         },
         {
+            display: "Examples",
             path: "examples",
             element: <GuardedRoute><Examples /></GuardedRoute>,
             // loader: examplesLoader,
             shouldRevalidate: () => false,
         }, {
+            display: "Playground",
             path: "playground",
             element: <GuardedRoute><Playground /></GuardedRoute>,
             loader: playgroundLoader,
             shouldRevalidate: () => false,
         },
         {
+            display: "Playground",
             path: "playground/p/:parameter",
             element: <GuardedRoute><Playground /></GuardedRoute>,
             loader: playgroundLoader,

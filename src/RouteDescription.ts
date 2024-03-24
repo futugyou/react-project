@@ -4,8 +4,7 @@ export interface RouteDescription {
     key?: string
     index?: boolean
     path: string
-    // href?: string
-    display?: string
+    display: string
     show?: (key?: string) => boolean
     element?: React.ReactNode
     checkActive?: (key: string) => boolean

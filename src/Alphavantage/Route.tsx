@@ -19,52 +19,53 @@ export const ChatRoute: RouteDescription = {
     path: "/e",
     element: <EconomicPanel />,
     checkActive: (path: string) => path.startsWith('/e'),
-    children: [
-        {
-            path: "",
-            index: true,
-            element: <CompanyBoard />,
-        }, {
-            path: "company",
-            display: "Company",
-            element: <CompanyBoard />,
-        }, {
-            path: "news",
-            display: "News",
-            element: <NewsForCompany />,
-        }, {
-            path: "economic",
-            display: "Economic",
-            element: <EconomicChart />,
-        }, {
-            path: "commodities",
-            display: "Commodities",
-            element: <CommoditiesChart />,
-        }, {
-            path: "balance",
-            display: "Balance",
-            element: <BalanceChart />,
-        }, {
-            path: "cash",
-            display: "Cash",
-            element: <CashChart />,
-        }, {
-            path: "earnings",
-            display: "Earnings",
-            element: <EarningsChart />,
-        }, {
-            path: "income",
-            display: "Income",
-            element: <IncomeChart />,
-        }, {
-            path: "expected",
-            display: "Expected",
-            element: <ExpectedChart />,
-        }, {
-            path: "stockSeries",
-            display: "StockSeries",
-            element: <StockSeriesChart />,
-            show: () => false,
-        },
+    children: [{
+        display: "",
+        path: "",
+        index: true,
+        element: <CompanyBoard />,
+        show: () => false,
+    }, {
+        path: "company",
+        display: "Company",
+        element: <CompanyBoard />,
+    }, {
+        path: "news",
+        display: "News",
+        element: <NewsForCompany />,
+    }, {
+        path: "economic",
+        display: "Economic",
+        element: <EconomicChart />,
+    }, {
+        path: "commodities",
+        display: "Commodities",
+        element: <CommoditiesChart />,
+    }, {
+        path: "balance",
+        display: "Balance",
+        element: <BalanceChart />,
+    }, {
+        path: "cash",
+        display: "Cash",
+        element: <CashChart />,
+    }, {
+        path: "earnings",
+        display: "Earnings",
+        element: <EarningsChart />,
+    }, {
+        path: "income",
+        display: "Income",
+        element: <IncomeChart />,
+    }, {
+        path: "expected",
+        display: "Expected",
+        element: <ExpectedChart />,
+    }, {
+        path: "stockSeries",
+        display: "StockSeries",
+        element: <StockSeriesChart />,
+        show: () => false,
+    },
     ]
 }

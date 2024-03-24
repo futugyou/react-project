@@ -22,54 +22,65 @@ export const DemoRoute: RouteDescription = {
     checkActive: (path: string) => path.startsWith('/basic'),
     children: [
         {
+            display: "",
             path: "",
             index: true,
             element: <App />,
+            show: () => false,
         },
         {
+            display: "App",
             path: "app",
             element: <App />,
         },
         {
+            display: "Game",
             path: "game",
             element: <Game />,
         },
         {
-            path: "form",
             display: "Form",
+            path: "form",
             show: () => process.env.NODE_ENV == "development",
             element: <NameForm />,
         },
         {
+            display: "Calculator",
             path: "calculator",
             show: () => process.env.NODE_ENV == "development",
             element: <Calculator />,
         },
         {
+            display: "Dialog",
             path: "dialog",
             show: () => process.env.NODE_ENV == "development",
             element: <WelcomeDialog />,
         },
         {
+            display: "Split",
             path: "split",
             show: () => process.env.NODE_ENV == "development",
             element: <SplitPaneApp />,
         },
         {
+            display: "Bailout",
             path: "bailout",
             show: () => process.env.NODE_ENV == "development",
             element: <Bailout />,
         },
         {
+            display: "Withbailout",
             path: "withbailout",
             show: () => process.env.NODE_ENV == "development",
             element: <WithoutBailout />,
         },
         {
+            display: "Pusher",
             path: "pusher",
             element: <Pusher />,
         },
         {
+            display: "Plate",
             path: "plate",
             element: <PlateEditor />,
         },
