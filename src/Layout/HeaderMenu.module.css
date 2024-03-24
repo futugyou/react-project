@@ -39,9 +39,10 @@
     color: #fff;
 }
 
-.menu { 
+.menu {
     width: 16%;
     min-width: 120px;
+    max-width: 160px;
     text-align: center;
     position: relative;
 }

@@ -27,9 +27,7 @@ const User = (props: any) => {
 
     if (!authService.isAuthenticated() || user == null) {
         return (
-            <div>
-                <button onClick={login}>Login</button>
-            </div>
+            <button onClick={login} className="login-btn">Login</button>
         )
     }
 

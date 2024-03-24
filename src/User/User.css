@@ -1,14 +1,33 @@
 .user-name {
     cursor: pointer;
-    /* border: 1px solid #c5c5d2;
-    border-radius: 8px; */
     padding: 0px 10px;
     overflow: hidden;
     background-color: #d9efee;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
 }
 
 .user-name:hover {
     border: 1px solid #d2d2e3;
     background-color: #b1cbc5;
+}
+
+.login-btn {
+    height: inherit;
+    width: inherit;
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-btn:hover {
+    font-size: 18px;
 }
