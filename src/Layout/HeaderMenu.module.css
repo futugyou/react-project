@@ -91,3 +91,24 @@
         justify-content: flex-start;
     }
 }
+
+.menu .subHiden {
+    padding: 0;
+    padding-top: 10px;
+}
+
+.menu .subHiden * {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.menu .subHiden>div>div>ul ul {
+    padding-inline-start: 10px !important; 
+}
+
+.menu .subHiden a {
+    height: 25px;
+    text-align: left;
+}

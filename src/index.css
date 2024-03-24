@@ -148,6 +148,7 @@ ul {
   display: flex;
   margin: 0;
   padding: 0;
+  border: 0;
   align-items: center;
   justify-content: center;
 }
@@ -155,7 +156,6 @@ ul {
 .sidebar-menu-icon:hover {
   cursor: pointer;
   background-color: #fff;
-  border-color: #10a37f;
   box-shadow: 0 0 0 0.2rem #d2f4d3;
   outline: 0;
 }
@@ -163,7 +163,8 @@ ul {
 .sidebar-menu-icon svg {
   height: 40px;
   width: 40px;
-  filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+  color: #3a1136;
+  /* filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%); */
 }
 
 .excalidraw .dropdown-menu {
@@ -178,6 +179,14 @@ ul {
   white-space: pre !important;
 }
 
-*[data-style-font-size-18] > *  {
+*[data-style-font-size-18] * {
   font-size: 18px !important;
+}
+
+*[data-style-font-size-16] * {
+  font-size: 16px !important;
+}
+
+*[data-style-nowrap] li[data-itemid] {
+  white-space: pre !important;
 }
