@@ -51,7 +51,7 @@
     "@udecode/plate-comments": "^31.0.0",
     "@udecode/plate-common": "^31.0.0",
     "@udecode/plate-dnd": "^31.0.0",
-    "@udecode/plate-excalidraw": "^31.0.0",
+    "@udecode/plate-excalidraw": "^31.1.0",
     "@udecode/plate-find-replace": "^31.0.0",
     "@udecode/plate-heading": "^31.0.0",
     "@udecode/plate-highlight": "^31.0.0",
