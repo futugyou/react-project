@@ -1,40 +1,14 @@
 import { lazy } from 'react'
-import { createBrowserRouter, RouteObject, Navigate } from 'react-router-dom'
+import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import Layout from "@/Layout/Layout"
 
-import { DemoRoute } from '@/ReactDemo/DemoRoute'
 import { FlowRoute } from '@/Flow/FlowRoute'
-import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
 import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
-import { BoardRoute } from '@/Whiteboards/Route'
-import { BookshelfRoute } from '@/Bookshelf/Route'
-import { ExcalidrawRoute } from '@/Excalidraw/Route'
-import { TldrawRoute } from '@/Tldraw/Route'
-import { ChatRoute } from '@/Alphavantage/Route'
-import { RouteDescription, ToRouteObject } from './RouteDescription'
+import { TotalRouteDescriptions, ToRouteObject } from './RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/Welcome'))
 const Comment = lazy(() => import('@/Common/Comment'))
 const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
-
-export const WhiteRoute: RouteDescription = {
-    display: "Whiteboard",
-    path: "/w",
-    checkActive: (path: string) => path.startsWith('/w'),
-    children: [
-        BoardRoute,
-        ExcalidrawRoute,
-        ...TldrawRoute,
-    ]
-}
-
-export const TotalRouteDescriptions: RouteDescription[] = [
-    BookshelfRoute,
-    ChatRoute,
-    WhiteRoute,
-    DemoRoute,
-    OpenAIRoute,
-]
 
 const childrenRoute: RouteObject[] = [
     {

@@ -1,0 +1,12 @@
+.split-panel-container {
+    display: flex;
+}
+
+.split-panel-container .left-menu {
+    flex: 1 1 10%; 
+}
+
+.split-panel-container .right-content {
+    flex: 1 1 100%;
+    padding: 50px
+}

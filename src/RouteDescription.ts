@@ -1,5 +1,32 @@
 import { RouteObject } from 'react-router-dom'
 
+import { DemoRoute } from '@/ReactDemo/DemoRoute'
+import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
+import { BookshelfRoute } from '@/Bookshelf/Route'
+import { ChatRoute } from '@/Alphavantage/Route'
+import { BoardRoute } from '@/Whiteboards/Route'
+import { ExcalidrawRoute } from '@/Excalidraw/Route'
+import { TldrawRoute } from '@/Tldraw/Route'
+
+const WhiteRoute: RouteDescription = {
+    display: "Whiteboard",
+    path: "/w",
+    checkActive: (path: string) => path.startsWith('/w'),
+    children: [
+        BoardRoute,
+        ExcalidrawRoute,
+        ...TldrawRoute,
+    ]
+}
+
+export const TotalRouteDescriptions: RouteDescription[] = [
+    BookshelfRoute,
+    ChatRoute,
+    WhiteRoute,
+    DemoRoute,
+    OpenAIRoute,
+]
+
 export interface RouteDescription {
     key?: string
     index?: boolean

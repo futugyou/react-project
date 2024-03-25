@@ -1,7 +1,7 @@
 import styles from './HeaderMenu.module.css'
 
 import React from "react"
-import { Overflow, OverflowItem, OverflowItemProps, useIsOverflowItemVisible, useOverflowMenu } from "@fluentui/react-components"
+import { Overflow, OverflowItem, useIsOverflowItemVisible, useOverflowMenu } from "@fluentui/react-components"
 
 import { RouteDescription } from '@/RouteDescription'
 import SideNavigation from '@/Common/SideNavigation'
