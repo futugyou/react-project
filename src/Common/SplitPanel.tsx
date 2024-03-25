@@ -15,6 +15,7 @@ import { RouteDescription } from "@/RouteDescription"
 
 export interface ISplitPanelProps {
     Route: RouteDescription[]
+    Prefix?: string
 }
 
 const SplitPanel = (props: ISplitPanelProps) => {
@@ -48,7 +49,7 @@ const SplitPanel = (props: ISplitPanelProps) => {
             <div className="split-panel-container">
                 {show && (
                     <div className="left-menu" >
-                        <SideNavigation Routes={props.Route}></SideNavigation>
+                        <SideNavigation Routes={props.Route} Prefix={props.Prefix}></SideNavigation>
                     </div>
                 )}
                 <div className="right-content">

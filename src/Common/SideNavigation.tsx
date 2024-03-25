@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom"
 export interface ISideMenuProps {
     Routes: RouteDescription[]
     DefaultExpanded?: boolean
+    Prefix?: string
+}
+
+const createHref = (href: string, prefix?: string) => {
+    if (prefix) {
+        return prefix + href
+    }
+    return href
 }
 
 const SideMenu = (props: ISideMenuProps) => {
@@ -18,7 +26,7 @@ const SideMenu = (props: ISideMenuProps) => {
             return ({
                 type: "expandable-link-group",
                 text: route.display,
-                href: route.path,
+                href: createHref(route.path, props.Prefix),
                 defaultExpanded: props.DefaultExpanded == undefined ? true : props.DefaultExpanded,
                 items: route.children == undefined ? [] :
                     route.children.filter(p => p.path)
@@ -32,7 +40,7 @@ const SideMenu = (props: ISideMenuProps) => {
                                 {
                                     type: "link",
                                     text: display,
-                                    href: href,
+                                    href: createHref(href, props.Prefix),
                                 }
                             )
                         })
