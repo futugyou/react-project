@@ -28,7 +28,7 @@ const FlowPanel = (props: any) => {
 
     useEffect(() => {
         const menus = document.getElementsByClassName("nav nav-pills flex-column")
-        if (menus.length <= 0) {
+        if (menus.length <= 0 || showIndex < 0 || showIndex > menus.length) {
             return
         }
 
@@ -82,6 +82,10 @@ const FlowPanel = (props: any) => {
     }, [showMenu])
 
     useEffect(() => {
+        if (refs == undefined || currentPage == undefined || refs[currentPage] == undefined) {
+            return
+        }
+        
         refs[currentPage].current?.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
