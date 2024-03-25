@@ -27,14 +27,18 @@ const User = (props: any) => {
 
     if (!authService.isAuthenticated() || user == null) {
         return (
-            <button onClick={login} className="login-btn">Login</button>
+            <div className="header-user">
+                <button onClick={login} className="login-btn">Login</button>
+            </div>
         )
     }
 
     return (
-        <OverlayTrigger placement="bottom" overlay={logoutPopover} delay={{ show: 100, hide: 1000 }} >
-            <div className="user-name">{user.name}</div>
-        </OverlayTrigger >
+        <div className="header-user">
+            <OverlayTrigger placement="bottom" overlay={logoutPopover} delay={{ show: 100, hide: 1000 }} >
+                <div className="user-name">{user.name}</div>
+            </OverlayTrigger >
+        </div>
     )
 }
 export { User }

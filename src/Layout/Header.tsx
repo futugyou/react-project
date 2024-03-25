@@ -12,9 +12,7 @@ const Header = (props: any) => {
             <div className="header-nav">
                 <HeaderMenu Routes={TotalRouteDescriptions}></HeaderMenu>
             </div>
-            <div className="header-user">
-                <User></User>
-            </div>
+            <User></User>
         </div >
     )
 }

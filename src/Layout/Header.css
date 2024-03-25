@@ -44,29 +44,8 @@
     font-size: 18px;
 }
 
-.header-user {
-    width: 100px;
-    display: flex;
-    align-items: center;
-    margin-right: 50px;
-}
-
-@media (max-width: 1024px) {
-    /* .header-nav {
-        padding-left: 2vh;
-    } */
-
-    .header-user {
-        margin-right: 5px;
-    }
-}
-
 @media (max-width: 768px) {
     .header-nav {
         justify-content: flex-start;
-    }
-
-    .header-user {
-        margin-right: 0px;
     }
 }
