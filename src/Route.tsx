@@ -19,7 +19,7 @@ const childrenRoute: RouteObject[] = [
         path: "/gitalk",
         element: <Comment />,
     },
-    FlowRoute,
+    // FlowRoute,
     ...TotalRouteDescriptions.map(p => ToRouteObject(p)),
     ...MicroAppRoute,
 ]

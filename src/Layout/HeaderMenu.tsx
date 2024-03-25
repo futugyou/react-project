@@ -16,10 +16,12 @@ const staticRoutes: RouteDescription[] = [{
 }, {
     display: "Vue",
     path: "/vue",
-}, {
-    display: "Flow",
-    path: "/flow",
-}]
+},
+// {
+//     display: "Flow",
+//     path: "/flow",
+// }
+]
 
 const HeaderMenu = (props: IHeaderMenuProps) => {
     const checkActive = (current: RouteDescription, pathname: string, parentPath?: string) => {
