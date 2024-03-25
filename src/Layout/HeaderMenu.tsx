@@ -58,7 +58,7 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         return (
             <OverflowItem key={route.display} id={route.display!}>
                 <li key={route.display} className={styles.menu} >
-                    <a href="#" data-active={checkActive(route, location.pathname)}>{route.display}</a>
+                    <a href={route.path} data-active={checkActive(route, location.pathname)}>{route.display}</a>
                     {route.children && (
                         <div className={styles.sub}>
                             {
@@ -89,28 +89,32 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         return archivedRoutes.filter(p => pathname.startsWith(p.path)).length > 0
     }
 
-    const additionalItems =
-        <OverflowItem key={"Archived"} id={"Archived"}>
-            <li key={"Archived"} id={"archived"} className={styles.menu}  >
-                <a href="#" data-active={checkArchivedActive(location.pathname)}>Archived</a>
-                <div className={styles.sub}>
-                    {archivedRoutes
-                        .map(route =>
-                            route.children?.filter(p => p.path)
-                                .filter(p => p.show && p.show() || !p.show).map(p => {
-                                    let href = route.path + "/" + p.path
-                                    let display = p.display
-                                    if (!display) {
-                                        display = p.path
-                                    }
-                                    return (
-                                        <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
-                                    )
-                                })
-                        )}
-                </div>
-            </li>
-        </OverflowItem>
+    let additionalItems: JSX.Element = <></>
+
+    if (archivedRoutes.length > 0) {
+        additionalItems =
+            <OverflowItem key={"Archived"} id={"Archived"}>
+                <li key={"Archived"} id={"archived"} className={styles.menu}  >
+                    <a href={archivedRoutes[0].path} data-active={checkArchivedActive(location.pathname)}>Archived</a>
+                    <div className={styles.sub}>
+                        {archivedRoutes
+                            .map(route =>
+                                route.children?.filter(p => p.path)
+                                    .filter(p => p.show && p.show() || !p.show).map(p => {
+                                        let href = route.path + "/" + p.path
+                                        let display = p.display
+                                        if (!display) {
+                                            display = p.path
+                                        }
+                                        return (
+                                            <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
+                                        )
+                                    })
+                            )}
+                    </div>
+                </li>
+            </OverflowItem>
+    }
 
     const itemIds = staticRoutes.concat(nomalRoutes).concat(archivedRoutes)
 
@@ -147,7 +151,7 @@ const OverflowMenu: React.FC<{ itemIds: RouteDescription[] }> = ({ itemIds }) =>
 
     return (
         <li className={styles.menu} >
-            <a href="#" ref={ref}>+{overflowCount} items</a>
+            <a href="#" ref={ref}>+{overflowCount} Menus</a>
             <div className={`${styles.sub} ${styles.subHiden}`} >
                 {itemIds.map((i) => {
                     return <OverflowMenuItem key={i.display} itemIds={i} />;
