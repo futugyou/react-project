@@ -24,7 +24,6 @@ export const DemoRoute: RouteDescription = {
         {
             display: "",
             path: "",
-            index: true,
             element: <App />,
             show: () => false,
         },

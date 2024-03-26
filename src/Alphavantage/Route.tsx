@@ -22,7 +22,6 @@ export const ChatRoute: RouteDescription = {
     children: [{
         display: "",
         path: "",
-        index: true,
         element: <CompanyBoard />,
         show: () => false,
     }, {

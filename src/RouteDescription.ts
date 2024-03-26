@@ -15,7 +15,7 @@ const WhiteRoute: RouteDescription = {
     checkActive: (path: string) => path.startsWith('/w'),
     children: [
         BoardRoute,
-        ExcalidrawRoute,
+        ...ExcalidrawRoute,
         ...TldrawRoute,
     ]
 }
@@ -30,17 +30,12 @@ export const TotalRouteDescriptions: RouteDescription[] = [
 ]
 
 export interface RouteDescription {
-    key?: string
-    index?: boolean
     path: string
     display: string
     show?: (key?: string) => boolean
     element?: React.ReactNode
     checkActive?: (key: string) => boolean
-    loader?: ({ params, request }: any) => Promise<any>
-    shouldRevalidate?: () => boolean
     archived?: boolean
-    // only one layer
     children?: RouteDescription[]
 }
 
@@ -48,8 +43,6 @@ export const ToRouteObject = (d: RouteDescription) => {
     const route: RouteObject = {}
     route.path = d.path
     route.element = d.element
-    route.loader = d.loader
-    route.shouldRevalidate = d.shouldRevalidate
     let subs: RouteObject[] = []
     if (d.children) {
         for (let i = 0; i < d.children.length; i++) {
