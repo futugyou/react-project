@@ -1,8 +1,8 @@
 import './ExistedItem.css'
 
 interface IExistedItemProps {
-    itemKey: string;
-    onRemoveItem: (itemKey: string) => void;
+    itemKey: string
+    onRemoveItem: (itemKey: string) => void
 }
 
 const ExistedItem = ({ itemKey, onRemoveItem }: IExistedItemProps) => {

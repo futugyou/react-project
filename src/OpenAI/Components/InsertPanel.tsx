@@ -1,13 +1,13 @@
 import './InsertPanel.css'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'
 
 const InsertPanel = (props: any) => {
-    const [showPlaceholder, setShowPlaceholder] = useState(true);
+    const [showPlaceholder, setShowPlaceholder] = useState(true)
     const text = props.prompt + (props.suffix ?? "")
-    const [completion, setCompletion] = useState("");
+    const [completion, setCompletion] = useState("")
 
     useEffect(() => {
         if (props.completion && props.completion.length > 0) {
@@ -24,7 +24,7 @@ const InsertPanel = (props: any) => {
     }, [props.prompt, props.suffix])
 
     const HandleTextChange = (e: any) => {
-        const t: string = e.target.value;
+        const t: string = e.target.value
         if (t.length > 0) {
             setShowPlaceholder(false)
         } else {
@@ -55,4 +55,4 @@ const InsertPanel = (props: any) => {
     )
 }
 
-export default InsertPanel;
+export default InsertPanel

@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import { openaiserver } from './Const';
+import axios, { AxiosRequestConfig } from 'axios'
+import { openaiserver } from './Const'
 
 const modelListPath = 'model'
 const modelKey: string = "playground/model"
@@ -10,20 +10,20 @@ const getModelList = async () => {
         const options: AxiosRequestConfig = {
             url: `${openaiserver}${modelListPath}`,
             method: "GET",
-        };
+        }
 
-        let result: BaseModel[] = [];
+        let result: BaseModel[] = []
         try {
-            const { data, status } = await axios<BaseModel[]>(options);
+            const { data, status } = await axios<BaseModel[]>(options)
             if (status == 200) {
                 const expiraDate = new Date().setHours(new Date().getHours() + 1)
                 localStorage.setItem(modelKey, JSON.stringify({ date: expiraDate, data: data }))
             }
             
-            return data;
+            return data
         } catch (error) {
-            console.log(error);
-            return result;
+            console.log(error)
+            return result
         }
     } else {
         return examples.data

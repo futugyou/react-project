@@ -18,7 +18,7 @@ const Frequency = (props: any) => {
             min={data.min}
             max={data.max}
             step={data.step}
-            onValueChange={(value: number) => props.onFrequencyPenaltyChange(value)}>
+            onValueChange={props.onFrequencyPenaltyChange}>
         </BaseRange>
     )
 }

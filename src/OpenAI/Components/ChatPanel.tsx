@@ -1,15 +1,15 @@
 import './ChatPanel.css'
 
-import { useState, useRef } from 'react';
-import { flushSync } from 'react-dom';
-import Form from 'react-bootstrap/Form';
-import { BsPlusCircle } from "react-icons/bs";
-import ChatMessage from './ChatMessage';
-import { ChatLog } from '../Models/PlaygroundModel';
+import { useState, useRef } from 'react'
+import { flushSync } from 'react-dom'
+import Form from 'react-bootstrap/Form'
+import { BsPlusCircle } from "react-icons/bs"
+import ChatMessage from './ChatMessage'
+import { ChatLog } from '../Models/PlaygroundModel'
 
 const ChatPanel = (props: any) => {
     const [messages, setMessages] = useState<any[]>(props.chatLog)
-    const adddivRef = useRef<HTMLDivElement>(null);
+    const adddivRef = useRef<HTMLDivElement>(null)
     const chatExchangeClassName = props.disabled ? "chat-pg-exchange playground-disabled" : "chat-pg-exchange"
 
     const handleMessageRemoved = (index: number) => {
@@ -27,13 +27,13 @@ const ChatPanel = (props: any) => {
                 const updatedmessage: any = {
                     ...message,
                     role: message.role === "user" ? "assistant" : "user",
-                };
+                }
 
-                return updatedmessage;
+                return updatedmessage
             }
 
-            return message;
-        });
+            return message
+        })
 
         setMessages(newMessageList)
 
@@ -48,13 +48,13 @@ const ChatPanel = (props: any) => {
                 const updatedmessage: any = {
                     ...message,
                     content: text,
-                };
+                }
 
-                return updatedmessage;
+                return updatedmessage
             }
 
-            return message;
-        });
+            return message
+        })
 
         setMessages(newMessageList)
 
@@ -70,9 +70,9 @@ const ChatPanel = (props: any) => {
             focus: true,
         }
 
-        let count = messages.length;
+        let count = messages.length
         if (count > 0) {
-            const lastChatLog = messages[count - 1];
+            const lastChatLog = messages[count - 1]
             if (lastChatLog.role === "user") {
                 newChatLog.role = "assistant"
             }

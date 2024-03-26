@@ -12,6 +12,7 @@
     flex-direction: column;
     padding: 50px;
     height: 100%;
+    padding-top: 0;
 }
 
 .example-header {
@@ -31,7 +32,7 @@
     position: relative;
 }
 
-.example-search-dropdowm-container{
+.example-search-dropdowm-container {
     flex: 1 1 50%;
 }
 

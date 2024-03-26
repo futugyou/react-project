@@ -1,10 +1,10 @@
 import './InjectText.css'
-import { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { useState } from 'react'
+import Form from 'react-bootstrap/Form'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 interface IInjectTextProps {
     text: string
@@ -27,12 +27,12 @@ const InjectText = ({ text = '', label = '', checked = false, descript, onInject
                 {descript}
             </Popover.Body>
         </Popover>
-    );
+    )
 
     const handleInjectChanged = (value: string) => {
-        setInject(value);
+        setInject(value)
         if (onInjectChanged) {
-            onInjectChanged(value);
+            onInjectChanged(value)
         }
     }
 
@@ -60,7 +60,7 @@ const InjectText = ({ text = '', label = '', checked = false, descript, onInject
                 </Row>
                 <Row className='inject-text-ta-wrap'>
                     <Col>
-                        <Form.Check className='inject-text-cb' type="checkbox" checked={check} onChange={() => handleCheckChanged()} />
+                        <Form.Check className='inject-text-cb' type="checkbox" checked={check} onChange={handleCheckChanged} />
                         <input className={input_className} type="text" value={inject} onChange={(e) => handleInjectChanged(e.target.value)}></input>
                     </Col>
                 </Row>

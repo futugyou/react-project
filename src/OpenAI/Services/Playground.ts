@@ -1,4 +1,4 @@
-import { PlaygroundModel } from '../Models/PlaygroundModel';
+import { PlaygroundModel } from '../Models/PlaygroundModel'
 
 const historyStoredKey: string = "playground/history/key"
 const historyStoredKeyPrefix: string = "playground/history/"

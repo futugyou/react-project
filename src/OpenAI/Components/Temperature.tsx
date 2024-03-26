@@ -18,7 +18,7 @@ const Temperature = (props: any) => {
             min={data.min}
             max={data.max}
             step={data.step}
-            onValueChange={(value: number) => props.onTemperatureChange(value)}>
+            onValueChange={props.onTemperatureChange}>
         </BaseRange>
     )
 }

@@ -30,7 +30,7 @@ const DefaultExampleModel: ExampleModel = {
     stop: [],
     description: '',
     sample_response: '',
-};
+}
 
 export {
     DefaultExampleModel,

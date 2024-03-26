@@ -18,7 +18,7 @@ const Presence = (props: any) => {
             min={data.min}
             max={data.max}
             step={data.step}
-            onValueChange={(value: number) => props.onPresencePenaltyChange(value)}>
+            onValueChange={props.onPresencePenaltyChange}>
         </BaseRange>
     )
 }

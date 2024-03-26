@@ -257,37 +257,37 @@ const ExampleEdit = (props: any) => {
 
                             <div className="edit-setting-container">
                                 <div className="edit-setting-text">
-                                    <MaxTokens max_tokens={props.data.max_tokens} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>
+                                    <MaxTokens max_tokens={props.data.max_tokens} onMaxTokensChange={handleMaxTokensChange} ></MaxTokens>
                                 </div>
                             </div>
 
                             <div className="edit-setting-container">
                                 <div className="edit-setting-text">
-                                    <Temperature temperature={props.data.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+                                    <Temperature temperature={props.data.temperature} onTemperatureChange={handleTemperatureChange} ></Temperature>
                                 </div>
                             </div>
 
                             <div className="edit-setting-container">
                                 <div className="edit-setting-text">
-                                    <TopP top_p={props.data.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
+                                    <TopP top_p={props.data.top_p} onToppChange={handleToppChange} ></TopP>
                                 </div>
                             </div>
 
                             <div className="edit-setting-container">
                                 <div className="edit-setting-text">
-                                    <Frequency frequency_penalty={props.data.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>
+                                    <Frequency frequency_penalty={props.data.frequency_penalty} onFrequencyPenaltyChange={handleFrequencyPenaltyChange} ></Frequency>
                                 </div>
                             </div>
 
                             <div className="edit-setting-container">
                                 <div className="edit-setting-text">
-                                    <Presence presence_penalty={props.data.frequency_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>
+                                    <Presence presence_penalty={props.data.frequency_penalty} onPresencePenaltyChange={handlePresencePenaltyChange} ></Presence>
                                 </div>
                             </div>
 
                             <div className="edit-setting-container">
                                 <div className="edit-setting-text">
-                                    <Stop stop={props.data.stop} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>
+                                    <Stop stop={props.data.stop} onStopChange={handleStopChange} ></Stop>
                                 </div>
                             </div>
                         </div>

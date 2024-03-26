@@ -1,5 +1,5 @@
-import './EditPanel.css';
-import Form from 'react-bootstrap/Form';
+import './EditPanel.css'
+import Form from 'react-bootstrap/Form'
 
 const EditPanel = (props: any) => {
     const onInputChange = (e: any) => {

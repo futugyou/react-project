@@ -18,7 +18,7 @@ const Bestof = (props: any) => {
             min={data.min}
             max={data.max}
             step={data.step}
-            onValueChange={(value: number) => props.onBestofChange(value)}>
+            onValueChange={props.onBestofChange}>
         </BaseRange>
     )
 }

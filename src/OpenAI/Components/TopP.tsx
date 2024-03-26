@@ -18,7 +18,7 @@ const TopP = (props: any) => {
             min={data.min}
             max={data.max}
             step={data.step}
-            onValueChange={(value: number) => props.onToppChange(value)}>
+            onValueChange={props.onToppChange}>
         </BaseRange>
     )
 }

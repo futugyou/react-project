@@ -161,27 +161,27 @@ const ParameterPanel = (props: any) => {
 
             <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange} ></ModelSelect>
 
-            <Temperature temperature={playgroundModel.temperature} onTemperatureChange={(temperature: number) => handleTemperatureChange(temperature)} ></Temperature>
+            <Temperature temperature={playgroundModel.temperature} onTemperatureChange={handleTemperatureChange} ></Temperature>
 
-            {(mode != "Edit") && (<MaxTokens max_tokens={playgroundModel.responseLength} onMaxTokensChange={(max_tokens: number) => handleMaxTokensChange(max_tokens)} ></MaxTokens>)}
+            {(mode != "Edit") && (<MaxTokens max_tokens={playgroundModel.responseLength} onMaxTokensChange={handleMaxTokensChange} ></MaxTokens>)}
 
-            {(mode != "Chat" && mode != "Edit") && (<Stop stop={playgroundModel.stopSequence} onStopChange={(stop: string[]) => handleStopChange(stop)} ></Stop>)}
+            {(mode != "Chat" && mode != "Edit") && (<Stop stop={playgroundModel.stopSequence} onStopChange={handleStopChange} ></Stop>)}
 
-            <TopP top_p={playgroundModel.top_p} onToppChange={(top_p: number) => handleToppChange(top_p)} ></TopP>
+            <TopP top_p={playgroundModel.top_p} onToppChange={handleToppChange} ></TopP>
 
-            {(mode != "Edit") && (<Frequency frequency_penalty={playgroundModel.frequency_penalty} onFrequencyPenaltyChange={(frequency_penalty: number) => handleFrequencyPenaltyChange(frequency_penalty)} ></Frequency>)}
+            {(mode != "Edit") && (<Frequency frequency_penalty={playgroundModel.frequency_penalty} onFrequencyPenaltyChange={handleFrequencyPenaltyChange} ></Frequency>)}
 
-            {(mode != "Edit") && (<Presence presence_penalty={playgroundModel.presence_penalty} onPresencePenaltyChange={(presence_penalty: number) => handlePresencePenaltyChange(presence_penalty)} ></Presence>)}
+            {(mode != "Edit") && (<Presence presence_penalty={playgroundModel.presence_penalty} onPresencePenaltyChange={handlePresencePenaltyChange} ></Presence>)}
 
-            {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={playgroundModel.best_of} onBestofChange={(best_of: number) => handleBestofChange(best_of)} ></Bestof>)}
+            {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={playgroundModel.best_of} onBestofChange={handleBestofChange} ></Bestof>)}
 
             {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
                 text={playgroundModel.startSequence}
                 checked={playgroundModel.startSequenceEnabled}
                 label="Inject start text"
                 descript="Text to append after the user's input to format the model for a response."
-                onInjectChanged={(text: string) => HandleInjectStartChanged(text)}
-                onCheckChanged={(checked: boolean) => HandleCheckStartChanged(checked)}
+                onInjectChanged={HandleInjectStartChanged}
+                onCheckChanged={HandleCheckStartChanged}
             ></InjectText>)}
 
             {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
@@ -189,8 +189,8 @@ const ParameterPanel = (props: any) => {
                 checked={playgroundModel.restartSequenceEnabled}
                 label="Inject restart text"
                 descript="Text to append after the model's generation to continue the patterned structure."
-                onInjectChanged={(text: string) => HandleInjectRestartChanged(text)}
-                onCheckChanged={(checked: boolean) => HandleCheckRestartChanged(checked)}
+                onInjectChanged={HandleInjectRestartChanged}
+                onCheckChanged={HandleCheckRestartChanged}
             ></InjectText>)}
         </>
     )

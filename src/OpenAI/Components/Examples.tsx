@@ -53,7 +53,7 @@ const Examples = (props: any) => {
             const list = lista
                 .filter((p: ExampleModel) => p.tags == undefined || p.tags.findIndex(element => {
                     return element.toLowerCase() === searchFilter.category.toLowerCase()
-                        || searchFilter.category === "chooseAll";
+                        || searchFilter.category === "chooseAll"
                 }) >= 0)
                 .filter((p: ExampleModel) => searchFilter.key === ""
                     || p.title.toLowerCase().includes(searchFilter.key.toLowerCase())
@@ -128,7 +128,7 @@ const Examples = (props: any) => {
     }
 
     const handleKeyworkChange = (e: any) => {
-        const k: string = e.target.value;
+        const k: string = e.target.value
         setSearchFilter({
             ...searchFilter,
             key: k ?? "",

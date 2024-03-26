@@ -1,41 +1,41 @@
 import './ChatMessage.css'
 
-import React, { useRef, useEffect } from 'react';
-import { BsDashCircle } from "react-icons/bs";
+import React, { useRef, useEffect } from 'react'
+import { BsDashCircle } from "react-icons/bs"
 
 interface IChatMessageProps {
-    index: number;
-    role?: string;
-    content?: string;
-    placeholder?: string;
-    onRoleChange?: (index: number) => void;
-    onContentChange?: (index: number, content: string) => void;
-    onRemoved?: (index: number) => void;
-    focus?: boolean;
-    children?: React.ReactNode;
+    index: number
+    role?: string
+    content?: string
+    placeholder?: string
+    onRoleChange?: (index: number) => void
+    onContentChange?: (index: number, content: string) => void
+    onRemoved?: (index: number) => void
+    focus?: boolean
+    children?: React.ReactNode
 }
 
 const ChatMessage = (message: IChatMessageProps) => {
-    const chatpgmessageRef = useRef<HTMLDivElement>(null);
-    const textRef = useRef<HTMLTextAreaElement>(null);
+    const chatpgmessageRef = useRef<HTMLDivElement>(null)
+    const textRef = useRef<HTMLTextAreaElement>(null)
 
     useEffect(() => {
-        textRef.current!.style.height = "48px";
+        textRef.current!.style.height = "48px"
         let height = textRef.current!.scrollHeight
-        textRef.current!.style.height = (height) + "px";
+        textRef.current!.style.height = (height) + "px"
     }, [message.content])
 
     const HandleTextDivClick = () => {
         chatpgmessageRef.current!.className = "chat-pg-message active"
-        textRef.current!.focus();
+        textRef.current!.focus()
     }
 
-    const HandleTextChange = (e: { target: { value: string; }; }) => {
-        textRef.current!.style.height = "48px";
+    const HandleTextChange = (e: { target: { value: string } }) => {
+        textRef.current!.style.height = "48px"
         let height = textRef.current!.scrollHeight
-        textRef.current!.style.height = (height) + "px";
+        textRef.current!.style.height = (height) + "px"
 
-        let text: string = e.target.value;
+        let text: string = e.target.value
         if (message.onContentChange) {
             message.onContentChange(message.index, text)
         }
@@ -79,4 +79,4 @@ const ChatMessage = (message: IChatMessageProps) => {
     )
 }
 
-export default ChatMessage;
+export default ChatMessage

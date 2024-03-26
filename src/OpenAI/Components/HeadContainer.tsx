@@ -11,22 +11,22 @@ import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
 
 
 const HeadContainer = (props: any) => {
-    let didInit = false;
+    let didInit = false
     const [examples, setExamples] = useState<ExampleModel[]>([])
     const [customExamples, setCustomExamples] = useState<ExampleModel[]>([])
     const [showSuccess, setSuccess] = useState(false)
 
     useEffect(() => {
         if (!didInit) {
-            didInit = true;
+            didInit = true
             const fetchData = async () => {
-                const examples = await exampleService.getAllExamples();
+                const examples = await exampleService.getAllExamples()
                 setExamples(examples)
-                const customExamples = await exampleService.getAllCustomExamples();
+                const customExamples = await exampleService.getAllCustomExamples()
                 setCustomExamples(customExamples)
-            };
+            }
 
-            fetchData();
+            fetchData()
         }
     }, [])
 

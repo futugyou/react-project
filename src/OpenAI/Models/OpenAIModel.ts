@@ -25,7 +25,7 @@ const DefaultOpenAIModel: OpenAIModel = {
     best_of: 1,
     echo: false,
     logprobs: 0,
-};
+}
 
 
 export {

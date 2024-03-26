@@ -1,21 +1,21 @@
-import './Stop.css';
-import { KeyboardEvent, useState, useCallback } from 'react';
-import Form from 'react-bootstrap/Form';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
+import './Stop.css'
+import { KeyboardEvent, useState, useCallback } from 'react'
+import Form from 'react-bootstrap/Form'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
 
-import StopDescribe from './InputContainer/Describe';
-import StopInputContainer from './InputContainer/InputContainer';
-import StopTip from './InputContainer/Tip';
-import CleanAllStop from './InputContainer/CleanAllItem';
+import StopDescribe from './InputContainer/Describe'
+import StopInputContainer from './InputContainer/InputContainer'
+import StopTip from './InputContainer/Tip'
+import CleanAllStop from './InputContainer/CleanAllItem'
 
 const Stop = (props: any) => {
-    let stops = new Set<string>(props.stop);
+    let stops = new Set<string>(props.stop)
     const [stop, setStop] = useState<Set<string>>(stops)
-    const [state, setState] = useState('');
-    const [show, setShow] = useState(false);
+    const [state, setState] = useState('')
+    const [show, setShow] = useState(false)
 
-    let tip = state.length > 0 ? ("Add \"" + state + "\"") : "";
+    let tip = state.length > 0 ? ("Add \"" + state + "\"") : ""
 
     let display = "Stop sequences"
     let subDisplay = "Enter sequence and press Tab"
@@ -27,10 +27,10 @@ const Stop = (props: any) => {
                 {popover}
             </Popover.Body>
         </Popover>
-    );
+    )
 
     const HandleOpenTip = () => {
-        setShow(!show);
+        setShow(!show)
         setState('')
     }
 
@@ -42,7 +42,7 @@ const Stop = (props: any) => {
     }
 
     const HandleRemoveAllStop = useCallback(() => {
-        let s = new Set<string>();
+        let s = new Set<string>()
         setStop(s)
         props.onStopChange(Array.from(s.values()))
         setState('')
@@ -71,10 +71,10 @@ const Stop = (props: any) => {
                     <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>
 
                     <StopInputContainer stop={stop} state={state}
-                        onRemoveItem={(key: string) => HandleRemoveStop(key)}
-                        onInputContainerClick={() => HandleOpenTip()}
-                        onItemChange={(key: string) => HandleStopChange(key)}
-                        onKeyDown={(e: any) => HandleStopAdded(e)} >
+                        onRemoveItem={HandleRemoveStop}
+                        onInputContainerClick={HandleOpenTip}
+                        onItemChange={HandleStopChange}
+                        onKeyDown={HandleStopAdded} >
                         <CleanAllStop show={stop.size > 0} onRemoveAllItem={HandleRemoveAllStop}></CleanAllStop>
                     </StopInputContainer>
 

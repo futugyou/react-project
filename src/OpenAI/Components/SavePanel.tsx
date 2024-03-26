@@ -45,7 +45,7 @@ const SavePanel = (props: any) => {
         setSuccess(true)
         setTimeout(() => {
             setSuccess(false)
-            document.getElementById('closeModal')!.click();
+            document.getElementById('closeModal')!.click()
         }, 3000)
     }
 
