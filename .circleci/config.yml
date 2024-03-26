@@ -14,6 +14,9 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          command: export NODE_OPTIONS="--max-old-space-size=4096"
+          name: Change NODE_OPTIONS
+      - run:
           command: npm run build
           name: Run build
 workflows:
