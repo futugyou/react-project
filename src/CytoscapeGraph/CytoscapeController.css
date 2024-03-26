@@ -4,7 +4,8 @@
     flex-direction: column;
     padding: 10px;
     height: 100%;
-    z-index: 1;
+    background-color: #edbbe7;
+    z-index: 310;
 }
 
 .controllerItem {

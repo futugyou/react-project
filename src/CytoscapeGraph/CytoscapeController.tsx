@@ -92,13 +92,12 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
         if (cy) {
             cy.resize()
             const j = cy.json()
-            console.log(j)
             var png64 = cy.png({ full: true })
-            document.querySelector('#png-eg')!.setAttribute('src', png64)
-            var jpg64 = cy.jpg({ full: true })
-            document.querySelector('#jpg-eg')!.setAttribute('src', jpg64)
+            // document.querySelector('#png-eg')!.setAttribute('src', png64)
+            // var jpg64 = cy.jpg({ full: true })
+            // document.querySelector('#jpg-eg')!.setAttribute('src', jpg64)
             downloadImage(png64, "graph.png")
-            downloadImage(jpg64, "graph.jpg")
+            // downloadImage(jpg64, "graph.jpg")
         }
     }
 
@@ -150,7 +149,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
 
     if (!visible) {
         return (
-            <div className='layoutController'>
+            <div className='layoutController' style={{ height: 'auto' }}>
                 <BsChevronDoubleRight className="itemIcon" onClick={() => setVisible(true)} />
             </div>)
     }
@@ -195,7 +194,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
                     </Button>
                 </div>
             </div>
-            <div className='controllerItem'>
+            {/* <div className='controllerItem'>
                 <div className="itemDescription">png</div>
                 <div className="itemContent">
                     <img id="png-eg" />
@@ -206,7 +205,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
                 <div className="itemContent">
                     <img id="jpg-eg" />
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
