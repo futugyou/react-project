@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
 import { openaiserver } from './Const'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
+import { useQuery } from '@tanstack/react-query'
 
 const settingPath = 'examples'
 const exampleKey: string = "playground/example"
@@ -58,7 +59,7 @@ const createExample = async (data: ExampleModel, localStoragekey: string, path: 
         method: "POST",
         data: data,
         headers: {},
-    };
+    }
 
     options.headers!.Authorization = "Bearer " + jwtToken.access_token
 
@@ -82,10 +83,30 @@ const createCustomExample = async (data: ExampleModel) => {
     return await createExample(data, customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
 }
 
+const useQueryExample = (config = {}) => {
+    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
+    const options: AxiosRequestConfig = {
+        url: `${openaiserver}${settingPath}`,
+        method: "GET",
+        headers: {},
+    }
+
+    options.headers!.Authorization = "Bearer " + jwtToken.access_token
+
+    const { isLoading, isError, data, refetch, isFetching } = useQuery({
+        queryKey: [`${openaiserver}${settingPath}`],
+        queryFn: () => axios(options).then(x => x.data),
+        ...config,
+    })
+
+    return { data: data as ExampleModel[], isLoading, isFetching, isError, refetch }
+}
+
 export default {
     getExample: getExample,
     getAllExamples: getAllSystemExamples,
     createExample: createSystemExample,
     createCustomExample: createCustomExample,
     getAllCustomExamples: getAllCustomExamples,
+    useQueryExample: useQueryExample,
 }

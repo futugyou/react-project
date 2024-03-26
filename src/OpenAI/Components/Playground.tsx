@@ -1,7 +1,7 @@
 import './Playground.css'
 import { useState, useEffect } from 'react'
 import { flushSync } from 'react-dom'
-import { useLoaderData } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -16,43 +16,54 @@ import History from './History'
 import convert from '../Models/convert'
 
 import { OpenAIModel } from '../Models/OpenAIModel'
-import { ExampleModel } from '../Models/ExampleModel' 
+import { DefaultExampleModel, ExampleModel } from '../Models/ExampleModel'
 import completionService from '../Services/Completion'
 
-import { ChatModel, ChatMessage } from '../Models/ChatModel'
+import { ChatModel } from '../Models/ChatModel'
 import chatService from '../Services/Chat'
 
 import { EditModel } from '../Models/EditModel'
 import editService from '../Services/Edit'
 
-import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
+import { PlaygroundModel } from '../Models/PlaygroundModel'
 import playgroundService from '../Services/Playground'
 import { ChatLog } from '../Models/PlaygroundModel'
 
+import set from '../Services/Example'
 
 
 const Playground = () => {
+    const { parameter } = useParams()
+    const { data: nodeData, isLoading, isFetching, isError } = set.useQueryExample()
+
+
     let searchParams = new URLSearchParams(location.search || "")
     let modeParam = searchParams.get("mode") || ""
     let modelParam = searchParams.get("model") || ""
 
-    const loaderdata = useLoaderData() as ExampleModel
-    const data = convert.mapExampleModelToPlaygroundModel(loaderdata)
+    const rawdata = convert.mapExampleModelToPlaygroundModel(DefaultExampleModel)
 
-    if (modelParam !== "") {
-        data.model = modelParam
-    }
-
-    const [playgroundModel, setPlaygroundModel] = useState(data)
+    const [playgroundModel, setPlaygroundModel] = useState(rawdata)
     const [mode, setMode] = useState('Complete')
-    const [currentData, setCurrentData] = useState<PlaygroundModel>(data)
+    const [currentData, setCurrentData] = useState<PlaygroundModel>(rawdata)
 
-    const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true;
+    const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true
     const opertionContainerClassName = disabled ? "qa-item-align opertion-container playground-disabled" : "qa-item-align opertion-container"
 
     useEffect(() => {
+        let dataModel: ExampleModel = DefaultExampleModel
+        if (!isLoading && nodeData && parameter) {
+            dataModel = nodeData.find((d: ExampleModel) => d.key == parameter) ?? DefaultExampleModel
+        }
+
+        const data = convert.mapExampleModelToPlaygroundModel(dataModel)
+        if (modelParam !== "") {
+            data.model = modelParam
+        }
+
         setPlaygroundModel(data)
-    }, [loaderdata])
+        setCurrentData(data)
+    }, [nodeData, isLoading, parameter, modelParam])
 
     useEffect(() => {
         if (modeParam !== "") {
