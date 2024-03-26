@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-import Form from 'react-bootstrap/Form';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 interface IBaseRangeProps {
@@ -27,7 +27,8 @@ const BaseRange = (props: IBaseRangeProps) => {
         value = props.min
     }
 
-    const [stringValue, setStringValue] = useState<string>(value + '')
+    let rawstring = value + ''
+    const [stringValue, setStringValue] = useState<string>(rawstring)
 
     const modelPopover = (
         <Popover id="model-popover">
@@ -35,7 +36,7 @@ const BaseRange = (props: IBaseRangeProps) => {
                 {props.popover}
             </Popover.Body>
         </Popover>
-    );
+    )
 
     const handleInputChange = (value: string) => {
         if (value === '') {
@@ -68,13 +69,16 @@ const BaseRange = (props: IBaseRangeProps) => {
     }
 
     useEffect(() => {
-        const timeOutId = setTimeout(() => {
-            const t = parseFloat(stringValue) + ''
-            if (props.onValueChange) {
-                props.onValueChange(t)
-            }
-        }, 500);
-        return () => clearTimeout(timeOutId);
+        if (rawstring != stringValue) {
+            const timeOutId = setTimeout(() => {
+                const t = parseFloat(stringValue) + ''
+                if (props.onValueChange) {
+                    props.onValueChange(t)
+                    rawstring = new Date().toDateString()
+                }
+            }, 500)
+            return () => clearTimeout(timeOutId)
+        }
     }, [stringValue])
 
     const renderRange = () => {
