@@ -23,13 +23,14 @@ import LoadFlow from '@/Flow/MiscFeatures/LoadFlow'
 import SaveFlow from '@/Flow/MiscFeatures/SaveFlow'
 import UpdateNode from '@/Flow/MiscFeatures/UpdateNode'
 import DownloadFlow from '@/Flow/MiscFeatures/DownloadFlow'
+import ControlFlow from '@/Flow/MiscFeatures/ControlFlow'
 import HelpLine, { HelpLineHandler } from '@/Flow/MiscFeatures/HelpLine'
 
 import EdgeStyle from '@/Flow/MiscFeatures/EdgeStyle'
 import NodeStyle from '@/Flow/MiscFeatures/NodeStyle'
 import FlowStyle, { DragNodeType } from '@/Flow/MiscFeatures/FlowStyle'
 
-import { getRandomId, getAllChildrens, rendererPointToPoint } from '@/Flow/utils'
+import { getRandomId, getAllChildrens } from '@/Flow/utils'
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
     style: { strokeWidth: 2, stroke: 'black' },
@@ -71,6 +72,8 @@ interface CommonFlow {
 const CommonFlow = (props: CommonFlow) => {
     // const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes)
     // const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges)
+
+    const [showControl, setShowControl] = useState<boolean>(false)
 
     const [selectedNode, setSelectedNode] = useState<Node>()
     const [selectedEdge, setSelectedEdge] = useState<Edge>()
@@ -301,15 +304,16 @@ const CommonFlow = (props: CommonFlow) => {
                     <SaveFlow id={props.id} />
                     <UpdateNode selectedNode={selectedNode} />
                     <DownloadFlow />
+                    <ControlFlow show={showControl} onClick={(s: boolean) => { setShowControl(s) }} />
                 </Panel>
                 <Panel position="top-center" >
                     <h2>{props.title}</h2>
                 </Panel>
                 <Controls />
                 <HelpLine ref={helpLine} ></HelpLine>
-                {selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
-                {selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
-                {(!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}
+                {showControl && selectedEdge && (<EdgeStyle selectedEdge={selectedEdge} key={selectedEdge?.id ?? getRandomId()} />)}
+                {showControl && selectedNode && (<NodeStyle selectedNode={selectedNode} key={selectedNode?.id ?? getRandomId()} />)}
+                {showControl && (!selectedEdge && !selectedNode) && (<FlowStyle></FlowStyle>)}
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
         </div>
