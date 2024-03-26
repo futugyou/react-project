@@ -38,7 +38,7 @@ function DownloadFlow() {
 
     return (
         <button className="download-btn" onClick={onClick}>
-            Download Image
+            Download
         </button>
     )
 }

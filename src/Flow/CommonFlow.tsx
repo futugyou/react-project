@@ -295,7 +295,7 @@ const CommonFlow = (props: CommonFlow) => {
                 connectionLineComponent={FloatingConnectionLine}
             >
                 <Panel position="top-left">
-                    <RestoreFlow id={props.id} />
+                    <RestoreFlow id={props.id} nodes={props.initialNodes} edges={props.initialEdges} />
                     <StashFlow id={props.id} />
                     <LoadFlow id={props.id} />
                     <SaveFlow id={props.id} />

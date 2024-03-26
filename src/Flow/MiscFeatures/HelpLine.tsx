@@ -60,6 +60,7 @@ const HelpLine = forwardRef<HelpLineHandler, HelpLineProps>((props, ref) => {
             setTop(-1)
             setLeft(-1)
             setWidth(0)
+            setHeight(0)
         }
     }))
 

@@ -14,7 +14,7 @@ function SaveFlow(props: SaveFlowProps) {
         return null
     }
 
-    const title = props.title ?? 'saveToDB'
+    const title = props.title ?? 'Save'
 
     const { toObject } = useReactFlow()
 

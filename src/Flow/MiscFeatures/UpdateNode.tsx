@@ -15,7 +15,7 @@ const UpdateNode = (props: UpdateNodeProps) => {
     const { setNodes } = useReactFlow()
     const updateNodeInternals = useUpdateNodeInternals()
     const [showModal, setShowModal] = useState(false)
-    const title = props.title ?? 'updateNode'
+    const title = props.title ?? 'Update'
     const disabled = props.selectedNode == undefined ||
         (props.selectedNode.type != 'custom' && props.selectedNode.type != 'class')
 

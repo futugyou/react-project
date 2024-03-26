@@ -14,7 +14,7 @@ function LoadFlow(props: LoadFlowProps) {
         return null
     }
 
-    const title = props.title ?? 'loadFromDB'
+    const title = props.title ?? 'Load'
     const { setNodes, setEdges, setViewport } = useReactFlow()
 
     const onLoadFlowFromDB = useCallback(() => {
