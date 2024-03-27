@@ -7,16 +7,29 @@
     padding: 10px;
     white-space: nowrap;
     flex: 1;
+    padding-right: 35px;
 }
 
 .nodeItem {
     display: flex;
     flex-direction: row;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 912px) {
+    .nodeItem {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .nodeItemLable {
-    width: 200px;
+    width: 150px;
     height: 40px;
+    white-space: pre;
 }
 
 .nodeItemLable>label {
@@ -40,7 +53,6 @@
 }
 
 .textInput {
-    width: 400px;
     height: 100%;
     font-size: 18px;
 }
@@ -90,7 +102,7 @@
 }
 
 .nodeItemOperator {
-    width: 200px;
+    width: 180px;
     height: 40px;
     display: flex;
     font-size: 20px;
@@ -98,6 +110,7 @@
     padding-left: 10px;
     border: 1px solid transparent;
     margin: 5px 0;
+    justify-content: flex-end;
 }
 
 .nodeItemOperator:hover {
