@@ -58,6 +58,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
     const onLayoutSelectChange = ({ detail }: any) => {
         setSelectedLayout(detail.selectedOption)
         cy.layout({ name: detail.selectedOption.value }).run()
+        setVisible(false)
     }
 
     const onDataSelectChange = ({ detail }: any) => {
@@ -86,6 +87,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
             // api.collapseAll()
             api.collapseRecursively(cy.elements('node[type = "type"], node[type = "ecsCluster"], node[type = "cloudmap"]'))
         }
+        setVisible(false)
     }
 
     const downLoad = () => {
@@ -98,6 +100,7 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
             // document.querySelector('#jpg-eg')!.setAttribute('src', jpg64)
             downloadImage(png64, "graph.png")
             // downloadImage(jpg64, "graph.jpg")
+            setVisible(false)
         }
     }
 
