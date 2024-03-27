@@ -24,19 +24,27 @@
     outline: 0;
 }
 
-.menuul a:hover {
-    background-color: #881798;
-}
 
 .menuul a[data-active="true"] {
     background-color: #333;
     /* color: #f72e61; */
 }
 
+
 .menuul a {
     display: block;
     font-size: 18px;
     color: #fff;
+}
+
+.menuul a:hover {
+    background-color: #881798;
+}
+
+.menuul a:not([href]):not([class]),
+.menuul a:not([href]):not([class]):hover {
+    color: #fff;
+    text-decoration: none;
 }
 
 .menu {
@@ -105,7 +113,7 @@
 }
 
 .menu .subHiden>div>div>ul ul {
-    padding-inline-start: 10px !important; 
+    padding-inline-start: 10px !important;
 }
 
 .menu .subHiden a {

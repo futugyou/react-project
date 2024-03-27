@@ -60,7 +60,8 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         return (
             <OverflowItem key={route.display} id={route.display!}>
                 <li key={route.display} className={styles.menu} >
-                    <a href={route.path} data-active={checkActive(route, location.pathname)}>{route.display}</a>
+                    <a data-active={checkActive(route, location.pathname)}>{route.display}</a>
+                    {/* <a href={route.path} data-active={checkActive(route, location.pathname)}>{route.display}</a> */}
                     {route.children && (
                         <div className={styles.sub}>
                             {
@@ -97,7 +98,8 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         additionalItems =
             <OverflowItem key={"Archived"} id={"Archived"}>
                 <li key={"Archived"} id={"archived"} className={styles.menu}  >
-                    <a href={archivedRoutes[0].path} data-active={checkArchivedActive(location.pathname)}>Archived</a>
+                    <a data-active={checkArchivedActive(location.pathname)}>Archived</a>
+                    {/* <a href={archivedRoutes[0].path} data-active={checkArchivedActive(location.pathname)}>Archived</a> */}
                     <div className={styles.sub}>
                         {archivedRoutes
                             .map(route =>
