@@ -3,15 +3,16 @@ import "./SplitPanel.css"
 import React from "react"
 
 import { useState, useEffect } from 'react'
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import { BsListUl } from "react-icons/bs"
 
-import SideNavigation from '@/Common/SideNavigation'
+import SideNavigation from '@/Common/Components/SideNavigation'
 
 import { RouteDescription } from "@/RouteDescription"
+import useMediaQuery from "@/Common/Hooks/useMediaQuery"
 
 export interface ISplitPanelProps {
     Route: RouteDescription[]
@@ -19,12 +20,17 @@ export interface ISplitPanelProps {
 }
 
 const SplitPanel = (props: ISplitPanelProps) => {
+    const isSmallDevice = useMediaQuery("(max-width : 768px)")
+
     const [show, setShow] = useState(true)
-    const location = useLocation()
 
     useEffect(() => {
-        setShow(true)
-    }, [location])
+        if (isSmallDevice) {
+            setShow(false)
+        } else {
+            setShow(true)
+        }
+    }, [isSmallDevice])
 
     let popover = show ? "hide the menu" : "open the menu"
     const HandleShowIconClick = (e: any) => {

@@ -13,7 +13,7 @@ const Frequency = lazy(() => import('./Frequency'))
 
 const Presence = lazy(() => import('./Presence'))
 const Stop = lazy(() => import('./Stop'))
-import CheckBox, { CheckBoxItem } from "@/Common/CheckBox"
+import CheckBox, { CheckBoxItem } from "@/Common/Components/CheckBox"
 import set from '../Services/Example'
 import { ExampleModel } from '../Models/ExampleModel'
 

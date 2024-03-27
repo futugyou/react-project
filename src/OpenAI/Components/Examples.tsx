@@ -4,8 +4,8 @@ import { useState, useEffect, lazy } from "react"
 import {  useNavigate } from "react-router-dom"
 import { BsSearch } from "react-icons/bs"
 
-import Dropdown, { DropdownItem } from "@/Common/Dropdown"
-import MiniModal from '@/Common/MiniModal'
+import Dropdown, { DropdownItem } from "@/Common/Components/Dropdown"
+import MiniModal from '@/Common/Components/MiniModal'
 import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 import set from '../Services/Example'
 

@@ -13,8 +13,8 @@ import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
 import { persistQueryClient } from '@tanstack/react-query-persist-client'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 
-import Loading from '@/Common/Loading'
-import { ComponentProvider } from '@/Common/ComponentProvider'
+import Loading from '@/Common/Components/Loading'
+import { ComponentProvider } from '@/Common/Components/ComponentProvider'
 import { AuthProvider, authService } from '@/Auth/index'
 
 import { router } from '@/Route'

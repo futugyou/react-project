@@ -2,7 +2,7 @@ import './chart.css'
 
 import React, { useEffect, useState, useMemo, useCallback } from "react"
 
-import AreaChart from "@/Common/AreaChart"
+import AreaChart from "@/Common/Components/AreaChart"
 import { Select, SelectProps } from "@cloudscape-design/components"
 import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
 
@@ -12,7 +12,7 @@ import moment from 'moment'
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
 import { Commodities, CommoditiesEnum } from '@/Alphavantage/model'
-import DateRangePicker from '@/Common/DateRangePicker'
+import DateRangePicker from '@/Common/Components/DateRangePicker'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)

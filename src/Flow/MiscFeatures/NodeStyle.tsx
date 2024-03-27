@@ -3,7 +3,7 @@ import styles from './NodeStyle.module.css'
 import { useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Node } from 'reactflow'
-import MiniModal from '@/Common/MiniModal'
+import MiniModal from '@/Common/Components/MiniModal'
 
 export interface NodeStyleProps {
     selectedNode: Node

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ClassNodeType } from '@/Flow/CustomNode/ClassNode'
 import { Node, useReactFlow, useUpdateNodeInternals } from 'reactflow'
 
-import MiniModal from '@/Common/MiniModal'
+import MiniModal from '@/Common/Components/MiniModal'
 
 import { ModifyNode } from '@/Flow/CustomNode/ModifyNode'
 

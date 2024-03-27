@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import Header from "./Header"
-import Loading from '@/Common/Loading'
+import Loading from '@/Common/Components/Loading'
 
 const Layout = () => {
     return (

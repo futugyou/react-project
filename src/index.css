@@ -124,35 +124,6 @@ ul {
   margin-left: 20px;
 }
 
-.sidebar-menu-icon {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 50px;
-  width: 50px;
-  z-index: 99;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar-menu-icon:hover {
-  cursor: pointer;
-  background-color: #fff;
-  box-shadow: 0 0 0 0.2rem #d2f4d3;
-  outline: 0;
-}
-
-.sidebar-menu-icon svg {
-  height: 40px;
-  width: 40px;
-  color: #3a1136;
-  /* filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%); */
-}
-
 .excalidraw .dropdown-menu {
   position: absolute;
   top: 100%;

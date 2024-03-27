@@ -4,7 +4,7 @@ import React from "react"
 import { Overflow, OverflowItem, useIsOverflowItemVisible, useOverflowMenu } from "@fluentui/react-components"
 
 import { RouteDescription } from '@/RouteDescription'
-import SideNavigation from '@/Common/SideNavigation'
+import SideNavigation from '@/Common/Components/SideNavigation'
 
 export interface IHeaderMenuProps {
     Routes: RouteDescription[]

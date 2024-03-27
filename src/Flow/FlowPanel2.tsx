@@ -1,7 +1,7 @@
 
 import React from "react"
 
-import SplitPanel from "@/Common/SplitPanel"
+import SplitPanel from "@/Common/Components/SplitPanel"
 import { FlowRouteDataList2 } from "./FlowRoute"
 
 const FlowPanel = (props: any) => {

@@ -7,8 +7,8 @@ import { MicroAppRoute } from '@/MicroApp/MicroAppRoute'
 import { TotalRouteDescriptions, ToRouteObject } from './RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/Welcome'))
-const Comment = lazy(() => import('@/Common/Comment'))
-const ErrorPage = lazy(() => import('@/Common/ErrorPage'))
+const Comment = lazy(() => import('@/Common/Components/Comment'))
+const ErrorPage = lazy(() => import('@/Common/Components/ErrorPage'))
 
 const childrenRoute: RouteObject[] = [
     {

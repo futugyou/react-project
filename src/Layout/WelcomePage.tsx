@@ -1,7 +1,7 @@
 import './WelcomePage.css'
 
 import { useState, useEffect } from 'react'
-import EpubReader from '@/Common/EpubReader'
+import EpubReader from '@/Common/Components/EpubReader'
 import Carousel from 'react-bootstrap/Carousel'
 
 const WelcomePage = (props: any) => {

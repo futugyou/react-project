@@ -7,7 +7,7 @@ import _ from "lodash"
 
 import { useStockSeriesDataRange } from '@/Alphavantage/service'
 import { StockSeries } from "./model"
-import Loading from "@/Common/Loading"
+import Loading from "@/Common/Components/Loading"
 
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart
 

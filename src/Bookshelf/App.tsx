@@ -1,7 +1,7 @@
 import './App.css'
 
 import { useState, useEffect } from 'react'
-import EpubReader from '@/Common/EpubReader'
+import EpubReader from '@/Common/Components/EpubReader'
 
 import { Cards } from "@cloudscape-design/components"
 

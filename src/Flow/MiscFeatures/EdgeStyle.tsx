@@ -2,8 +2,7 @@ import styles from './EdgeStyle.module.css'
 import { useEffect, useState } from 'react'
 import { Sketch, ColorResult } from '@uiw/react-color'
 import { useReactFlow, Edge, EdgeMarkerType, MarkerType, EdgeMarker } from 'reactflow'
-import MiniModal from '@/Common/MiniModal'
-
+import MiniModal from '@/Common/Components/MiniModal'
 
 export interface EdgeStyleProps {
     selectedEdge: Edge

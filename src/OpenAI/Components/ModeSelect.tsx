@@ -5,7 +5,7 @@ import Popover from 'react-bootstrap/Popover'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import Dropdown, { DropdownItem } from "@/Common/Dropdown"
+import Dropdown, { DropdownItem } from "@/Common/Components/Dropdown"
 
 const ModeSelect = (props: any) => {
     const mode = props.mode ?? 'Complete'

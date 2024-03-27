@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react"
 import Board from "@cloudscape-design/board-components/board"
 import BoardItem from "@cloudscape-design/board-components/board-item"
 
-import { boardI18nStrings, boardItemI18nStrings } from "@/Common/i18n"
+import { boardI18nStrings, boardItemI18nStrings } from "@/Common/Components/i18n"
 import EmptyChart from '@/Alphavantage/EmptyChart'
 
 import { useCompanyData } from '@/Alphavantage/service'

@@ -11,7 +11,7 @@ import moment from 'moment'
 import EmptyChart from '@/Alphavantage/EmptyChart'
 import NoMatchChart from '@/Alphavantage/NoMatchChart'
 import { StockSeries } from '@/Alphavantage/model'
-import DateRangePicker from '@/Common/DateRangePicker'
+import DateRangePicker from '@/Common/Components/DateRangePicker'
 
 const numberFormatter = (e: number) => {
     return Intl.NumberFormat('en-US').format(e)

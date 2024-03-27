@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback } from "react"
 
 import { useNewsData } from "./service"
 import { News } from "./model"
-import Paging from "@/Common/Paging"
+import Paging from "@/Common/Components/Paging"
 
 import { Header, Badge, Link, Cards, SpaceBetween, TextFilter } from "@cloudscape-design/components"
 // @ts-ignore
