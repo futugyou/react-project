@@ -1,7 +1,7 @@
 
 import './Welcome.css'
 
-import { Box, Button, Cards, Container, Link, SpaceBetween } from '@cloudscape-design/components'
+import { Link } from '@cloudscape-design/components'
 import _ from 'lodash'
 
 const Welcome = () => {
@@ -72,6 +72,12 @@ const Welcome = () => {
             image: "/welcome/bookshelf.png",
             description: "",
         },
+        {
+            title: "Gitalk",
+            url: "/gitalk",
+            image: "/welcome/gittalk.png",
+            description: "",
+        },
     ]
 
     const welcomeitem = items.map((i, index) => {
@@ -87,8 +93,8 @@ const Welcome = () => {
                 </div>
             </div>
         )
-
     })
+
     return (
         <div className='welcome-container-bound'>
             <div className='welcome-container'>
