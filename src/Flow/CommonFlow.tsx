@@ -298,13 +298,15 @@ const CommonFlow = (props: CommonFlow) => {
                 connectionLineComponent={FloatingConnectionLine}
             >
                 <Panel position="top-left">
-                    <RestoreFlow id={props.id} nodes={props.initialNodes} edges={props.initialEdges} />
-                    <StashFlow id={props.id} />
-                    <LoadFlow id={props.id} />
-                    <SaveFlow id={props.id} />
-                    <UpdateNode selectedNode={selectedNode} />
-                    <DownloadFlow />
-                    <ControlFlow show={showControl} onClick={(s: boolean) => { setShowControl(s) }} />
+                    <div className='function-btn-panel'>
+                        <RestoreFlow id={props.id} nodes={props.initialNodes} edges={props.initialEdges} />
+                        <StashFlow id={props.id} />
+                        <LoadFlow id={props.id} />
+                        <SaveFlow id={props.id} />
+                        <UpdateNode selectedNode={selectedNode} />
+                        <DownloadFlow />
+                        <ControlFlow show={showControl} onClick={(s: boolean) => { setShowControl(s) }} />
+                    </div>
                 </Panel>
                 <Panel position="top-center" >
                     <h2>{props.title}</h2>

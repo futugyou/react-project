@@ -2,3 +2,25 @@
     background-color: #ff0072 !important;
     color: white !important;
 }
+
+.function-btn-panel {
+    display: flex;
+    gap: 5px;
+}
+
+.function-btn-panel button {
+    width: 110px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .function-btn-panel {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 769px) {
+    .function-btn-panel {
+        flex-direction: row;
+    }
+}
