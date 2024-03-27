@@ -69,8 +69,7 @@ npx '@fluidframework/azure-local-service'
 
 [FluidExamples](https://github.com/microsoft/FluidExamples.git/)
 
-## FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed
-## - JavaScript heap out of memory
+## JavaScript heap out of memory
 
 ```sh
 export NODE_OPTIONS="--max-old-space-size=8192"
