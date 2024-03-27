@@ -13,14 +13,15 @@ export interface IHeaderMenuProps {
 const staticRoutes: RouteDescription[] = [{
     display: "Home",
     path: "/",
-}, {
-    display: "Vue",
-    path: "/vue",
 },
-// {
-//     display: "Flow",
-//     path: "/flow",
-// }
+    // {
+    //     display: "Vue",
+    //     path: "/vue",
+    // },
+    // {
+    //     display: "Flow",
+    //     path: "/flow",
+    // }
 ]
 
 const HeaderMenu = (props: IHeaderMenuProps) => {
@@ -74,6 +75,19 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                                         }
                                         return (
                                             <a key={href} href={href} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{display}</a>
+                                        )
+                                    })
+                            }
+                        </div>
+                    )}
+
+                    {route.additionalRoute && (
+                        <div className={styles.sub}>
+                            {
+                                route.additionalRoute?.filter(p => p.path)
+                                    .filter(p => p.show && p.show() || !p.show).map(p => {
+                                        return (
+                                            <a key={p.path} href={p.path} className={styles.item} data-active={checkActive(p, location.pathname, route.path)}>{p.display}</a>
                                         )
                                     })
                             }

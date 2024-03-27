@@ -8,6 +8,7 @@ import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
 import { FlowRouteDataList2 } from './Flow/FlowRoute'
+import { MicroAppRoute2 } from '@/MicroApp/MicroAppRoute'
 
 const WhiteRoute: RouteDescription = {
     display: "Whiteboard",
@@ -27,7 +28,14 @@ export const TotalRouteDescriptions: RouteDescription[] = [
     WhiteRoute,
     DemoRoute,
     OpenAIRoute,
+    ...MicroAppRoute2,
 ]
+
+export interface AdditionalRoute {
+    path: string
+    display: string
+    show?: (key?: string) => boolean
+}
 
 export interface RouteDescription {
     path: string
@@ -36,6 +44,7 @@ export interface RouteDescription {
     element?: React.ReactNode
     checkActive?: (key: string) => boolean
     archived?: boolean
+    additionalRoute?: AdditionalRoute[]
     children?: RouteDescription[]
 }
 
