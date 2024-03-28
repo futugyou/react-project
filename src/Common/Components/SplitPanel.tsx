@@ -22,7 +22,7 @@ export interface ISplitPanelProps {
 const SplitPanel = (props: ISplitPanelProps) => {
     const isSmallDevice = useMediaQuery("(max-width : 768px)")
 
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         if (isSmallDevice) {

@@ -13,16 +13,7 @@ export interface IHeaderMenuProps {
 const staticRoutes: RouteDescription[] = [{
     display: "Home",
     path: "/",
-},
-    // {
-    //     display: "Vue",
-    //     path: "/vue",
-    // },
-    // {
-    //     display: "Flow",
-    //     path: "/flow",
-    // }
-]
+},]
 
 const HeaderMenu = (props: IHeaderMenuProps) => {
     const checkActive = (current: RouteDescription, pathname: string, parentPath?: string) => {
@@ -149,19 +140,19 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         </Overflow>)
 }
 
-const OverflowMenuItem: React.FC<{ itemIds: RouteDescription }> = (props) => {
-    const { itemIds } = props
-    const isVisible = useIsOverflowItemVisible(itemIds.display)
+const OverflowMenuItem = (item: RouteDescription) => {
+    const isVisible = useIsOverflowItemVisible(item.display)
 
     if (isVisible) {
         return null
     }
 
-    return <SideNavigation Routes={[itemIds]} DefaultExpanded={false}></SideNavigation>
+    return item
 }
 
 const OverflowMenu: React.FC<{ itemIds: RouteDescription[] }> = ({ itemIds }) => {
     const { ref, overflowCount, isOverflowing } = useOverflowMenu<HTMLAnchorElement>()
+    const items = itemIds.filter((i) => OverflowMenuItem(i) != undefined)
 
     if (!isOverflowing) {
         return null
@@ -171,9 +162,7 @@ const OverflowMenu: React.FC<{ itemIds: RouteDescription[] }> = ({ itemIds }) =>
         <li className={styles.menu} >
             <a href="#" ref={ref}>+{overflowCount} Menus</a>
             <div className={`${styles.sub} ${styles.subHiden}`} >
-                {itemIds.map((i) => {
-                    return <OverflowMenuItem key={i.display} itemIds={i} />;
-                })}
+                <SideNavigation Routes={items} DefaultExpanded={false}></SideNavigation>
             </div>
         </li>
     )
