@@ -28,7 +28,7 @@ const SideMenu = (props: ISideMenuProps) => {
                 type: "expandable-link-group",
                 text: route.display,
                 href: createHref(route.path, props.Prefix),
-                defaultExpanded: props.DefaultExpanded == undefined ? true : props.DefaultExpanded,
+                defaultExpanded: props.DefaultExpanded == false ? activeHref.startsWith(createHref(route.path, props.Prefix)) : true,
                 items: route.children == undefined ? (route.additionalRoute == undefined ? [] :
                     route.additionalRoute
                         .filter(p => p.show && p.show() || !p.show).map(p => {
