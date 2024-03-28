@@ -8,6 +8,7 @@ export interface ISideMenuProps {
     Routes: RouteDescription[]
     DefaultExpanded?: boolean
     Prefix?: string
+    OnAnchorClick?: (href: string) => void
 }
 
 const createHref = (href: string, prefix?: string) => {
@@ -47,6 +48,16 @@ const SideMenu = (props: ISideMenuProps) => {
             })
         })
 
+    const HandleFollow = (event: CustomEvent<SideNavigationProps.FollowDetail>) => {
+        if (!event.detail.external) {
+            event.preventDefault()
+            setActiveHref(event.detail.href)
+            if (props.OnAnchorClick) {
+                props.OnAnchorClick(event.detail.href)
+            }
+        }
+    }
+
     useEffect(() => {
         navigate(activeHref, { replace: true })
     }, [activeHref])
@@ -55,12 +66,7 @@ const SideMenu = (props: ISideMenuProps) => {
         <SideNavigation data-style-nowrap data-style-font-size-16
             activeHref={activeHref}
             // header={{ href: "#/", text: "Service name" }}
-            onFollow={event => {
-                if (!event.detail.external) {
-                    event.preventDefault();
-                    setActiveHref(event.detail.href);
-                }
-            }}
+            onFollow={HandleFollow}
             items={item as SideNavigationProps.Item[]}
         />
     )
