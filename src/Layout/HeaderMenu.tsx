@@ -162,7 +162,7 @@ const OverflowMenu: React.FC<{ itemIds: RouteDescription[] }> = ({ itemIds }) =>
         <li className={styles.menu} >
             <a href="#" ref={ref}>+{overflowCount} Menus</a>
             <div className={`${styles.sub} ${styles.subHiden}`} >
-                <SideNavigation Routes={items} DefaultExpanded={false}></SideNavigation>
+                <SideNavigation Routes={items} DefaultExpanded={false} headNavigate={false}></SideNavigation>
             </div>
         </li>
     )

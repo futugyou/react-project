@@ -9,6 +9,7 @@ export interface ISideMenuProps {
     DefaultExpanded?: boolean
     Prefix?: string
     OnAnchorClick?: (href: string) => void
+    headNavigate?: boolean
 }
 
 const createHref = (href: string, prefix?: string) => {
@@ -69,8 +70,19 @@ const SideMenu = (props: ISideMenuProps) => {
     }
 
     useEffect(() => {
+        if (props.headNavigate == false) {
+            const r = props.Routes.filter(p => p.path == activeHref)
+            if (r.length == 1) {
+                return
+            }
+        }
+
         navigate(activeHref, { replace: true })
-    }, [activeHref])
+    }, [activeHref, props.headNavigate])
+
+    useEffect(() => {
+        setActiveHref(location.pathname)
+    }, [location.pathname])
 
     return (
         <SideNavigation data-style-nowrap data-style-font-size-16
