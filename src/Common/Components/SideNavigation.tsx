@@ -29,22 +29,32 @@ const SideMenu = (props: ISideMenuProps) => {
                 text: route.display,
                 href: createHref(route.path, props.Prefix),
                 defaultExpanded: props.DefaultExpanded == undefined ? true : props.DefaultExpanded,
-                items: route.children == undefined ? [] :
-                    route.children.filter(p => p.path)
+                items: route.children == undefined ? (route.additionalRoute == undefined ? [] :
+                    route.additionalRoute
                         .filter(p => p.show && p.show() || !p.show).map(p => {
-                            let href = route.path + "/" + p.path
-                            let display = p.display
-                            if (!display) {
-                                display = p.path
-                            }
                             return (
                                 {
                                     type: "link",
-                                    text: display,
-                                    href: createHref(href, props.Prefix),
+                                    text: p.display,
+                                    href: createHref(p.path, props.Prefix),
                                 }
                             )
                         })
+                ) : route.children.filter(p => p.path)
+                    .filter(p => p.show && p.show() || !p.show).map(p => {
+                        let href = route.path + "/" + p.path
+                        let display = p.display
+                        if (!display) {
+                            display = p.path
+                        }
+                        return (
+                            {
+                                type: "link",
+                                text: display,
+                                href: createHref(href, props.Prefix),
+                            }
+                        )
+                    })
             })
         })
 
