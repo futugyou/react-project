@@ -21,11 +21,33 @@ export const MicroAppRoute2: RouteDescription[] = [{
     additionalRoute: [{
         display: "PDF Reader",
         path: "/vue?vueawsapp=%2Fpdf",
+        subPath: "/pdf",
+        appName: "vueawsapp",
     }, {
         display: "Translate",
         path: "/vue?vueawsapp=%2Ftranslate",
+        subPath: "/translate",
+        appName: "vueawsapp",
     }, {
         display: "OCR",
         path: "/vue?vueawsapp=%2Focr",
+        subPath: "/ocr",
+        appName: "vueawsapp",
+    },]
+}, {
+    display: "Nextjs",
+    path: "/nextjs",
+    element: <NextjsProject />,
+    show: () => false,
+    additionalRoute: [{
+        display: "edge geo",
+        path: "/nextjs?nextjsapp=%2Fapi%2Fedge-geo",
+        subPath: "/api/edge-geo",
+        appName: "nextjsapp",
+    }, {
+        display: "og",
+        path: "/nextjs?nextjsapp=%2Fog%2Fgithub",
+        subPath: "/og/github",
+        appName: "nextjsapp",
     },]
 }]

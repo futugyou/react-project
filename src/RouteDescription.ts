@@ -33,7 +33,9 @@ export const TotalRouteDescriptions: RouteDescription[] = [
 
 export interface AdditionalRoute {
     path: string
+    subPath: string
     display: string
+    appName: string
     show?: (key?: string) => boolean
 }
 

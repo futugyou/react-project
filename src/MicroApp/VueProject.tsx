@@ -84,7 +84,7 @@ const VueProject = () => {
             onError={handleError}
             onDataChange={handleDataChange}
             class="subappcontainer"
-            clear-data
+            destroy
             iframe
         ></ micro-app>
     )
