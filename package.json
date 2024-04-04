@@ -135,7 +135,7 @@
     "@types/randomcolor": "^0.5.9",
     "@types/react": "^18.2.74",
     "@types/react-cytoscapejs": "^1.2.5",
-    "@types/react-dom": "^18.2.23",
+    "@types/react-dom": "^18.2.24",
     "@types/react-reconciler": "^0.28.8",
     "@types/scheduler": "^0.23.0",
     "@types/sha.js": "^2.4.4",
