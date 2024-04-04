@@ -74,7 +74,7 @@ const Welcome = () => {
         },
         {
             title: "Gitalk",
-            url: "/gitalk",
+            url: "/vue?vueawsapp=%2Fgitalk",
             image: "/welcome/gittalk.png",
             description: "",
         },

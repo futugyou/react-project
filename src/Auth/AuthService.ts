@@ -81,12 +81,12 @@ export class AuthService<TIDToken = JWTIDToken> {
   }
 
   getCodeFromLocation(location: Location): string | null {
-    const split = location.toString().split('?')
-    if (split.length < 2) {
+    if (location.toString().indexOf("gitalk") >= 0) {
       return null
     }
 
-    if (split[0].endsWith("/gitalk")) {
+    const split = location.toString().split('?')
+    if (split.length < 2) {
       return null
     }
 
