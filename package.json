@@ -14,8 +14,8 @@
   "dependencies": {
     "@canvasjs/stockcharts": "^1.8.0",
     "@cloudscape-design/board-components": "^3.0.56",
-    "@cloudscape-design/components": "^3.0.595",
-    "@cloudscape-design/global-styles": "^1.0.26",
+    "@cloudscape-design/components": "^3.0.596",
+    "@cloudscape-design/global-styles": "^1.0.27",
     "@excalidraw/excalidraw": "^0.17.3",
     "@excalidraw/mermaid-to-excalidraw": "^0.2.0",
     "@fluentui/react-components": "^9.47.3",
@@ -135,7 +135,7 @@
     "@types/randomcolor": "^0.5.9",
     "@types/react": "^18.2.74",
     "@types/react-cytoscapejs": "^1.2.5",
-    "@types/react-dom": "^18.2.23",
+    "@types/react-dom": "^18.2.24",
     "@types/react-reconciler": "^0.28.8",
     "@types/scheduler": "^0.23.0",
     "@types/sha.js": "^2.4.4",
@@ -148,6 +148,6 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.1",
     "typescript": "^5.4.3",
-    "vite": "^5.2.7"
+    "vite": "^5.2.8"
   }
 }
