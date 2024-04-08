@@ -17,7 +17,7 @@
     "@cloudscape-design/components": "^3.0.600",
     "@cloudscape-design/global-styles": "^1.0.27",
     "@excalidraw/excalidraw": "^0.17.3",
-    "@excalidraw/mermaid-to-excalidraw": "^0.2.0",
+    "@excalidraw/mermaid-to-excalidraw": "^0.3.0",
     "@fluentui/react-components": "^9.47.5",
     "@fluid-experimental/data-objects": "^1.3.7",
     "@fluid-experimental/react-inputs": "^1.3.7",
