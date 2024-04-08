@@ -60,7 +60,7 @@
     "@udecode/plate-link": "^31.0.0",
     "@udecode/plate-list": "^31.1.3",
     "@udecode/plate-media": "^31.0.0",
-    "@udecode/plate-mention": "^31.0.0",
+    "@udecode/plate-mention": "^31.3.5",
     "@udecode/plate-paragraph": "^31.0.0",
     "@udecode/plate-resizable": "^31.0.0",
     "@udecode/plate-table": "^31.3.3",
