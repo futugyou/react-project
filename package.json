@@ -106,7 +106,7 @@
     "react-reconciler": "^0.29.0",
     "react-router-dom": "^6.22.3",
     "react-simple-animate": "^3.5.2",
-    "react-tweet": "^3.2.0",
+    "react-tweet": "^3.2.1",
     "reactflow": "^11.11.0",
     "sha.js": "^2.4.11",
     "slate": "^0.102.0",
