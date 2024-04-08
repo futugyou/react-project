@@ -133,7 +133,7 @@
     "@types/ramda": "^0.29.12",
     "@types/randombytes": "^2.0.3",
     "@types/randomcolor": "^0.5.9",
-    "@types/react": "^18.2.74",
+    "@types/react": "^18.2.75",
     "@types/react-cytoscapejs": "^1.2.5",
     "@types/react-dom": "^18.2.24",
     "@types/react-reconciler": "^0.28.8",
