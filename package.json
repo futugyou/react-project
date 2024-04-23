@@ -109,7 +109,7 @@
     "react-tweet": "^3.2.1",
     "reactflow": "^11.11.2",
     "sha.js": "^2.4.11",
-    "slate": "^0.102.0",
+    "slate": "^0.103.0",
     "slate-history": "^0.100.0",
     "slate-hyperscript": "^0.100.0",
     "slate-react": "^0.102.0",
