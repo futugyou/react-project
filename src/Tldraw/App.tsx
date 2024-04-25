@@ -24,12 +24,10 @@ import { LocalImages } from './Mount/LocalImages'
 import { MetaUi } from './Hook/MetaUi'
 import { Meta } from './Mount/Meta'
 import { ScreenshotTool } from './Tools/ScreenshotTool'
-import { SpeechBubbleUtil } from './Shape/SpeechBubble/SpeechBubbleUtil'
-import { SpeechBubbleTool } from './Shape/SpeechBubble/SpeechBubbleTool'
 import { HostedImages } from './Mount/HostedImages'
 
-const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, SpeechBubbleUtil]
-const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, SpeechBubbleTool]
+const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil,]
+const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool,]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
