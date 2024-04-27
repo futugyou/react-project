@@ -1,4 +1,7 @@
-import { TLUiOverrides, TLUiAssetUrlOverrides } from '@tldraw/tldraw'
+import {
+	TLUiAssetUrlOverrides,
+	TLUiOverrides,
+} from '@tldraw/tldraw'
 
 export const UIOverrides: TLUiOverrides = {
     tools(editor, tools) {
@@ -23,12 +26,22 @@ export const UIOverrides: TLUiOverrides = {
                 editor.setCurrentTool('screenshot')
             },
         }
+        tools.hearter = {
+			id: 'hearter',
+			icon: 'heart-icon',
+			label: 'Hearter',
+			kbd: 'h',
+			onSelect: () => {
+				editor.setCurrentTool('hearter')
+			},
+		}
         return tools
     },
 }
 
 export const CustomAssetUrls: TLUiAssetUrlOverrides = {
     icons: {
-        'tool-screenshot': './tldraw/tool-screenshot.svg',
+        'tool-screenshot': '/tldraw/tool-screenshot.svg',
+        'heart-icon': '/tldraw/heart-icon.svg',
     },
 }
