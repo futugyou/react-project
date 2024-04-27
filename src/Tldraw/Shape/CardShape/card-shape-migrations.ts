@@ -1,21 +1,21 @@
-import { defineMigrations } from '@tldraw/tldraw'
+import { createShapePropsMigrationSequence, createShapePropsMigrationIds } from '@tldraw/tldraw'
 
+const Versions = createShapePropsMigrationIds('card', {
+    AddProperty: 1
+})
 // Migrations for the custom card shape (optional but very helpful)
-export const cardShapeMigrations = defineMigrations({
-    currentVersion: 1,
-    migrators: {
-        1: {
-            // for example, removing a property from the shape
-            up(shape) {
-                const migratedUpShape = { ...shape }
-                delete migratedUpShape._somePropertyToRemove
-                return migratedUpShape
+export const cardShapeMigrations = createShapePropsMigrationSequence({
+    sequence: [
+        {
+            id: Versions.AddProperty,
+            // [!!!] You no longer have access to the top-level shape object.
+            // Only the shape.props object is passed in to the migrator function.
+            up(props) {
+                // [!!!] You no longer need to return a new copy of the shape object.
+                // Instead, you can modify the props object in place.
+                props.color = 'black'
             },
-            down(shape) {
-                const migratedDownShape = { ...shape }
-                migratedDownShape._somePropertyToRemove = 'some value'
-                return migratedDownShape
-            },
+            // [!!!] You no longer need to specify a down migration.
         },
-    },
+    ],
 })
