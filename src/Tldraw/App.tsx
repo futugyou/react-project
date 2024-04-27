@@ -7,7 +7,6 @@ import {
 	TLAnyShapeUtilConstructor,
 	TLStateNodeConstructor,
 	TLUiEventHandler,
-	OfflineIndicator,
 } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import { useCallback, useLayoutEffect, useState } from 'react'
@@ -24,10 +23,11 @@ import { LocalImages } from './Mount/LocalImages'
 import { MetaUi } from './Hook/MetaUi'
 import { Meta } from './Mount/Meta'
 import { ScreenshotTool } from './Tools/ScreenshotTool'
+import { HeartTool } from '././Tools/HeartTool'
 import { HostedImages } from './Mount/HostedImages'
 
 const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil,]
-const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool,]
+const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
