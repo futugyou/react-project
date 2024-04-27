@@ -1,9 +1,9 @@
-import { Tldraw, TLEditorComponents } from '@tldraw/tldraw'
+import { DefaultKeyboardShortcutsDialog, DefaultKeyboardShortcutsDialogContent, DefaultToolbar, DefaultToolbarContent, TLComponents, Tldraw, TldrawUiMenuItem, TLEditorComponents, useIsToolSelected, useTools } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import CountComponent from './CountComponent'
 import ScreenshotBox from './ScreenshotBox'
 
-export const components: TLEditorComponents = {
+export const components: TLComponents = {
 	Brush: ({ brush }) => {
 		return (
 			<svg className="tl-overlays__item">
@@ -32,4 +32,24 @@ export const components: TLEditorComponents = {
 	},
 	InFrontOfTheCanvas: ScreenshotBox,
 	OnTheCanvas: CountComponent,
+	Toolbar: (props) => {
+		const tools = useTools()
+		const isHearterSelected = useIsToolSelected(tools['hearter'])
+		return (
+			<DefaultToolbar {...props}>
+				<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
+				<DefaultToolbarContent />
+			</DefaultToolbar>
+		)
+	},
+	KeyboardShortcutsDialog: (props) => {
+		const tools = useTools()
+		return (
+			<DefaultKeyboardShortcutsDialog {...props}>
+				<DefaultKeyboardShortcutsDialogContent />
+				{/* Ideally, we'd interleave this into the tools group */}
+				<TldrawUiMenuItem {...tools['hearter']} />
+			</DefaultKeyboardShortcutsDialog>
+		)
+	},
 }
