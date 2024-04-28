@@ -1,10 +1,20 @@
 import {
-	TLUiAssetUrlOverrides,
-	TLUiOverrides,
+    TLUiActionsContextType,
+    TLUiAssetUrlOverrides,
+    TLUiOverrides,
+    TLUiToolsContextType,
 } from '@tldraw/tldraw'
 
 export const UIOverrides: TLUiOverrides = {
-    tools(editor, tools) {
+    actions(_editor, actions): TLUiActionsContextType {
+        const newActions = {
+            ...actions,
+            'toggle-grid': { ...actions['toggle-grid'], kbd: 'g' },
+        }
+
+        return newActions
+    },
+    tools(editor, tools): TLUiToolsContextType {
         // Create a tool item in the ui's context.
         tools.card = {
             id: 'card',
@@ -27,14 +37,14 @@ export const UIOverrides: TLUiOverrides = {
             },
         }
         tools.hearter = {
-			id: 'hearter',
-			icon: 'heart-icon',
-			label: 'Hearter',
-			kbd: 'h',
-			onSelect: () => {
-				editor.setCurrentTool('hearter')
-			},
-		}
+            id: 'hearter',
+            icon: 'heart-icon',
+            label: 'Hearter',
+            kbd: 'h',
+            onSelect: () => {
+                editor.setCurrentTool('hearter')
+            },
+        }
         return tools
     },
 }
