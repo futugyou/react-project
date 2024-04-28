@@ -35,10 +35,14 @@ export const components: TLComponents = {
 	Toolbar: (props) => {
 		const tools = useTools()
 		const isHearterSelected = useIsToolSelected(tools['hearter'])
+		const isCardSelected = useIsToolSelected(tools['card'])
+		const isScreenshotSelected = useIsToolSelected(tools['screenshot'])
 		return (
 			<DefaultToolbar {...props}>
-				<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
 				<DefaultToolbarContent />
+				<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
+				<TldrawUiMenuItem {...tools['card']} isSelected={isCardSelected} />
+				<TldrawUiMenuItem {...tools['screenshot']} isSelected={isScreenshotSelected} />
 			</DefaultToolbar>
 		)
 	},
@@ -47,8 +51,9 @@ export const components: TLComponents = {
 		return (
 			<DefaultKeyboardShortcutsDialog {...props}>
 				<DefaultKeyboardShortcutsDialogContent />
-				{/* Ideally, we'd interleave this into the tools group */}
 				<TldrawUiMenuItem {...tools['hearter']} />
+				<TldrawUiMenuItem {...tools['card']} />
+				<TldrawUiMenuItem {...tools['screenshot']} />
 			</DefaultKeyboardShortcutsDialog>
 		)
 	},
