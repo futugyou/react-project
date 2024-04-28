@@ -1,20 +1,21 @@
-import { DefaultKeyboardShortcutsDialog, DefaultKeyboardShortcutsDialogContent, DefaultToolbar, DefaultToolbarContent, TLComponents, Tldraw, TldrawUiMenuItem, TLEditorComponents, useIsToolSelected, useTools } from '@tldraw/tldraw'
+import { DefaultKeyboardShortcutsDialog, DefaultKeyboardShortcutsDialogContent, DefaultToolbar, DefaultToolbarContent, TLComponents, Tldraw, TldrawUiMenuItem, TLEditorComponents, toDomPrecision, useIsToolSelected, useTools, useTransform } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
+import { useRef } from 'react'
 import CountComponent from './CountComponent'
 import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLComponents = {
 	Brush: ({ brush }) => {
+		const rSvg = useRef<SVGSVGElement>(null)
+
+		useTransform(rSvg, brush.x, brush.y)
+
+		const w = toDomPrecision(Math.max(1, brush.w))
+		const h = toDomPrecision(Math.max(1, brush.h))
+
 		return (
-			<svg className="tl-overlays__item">
-				<rect
-					className="tl-brush"
-					stroke="red"
-					fill="none"
-					width={Math.max(1, brush.w)}
-					height={Math.max(1, brush.h)}
-					transform={`translate(${brush.x},${brush.y})`}
-				/>
+			<svg ref={rSvg} className="tl-overlays__item">
+				<rect className="tl-brush" stroke="red" fill="none" width={w} height={h} />
 			</svg>
 		)
 	},
@@ -23,7 +24,7 @@ export const components: TLComponents = {
 			<svg className="tl-overlays__item">
 				<polyline
 					points={scribble.points.map((p) => `${p.x},${p.y}`).join(' ')}
-					stroke={color ?? 'black'}
+					stroke={color ?? 'blue'}
 					opacity={opacity ?? '1'}
 					fill="none"
 				/>
