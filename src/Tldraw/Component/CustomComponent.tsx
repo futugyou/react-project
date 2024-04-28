@@ -3,10 +3,12 @@ import '@tldraw/tldraw/tldraw.css'
 import { useRef } from 'react'
 import CountComponent from './CountComponent'
 import { MySiteActionsMenu } from './MySiteActionsMenu'
+import { MySiteContextMenu } from './MySiteContextMenu'
 import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLComponents = {
 	ActionsMenu: MySiteActionsMenu,
+	ContextMenu: MySiteContextMenu,
 	Brush: ({ brush }) => {
 		const rSvg = useRef<SVGSVGElement>(null)
 
