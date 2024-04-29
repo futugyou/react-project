@@ -6,13 +6,17 @@ import { CustomActionsMenu } from './CustomActionsMenu'
 import { CustomContextMenu } from './CustomContextMenu'
 import { CustomHelpMenu } from './CustomHelpMenu'
 import { CustomKeyboardShortcutsDialog } from './CustomKeyboardShortcutsDialog'
+import { CustomMainMenu } from './CustomMainMenu'
+import { CustomQuickActions } from './CustomQuickActions'
 import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLComponents = {
 	ActionsMenu: CustomActionsMenu,
 	ContextMenu: CustomContextMenu,
 	HelpMenu: CustomHelpMenu,
-	KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
+	KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,	
+	MainMenu: CustomMainMenu,
+	QuickActions: CustomQuickActions,
 	Brush: ({ brush }) => {
 		const rSvg = useRef<SVGSVGElement>(null)
 
