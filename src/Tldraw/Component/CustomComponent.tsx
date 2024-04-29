@@ -5,12 +5,14 @@ import CountComponent from './CountComponent'
 import { CustomActionsMenu } from './CustomActionsMenu'
 import { CustomContextMenu } from './CustomContextMenu'
 import { CustomHelpMenu } from './CustomHelpMenu'
+import { CustomKeyboardShortcutsDialog } from './CustomKeyboardShortcutsDialog'
 import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLComponents = {
 	ActionsMenu: CustomActionsMenu,
 	ContextMenu: CustomContextMenu,
 	HelpMenu: CustomHelpMenu,
+	KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
 	Brush: ({ brush }) => {
 		const rSvg = useRef<SVGSVGElement>(null)
 
@@ -51,17 +53,6 @@ export const components: TLComponents = {
 				<TldrawUiMenuItem {...tools['card']} isSelected={isCardSelected} />
 				<TldrawUiMenuItem {...tools['screenshot']} isSelected={isScreenshotSelected} />
 			</DefaultToolbar>
-		)
-	},
-	KeyboardShortcutsDialog: (props) => {
-		const tools = useTools()
-		return (
-			<DefaultKeyboardShortcutsDialog {...props}>
-				<DefaultKeyboardShortcutsDialogContent />
-				<TldrawUiMenuItem {...tools['hearter']} />
-				<TldrawUiMenuItem {...tools['card']} />
-				<TldrawUiMenuItem {...tools['screenshot']} />
-			</DefaultKeyboardShortcutsDialog>
 		)
 	},
 }

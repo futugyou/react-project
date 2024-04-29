@@ -3,11 +3,9 @@ import { MySiteMenuItem } from "./MySiteMenuItem"
 
 export const CustomHelpMenu = () => {
     return (
-        <div>
-            <DefaultHelpMenu>
-                <DefaultHelpMenuContent />
-                <MySiteMenuItem />
-            </DefaultHelpMenu>
-        </div>
+        <DefaultHelpMenu>
+            <DefaultHelpMenuContent />
+            <MySiteMenuItem />
+        </DefaultHelpMenu>
     )
 }

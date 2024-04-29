@@ -3,11 +3,9 @@ import { MySiteMenuItem } from "./MySiteMenuItem"
 
 export const CustomActionsMenu = () => {
     return (
-        <div>
-            <DefaultActionsMenu>
-                <DefaultActionsMenuContent />
-                <MySiteMenuItem />
-            </DefaultActionsMenu>
-        </div>
+        <DefaultActionsMenu>
+            <DefaultActionsMenuContent />
+            <MySiteMenuItem />
+        </DefaultActionsMenu>
     )
 }
