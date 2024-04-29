@@ -2,13 +2,15 @@ import { DefaultKeyboardShortcutsDialog, DefaultKeyboardShortcutsDialogContent, 
 import '@tldraw/tldraw/tldraw.css'
 import { useRef } from 'react'
 import CountComponent from './CountComponent'
-import { MySiteActionsMenu } from './MySiteActionsMenu'
-import { MySiteContextMenu } from './MySiteContextMenu'
+import { CustomActionsMenu } from './CustomActionsMenu'
+import { CustomContextMenu } from './CustomContextMenu'
+import { CustomHelpMenu } from './CustomHelpMenu'
 import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLComponents = {
-	ActionsMenu: MySiteActionsMenu,
-	ContextMenu: MySiteContextMenu,
+	ActionsMenu: CustomActionsMenu,
+	ContextMenu: CustomContextMenu,
+	HelpMenu: CustomHelpMenu,
 	Brush: ({ brush }) => {
 		const rSvg = useRef<SVGSVGElement>(null)
 
