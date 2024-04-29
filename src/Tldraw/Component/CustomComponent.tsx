@@ -9,11 +9,12 @@ import { CustomKeyboardShortcutsDialog } from './CustomKeyboardShortcutsDialog'
 import { CustomMainMenu } from './CustomMainMenu'
 import { CustomQuickActions } from './CustomQuickActions'
 import { CustomToolbar } from './CustomToolbar'
+import { CustomZoomMenu } from './CustomZoomMenu'
 
 import CountComponent from './CountComponent'
 import ScreenshotBox from './ScreenshotBox'
 
-export const components: TLComponents = {
+export const CustomeComponents: TLComponents = {
 	ActionsMenu: CustomActionsMenu,
 	ContextMenu: CustomContextMenu,
 	HelpMenu: CustomHelpMenu,
@@ -49,4 +50,5 @@ export const components: TLComponents = {
 	InFrontOfTheCanvas: ScreenshotBox,
 	OnTheCanvas: CountComponent,
 	Toolbar: CustomToolbar,
+	ZoomMenu: CustomZoomMenu,
 }

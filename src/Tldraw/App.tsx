@@ -14,8 +14,6 @@ import {
 	TLUiEventHandler,
 } from '@tldraw/tldraw'
 
-import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
-import { components } from './Component/CustomComponent'
 import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
 import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
 import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
@@ -23,11 +21,15 @@ import { CustomAssetUrls, UIOverrides } from './UiOverride/ui-overrides'
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
 import { LocalImages } from './Mount/LocalImages'
-import { MetaUi } from './Hook/MetaUi'
 import { Meta } from './Mount/Meta'
 import { ScreenshotTool } from './Tools/ScreenshotTool'
 import { HeartTool } from '././Tools/HeartTool'
 import { HostedImages } from './Mount/HostedImages'
+
+import { CustomeComponents } from './Component/CustomComponent'
+
+import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
+import { MetaUi } from './Hook/MetaUi'
 
 const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil,]
 const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool]
@@ -110,7 +112,7 @@ const App = () => {
 				onMount={handleMount}
 				shapeUtils={customShapeUtils}
 				tools={customTools}
-				components={components}
+				components={CustomeComponents}
 				overrides={UIOverrides}
 				store={store}
 				assetUrls={CustomAssetUrls}
