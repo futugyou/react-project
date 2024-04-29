@@ -1,20 +1,23 @@
-import { DefaultKeyboardShortcutsDialog, DefaultKeyboardShortcutsDialogContent, DefaultToolbar, DefaultToolbarContent, TLComponents, Tldraw, TldrawUiMenuItem, TLEditorComponents, toDomPrecision, useIsToolSelected, useTools, useTransform } from '@tldraw/tldraw'
-import '@tldraw/tldraw/tldraw.css'
+
 import { useRef } from 'react'
-import CountComponent from './CountComponent'
+import { TLComponents, toDomPrecision, useTransform } from '@tldraw/tldraw'
+
 import { CustomActionsMenu } from './CustomActionsMenu'
 import { CustomContextMenu } from './CustomContextMenu'
 import { CustomHelpMenu } from './CustomHelpMenu'
 import { CustomKeyboardShortcutsDialog } from './CustomKeyboardShortcutsDialog'
 import { CustomMainMenu } from './CustomMainMenu'
 import { CustomQuickActions } from './CustomQuickActions'
+import { CustomToolbar } from './CustomToolbar'
+
+import CountComponent from './CountComponent'
 import ScreenshotBox from './ScreenshotBox'
 
 export const components: TLComponents = {
 	ActionsMenu: CustomActionsMenu,
 	ContextMenu: CustomContextMenu,
 	HelpMenu: CustomHelpMenu,
-	KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,	
+	KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
 	MainMenu: CustomMainMenu,
 	QuickActions: CustomQuickActions,
 	Brush: ({ brush }) => {
@@ -45,18 +48,5 @@ export const components: TLComponents = {
 	},
 	InFrontOfTheCanvas: ScreenshotBox,
 	OnTheCanvas: CountComponent,
-	Toolbar: (props) => {
-		const tools = useTools()
-		const isHearterSelected = useIsToolSelected(tools['hearter'])
-		const isCardSelected = useIsToolSelected(tools['card'])
-		const isScreenshotSelected = useIsToolSelected(tools['screenshot'])
-		return (
-			<DefaultToolbar {...props}>
-				<DefaultToolbarContent />
-				<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
-				<TldrawUiMenuItem {...tools['card']} isSelected={isCardSelected} />
-				<TldrawUiMenuItem {...tools['screenshot']} isSelected={isScreenshotSelected} />
-			</DefaultToolbar>
-		)
-	},
+	Toolbar: CustomToolbar,
 }

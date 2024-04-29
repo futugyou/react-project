@@ -1,3 +1,8 @@
+
+import '@tldraw/tldraw/tldraw.css'
+
+import { useCallback, useLayoutEffect, useState } from 'react'
+
 import {
 	createTLStore,
 	defaultShapeUtils,
@@ -8,8 +13,6 @@ import {
 	TLStateNodeConstructor,
 	TLUiEventHandler,
 } from '@tldraw/tldraw'
-import '@tldraw/tldraw/tldraw.css'
-import { useCallback, useLayoutEffect, useState } from 'react'
 
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { components } from './Component/CustomComponent'
