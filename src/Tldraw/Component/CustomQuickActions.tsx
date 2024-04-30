@@ -1,10 +1,13 @@
+import React from 'react';
+
 import { DefaultQuickActions, DefaultQuickActionsContent } from "@tldraw/tldraw"
 
 export const CustomQuickActions = () => {
-    var Content = DefaultQuickActionsContent as any
+    // @ts-ignore
+    const content = <DefaultQuickActionsContent />
     return (
         <DefaultQuickActions>
-            <Content />
+            {content}
         </DefaultQuickActions>
     )
 }
