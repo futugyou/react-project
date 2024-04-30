@@ -45,6 +45,14 @@ export const UIOverrides: TLUiOverrides = {
                 editor.setCurrentTool('hearter')
             },
         }
+        tools['editable-shape'] = {
+            id: 'editable-shape',
+            icon: '',
+            label: 'Editable-shape', 
+            onSelect: () => {
+                editor.setCurrentTool('editable-shape')
+            },
+        }
         return tools
     },
 }

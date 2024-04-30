@@ -14,9 +14,13 @@ import {
 	TLUiEventHandler,
 } from '@tldraw/tldraw'
 
+import { EditableShapeUtil } from './Shape/EditableShape/EditableShapeUtil'
+import { EditableShapeTool } from './Shape/EditableShape/EditableShapeTool'
+
 import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
-import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
 import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
+
+import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
 import { CustomAssetUrls, UIOverrides } from './UiOverride/ui-overrides'
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
@@ -31,8 +35,8 @@ import { CustomeComponents } from './Component/CustomComponent'
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { MetaUi } from './Hook/MetaUi'
 
-const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil,]
-const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool]
+const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, EditableShapeUtil]
+const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool, EditableShapeTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
@@ -55,7 +59,7 @@ const App = () => {
 
 	const handleUiEvent = useCallback<TLUiEventHandler>((name, data) => {
 		console.log(`${name} ${JSON.stringify(data)}`)
-		setUiEvents((events) => [`${name} ${JSON.stringify(data)}`, ...events])
+		setUiEvents((events) => [...events, `${name} ${JSON.stringify(data)}`])
 	}, [])
 
 	useLayoutEffect(() => {

@@ -7,6 +7,7 @@ export const CustomToolbar = (props: {}) => {
 	const isCardSelected = useIsToolSelected(tools['card'])
 	const isScreenshotSelected = useIsToolSelected(tools['screenshot'])
 	const isEhombus2Selected = useIsToolSelected(tools['rhombus-2'])
+	const iseditableSelected = useIsToolSelected(tools['editable-shape'])
 
 	return (
 		<DefaultToolbar {...props}>
@@ -15,6 +16,7 @@ export const CustomToolbar = (props: {}) => {
 			<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
 			<TldrawUiMenuItem {...tools['card']} isSelected={isCardSelected} />
 			<TldrawUiMenuItem {...tools['screenshot']} isSelected={isScreenshotSelected} />
+			<TldrawUiMenuItem {...tools['editable-shape']} isSelected={iseditableSelected} />
 		</DefaultToolbar>
 	)
 }
