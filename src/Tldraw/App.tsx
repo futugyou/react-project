@@ -14,6 +14,9 @@ import {
 	TLUiEventHandler,
 } from '@tldraw/tldraw'
 
+import { PlayingCardTool } from './Shape/PlayingCardShape/PlayingCardTool'
+import { PlayingCardUtil } from './Shape/PlayingCardShape/PlayingCardUtil'
+
 import { EditableShapeUtil } from './Shape/EditableShape/EditableShapeUtil'
 import { EditableShapeTool } from './Shape/EditableShape/EditableShapeTool'
 
@@ -35,8 +38,8 @@ import { CustomeComponents } from './Component/CustomComponent'
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { MetaUi } from './Hook/MetaUi'
 
-const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, EditableShapeUtil]
-const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool, EditableShapeTool]
+const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, EditableShapeUtil, PlayingCardUtil]
+const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool, EditableShapeTool, PlayingCardTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
@@ -48,6 +51,7 @@ const App = () => {
 		Hello(editor)
 		LocalImages(editor)
 		HostedImages(editor)
+		editor.user.updateUserPreferences({ isSnapMode: true })
 	}, [Hello, LocalImages])
 
 	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...customShapeUtils] }))

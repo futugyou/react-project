@@ -52,6 +52,15 @@ export const UIOverrides: TLUiOverrides = {
             onSelect: () => {
                 editor.setCurrentTool('editable-shape')
             },
+        }        
+        tools.PlayingCard = {
+            id: 'PlayingCard',
+            icon: 'PlayingCard',
+            label: 'PlayingCard',
+            kbd: 'h',
+            onSelect: () => {
+                editor.setCurrentTool('PlayingCard')
+            },
         }
         return tools
     },
