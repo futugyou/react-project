@@ -9,35 +9,25 @@ import {
 	Editor,
 	Tldraw,
 	throttle,
-	TLAnyShapeUtilConstructor,
-	TLStateNodeConstructor,
 	TLUiEventHandler,
 } from '@tldraw/tldraw'
 
-import { PlayingCardTool } from './Shape/PlayingCardShape/PlayingCardTool'
-import { PlayingCardUtil } from './Shape/PlayingCardShape/PlayingCardUtil'
+import {
+	CustomAssetUrls,
+	UIOverrides,
+	CustomeComponents,
+	CustomeShapes,
+	CustomTools,
+} from './UiOverride/UIOverrides'
 
-import { EditableShapeUtil } from './Shape/EditableShape/EditableShapeUtil'
-import { EditableShapeTool } from './Shape/EditableShape/EditableShapeTool'
-
-import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
-import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
-
-import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
-import { CustomAssetUrls, UIOverrides, CustomeComponents } from './UiOverride/UIOverrides'
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
 import { LocalImages } from './Mount/LocalImages'
 import { Meta } from './Mount/Meta'
-import { ScreenshotTool } from './Tools/ScreenshotTool'
-import { HeartTool } from '././Tools/HeartTool'
 import { HostedImages } from './Mount/HostedImages'
 
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { MetaUi } from './Hook/MetaUi'
-
-const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, EditableShapeUtil, PlayingCardUtil]
-const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool, EditableShapeTool, PlayingCardTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
@@ -50,9 +40,9 @@ const App = () => {
 		LocalImages(editor)
 		HostedImages(editor)
 		editor.user.updateUserPreferences({ isSnapMode: true })
-	}, [Hello, LocalImages])
+	}, [Meta, Html, Hello, LocalImages, HostedImages])
 
-	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...customShapeUtils] }))
+	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...CustomeShapes] }))
 	const [loadingState, setLoadingState] = useState<
 		{ status: 'loading' } | { status: 'ready' } | { status: 'error'; error: string }
 	>({
@@ -116,8 +106,8 @@ const App = () => {
 		<div style={{ inset: 0 }}>
 			<Tldraw
 				onMount={handleMount}
-				shapeUtils={customShapeUtils}
-				tools={customTools}
+				shapeUtils={CustomeShapes}
+				tools={CustomTools}
 				components={CustomeComponents}
 				overrides={UIOverrides}
 				store={store}

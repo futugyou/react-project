@@ -4,6 +4,8 @@ import {
     TLUiOverrides,
     TLUiToolsContextType,
     TLComponents,
+    TLAnyShapeUtilConstructor,
+    TLStateNodeConstructor,
 } from '@tldraw/tldraw'
 
 import { CustomActionsMenu } from './CustomActionsMenu'
@@ -20,6 +22,17 @@ import { CustomScribble } from './CustomScribble'
 
 import CountComponent from './CountComponent'
 import ScreenshotBox from './ScreenshotBox'
+
+import { PlayingCardUtil } from '../Shape/PlayingCardShape/PlayingCardUtil'
+import { EditableShapeUtil } from '../Shape/EditableShape/EditableShapeUtil'
+import { CardShapeUtil } from '../Shape/CardShape/CardShapeUtil'
+import { HtmlShapeUtil } from '../Shape/HtmlShape/HtmlShapeUtil'
+
+import { PlayingCardTool } from '../Shape/PlayingCardShape/PlayingCardTool'
+import { EditableShapeTool } from '../Shape/EditableShape/EditableShapeTool'
+import { CardShapeTool } from '../Shape/CardShape/CardShapeTool'
+import { ScreenshotTool } from '../Tools/ScreenshotTool'
+import { HeartTool } from '../Tools/HeartTool'
 
 export const UIOverrides: TLUiOverrides = {
     actions(_editor, actions): TLUiActionsContextType {
@@ -42,6 +55,7 @@ export const UIOverrides: TLUiOverrides = {
                 editor.setCurrentTool('card')
             },
         }
+        
         tools.screenshot = {
             id: 'screenshot',
             label: 'Screenshot',
@@ -52,6 +66,7 @@ export const UIOverrides: TLUiOverrides = {
                 editor.setCurrentTool('screenshot')
             },
         }
+
         tools.hearter = {
             id: 'hearter',
             icon: 'heart-icon',
@@ -61,6 +76,7 @@ export const UIOverrides: TLUiOverrides = {
                 editor.setCurrentTool('hearter')
             },
         }
+
         tools['editable-shape'] = {
             id: 'editable-shape',
             icon: '',
@@ -69,15 +85,16 @@ export const UIOverrides: TLUiOverrides = {
                 editor.setCurrentTool('editable-shape')
             },
         }
+
         tools.PlayingCard = {
             id: 'PlayingCard',
             icon: 'PlayingCard',
             label: 'PlayingCard',
-            kbd: 'h',
             onSelect: () => {
                 editor.setCurrentTool('PlayingCard')
             },
         }
+
         return tools
     },
 }
@@ -103,3 +120,7 @@ export const CustomeComponents: TLComponents = {
     Toolbar: CustomToolbar,
     ZoomMenu: CustomZoomMenu,
 }
+
+export const CustomeShapes: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil, EditableShapeUtil, PlayingCardUtil]
+
+export const CustomTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool, EditableShapeTool, PlayingCardTool]
