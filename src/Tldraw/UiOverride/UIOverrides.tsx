@@ -3,7 +3,23 @@ import {
     TLUiAssetUrlOverrides,
     TLUiOverrides,
     TLUiToolsContextType,
+    TLComponents,
 } from '@tldraw/tldraw'
+
+import { CustomActionsMenu } from './CustomActionsMenu'
+import { CustomContextMenu } from './CustomContextMenu'
+import { CustomHelpMenu } from './CustomHelpMenu'
+import { CustomKeyboardShortcutsDialog } from './CustomKeyboardShortcutsDialog'
+import { CustomMainMenu } from './CustomMainMenu'
+
+import { CustomQuickActions } from './CustomQuickActions'
+import { CustomToolbar } from './CustomToolbar'
+import { CustomZoomMenu } from './CustomZoomMenu'
+import { CustomBrush } from './CustomBrush'
+import { CustomScribble } from './CustomScribble'
+
+import CountComponent from './CountComponent'
+import ScreenshotBox from './ScreenshotBox'
 
 export const UIOverrides: TLUiOverrides = {
     actions(_editor, actions): TLUiActionsContextType {
@@ -48,11 +64,11 @@ export const UIOverrides: TLUiOverrides = {
         tools['editable-shape'] = {
             id: 'editable-shape',
             icon: '',
-            label: 'Editable-shape', 
+            label: 'Editable-shape',
             onSelect: () => {
                 editor.setCurrentTool('editable-shape')
             },
-        }        
+        }
         tools.PlayingCard = {
             id: 'PlayingCard',
             icon: 'PlayingCard',
@@ -71,4 +87,19 @@ export const CustomAssetUrls: TLUiAssetUrlOverrides = {
         'tool-screenshot': '/tldraw/tool-screenshot.svg',
         'heart-icon': '/tldraw/heart-icon.svg',
     },
+}
+
+export const CustomeComponents: TLComponents = {
+    ActionsMenu: CustomActionsMenu,
+    ContextMenu: CustomContextMenu,
+    HelpMenu: CustomHelpMenu,
+    KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
+    MainMenu: CustomMainMenu,
+    QuickActions: CustomQuickActions,
+    Brush: CustomBrush,
+    Scribble: CustomScribble,
+    InFrontOfTheCanvas: ScreenshotBox,
+    OnTheCanvas: CountComponent,
+    Toolbar: CustomToolbar,
+    ZoomMenu: CustomZoomMenu,
 }

@@ -24,7 +24,7 @@ import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
 import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
 
 import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
-import { CustomAssetUrls, UIOverrides } from './UiOverride/ui-overrides'
+import { CustomAssetUrls, UIOverrides, CustomeComponents } from './UiOverride/UIOverrides'
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
 import { LocalImages } from './Mount/LocalImages'
@@ -32,8 +32,6 @@ import { Meta } from './Mount/Meta'
 import { ScreenshotTool } from './Tools/ScreenshotTool'
 import { HeartTool } from '././Tools/HeartTool'
 import { HostedImages } from './Mount/HostedImages'
-
-import { CustomeComponents } from './Component/CustomComponent'
 
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { MetaUi } from './Hook/MetaUi'
