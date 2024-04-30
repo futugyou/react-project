@@ -15,7 +15,10 @@ export const cardShapeMigrations = createShapePropsMigrationSequence({
                 // Instead, you can modify the props object in place.
                 props.color = 'black'
             },
-            // [!!!] You no longer need to specify a down migration.
+            // [!!!] You no longer need to specify a down migration.            
+			down(props) {
+				delete props.color
+			},
         },
     ],
 })

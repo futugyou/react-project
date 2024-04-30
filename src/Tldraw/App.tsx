@@ -9,30 +9,25 @@ import {
 	Editor,
 	Tldraw,
 	throttle,
-	TLAnyShapeUtilConstructor,
-	TLStateNodeConstructor,
 	TLUiEventHandler,
 } from '@tldraw/tldraw'
 
-import { CardShapeUtil } from './Shape/CardShape/CardShapeUtil'
-import { HtmlShapeUtil } from './Shape/HtmlShape/HtmlShapeUtil'
-import { CardShapeTool } from './Shape/CardShape/CardShapeTool'
-import { CustomAssetUrls, UIOverrides } from './UiOverride/ui-overrides'
+import {
+	CustomAssetUrls,
+	UIOverrides,
+	CustomeComponents,
+	CustomeShapes,
+	CustomTools,
+} from './UiOverride/UIOverrides'
+
 import { Hello } from './Mount/Hello'
 import { Html } from './Mount/Html'
 import { LocalImages } from './Mount/LocalImages'
 import { Meta } from './Mount/Meta'
-import { ScreenshotTool } from './Tools/ScreenshotTool'
-import { HeartTool } from '././Tools/HeartTool'
 import { HostedImages } from './Mount/HostedImages'
-
-import { CustomeComponents } from './Component/CustomComponent'
 
 import { SneakyFloatyHook } from './Hook/SneakyFloatyHook'
 import { MetaUi } from './Hook/MetaUi'
-
-const customShapeUtils: TLAnyShapeUtilConstructor[] = [CardShapeUtil, HtmlShapeUtil,]
-const customTools: TLStateNodeConstructor[] = [CardShapeTool, ScreenshotTool, HeartTool]
 
 const PERSISTENCE_KEY = 'tldraw_persistence_key'
 
@@ -44,9 +39,10 @@ const App = () => {
 		Hello(editor)
 		LocalImages(editor)
 		HostedImages(editor)
-	}, [Hello, LocalImages])
+		editor.user.updateUserPreferences({ isSnapMode: true })
+	}, [Meta, Html, Hello, LocalImages, HostedImages])
 
-	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...customShapeUtils] }))
+	const [store] = useState(() => createTLStore({ shapeUtils: [...defaultShapeUtils, ...CustomeShapes] }))
 	const [loadingState, setLoadingState] = useState<
 		{ status: 'loading' } | { status: 'ready' } | { status: 'error'; error: string }
 	>({
@@ -55,7 +51,7 @@ const App = () => {
 
 	const handleUiEvent = useCallback<TLUiEventHandler>((name, data) => {
 		console.log(`${name} ${JSON.stringify(data)}`)
-		setUiEvents((events) => [`${name} ${JSON.stringify(data)}`, ...events])
+		setUiEvents((events) => [...events, `${name} ${JSON.stringify(data)}`])
 	}, [])
 
 	useLayoutEffect(() => {
@@ -110,8 +106,8 @@ const App = () => {
 		<div style={{ inset: 0 }}>
 			<Tldraw
 				onMount={handleMount}
-				shapeUtils={customShapeUtils}
-				tools={customTools}
+				shapeUtils={CustomeShapes}
+				tools={CustomTools}
 				components={CustomeComponents}
 				overrides={UIOverrides}
 				store={store}
