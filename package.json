@@ -107,7 +107,7 @@
     "react-router-dom": "^6.23.0",
     "react-simple-animate": "^3.5.2",
     "react-tweet": "^3.2.1",
-    "reactflow": "^11.11.2",
+    "reactflow": "^11.11.3",
     "sha.js": "^2.4.11",
     "slate": "^0.103.0",
     "slate-history": "^0.100.0",
