@@ -28,11 +28,11 @@ import { EditableShapeUtil } from '../Component/Editable/EditableShapeUtil'
 import { CardShapeUtil } from '../Component/Card/CardShapeUtil'
 import { HtmlShapeUtil } from '../Component/Html/HtmlShapeUtil'
 
-import { PlayingCardTool } from '../Component/PlayingCard/PlayingCardTool'
-import { EditableShapeTool } from '../Component/Editable/EditableShapeTool'
-import { CardShapeTool } from '../Component/Card/CardShapeTool'
-import { ScreenshotTool } from '../Component/Screenshot/ScreenshotTool'
-import { HeartTool } from '../Component/Heart/HeartTool'
+import { PlayingCardTool, ConfigPlayingCardTool } from '../Component/PlayingCard/PlayingCardTool'
+import { EditableShapeTool, ConfigEditableTool } from '../Component/Editable/EditableShapeTool'
+import { CardShapeTool, ConfigCardTool } from '../Component/Card/CardShapeTool'
+import { ScreenshotTool, ConfigScreenshotTool } from '../Component/Screenshot/ScreenshotTool'
+import { HeartTool, ConfigHeartTool } from '../Component/Heart/HeartTool'
 
 export const UIOverrides: TLUiOverrides = {
     actions(_editor, actions): TLUiActionsContextType {
@@ -44,56 +44,11 @@ export const UIOverrides: TLUiOverrides = {
         return newActions
     },
     tools(editor, tools): TLUiToolsContextType {
-        // Create a tool item in the ui's context.
-        tools.card = {
-            id: 'card',
-            icon: 'color',
-            label: 'Card',
-            kbd: 'c',
-            readonlyOk: false,
-            onSelect: () => {
-                editor.setCurrentTool('card')
-            },
-        }
-        
-        tools.screenshot = {
-            id: 'screenshot',
-            label: 'Screenshot',
-            readonlyOk: false,
-            icon: 'tool-screenshot',
-            kbd: 'j',
-            onSelect() {
-                editor.setCurrentTool('screenshot')
-            },
-        }
-
-        tools.hearter = {
-            id: 'hearter',
-            icon: 'heart-icon',
-            label: 'Hearter',
-            kbd: 'h',
-            onSelect: () => {
-                editor.setCurrentTool('hearter')
-            },
-        }
-
-        tools['editable-shape'] = {
-            id: 'editable-shape',
-            icon: '',
-            label: 'Editable-shape',
-            onSelect: () => {
-                editor.setCurrentTool('editable-shape')
-            },
-        }
-
-        tools.PlayingCard = {
-            id: 'PlayingCard',
-            icon: 'PlayingCard',
-            label: 'PlayingCard',
-            onSelect: () => {
-                editor.setCurrentTool('PlayingCard')
-            },
-        }
+        ConfigCardTool(editor, tools)
+        ConfigScreenshotTool(editor, tools)
+        ConfigHeartTool(editor, tools)
+        ConfigEditableTool(editor, tools)
+        ConfigPlayingCardTool(editor, tools)
 
         return tools
     },

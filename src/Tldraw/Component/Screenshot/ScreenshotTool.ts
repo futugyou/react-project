@@ -1,4 +1,5 @@
-import { StateNode, TLCancelEvent, TLInterruptEvent } from '@tldraw/tldraw'
+import { StateNode, TLCancelEvent, TLInterruptEvent, Editor, TLUiToolsContextType } from '@tldraw/tldraw'
+
 import { ScreenshotDragging } from './State/Dragging'
 import { ScreenshotIdle } from './State/Idle'
 import { ScreenshotPointing } from './State/Pointing'
@@ -34,5 +35,18 @@ export class ScreenshotTool extends StateNode {
 
     private complete() {
         this.parent.transition('select', {})
+    }
+}
+
+export const ConfigScreenshotTool = (editor: Editor, tools: TLUiToolsContextType) => {
+    tools.screenshot = {
+        id: 'screenshot',
+        label: 'Screenshot',
+        readonlyOk: false,
+        icon: 'tool-screenshot',
+        kbd: 'j',
+        onSelect() {
+            editor.setCurrentTool('screenshot')
+        },
     }
 }

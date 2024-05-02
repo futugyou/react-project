@@ -1,4 +1,4 @@
-import { StateNode } from 'tldraw'
+import { StateNode, Editor, TLUiToolsContextType } from 'tldraw'
 
 // Check out the custom tool example for a more detailed explanation of the tool class.
 
@@ -18,5 +18,17 @@ export class HeartTool extends StateNode {
 			y: currentPagePoint.y - OFFSET,
 			props: { text: '❤️' },
 		})
+	}
+}
+
+export const ConfigHeartTool = (editor: Editor, tools: TLUiToolsContextType) => {
+	tools.hearter = {
+		id: 'hearter',
+		icon: 'heart-icon',
+		label: 'Hearter',
+		kbd: 'h',
+		onSelect: () => {
+			editor.setCurrentTool('hearter')
+		},
 	}
 }
