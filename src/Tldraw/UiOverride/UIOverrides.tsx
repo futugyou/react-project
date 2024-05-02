@@ -28,11 +28,11 @@ import { EditableShapeUtil } from '../Component/Editable/EditableShapeUtil'
 import { CardShapeUtil } from '../Component/Card/CardShapeUtil'
 import { HtmlShapeUtil } from '../Component/Html/HtmlShapeUtil'
 
-import { PlayingCardTool, ConfigPlayingCardTool } from '../Component/PlayingCard/PlayingCardTool'
-import { EditableShapeTool, ConfigEditableTool } from '../Component/Editable/EditableShapeTool'
-import { CardShapeTool, ConfigCardTool } from '../Component/Card/CardShapeTool'
-import { ScreenshotTool, ConfigScreenshotTool } from '../Component/Screenshot/ScreenshotTool'
-import { HeartTool, ConfigHeartTool } from '../Component/Heart/HeartTool'
+import { PlayingCardTool, ConfigPlayingCardTool, PlayingCardToolBar } from '../Component/PlayingCard/PlayingCardTool'
+import { EditableShapeTool, ConfigEditableTool, EditableToolBar } from '../Component/Editable/EditableShapeTool'
+import { CardShapeTool, ConfigCardTool, CardToolBar } from '../Component/Card/CardShapeTool'
+import { ScreenshotTool, ConfigScreenshotTool, ScreenshotToolBar } from '../Component/Screenshot/ScreenshotTool'
+import { HeartTool, ConfigHeartTool, HeartToolBar } from '../Component/Heart/HeartTool'
 
 export const UIOverrides: TLUiOverrides = {
     actions(_editor, actions): TLUiActionsContextType {
@@ -61,18 +61,21 @@ export const CustomAssetUrls: TLUiAssetUrlOverrides = {
     },
 }
 
+const CustomeToolBars = [<CardToolBar />, <ScreenshotToolBar />, <HeartToolBar />, <PlayingCardToolBar />, <EditableToolBar />,]
+
 export const CustomeComponents: TLComponents = {
     ActionsMenu: CustomActionsMenu,
     ContextMenu: CustomContextMenu,
     HelpMenu: CustomHelpMenu,
-    KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
+    // this config may be not need?
+    // KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
     MainMenu: CustomMainMenu,
     QuickActions: CustomQuickActions,
     Brush: CustomBrush,
     Scribble: CustomScribble,
     InFrontOfTheCanvas: ScreenshotBox,
     OnTheCanvas: CountComponent,
-    Toolbar: CustomToolbar,
+    Toolbar: () => <CustomToolbar>{CustomeToolBars}</CustomToolbar>,
     ZoomMenu: CustomZoomMenu,
 }
 

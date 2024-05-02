@@ -1,4 +1,11 @@
-import { BaseBoxShapeTool, Editor, TLUiToolsContextType } from 'tldraw'
+import {
+    useTools,
+    useIsToolSelected,
+    TldrawUiMenuItem,
+    BaseBoxShapeTool,
+    Editor,
+    TLUiToolsContextType,
+} from '@tldraw/tldraw'
 
 export class PlayingCardTool extends BaseBoxShapeTool {
     static override id = 'PlayingCard'
@@ -15,4 +22,14 @@ export const ConfigPlayingCardTool = (editor: Editor, tools: TLUiToolsContextTyp
             editor.setCurrentTool('PlayingCard')
         },
     }
+}
+
+export const PlayingCardToolBar = (props: {}) => {
+    const tools = useTools()
+
+    const isPlayingCardSelected = useIsToolSelected(tools['PlayingCard'])
+
+    return (
+        <TldrawUiMenuItem {...tools['PlayingCard']} isSelected={isPlayingCardSelected} />
+    )
 }

@@ -1,4 +1,11 @@
-import { BaseBoxShapeTool, Editor, TLUiToolsContextType } from '@tldraw/tldraw'
+import {
+	BaseBoxShapeTool,
+	Editor,
+	TLUiToolsContextType,
+	useTools,
+	useIsToolSelected,
+	TldrawUiMenuItem,
+} from '@tldraw/tldraw'
 
 export class EditableShapeTool extends BaseBoxShapeTool {
 	static override id = 'editable-shape'
@@ -15,4 +22,14 @@ export const ConfigEditableTool = (editor: Editor, tools: TLUiToolsContextType) 
 			editor.setCurrentTool('editable-shape')
 		},
 	}
+}
+
+export const EditableToolBar = (props: {}) => {
+	const tools = useTools()
+
+	const iseditableSelected = useIsToolSelected(tools['editable-shape'])
+
+	return (
+		<TldrawUiMenuItem {...tools['editable-shape']} isSelected={iseditableSelected} />
+	)
 }

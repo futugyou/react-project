@@ -1,4 +1,13 @@
-import { StateNode, TLCancelEvent, TLInterruptEvent, Editor, TLUiToolsContextType } from '@tldraw/tldraw'
+import {
+    TLUiToolsContextType,
+    Editor,
+    useTools,
+    TldrawUiMenuItem,
+    useIsToolSelected,
+    StateNode,
+    TLInterruptEvent,
+    TLCancelEvent,
+} from '@tldraw/tldraw'
 
 import { ScreenshotDragging } from './State/Dragging'
 import { ScreenshotIdle } from './State/Idle'
@@ -49,4 +58,14 @@ export const ConfigScreenshotTool = (editor: Editor, tools: TLUiToolsContextType
             editor.setCurrentTool('screenshot')
         },
     }
+}
+
+export const ScreenshotToolBar = () => {
+    const tools = useTools()
+
+    const isScreenshotSelected = useIsToolSelected(tools['screenshot'])
+
+    return (
+        <TldrawUiMenuItem {...tools['screenshot']} isSelected={isScreenshotSelected} />
+	)
 }

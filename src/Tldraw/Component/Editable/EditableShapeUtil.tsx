@@ -6,7 +6,7 @@ import {
     TLBaseShape,
     TLOnEditEndHandler,
     stopEventPropagation,
-} from 'tldraw'
+} from '@tldraw/tldraw'
 
 const ANIMAL_EMOJIS = ['🐶', '🐱', '🐨', '🐮', '🐴']
 
@@ -88,4 +88,4 @@ export class EditableShapeUtil extends BaseBoxShapeUtil<IMyEditableShape> {
             { duration: 250 }
         )
     }
-} 
+}

@@ -1,4 +1,12 @@
-import { StateNode, Editor, TLUiToolsContextType } from 'tldraw'
+import {
+	TLUiToolsContextType,
+	Editor,
+	useTools,
+	TldrawUiMenuItem,
+	useIsToolSelected,
+	StateNode,
+} from '@tldraw/tldraw'
+
 
 // Check out the custom tool example for a more detailed explanation of the tool class.
 
@@ -31,4 +39,14 @@ export const ConfigHeartTool = (editor: Editor, tools: TLUiToolsContextType) => 
 			editor.setCurrentTool('hearter')
 		},
 	}
+}
+
+export const HeartToolBar = (props: {}) => {
+	const tools = useTools()
+
+	const isHearterSelected = useIsToolSelected(tools['hearter'])
+
+	return (
+		<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
+	)
 }
