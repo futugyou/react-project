@@ -61,9 +61,14 @@ export const CustomAssetUrls: TLUiAssetUrlOverrides = {
     },
 }
 
-const CustomeToolBars = [<CardToolBar />, <ScreenshotToolBar />, <HeartToolBar />, <PlayingCardToolBar />, <EditableToolBar />,]
+const CustomToolBars = [CardToolBar, HeartToolBar, ScreenshotToolBar, PlayingCardToolBar, EditableToolBar]
+
+const Toolbar = () => {
+    return <CustomToolbar>{CustomToolBars.map((ToolBarComponent, index) => <ToolBarComponent key={index} />)}</CustomToolbar>
+}
 
 export const CustomeComponents: TLComponents = {
+    Toolbar,
     ActionsMenu: CustomActionsMenu,
     ContextMenu: CustomContextMenu,
     HelpMenu: CustomHelpMenu,
@@ -75,7 +80,6 @@ export const CustomeComponents: TLComponents = {
     Scribble: CustomScribble,
     InFrontOfTheCanvas: ScreenshotBox,
     OnTheCanvas: CountComponent,
-    Toolbar: () => <CustomToolbar>{CustomeToolBars}</CustomToolbar>,
     ZoomMenu: CustomZoomMenu,
 }
 

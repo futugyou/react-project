@@ -1,6 +1,10 @@
 import { DefaultToolbar, DefaultToolbarContent, TldrawUiMenuItem, useIsToolSelected, useTools } from "@tldraw/tldraw"
 
-export const CustomToolbar = ({ children }: any) => {
+export type CustomToolbarProps = {
+	children: React.ReactNode
+}
+
+export const CustomToolbar = ({ children }: CustomToolbarProps) => {
 	const tools = useTools()
 	const isEhombus2Selected = useIsToolSelected(tools['rhombus-2'])
 
