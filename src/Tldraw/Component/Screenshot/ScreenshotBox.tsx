@@ -1,5 +1,5 @@
 import { Box, useEditor, useValue, Vec } from "@tldraw/tldraw"
-import { ScreenshotDragging } from "../Tools/ScreenshotState/Dragging"
+import { ScreenshotDragging } from "./State/Dragging"
 
 const ScreenshotBox = () => {
     const editor = useEditor()

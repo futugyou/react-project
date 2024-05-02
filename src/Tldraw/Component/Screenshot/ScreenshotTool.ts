@@ -1,7 +1,7 @@
 import { StateNode, TLCancelEvent, TLInterruptEvent } from '@tldraw/tldraw'
-import { ScreenshotDragging } from './ScreenshotState/Dragging'
-import { ScreenshotIdle } from './ScreenshotState/Idle'
-import { ScreenshotPointing } from './ScreenshotState/Pointing'
+import { ScreenshotDragging } from './State/Dragging'
+import { ScreenshotIdle } from './State/Idle'
+import { ScreenshotPointing } from './State/Pointing'
 
 export class ScreenshotTool extends StateNode {
     // It has three child state nodes, ScreenshotIdle, 

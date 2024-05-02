@@ -21,7 +21,7 @@ import { CustomBrush } from './CustomBrush'
 import { CustomScribble } from './CustomScribble'
 
 import CountComponent from './CountComponent'
-import ScreenshotBox from './ScreenshotBox'
+import ScreenshotBox from '../Component/Screenshot/ScreenshotBox'
 
 import { PlayingCardUtil } from '../Component/PlayingCard/PlayingCardUtil'
 import { EditableShapeUtil } from '../Component/Editable/EditableShapeUtil'
@@ -31,8 +31,8 @@ import { HtmlShapeUtil } from '../Component/Html/HtmlShapeUtil'
 import { PlayingCardTool } from '../Component/PlayingCard/PlayingCardTool'
 import { EditableShapeTool } from '../Component/Editable/EditableShapeTool'
 import { CardShapeTool } from '../Component/Card/CardShapeTool'
-import { ScreenshotTool } from '../Tools/ScreenshotTool'
-import { HeartTool } from '../Tools/HeartTool'
+import { ScreenshotTool } from '../Component/Screenshot/ScreenshotTool'
+import { HeartTool } from '../Component/Heart/HeartTool'
 
 export const UIOverrides: TLUiOverrides = {
     actions(_editor, actions): TLUiActionsContextType {
