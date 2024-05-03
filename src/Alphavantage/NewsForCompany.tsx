@@ -41,15 +41,19 @@ const NewsForCompany = () => {
                 c = c + 1
             }
 
-            setItems(_.orderBy(
-                _.take(
-                    _.drop(
-                        data,
-                        (page - 1) * pageSize),
-                    pageSize),
+            var tmp = _.orderBy(
+                data,
                 'TimePublished',
                 'desc'
-            ))
+            )
+
+            tmp = _.take(
+                _.drop(
+                    tmp,
+                    (page - 1) * pageSize),
+                pageSize)
+
+            setItems(tmp)
             setPageCount(c)
             setDataCount(data.length)
         }
