@@ -9,7 +9,7 @@ const Parse = (node: any) => {
 
     const getImageType = () => {
         try {
-            return R.head(configuration.instanceType.split('.'))
+            return R.head(configuration.instanceType.split('.')) ?? 'AWS::EC2::Instance'
         } catch (error) {
             return 'AWS::EC2::Instance'
         }
