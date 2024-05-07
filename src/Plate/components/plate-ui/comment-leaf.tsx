@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -9,10 +10,8 @@ import {
 } from '@udecode/plate-comments';
 import { PlateLeaf, PlateLeafProps, Value } from '@udecode/plate-common';
 
-export function CommentLeaf({
-  className,
-  ...props
-}: PlateLeafProps<Value, TCommentText>) {
+// @ts-ignore
+export function CommentLeaf({ className, ...props }: PlateLeafProps<Value, TCommentText>) {
   const { children, nodeProps, leaf } = props;
 
   const state = useCommentLeafState({ leaf });
