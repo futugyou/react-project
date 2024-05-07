@@ -53,7 +53,7 @@
     "@udecode/plate-dnd": "^33.0.0",
     "@udecode/plate-excalidraw": "^33.0.0",
     "@udecode/plate-find-replace": "^33.0.0",
-    "@udecode/plate-heading": "^33.0.0",
+    "@udecode/plate-heading": "^33.0.1",
     "@udecode/plate-highlight": "^33.0.0",
     "@udecode/plate-horizontal-rule": "^33.0.0",
     "@udecode/plate-kbd": "^33.0.0",
