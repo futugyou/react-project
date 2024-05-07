@@ -109,7 +109,9 @@ export const TableBordersDropdownMenuContent = withRef<
 
 export const TableFloatingToolbar = withRef<typeof PopoverContent>(
   ({ children, ...props }, ref) => {
+    // @ts-ignore
     const element = useElement<TTableElement>();
+    // @ts-ignore
     const { props: buttonProps } = useRemoveNodeButton({ element });
 
     const selectionCollapsed = useEditorSelector(
