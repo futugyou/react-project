@@ -49,7 +49,7 @@
     "@udecode/plate-caption": "^33.0.2",
     "@udecode/plate-code-block": "^33.0.2",
     "@udecode/plate-comments": "^33.0.2",
-    "@udecode/plate-common": "^33.0.0",
+    "@udecode/plate-common": "^33.0.4",
     "@udecode/plate-dnd": "^33.0.0",
     "@udecode/plate-excalidraw": "^33.0.2",
     "@udecode/plate-find-replace": "^33.0.0",
