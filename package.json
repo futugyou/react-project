@@ -57,7 +57,7 @@
     "@udecode/plate-highlight": "^33.0.0",
     "@udecode/plate-horizontal-rule": "^33.0.0",
     "@udecode/plate-kbd": "^33.0.0",
-    "@udecode/plate-link": "^33.0.3",
+    "@udecode/plate-link": "^33.0.5",
     "@udecode/plate-list": "^33.0.3",
     "@udecode/plate-media": "^33.0.2",
     "@udecode/plate-mention": "^33.0.0",
