@@ -81,7 +81,7 @@
     "cytoscape-grid-guide": "^2.3.3",
     "dayjs": "^1.11.11",
     "fluid-framework": "^1.4.0",
-    "framer-motion": "^11.2.4",
+    "framer-motion": "^11.2.5",
     "gitalk": "^1.8.0",
     "html-to-image": "^1.11.11",
     "immer": "^10.1.1",
