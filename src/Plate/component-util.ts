@@ -41,7 +41,6 @@ import {
   ELEMENT_UL,
 } from '@udecode/plate-list'
 import { ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED } from '@udecode/plate-media'
-import { ELEMENT_MENTION, ELEMENT_MENTION_INPUT } from '@udecode/plate-mention'
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph'
 import {
   ELEMENT_TABLE,
@@ -65,8 +64,6 @@ import { KbdLeaf } from '@/Plate/components/plate-ui/kbd-leaf'
 import { LinkElement } from '@/Plate/components/plate-ui/link-element'
 import { ListElement } from '@/Plate/components/plate-ui/list-element'
 import { MediaEmbedElement } from '@/Plate/components/plate-ui/media-embed-element'
-import { MentionElement } from '@/Plate/components/plate-ui/mention-element'
-import { MentionInputElement } from '@/Plate/components/plate-ui/mention-input-element'
 import { ParagraphElement } from '@/Plate/components/plate-ui/paragraph-element'
 import { withPlaceholders } from '@/Plate/components/plate-ui/placeholder'
 import { SearchHighlightLeaf } from '@/Plate/components/plate-ui/search-highlight-leaf'
@@ -102,8 +99,6 @@ export const createPlateUI = (
     [ELEMENT_LI]: withProps(PlateElement, { as: 'li' }),
     [ELEMENT_LINK]: LinkElement,
     [ELEMENT_MEDIA_EMBED]: MediaEmbedElement,
-    [ELEMENT_MENTION]: MentionElement,
-    [ELEMENT_MENTION_INPUT]: MentionInputElement,
     [ELEMENT_UL]: withProps(ListElement, { variant: 'ul' }),
     [ELEMENT_OL]: withProps(ListElement, { variant: 'ol' }),
     [ELEMENT_PARAGRAPH]: ParagraphElement,
