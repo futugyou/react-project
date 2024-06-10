@@ -119,7 +119,7 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "use-immer": "^0.9.0",
-    "uuid": "^9.0.1",
+    "uuid": "^10.0.0",
     "y-utility": "^0.1.4",
     "y-websocket": "^2.0.3",
     "yjs": "^13.6.15"
