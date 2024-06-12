@@ -44,7 +44,7 @@
     "@tanstack/query-sync-storage-persister": "^5.45.0",
     "@tanstack/react-query": "^5.45.0",
     "@tanstack/react-query-persist-client": "^5.45.0",
-    "@tldraw/tldraw": "^2.1.4",
+    "@tldraw/tldraw": "^2.2.0",
     "@udecode/cn": "^33.0.0",
     "@udecode/plate-basic-marks": "^34.0.0",
     "@udecode/plate-block-quote": "^34.0.0",
