@@ -1,5 +1,5 @@
 import {
-    AssetRecordType, Editor, MediaHelpers, isGifAnimated,
+    AssetRecordType, Editor, MediaHelpers,
     uniqueId, TLAssetId, getHashForString, TLAsset
 } from "@tldraw/tldraw"
 
@@ -29,10 +29,10 @@ export const HostedImages = (editor: Editor) => {
         let shapeType: 'image' | 'video'
 
         //[c]
-        if (['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'].includes(file.type)) {
+        if (MediaHelpers.isImageType(file.type)) {
             shapeType = 'image'
             size = await MediaHelpers.getImageSize(file)
-            isAnimated = file.type === 'image/gif' && (await isGifAnimated(file))
+            isAnimated = await MediaHelpers.isAnimated(file)
         } else {
             shapeType = 'video'
             isAnimated = true

@@ -4,7 +4,7 @@ export const Html = (editor: Editor, point?: VecLike, sources?: TLExternalConten
     const htmlSource = sources?.find((s) => s.type === 'text' && s.subtype === 'html')
 
     if (htmlSource) {
-        const center = point ?? editor.getViewportPageCenter()
+        const center = point ?? editor.getViewportScreenCenter()
 
         editor.createShape({
             type: 'html',
