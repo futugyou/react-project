@@ -1,9 +1,10 @@
 
-import { ConnectionState } from "fluid-framework"
+import { ConnectionState, IFluidContainer } from "fluid-framework"
 
 import {
     AzureClient,
     AzureClientProps,
+    AzureContainerServices,
     AzureLocalConnectionConfig,
     AzureRemoteConnectionConfig,
 } from "@fluidframework/azure-client"
@@ -41,14 +42,16 @@ const connectionConfig: AzureClientProps = {
 const client = new AzureClient(connectionConfig)
 
 export const createContainer = async () => {
-    const { container, services } = await client.createContainer(containerSchema)
+    const { container, services } = await client.createContainer(containerSchema as any, "2")
     const id = await container.attach()
     return { container, services, id }
 }
 
 export const getContainer = async (containerId: string) => {
+    let container: IFluidContainer = {} as any
+    let services: AzureContainerServices = {} as any
     try {
-        const { container, services } = await client.getContainer(containerId, containerSchema)
+        const { container, services } = await client.getContainer(containerId, containerSchema as any, "2")
         if (container.connectionState !== ConnectionState.Connected) {
             await new Promise<void>((resolve) => {
                 container.once("connected", () => {
@@ -60,6 +63,6 @@ export const getContainer = async (containerId: string) => {
         return { container, services }
     } catch (error) {
         console.log(error)
-        return { container: undefined, services: undefined }
+        return { container, services }
     }
 }

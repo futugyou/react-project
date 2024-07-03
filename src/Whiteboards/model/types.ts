@@ -1,5 +1,5 @@
-import { SharedCell } from "@fluidframework/cell"
-import { SignalManager } from "@fluid-experimental/data-objects"
+import { SharedCell } from "@fluidframework/cell/internal"
+import { Signaler } from "@fluid-experimental/data-objects"
 import { SharedMap, ContainerSchema, IMember, SharedString } from "fluid-framework"
 import { AzureMember } from "@fluidframework/azure-client"
 
@@ -7,12 +7,12 @@ export const containerSchema: ContainerSchema = {
     initialObjects: {
         sharedTimestamp: SharedMap,
         dynamicMap: SharedMap,
-        signalManager: SignalManager,
+        signaler: Signaler as any,
         sharedString: SharedString,
         map: SharedMap,
     },
-    dynamicObjectTypes: [SharedCell],
-}
+    dynamicObjectTypes: [SharedCell as any],
+} satisfies ContainerSchema
 
 export interface TinyliciousMember extends IMember {
     userName: string
