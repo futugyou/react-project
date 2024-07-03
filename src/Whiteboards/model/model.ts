@@ -1,6 +1,6 @@
 import { IAzureAudience, AzureContainerServices }
     from "@fluidframework/azure-client"
-import { SharedCell } from "@fluidframework/cell"
+import { ISharedCell, SharedCell } from "@fluidframework/cell/internal"
 import { ISharedMap, IFluidContainer, IValueChanged, SharedString } from "fluid-framework"
 import { TinyliciousMember } from "./types"
 import { EventEmitter } from "events"
@@ -43,7 +43,7 @@ export class FluidModel extends EventEmitter {
 
         this.dynamicMap.on("valueChanged", (changed, local, target) => {
             const handle = this.dynamicMap.get(changed.key)
-            handle.get().then((cell: SharedCell) => {
+            handle.get().then((cell: ISharedCell) => {
                 console.log("valueChanged on map: ", cell.get())
                 cell.on("valueChanged", (d) => {
                     console.log("valueChanged on dynamic cell: ", d)
@@ -62,36 +62,37 @@ export class FluidModel extends EventEmitter {
 
     public getMembers = (): TinyliciousMember[] => {
         const members = Array.from(this.audience.getMembers().values())
-        return members
+        return members as any
     }
 
     public setMembers = (userId: string, userName: string) => {
         let member = this.audience.getMembers().get(userId)
         if (member) {
             //TODO: this not work, tinylicious-client have no method to change member name.
-            member.userName = userName
+            member.additionalDetails.userName = userName
             const memberPayload: EventPayload = { type: "memberChange", data: member }
             this.emit("modelChanged", memberPayload)
         }
     }
 
     public getMyself = (): TinyliciousMember | undefined => {
-        return this.audience.getMyself()
+        return this.audience.getMyself() as any
     }
 
     public setDynamicRefData = async (key: string, value: string) => {
-        const newCell = await this.container.create(SharedCell)
-        newCell.set(value)
+        const newCell = await this.container.create(SharedCell as any)
+        //TODO: i do not found how to use
+        // newCell.set(value)
         this.dynamicMap.set(key, newCell.handle)
     }
 
     public getDynamicData = async (key: string): Promise<string> => {
-        const cell = await this.dynamicMap.get(key).get() as SharedCell
-        return cell.get() ?? ""
+        const cell = await this.dynamicMap.get(key).get() as ISharedCell
+        return (cell.get() ?? "")as any
     }
 
     public setDynamicData = async (key: string, value: string) => {
-        const cell = await this.dynamicMap.get(key).get() as SharedCell
+        const cell = await this.dynamicMap.get(key).get() as ISharedCell
         cell.set(value)
     }
 

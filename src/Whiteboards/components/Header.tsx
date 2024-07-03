@@ -9,8 +9,13 @@ import { BrainstormModel, NoteData, ColorId } from "../model"
 
 export interface HeaderProps {
     model: BrainstormModel
-    author: AzureMember
-    members: AzureMember[]
+    author: AzureMember<UserInfo>
+    members: AzureMember<UserInfo>[]
+}
+
+export interface UserInfo {
+    userId: string
+    userName: string
 }
 
 export const NOTE_SIZE = {
@@ -39,8 +44,8 @@ export function Header(props: HeaderProps) {
                 y: Math.floor(Math.random() * (scrollHeight - NOTE_SIZE.height)),
             },
             lastEdited: {
-                userId: props.author.userId,
-                userName: props.author.userName,
+                userId: props.author.additionalDetails!.userId,
+                userName: props.author.additionalDetails!.userName,
                 time: Date.now(),
             },
             author: props.author,

@@ -87,7 +87,7 @@ export function createBrainstormModel(fluid: IFluidContainer): BrainstormModel {
 				didILikeThisCalculated:
 					Array.from(sharedMap.keys())
 						.filter((key: string) =>
-							key.includes(c_votePrefix + noteId + "_" + myAuthor.userId),
+							key.includes(c_votePrefix + noteId + "_" + myAuthor.additionalDetails!.userId),
 						)
 						.filter((key: string) => sharedMap.get(key) !== undefined).length > 0,
 				color: sharedMap.get(c_ColorPrefix + noteId)!,
@@ -133,17 +133,17 @@ export function createBrainstormModel(fluid: IFluidContainer): BrainstormModel {
 
 		// Set or unset the note as liked by the user
 		LikeNote(noteId: string, user: AzureMember) {
-			const voteString = c_votePrefix + noteId + "_" + user.userId
+			const voteString = c_votePrefix + noteId + "_" + user.additionalDetails.userId
 
 			// WARNING: SharedMap does not preserve object references like a conventional map data structure, and object comparisons of SharedMap values
 			// will be invalid . In this case, it is recommended to only store the necessary primitive data types in SharedMap or implement a custom
 			// comparison function.
 			// Due to the warning above, instead of storing the entire AzureMember object, we are only storing the necessary primitive data types metadata.
-			sharedMap.get(voteString)?.userId === user.userId
+			sharedMap.get(voteString)?.userId === user.additionalDetails.userId
 				? sharedMap.set(voteString, undefined)
 				: sharedMap.set(voteString, {
-						userId: user.userId,
-						userName: user.userName,
+						userId: user.additionalDetails.userId,
+						userName: user.additionalDetails.userName,
 				  })
 		},
 
