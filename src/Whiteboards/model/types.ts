@@ -1,13 +1,12 @@
-import { SharedCell } from "@fluidframework/cell/internal"
-import { Signaler } from "@fluid-experimental/data-objects"
-import { SharedMap, ContainerSchema, IMember, SharedString } from "fluid-framework"
+import { SharedCell } from "@fluidframework/cell/internal" 
 import { AzureMember } from "@fluidframework/azure-client"
+import { ContainerSchema, IMember } from "fluid-framework"
+import { SharedMap, SharedString } from "fluid-framework/legacy"
 
 export const containerSchema: ContainerSchema = {
     initialObjects: {
         sharedTimestamp: SharedMap,
-        dynamicMap: SharedMap,
-        signaler: Signaler as any,
+        dynamicMap: SharedMap, 
         sharedString: SharedString,
         map: SharedMap,
     },
