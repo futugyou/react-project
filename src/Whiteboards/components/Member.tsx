@@ -18,7 +18,7 @@ const Members = () => {
 
     const members = getMembers()
     const memberli = members.map((m) => (
-        <li key={m.userId} onClick={() => updateMemberName(m.userId)} >
+        <li key={m.id} onClick={() => updateMemberName(m.id)} >
             {m.userName}
         </li>
     ))

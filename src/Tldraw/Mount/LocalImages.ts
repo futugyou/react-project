@@ -10,7 +10,7 @@ export const LocalImages = (editor: Editor) => {
 	const assetId = AssetRecordType.createId()
 	const imageWidth = 200
 	const imageHeight = 200
- 
+
 	editor.createAssets([
 		{
 			id: assetId,
@@ -23,6 +23,7 @@ export const LocalImages = (editor: Editor) => {
 				h: imageHeight,
 				mimeType: 'image/png',
 				isAnimated: true,
+				fileSize: 0,
 			},
 			meta: {},
 		},

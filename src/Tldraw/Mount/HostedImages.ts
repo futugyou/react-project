@@ -50,6 +50,7 @@ export const HostedImages = (editor: Editor) => {
                 h: size.h,
                 mimeType: file.type,
                 isAnimated,
+                fileSize: file.size,
             },
         })
 

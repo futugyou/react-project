@@ -25,7 +25,7 @@ export const useGetMembersStore = () =>
         reducer: (model, draft, { type, changed, data }) => {
             switch (type) {
                 case "memberChange":
-                    const todo = draft.find(todo => todo.userId === data.userId) as Draft<TinyliciousMember>
+                    const todo = draft.find(todo => todo.id === data.userId) as Draft<TinyliciousMember>
                     if (todo) {
                         todo.userName = data.userName
                     }

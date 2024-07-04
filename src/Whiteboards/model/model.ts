@@ -1,9 +1,10 @@
 import { IAzureAudience, AzureContainerServices }
     from "@fluidframework/azure-client"
-import { ISharedCell, SharedCell } from "@fluidframework/cell/internal"
-import { ISharedMap, IFluidContainer, IValueChanged, SharedString } from "fluid-framework"
+import { ISharedCell, SharedCell } from "@fluidframework/cell/internal" 
 import { TinyliciousMember } from "./types"
 import { EventEmitter } from "events"
+import { IValueChanged } from "@fluidframework/sequence/lib/intervalCollectionMapInterfaces"
+import { IFluidContainer, ISharedMap, SharedString } from "fluid-framework/legacy"
 
 export type EventPayload = {
     type: string

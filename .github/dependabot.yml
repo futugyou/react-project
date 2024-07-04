@@ -25,6 +25,7 @@ updates:
       fluid:
         patterns:
         - "@fluid*"
+        - "fluid"
       microsoft:
         patterns:
         - "@microsoft*"
