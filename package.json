@@ -52,7 +52,7 @@
     "@udecode/plate-code-block": "^35.0.0",
     "@udecode/plate-combobox": "^34.0.8",
     "@udecode/plate-comments": "^34.0.0",
-    "@udecode/plate-common": "^34.0.5",
+    "@udecode/plate-common": "^35.3.2",
     "@udecode/plate-dnd": "^34.0.0",
     "@udecode/plate-excalidraw": "^34.0.0",
     "@udecode/plate-find-replace": "^34.0.0",
