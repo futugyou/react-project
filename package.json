@@ -117,7 +117,7 @@
     "slate-hyperscript": "^0.100.0",
     "slate-react": "^0.107.0",
     "styled-components": "^6.1.11",
-    "tailwind-merge": "^2.3.0",
+    "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "use-immer": "^0.10.0",
     "uuid": "^10.0.0",
