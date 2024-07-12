@@ -90,7 +90,6 @@ const App = () => {
         }
 
         const { elements, files } = await parseMermaidToExcalidraw(mermaid_string, {
-            fontSize: 20,
         })
         const excalidrawElements = convertToExcalidrawElements(elements)
         excalidrawAPI.updateScene({
