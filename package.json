@@ -122,7 +122,7 @@
     "use-immer": "^0.10.0",
     "uuid": "^10.0.0",
     "y-utility": "^0.1.4",
-    "y-websocket": "^2.0.3",
+    "y-websocket": "^2.0.4",
     "yjs": "^13.6.18"
   },
   "devDependencies": {
