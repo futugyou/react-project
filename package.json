@@ -116,7 +116,7 @@
     "slate-history": "^0.100.0",
     "slate-hyperscript": "^0.100.0",
     "slate-react": "^0.107.1",
-    "styled-components": "^6.1.11",
+    "styled-components": "^6.1.12",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "use-immer": "^0.10.0",
