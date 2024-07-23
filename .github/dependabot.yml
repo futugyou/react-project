@@ -48,3 +48,9 @@ updates:
         patterns:
         - "eslint*"
         - "@typescript-eslint*"
+        
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      time: "04:00"
