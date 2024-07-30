@@ -1,3 +1,4 @@
+// @ts-nocheck
 /** @jsxRuntime classic */
 /** @jsx jsxCustomEvent */
 import jsxCustomEvent from '@micro-zoe/micro-app/polyfill/jsx-custom-event'

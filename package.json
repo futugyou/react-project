@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ariakit/react": "^0.4.7",
-    "@canvasjs/stockcharts": "^1.10.0",
+    "@canvasjs/stockcharts": "^1.10.1",
     "@cloudscape-design/board-components": "^3.0.71",
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.63",
     "@cloudscape-design/components": "^3.0.698",
