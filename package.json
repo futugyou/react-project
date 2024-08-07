@@ -75,7 +75,7 @@
     "class-variance-authority": "^0.7.0",
     "cmdk": "^1.0.0",
     "concurrently": "^8.2.2",
-    "cytoscape": "^3.30.1",
+    "cytoscape": "^3.30.2",
     "cytoscape-avsdf": "^1.0.0",
     "cytoscape-euler": "^1.2.2",
     "cytoscape-expand-collapse": "^4.1.0",
