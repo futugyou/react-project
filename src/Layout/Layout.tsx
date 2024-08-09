@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 
 import Header from "./Header"
 import Loading from '@/Common/Components/Loading'
+import Observability from '@/Common/Components/Observability'
 
 const Layout = () => {
     return (
@@ -20,6 +21,7 @@ const Layout = () => {
                     <Outlet />
                 </Suspense>
             </Row>
+            <Observability />
         </>
     )
 }
