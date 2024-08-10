@@ -27,8 +27,8 @@ interface ImportMetaEnv {
     readonly REACT_APP_GITTALK_OWNER: string
     readonly REACT_APP_GITTALK_ADMIN: string
     readonly REACT_APP_GITTALK_NUMBER: number
-    readonly HONEYCOMB_SDK_API_KEY: string
-    readonly HONEYCOMB_SDK_BACKEND_URL: string
+    readonly REACT_APP_HONEYCOMB_SDK_API_KEY: string
+    readonly REACT_APP_HONEYCOMB_SDK_BACKEND_URL: string
 }
 
 interface ImportMeta {
