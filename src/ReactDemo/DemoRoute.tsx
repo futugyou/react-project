@@ -40,37 +40,37 @@ export const DemoRoute: RouteDescription = {
         {
             display: "Form",
             path: "form",
-            show: () => process.env.NODE_ENV == "development",
+            show: () => import.meta.env.MODE == "development",
             element: <NameForm />,
         },
         {
             display: "Calculator",
             path: "calculator",
-            show: () => process.env.NODE_ENV == "development",
+            show: () => import.meta.env.MODE == "development",
             element: <Calculator />,
         },
         {
             display: "Dialog",
             path: "dialog",
-            show: () => process.env.NODE_ENV == "development",
+            show: () => import.meta.env.MODE == "development",
             element: <WelcomeDialog />,
         },
         {
             display: "Split",
             path: "split",
-            show: () => process.env.NODE_ENV == "development",
+            show: () => import.meta.env.MODE == "development",
             element: <SplitPaneApp />,
         },
         {
             display: "Bailout",
             path: "bailout",
-            show: () => process.env.NODE_ENV == "development",
+            show: () => import.meta.env.MODE == "development",
             element: <Bailout />,
         },
         {
             display: "Withbailout",
             path: "withbailout",
-            show: () => process.env.NODE_ENV == "development",
+            show: () => import.meta.env.MODE == "development",
             element: <WithoutBailout />,
         },
         {

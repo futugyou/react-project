@@ -26,7 +26,7 @@ microApp.start({
     modules: {
       'appname-react17': [{
         loader(code) {
-          if (process.env.NODE_ENV === 'development' && code.indexOf('sockjs-node') > -1) {
+          if (import.meta.env.MODE === 'development' && code.indexOf('sockjs-node') > -1) {
             code = code.replace('window.location.port', '4005')
           }
           return code

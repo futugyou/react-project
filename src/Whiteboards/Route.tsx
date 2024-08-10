@@ -7,6 +7,6 @@ const BoardPage = lazy(() => import('./App'))
 export const BoardRoute: RouteDescription = {
     path: "fluid",
     display: "Fluid",
-    show: () => process.env.NODE_ENV == "development",
+    show: () => import.meta.env.MODE == "development",
     element: <BoardPage />,
 }
