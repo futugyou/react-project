@@ -74,7 +74,7 @@
     "cytoscape": "^3.30.2",
     "cytoscape-avsdf": "^1.0.0",
     "cytoscape-euler": "^1.2.3",
-    "cytoscape-expand-collapse": "^4.1.0",
+    "cytoscape-expand-collapse": "^4.1.1",
     "cytoscape-fcose": "^2.2.0",
     "cytoscape-grid-guide": "^2.3.3",
     "dayjs": "^1.11.13",
