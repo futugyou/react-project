@@ -22,17 +22,14 @@ import { router } from '@/Route'
 
 microApp.start({
   'keep-alive': true,
-  plugins: {
-    modules: {
-      'appname-react17': [{
-        loader(code) {
-          if (import.meta.env.MODE === 'development' && code.indexOf('sockjs-node') > -1) {
-            code = code.replace('window.location.port', '4005')
-          }
-          return code
-        }
-      }],
+  fetch(url, options, appName) {
+    const config = {
+      mode: 'cors' as any,
     }
+
+    return window.fetch(url, Object.assign(config, options)).then((res) => {
+      return res.text()
+    })
   }
 })
 
