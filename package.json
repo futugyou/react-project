@@ -112,7 +112,7 @@
     "slate-history": "^0.109.0",
     "slate-hyperscript": "^0.100.0",
     "slate-react": "^0.110.0",
-    "styled-components": "^6.1.12",
+    "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "use-immer": "^0.10.0",
