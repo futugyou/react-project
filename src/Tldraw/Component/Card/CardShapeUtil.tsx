@@ -2,7 +2,7 @@ import {
     HTMLContainer,
     Rectangle2d,
     ShapeUtil,
-    TLOnResizeHandler,
+    TLResizeInfo,
     getDefaultColorTheme,
     resizeBox,
 } from '@tldraw/tldraw'
@@ -85,9 +85,9 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
     }
 
     // [8]
-    override onResize: TLOnResizeHandler<ICardShape> = (shape, info) => {
-        return resizeBox(shape, info)
-    }
+    override onResize(shape: ICardShape, info: TLResizeInfo<ICardShape>) {
+		return resizeBox(shape, info)
+	}
     
 	filterStyleToCss(filter: MyFilterStyle) {
 		if (filter === 'invert') return 'invert(100%)'

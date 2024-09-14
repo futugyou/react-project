@@ -4,7 +4,6 @@ import {
     RecordProps,
     T,
     TLBaseShape,
-    TLOnEditEndHandler,
     stopEventPropagation,
 } from '@tldraw/tldraw'
 
@@ -82,7 +81,7 @@ export class EditableShapeUtil extends BaseBoxShapeUtil<IMyEditableShape> {
         return <rect width={shape.props.w} height={shape.props.h} />
     }
 
-    override onEditEnd: TLOnEditEndHandler<IMyEditableShape> = (shape) => {
+    override onEditEnd(shape: IMyEditableShape) {
 		this.editor.animateShape(
 			{ ...shape, rotation: shape.rotation + Math.PI * 2 },
 			{ animation: { duration: 250 } }
