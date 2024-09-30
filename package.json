@@ -27,7 +27,7 @@
     "@fluidframework/sequence": "^2.3.0",
     "@fluidframework/test-client-utils": "^1.4.0",
     "@honeycombio/opentelemetry-web": "^0.7.0",
-    "@micro-zoe/micro-app": "^1.0.0-rc.10",
+    "@micro-zoe/micro-app": "^1.0.0-rc.12",
     "@microlink/react": "^5.5.22",
     "@opentelemetry/auto-instrumentations-web": "^0.41.0",
     "@radix-ui/react-checkbox": "^1.1.1",
