@@ -14,9 +14,9 @@
   "dependencies": {
     "@ariakit/react": "^0.4.12",
     "@canvasjs/stockcharts": "^1.10.11",
-    "@cloudscape-design/board-components": "^3.0.77",
+    "@cloudscape-design/board-components": "^3.0.80",
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.75",
-    "@cloudscape-design/components": "^3.0.779",
+    "@cloudscape-design/components": "^3.0.781",
     "@cloudscape-design/global-styles": "^1.0.32",
     "@excalidraw/excalidraw": "^0.17.6",
     "@excalidraw/mermaid-to-excalidraw": "^1.1.0",
