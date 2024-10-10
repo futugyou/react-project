@@ -12,7 +12,7 @@
     "start:server": "npx @fluidframework/azure-local-service"
   },
   "dependencies": {
-    "@ariakit/react": "^0.4.12",
+    "@ariakit/react": "^0.4.13",
     "@canvasjs/stockcharts": "^1.10.11",
     "@cloudscape-design/board-components": "^3.0.80",
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.75",
