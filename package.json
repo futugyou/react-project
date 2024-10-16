@@ -119,7 +119,7 @@
     "uuid": "^10.0.0",
     "y-utility": "^0.1.4",
     "y-websocket": "^2.0.4",
-    "yjs": "^13.6.19"
+    "yjs": "^13.6.20"
   },
   "devDependencies": {
     "@fluidframework/build-common": "^2.0.3",
