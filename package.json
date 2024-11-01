@@ -69,7 +69,7 @@
     "bootstrap": "^5.3.3",
     "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.0",
-    "cmdk": "^1.0.1",
+    "cmdk": "^1.0.3",
     "concurrently": "^9.0.1",
     "cytoscape": "^3.30.3",
     "cytoscape-avsdf": "^1.0.0",
