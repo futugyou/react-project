@@ -10,6 +10,8 @@ import {
 	Tldraw,
 	throttle,
 	TLUiEventHandler,
+	loadSnapshot,
+	getSnapshot
 } from '@tldraw/tldraw'
 
 import {
@@ -63,7 +65,7 @@ const App = () => {
 		if (persistedSnapshot) {
 			try {
 				const snapshot = JSON.parse(persistedSnapshot)
-				store.loadSnapshot(snapshot)
+				loadSnapshot(store,snapshot)
 				setLoadingState({ status: 'ready' })
 			} catch (error: any) {
 				setLoadingState({ status: 'error', error: error.message }) // Something went wrong
@@ -75,7 +77,7 @@ const App = () => {
 		// Each time the store changes, run the (debounced) persist function
 		const cleanupFn = store.listen(
 			throttle(() => {
-				const snapshot = store.getSnapshot()
+				const snapshot = getSnapshot(store)
 				localStorage.setItem(PERSISTENCE_KEY, JSON.stringify(snapshot))
 			}, 500)
 		)

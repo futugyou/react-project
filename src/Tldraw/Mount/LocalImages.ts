@@ -23,7 +23,7 @@ export const LocalImages = (editor: Editor) => {
 				h: imageHeight,
 				mimeType: 'image/png',
 				isAnimated: true,
-				fileSize: 0,
+				fileSize: undefined,
 			},
 			meta: {},
 		},
