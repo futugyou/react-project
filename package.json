@@ -120,6 +120,6 @@
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "typescript": "^5.5.4",
-    "vite": "^6.0.0"
+    "vite": "^6.0.1"
   }
 }
