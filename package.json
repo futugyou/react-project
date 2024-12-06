@@ -29,7 +29,7 @@
     "@honeycombio/opentelemetry-web": "^0.10.0",
     "@micro-zoe/micro-app": "^1.0.0-rc.15",
     "@microlink/react": "^5.5.22",
-    "@opentelemetry/auto-instrumentations-web": "^0.43.0",
+    "@opentelemetry/auto-instrumentations-web": "^0.44.0",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
