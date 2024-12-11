@@ -92,7 +92,7 @@
     "slate-hyperscript": "^0.100.0",
     "slate-react": "^0.112.0",
     "styled-components": "^6.1.13",
-    "use-immer": "^0.10.0",
+    "use-immer": "^0.11.0",
     "uuid": "^11.0.3",
     "y-utility": "^0.1.4",
     "y-websocket": "^2.0.4",
