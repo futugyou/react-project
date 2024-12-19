@@ -20,7 +20,7 @@
     "@cloudscape-design/global-styles": "^1.0.33",
     "@excalidraw/excalidraw": "^0.17.6",
     "@excalidraw/mermaid-to-excalidraw": "^1.1.2",
-    "@fluentui/react-components": "^9.56.7",
+    "@fluentui/react-components": "^9.56.8",
     "@fluidframework/azure-client": "^2.12.0",
     "@fluidframework/cell": "^2.12.0",
     "@fluidframework/merge-tree": "^2.12.0",
