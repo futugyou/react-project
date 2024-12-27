@@ -49,7 +49,7 @@
     "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.0.4",
-    "concurrently": "^9.1.0",
+    "concurrently": "^9.1.1",
     "cytoscape": "^3.30.4",
     "cytoscape-avsdf": "^1.0.0",
     "cytoscape-euler": "^1.2.3",
