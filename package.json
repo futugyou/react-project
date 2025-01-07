@@ -91,7 +91,7 @@
     "slate-history": "^0.110.3",
     "slate-hyperscript": "^0.100.0",
     "slate-react": "^0.112.0",
-    "styled-components": "^6.1.13",
+    "styled-components": "^6.1.14",
     "use-immer": "^0.11.0",
     "uuid": "^11.0.4",
     "y-utility": "^0.1.4",
