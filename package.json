@@ -93,7 +93,7 @@
     "slate-react": "^0.112.0",
     "styled-components": "^6.1.14",
     "use-immer": "^0.11.0",
-    "uuid": "^11.0.4",
+    "uuid": "^11.0.5",
     "y-utility": "^0.1.4",
     "y-websocket": "^2.0.4",
     "yjs": "^13.6.21"
