@@ -60,7 +60,7 @@
     "fluid-framework": "^2.22.0",
     "framer-motion": "^12.4.7",
     "gitalk": "^1.8.0",
-    "html-to-image": "^1.11.12",
+    "html-to-image": "^1.11.13",
     "immer": "^10.1.1",
     "jwt-decode": "^4.0.0",
     "lodash-es": "^4.17.21",
