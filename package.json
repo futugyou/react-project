@@ -44,7 +44,7 @@
     "@uiw/react-color": "^2.4.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "axios": "^1.7.9",
+    "axios": "^1.8.1",
     "bootstrap": "^5.3.3",
     "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.1",
