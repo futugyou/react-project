@@ -18,7 +18,7 @@
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.90",
     "@cloudscape-design/components": "^3.0.922",
     "@cloudscape-design/global-styles": "^1.0.38",
-    "@excalidraw/excalidraw": "^0.17.6",
+    "@excalidraw/excalidraw": "^0.18.0",
     "@excalidraw/mermaid-to-excalidraw": "^1.1.2",
     "@fluentui/react-components": "^9.60.1",
     "@fluidframework/azure-client": "^2.23.0",
