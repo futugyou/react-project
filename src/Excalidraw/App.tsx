@@ -8,7 +8,7 @@ import {
 import {
     ExcalidrawImperativeAPI, ExcalidrawInitialDataState,
     LibraryItem, UIAppState,
-} from "@excalidraw/excalidraw/types/types"
+} from "@excalidraw/excalidraw/types"
 import { parseMermaidToExcalidraw } from "@excalidraw/mermaid-to-excalidraw"
 
 import uniqBy from "lodash/uniqBy"

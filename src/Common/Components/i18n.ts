@@ -1,7 +1,7 @@
 import { BoardProps } from "@cloudscape-design/board-components/board"
 import { BoardItemProps } from "@cloudscape-design/board-components/board-item"
 import { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker"
-import _ from 'lodash-es'
+import { get } from 'lodash-es'
 
 const formatRelativeRange = (range: DateRangePickerProps.RelativeValue): string => {
     const unit = range.amount === 1 ? range.unit : `${range.unit}s`
@@ -74,11 +74,11 @@ export const boardI18nStrings = <T>(file: string): BoardProps.I18nStrings<T> => 
             return `${operationType} discarded`
         },
         liveAnnouncementItemRemoved(op) {
-            return createAnnouncement(`Removed item ${_.get(op.item.data, file)}.`, [], op.disturbed, file)
+            return createAnnouncement(`Removed item ${get(op.item.data, file)}.`, [], op.disturbed, file)
         },
         navigationAriaLabel: "Board navigation",
         navigationAriaDescription: "Click on non-empty item to move focus over",
-        navigationItemAriaLabel: (item) => (item ? _.get(item.data, file) : "Empty"),
+        navigationItemAriaLabel: (item) => (item ? get(item.data, file) : "Empty"),
     }
 }
 
@@ -89,7 +89,7 @@ function createAnnouncement(
     file: string
 ) {
     const conflictsAnnouncement =
-        conflicts.length > 0 ? `Conflicts with ${conflicts.map((c) => _.get(c.data, file)).join(", ")}.` : ""
+        conflicts.length > 0 ? `Conflicts with ${conflicts.map((c) => get(c.data, file)).join(", ")}.` : ""
     const disturbedAnnouncement = disturbed.length > 0 ? `Disturbed ${disturbed.length} items.` : ""
     return [operationAnnouncement, conflictsAnnouncement, disturbedAnnouncement].filter(Boolean).join(" ")
 }

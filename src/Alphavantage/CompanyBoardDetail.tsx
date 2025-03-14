@@ -2,7 +2,7 @@ import './chart.css'
 import { useState } from "react"
 
 import { Box, ColumnLayout } from "@cloudscape-design/components"
-import _ from "lodash"
+import { filter, get } from 'lodash-es'
 
 export interface ICompanyBoardDetailProp {
     Date: any
@@ -11,12 +11,12 @@ export interface ICompanyBoardDetailProp {
 }
 
 const CompanyBoardDetail = (props: ICompanyBoardDetailProp) => {
-    const detailInfos = _.filter(Object.keys(props.Date), p => !props.FieldsToRemove || !props.FieldsToRemove.includes(p)).map(k => (
+    const detailInfos = filter(Object.keys(props.Date), p => !props.FieldsToRemove || !props.FieldsToRemove.includes(p)).map(k => (
         <div key={k}>
             <Box variant="awsui-key-label">
                 {k}
             </Box>
-            <div>{_.get(props.Date, k)}</div>
+            <div>{get(props.Date, k)}</div>
         </div>
     ))
 

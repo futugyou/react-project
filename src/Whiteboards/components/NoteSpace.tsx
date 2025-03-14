@@ -30,7 +30,7 @@ export function NoteSpace(props: NoteSpaceProps) {
     )
 
     return (
-        <div id="NoteSpace" ref={drop} >
+        <div id="NoteSpace" ref={drop as unknown as React.Ref<HTMLDivElement>}>
         </div>
     )
 }

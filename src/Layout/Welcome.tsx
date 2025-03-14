@@ -2,7 +2,6 @@
 import './Welcome.css'
 
 import { Link } from '@cloudscape-design/components'
-import _ from 'lodash'
 
 const Welcome = () => {
     const items = [

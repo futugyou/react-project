@@ -2,7 +2,7 @@
 
 
 import DateRangePicker, { DateRangePickerProps } from "@cloudscape-design/components/date-range-picker"
-import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
+import { NonCancelableCustomEvent } from "@cloudscape-design/components"
 import moment from "moment"
 import React, { useCallback, useState } from "react"
 import { dateRangeDateOnlyI18nStrings, dateRangeI18nStrings } from "./i18n"

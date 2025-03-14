@@ -27,8 +27,8 @@ const CytoscapePanel = () => {
     const [controllerVisible, setControllerVisible] = useState(false)
     const [selectedNode, setSelectedNode] = useState(null)
 
-    const expandAPI = useRef<any>()
-    const cyRef = useRef<any>()
+    const expandAPI = useRef<any>(null)
+    const cyRef = useRef<any>(null)
 
     const handleDoubleTap = useCallback((event: cytoscape.EventObject, extraParams?: any) => {
         const node = event.target

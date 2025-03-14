@@ -1,4 +1,4 @@
-import { createShapeId, Editor, TLGeoShape, TLShapePartial } from "@tldraw/tldraw"
+import { createShapeId, Editor, TLGeoShape, TLShapePartial, toRichText } from "@tldraw/tldraw"
 
 export const Hello = (editor: Editor) => {
     const id = createShapeId('hello')
@@ -26,7 +26,7 @@ export const Hello = (editor: Editor) => {
             type: 'geo',
             props: {
                 h: shape.props.h * 3,
-                text: 'hello world!',
+                richText: toRichText('hello world!'),
             },
         }
 

@@ -244,7 +244,7 @@ export function useYjsStore({
         function handleStatusChange({
             status,
         }: {
-            status: 'disconnected' | 'connected'
+            status: 'disconnected' | 'connected' | 'connecting';
         }) {
             // If we're disconnected, set the store status to 'synced-remote' and the connection status to 'offline'
             if (status === 'disconnected') {
@@ -255,17 +255,17 @@ export function useYjsStore({
                 })
                 return
             }
-
-            room.off('synced', handleSync)
-
+        
+            room.off('status', handleSync)
+        
             if (status === 'connected') {
                 if (hasConnectedBefore) return
                 hasConnectedBefore = true
-                room.on('synced', handleSync)
-                unsubs.push(() => room.off('synced', handleSync))
+                room.on('status', handleSync)
+                unsubs.push(() => room.off('status', handleSync))
             }
         }
-
+        
         room.on('status', handleStatusChange)
         unsubs.push(() => room.off('status', handleStatusChange))
 

@@ -1,5 +1,5 @@
 import { parseLibraryTokensFromUrl, mergeLibraryItems, loadLibraryFromBlob } from "@excalidraw/excalidraw"
-import { ExcalidrawImperativeAPI, LibraryItem, LibraryItems, LibraryItemsSource } from "@excalidraw/excalidraw/types/types"
+import { ExcalidrawImperativeAPI, LibraryItem, LibraryItems, LibraryItemsSource } from "@excalidraw/excalidraw/types"
 import { useEffect, useRef } from "react"
 import uniqBy from "lodash/uniqBy"
 

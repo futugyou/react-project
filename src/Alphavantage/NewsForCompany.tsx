@@ -9,7 +9,7 @@ import Paging from "@/Common/Components/Paging"
 import { Header, Badge, Link, Cards, SpaceBetween, TextFilter } from "@cloudscape-design/components"
 // @ts-ignore
 import Microlink from '@microlink/react'
-import _ from "lodash"
+import { orderBy, filter, take, drop } from 'lodash-es'
 import moment from "moment"
 
 const NewsForCompany = () => {
@@ -34,21 +34,21 @@ const NewsForCompany = () => {
 
     useEffect(() => {
         if (nodeData && !isError) {
-            const data = _.filter(nodeData, f => f.Title.includes(filteringText) || f.Summary.includes(filteringText))
+            const data = filter(nodeData, f => f.Title.includes(filteringText) || f.Summary.includes(filteringText))
 
             let c = parseInt(data.length / pageSize as any)
             if (data.length % pageSize != 0) {
                 c = c + 1
             }
 
-            var tmp = _.orderBy(
+            var tmp = orderBy(
                 data,
                 'TimePublished',
                 'desc'
             )
 
-            tmp = _.take(
-                _.drop(
+            tmp = take(
+                drop(
                     tmp,
                     (page - 1) * pageSize),
                 pageSize)

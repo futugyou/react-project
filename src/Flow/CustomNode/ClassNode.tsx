@@ -7,6 +7,7 @@ import NodeResize from '@/Flow/CustomNode/NodeResize'
 import HandlePlus from '@/Flow/CustomNode/HandlePlus'
 import { NodeOperation } from '@/Flow/CustomNode/utils'
 import { getRandomId } from '@/Flow/utils'
+import { JSX } from 'react/jsx-runtime'
 
 export type ClassNodeData = {
     name?: string

@@ -4,9 +4,9 @@ import React, { useEffect, useState, useMemo, useCallback } from "react"
 
 import BarChart from "@cloudscape-design/components/bar-chart"
 import { Select, SelectProps } from "@cloudscape-design/components"
-import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
+import { NonCancelableCustomEvent } from "@cloudscape-design/components"
 
-import _, { isNaN } from 'lodash-es'
+import { map, orderBy, filter, reverse, sortBy, isNaN } from 'lodash-es'
 import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
@@ -55,9 +55,9 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                 if (ds.length < 1) {
                     continue
                 }
-                const d = _.map(
-                    _.orderBy(
-                        _.filter(
+                const d = map(
+                    orderBy(
+                        filter(
                             ds,
                             a => a.Interval == selectedTimeIntervalsOption.value
                                 && !isNaN(parseFloat(a.Value))
@@ -79,7 +79,7 @@ const BaseEconomicChart = (props: IBaseEconomicChartProp) => {
                     })
                 }
             }
-            s = _.reverse(_.sortBy(s, (o) => o.data.length))
+            s = reverse(sortBy(s, (o) => o.data.length))
             if (s.length == 0) {
                 s = [{
                     title: "Real GDP",

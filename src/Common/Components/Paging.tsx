@@ -1,9 +1,9 @@
 
 import React from "react"
 
-import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
+import { NonCancelableCustomEvent } from "@cloudscape-design/components"
 import Pagination from "@cloudscape-design/components/pagination"
-import { PaginationProps } from "@cloudscape-design/components/pagination/interfaces"
+import { PaginationProps } from "@cloudscape-design/components"
 
 export interface IPagingProps {
     Page: number

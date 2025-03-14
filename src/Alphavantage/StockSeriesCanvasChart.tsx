@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 
 import CanvasJSReact from '@/@types/canvasjs/canvasjs.react'
 import moment from 'moment'
-import _ from "lodash"
+import { orderBy } from "lodash"
 
 import { useStockSeriesDataRange } from '@/Alphavantage/service'
 import { StockSeries } from "./model"
@@ -36,7 +36,7 @@ const StockSeriesCanvasChart = (props: IStockSeriesCanvasChartProps) => {
                 }
             }
 
-            data = _.orderBy(data, a => a.Time)
+            data = orderBy(data, a => a.Time)
             for (let i = 0; i < data.length; i++) {
                 const d = data[i];
                 dps1.push({

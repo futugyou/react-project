@@ -1,6 +1,6 @@
 
 import React, { createContext, ReactElement, ReactNode, useContext, useMemo, useState } from 'react'
-import _ from 'lodash'
+import { set } from 'lodash'
 
 class ComponentProviderService {
     props: ComponentSetting
@@ -18,7 +18,7 @@ class ComponentProviderService {
 
     setSetting(key: string, value: string) {
         var setting = JSON.parse(window.localStorage.getItem('component-setting') || '{}') as ComponentSetting
-        _.set(setting, key, value)
+        set(setting, key, value)
         window.localStorage.setItem('component-setting', JSON.stringify(setting))
     }
 }

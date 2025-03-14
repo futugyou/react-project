@@ -1,8 +1,8 @@
 
-export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
+export const graphStyle: cytoscape.StylesheetCSS | cytoscape.StylesheetCSS[] = [
     {
         selector: '.image',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'text-valign': 'bottom',
@@ -19,10 +19,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'background-height-relative-to': 'inner',
             'background-width': '50%',
             'background-height': '50%',
-            'padding-left': '5px',
-            'padding-right': '5px',
-            'padding-bottom': '5px',
-            'padding-top': '5px',
+            'padding': '5px',
             'border-style': function (ele: any) { return ele.data('borderStyle') ?? 'solid' },
             'border-width': function (ele: any) { return ele.data('borderSize') ?? '1px' },
             'border-color': function (ele: any) { return ele.data('borderColour') ?? '#000' },
@@ -30,7 +27,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.vpc',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-size': '7rem',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
@@ -54,7 +51,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.vpc:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#683dc2',
             'overlay-opacity': 0.45,
@@ -64,7 +61,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.vpc:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#683dc2',
             'overlay-opacity': 0.25,
@@ -74,7 +71,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.subnet:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('subnetColour') ?? '#fafafa' },
             'overlay-opacity': 0.45,
@@ -84,7 +81,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.subnet:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('subnetColour') ?? '#fafafa' },
             'overlay-opacity': 0.25,
@@ -94,7 +91,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.subnet',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-size': '7rem',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
@@ -118,7 +115,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.type:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#545B64',
             'overlay-opacity': 0.25,
@@ -128,7 +125,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.type',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-size': '6rem',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
@@ -152,7 +149,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.region:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('regionColour') ?? '#fafafa' },
             'overlay-opacity': 0.45,
@@ -162,7 +159,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.region:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('regionColour') ?? '#fafafa' },
             'overlay-opacity': 0.25,
@@ -172,7 +169,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.region',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'font-size': '7rem',
@@ -197,7 +194,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
 
     {
         selector: '.availabilityZone:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.25,
@@ -207,7 +204,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.availabilityZone:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.45,
@@ -217,7 +214,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.availabilityZone',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'font-size': '7rem',
@@ -241,7 +238,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.account:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('accountColour') ?? 'rgba(234, 220, 23, 0.5)' },
             'overlay-opacity': 0.45,
@@ -251,7 +248,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.account:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': function (ele: any) { return ele.data('accountColour') ?? 'rgba(234, 220, 23, 0.5)' },
             'overlay-opacity': 0.25,
@@ -261,7 +258,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.account',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'font-size': '8rem',
@@ -285,7 +282,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: 'node.highlight',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'font-weight': 900,
@@ -306,15 +303,12 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'background-height-relative-to': 'inner',
             'background-width': '50%',
             'background-height': '50%',
-            'padding-left': '5px',
-            'padding-right': '5px',
-            'padding-bottom': '5px',
-            'padding-top': '5px',
+            'padding': '5px',
         },
     },
     {
         selector: '.resource:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'text-valign': 'bottom',
@@ -332,15 +326,12 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
             'background-height-relative-to': 'inner',
             'background-width': '50%',
             'background-height': '50%',
-            'padding-left': '5px',
-            'padding-right': '5px',
-            'padding-bottom': '5px',
-            'padding-top': '5px',
+            'padding': '5px',
         },
     },
     {
         selector: '.ecsCluster:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.25,
@@ -350,7 +341,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.ecsCluster:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.45,
@@ -360,7 +351,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.ecsCluster',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'font-size': '7rem',
@@ -384,7 +375,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: 'edge',
-        style: {
+        css: {
             'curve-style': 'bezier',
             'target-arrow-shape': 'none',
             'width': '1px',
@@ -394,14 +385,14 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: 'edge.hidden',
-        style: {
+        css: {
             'width': '1px',
             'line-opacity': 0,
         },
     },
     {
         selector: 'edge.highlight',
-        style: {
+        css: {
             'curve-style': 'bezier',
             'target-arrow-shape': 'none',
             'width': '2px',
@@ -411,7 +402,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: 'edge.cy-expand-collapse-meta-edge',
-        style: {
+        css: {
             'curve-style': 'unbundled-bezier',
             'control-point-distances': '0 0 0',
             'line-style': 'dashed',
@@ -421,7 +412,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: 'node.cy-expand-collapse-collapsed-node',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-size': '6rem',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
@@ -449,7 +440,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.cloudmap:selected',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.25,
@@ -459,7 +450,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.cloudmap:active',
-        style: {
+        css: {
             'label': 'data(label)',
             'overlay-color': '#f7991f',
             'overlay-opacity': 0.45,
@@ -469,7 +460,7 @@ export const graphStyle: cytoscape.Stylesheet | cytoscape.Stylesheet[] = [
     },
     {
         selector: '.cloudmap',
-        style: {
+        css: {
             'label': 'data(label)',
             'font-family': 'Amazon Ember, Helvetica, Arial, sans-serif',
             'font-size': '7rem',

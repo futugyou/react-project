@@ -5,7 +5,7 @@ import React, { useEffect, useState, useMemo } from "react"
 import LineChart from "@cloudscape-design/components/line-chart"
 import { Link } from "@cloudscape-design/components"
 
-import _ from 'lodash-es'
+import { map, orderBy, get } from 'lodash-es'
 import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
@@ -46,13 +46,13 @@ const BaseStockSeriesChart = (props: IBaseStockSeriesChartProp) => {
                     data.push(...d)
                 }
             }
-            const sd = _.orderBy(data, a => a.Time)
+            const sd = orderBy(data, a => a.Time)
 
             for (const key of props.Colnum) {
-                const d = _.map(
+                const d = map(
                     sd,
                     a => {
-                        let va = parseFloat(_.get(a, key))
+                        let va = parseFloat(get(a, key))
                         return { x: new Date(a.Time), y: va }
                     })
 

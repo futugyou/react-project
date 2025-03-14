@@ -4,9 +4,9 @@ import React, { useEffect, useState, useMemo, useCallback } from "react"
 
 import LineChart from "@cloudscape-design/components/line-chart"
 import { Link, Select, SelectProps } from "@cloudscape-design/components"
-import { NonCancelableCustomEvent } from "@cloudscape-design/components/internal/events"
+import { NonCancelableCustomEvent } from "@cloudscape-design/components"
 
-import _, { isNaN } from 'lodash-es'
+import { map, orderBy, filter, groupBy, get, isNaN } from 'lodash-es'
 import moment from 'moment'
 
 import EmptyChart from '@/Alphavantage/EmptyChart'
@@ -66,21 +66,21 @@ const BaseFundamentalsChart = (props: IBaseFundamentalsChartProp) => {
         if (props.Data && !props.IsError) {
             let data = props.Data
             if (symbol != "") {
-                data = _.filter(data, a => a.Symbol == symbol)
+                data = filter(data, a => a.Symbol == symbol)
             }
 
-            const dic = _.groupBy(data, 'Symbol')
+            const dic = groupBy(data, 'Symbol')
             var s: any[] = []
             for (const key in dic) {
-                const d = _.map(
-                    _.orderBy(
-                        _.filter(
+                const d = map(
+                    orderBy(
+                        filter(
                             dic[key],
-                            a => (props.NoDateGapType == true || a.DataType == selectedTimeIntervalsOption.value) && !isNaN(parseFloat(_.get(a, selectedDataTypeOption.value)))
+                            a => (props.NoDateGapType == true || a.DataType == selectedTimeIntervalsOption.value) && !isNaN(parseFloat(get(a, selectedDataTypeOption.value)))
                         ),
                         a => a.FiscalDateEnding),
                     a => {
-                        let va = parseFloat(_.get(a, selectedDataTypeOption.value))
+                        let va = parseFloat(get(a, selectedDataTypeOption.value))
                         return { x: new Date(a.FiscalDateEnding), y: va }
                     })
 
