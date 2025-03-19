@@ -38,7 +38,7 @@
     "@tanstack/query-sync-storage-persister": "^5.69.0",
     "@tanstack/react-query": "^5.69.0",
     "@tanstack/react-query-persist-client": "^5.69.0",
-    "@tldraw/tldraw": "^3.10.2",
+    "@tldraw/tldraw": "^3.10.3",
     "@uiw/react-color": "^2.4.5",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
