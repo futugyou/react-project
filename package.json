@@ -24,7 +24,7 @@
     "@fluidframework/merge-tree": "^2.30.0",
     "@fluidframework/sequence": "^2.30.0",
     "@fluidframework/test-client-utils": "^1.4.0",
-    "@honeycombio/opentelemetry-web": "^0.14.0",
+    "@honeycombio/opentelemetry-web": "^0.15.0",
     "@micro-zoe/micro-app": "^1.0.0-rc.24",
     "@microlink/react": "^5.5.23",
     "@opentelemetry/auto-instrumentations-web": "^0.46.0",
