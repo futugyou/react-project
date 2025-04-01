@@ -49,7 +49,14 @@
 
 ```sh
 npx npm-check-updates -u
-npm install 
+npm install
+```
+
+## remove unused package
+
+```sh
+npm install -g depcheck
+depcheck
 ```
 
 ## JavaScript heap out of memory
