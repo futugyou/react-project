@@ -32,7 +32,7 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.4",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.4",
     "buffer": "^6.0.3",
     "cytoscape": "^3.31.2",
     "cytoscape-avsdf": "^1.0.0",
