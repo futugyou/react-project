@@ -20,7 +20,7 @@
     "@fluidframework/azure-client": "^2.40.0",
     "@fluidframework/cell": "^2.40.0",
     "@fluidframework/test-client-utils": "^1.4.0",
-    "@honeycombio/opentelemetry-web": "^0.17.1",
+    "@honeycombio/opentelemetry-web": "^0.18.0",
     "@micro-zoe/micro-app": "^1.0.0-rc.24",
     "@microlink/react": "^5.5.23",
     "@opentelemetry/auto-instrumentations-web": "^0.47.0",
