@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@canvasjs/stockcharts": "^1.12.19",
+    "@canvasjs/stockcharts": "^1.12.20",
     "@cloudscape-design/board-components": "^3.0.111",
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.103",
     "@cloudscape-design/components": "^3.0.1002",
