@@ -11,7 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react'
 import microApp from '@micro-zoe/micro-app'
 import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
 import { persistQueryClient } from '@tanstack/react-query-persist-client'
-import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
+import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 
 import Loading from '@/Common/Components/Loading'
 import { ComponentProvider } from '@/Common/Components/ComponentProvider'
@@ -45,7 +45,7 @@ const queryClient = new QueryClient({
   },
 })
 
-const localStoragePersister = createSyncStoragePersister({ storage: window.localStorage })
+const localStoragePersister = createAsyncStoragePersister({ storage: window.localStorage })
 
 persistQueryClient({
   queryClient,
