@@ -38,11 +38,13 @@ export class PlayingCardUtil extends BaseBoxShapeUtil<IPlayingCard> {
     }
 
     override getBoundsSnapGeometry(shape: IPlayingCard): BoundsSnapGeometry {
-        return new Rectangle2d({
-            width: shape.props.h / 4.5,
-            height: shape.props.h / 4.5,
-            isFilled: true,
-        })
+       return {
+			points: new Rectangle2d({
+				width: shape.props.h / 4.5,
+				height: shape.props.h / 4.5,
+				isFilled: true,
+			}).bounds.cornersAndCenter,
+		}
     }
 
     component(shape: IPlayingCard) {
