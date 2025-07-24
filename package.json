@@ -13,7 +13,7 @@
     "@canvasjs/stockcharts": "^1.13.2",
     "@cloudscape-design/board-components": "^3.0.114",
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.110",
-    "@cloudscape-design/components": "^3.0.1031",
+    "@cloudscape-design/components": "^3.0.1033",
     "@cloudscape-design/global-styles": "^1.0.45",
     "@excalidraw/excalidraw": "^0.18.0",
     "@excalidraw/mermaid-to-excalidraw": "^1.1.2",
