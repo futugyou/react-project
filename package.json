@@ -16,7 +16,7 @@
     "@cloudscape-design/components": "^3.0.1071",
     "@cloudscape-design/global-styles": "^1.0.45",
     "@excalidraw/excalidraw": "^0.18.0",
-    "@excalidraw/mermaid-to-excalidraw": "^1.1.2",
+    "@excalidraw/mermaid-to-excalidraw": "^1.1.3",
     "@fluentui/react-components": "^9.69.0",
     "@fluidframework/azure-client": "^2.53.0",
     "@fluidframework/cell": "^2.53.0",
