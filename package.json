@@ -40,7 +40,7 @@
     "cytoscape-expand-collapse": "^4.1.1",
     "cytoscape-fcose": "^2.2.0",
     "cytoscape-grid-guide": "^2.3.3",
-    "dayjs": "^1.11.17",
+    "dayjs": "^1.11.18",
     "fluid-framework": "^2.53.1",
     "framer-motion": "^12.23.12",
     "gitalk": "^1.8.0",
