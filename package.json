@@ -42,7 +42,7 @@
     "cytoscape-grid-guide": "^2.3.3",
     "dayjs": "^1.11.18",
     "fluid-framework": "^2.60.0",
-    "framer-motion": "^12.23.15",
+    "framer-motion": "^12.23.16",
     "gitalk": "^1.8.0",
     "html-to-image": "^1.11.13",
     "idb-keyval": "^6.2.2",
