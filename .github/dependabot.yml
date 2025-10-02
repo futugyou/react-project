@@ -42,6 +42,10 @@ updates:
         patterns:
         - "eslint*"
         - "@typescript-eslint*"
+      react:
+        patterns:
+        - "react*"
+        - "@types/react*"
         
   - package-ecosystem: "github-actions"
     directory: "/"

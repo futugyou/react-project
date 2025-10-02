@@ -68,7 +68,7 @@ export class ScreenshotDragging extends StateNode {
     // we export the shapes contained by the screenshot box as a png.
     // If the user is holding the ctrl key, 
     // we copy the shapes to the clipboard instead.
-    override onPointerUp = () => {
+    override onPointerUp() {
         const { editor } = this
         const box = this.screenshotBox.get()
 
@@ -85,19 +85,17 @@ export class ScreenshotDragging extends StateNode {
                 copyAs(
                     editor,
                     shapes.map((s) => s.id),
-                    'png',
-                    { bounds: box, background: editor.getInstanceState().exportBackground }
+                    { format: 'png', bounds: box }
                 )
             } else {
                 // Export the shapes as a png
                 exportAs(
                     editor,
                     shapes.map((s) => s.id),
-                    undefined,
-                    'png',
                     {
+                        format: 'png',
+                        name: 'Screenshot',
                         bounds: box,
-                        background: editor.getInstanceState().exportBackground
                     }
                 )
             }
