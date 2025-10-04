@@ -28,6 +28,8 @@ if (window.__MICRO_APP_ENVIRONMENT__) {
         baseUrl = "/react"
     }
 }
+
+document.getElementById('app-base')!.setAttribute('href', baseUrl);
 console.log('the react app base url is:', baseUrl)
 const router = createBrowserRouter([
     {
