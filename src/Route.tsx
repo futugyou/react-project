@@ -14,7 +14,7 @@ const childrenRoute: RouteObject[] = [
         element: <WelcomePage />,
     },
     {
-        path: "/gitalk",
+        path: "gitalk",
         element: <Comment />,
     },
     ...TotalRouteDescriptions.map(p => ToRouteObject(p)),

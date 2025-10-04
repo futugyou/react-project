@@ -52,7 +52,8 @@ export interface RouteDescription {
 
 export const ToRouteObject = (d: RouteDescription) => {
     const route: RouteObject = {}
-    route.path = d.path
+    // route.path = d.path
+    route.path = d.path.startsWith('/') ? d.path.slice(1) : d.path;
     route.element = d.element
     let subs: RouteObject[] = []
     if (d.children) {
