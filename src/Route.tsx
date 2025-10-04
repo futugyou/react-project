@@ -20,6 +20,15 @@ const childrenRoute: RouteObject[] = [
     ...TotalRouteDescriptions.map(p => ToRouteObject(p)),
 ]
 
+let baseUrl = import.meta.env.BASE_URL
+if (window.__MICRO_APP_ENVIRONMENT__) {
+    if (window.__MICRO_APP_BASE_ROUTE__) {
+        baseUrl = window.__MICRO_APP_BASE_ROUTE__
+    } else {
+        baseUrl = "/react"
+    }
+}
+console.log('the react app base url is:', baseUrl)
 const router = createBrowserRouter([
     {
         path: '/',
@@ -27,6 +36,10 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: childrenRoute,
     },
-])
+],
+    {
+        basename: baseUrl
+    }
+)
 
 export { router }

@@ -66,3 +66,11 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 Set NODE_OPTIONS="--max-old-space-size=8192"
 node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
 ```
+
+## 
+
+```sh
+npm config list
+npm config set registry https://registry.npmjs.org/
+npm config set registry https://mirrors.tencent.com/npm/
+```
