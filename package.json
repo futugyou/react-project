@@ -24,7 +24,7 @@
     "@honeycombio/opentelemetry-web": "^1.0.3",
     "@micro-zoe/micro-app": "^1.0.0-rc.27",
     "@microlink/react": "^5.5.23",
-    "@opentelemetry/auto-instrumentations-web": "^0.51.3",
+    "@opentelemetry/auto-instrumentations-web": "^0.52.0",
     "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-query-persist-client": "^5.90.2",
     "@tldraw/tldraw": "^4.0.3",
