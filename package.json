@@ -77,7 +77,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
-    "@types/cytoscape-avsdf": "^1.0.3",
+    "@types/cytoscape-avsdf": "^1.0.4",
     "@types/cytoscape-euler": "^1.2.4",
     "@types/cytoscape-fcose": "^2.2.4",
     "@types/lodash-es": "^4.17.12",
