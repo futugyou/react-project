@@ -3,7 +3,26 @@
 
 <head>
   <meta charset="UTF-8" />
-  <base id="app-base" href="/" />
+  <base id="react-app-base" href="/">
+  <script>
+    let baseUrl = './'
+    if (window.__MICRO_APP_ENVIRONMENT__) {
+      if (window.__MICRO_APP_BASE_ROUTE__) {
+        baseUrl = window.__MICRO_APP_BASE_ROUTE__
+      } else {
+        baseUrl = "/react/"
+      }
+    } else {
+      const path = window.location.pathname;
+      baseUrl = path.startsWith('/react') ? '/react/' : '/'
+    }
+    baseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'
+    const base = document.getElementById('react-app-base')
+    if (base) {
+      base.setAttribute('href', baseUrl);
+    }
+    console.log('href is:', window.location.href, 'base url is:', baseUrl)
+  </script>
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

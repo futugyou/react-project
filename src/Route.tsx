@@ -25,12 +25,16 @@ if (window.__MICRO_APP_ENVIRONMENT__) {
     if (window.__MICRO_APP_BASE_ROUTE__) {
         baseUrl = window.__MICRO_APP_BASE_ROUTE__
     } else {
-        baseUrl = "/react"
+        baseUrl = "/react/"
     }
+} else {
+    const path = window.location.pathname;
+    baseUrl = path.startsWith('/react') ? '/react/' : '/';
 }
+baseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'
+document.querySelector('#react-app-base')?.setAttribute('href', baseUrl);
+console.log('href is:', window.location.href, 'base url is:', baseUrl)
 
-document.getElementById('app-base')!.setAttribute('href', baseUrl);
-console.log('the react app base url is:', baseUrl)
 const router = createBrowserRouter([
     {
         path: '/',
