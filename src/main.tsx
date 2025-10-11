@@ -21,7 +21,7 @@ import { router } from '@/Route'
 let root: ReactDOM.Root | null = null
 
 function mount() {
-  const container = document.getElementById('openai-web-root') as HTMLElement
+  const container = document.getElementById('react-web-root') as HTMLElement
   if (!container) throw new Error('Root container not found')
 
   root = ReactDOM.createRoot(container)
