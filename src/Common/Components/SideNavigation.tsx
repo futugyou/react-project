@@ -3,7 +3,7 @@ import SideNavigation, { SideNavigationProps } from "@cloudscape-design/componen
 
 import { RouteDescription } from '@/RouteDescription'
 import { useNavigate } from "react-router-dom"
-import microApp, { getActiveApps } from '@micro-zoe/micro-app'
+
 export interface ISideMenuProps {
     Routes: RouteDescription[]
     DefaultExpanded?: boolean
@@ -22,7 +22,6 @@ const createHref = (href: string, prefix?: string) => {
 const SideMenu = (props: ISideMenuProps) => {
     const navigate = useNavigate()
     const [activeHref, setActiveHref] = React.useState(location.pathname)
-    const microServiceAdditionalRoute = props.Routes.flatMap(p => p.additionalRoute ?? [])
 
     const item = props.Routes
         .filter(p => p.show && p.show() || !p.show).map(route => {
@@ -84,20 +83,7 @@ const SideMenu = (props: ISideMenuProps) => {
             }
         }
 
-        const add = microServiceAdditionalRoute.find(p => p.path == activeHref)
-        try {
-            // handle MicroApp redirect
-            if (add && getActiveApps({ excludeHiddenApp: true, excludePreRender: true }).includes(add.appName) && microApp.router) {
-                microApp.router.push({ name: add.appName, path: add.subPath })
-            } else {
-                // handle nomal redirect
-                navigate(activeHref, { replace: true })
-            }
-        } catch (error) {
-            // use nomal redirect when MicroApp redirect cause error
-            navigate(activeHref, { replace: true })
-        }
-
+        navigate(activeHref, { replace: true })
     }, [activeHref, props.headNavigate])
 
     useEffect(() => {

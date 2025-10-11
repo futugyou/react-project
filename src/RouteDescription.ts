@@ -8,7 +8,6 @@ import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
 import { FlowRouteDataList2 } from './Flow/FlowRoute'
-import { MicroAppRoute2 } from '@/MicroApp/MicroAppRoute'
 
 const WhiteRoute: RouteDescription = {
     display: "Whiteboard",
@@ -28,7 +27,6 @@ export const TotalRouteDescriptions: RouteDescription[] = [
     WhiteRoute,
     DemoRoute,
     OpenAIRoute,
-    ...MicroAppRoute2,
 ]
 
 export interface AdditionalRoute {
