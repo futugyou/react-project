@@ -14,6 +14,8 @@ import Loading from '@/Common/Components/Loading'
 import { ComponentProvider } from '@/Common/Components/ComponentProvider'
 import { AuthProvider, authService } from '@/Auth/index'
 
+import { handleMicroData } from '@/MicroApp/event'
+
 import { router } from '@/Route'
 
 let root: ReactDOM.Root | null = null
@@ -38,6 +40,8 @@ function mount() {
       </QueryClientProvider>
     </React.StrictMode>
   )
+
+  handleMicroData()
 }
 
 function unmount() {
