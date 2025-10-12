@@ -27,25 +27,32 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         return pathname.startsWith(path)
     }
 
-    const normalRoutes = props.Routes.filter(
-        (p) => p.archived == undefined || p.archived == false
-    ).filter((p) => (p.show && p.show()) || !p.show)
-
+    const staticRoutes: RouteDescription[] = [{ display: "Home", path: "/" }];
+    // const normalRoutes = props.Routes.filter(
+    //     (p) => p.archived == undefined || p.archived == false
+    // ).filter((p) => (p.show && p.show()) || !p.show)
+    const normalRoutes: RouteDescription[] = [
+        ...staticRoutes,
+        ...props.Routes.filter(
+            (p) => p.archived === undefined || p.archived === false
+        ).filter((p) => (p.show && p.show()) || !p.show)
+    ]
     const archivedRoutes = props.Routes
         .filter((p) => p.archived)
         .filter((p) => (p.show && p.show()) || !p.show)
 
     const handleNavigate = (path: string, event: React.MouseEvent) => {
         event.preventDefault()
+        console.log("path:", path)
         navigate(path)
     }
 
     const handleItemClick = ({ detail }: CustomEvent<ButtonDropdownProps.ItemClickDetails>) => {
-        const { id } =  detail;
+        const { id } = detail;
         console.log("path:", id)
         navigate(id)
     }
-    
+
     const topNavItems = [
         ...normalRoutes.map((r) => {
             if (r.children && r.children.length > 0) {
@@ -58,7 +65,6 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                         .filter((c) => (c.show && c.show()) || !c.show)
                         .map((c) => ({
                             id: r.path + "/" + c.path,
-                            href: r.path + "/" + c.path,
                             text: c.display ?? c.path,
                         })),
                     onItemClick: handleItemClick,
@@ -87,7 +93,6 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                             .filter((c) => (c.show && c.show()) || !c.show)
                             .map((c) => ({
                                 id: route.path + "/" + c.path,
-                                href: route.path + "/" + c.path,
                                 text: c.display ?? c.path,
                             }))
                     ),
@@ -101,7 +106,7 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
     return (
         <TopNavigation
             identity={{
-                title: "Home",
+                title: "",
                 href: "./",
                 onFollow: (e) => {
                     e.preventDefault()
