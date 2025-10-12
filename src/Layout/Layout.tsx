@@ -8,14 +8,13 @@ import Header from "./Header"
 import Loading from '@/Common/Components/Loading'
 import Observability from '@/Common/Components/Observability'
 
+import { TotalRouteDescriptions } from '@/RouteDescription'
+import { User } from "@/User/User"
+import HeaderMenu from './HeaderMenu'
 const Layout = () => {
     return (
         <>
-            <Row className="header">
-                <Col>
-                    <Header></Header>
-                </Col>
-            </Row>
+            <HeaderMenu Routes={TotalRouteDescriptions}></HeaderMenu>
             <Row className="route-out-container">
                 <Suspense fallback={<Loading />}>
                     <Outlet />
