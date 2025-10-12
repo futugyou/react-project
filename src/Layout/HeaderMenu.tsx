@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import TopNavigation from "@cloudscape-design/components/top-navigation"
 import SideNavigation from "@cloudscape-design/components/side-navigation"
-import { ButtonDropdownProps } from '@cloudscape-design/components/button-dropdown/interfaces'
+import type { ButtonDropdownProps } from '@cloudscape-design/components'
 import { RouteDescription } from "@/RouteDescription"
 
 export interface IHeaderMenuProps {
@@ -40,12 +40,12 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         navigate(path)
     }
 
-    const ItemClick = ({ detail }: ButtonDropdownProps.ItemClickDetails) => {
-        event.preventDefault()
-        console.log("path:", detail)
-        navigate(detail.id)
+    const handleItemClick = ({ detail }: CustomEvent<ButtonDropdownProps.ItemClickDetails>) => {
+        const { id } =  detail;
+        console.log("path:", id)
+        navigate(id)
     }
-
+    
     const topNavItems = [
         ...normalRoutes.map((r) => {
             if (r.children && r.children.length > 0) {
@@ -58,9 +58,10 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                         .filter((c) => (c.show && c.show()) || !c.show)
                         .map((c) => ({
                             id: r.path + "/" + c.path,
+                            href: r.path + "/" + c.path,
                             text: c.display ?? c.path,
                         })),
-                    onItemClick: ItemClick,
+                    onItemClick: handleItemClick,
                     variant: buttonVariant(checkActive(r, location.pathname)),
                 }
             } else {
@@ -86,10 +87,11 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                             .filter((c) => (c.show && c.show()) || !c.show)
                             .map((c) => ({
                                 id: route.path + "/" + c.path,
+                                href: route.path + "/" + c.path,
                                 text: c.display ?? c.path,
                             }))
                     ),
-                    onItemClick: ItemClick,
+                    onItemClick: handleItemClick,
                     variant: buttonVariant(archivedRoutes.some((p) => location.pathname.startsWith(p.path))),
                 },
             ]
