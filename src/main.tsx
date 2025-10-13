@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+
 import './index.css'
 
 import React, { Suspense } from 'react'

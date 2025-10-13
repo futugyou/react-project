@@ -12,7 +12,6 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         '@': '/src',
-        '~bootstrap': '/node_modules/bootstrap',
       }
     },
     define: {
