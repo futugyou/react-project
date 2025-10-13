@@ -1,7 +1,6 @@
 import './User.css'
 
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
+import Popover from "@cloudscape-design/components/popover"
 
 import { useAuth } from '../Auth/index'
 
@@ -35,9 +34,17 @@ const User = (props: any) => {
 
     return (
         <div className="header-user">
-            <OverlayTrigger placement="bottom" overlay={logoutPopover} delay={{ show: 100, hide: 1000 }} >
+            <Popover
+                dismissButton={false}
+                content={
+                    <button onClick={logout}>Logout</button>
+                }
+                position="bottom"
+                triggerType="hover"
+                size="small"
+            >
                 <div className="user-name">{user.name}</div>
-            </OverlayTrigger >
+            </Popover >
         </div>
     )
 }
