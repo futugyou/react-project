@@ -1,10 +1,7 @@
 import './InjectText.css'
 import { useState } from 'react'
-import Form from 'react-bootstrap/Form'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+
+import { ColumnLayout, Popover, Box, Checkbox } from "@cloudscape-design/components"
 
 interface IInjectTextProps {
     text: string
@@ -46,26 +43,30 @@ const InjectText = ({ text = '', label = '', checked = false, descript, onInject
 
     return (
         <>
-            <Form.Group className="mb-3" >
-                <Row>
-                    <Col>
-                        {descript && (
-                            <OverlayTrigger placement="left" overlay={injectDescriptPopover}>
-                                <Form.Label>{label}</Form.Label>
-                            </OverlayTrigger>)}
-                        {!descript && (
-                            <Form.Label>{label}</Form.Label>
-                        )}
-                    </Col>
-                </Row>
-                <Row className='inject-text-ta-wrap'>
-                    <Col>
-                        <Form.Check className='inject-text-cb' type="checkbox" checked={check} onChange={handleCheckChanged} />
-                        <input className={input_className} type="text" value={inject} onChange={(e) => handleInjectChanged(e.target.value)}></input>
-                    </Col>
-                </Row>
-
-            </Form.Group>
+            <Box className="mb-3" >
+                <ColumnLayout columns={1} borders="vertical">
+                    {descript && (
+                        <Popover
+                            dismissButton={false}
+                            content={
+                                <span> {descript}</span>
+                            }
+                            position="left"
+                            triggerType="hover"
+                            size="small"
+                        >
+                            <div>{label}</div>
+                        </Popover>
+                    )}
+                    {!descript && (
+                        <div>{label}</div>
+                    )}
+                </ColumnLayout>
+                <ColumnLayout columns={1} borders="vertical" data-style="inject-text">
+                    <Checkbox onChange={handleCheckChanged} checked={check} data-style="inject" />
+                    <input className={input_className} type="text" value={inject} onChange={(e) => handleInjectChanged(e.target.value)}></input>
+                </ColumnLayout>
+            </Box>
         </>
     )
 }
