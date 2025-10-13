@@ -3,10 +3,19 @@ import { useState, useEffect } from 'react'
 import { flushSync } from 'react-dom'
 import { useParams } from "react-router-dom"
 
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { Button, FormField, SpaceBetween, Grid, Box } from "@cloudscape-design/components"
+import {
+    AppLayout,
+    BreadcrumbGroup,
+    Container,
+    ContentLayout,
+    Flashbar,
+    Header,
+    HelpPanel,
+    Link,
+    SideNavigation,
+    SplitPanel,
+} from '@cloudscape-design/components'
 
 import HeadContainer from "./HeadContainer"
 import EditorContainer from './EditorContainer'
@@ -29,6 +38,8 @@ import { PlaygroundModel } from '../Models/PlaygroundModel'
 import playgroundService from '../Services/Playground'
 import { ChatLog } from '../Models/PlaygroundModel'
 
+import { BsClockHistory } from "react-icons/bs"
+
 import set from '../Services/Example'
 
 
@@ -46,6 +57,7 @@ const Playground = () => {
     const [playgroundModel, setPlaygroundModel] = useState(rawdata)
     const [mode, setMode] = useState('Complete')
     const [currentData, setCurrentData] = useState<PlaygroundModel>(rawdata)
+    const [showHistory, setShowHistory] = useState(false)
 
     const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true
     const opertionContainerClassName = disabled ? "qa-item-align opertion-container playground-disabled" : "qa-item-align opertion-container"
@@ -312,62 +324,74 @@ const Playground = () => {
     }
 
     return (
-        <>
-            <HeadContainer data={playgroundModel} onPresetChange={handlePlaygroundModelChange}></HeadContainer>
-            <Col xs={10} className='text-container'>
-                <div className='container-fluid pg-input-body'>
+        <AppLayout
+            disableContentPaddings={true}
+            navigationOpen={showHistory}
+            navigation={
+                <History
+                    key={currentData.createdAt}
+                    onHistoryRecordClick={handlePlaygroundModelChange}
+                    onHistoryShow={handleCurrentDataChange}
+                    current={currentData}
+                />
+            }
+            toolsOpen={true}
+            tools={
+                <HelpPanel header={<h2>Model Operation</h2>}>
+                    <Box className={opertionContainerClassName} height="100%" overflow="auto">
+                        <ParameterPanel
+                            key={playgroundModel}
+                            data={playgroundModel}
+                            mode={mode}
+                            onModeChange={handleModeChange}
+                            onPlaygroundModelChange={handlePlaygroundModelChange}
+                        />
+                    </Box>
+                </HelpPanel>
+            }
+            content={
+                <Box className="text-container" data-style="height100">
                     <EditorContainer
                         mode={mode}
                         data={playgroundModel}
                         disabled={disabled}
                         onPlaygroundModelChange={handlePlaygroundModelChange}
-                        onRestoreClick={handleRestoreClick}>
-                    </EditorContainer>
-                </div>
-                <Form.Group as={Row} className="mb-3 qa-item-align">
-                    {(mode == "Complete") && (
-                        <>
-                            <Button variant="success" type="submit" onClick={() => handleCompletion()} disabled={disabled}>
+                        onRestoreClick={handleRestoreClick}
+                    />
+
+                    <Box data-style="button-group">
+                        {(mode === "Complete") && (
+                            <>
+                                <Button variant="primary" onClick={handleCompletion} disabled={disabled}>
+                                    Submit
+                                </Button>
+                                <Button variant="primary" onClick={handleCompletionStream} disabled={disabled}>
+                                    StreamSubmit
+                                </Button>
+                            </>
+                        )}
+                        {(mode === "Chat") && (
+                            <Button variant="primary" onClick={handleChatStream} disabled={disabled}>
                                 Submit
                             </Button>
-                            <Button variant="success" onClick={() => handleCompletionStream()} disabled={disabled}>
-                                StreamSubmit
+                        )}
+                        {(mode === "Insert") && (
+                            <Button variant="primary" onClick={handleInsertStream} disabled={disabled}>
+                                Submit
                             </Button>
-                        </>
-                    )}
-                    {(mode == "Chat") && (
-                        <Button variant="success" type="submit" onClick={() => handleChatStream()} disabled={disabled}>
-                            Submit
+                        )}
+                        {(mode === "Edit") && (
+                            <Button variant="primary" onClick={handleEdit} disabled={disabled}>
+                                Submit
+                            </Button>
+                        )}
+                        <Button onClick={() => setShowHistory(!showHistory)} variant="primary">
+                            <BsClockHistory />
                         </Button>
-                    )}
-                    {(mode == "Insert") && (
-                        <Button variant="success" type="submit" onClick={() => handleInsertStream()} disabled={disabled}>
-                            Submit
-                        </Button>
-                    )}
-
-                    {(mode == "Edit") && (
-                        <Button variant="success" type="submit" onClick={() => handleEdit()} disabled={disabled}>
-                            Submit
-                        </Button>
-                    )}
-                    <History
-                        key={currentData.createdAt}
-                        onHistoryRecordClick={handlePlaygroundModelChange}
-                        onHistoryShow={handleCurrentDataChange}
-                        current={currentData} >
-                    </History>
-                </Form.Group>
-            </Col>
-            <Col xs={2} className={opertionContainerClassName} >
-                <ParameterPanel key={playgroundModel}
-                    data={playgroundModel}
-                    mode={mode}
-                    onModeChange={handleModeChange}
-                    onPlaygroundModelChange={handlePlaygroundModelChange}>
-                </ParameterPanel>
-            </Col>
-        </>
+                    </Box>
+                </Box>
+            }
+        />
     )
 }
 

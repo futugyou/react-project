@@ -1,8 +1,8 @@
 import './History.css'
 
-import { useState, Fragment } from 'react'
-import Button from 'react-bootstrap/Button'
-import Offcanvas from 'react-bootstrap/Offcanvas'
+import { useState, Fragment, useEffect } from 'react'
+import { Button, Drawer } from '@cloudscape-design/components'
+
 import { BsClockHistory } from "react-icons/bs"
 
 import { PlaygroundModel, DefaultPlayground } from '../Models/PlaygroundModel'
@@ -79,25 +79,25 @@ const History = (props: any) => {
             props.onHistoryShow()
         }
     }
+    useEffect(() => {
+        const getAllHistory = async () => {
+            let data = playgroundService.getPlayground()
+            setHistoryList(data)
+            setShow(true)
+        }
 
+        getAllHistory()
+    }, [])
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
-                <BsClockHistory></BsClockHistory>
-            </Button>
-            <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>History</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <div className="history-container" >
-                        <ul className="timeline-3">
-                            {currentItems}
-                            {historyItems}
-                        </ul>
-                    </div>
-                </Offcanvas.Body>
-            </Offcanvas >
+            <Drawer header="History">
+                <div className="history-container">
+                    <ul className="timeline-3">
+                        {currentItems}
+                        {historyItems}
+                    </ul>
+                </div>
+            </Drawer>
         </>
     )
 }

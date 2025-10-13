@@ -53,3 +53,9 @@ ul[class="dropdown-menu show"] il[class="dropdown-item"] {
     opacity: .5;
     pointer-events: none;
 }
+
+[data-style="button-group"] {
+    display: flex;
+    gap: 10px;
+    padding: 10px 5px;
+}
