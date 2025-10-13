@@ -62,8 +62,7 @@ const ModelSelect = (props: IModelSelectProps) => {
                             content={
                                 <span>{popover_text}</span>
                             }
-                            position="left"
-                            triggerType="hover"
+                            position="left"                            
                             size="small"
                         >
                             <div>Model</div>

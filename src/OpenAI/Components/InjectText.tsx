@@ -18,14 +18,6 @@ const InjectText = ({ text = '', label = '', checked = false, descript, onInject
     const [check, setCheck] = useState<boolean>(checked)
     const input_className = "inject-text-ta" + (check ? "" : " off")
 
-    const injectDescriptPopover = (
-        <Popover id="inject-popover">
-            <Popover.Body>
-                {descript}
-            </Popover.Body>
-        </Popover>
-    )
-
     const handleInjectChanged = (value: string) => {
         setInject(value)
         if (onInjectChanged) {
@@ -52,7 +44,7 @@ const InjectText = ({ text = '', label = '', checked = false, descript, onInject
                                 <span> {descript}</span>
                             }
                             position="left"
-                            triggerType="hover"
+                            
                             size="small"
                         >
                             <div>{label}</div>

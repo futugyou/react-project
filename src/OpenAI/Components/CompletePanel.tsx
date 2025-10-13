@@ -7,7 +7,7 @@ const CompletePanel = (props: any) => {
         <>
             <div className="complete-panel">
                 <div className="prompt-input-layer">
-                    <Textarea onChange={e => props.onPromptChange(e.target.value)} value={text} rows={1} disabled={props.disabled} />
+                    <Textarea onChange={e => props.onPromptChange(e.detail.value)} value={text} rows={1} disabled={props.disabled} />
                 </div>
                 {props.disabled && props.children}
             </div>

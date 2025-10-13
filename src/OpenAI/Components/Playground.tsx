@@ -338,7 +338,7 @@ const Playground = () => {
             toolsOpen={true}
             tools={
                 <HelpPanel header={<h2>Model Operation</h2>}>
-                    <Box className={opertionContainerClassName} height="100%" overflow="auto">
+                    <Box className={opertionContainerClassName}>
                         <ParameterPanel
                             key={playgroundModel}
                             data={playgroundModel}

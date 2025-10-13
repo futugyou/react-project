@@ -64,8 +64,7 @@ const Stop = (props: any) => {
                 content={
                     < >{popover}</ >
                 }
-                position="left"
-                triggerType="hover"
+                position="left"                
                 size="small"
             >
                 <Box className="mb-3 stop-container" >

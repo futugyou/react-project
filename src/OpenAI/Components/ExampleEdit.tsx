@@ -226,7 +226,7 @@ const ExampleEdit = (props: any) => {
                                 Description
                             </div>
                             <div className="edit-item-content">
-                                <Textarea onChange={e => handleDescChanged(e.target.value)} value={props.data.description} rows={3} />
+                                <Textarea onChange={e => handleDescChanged(e.detail.value)} value={props.data.description} rows={3} />
                             </div>
                         </div>
                         <div className="edit-item">
@@ -234,7 +234,7 @@ const ExampleEdit = (props: any) => {
                                 Prompt
                             </div>
                             <div className="edit-item-content">
-                                <Textarea onChange={e => handlePromptChange(e.target.value)} value={props.data.prompt} rows={10} />
+                                <Textarea onChange={e => handlePromptChange(e.detail.value)} value={props.data.prompt} rows={10} />
                             </div>
                         </div>
                         <div className="edit-item" style={{ marginBottom: "0px" }}>
@@ -242,7 +242,7 @@ const ExampleEdit = (props: any) => {
                                 Sample response
                             </div>
                             <div className="edit-item-content">
-                                <Textarea onChange={e => handleResponseChange(e.target.value)} value={props.data.sample_response} rows={10} />
+                                <Textarea onChange={e => handleResponseChange(e.detail.value)} value={props.data.sample_response} rows={10} />
                             </div>
                         </div>
                     </div>

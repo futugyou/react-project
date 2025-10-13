@@ -60,8 +60,7 @@ const Dropdown = (props: DropdownProps) => {
                 key={i.key}
                 dismissButton={false}
                 content={<div>{i.popover}</div>}
-                position="left"
-                triggerType="hover"
+                position="left"                
                 size="small"
             >
                 {itemNode}

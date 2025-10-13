@@ -31,8 +31,7 @@ const User = (props: any) => {
                 content={
                     <button onClick={logout}>Logout</button>
                 }
-                position="bottom"
-                triggerType="hover"
+                position="bottom"                
                 size="small"
             >
                 <div className="user-name">{user.name}</div>

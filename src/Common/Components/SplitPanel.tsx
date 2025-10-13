@@ -44,8 +44,7 @@ const SplitPanel = (props: ISplitPanelProps) => {
                     content={
                         <>{popover}</>
                     }
-                    position="right"
-                    triggerType="hover"
+                    position="right"                    
                     size="small"
                 >
                     <BsListUl />

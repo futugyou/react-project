@@ -91,7 +91,7 @@ const ChatPanel = (props: any) => {
             <div className='chat-pg-instructions'>
                 <div className="text-input-header-subheading subheading">System</div>
                 <div className='text-input-header-wrapper'>
-                    <Textarea onChange={e => props.onInstructionChange(e.target.value)} value={props.instruction} rows={1} placeholder="You are a helpful assistant." disabled={props.disabled} />
+                    <Textarea onChange={e => props.onInstructionChange(e.detail.value)} value={props.instruction} rows={1} placeholder="You are a helpful assistant." disabled={props.disabled} />
                 </div>
             </div>
             <div className="chat-pg-right-wrapper">

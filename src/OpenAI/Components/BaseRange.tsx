@@ -51,8 +51,8 @@ const BaseRange = (props: IBaseRangeProps) => {
         setStringValue(parseFloat(value).toString())
     }
 
-    const handleValueChange = (value: string) => {
-        setStringValue(value)
+    const handleValueChange = (value: number) => {
+        setStringValue(value + "")
     }
 
     useEffect(() => {
@@ -80,7 +80,7 @@ const BaseRange = (props: IBaseRangeProps) => {
                     min={props.min}
                     max={props.max}
                     step={props.step}
-                    value={[parseFloat(stringValue)]}
+                    value={parseFloat(stringValue)}
                     onChange={(e) => handleValueChange(e.detail.value)}
                 />
             </FormField>
