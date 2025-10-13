@@ -149,3 +149,11 @@ ul {
 *[data-style-nowrap] li[data-itemid] {
   white-space: pre !important;
 }
+
+[data-style="height100"] {
+  height: 100%;
+}
+
+[data-style="flex1"] {
+  flex: 1;
+}
