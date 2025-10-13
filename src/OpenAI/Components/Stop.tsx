@@ -1,8 +1,7 @@
 import './Stop.css'
 import { KeyboardEvent, useState, useCallback } from 'react'
-import Form from 'react-bootstrap/Form'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
+
+import { Popover, Box } from "@cloudscape-design/components"
 
 import StopDescribe from './InputContainer/Describe'
 import StopInputContainer from './InputContainer/InputContainer'
@@ -21,13 +20,7 @@ const Stop = (props: any) => {
     let subDisplay = "Enter sequence and press Tab"
     let popover = "Up to four sequences where the API will stop generating further tokens.The returned text will not contain the stop sequence."
 
-    const stopPopover = (
-        <Popover id="stop-popover">
-            <Popover.Body>
-                {popover}
-            </Popover.Body>
-        </Popover>
-    )
+
 
     const HandleOpenTip = () => {
         setShow(!show)
@@ -66,10 +59,17 @@ const Stop = (props: any) => {
 
     return (
         <>
-            <OverlayTrigger placement="left" overlay={stopPopover}>
-                <Form.Group className="mb-3 stop-container" >
+            <Popover
+                dismissButton={false}
+                content={
+                    < >{popover}</ >
+                }
+                position="left"
+                triggerType="hover"
+                size="small"
+            >
+                <Box className="mb-3 stop-container" >
                     <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>
-
                     <StopInputContainer stop={stop} state={state}
                         onRemoveItem={HandleRemoveStop}
                         onInputContainerClick={HandleOpenTip}
@@ -79,8 +79,8 @@ const Stop = (props: any) => {
                     </StopInputContainer>
 
                     <StopTip show={show} tip={tip}></StopTip>
-                </Form.Group>
-            </OverlayTrigger>
+                </Box>
+            </Popover>
         </>
     )
 }
