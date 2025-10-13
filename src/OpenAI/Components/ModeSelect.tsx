@@ -1,23 +1,14 @@
 
-import Form from 'react-bootstrap/Form'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+
+import { ColumnLayout, Popover, Box } from "@cloudscape-design/components"
 
 import Dropdown, { DropdownItem } from "@/Common/Components/Dropdown"
+
+const popover_text: string = "Choose the interface that best suits your task. You can provide: a simple prompt to complete, starting and ending text to insert a completion within, or some text with instructions to edit it."
 
 const ModeSelect = (props: any) => {
     const mode = props.mode ?? 'Complete'
     const modes: string[] = ['Complete', 'Chat', 'Insert', 'Edit']
-
-    const modeDescriptPopover = (
-        <Popover id="mode-popover">
-            <Popover.Body>
-                Choose the interface that best suits your task. You can provide: a simple prompt to complete, starting and ending text to insert a completion within, or some text with instructions to edit it.
-            </Popover.Body>
-        </Popover>
-    )
 
     const HandleModeChange = (value: string) => {
         if (props.onModeChange) {
@@ -34,20 +25,24 @@ const ModeSelect = (props: any) => {
 
     return (
         <>
-            <Form.Group className="mb-3" >
-                <Row>
-                    <Col>
-                        <OverlayTrigger placement="left" overlay={modeDescriptPopover}>
-                            <Form.Label>Mode</Form.Label>
-                        </OverlayTrigger>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Dropdown items={selects} onDropdownChange={HandleModeChange}></Dropdown>
-                    </Col>
-                </Row>
-            </Form.Group>
+            <Box className="mb-3" >
+                <ColumnLayout columns={1} borders="vertical">
+                    <Popover
+                        dismissButton={false}
+                        content={
+                            <span>{popover_text}</span>
+                        }
+                        position="left"
+                        triggerType="hover"
+                        size="small"
+                    >
+                        <div>Mode</div>
+                    </Popover>
+                </ColumnLayout>
+                <ColumnLayout columns={1} borders="vertical">
+                    <Dropdown items={selects} onDropdownChange={HandleModeChange}></Dropdown>
+                </ColumnLayout>
+            </Box>
         </>
     )
 }

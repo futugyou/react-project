@@ -1,14 +1,12 @@
 import './ModelSelect.css'
 import { useState, useEffect } from 'react'
 
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
+import { ColumnLayout, Popover, Box } from "@cloudscape-design/components"
 
 import ModelService, { BaseModel } from '../Services/Model'
 import Dropdown, { DropdownItem } from "@/Common/Components/Dropdown"
+
+const popover_text: string = "The model which will generate the completion. Some models are suitable for natural language tasks, others specialize in code. <a href='https://platform.openai.com/docs/models'>Learn more</a>."
 
 interface IModelSelectProps {
     model: string
@@ -20,22 +18,6 @@ interface IModelSelectProps {
 const ModelSelect = (props: IModelSelectProps) => {
     const [model, setModel] = useState<string>(props.model)
     const [models, setModels] = useState<BaseModel[]>([])
-
-    const modelPopover = (display: string) => (
-        <Popover id="model-popover">
-            <Popover.Body>
-                {display}
-            </Popover.Body>
-        </Popover>
-    )
-
-    const modelDescriptPopover = (
-        <Popover id="model-popover">
-            <Popover.Body>
-                The model which will generate the completion. Some models are suitable for natural language tasks, others specialize in code. <a href='https://platform.openai.com/docs/models'>Learn more</a>.
-            </Popover.Body>
-        </Popover>
-    )
 
     let didInit = false
     useEffect(() => {
@@ -72,22 +54,27 @@ const ModelSelect = (props: IModelSelectProps) => {
 
     return (
         <>
-            <Form.Group className="mb-3" >
+            <Box className="mb-3" >
                 {!props.disableHeader && (
-                    <Row>
-                        <Col>
-                            <OverlayTrigger placement="left" overlay={modelDescriptPopover}>
-                                <Form.Label>Model</Form.Label>
-                            </OverlayTrigger>
-                        </Col>
-                    </Row>
+                    <ColumnLayout columns={1} borders="vertical">
+                        <Popover
+                            dismissButton={false}
+                            content={
+                                <span>{popover_text}</span>
+                            }
+                            position="left"
+                            triggerType="hover"
+                            size="small"
+                        >
+                            <div>Model</div>
+                        </Popover>
+                    </ColumnLayout>
                 )}
-                <Row>
-                    <Col>
-                        <Dropdown items={items} onDropdownChange={onModelChange}></Dropdown>
-                    </Col>
-                </Row>
-            </Form.Group>
+
+                <ColumnLayout columns={1} borders="vertical">
+                    <Dropdown items={items} onDropdownChange={onModelChange}></Dropdown>
+                </ColumnLayout>
+            </Box>
         </>
     )
 }
