@@ -5,8 +5,7 @@ import React from "react"
 import { useState, useEffect } from 'react'
 import { Outlet } from "react-router-dom"
 
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Popover from 'react-bootstrap/Popover'
+import Popover from "@cloudscape-design/components/popover"
 import { BsListUl } from "react-icons/bs"
 
 import SideNavigation from '@/Common/Components/SideNavigation'
@@ -37,21 +36,21 @@ const SplitPanel = (props: ISplitPanelProps) => {
         setShow(s => !s)
     }
 
-    const showPopover = (
-        <Popover id="stop-popover">
-            <Popover.Body style={{ color: '#10a37f' }}>
-                {popover}
-            </Popover.Body>
-        </Popover>
-    )
-
     return (
         <>
-            <OverlayTrigger placement="right" overlay={showPopover}>
-                <div className='sidebar-menu-icon' onClick={HandleShowIconClick}>
+            <div className='sidebar-menu-icon' style={{ color: '#10a37f' }} onClick={HandleShowIconClick}>
+                <Popover
+                    dismissButton={false}
+                    content={
+                        <>{popover}</>
+                    }
+                    position="right"
+                    triggerType="hover"
+                    size="small"
+                >
                     <BsListUl />
-                </div>
-            </OverlayTrigger>
+                </Popover >
+            </div>
             <div className="split-panel-container">
                 {show && (
                     <div className="left-menu" >
