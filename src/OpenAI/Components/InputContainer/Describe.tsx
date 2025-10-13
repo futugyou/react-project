@@ -1,22 +1,17 @@
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+
+import { Box, ColumnLayout } from '@cloudscape-design/components'
 
 const Describe = ({ display, subDisplay }: { display: string, subDisplay: string }) => {
     return (
         <>
-            <Row>
-                <Col>
-                    <Form.Label>{display}</Form.Label>
-                </Col>
-            </Row>
+            <ColumnLayout columns={1} borders="vertical">
+                <Box>{display}</Box>
+            </ColumnLayout>
             {
                 subDisplay && (
-                    <Row>
-                        <Col>
-                            <Form.Label className='control-note' >{subDisplay}</Form.Label>
-                        </Col>
-                    </Row>
+                    <ColumnLayout columns={1} borders="vertical">
+                        <Box className="control-note">{subDisplay}</Box>
+                    </ColumnLayout>
                 )
             }
         </>

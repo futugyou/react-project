@@ -16,14 +16,6 @@ const User = (props: any) => {
         authService.logout()
     }
 
-    const logoutPopover = (
-        <Popover id="model-popover">
-            <Popover.Body>
-                <button onClick={logout}>Logout</button>
-            </Popover.Body>
-        </Popover>
-    );
-
     if (!authService.isAuthenticated() || user == null) {
         return (
             <div className="header-user">

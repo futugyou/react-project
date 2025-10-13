@@ -1,8 +1,6 @@
 import './Tip.css'
 import React from 'react'
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { FormField, Input, ColumnLayout } from '@cloudscape-design/components'
 
 interface ITipProps {
     show: boolean
@@ -10,18 +8,19 @@ interface ITipProps {
 }
 
 const Tip = ({ show = false, tip }: ITipProps) => {
-    console.log("tip")
     if (!show) {
         return null
     }
 
     return (
-        <Row className='disabled-input'>
-            <Col>
-                <Form.Control type="text" disabled placeholder="Enter a sequence" value={tip} />
-            </Col>
-        </Row>
+        <div className="disabled-input">
+            <ColumnLayout columns={1} borders="vertical">
+                <FormField label="">
+                    <Input value={tip} disabled placeholder="Enter a sequence" />
+                </FormField>
+            </ColumnLayout>
+        </div>
     )
 }
 
-export default React.memo(Tip) 
+export default React.memo(Tip)

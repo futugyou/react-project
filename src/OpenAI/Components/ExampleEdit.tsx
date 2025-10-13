@@ -2,7 +2,7 @@ import './ExampleEdit.css'
 
 import { useState, useEffect, lazy } from "react"
 import { BsBinoculars } from "react-icons/bs"
-import Form from 'react-bootstrap/Form'
+import Textarea from "@cloudscape-design/components/textarea"
 import isEqual from 'lodash-es/isEqual'
 
 const ModelSelect = lazy(() => import('./ModelSelect'))
@@ -226,7 +226,7 @@ const ExampleEdit = (props: any) => {
                                 Description
                             </div>
                             <div className="edit-item-content">
-                                <Form.Control as="textarea" rows={3} value={props.data.description} onChange={e => handleDescChanged(e.target.value)} />
+                                <Textarea onChange={e => handleDescChanged(e.target.value)} value={props.data.description} rows={3} />
                             </div>
                         </div>
                         <div className="edit-item">
@@ -234,7 +234,7 @@ const ExampleEdit = (props: any) => {
                                 Prompt
                             </div>
                             <div className="edit-item-content">
-                                <Form.Control as="textarea" rows={10} value={props.data.prompt} onChange={e => handlePromptChange(e.target.value)} />
+                                <Textarea onChange={e => handlePromptChange(e.target.value)} value={props.data.prompt} rows={10} />
                             </div>
                         </div>
                         <div className="edit-item" style={{ marginBottom: "0px" }}>
@@ -242,7 +242,7 @@ const ExampleEdit = (props: any) => {
                                 Sample response
                             </div>
                             <div className="edit-item-content">
-                                <Form.Control as="textarea" rows={10} value={props.data.sample_response} onChange={e => handleResponseChange(e.target.value)} />
+                                <Textarea onChange={e => handleResponseChange(e.target.value)} value={props.data.sample_response} rows={10} />
                             </div>
                         </div>
                     </div>

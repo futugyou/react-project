@@ -2,7 +2,7 @@ import './InsertPanel.css'
 
 import { useState, useEffect } from "react"
 
-import Form from 'react-bootstrap/Form'
+import Textarea from "@cloudscape-design/components/textarea"
 
 const InsertPanel = (props: any) => {
     const [showPlaceholder, setShowPlaceholder] = useState(true)
@@ -39,7 +39,7 @@ const InsertPanel = (props: any) => {
     return (
         <>
             <div className="insert-container-left">
-                <Form.Control as="textarea" rows={1} onChange={HandleTextChange} value={text} disabled={props.disabled} />
+                <Textarea onChange={HandleTextChange} value={text} disabled={props.disabled} rows={1} />
                 {showPlaceholder && (<div className="insert-placeholder">
                     <div className="insert-placeholder-lg">We're writing to [insert]. Congrats from OpenAI!</div>
                     <div className="insert-placeholder-md">Use [insert] to indicate where the model should insert text.</div>

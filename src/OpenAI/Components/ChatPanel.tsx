@@ -2,7 +2,7 @@ import './ChatPanel.css'
 
 import { useState, useRef } from 'react'
 import { flushSync } from 'react-dom'
-import Form from 'react-bootstrap/Form'
+import Textarea from "@cloudscape-design/components/textarea"
 import { BsPlusCircle } from "react-icons/bs"
 import ChatMessage from './ChatMessage'
 import { ChatLog } from '../Models/PlaygroundModel'
@@ -91,7 +91,7 @@ const ChatPanel = (props: any) => {
             <div className='chat-pg-instructions'>
                 <div className="text-input-header-subheading subheading">System</div>
                 <div className='text-input-header-wrapper'>
-                    <Form.Control as="textarea" placeholder="You are a helpful assistant." value={props.instruction} onChange={e => props.onInstructionChange(e.target.value)} disabled={props.disabled} />
+                    <Textarea onChange={e => props.onInstructionChange(e.target.value)} value={props.instruction} rows={1} placeholder="You are a helpful assistant." disabled={props.disabled} />
                 </div>
             </div>
             <div className="chat-pg-right-wrapper">

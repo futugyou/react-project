@@ -1,5 +1,5 @@
 import './CompletePanel.css'
-import Form from 'react-bootstrap/Form'
+import Textarea from "@cloudscape-design/components/textarea"
 
 const CompletePanel = (props: any) => {
     let text: string = props.prompt + props.completion
@@ -7,7 +7,7 @@ const CompletePanel = (props: any) => {
         <>
             <div className="complete-panel">
                 <div className="prompt-input-layer">
-                    <Form.Control as="textarea" rows={1} value={text} onChange={e => props.onPromptChange(e.target.value)} disabled={props.disabled} />
+                    <Textarea onChange={e => props.onPromptChange(e.target.value)} value={text} rows={1} disabled={props.disabled} />
                 </div>
                 {props.disabled && props.children}
             </div>
