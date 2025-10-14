@@ -24,14 +24,12 @@ ul[class="dropdown-menu show"] il[class="dropdown-item"] {
 }
 
 .opertion-container {
-    height: calc(100% - 10px - var(--app-header-height));
     overflow: auto;
 }
 
 .text-container {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 10px - var(--app-header-height));
 }
 
 .pg-input-body {

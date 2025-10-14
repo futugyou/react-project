@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: var(--app-header-height);
 }
 
 .user-name:hover {
@@ -16,7 +15,6 @@
 }
 
 .login-btn {
-    height: var(--app-header-height);
     width: inherit;
     box-sizing: border-box;
     border: 0;

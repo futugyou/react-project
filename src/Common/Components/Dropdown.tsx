@@ -1,7 +1,8 @@
 import "./Dropdown.css"
+
 import { useState } from "react"
-import { BsChevronDown } from "react-icons/bs"
-import Popover from "@cloudscape-design/components/popover"
+
+import Select from "@cloudscape-design/components/select"
 
 export interface DropdownItem {
     key: string
@@ -21,67 +22,22 @@ const Dropdown = (props: DropdownProps) => {
         return <></>
     }
 
-    const [showDropdown, setShowDropdown] = useState(false)
-    const [emptyDisplay, setEmptyDisplay] = useState(props.items[0].value)
-    const ulClassName = showDropdown ? "dropdown-menu show" : "dropdown-menu"
-
-    const HandleContainerClick = () => {
-        setShowDropdown((f) => !f)
-    }
-
-    const HandleContainerBlur = () => {
-        setShowDropdown(false)
-    }
-
-    const HandleDropdownClick = (key: string) => {
-        const value = props.items.find((i) => i.key === key)!.value
-        setEmptyDisplay(value)
-
-        if (props.onDropdownChange) {
-            props.onDropdownChange(key)
-        }
-    }
+    const [selectedOption, setSelectedOption] = useState(props.items.find((i) => i.choose) ?? {})
 
     const dropdownitems = props.items.map((i) => {
-        const itemNode = (
-            <li
-                key={i.key}
-                className={i.value === emptyDisplay ? "dropdown-item selected" : "dropdown-item"}
-                onClick={() => HandleDropdownClick(i.key)}
-            >
-                {i.value}
-            </li>
-        )
-
-        if (!i.popover) return itemNode
-
-        return (
-            <Popover
-                key={i.key}
-                dismissButton={false}
-                content={<div>{i.popover}</div>}
-                position="left"                
-                size="small"
-            >
-                {itemNode}
-            </Popover>
-        )
+        return { label: i.key, value: i.value, description: i.popover }
     })
 
     return (
-        <div
-            className="dropdown-container"
-            onClick={HandleContainerClick}
-            onBlur={HandleContainerBlur}
-        >
-            <div className="dropdown-display-container">
-                <div className="dropdown-display">{emptyDisplay}</div>
-                <div className="dropdown-icon">
-                    <BsChevronDown />
-                </div>
-            </div>
-            <ul className={ulClassName}>{dropdownitems}</ul>
-        </div>
+        <Select
+            selectedOption={selectedOption}
+            onChange={({ detail }) => {
+                setSelectedOption(detail.selectedOption)
+                props.onDropdownChange(detail.selectedOption.label)
+            }}
+            options={dropdownitems}
+            empty="No options"
+        />
     )
 }
 

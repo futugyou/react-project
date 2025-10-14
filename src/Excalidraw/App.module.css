@@ -7,7 +7,6 @@
 }
 
 .header {
-    height: var(--app-header-height);
     display: flex;
     flex-direction: row;
     align-items: center;
