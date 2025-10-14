@@ -1,4 +1,4 @@
-
+import "@cloudscape-design/global-styles/index.css"
 import './index.css'
 
 import React, { Suspense } from 'react'
@@ -11,7 +11,6 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '@/Common/ReactQuery/client'
 
 import Loading from '@/Common/Components/Loading'
-import { ComponentProvider } from '@/Common/Components/ComponentProvider'
 import { AuthProvider, authService } from '@/Auth/index'
 
 import { handleMicroData } from '@/MicroApp/event'
@@ -30,11 +29,9 @@ function mount() {
       <QueryClientProvider client={queryClient}>
         <Suspense fallback={<Loading />}>
           <AuthProvider authService={authService}>
-            <ComponentProvider>
               <RouterProvider router={router} />
               <Analytics />
               <SpeedInsights />
-            </ComponentProvider>
           </AuthProvider>
         </Suspense>
       </QueryClientProvider>

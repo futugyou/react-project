@@ -5,17 +5,12 @@ import Layout from "@/Layout/Layout"
 import { TotalRouteDescriptions, ToRouteObject } from './RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/Welcome'))
-const Comment = lazy(() => import('@/Common/Components/Comment'))
 const ErrorPage = lazy(() => import('@/Common/Components/ErrorPage'))
 
 const childrenRoute: RouteObject[] = [
     {
         index: true,
         element: <WelcomePage />,
-    },
-    {
-        path: "gitalk",
-        element: <Comment />,
     },
     ...TotalRouteDescriptions.map(p => ToRouteObject(p)),
 ]
