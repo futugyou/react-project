@@ -1,101 +1,130 @@
 import React, { useEffect } from "react"
 import SideNavigation, { SideNavigationProps } from "@cloudscape-design/components/side-navigation"
-
-import { RouteDescription } from '@/RouteDescription'
-import { useNavigate } from "react-router-dom"
+import { RouteDescription } from "@/RouteDescription"
+import { useNavigate, useLocation } from "react-router-dom"
 
 export interface ISideMenuProps {
     Routes: RouteDescription[]
     DefaultExpanded?: boolean
-    Prefix?: string
+    Prefix?: string // optional prefix (e.g. '/test')
     OnAnchorClick?: (href: string) => void
     headNavigate?: boolean
 }
 
+const joinPath = (...parts: (string | undefined)[]) =>
+    parts
+        .filter(Boolean)
+        .map(p => (p as string).replace(/(^\/+|\/+$)/g, ""))
+        .filter(Boolean)
+        .join("/")
+        .replace(/^(.+)$/, "/$1")
+
 const createHref = (href: string, prefix?: string) => {
+    if (!href) return prefix ?? "/"
     if (prefix) {
-        return prefix + href
+        return joinPath(prefix, href)
     }
-    return href
+    return href.startsWith("/") ? href : `/${href}`
 }
 
 const SideMenu = (props: ISideMenuProps) => {
     const navigate = useNavigate()
-    const [activeHref, setActiveHref] = React.useState(location.pathname)
+    const location = useLocation()
+    const [activeHref, setActiveHref] = React.useState<string>(location.pathname || "/")
 
-    const item = props.Routes
-        .filter(p => p.show && p.show() || !p.show).map(route => {
-            return ({
-                type: "expandable-link-group",
-                text: route.display,
-                href: createHref(route.path, props.Prefix),
-                defaultExpanded: props.DefaultExpanded == false ? activeHref.startsWith(createHref(route.path, props.Prefix)) : true,
-                items: route.children == undefined ? (route.additionalRoute == undefined ? [] :
-                    route.additionalRoute
-                        .filter(p => p.show && p.show() || !p.show).map(p => {
-                            return (
-                                {
-                                    type: "link",
-                                    text: p.display,
-                                    href: createHref(p.path, props.Prefix),
-                                }
-                            )
-                        })
-                ) : route.children.filter(p => p.path)
-                    .filter(p => p.show && p.show() || !p.show).map(p => {
-                        let href = route.path + "/" + p.path
-                        let display = p.display
-                        if (!display) {
-                            display = p.path
-                        }
-                        return (
-                            {
-                                type: "link",
-                                text: display,
-                                href: createHref(href, props.Prefix),
-                            }
-                        )
-                    })
+    const items = React.useMemo<SideNavigationProps.Item[]>(() => {
+        return props.Routes
+            .filter(route => {
+                if (typeof route.show === "function") return route.show()
+                return route.show !== false
             })
-        })
+            .map(route => {
+                const baseHref = createHref(route.path, props.Prefix)
+                const defaultExpanded =
+                    props.DefaultExpanded === undefined
+                        ? activeHref.startsWith(baseHref)
+                        : !!props.DefaultExpanded && activeHref.startsWith(baseHref)
+
+                const childrenSources = route.children ?? route.additionalRoute ?? []
+                const childItems = (childrenSources as any[])
+                    .filter((p: any) => {
+                        if (typeof p.show === "function") return p.show()
+                        return p.show !== false
+                    })
+                    .filter(p => p && p.path)
+                    .map(p => {
+                        const childPath =
+                            route.children && route.children.length ? `${route.path}/${p.path}` : p.path
+                        const href = createHref(childPath, props.Prefix)
+                        const display = p.display ?? p.path
+                        return {
+                            type: "link",
+                            text: display,
+                            href,
+                        } as SideNavigationProps.Item
+                    })
+
+                return {
+                    type: "expandable-link-group",
+                    text: route.display,
+                    href: baseHref,
+                    defaultExpanded,
+                    items: childItems,
+                } as SideNavigationProps.Item
+            })
+    }, [props.Routes, props.Prefix, props.DefaultExpanded, activeHref])
 
     const HandleFollow = (event: CustomEvent<SideNavigationProps.FollowDetail>) => {
-        if (!event.detail.external) {
-            event.preventDefault()
-            setActiveHref(event.detail.href)
-            if (props.OnAnchorClick) {
-                props.OnAnchorClick(event.detail.href)
-            }
+        const href = event.detail.href
+        if (event.detail.external) {
+            return
+        }
+        event.preventDefault()
+
+        setActiveHref(href)
+        props.OnAnchorClick?.(href)
+
+        if (location.pathname !== href) {
+            navigate(href, { replace: true })
         }
     }
 
     useEffect(() => {
-        // handle Home redirect
-        if (activeHref == "/" || activeHref == "") {
-            navigate(activeHref, { replace: true })
+        const target = activeHref || "/"
+        if (location.pathname === target) {
             return
         }
 
-        if (props.headNavigate == false) {
-            const r = props.Routes.filter(p => p.path == activeHref)
-            if (r.length == 1) {
+        if (target === "/" || target === "") {
+            navigate(target, { replace: true })
+            return
+        }
+
+        if (props.headNavigate === false) {
+            const r = props.Routes.filter(p => createHref(p.path, props.Prefix) === target)
+            if (r.length === 1) {
                 return
             }
         }
 
-        navigate(activeHref, { replace: true })
-    }, [activeHref, props.headNavigate])
+        navigate(target, { replace: true })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeHref, props.headNavigate, props.Prefix, props.Routes, location.pathname])
 
     useEffect(() => {
-        setActiveHref(location.pathname)
+        if (location.pathname !== activeHref) {
+            setActiveHref(location.pathname)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname])
 
     return (
-        <SideNavigation data-style-nowrap data-style-font-size-16
+        <SideNavigation
+            data-style-nowrap
+            data-style-font-size-16
             activeHref={activeHref}
-            // header={{ href: "#/", text: "Service name" }}
             onFollow={HandleFollow}
-            items={item as SideNavigationProps.Item[]}
+            items={items}
         />
     )
 }
