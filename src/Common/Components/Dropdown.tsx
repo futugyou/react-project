@@ -33,7 +33,9 @@ const Dropdown = (props: DropdownProps) => {
             selectedOption={selectedOption}
             onChange={({ detail }) => {
                 setSelectedOption(detail.selectedOption)
-                props.onDropdownChange(detail.selectedOption.label)
+                if (props.onDropdownChange) {
+                    props.onDropdownChange(detail.selectedOption.label ?? "")
+                }
             }}
             options={dropdownitems}
             empty="No options"

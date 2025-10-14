@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import TopNavigation from "@cloudscape-design/components/top-navigation"
 import type { ButtonDropdownProps } from '@cloudscape-design/components'
 import { RouteDescription } from "@/RouteDescription"
+import { useAuth } from '@/Auth/index'
 
 export interface IHeaderMenuProps {
     Routes: RouteDescription[]
@@ -14,6 +15,23 @@ const buttonVariant = (active: boolean): "link" | "primary-button" | undefined =
 const HeaderMenu = (props: IHeaderMenuProps) => {
     const navigate = useNavigate()
     const location = useLocation()
+    const { authService } = useAuth()
+    const user = authService.getUser()
+
+    const login = async () => {
+        authService.authorize()
+    }
+
+    const logout = async () => {
+        authService.logout()
+    }
+
+    const handleLogout = ({ detail }: CustomEvent<ButtonDropdownProps.ItemClickDetails>) => {
+        const { id } = detail;
+        if (id === "signout") {
+            logout()
+        }
+    }
 
     const checkActive = (
         current: RouteDescription,
@@ -26,12 +44,7 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         return pathname.startsWith(path)
     }
 
-    const staticRoutes: RouteDescription[] = [{ display: "Home", path: "/" }];
-    // const normalRoutes = props.Routes.filter(
-    //     (p) => p.archived == undefined || p.archived == false
-    // ).filter((p) => (p.show && p.show()) || !p.show)
     const normalRoutes: RouteDescription[] = [
-        ...staticRoutes,
         ...props.Routes.filter(
             (p) => p.archived === undefined || p.archived === false
         ).filter((p) => (p.show && p.show()) || !p.show)
@@ -52,7 +65,32 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
         navigate(id)
     }
 
+    const userinfo = (!authService.isAuthenticated() || user == null) ? {
+        type: "button" as const,
+        id: 'login',
+        text: 'Login',
+        onClick: (e: any) => login(),
+        disableUtilityCollapse: true,
+    } : {
+        type: "menu-dropdown" as const,
+        text: user.name,
+        description: user.email,
+        iconName: "user-profile" as const,
+        items: [
+            { id: "signout", text: "Sign out" }
+        ],
+        onItemClick: handleLogout,
+        disableUtilityCollapse: true,
+    }
+
     const topNavItems = [
+        {
+            type: "button" as const,
+            id: "/",
+            text: "Home",
+            onClick: (e: any) => handleNavigate("/", e),
+            disableUtilityCollapse: true,
+        },
         ...normalRoutes.map((r) => {
             if (r.children && r.children.length > 0) {
                 return {
@@ -100,6 +138,7 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                 },
             ]
             : []),
+        userinfo,
     ]
 
     return (
