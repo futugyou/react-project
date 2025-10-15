@@ -89,27 +89,27 @@ const SideMenu = (props: ISideMenuProps) => {
         }
     }
 
-    useEffect(() => {
-        const target = activeHref || "/"
-        if (location.pathname === target) {
-            return
-        }
+    // useEffect(() => {
+    //     const target = activeHref || "/"
+    //     if (location.pathname === target) {
+    //         return
+    //     }
 
-        if (target === "/" || target === "") {
-            navigate(target, { replace: true })
-            return
-        }
+    //     if (target === "/" || target === "") {
+    //         navigate(target, { replace: true })
+    //         return
+    //     }
 
-        if (props.headNavigate === false) {
-            const r = props.Routes.filter(p => createHref(p.path, props.Prefix) === target)
-            if (r.length === 1) {
-                return
-            }
-        }
+    //     if (props.headNavigate === false) {
+    //         const r = props.Routes.filter(p => createHref(p.path, props.Prefix) === target)
+    //         if (r.length === 1) {
+    //             return
+    //         }
+    //     }
 
-        navigate(target, { replace: true })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeHref, props.headNavigate, props.Prefix, props.Routes, location.pathname])
+    //     navigate(target, { replace: true })
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [activeHref, props.headNavigate, props.Prefix, props.Routes, location.pathname])
 
     useEffect(() => {
         if (location.pathname !== activeHref) {
