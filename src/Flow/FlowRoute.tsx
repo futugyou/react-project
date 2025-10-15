@@ -1,36 +1,15 @@
 
 import React, { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { FlowRouteDataList } from '@/Flow/FlowRouteData'
 import { RouteDescription } from '@/RouteDescription'
 
 const FlowPanel = lazy(() => import('./FlowPanel'))
-const FlowPanel2 = lazy(() => import('./FlowPanel2'))
 const DemoFlow = lazy(() => import('./DemoFlow'))
 
-let childern: RouteObject[] = [
-    {
-        index: true,
-        element: <DemoFlow />,
-    }]
-
-childern = childern.concat(FlowRouteDataList.map(p => {
-    return {
-        path: p.path,
-        element: <p.element />,
-    }
-}))
-
-export const FlowRoute: RouteObject = {
-    path: "/flow",
-    element: <FlowPanel />,
-    children: childern,
-}
-
-export const FlowRouteDataList2: RouteDescription = {
+export const FlowRouteDataList: RouteDescription = {
     display: 'Flow',
     path: '/flow',
-    element: <FlowPanel2 />,
+    element: <FlowPanel />,
     children: [
         {
             display: '',

@@ -7,7 +7,7 @@ import { ChatRoute } from '@/Alphavantage/Route'
 import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
-import { FlowRouteDataList2 } from './Flow/FlowRoute'
+import { FlowRouteDataList } from './Flow/FlowRoute'
 
 const WhiteRoute: RouteDescription = {
     display: "Whiteboard",
@@ -21,7 +21,7 @@ const WhiteRoute: RouteDescription = {
 }
 
 export const TotalRouteDescriptions: RouteDescription[] = [
-    FlowRouteDataList2,
+    FlowRouteDataList,
     BookshelfRoute,
     ChatRoute,
     WhiteRoute,
