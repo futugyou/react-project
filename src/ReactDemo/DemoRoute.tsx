@@ -1,8 +1,10 @@
 
-import { RouteDescription } from '@/RouteDescription'
-import { lazy } from 'react'
 
-const DemoPanel = lazy(() => import('./DemoPanel'))
+import { lazy } from 'react'
+import { Outlet } from "react-router-dom"
+
+import { RouteDescription } from '@/RouteDescription'
+
 const App = lazy(() => import('./00.Tutorial/App'))
 const Game = lazy(() => import('./00.Tutorial/Game'))
 const NameForm = lazy(() => import('./09.Forms/NameForm'))
@@ -16,7 +18,7 @@ const Pusher = lazy(() => import('./Pusher'))
 export const DemoRoute: RouteDescription = {
     display: "Basic",
     path: "/basic",
-    element: <DemoPanel />,
+    element: <Outlet />,
     archived: true,
     checkActive: (path: string) => path.startsWith('/basic'),
     children: [

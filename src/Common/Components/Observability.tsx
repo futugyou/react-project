@@ -16,6 +16,10 @@ const configDefaults = {
 }
 
 export default function Observability() {
+    if (debugFlag) {
+        return null
+    }
+
     try {
         const sdk = new HoneycombWebSDK({
             // endpoint: "https://api.eu1.honeycomb.io/v1/traces", // Send to EU instance of Honeycomb. Defaults to sending to US instance.
