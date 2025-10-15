@@ -1,16 +1,63 @@
-import React, { Suspense } from 'react'
+import "./Layout.css"
+
+import React, { useState, useEffect, Suspense } from 'react'
 import { Outlet } from "react-router-dom"
+import { GrSettingsOption } from "react-icons/gr"
 
-import { Box } from '@cloudscape-design/components'
+import Box from '@cloudscape-design/components/box'
+import Grid from "@cloudscape-design/components/grid"
 
+import SideNavigation from '@/Common/Components/SideNavigation'
 import Loading from '@/Common/Components/Loading'
 import Observability from '@/Common/Components/Observability'
+import useMediaQuery from "@/Common/Hooks/useMediaQuery"
 
 import { TotalRouteDescriptions } from '@/Common/Route/RouteDescription'
-import { User } from "@/User/User"
 import HeaderMenu from './HeaderMenu'
 
 const Layout = () => {
+    const insub = window.__MICRO_APP_ENVIRONMENT__
+    const isSmallDevice = useMediaQuery("(max-width : 768px)")
+
+    const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        if (isSmallDevice) {
+            setShow(false)
+        } else {
+            setShow(true)
+        }
+    }, [isSmallDevice])
+
+    const HandleShowIconClick = (e: any) => {
+        setShow(s => !s)
+    }
+
+    if (insub) {
+        return (
+            <>
+                <div className='sidebar-menu-icon' onClick={HandleShowIconClick}>
+                    <GrSettingsOption />
+                </div>
+                <div className="split-panel-container">
+                    {show && (
+                        <div className="left-menu" >
+                            <SideNavigation Routes={TotalRouteDescriptions}  ></SideNavigation>
+                        </div>
+                    )}
+                    <div className="right-content">
+                        <Box data-style="route-out-container">
+                            <Suspense fallback={<Loading />}>
+                                <Outlet />
+                            </Suspense>
+                        </Box>
+                        <Observability />
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             <HeaderMenu Routes={TotalRouteDescriptions}></HeaderMenu>
