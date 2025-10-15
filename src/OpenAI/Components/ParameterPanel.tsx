@@ -1,5 +1,6 @@
 
 import { useNavigate } from "react-router-dom"
+import SpaceBetween from "@cloudscape-design/components/space-between"
 
 import ModeSelect from './ModeSelect'
 import ModelSelect from './ModelSelect'
@@ -12,7 +13,6 @@ import Frequency from './Frequency'
 import Presence from './Presence'
 import Bestof from './Bestof'
 import InjectText from './InjectText'
-
 
 import { PlaygroundModel } from '../Models/PlaygroundModel'
 
@@ -156,7 +156,7 @@ const ParameterPanel = (props: any) => {
     }
 
     return (
-        <>
+        <SpaceBetween size="s" >
             <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
 
             <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange} ></ModelSelect>
@@ -192,7 +192,7 @@ const ParameterPanel = (props: any) => {
                 onInjectChanged={HandleInjectRestartChanged}
                 onCheckChanged={HandleCheckRestartChanged}
             ></InjectText>)}
-        </>
+        </SpaceBetween>
     )
 }
 

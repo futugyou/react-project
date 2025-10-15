@@ -66,7 +66,7 @@ const BaseRange = (props: IBaseRangeProps) => {
     }, [stringValue])
 
     const renderRange = () => (
-        <SpaceBetween size="s">
+        <SpaceBetween size="s" data-style="flex">
             <ColumnLayout columns={2} variant="text-grid">
                 <FormField label={props.display}>
                     <Input
@@ -98,6 +98,7 @@ const BaseRange = (props: IBaseRangeProps) => {
             dismissButton={false}
             triggerType="custom"
             content={props.popover}
+            data-style="flex"
         >
             {renderRange()}
         </Popover>

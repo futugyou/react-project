@@ -64,8 +64,9 @@ const Stop = (props: any) => {
                 content={
                     < >{popover}</ >
                 }
-                position="left"                
+                position="left"
                 size="small"
+                data-style="flex"
             >
                 <Box className="mb-3 stop-container" >
                     <StopDescribe display={display} subDisplay={subDisplay} ></StopDescribe>

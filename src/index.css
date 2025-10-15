@@ -185,3 +185,8 @@ ul {
 [data-style="flex1"] {
   flex: 1;
 }
+
+[data-style="flex"] {
+  display: flex;
+  flex-direction: column;
+}

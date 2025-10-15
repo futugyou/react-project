@@ -58,9 +58,10 @@ const Playground = () => {
     const [mode, setMode] = useState('Complete')
     const [currentData, setCurrentData] = useState<PlaygroundModel>(rawdata)
     const [showHistory, setShowHistory] = useState(false)
+    const [showTools, setShowTools] = useState(true)
 
     const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true
-    const opertionContainerClassName = disabled ? "qa-item-align opertion-container playground-disabled" : "qa-item-align opertion-container"
+    const opertionContainerClassName = disabled ? "opertion-container playground-disabled" : "opertion-container"
 
     useEffect(() => {
         let dataModel: ExampleModel = DefaultExampleModel
@@ -327,6 +328,7 @@ const Playground = () => {
         <AppLayout
             disableContentPaddings={true}
             navigationOpen={showHistory}
+            onNavigationChange={() => setShowHistory(!showHistory)}
             navigation={
                 <History
                     key={currentData.createdAt}
@@ -335,7 +337,8 @@ const Playground = () => {
                     current={currentData}
                 />
             }
-            toolsOpen={true}
+            toolsOpen={showTools}
+            onToolsChange={() => setShowTools(!showTools)}
             tools={
                 <HelpPanel header={<h2>Model Operation</h2>}>
                     <Box className={opertionContainerClassName}>
@@ -385,9 +388,6 @@ const Playground = () => {
                                 Submit
                             </Button>
                         )}
-                        <Button onClick={() => setShowHistory(!showHistory)} variant="primary">
-                            <BsClockHistory />
-                        </Button>
                     </Box>
                 </Box>
             }
