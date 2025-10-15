@@ -3,7 +3,7 @@
 import { lazy } from 'react'
 import { Outlet } from "react-router-dom"
 
-import { RouteDescription } from '@/RouteDescription'
+import { RouteDescription } from '@/Common/Route/RouteDescription'
 
 const App = lazy(() => import('./00.Tutorial/App'))
 const Game = lazy(() => import('./00.Tutorial/Game'))

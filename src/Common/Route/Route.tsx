@@ -2,7 +2,7 @@ import { lazy } from 'react'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 import Layout from "@/Layout/Layout"
 
-import { TotalRouteDescriptions, ToRouteObject } from './RouteDescription'
+import { TotalRouteDescriptions, ToRouteObject } from '@/Common/Route/RouteDescription'
 
 const WelcomePage = lazy(() => import('@/Layout/Welcome'))
 const ErrorPage = lazy(() => import('@/Common/Components/ErrorPage'))
@@ -30,8 +30,8 @@ baseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'
 document.querySelector('#react-app-base')?.setAttribute('href', baseUrl);
 console.log('href is:', window.location.href, 'base url is:', baseUrl)
 
-if(baseUrl.startsWith('/react')){
-    const path = window.location.pathname; 
+if (baseUrl.startsWith('/react')) {
+    const path = window.location.pathname;
     if (path === '/react') {
         window.history.replaceState(null, '', '/react/');
     }

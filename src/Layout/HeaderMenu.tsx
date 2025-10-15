@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import TopNavigation from "@cloudscape-design/components/top-navigation"
 import type { ButtonDropdownProps } from '@cloudscape-design/components'
-import { RouteDescription } from "@/RouteDescription"
+import { RouteDescription } from '@/Common/Route/RouteDescription'
 import { useAuth } from '@/Auth/index'
 
 export interface IHeaderMenuProps {

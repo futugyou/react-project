@@ -6,7 +6,7 @@ import { Box } from '@cloudscape-design/components'
 import Loading from '@/Common/Components/Loading'
 import Observability from '@/Common/Components/Observability'
 
-import { TotalRouteDescriptions } from '@/RouteDescription'
+import { TotalRouteDescriptions } from '@/Common/Route/RouteDescription'
 import { User } from "@/User/User"
 import HeaderMenu from './HeaderMenu'
 

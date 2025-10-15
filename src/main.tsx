@@ -15,7 +15,7 @@ import { AuthProvider, authService } from '@/Auth/index'
 
 import { handleMicroData } from '@/MicroApp/event'
 
-import { router } from '@/Route'
+import { router } from '@/Common/Route/Route'
 
 let root: ReactDOM.Root | null = null
 

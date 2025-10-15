@@ -1,6 +1,6 @@
 
 import { lazy } from 'react'
-import { RouteDescription } from '@/RouteDescription'
+import { RouteDescription } from '@/Common/Route/RouteDescription'
 
 const BalanceChart = lazy(() => import('./BalanceChart'))
 const CashChart = lazy(() => import('./CashChart'))

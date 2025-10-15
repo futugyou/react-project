@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import SideNavigation, { SideNavigationProps } from "@cloudscape-design/components/side-navigation"
-import { RouteDescription } from "@/RouteDescription"
+import { RouteDescription } from '@/Common/Route/RouteDescription'
 import { useNavigate, useLocation } from "react-router-dom"
 
 export interface ISideMenuProps {

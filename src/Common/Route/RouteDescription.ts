@@ -7,7 +7,7 @@ import { ChatRoute } from '@/Alphavantage/Route'
 import { BoardRoute } from '@/Whiteboards/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
-import { FlowRouteDataList } from './Flow/FlowRoute'
+import { FlowRouteDataList } from '@/Flow/FlowRoute'
 
 const WhiteRoute: RouteDescription = {
     display: "Whiteboard",

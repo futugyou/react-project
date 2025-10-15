@@ -2,7 +2,7 @@
 import { lazy } from 'react'
 
 import GuardedRoute from '@/Common/Components/GuardedRoute'
-import { RouteDescription } from '@/RouteDescription'
+import { RouteDescription } from '@/Common/Route/RouteDescription'
 
 const Playground = lazy(() => import('./Components/Playground'))
 const Examples = lazy(() => import('./Components/Examples'))

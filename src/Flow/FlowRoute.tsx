@@ -1,7 +1,7 @@
 
 import React, { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { RouteDescription } from '@/RouteDescription'
+import { RouteDescription } from '@/Common/Route/RouteDescription'
 
 const FlowPanel = lazy(() => import('./FlowPanel'))
 const DemoFlow = lazy(() => import('./DemoFlow'))
