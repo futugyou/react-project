@@ -18,6 +18,19 @@ const PusherComponent = () => {
         cluster: import.meta.env.REACT_APP_PUSHER_CLUSTER
     })
 
+    let baseUrl = import.meta.env.BASE_URL
+    if (window.__MICRO_APP_ENVIRONMENT__) {
+        if (window.__MICRO_APP_BASE_ROUTE__) {
+            baseUrl = window.__MICRO_APP_BASE_ROUTE__
+        } else {
+            baseUrl = "/react/"
+        }
+    } else {
+        const path = window.location.pathname;
+        baseUrl = path.startsWith('/react') ? '/react/' : '/';
+    }
+    baseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'
+
     const onDrawingEvent = ({ x0, x1, y0, y1, color }: PusherDataType) => {
         if (!whiteboardRef.current) {
             return
@@ -189,7 +202,7 @@ const PusherComponent = () => {
     }
 
     const pushDrawData = async (data: PusherDataType) => {
-        const res = await fetch('/api/push', {
+        const res = await fetch(baseUrl + 'api/push', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
