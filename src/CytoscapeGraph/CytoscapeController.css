@@ -4,7 +4,7 @@
     flex-direction: column;
     padding: 10px;
     height: 100%;
-    background-color: #edbbe7;
+    background-color: #c1c0c1;
     z-index: 310;
 }
 
@@ -49,5 +49,5 @@
 .itemIcon:hover {
     width: 30px;
     height: 30px;
-    border: 1px solid bisque;
+    border: 1px solid #66615a;
 }

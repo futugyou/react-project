@@ -27,8 +27,8 @@ export const TotalRouteDescriptions: RouteDescription[] = [
     BookshelfRoute,
     ChatRoute,
     WhiteRoute,
-    DemoRoute,
     OpenAIRoute,
+    DemoRoute,
 ]
 
 export interface AdditionalRoute {

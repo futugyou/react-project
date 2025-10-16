@@ -65,9 +65,9 @@ const SideMenu = (props: ISideMenuProps) => {
                     })
 
                 return {
-                    type: "expandable-link-group",
+                    type: "section",
                     text: route.display,
-                    href: baseHref,
+                    // href: baseHref,
                     defaultExpanded,
                     items: childItems,
                 } as SideNavigationProps.Item
@@ -89,39 +89,15 @@ const SideMenu = (props: ISideMenuProps) => {
         }
     }
 
-    // useEffect(() => {
-    //     const target = activeHref || "/"
-    //     if (location.pathname === target) {
-    //         return
-    //     }
-
-    //     if (target === "/" || target === "") {
-    //         navigate(target, { replace: true })
-    //         return
-    //     }
-
-    //     if (props.headNavigate === false) {
-    //         const r = props.Routes.filter(p => createHref(p.path, props.Prefix) === target)
-    //         if (r.length === 1) {
-    //             return
-    //         }
-    //     }
-
-    //     navigate(target, { replace: true })
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [activeHref, props.headNavigate, props.Prefix, props.Routes, location.pathname])
-
     useEffect(() => {
         if (location.pathname !== activeHref) {
             setActiveHref(location.pathname)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname])
 
     return (
         <SideNavigation
-            data-style-nowrap
-            data-style-font-size-16
+            header={{ text: "React Web" }}
             activeHref={activeHref}
             onFollow={HandleFollow}
             items={items}
