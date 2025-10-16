@@ -1,8 +1,9 @@
 
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Outlet, useNavigate, useLocation } from "react-router-dom"
 
 import SideNavigation, { SideNavigationProps } from "@cloudscape-design/components/side-navigation"
+import { AppLayout } from "@cloudscape-design/components"
 import Grid from "@cloudscape-design/components/grid"
 
 import { FlowRouteDataList } from "./Route"
@@ -10,7 +11,8 @@ import { FlowRouteDataList } from "./Route"
 const FlowPanel = (props: any) => {
     const navigate = useNavigate()
     const location = useLocation()
-    const [activeHref, setActiveHref] = React.useState<string>(location.pathname || "/")
+    const [activeHref, setActiveHref] = useState<string>(location.pathname || "/")
+    const [showNavigation, setShowNavigation] = useState<boolean>(true)
 
     const prefix = "/flow/dotnet/"
     const joinPath = (...parts: (string | undefined)[]) =>
@@ -64,16 +66,24 @@ const FlowPanel = (props: any) => {
     }
 
     return (
-        <Grid disableGutters gridDefinition={[{ colspan: 2 }, { colspan: 10 }]}>
-            <SideNavigation
-                data-style-nowrap
-                data-style-font-size-16
-                activeHref={activeHref}
-                onFollow={HandleFollow}
-                items={items}
-            />
-            <Outlet />
-        </Grid>
+        <AppLayout
+            disableContentPaddings={true}
+            navigationOpen={showNavigation}
+            onNavigationChange={() => setShowNavigation(!showNavigation)}
+            toolsHide={true}
+            navigation={
+                <SideNavigation
+                    data-style-nowrap
+                    data-style-font-size-16
+                    activeHref={activeHref}
+                    onFollow={HandleFollow}
+                    items={items}
+                />
+            }
+            content={
+                <Outlet />
+            }
+        />
     )
 }
 
