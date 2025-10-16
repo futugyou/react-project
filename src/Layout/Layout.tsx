@@ -12,13 +12,17 @@ import Loading from '@/Common/Components/Loading'
 import Observability from '@/Common/Components/Observability'
 import useMediaQuery from "@/Common/Hooks/useMediaQuery"
 
-import { TotalRouteDescriptions } from '@/Common/Route/RouteDescription'
+import { TotalRouteDescriptions, RouteDescription } from '@/Common/Route/RouteDescription'
 import HeaderMenu from './HeaderMenu'
 
 const Layout = () => {
     const insub = window.__MICRO_APP_ENVIRONMENT__
-    const isSmallDevice = useMediaQuery("(max-width : 768px)")
 
+    const normalRoutes: RouteDescription[] = [
+        ...TotalRouteDescriptions.filter((p) => (p.show && p.show()) || !p.show)
+    ]
+
+    const isSmallDevice = useMediaQuery("(max-width : 768px)")
     const [show, setShow] = useState(false)
 
     useEffect(() => {
@@ -42,7 +46,7 @@ const Layout = () => {
                 <div className="split-panel-container">
                     {show && (
                         <div className="left-menu" >
-                            <SideNavigation Routes={TotalRouteDescriptions}  ></SideNavigation>
+                            <SideNavigation Routes={normalRoutes}  ></SideNavigation>
                         </div>
                     )}
                     <div className="right-content">
@@ -60,7 +64,7 @@ const Layout = () => {
 
     return (
         <>
-            <HeaderMenu Routes={TotalRouteDescriptions}></HeaderMenu>
+            <HeaderMenu Routes={normalRoutes}></HeaderMenu>
             <Box data-style="route-out-container">
                 <Suspense fallback={<Loading />}>
                     <Outlet />

@@ -15,12 +15,11 @@ const Bailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ d
 const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.WithoutBailout })))
 
 export const DemoRoute: RouteDescription = {
-    display: "Basic",
-    path: "/basic",
+    display: "Archived",
+    path: "/archived",
     element: <Outlet />,
-    archived: true,
     show: () => import.meta.env.MODE == "development",
-    checkActive: (path: string) => path.startsWith('/basic'),
+    checkActive: (path: string) => path.startsWith('/archived'),
     children: [
         {
             display: "",

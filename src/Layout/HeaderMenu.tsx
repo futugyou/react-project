@@ -45,13 +45,8 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
     }
 
     const normalRoutes: RouteDescription[] = [
-        ...props.Routes.filter(
-            (p) => p.archived === undefined || p.archived === false
-        ).filter((p) => (p.show && p.show()) || !p.show)
+        ...props.Routes.filter((p) => (p.show && p.show()) || !p.show)
     ]
-    const archivedRoutes = props.Routes
-        .filter((p) => p.archived)
-        .filter((p) => (p.show && p.show()) || !p.show)
 
     const handleNavigate = (path: string, event: React.MouseEvent) => {
         event.preventDefault()
@@ -117,27 +112,7 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
                 }
             }
         }),
-
-        ...(archivedRoutes.length > 0
-            ? [
-                {
-                    type: "menu-dropdown" as const,
-                    id: "archived",
-                    text: "Archived",
-                    items: archivedRoutes.flatMap((route) =>
-                        (route.children ?? [])
-                            .filter((c) => c.path)
-                            .filter((c) => (c.show && c.show()) || !c.show)
-                            .map((c) => ({
-                                id: route.path + "/" + c.path,
-                                text: c.display ?? c.path,
-                            }))
-                    ),
-                    onItemClick: handleItemClick,
-                    variant: buttonVariant(archivedRoutes.some((p) => location.pathname.startsWith(p.path))),
-                },
-            ]
-            : []),
+        
         userinfo,
     ]
 

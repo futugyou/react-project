@@ -45,7 +45,6 @@ export interface RouteDescription {
     show?: (key?: string) => boolean
     element?: React.ReactNode
     checkActive?: (key: string) => boolean
-    archived?: boolean
     additionalRoute?: AdditionalRoute[]
     children?: RouteDescription[]
 }
