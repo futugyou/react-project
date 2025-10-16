@@ -13,13 +13,13 @@ const WelcomeDialog = lazy(() => import('./11.Compose/WelcomeDialog'))
 const SplitPaneApp = lazy(() => import('./11.Compose/SplitPane'))
 const Bailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.Bailout })))
 const WithoutBailout = lazy(() => import('./MiniReactHook/bailout').then(module => ({ default: module.WithoutBailout })))
-const Pusher = lazy(() => import('./Pusher'))
 
 export const DemoRoute: RouteDescription = {
     display: "Basic",
     path: "/basic",
     element: <Outlet />,
     archived: true,
+    show: () => import.meta.env.MODE == "development",
     checkActive: (path: string) => path.startsWith('/basic'),
     children: [
         {
@@ -73,11 +73,6 @@ export const DemoRoute: RouteDescription = {
             path: "withbailout",
             show: () => import.meta.env.MODE == "development",
             element: <WithoutBailout />,
-        },
-        {
-            display: "Pusher",
-            path: "pusher",
-            element: <Pusher />,
         },
     ]
 }

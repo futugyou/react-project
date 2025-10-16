@@ -5,7 +5,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom"
 import SideNavigation, { SideNavigationProps } from "@cloudscape-design/components/side-navigation"
 import Grid from "@cloudscape-design/components/grid"
 
-import { FlowRouteDataList } from "./FlowRoute"
+import { FlowRouteDataList } from "./Route"
 
 const FlowPanel = (props: any) => {
     const navigate = useNavigate()

@@ -11,27 +11,27 @@ export const OpenAIRoute: RouteDescription = {
     display: "OpenAI",
     path: "/openai",
     checkActive: (path: string) => path.startsWith('/openai'),
-    archived: true,
+    archived: false,
     children: [
         {
             display: "",
             path: "",
-            element: <GuardedRoute><Examples /></GuardedRoute>,
+            element: <Examples />,
             show: () => false,
         },
         {
             display: "Examples",
             path: "examples",
-            element: <GuardedRoute><Examples /></GuardedRoute>,
+            element: <Examples />,
         }, {
             display: "Playground",
             path: "playground",
-            element: <GuardedRoute><Playground /></GuardedRoute>,
+            element: <Playground />,
         },
         {
             display: "Playground",
             path: "playground/p/:parameter",
-            element: <GuardedRoute><Playground /></GuardedRoute>,
+            element: <Playground />,
             show: () => false,
         },
     ]

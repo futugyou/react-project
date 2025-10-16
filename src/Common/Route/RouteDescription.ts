@@ -1,13 +1,14 @@
 import { RouteObject } from 'react-router-dom'
 
-import { DemoRoute } from '@/ReactDemo/DemoRoute'
-import { OpenAIRoute } from '@/OpenAI/OpenAIRoute'
+import { DemoRoute } from '@/ReactDemo/Route'
+import { OpenAIRoute } from '@/OpenAI/Route'
 import { BookshelfRoute } from '@/Bookshelf/Route'
 import { ChatRoute } from '@/Alphavantage/Route'
-import { BoardRoute } from '@/Whiteboards/Route'
+import { BoardRoute } from '@/Fluid/Route'
 import { ExcalidrawRoute } from '@/Excalidraw/Route'
 import { TldrawRoute } from '@/Tldraw/Route'
-import { FlowRouteDataList } from '@/Flow/FlowRoute'
+import { FlowRouteDataList } from '@/Flow/Route'
+import { PusherRoute } from '@/Pusher/Route'
 
 const WhiteRoute: RouteDescription = {
     display: "Whiteboard",
@@ -17,6 +18,7 @@ const WhiteRoute: RouteDescription = {
         BoardRoute,
         ...ExcalidrawRoute,
         ...TldrawRoute,
+        PusherRoute,
     ]
 }
 

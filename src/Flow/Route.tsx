@@ -18,8 +18,8 @@ export const FlowRouteDataList: RouteDescription = {
             show: () => false,
         },
         {
-            display: 'Demo',
-            path: 'demo',
+            display: 'Sample',
+            path: 'sample',
             element: React.createElement(lazy(() => import('./DemoFlow'))),
         },
         {

@@ -1,4 +1,4 @@
-import './Pusher.css'
+import './App.css'
 
 import { useEffect, useRef, MouseEvent, TouchEvent } from 'react'
 import Pusher from 'pusher-js'
