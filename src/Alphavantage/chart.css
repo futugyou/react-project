@@ -9,7 +9,7 @@
 .drop-down-group-item {
     width: 280px;
     height: 36px;
-    display: inline-grid;
+    /* display: inline-grid; */
     align-content: flex-end;
 }
 

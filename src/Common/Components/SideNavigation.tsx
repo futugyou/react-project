@@ -97,7 +97,7 @@ const SideMenu = (props: ISideMenuProps) => {
 
     return (
         <SideNavigation
-            header={{ text: "React Web" }}
+            header={{ href: "#/", text: "React Web" }}
             activeHref={activeHref}
             onFollow={HandleFollow}
             items={items}

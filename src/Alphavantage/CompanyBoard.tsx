@@ -1,6 +1,7 @@
 import './chart.css'
 
 import { useEffect, useMemo, useState } from "react"
+import { useHref } from "react-router-dom"
 
 import Board from "@cloudscape-design/board-components/board"
 import BoardItem from "@cloudscape-design/board-components/board-item"
@@ -12,11 +13,16 @@ import { useCompanyData } from '@/Alphavantage/service'
 import { Header, Link, SpaceBetween } from "@cloudscape-design/components"
 import { Company } from "./model"
 import CompanyBoardDetail from "./CompanyBoardDetail"
+import { patchWindowOpen } from '@/MicroApp/event'
 
 const CompanyBoard = () => {
     const { data: nodeData, isLoading, isFetching, isError } = useCompanyData()
     const [items, setItems] = useState([])
     const Empty = useMemo(EmptyChart, [])
+
+    const openExternalUrl = (url: string) => {
+        patchWindowOpen(url)
+    }
 
     useEffect(() => {
         if (nodeData && !isError) {
@@ -40,49 +46,52 @@ const CompanyBoard = () => {
         }
     }, [nodeData, isError])
 
+    const links = [
+        { key: "news", title: "News" },
+        { key: "stockSeries", title: "Stock" },
+        { key: "balance", title: "Balance" },
+        { key: "cash", title: "Cash" },
+        { key: "earnings", title: "Earnings" },
+        { key: "income", title: "Income" },
+        { key: "expected", title: "Expected" },
+    ]
+
     return (
-        <Board data-style="board-style"
+        <Board
+            data-style="board-style"
             renderItem={item => (
-                <BoardItem i18nStrings={boardItemI18nStrings}
+                <BoardItem
+                    i18nStrings={boardItemI18nStrings}
                     header={
-                        <Header actions={
-                            <SpaceBetween direction="horizontal" size="xs">
-                                <Link external={true} href={'/e/news?symbol=' + (item.data.Symbol)}>
-                                    News
-                                </Link>
-                                <Link external={true} href={'/e/stockSeries?symbol=' + (item.data.Symbol)}>
-                                    Stock
-                                </Link>
-                                <Link external={true} href={'/e/balance?symbol=' + (item.data.Symbol)}>
-                                    Balance
-                                </Link>
-                                <Link external={true} href={'/e/cash?symbol=' + (item.data.Symbol)}>
-                                    Cash
-                                </Link>
-                                <Link external={true} href={'/e/earnings?symbol=' + (item.data.Symbol)}>
-                                    Earnings
-                                </Link>
-                                <Link external={true} href={'/e/income?symbol=' + (item.data.Symbol)}>
-                                    Income
-                                </Link>
-                                <Link external={true} href={'/e/expected?symbol=' + (item.data.Symbol)}>
-                                    Expected
-                                </Link>
-                            </SpaceBetween>
-                        }>
+                        <Header
+                            actions={
+                                <SpaceBetween direction="horizontal" size="xs">
+                                    {links.map(i => {
+                                        const href = useHref(`/e/${i.key}?symbol=${item.data.Symbol}`);
+                                        return (
+                                            <Link
+                                                key={i.key}
+                                                external={true}
+                                                onFollow={() => openExternalUrl(href)}
+                                            >
+                                                {i.title}
+                                            </Link>
+                                        );
+                                    })}
+                                </SpaceBetween>
+                            }
+                        >
                             {item.data.Name}
                         </Header>
                     }
                 >
                     <CompanyBoardDetail
                         Date={item.data}
-                        FieldsToRemove={["Id", "Name", "Type", "MatchScore"]}>
-                    </CompanyBoardDetail>
+                        FieldsToRemove={["Id", "Name", "Type", "MatchScore"]}
+                    />
                 </BoardItem>
             )}
-            onItemsChange={event =>
-                setItems(event.detail.items as any)
-            }
+            onItemsChange={event => setItems(event.detail.items as any)}
             items={items}
             i18nStrings={boardI18nStrings<Company>("Symbol")}
             empty={Empty}
