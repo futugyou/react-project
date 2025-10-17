@@ -28,8 +28,6 @@ const Layout = () => {
     useEffect(() => {
         if (isSmallDevice) {
             setShow(false)
-        } else {
-            setShow(true)
         }
     }, [isSmallDevice])
 
