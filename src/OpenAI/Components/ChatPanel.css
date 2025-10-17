@@ -1,6 +1,7 @@
 .chat-pg-instructions {
     display: flex;
     flex: 1 1;
+    flex-direction: row-reverse;
 }
 
 .chat-pg-right-wrapper {
@@ -28,19 +29,20 @@
 
 
 .text-input-header-wrapper {
+    flex: 1;
     padding-top: 50px;
     width: 100%;
     border: 1px solid #ced4da;
 }
 
 
-.text-input-header-wrapper>textarea {
+.text-input-header-wrapper textarea {
     border: none;
     resize: none;
-    height: 100%;
+    height: 100% !important;
 }
 
-.text-input-header-wrapper>textarea:focus {
+.text-input-header-wrapper textarea:focus {
     box-shadow: none;
 }
 

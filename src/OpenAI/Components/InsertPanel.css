@@ -6,20 +6,15 @@
     position: relative;
 }
 
+.insert-container-left span,
 .insert-container-left textarea {
-    flex: 1;
-    font-size: 15px;
-    line-height: 24px;
-    padding: 12px 16px;
-    white-space: pre-wrap;
-    resize: none;
+    height: 100% !important;
 }
 
 .insert-container-right {
     display: flex;
     flex: 1 1;
     flex-direction: column;
-    margin-left: 10px; 
 }
 
 .insert-container-right-completion {

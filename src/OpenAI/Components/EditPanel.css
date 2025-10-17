@@ -35,8 +35,14 @@
 .edit-input-container-input {
     flex: 1;
     display: flex;
+    flex-direction: column;
 }
 
+.edit-input-container-input span,
+.edit-input-container-input Textarea {
+    width: 100% !important;
+    height: 100% !important;
+}
 
 .edit-input-container-right {
     flex: 1;

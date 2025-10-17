@@ -45,7 +45,7 @@ const Playground = () => {
     const [playgroundModel, setPlaygroundModel] = useState(rawdata)
     const [mode, setMode] = useState('Complete')
     const [currentData, setCurrentData] = useState<PlaygroundModel>(rawdata)
-    const [showHistory, setShowHistory] = useState(false)
+    const [showHistory, setShowHistory] = useState(true)
     const [showTools, setShowTools] = useState(true)
 
     const disabled = currentData == null || currentData.createdAt == playgroundModel.createdAt ? false : true
