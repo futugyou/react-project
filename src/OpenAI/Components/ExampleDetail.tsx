@@ -3,7 +3,13 @@ import './ExampleDetail.css'
 import { useState } from "react"
 import { BsBinoculars } from "react-icons/bs"
 
+import { Link } from '@cloudscape-design/components'
+import { useHref } from "react-router-dom"
+import { patchWindowOpen } from '@/MicroApp/event'
+import { useAuth } from '@/Auth/index'
+
 const ExampleDetail = (props: any) => {
+    const { authService } = useAuth()
     let tags = []
     if (props.data.tags) {
         tags = props.data.tags.map((t: string) => {
@@ -15,6 +21,7 @@ const ExampleDetail = (props: any) => {
         })
     }
 
+    const href = useHref("/openai/playground/p/" + props.data.key + "?model=" + props.data.model)
     const [exampleData, setExampleData] = useState(props.data)
 
     const onEidtClick = () => {
@@ -22,6 +29,10 @@ const ExampleDetail = (props: any) => {
             props.onEidtClick()
         }
         return false
+    }
+
+    const openExternalUrl = () => {
+        patchWindowOpen(href)
     }
 
     return (
@@ -34,19 +45,20 @@ const ExampleDetail = (props: any) => {
                     <div className="detail-header-title">{props.data.title}</div>
                     <div className="detail-header-tags">{tags}</div>
                 </div>
+                {
+                    authService.isAuthenticated() &&
+                    (
+                        <div className="detail-header-link">
+                            <Link onFollow={onEidtClick} >
+                                Edit
+                            </Link>
+                        </div>
+                    )
+                }
                 <div className="detail-header-link">
-                    <a href="#" onClick={() => onEidtClick()}>
-                        <span>
-                            Edit
-                        </span>
-                    </a>
-                </div>
-                <div className="detail-header-link">
-                    <a target="_blank" href={"/openai/playground/p/" + props.data.key + "?model=" + props.data.model} rel="noopener noreferrer">
-                        <span>
-                            Open in Playground
-                        </span>
-                    </a>
+                    <Link onFollow={openExternalUrl} external={true}>
+                        Open in Playground
+                    </Link>
                 </div>
             </div>
             <div className="detail-body">

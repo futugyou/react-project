@@ -70,14 +70,14 @@
 .detail-header-link a {
     text-decoration: none;
     background-color: #10a37f;
-    color: white;
+    color: white !important;
     padding: 7px 10px;
     border-radius: 5px;
 }
 
 .detail-header-link a:hover {
     background-color: #32e0b5;
-    color: white;
+    color: white !important;
 }
 
 .detail-body {
