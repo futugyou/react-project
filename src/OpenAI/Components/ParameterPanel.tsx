@@ -30,7 +30,7 @@ const ParameterPanel = (props: any) => {
             props.onModeChange(value)
         }
 
-        let path = location.pathname || "/"
+        let path = "/openai/playground"
         path += ("?mode=" + value.toLocaleLowerCase())
 
         let search = location.search || ""
@@ -53,7 +53,7 @@ const ParameterPanel = (props: any) => {
             model: value,
         })
 
-        let path = location.pathname || "/"
+        let path = "/openai/playground"
         let search = location.search || ""
         let p = new URLSearchParams(search)
 
