@@ -22,7 +22,7 @@
     "@fluidframework/test-client-utils": "^1.4.0",
     "@honeycombio/opentelemetry-web": "^1.1.0",
     "@microlink/react": "^5.5.23",
-    "@opentelemetry/auto-instrumentations-web": "^0.53.0",
+    "@opentelemetry/auto-instrumentations-web": "^0.54.0",
     "@tanstack/react-query": "^5.90.7",
     "@tanstack/react-query-persist-client": "^5.90.9",
     "@tldraw/tldraw": "^4.1.1",
