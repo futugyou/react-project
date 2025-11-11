@@ -78,7 +78,7 @@
     "@types/object-hash": "^3.0.6",
     "@types/ramda": "^0.31.1",
     "@types/randomcolor": "^0.5.9",
-    "@types/react": "^19.2.2",
+    "@types/react": "^19.2.3",
     "@types/react-cytoscapejs": "^1.2.6",
     "@types/react-dom": "^19.2.2",
     "@types/react-reconciler": "^0.32.3",
