@@ -68,7 +68,7 @@
     "uuid": "^13.0.0",
     "y-utility": "^0.1.4",
     "y-websocket": "^3.0.0",
-    "yjs": "^13.6.28"
+    "yjs": "^13.6.29"
   },
   "devDependencies": {
     "@types/cytoscape-avsdf": "^1.0.4",
