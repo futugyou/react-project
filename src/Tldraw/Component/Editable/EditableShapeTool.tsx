@@ -10,7 +10,7 @@ import {
 export class EditableShapeTool extends BaseBoxShapeTool {
 	static override id = 'editable-shape'
 	static override initial = 'idle'
-	override shapeType = 'editable-shape'
+	override shapeType = 'editable-shape' as const
 }
 
 export const ConfigEditableTool = (editor: Editor, tools: TLUiToolsContextType) => {

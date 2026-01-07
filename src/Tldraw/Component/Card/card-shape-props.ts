@@ -1,12 +1,8 @@
-import { DefaultColorStyle, RecordProps, T } from '@tldraw/tldraw'
-import { ICardShape, MyFilterStyle } from './card-shape-types'
+import { DefaultColorStyle, RecordProps, T } from 'tldraw'
+import { ICardShape } from './CardShapeUtil'
 
-// Validation for our custom card shape's props, using one of tldraw's default styles
 export const cardShapeProps: RecordProps<ICardShape> = {
 	w: T.number,
 	h: T.number,
-	color: DefaultColorStyle as any,
-	filter: MyFilterStyle,
+	color: DefaultColorStyle,
 }
-
-// To generate your own custom styles, check out the custom styles example.

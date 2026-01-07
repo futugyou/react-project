@@ -8,9 +8,9 @@ import {
 } from '@tldraw/tldraw'
 
 export class PlayingCardTool extends BaseBoxShapeTool {
-    static override id = 'PlayingCard'
-    static override initial = 'idle'
-    override shapeType = 'PlayingCard'
+	static override id = 'PlayingCard'
+	static override initial = 'idle'
+	override shapeType = 'PlayingCard' as const
 }
 
 export const ConfigPlayingCardTool = (editor: Editor, tools: TLUiToolsContextType) => {

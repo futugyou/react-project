@@ -5,6 +5,7 @@ import {
 	TldrawUiMenuItem,
 	useIsToolSelected,
 	StateNode,
+	toRichText,
 } from '@tldraw/tldraw'
 
 
@@ -24,7 +25,7 @@ export class HeartTool extends StateNode {
 			type: 'text',
 			x: currentPagePoint.x - OFFSET,
 			y: currentPagePoint.y - OFFSET,
-			props: { text: '❤️' },
+			props: { richText: toRichText('❤️') },
 		})
 	}
 }
