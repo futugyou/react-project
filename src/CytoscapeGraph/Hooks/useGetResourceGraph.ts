@@ -4,10 +4,7 @@ import { ConfigResourceData } from '../Processors/APIModel'
 
 const configserver = import.meta.env.REACT_APP_FLOW_SERVER
 
-const configPath = 'v1/awsconfig'
-
-export const useGetResourceGraph = (config = {}) => {
-    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
+export const useGetResourceGraph = (configPath: string) => {
     const options: AxiosRequestConfig = {
         url: configserver + configPath,
         method: "GET",
@@ -16,12 +13,9 @@ export const useGetResourceGraph = (config = {}) => {
         },
     }
 
-    options.headers!.Authorization = "Bearer " + jwtToken.access_token
-
     const { isLoading, isError, data, refetch, isFetching } = useQuery({
         queryKey: [configPath],
         queryFn: () => axios<ConfigResourceData>(options).then(x => x.data),
-        ...config,
     })
 
     return {

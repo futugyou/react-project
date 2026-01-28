@@ -11,13 +11,12 @@ import Select from "@cloudscape-design/components/select"
 import Button from "@cloudscape-design/components/button"
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs"
 
-import { useAuth } from '@/Auth/index'
-
 import singleAccount from '@/CytoscapeGraph/data/singleAccount.json'
 import singleAccountDuplicates from '@/CytoscapeGraph/data/singleAccountDuplicates.json'
 import { useGetResourceGraph } from '@/CytoscapeGraph/Hooks/useGetResourceGraph'
 import { processElements } from '@/CytoscapeGraph/Processors/APIProcessors'
 import { useCytoscapeCore } from '@/CytoscapeGraph/Contexts/CytoscapeContext'
+import { ConfigResourceData } from '@/CytoscapeGraph/Processors/APIModel'
 import { ActionType, CytoscapeData } from './Contexts/Reducers/CytoscapeReducer'
 
 cytoscape.use(avsdf)
@@ -31,7 +30,6 @@ interface CytoscapeControllerProps {
 
 const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) => {
     const { state: { Core: cy }, dispatch } = useCytoscapeCore()
-    const { authService } = useAuth()
 
     const layoutSelection = [
         { label: "avsdf", value: "avsdf" },
@@ -53,7 +51,9 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
     const [selectedData, setSelectedData] = useState(null)
 
     const [awsconfigData, setAwsconfigData] = useState<cytoscape.ElementDefinition[]>()
-    const { data: nodeData, refetch: loadSelected, isLoading, isFetching, isError, status } = useGetResourceGraph({ enabled: !!authService.isAuthenticated() })
+    const [newconfigData, setNewconfigData] = useState<cytoscape.ElementDefinition[]>()
+    const { data: oldAWSData, isError: isoldAWSError } = useGetResourceGraph('v1/awsconfig')
+    const { data: newAWSData, isError: isnewAWSError } = useGetResourceGraph('v1/newconfig')
 
     const onLayoutSelectChange = ({ detail }: any) => {
         setSelectedLayout(detail.selectedOption)
@@ -62,31 +62,30 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
     }
 
     const onDataSelectChange = ({ detail }: any) => {
+        const key = detail.selectedOption.value
         setSelectedData(detail.selectedOption)
-        const key: string = detail.selectedOption.value
-
         cy.elements().remove()
 
-        let collapse = false
-        if (key == "aws-data-1") {
-            cy.add(singleAccount as cytoscape.ElementDefinition[])
+        const dataSources: Record<string, any> = {
+            "aws-data-1": singleAccount,
+            "aws-data-2": singleAccountDuplicates,
+            "aws-config": awsconfigData,
+            "new-config": newconfigData
         }
 
-        if (key == "aws-data-2") {
-            cy.add(singleAccountDuplicates as cytoscape.ElementDefinition[])
-        }
-
-        if (key == "aws-config" && awsconfigData) {
-            cy.add(awsconfigData)
-            collapse = true
+        const targetData = dataSources[key]
+        if (targetData) {
+            cy.add(targetData as cytoscape.ElementDefinition[])
         }
 
         cy.layout({ name: selectedLayout.value }).run()
-        if (collapse) {
-            var api = cy.expandCollapse('get')
-            // api.collapseAll()
-            api.collapseRecursively(cy.elements('node[type = "type"], node[type = "ecsCluster"], node[type = "cloudmap"]'))
+
+        if (key === "aws-config" || key === "new-config") {
+            const api = cy.expandCollapse('get')
+            const selector = 'node[type = "type"], node[type = "ecsCluster"], node[type = "cloudmap"]'
+            api.collapseRecursively(cy.elements(selector))
         }
+
         setVisible(false)
     }
 
@@ -111,30 +110,43 @@ const CytoscapeController = ({ visible, setVisible }: CytoscapeControllerProps) 
         a.click()
     }
 
+    const filterElements = (rawData: ConfigResourceData) => {
+        const data = processElements(rawData)
+        const nodes = data.filter(p => p.group === "nodes")
+        const edges = data.filter(p =>
+            p.group === "edges" &&
+            nodes.some(n => n.data.id === p.data.source) &&
+            nodes.some(n => n.data.id === p.data.target)
+        )
+        return [...nodes, ...edges]
+    }
+
+    const updateConfigState = (
+        data: ConfigResourceData | undefined,
+        error: boolean,
+        configKey: string,
+        setDataState: (d: cytoscape.ElementDefinition[]) => void
+    ) => {
+        if (data && !error) {
+            const filteredData = filterElements(data)
+            setDataState(filteredData)
+
+            setDataSelection(prev => {
+                if (prev.some(p => p.value === configKey)) return prev
+                return [...prev, { label: configKey, value: configKey }]
+            })
+        } else {
+            setDataSelection(prev => prev.filter(p => p.value !== configKey))
+        }
+    }
+
     useEffect(() => {
-        if (nodeData && !isError) {
-            const data = processElements(nodeData)
-            const nodes = data.filter(p => p.group == "nodes")
-            const edges = data.filter(p => p.group == "edges"
-                && nodes.findIndex(a => a.data.id == p.data.source) >= 0
-                && nodes.findIndex(a => a.data.id == p.data.target) >= 0)
-            const d = nodes.concat(edges)
-            console.log(d)
-            setAwsconfigData(d)
-            if (dataSelection.findIndex(p => p.value == 'aws-config') == -1) {
-                const s = dataSelection.concat({ label: "aws-config", value: "aws-config" })
-                setDataSelection(s)
-            }
-        }
-        if (isError || !!!nodeData) {
-            const index = dataSelection.findIndex(p => p.value == 'aws-config')
-            if (index > -1) {
-                const s = dataSelection
-                s.splice(index, 1)
-                setDataSelection(s)
-            }
-        }
-    }, [nodeData, isError])
+        updateConfigState(oldAWSData, isoldAWSError, 'aws-config', setAwsconfigData)
+    }, [oldAWSData, isoldAWSError])
+
+    useEffect(() => {
+        updateConfigState(newAWSData, isnewAWSError, 'new-config', setNewconfigData)
+    }, [newAWSData, isnewAWSError])
 
     const updateCytoscapeData = useCallback((data: CytoscapeData) => {
         dispatch({
