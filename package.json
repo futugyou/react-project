@@ -27,7 +27,7 @@
     "@tanstack/react-query-persist-client": "^5.90.24",
     "@tldraw/tldraw": "^4.4.1",
     "@uiw/react-color": "^2.9.6",
-    "@vercel/analytics": "^2.0.0",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.13.6",
     "buffer": "^6.0.3",
