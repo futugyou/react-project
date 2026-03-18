@@ -25,7 +25,7 @@
     "@opentelemetry/auto-instrumentations-web": "^0.58.0",
     "@tanstack/react-query": "^5.91.0",
     "@tanstack/react-query-persist-client": "^5.90.25",
-    "@tldraw/tldraw": "^4.4.1",
+    "@tldraw/tldraw": "^4.5.3",
     "@uiw/react-color": "^2.9.6",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
