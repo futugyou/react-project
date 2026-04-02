@@ -1,4 +1,3 @@
-
 import * as R from 'ramda'
 import React from 'react'
 import { fetchImage } from '../../ImageSelector'
@@ -12,7 +11,9 @@ const Parse = (node: any) => {
   configuration = R.is(Object, configuration) ? configuration : JSON.parse(configuration)
 
   const getLoadBalancerType = (properties: any) => {
-    return configuration.type ? `${properties.resourceType}-${configuration.type}` : `${properties.resourceType}`
+    return configuration.type
+      ? `${properties.resourceType}-${configuration.type}`
+      : `${properties.resourceType}`
   }
 
   const state = getStateInformation(configuration.state.code)

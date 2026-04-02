@@ -1,37 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <base id="react-app-base" href="/">
-  <script>
-    let baseUrl = './'
-    if (window.__MICRO_APP_ENVIRONMENT__) {
-      if (window.__MICRO_APP_BASE_ROUTE__) {
-        baseUrl = window.__MICRO_APP_BASE_ROUTE__
+  <head>
+    <meta charset="UTF-8" />
+    <base id="react-app-base" href="/" />
+    <script>
+      let baseUrl = './'
+      if (window.__MICRO_APP_ENVIRONMENT__) {
+        if (window.__MICRO_APP_BASE_ROUTE__) {
+          baseUrl = window.__MICRO_APP_BASE_ROUTE__
+        } else {
+          baseUrl = '/react/'
+        }
       } else {
-        baseUrl = "/react/"
+        const path = window.location.pathname
+        baseUrl = path.startsWith('/react') ? '/react/' : '/'
       }
-    } else {
-      const path = window.location.pathname;
-      baseUrl = path.startsWith('/react') ? '/react/' : '/'
-    }
-    baseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'
-    const base = document.getElementById('react-app-base')
-    if (base) {
-      base.setAttribute('href', baseUrl);
-    }
-    console.log('href is:', window.location.href, 'base url is:', baseUrl)
-  </script>
-  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>React With Mrico-App</title>
-</head>
+      baseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'
+      const base = document.getElementById('react-app-base')
+      if (base) {
+        base.setAttribute('href', baseUrl)
+      }
+      console.log('href is:', window.location.href, 'base url is:', baseUrl)
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>React With Mrico-App</title>
+  </head>
 
-<body>
-  <div id="react-web-root" class="flex"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  <body>
+    <div id="react-web-root" class="flex"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

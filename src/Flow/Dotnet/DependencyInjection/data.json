@@ -1,1069 +1,1048 @@
 {
-    "nodes": [
-        {
-            "width": 876,
-            "height": 160,
-            "id": "IServiceCollection",
-            "position": {
-                "x": -175.04605411482447,
-                "y": 580.2021577711065
-            },
-            "type": "custom",
-            "data": {
-                "name": "IServiceCollection",
-                "parent": "IList<ServiceDescriptor>",
-                "properties": [
-                    "public int Count",
-                    "public ServiceDescriptor this[int index]"
-                ],
-                "methods": [
-                    "void Add(ServiceDescriptor item)",
-                    "public static IServiceCollection AddTransient(this IServiceCollection services, Type serviceType, Type implementationType)",
-                    "public static IServiceCollection AddKeyedTransient(this IServiceCollection services, Type serviceType, object? serviceKey, Type implementationType)",
-                    "public static IServiceCollection AddScoped(this IServiceCollection services, Type serviceType, Func<IServiceProvider, object> implementationFactory)",
-                    "public static IServiceCollection AddSingleton<TService>(this IServiceCollection services, TService implementationInstance)",
-                    "public static ServiceProvider BuildServiceProvider(this IServiceCollection services)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IServiceCollection"
-            },
-            "positionAbsolute": {
-                "x": -175.04605411482447,
-                "y": 580.2021577711065
-            },
-            "selected": false,
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 649,
-            "height": 208,
-            "id": "ServiceDescriptor",
-            "type": "custom",
-            "position": {
-                "x": -235.90070830537252,
-                "y": 879.3820550482379
-            },
-            "data": {
-                "name": "ServiceDescriptor",
-                "properties": [
-                    "public ServiceLifetime Lifetime",
-                    "public Type ServiceType",
-                    "public Type? ImplementationType",
-                    "public Type? KeyedImplementationType",
-                    "public object? ImplementationInstance",
-                    "public Func<IServiceProvider, object>? ImplementationFactory"
-                ],
-                "methods": [
-                    "public static ServiceDescriptor Transient<TService, TImplementation>()",
-                    "public static ServiceDescriptor KeyedTransient<TService, TImplementation>(object? serviceKey)",
-                    "public static ServiceDescriptor Scoped<TService, TImplementation>()",
-                    "public static ServiceDescriptor Singleton<TService, TImplementation>()",
-                    "public static ServiceDescriptor Describe(Type serviceType, Type implementationType, ServiceLifetime lifetime)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ],
-                "id": "ServiceDescriptor"
-            },
-            "positionAbsolute": {
-                "x": -235.90070830537252,
-                "y": 879.3820550482379
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 555,
-            "height": 208,
-            "id": "ServiceProvider",
-            "type": "custom",
-            "position": {
-                "x": 517.1839330307523,
-                "y": 1055.2156697840005
-            },
-            "data": {
-                "name": "ServiceProvider",
-                "properties": [
-                    "private readonly CallSiteValidator? _callSiteValidator",
-                    "private readonly ConcurrentDictionary<ServiceIdentifier, ServiceAccessor> _serviceAccessors",
-                    "internal ServiceProviderEngine _engine",
-                    "internal CallSiteFactory CallSiteFactory { get; }",
-                    "internal ServiceProviderEngineScope Root { get; }"
-                ],
-                "methods": [
-                    "public object? GetService(Type serviceType)",
-                    "public object? GetKeyedService(Type serviceType, object? serviceKey)",
-                    "public object GetRequiredKeyedService(Type serviceType, object? serviceKey)",
-                    "public static T? GetService<T>(this IServiceProvider provider)",
-                    "public static IServiceScope CreateScope(this IServiceProvider provider)",
-                    "public static AsyncServiceScope CreateAsyncScope(this IServiceProvider provider)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ],
-                "id": "ServiceProvider",
-                "parent": "IServiceProvider"
-            },
-            "positionAbsolute": {
-                "x": 517.1839330307523,
-                "y": 1055.2156697840005
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 453,
-            "height": 54,
-            "id": "IServiceProviderFactory",
-            "position": {
-                "x": 732.0047436172911,
-                "y": 582.3858656508675
-            },
-            "type": "custom",
-            "data": {
-                "name": "IServiceProviderFactory<TContainerBuilder>",
-                "methods": [
-                    "TContainerBuilder CreateBuilder(IServiceCollection services)",
-                    "IServiceProvider CreateServiceProvider(TContainerBuilder containerBuilder)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "id": "IServiceProviderFactory"
-            },
-            "positionAbsolute": {
-                "x": 732.0047436172911,
-                "y": 582.3858656508675
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 646,
-            "height": 118,
-            "id": "ActivatorUtilities",
-            "position": {
-                "x": 989.3496792211852,
-                "y": 1478.9703943712452
-            },
-            "type": "custom",
-            "data": {
-                "name": "ActivatorUtilities",
-                "methods": [
-                    "public static ObjectFactory CreateFactory(Type instanceType, Type[] argumentTypes)",
-                    "public static ObjectFactory<T> CreateFactory<T>(Type[] argumentTypes)",
-                    "public static object CreateInstance(IServiceProvider provider, Type instanceType, params object[] parameters)",
-                    "public static T CreateInstance<T>(IServiceProvider provider, params object[] parameters)",
-                    "public static object GetServiceOrCreateInstance(IServiceProvider provider, Type type)",
-                    "public static T GetServiceOrCreateInstance<T>(IServiceProvider provider)"
-                ],
-                "id": "ActivatorUtilities"
-            },
-            "positionAbsolute": {
-                "x": 989.3496792211852,
-                "y": 1478.9703943712452
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 722,
-            "height": 246,
-            "id": "IServiceProvider",
-            "position": {
-                "x": 434.55099040334915,
-                "y": 770.92793739396
-            },
-            "type": "custom",
-            "data": {
-                "id": "IServiceProvider",
-                "name": "IServiceProvider",
-                "methods": [
-                    "object? GetService(Type serviceType)",
-                    "public static T? GetKeyedService<T>(this IServiceProvider provider, object? serviceKey)",
-                    "public static object GetRequiredKeyedService(this IServiceProvider provider, Type serviceType, object? serviceKey)",
-                    "public static T GetRequiredKeyedService<T>(this IServiceProvider provider, object? serviceKey)",
-                    "public static IEnumerable<T> GetKeyedServices<T>(this IServiceProvider provider, object? serviceKey)",
-                    "public static IEnumerable<object?> GetKeyedServices(this IServiceProvider provider, Type serviceType, object? serviceKey)",
-                    "public static T? GetService<T>(this IServiceProvider provider)",
-                    "public static object GetRequiredService(this IServiceProvider provider, Type serviceType)",
-                    "public static T GetRequiredService<T>(this IServiceProvider provider)",
-                    "public static IEnumerable<T> GetServices<T>(this IServiceProvider provider)",
-                    "public static IEnumerable<object?> GetServices(this IServiceProvider provider, Type serviceType)",
-                    "public static IServiceScope CreateScope(this IServiceProvider provider)",
-                    "public static AsyncServiceScope CreateAsyncScope(this IServiceProvider provider)",
-                    "public static AsyncServiceScope CreateAsyncScope(this IServiceScopeFactory serviceScopeFactory)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "positionAbsolute": {
-                "x": 434.55099040334915,
-                "y": 770.92793739396
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 426,
-            "height": 54,
-            "id": "IKeyedServiceProvider",
-            "position": {
-                "x": 1233.1298979008266,
-                "y": 692.4593769132287
-            },
-            "type": "custom",
-            "data": {
-                "id": "IKeyedServiceProvider",
-                "name": "IKeyedServiceProvider",
-                "parent": "IServiceProvider",
-                "methods": [
-                    "object? GetKeyedService(Type serviceType, object? serviceKey)",
-                    "object GetRequiredKeyedService(Type serviceType, object? serviceKey)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1233.1298979008266,
-                "y": 692.4593769132287
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IServiceProviderIsService",
-            "position": {
-                "x": 1351.210667324162,
-                "y": 874.4144930134955
-            },
-            "type": "custom",
-            "data": {
-                "id": "IServiceProviderIsService",
-                "name": "IServiceProviderIsService",
-                "methods": [
-                    "bool IsService(Type serviceType)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1351.210667324162,
-                "y": 874.4144930134955
-            },
-            "dragging": false
-        },
-        {
-            "width": 354,
-            "height": 52,
-            "id": "IServiceProviderIsKeyedService",
-            "position": {
-                "x": 1301.931761606597,
-                "y": 963.8614254756369
-            },
-            "type": "custom",
-            "data": {
-                "id": "IServiceProviderIsKeyedService",
-                "name": "IServiceProviderIsKeyedService",
-                "parent": "IServiceProviderIsService",
-                "methods": [
-                    "bool IsKeyedService(Type serviceType, object? serviceKey)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1301.931761606597,
-                "y": 963.8614254756369
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IServiceScope",
-            "position": {
-                "x": 1344.7607289334721,
-                "y": 1050.5035257729369
-            },
-            "type": "custom",
-            "data": {
-                "id": "IServiceScope",
-                "name": "IServiceScope",
-                "parent": "IDisposable",
-                "methods": [],
-                "properties": [
-                    "IServiceProvider ServiceProvider { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1344.7607289334721,
-                "y": 1050.5035257729369
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IServiceScopeFactory",
-            "position": {
-                "x": 1345.674591507047,
-                "y": 1122.8624918946452
-            },
-            "type": "custom",
-            "data": {
-                "id": "IServiceScopeFactory",
-                "name": "IServiceScopeFactory",
-                "methods": [
-                    "IServiceScope CreateScope()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1345.674591507047,
-                "y": 1122.8624918946452
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "ISupportRequiredService",
-            "position": {
-                "x": 1353.6511767920363,
-                "y": 793.8500381555131
-            },
-            "type": "custom",
-            "data": {
-                "id": "ISupportRequiredService",
-                "name": "ISupportRequiredService",
-                "methods": [
-                    "object GetRequiredService(Type serviceType)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1353.6511767920363,
-                "y": 793.8500381555131
-            },
-            "dragging": false
-        },
-        {
-            "width": 551,
-            "height": 54,
-            "id": "ObjectFactory",
-            "position": {
-                "x": 1092.504397458192,
-                "y": 1326.736382942365
-            },
-            "type": "custom",
-            "data": {
-                "id": "ObjectFactory",
-                "name": "ObjectFactory",
-                "methods": [],
-                "properties": [
-                    "public delegate object ObjectFactory(IServiceProvider serviceProvider, object?[]? arguments)",
-                    "public delegate T ObjectFactory<T>(IServiceProvider serviceProvider, object?[]? arguments)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1092.504397458192,
-                "y": 1326.736382942365
-            },
-            "dragging": false
-        },
-        {
-            "width": 366,
-            "height": 86,
-            "id": "ServiceCollection",
-            "position": {
-                "x": -386.4082370951434,
-                "y": 778.0432019728581
-            },
-            "type": "custom",
-            "data": {
-                "id": "ServiceCollection",
-                "name": "ServiceCollection",
-                "parent": "IServiceCollection",
-                "methods": [
-                    "public void CopyTo(ServiceDescriptor[] array, int arrayIndex)",
-                    "public int IndexOf(ServiceDescriptor item)",
-                    "public void Insert(int index, ServiceDescriptor item)",
-                    "public void MakeReadOnly()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -386.4082370951434,
-                "y": 778.0432019728581
-            },
-            "dragging": false
-        },
-        {
-            "width": 423,
-            "height": 64,
-            "id": "DefaultServiceProviderFactory",
-            "position": {
-                "x": 1235.9078282985884,
-                "y": 576.7949618037499
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultServiceProviderFactory",
-                "name": "DefaultServiceProviderFactory",
-                "parent": "IServiceProviderFactory<IServiceCollection>",
-                "properties": [
-                    "private readonly ServiceProviderOptions _options"
-                ],
-                "methods": [
-                    "public DefaultServiceProviderFactory(ServiceProviderOptions options)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1235.9078282985884,
-                "y": 576.7949618037499
-            },
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 337,
-            "height": 80,
-            "id": "AsyncServiceScope",
-            "position": {
-                "x": 1145.5905590440852,
-                "y": 1196.2583753910767
-            },
-            "type": "custom",
-            "data": {
-                "id": "AsyncServiceScope",
-                "name": "AsyncServiceScope",
-                "parent": "IServiceScope, IAsyncDisposable",
-                "properties": [
-                    "private readonly IServiceScope _serviceScope",
-                    "public IServiceProvider ServiceProvider"
-                ],
-                "methods": [
-                    "public AsyncServiceScope(IServiceScope serviceScope)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1145.5905590440852,
-                "y": 1196.2583753910767
-            },
-            "dragging": false
-        },
-        {
-            "width": 693,
-            "height": 224,
-            "id": "CallSiteVisitor",
-            "position": {
-                "x": -381.52704507490034,
-                "y": 1123.1588589724852
-            },
-            "type": "custom",
-            "data": {
-                "id": "CallSiteVisitor",
-                "name": "CallSiteVisitor<TArgument, TResult>",
-                "properties": [
-                    "private readonly StackGuard _stackGuard"
-                ],
-                "methods": [
-                    "protected virtual TResult VisitCallSite(ServiceCallSite callSite, TArgument argument)",
-                    "protected virtual TResult VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)",
-                    "protected virtual TResult VisitNoCache(ServiceCallSite callSite, TArgument argument)",
-                    "protected virtual TResult VisitDisposeCache(ServiceCallSite callSite, TArgument argument)",
-                    "protected virtual TResult VisitRootCache(ServiceCallSite callSite, TArgument argument)",
-                    "protected virtual TResult VisitScopeCache(ServiceCallSite callSite, TArgument argument)",
-                    "protected abstract TResult VisitConstructor(ConstructorCallSite constructorCallSite, TArgument argument)",
-                    "protected abstract TResult VisitConstant(ConstantCallSite constantCallSite, TArgument argument)",
-                    "protected abstract TResult VisitServiceProvider(ServiceProviderCallSite serviceProviderCallSite, TArgument argument)",
-                    "protected abstract TResult VisitIEnumerable(IEnumerableCallSite enumerableCallSite, TArgument argument)",
-                    "protected abstract TResult VisitFactory(FactoryCallSite factoryCallSite, TArgument argument)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -381.52704507490034,
-                "y": 1123.1588589724852
-            },
-            "dragging": false
-        },
-        {
-            "width": 603,
-            "height": 80,
-            "id": "CallSiteValidator",
-            "position": {
-                "x": -337.31086796489944,
-                "y": 1386.555469720611
-            },
-            "type": "custom",
-            "data": {
-                "id": "CallSiteValidator",
-                "name": "CallSiteValidator",
-                "parent": "CallSiteVisitor<CallSiteValidator.CallSiteValidatorState, Type?>",
-                "properties": [
-                    "private readonly ConcurrentDictionary<ServiceCacheKey, Type> _scopedServices"
-                ],
-                "methods": [
-                    "public void ValidateCallSite(ServiceCallSite callSite)",
-                    "public void ValidateResolution(ServiceCallSite callSite, IServiceScope scope, IServiceScope rootScope)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -337.31086796489944,
-                "y": 1386.555469720611
-            },
-            "dragging": false
-        },
-        {
-            "width": 484,
-            "height": 86,
-            "id": "CallSiteFactory",
-            "position": {
-                "x": 574.441107145752,
-                "y": 1324.5181859235547
-            },
-            "type": "custom",
-            "data": {
-                "id": "CallSiteFactory",
-                "name": "CallSiteFactory",
-                "parent": "IServiceProviderIsService, IServiceProviderIsKeyedService",
-                "properties": [],
-                "methods": [
-                    "public CallSiteFactory(ICollection<ServiceDescriptor> descriptors)",
-                    "public void Add(ServiceIdentifier serviceIdentifier, ServiceCallSite serviceCallSite)",
-                    "public bool IsService(Type serviceType)",
-                    "public bool IsKeyedService(Type serviceType, object? key)"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 574.441107145752,
-                "y": 1324.5181859235547
-            },
-            "dragging": false
-        },
-        {
-            "width": 586,
-            "height": 52,
-            "id": "ServiceProviderEngine",
-            "position": {
-                "x": -351.9538777704648,
-                "y": 1523.5965268261166
-            },
-            "type": "custom",
-            "data": {
-                "id": "ServiceProviderEngine",
-                "name": "ServiceProviderEngine",
-                "methods": [
-                    "public abstract Func<ServiceProviderEngineScope, object?> RealizeService(ServiceCallSite callSite)"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -351.9538777704648,
-                "y": 1523.5965268261166
-            },
-            "dragging": false
-        },
-        {
-            "width": 479,
-            "height": 112,
-            "id": "ServiceProviderEngineScope",
-            "position": {
-                "x": 354.51744408057084,
-                "y": 1473.635155429703
-            },
-            "type": "custom",
-            "data": {
-                "id": "ServiceProviderEngineScope",
-                "name": "ServiceProviderEngineScope",
-                "parent": "IServiceScope, IServiceProvider, IKeyedServiceProvider, IAsyncDisposable, IServiceScopeFactory",
-                "properties": [
-                    "internal Dictionary<ServiceCacheKey, object?> ResolvedServices { get; }",
-                    "public bool IsRootScope { get; }",
-                    "internal ServiceProvider RootProvider { get; }",
-                    "public IServiceProvider ServiceProvider"
-                ],
-                "methods": [
-                    "public ServiceProviderEngineScope(ServiceProvider provider, bool isRootScope)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 354.51744408057084,
-                "y": 1473.635155429703
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IServiceCollection",
-            "sourceHandle": "IServiceCollectionrightsource",
-            "target": "IServiceProvider",
-            "targetHandle": "IServiceProvidertoptarget",
-            "id": "reactflow__edge-IServiceCollectionIServiceCollectionrightsource-IServiceProviderIServiceProvidertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceProvider",
-            "sourceHandle": "ServiceProvidertopsource",
-            "target": "IServiceProvider",
-            "targetHandle": "IServiceProviderbottomtarget",
-            "id": "reactflow__edge-ServiceProviderServiceProvidertopsource-IServiceProviderIServiceProviderbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IKeyedServiceProvider",
-            "sourceHandle": "IKeyedServiceProviderleftsource",
-            "target": "IServiceProvider",
-            "targetHandle": "IServiceProviderrighttarget",
-            "id": "reactflow__edge-IKeyedServiceProviderIKeyedServiceProviderleftsource-IServiceProviderIServiceProviderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IServiceProviderIsKeyedService",
-            "sourceHandle": "IServiceProviderIsKeyedServicetopsource",
-            "target": "IServiceProviderIsService",
-            "targetHandle": "IServiceProviderIsServicebottomtarget",
-            "id": "reactflow__edge-IServiceProviderIsKeyedServiceIServiceProviderIsKeyedServicetopsource-IServiceProviderIsServiceIServiceProviderIsServicebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IServiceScopeFactory",
-            "sourceHandle": "IServiceScopeFactorytopsource",
-            "target": "IServiceScope",
-            "targetHandle": "IServiceScopebottomtarget",
-            "id": "reactflow__edge-IServiceScopeFactoryIServiceScopeFactorytopsource-IServiceScopeIServiceScopebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceCollection",
-            "sourceHandle": "ServiceCollectionrightsource",
-            "target": "ServiceDescriptor",
-            "targetHandle": "ServiceDescriptortoptarget",
-            "id": "reactflow__edge-ServiceCollectionServiceCollectionrightsource-ServiceDescriptorServiceDescriptortoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceCollection",
-            "sourceHandle": "ServiceCollectiontopsource",
-            "target": "IServiceCollection",
-            "targetHandle": "IServiceCollectionlefttarget",
-            "id": "reactflow__edge-ServiceCollectionServiceCollectiontopsource-IServiceCollectionIServiceCollectionlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceProvider",
-            "sourceHandle": "ServiceProviderrightsource",
-            "target": "IServiceScope",
-            "targetHandle": "IServiceScopelefttarget",
-            "id": "reactflow__edge-ServiceProviderServiceProviderrightsource-IServiceScopeIServiceScopelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AsyncServiceScope",
-            "sourceHandle": "AsyncServiceScopetopsource",
-            "target": "IServiceScope",
-            "targetHandle": "IServiceScopelefttarget",
-            "id": "reactflow__edge-AsyncServiceScopeAsyncServiceScopetopsource-IServiceScopeIServiceScopelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceProvider",
-            "sourceHandle": "ServiceProviderleftsource",
-            "target": "CallSiteValidator",
-            "targetHandle": "CallSiteValidatorrighttarget",
-            "id": "reactflow__edge-ServiceProviderServiceProviderleftsource-CallSiteValidatorCallSiteValidatorrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CallSiteFactory",
-            "sourceHandle": "CallSiteFactoryrightsource",
-            "target": "IKeyedServiceProvider",
-            "targetHandle": "IKeyedServiceProviderbottomtarget",
-            "id": "reactflow__edge-CallSiteFactoryCallSiteFactoryrightsource-IKeyedServiceProviderIKeyedServiceProviderbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CallSiteFactory",
-            "sourceHandle": "CallSiteFactoryrightsource",
-            "target": "IServiceProviderIsService",
-            "targetHandle": "IServiceProviderIsServicelefttarget",
-            "selected": false,
-            "id": "reactflow__edge-CallSiteFactoryCallSiteFactoryrightsource-IServiceProviderIsServiceIServiceProviderIsServicelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceProvider",
-            "sourceHandle": "ServiceProviderbottomsource",
-            "target": "CallSiteFactory",
-            "targetHandle": "CallSiteFactorytoptarget",
-            "id": "reactflow__edge-ServiceProviderServiceProviderbottomsource-CallSiteFactoryCallSiteFactorytoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceProvider",
-            "sourceHandle": "ServiceProviderleftsource",
-            "target": "ServiceProviderEngine",
-            "targetHandle": "ServiceProviderEnginerighttarget",
-            "id": "reactflow__edge-ServiceProviderServiceProviderleftsource-ServiceProviderEngineServiceProviderEnginerighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceProvider",
-            "sourceHandle": "ServiceProviderbottomsource",
-            "target": "ServiceProviderEngineScope",
-            "targetHandle": "ServiceProviderEngineScopetoptarget",
-            "id": "reactflow__edge-ServiceProviderServiceProviderbottomsource-ServiceProviderEngineScopeServiceProviderEngineScopetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrow",
-                "color": "black"
-            },
-            "source": "IServiceProviderFactory",
-            "sourceHandle": "IServiceProviderFactorybottomsource",
-            "target": "IServiceProvider",
-            "targetHandle": "IServiceProvidertoptarget",
-            "id": "reactflow__edge-IServiceProviderFactoryIServiceProviderFactorybottomsource-IServiceProviderIServiceProvidertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrow",
-                "color": "black"
-            },
-            "source": "DefaultServiceProviderFactory",
-            "sourceHandle": "DefaultServiceProviderFactoryleftsource",
-            "target": "IServiceProviderFactory",
-            "targetHandle": "IServiceProviderFactoryrighttarget",
-            "id": "reactflow__edge-DefaultServiceProviderFactoryDefaultServiceProviderFactoryleftsource-IServiceProviderFactoryIServiceProviderFactoryrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrow",
-                "color": "black"
-            },
-            "source": "CallSiteValidator",
-            "sourceHandle": "CallSiteValidatortopsource",
-            "target": "CallSiteVisitor",
-            "targetHandle": "CallSiteVisitorbottomtarget",
-            "id": "reactflow__edge-CallSiteValidatorCallSiteValidatortopsource-CallSiteVisitorCallSiteVisitorbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrow",
-                "color": "black"
-            },
-            "source": "IServiceCollection",
-            "sourceHandle": "IServiceCollectionbottomsource",
-            "target": "ServiceDescriptor",
-            "targetHandle": "ServiceDescriptortoptarget",
-            "id": "reactflow__edge-IServiceCollectionIServiceCollectionbottomsource-ServiceDescriptorServiceDescriptortoptarget"
-        }
-    ],
-    "viewport": {
-        "x": 200.77292176610217,
-        "y": -515.6868588033699,
-        "zoom": 0.9999999999999999
+  "nodes": [
+    {
+      "width": 876,
+      "height": 160,
+      "id": "IServiceCollection",
+      "position": {
+        "x": -175.04605411482447,
+        "y": 580.2021577711065
+      },
+      "type": "custom",
+      "data": {
+        "name": "IServiceCollection",
+        "parent": "IList<ServiceDescriptor>",
+        "properties": ["public int Count", "public ServiceDescriptor this[int index]"],
+        "methods": [
+          "void Add(ServiceDescriptor item)",
+          "public static IServiceCollection AddTransient(this IServiceCollection services, Type serviceType, Type implementationType)",
+          "public static IServiceCollection AddKeyedTransient(this IServiceCollection services, Type serviceType, object? serviceKey, Type implementationType)",
+          "public static IServiceCollection AddScoped(this IServiceCollection services, Type serviceType, Func<IServiceProvider, object> implementationFactory)",
+          "public static IServiceCollection AddSingleton<TService>(this IServiceCollection services, TService implementationInstance)",
+          "public static ServiceProvider BuildServiceProvider(this IServiceCollection services)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IServiceCollection"
+      },
+      "positionAbsolute": {
+        "x": -175.04605411482447,
+        "y": 580.2021577711065
+      },
+      "selected": false,
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 649,
+      "height": 208,
+      "id": "ServiceDescriptor",
+      "type": "custom",
+      "position": {
+        "x": -235.90070830537252,
+        "y": 879.3820550482379
+      },
+      "data": {
+        "name": "ServiceDescriptor",
+        "properties": [
+          "public ServiceLifetime Lifetime",
+          "public Type ServiceType",
+          "public Type? ImplementationType",
+          "public Type? KeyedImplementationType",
+          "public object? ImplementationInstance",
+          "public Func<IServiceProvider, object>? ImplementationFactory"
+        ],
+        "methods": [
+          "public static ServiceDescriptor Transient<TService, TImplementation>()",
+          "public static ServiceDescriptor KeyedTransient<TService, TImplementation>(object? serviceKey)",
+          "public static ServiceDescriptor Scoped<TService, TImplementation>()",
+          "public static ServiceDescriptor Singleton<TService, TImplementation>()",
+          "public static ServiceDescriptor Describe(Type serviceType, Type implementationType, ServiceLifetime lifetime)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ],
+        "id": "ServiceDescriptor"
+      },
+      "positionAbsolute": {
+        "x": -235.90070830537252,
+        "y": 879.3820550482379
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "width": 555,
+      "height": 208,
+      "id": "ServiceProvider",
+      "type": "custom",
+      "position": {
+        "x": 517.1839330307523,
+        "y": 1055.2156697840005
+      },
+      "data": {
+        "name": "ServiceProvider",
+        "properties": [
+          "private readonly CallSiteValidator? _callSiteValidator",
+          "private readonly ConcurrentDictionary<ServiceIdentifier, ServiceAccessor> _serviceAccessors",
+          "internal ServiceProviderEngine _engine",
+          "internal CallSiteFactory CallSiteFactory { get; }",
+          "internal ServiceProviderEngineScope Root { get; }"
+        ],
+        "methods": [
+          "public object? GetService(Type serviceType)",
+          "public object? GetKeyedService(Type serviceType, object? serviceKey)",
+          "public object GetRequiredKeyedService(Type serviceType, object? serviceKey)",
+          "public static T? GetService<T>(this IServiceProvider provider)",
+          "public static IServiceScope CreateScope(this IServiceProvider provider)",
+          "public static AsyncServiceScope CreateAsyncScope(this IServiceProvider provider)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ],
+        "id": "ServiceProvider",
+        "parent": "IServiceProvider"
+      },
+      "positionAbsolute": {
+        "x": 517.1839330307523,
+        "y": 1055.2156697840005
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "width": 453,
+      "height": 54,
+      "id": "IServiceProviderFactory",
+      "position": {
+        "x": 732.0047436172911,
+        "y": 582.3858656508675
+      },
+      "type": "custom",
+      "data": {
+        "name": "IServiceProviderFactory<TContainerBuilder>",
+        "methods": [
+          "TContainerBuilder CreateBuilder(IServiceCollection services)",
+          "IServiceProvider CreateServiceProvider(TContainerBuilder containerBuilder)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "id": "IServiceProviderFactory"
+      },
+      "positionAbsolute": {
+        "x": 732.0047436172911,
+        "y": 582.3858656508675
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "width": 646,
+      "height": 118,
+      "id": "ActivatorUtilities",
+      "position": {
+        "x": 989.3496792211852,
+        "y": 1478.9703943712452
+      },
+      "type": "custom",
+      "data": {
+        "name": "ActivatorUtilities",
+        "methods": [
+          "public static ObjectFactory CreateFactory(Type instanceType, Type[] argumentTypes)",
+          "public static ObjectFactory<T> CreateFactory<T>(Type[] argumentTypes)",
+          "public static object CreateInstance(IServiceProvider provider, Type instanceType, params object[] parameters)",
+          "public static T CreateInstance<T>(IServiceProvider provider, params object[] parameters)",
+          "public static object GetServiceOrCreateInstance(IServiceProvider provider, Type type)",
+          "public static T GetServiceOrCreateInstance<T>(IServiceProvider provider)"
+        ],
+        "id": "ActivatorUtilities"
+      },
+      "positionAbsolute": {
+        "x": 989.3496792211852,
+        "y": 1478.9703943712452
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "width": 722,
+      "height": 246,
+      "id": "IServiceProvider",
+      "position": {
+        "x": 434.55099040334915,
+        "y": 770.92793739396
+      },
+      "type": "custom",
+      "data": {
+        "id": "IServiceProvider",
+        "name": "IServiceProvider",
+        "methods": [
+          "object? GetService(Type serviceType)",
+          "public static T? GetKeyedService<T>(this IServiceProvider provider, object? serviceKey)",
+          "public static object GetRequiredKeyedService(this IServiceProvider provider, Type serviceType, object? serviceKey)",
+          "public static T GetRequiredKeyedService<T>(this IServiceProvider provider, object? serviceKey)",
+          "public static IEnumerable<T> GetKeyedServices<T>(this IServiceProvider provider, object? serviceKey)",
+          "public static IEnumerable<object?> GetKeyedServices(this IServiceProvider provider, Type serviceType, object? serviceKey)",
+          "public static T? GetService<T>(this IServiceProvider provider)",
+          "public static object GetRequiredService(this IServiceProvider provider, Type serviceType)",
+          "public static T GetRequiredService<T>(this IServiceProvider provider)",
+          "public static IEnumerable<T> GetServices<T>(this IServiceProvider provider)",
+          "public static IEnumerable<object?> GetServices(this IServiceProvider provider, Type serviceType)",
+          "public static IServiceScope CreateScope(this IServiceProvider provider)",
+          "public static AsyncServiceScope CreateAsyncScope(this IServiceProvider provider)",
+          "public static AsyncServiceScope CreateAsyncScope(this IServiceScopeFactory serviceScopeFactory)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "positionAbsolute": {
+        "x": 434.55099040334915,
+        "y": 770.92793739396
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "width": 426,
+      "height": 54,
+      "id": "IKeyedServiceProvider",
+      "position": {
+        "x": 1233.1298979008266,
+        "y": 692.4593769132287
+      },
+      "type": "custom",
+      "data": {
+        "id": "IKeyedServiceProvider",
+        "name": "IKeyedServiceProvider",
+        "parent": "IServiceProvider",
+        "methods": [
+          "object? GetKeyedService(Type serviceType, object? serviceKey)",
+          "object GetRequiredKeyedService(Type serviceType, object? serviceKey)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1233.1298979008266,
+        "y": 692.4593769132287
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IServiceProviderIsService",
+      "position": {
+        "x": 1351.210667324162,
+        "y": 874.4144930134955
+      },
+      "type": "custom",
+      "data": {
+        "id": "IServiceProviderIsService",
+        "name": "IServiceProviderIsService",
+        "methods": ["bool IsService(Type serviceType)"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1351.210667324162,
+        "y": 874.4144930134955
+      },
+      "dragging": false
+    },
+    {
+      "width": 354,
+      "height": 52,
+      "id": "IServiceProviderIsKeyedService",
+      "position": {
+        "x": 1301.931761606597,
+        "y": 963.8614254756369
+      },
+      "type": "custom",
+      "data": {
+        "id": "IServiceProviderIsKeyedService",
+        "name": "IServiceProviderIsKeyedService",
+        "parent": "IServiceProviderIsService",
+        "methods": ["bool IsKeyedService(Type serviceType, object? serviceKey)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1301.931761606597,
+        "y": 963.8614254756369
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IServiceScope",
+      "position": {
+        "x": 1344.7607289334721,
+        "y": 1050.5035257729369
+      },
+      "type": "custom",
+      "data": {
+        "id": "IServiceScope",
+        "name": "IServiceScope",
+        "parent": "IDisposable",
+        "methods": [],
+        "properties": ["IServiceProvider ServiceProvider { get; }"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1344.7607289334721,
+        "y": 1050.5035257729369
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IServiceScopeFactory",
+      "position": {
+        "x": 1345.674591507047,
+        "y": 1122.8624918946452
+      },
+      "type": "custom",
+      "data": {
+        "id": "IServiceScopeFactory",
+        "name": "IServiceScopeFactory",
+        "methods": ["IServiceScope CreateScope()"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1345.674591507047,
+        "y": 1122.8624918946452
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "ISupportRequiredService",
+      "position": {
+        "x": 1353.6511767920363,
+        "y": 793.8500381555131
+      },
+      "type": "custom",
+      "data": {
+        "id": "ISupportRequiredService",
+        "name": "ISupportRequiredService",
+        "methods": ["object GetRequiredService(Type serviceType)"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1353.6511767920363,
+        "y": 793.8500381555131
+      },
+      "dragging": false
+    },
+    {
+      "width": 551,
+      "height": 54,
+      "id": "ObjectFactory",
+      "position": {
+        "x": 1092.504397458192,
+        "y": 1326.736382942365
+      },
+      "type": "custom",
+      "data": {
+        "id": "ObjectFactory",
+        "name": "ObjectFactory",
+        "methods": [],
+        "properties": [
+          "public delegate object ObjectFactory(IServiceProvider serviceProvider, object?[]? arguments)",
+          "public delegate T ObjectFactory<T>(IServiceProvider serviceProvider, object?[]? arguments)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1092.504397458192,
+        "y": 1326.736382942365
+      },
+      "dragging": false
+    },
+    {
+      "width": 366,
+      "height": 86,
+      "id": "ServiceCollection",
+      "position": {
+        "x": -386.4082370951434,
+        "y": 778.0432019728581
+      },
+      "type": "custom",
+      "data": {
+        "id": "ServiceCollection",
+        "name": "ServiceCollection",
+        "parent": "IServiceCollection",
+        "methods": [
+          "public void CopyTo(ServiceDescriptor[] array, int arrayIndex)",
+          "public int IndexOf(ServiceDescriptor item)",
+          "public void Insert(int index, ServiceDescriptor item)",
+          "public void MakeReadOnly()"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -386.4082370951434,
+        "y": 778.0432019728581
+      },
+      "dragging": false
+    },
+    {
+      "width": 423,
+      "height": 64,
+      "id": "DefaultServiceProviderFactory",
+      "position": {
+        "x": 1235.9078282985884,
+        "y": 576.7949618037499
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultServiceProviderFactory",
+        "name": "DefaultServiceProviderFactory",
+        "parent": "IServiceProviderFactory<IServiceCollection>",
+        "properties": ["private readonly ServiceProviderOptions _options"],
+        "methods": ["public DefaultServiceProviderFactory(ServiceProviderOptions options)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1235.9078282985884,
+        "y": 576.7949618037499
+      },
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 337,
+      "height": 80,
+      "id": "AsyncServiceScope",
+      "position": {
+        "x": 1145.5905590440852,
+        "y": 1196.2583753910767
+      },
+      "type": "custom",
+      "data": {
+        "id": "AsyncServiceScope",
+        "name": "AsyncServiceScope",
+        "parent": "IServiceScope, IAsyncDisposable",
+        "properties": [
+          "private readonly IServiceScope _serviceScope",
+          "public IServiceProvider ServiceProvider"
+        ],
+        "methods": ["public AsyncServiceScope(IServiceScope serviceScope)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1145.5905590440852,
+        "y": 1196.2583753910767
+      },
+      "dragging": false
+    },
+    {
+      "width": 693,
+      "height": 224,
+      "id": "CallSiteVisitor",
+      "position": {
+        "x": -381.52704507490034,
+        "y": 1123.1588589724852
+      },
+      "type": "custom",
+      "data": {
+        "id": "CallSiteVisitor",
+        "name": "CallSiteVisitor<TArgument, TResult>",
+        "properties": ["private readonly StackGuard _stackGuard"],
+        "methods": [
+          "protected virtual TResult VisitCallSite(ServiceCallSite callSite, TArgument argument)",
+          "protected virtual TResult VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)",
+          "protected virtual TResult VisitNoCache(ServiceCallSite callSite, TArgument argument)",
+          "protected virtual TResult VisitDisposeCache(ServiceCallSite callSite, TArgument argument)",
+          "protected virtual TResult VisitRootCache(ServiceCallSite callSite, TArgument argument)",
+          "protected virtual TResult VisitScopeCache(ServiceCallSite callSite, TArgument argument)",
+          "protected abstract TResult VisitConstructor(ConstructorCallSite constructorCallSite, TArgument argument)",
+          "protected abstract TResult VisitConstant(ConstantCallSite constantCallSite, TArgument argument)",
+          "protected abstract TResult VisitServiceProvider(ServiceProviderCallSite serviceProviderCallSite, TArgument argument)",
+          "protected abstract TResult VisitIEnumerable(IEnumerableCallSite enumerableCallSite, TArgument argument)",
+          "protected abstract TResult VisitFactory(FactoryCallSite factoryCallSite, TArgument argument)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -381.52704507490034,
+        "y": 1123.1588589724852
+      },
+      "dragging": false
+    },
+    {
+      "width": 603,
+      "height": 80,
+      "id": "CallSiteValidator",
+      "position": {
+        "x": -337.31086796489944,
+        "y": 1386.555469720611
+      },
+      "type": "custom",
+      "data": {
+        "id": "CallSiteValidator",
+        "name": "CallSiteValidator",
+        "parent": "CallSiteVisitor<CallSiteValidator.CallSiteValidatorState, Type?>",
+        "properties": [
+          "private readonly ConcurrentDictionary<ServiceCacheKey, Type> _scopedServices"
+        ],
+        "methods": [
+          "public void ValidateCallSite(ServiceCallSite callSite)",
+          "public void ValidateResolution(ServiceCallSite callSite, IServiceScope scope, IServiceScope rootScope)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -337.31086796489944,
+        "y": 1386.555469720611
+      },
+      "dragging": false
+    },
+    {
+      "width": 484,
+      "height": 86,
+      "id": "CallSiteFactory",
+      "position": {
+        "x": 574.441107145752,
+        "y": 1324.5181859235547
+      },
+      "type": "custom",
+      "data": {
+        "id": "CallSiteFactory",
+        "name": "CallSiteFactory",
+        "parent": "IServiceProviderIsService, IServiceProviderIsKeyedService",
+        "properties": [],
+        "methods": [
+          "public CallSiteFactory(ICollection<ServiceDescriptor> descriptors)",
+          "public void Add(ServiceIdentifier serviceIdentifier, ServiceCallSite serviceCallSite)",
+          "public bool IsService(Type serviceType)",
+          "public bool IsKeyedService(Type serviceType, object? key)"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 574.441107145752,
+        "y": 1324.5181859235547
+      },
+      "dragging": false
+    },
+    {
+      "width": 586,
+      "height": 52,
+      "id": "ServiceProviderEngine",
+      "position": {
+        "x": -351.9538777704648,
+        "y": 1523.5965268261166
+      },
+      "type": "custom",
+      "data": {
+        "id": "ServiceProviderEngine",
+        "name": "ServiceProviderEngine",
+        "methods": [
+          "public abstract Func<ServiceProviderEngineScope, object?> RealizeService(ServiceCallSite callSite)"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -351.9538777704648,
+        "y": 1523.5965268261166
+      },
+      "dragging": false
+    },
+    {
+      "width": 479,
+      "height": 112,
+      "id": "ServiceProviderEngineScope",
+      "position": {
+        "x": 354.51744408057084,
+        "y": 1473.635155429703
+      },
+      "type": "custom",
+      "data": {
+        "id": "ServiceProviderEngineScope",
+        "name": "ServiceProviderEngineScope",
+        "parent": "IServiceScope, IServiceProvider, IKeyedServiceProvider, IAsyncDisposable, IServiceScopeFactory",
+        "properties": [
+          "internal Dictionary<ServiceCacheKey, object?> ResolvedServices { get; }",
+          "public bool IsRootScope { get; }",
+          "internal ServiceProvider RootProvider { get; }",
+          "public IServiceProvider ServiceProvider"
+        ],
+        "methods": [
+          "public ServiceProviderEngineScope(ServiceProvider provider, bool isRootScope)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 354.51744408057084,
+        "y": 1473.635155429703
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IServiceCollection",
+      "sourceHandle": "IServiceCollectionrightsource",
+      "target": "IServiceProvider",
+      "targetHandle": "IServiceProvidertoptarget",
+      "id": "reactflow__edge-IServiceCollectionIServiceCollectionrightsource-IServiceProviderIServiceProvidertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceProvider",
+      "sourceHandle": "ServiceProvidertopsource",
+      "target": "IServiceProvider",
+      "targetHandle": "IServiceProviderbottomtarget",
+      "id": "reactflow__edge-ServiceProviderServiceProvidertopsource-IServiceProviderIServiceProviderbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IKeyedServiceProvider",
+      "sourceHandle": "IKeyedServiceProviderleftsource",
+      "target": "IServiceProvider",
+      "targetHandle": "IServiceProviderrighttarget",
+      "id": "reactflow__edge-IKeyedServiceProviderIKeyedServiceProviderleftsource-IServiceProviderIServiceProviderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IServiceProviderIsKeyedService",
+      "sourceHandle": "IServiceProviderIsKeyedServicetopsource",
+      "target": "IServiceProviderIsService",
+      "targetHandle": "IServiceProviderIsServicebottomtarget",
+      "id": "reactflow__edge-IServiceProviderIsKeyedServiceIServiceProviderIsKeyedServicetopsource-IServiceProviderIsServiceIServiceProviderIsServicebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IServiceScopeFactory",
+      "sourceHandle": "IServiceScopeFactorytopsource",
+      "target": "IServiceScope",
+      "targetHandle": "IServiceScopebottomtarget",
+      "id": "reactflow__edge-IServiceScopeFactoryIServiceScopeFactorytopsource-IServiceScopeIServiceScopebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceCollection",
+      "sourceHandle": "ServiceCollectionrightsource",
+      "target": "ServiceDescriptor",
+      "targetHandle": "ServiceDescriptortoptarget",
+      "id": "reactflow__edge-ServiceCollectionServiceCollectionrightsource-ServiceDescriptorServiceDescriptortoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceCollection",
+      "sourceHandle": "ServiceCollectiontopsource",
+      "target": "IServiceCollection",
+      "targetHandle": "IServiceCollectionlefttarget",
+      "id": "reactflow__edge-ServiceCollectionServiceCollectiontopsource-IServiceCollectionIServiceCollectionlefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceProvider",
+      "sourceHandle": "ServiceProviderrightsource",
+      "target": "IServiceScope",
+      "targetHandle": "IServiceScopelefttarget",
+      "id": "reactflow__edge-ServiceProviderServiceProviderrightsource-IServiceScopeIServiceScopelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AsyncServiceScope",
+      "sourceHandle": "AsyncServiceScopetopsource",
+      "target": "IServiceScope",
+      "targetHandle": "IServiceScopelefttarget",
+      "id": "reactflow__edge-AsyncServiceScopeAsyncServiceScopetopsource-IServiceScopeIServiceScopelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceProvider",
+      "sourceHandle": "ServiceProviderleftsource",
+      "target": "CallSiteValidator",
+      "targetHandle": "CallSiteValidatorrighttarget",
+      "id": "reactflow__edge-ServiceProviderServiceProviderleftsource-CallSiteValidatorCallSiteValidatorrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "CallSiteFactory",
+      "sourceHandle": "CallSiteFactoryrightsource",
+      "target": "IKeyedServiceProvider",
+      "targetHandle": "IKeyedServiceProviderbottomtarget",
+      "id": "reactflow__edge-CallSiteFactoryCallSiteFactoryrightsource-IKeyedServiceProviderIKeyedServiceProviderbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "CallSiteFactory",
+      "sourceHandle": "CallSiteFactoryrightsource",
+      "target": "IServiceProviderIsService",
+      "targetHandle": "IServiceProviderIsServicelefttarget",
+      "selected": false,
+      "id": "reactflow__edge-CallSiteFactoryCallSiteFactoryrightsource-IServiceProviderIsServiceIServiceProviderIsServicelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceProvider",
+      "sourceHandle": "ServiceProviderbottomsource",
+      "target": "CallSiteFactory",
+      "targetHandle": "CallSiteFactorytoptarget",
+      "id": "reactflow__edge-ServiceProviderServiceProviderbottomsource-CallSiteFactoryCallSiteFactorytoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceProvider",
+      "sourceHandle": "ServiceProviderleftsource",
+      "target": "ServiceProviderEngine",
+      "targetHandle": "ServiceProviderEnginerighttarget",
+      "id": "reactflow__edge-ServiceProviderServiceProviderleftsource-ServiceProviderEngineServiceProviderEnginerighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceProvider",
+      "sourceHandle": "ServiceProviderbottomsource",
+      "target": "ServiceProviderEngineScope",
+      "targetHandle": "ServiceProviderEngineScopetoptarget",
+      "id": "reactflow__edge-ServiceProviderServiceProviderbottomsource-ServiceProviderEngineScopeServiceProviderEngineScopetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrow",
+        "color": "black"
+      },
+      "source": "IServiceProviderFactory",
+      "sourceHandle": "IServiceProviderFactorybottomsource",
+      "target": "IServiceProvider",
+      "targetHandle": "IServiceProvidertoptarget",
+      "id": "reactflow__edge-IServiceProviderFactoryIServiceProviderFactorybottomsource-IServiceProviderIServiceProvidertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrow",
+        "color": "black"
+      },
+      "source": "DefaultServiceProviderFactory",
+      "sourceHandle": "DefaultServiceProviderFactoryleftsource",
+      "target": "IServiceProviderFactory",
+      "targetHandle": "IServiceProviderFactoryrighttarget",
+      "id": "reactflow__edge-DefaultServiceProviderFactoryDefaultServiceProviderFactoryleftsource-IServiceProviderFactoryIServiceProviderFactoryrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrow",
+        "color": "black"
+      },
+      "source": "CallSiteValidator",
+      "sourceHandle": "CallSiteValidatortopsource",
+      "target": "CallSiteVisitor",
+      "targetHandle": "CallSiteVisitorbottomtarget",
+      "id": "reactflow__edge-CallSiteValidatorCallSiteValidatortopsource-CallSiteVisitorCallSiteVisitorbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrow",
+        "color": "black"
+      },
+      "source": "IServiceCollection",
+      "sourceHandle": "IServiceCollectionbottomsource",
+      "target": "ServiceDescriptor",
+      "targetHandle": "ServiceDescriptortoptarget",
+      "id": "reactflow__edge-IServiceCollectionIServiceCollectionbottomsource-ServiceDescriptorServiceDescriptortoptarget"
+    }
+  ],
+  "viewport": {
+    "x": 200.77292176610217,
+    "y": -515.6868588033699,
+    "zoom": 0.9999999999999999
+  }
 }

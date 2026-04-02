@@ -1,4 +1,4 @@
 export interface NodeOperation {
-    keepAspectRatio?: boolean
-    allowResizer?: boolean
+  keepAspectRatio?: boolean
+  allowResizer?: boolean
 }

@@ -13,7 +13,7 @@ export const createPKCECodes = (): PKCECodePair => {
   const codePair = {
     codeVerifier,
     codeChallenge,
-    createdAt
+    createdAt,
   }
   return codePair
 }

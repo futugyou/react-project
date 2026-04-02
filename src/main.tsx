@@ -1,4 +1,4 @@
-import "@cloudscape-design/global-styles/index.css"
+import '@cloudscape-design/global-styles/index.css'
 import './index.css'
 
 import React, { Suspense } from 'react'
@@ -29,13 +29,13 @@ function mount() {
       <QueryClientProvider client={queryClient}>
         <Suspense fallback={<Loading />}>
           <AuthProvider authService={authService}>
-              <RouterProvider router={router} />
-              <Analytics />
-              <SpeedInsights />
+            <RouterProvider router={router} />
+            <Analytics />
+            <SpeedInsights />
           </AuthProvider>
         </Suspense>
       </QueryClientProvider>
-    </React.StrictMode>
+    </React.StrictMode>,
   )
 
   handleMicroData()

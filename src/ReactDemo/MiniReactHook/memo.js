@@ -1,5 +1,5 @@
 const useMemo = (callback) => {
-    const [s, set] = useState();
-    useEffect(() => set(callback));
-    return s
+  const [s, set] = useState()
+  useEffect(() => set(callback))
+  return s
 }

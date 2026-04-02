@@ -1,2 +1,2 @@
-declare const CanvasJSReact: { CanvasJSChart, CanvasJSStockChart, CanvasJS }
+declare const CanvasJSReact: { CanvasJSChart; CanvasJSStockChart; CanvasJS }
 export default CanvasJSReact

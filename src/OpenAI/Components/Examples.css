@@ -1,136 +1,136 @@
 .example-page {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .example-container {
-    width: 860px;
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-    padding: 50px;
-    height: 100%;
-    padding-top: 0;
+  width: 860px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 50px;
+  height: 100%;
+  padding-top: 0;
 }
 
 .example-header {
-    margin-bottom: 48px;
-    text-align: center;
+  margin-bottom: 48px;
+  text-align: center;
 }
 
 .example-search {
-    display: flex;
-    height: 36px;
-    margin-bottom: 48px;
+  display: flex;
+  height: 36px;
+  margin-bottom: 48px;
 }
 
 .example-search-input-container {
-    flex: 1 1 100%;
-    margin-right: 20px;
-    position: relative;
+  flex: 1 1 100%;
+  margin-right: 20px;
+  position: relative;
 }
 
 .example-search-dropdowm-container {
-    flex: 1 1 50%;
+  flex: 1 1 50%;
 }
 
 .search-icon {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    top: 8px;
-    left: 8px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 8px;
+  left: 8px;
 }
 
 .example-search-input {
-    width: 100%;
-    height: 100%;
-    background-clip: padding-box;
-    background-color: #fff;
-    border: 1px solid #c5c5d2;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-size: 18px;
-    line-height: 20px;
-    padding-left: 35px;
+  width: 100%;
+  height: 100%;
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid #c5c5d2;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 20px;
+  padding-left: 35px;
 }
 
 .example-search-input:focus {
-    border-color: #c5c5d2;
-    box-shadow: none;
+  border-color: #c5c5d2;
+  box-shadow: none;
 }
 
 .example-search-input:focus-visible {
-    outline-color: #c5c5d2;
-    box-shadow: none;
+  outline-color: #c5c5d2;
+  box-shadow: none;
 }
 
 .example-item-container {
-    grid-gap: 32px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-gap: 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .text-title {
-    color: #202123;
-    line-height: 44px;
-    margin-bottom: 8px;
+  color: #202123;
+  line-height: 44px;
+  margin-bottom: 8px;
 }
 
 .text-tagline {
-    color: #565869;
-    font-size: 18px;
-    line-height: 24px;
+  color: #565869;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .example-item {
-    display: flex;
-    cursor: pointer;
-    align-content: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  cursor: pointer;
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .example-item-left {
-    background-color: #dd5ce5;
-    border-radius: 4px;
-    color: #fff;
-    flex: 0 0 auto;
-    font-size: 24px;
-    line-height: 0px;
-    padding: 15px;
-    height: 54px;
+  background-color: #dd5ce5;
+  border-radius: 4px;
+  color: #fff;
+  flex: 0 0 auto;
+  font-size: 24px;
+  line-height: 0px;
+  padding: 15px;
+  height: 54px;
 }
 
 .example-item-left:hover {
-    transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 .example-item-left svg {
-    color: #fff;
-    height: 24px;
-    width: 24px;
+  color: #fff;
+  height: 24px;
+  width: 24px;
 }
 
 .example-item-right {
-    flex: 1;
-    text-align: left;
-    padding-left: 10px;
+  flex: 1;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .example-item-title {
-    font-weight: 700;
-    line-height: 24px;
-    font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
 }
 
 .example-item-description {
-    color: #6e6e80;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
+  color: #6e6e80;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }

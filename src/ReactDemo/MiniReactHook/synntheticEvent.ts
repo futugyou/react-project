@@ -1,4 +1,3 @@
-
 // class SyntheticEvent {
 //     constructor(e: any) {
 //         // 保存原生事件对象
@@ -85,4 +84,4 @@
 //     }
 // };
 
-export { }
+export {}

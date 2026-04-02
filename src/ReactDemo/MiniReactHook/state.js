@@ -1,24 +1,24 @@
-const effectStack = [];
+const effectStack = []
 
 const useState = (value) => {
-    const subs = new Set()
-    const getter = () => {
-        const effect = effectStack[effectStack.length - 1]
-        if (effect) {
-            subscribe(effect, subs)
-        }
-        return value;
+  const subs = new Set()
+  const getter = () => {
+    const effect = effectStack[effectStack.length - 1]
+    if (effect) {
+      subscribe(effect, subs)
     }
-    const setter = (newValue) => {
-        value = newValue;
-        for (const effect of [...subs]) {
-            effect.execute();
-        }
+    return value
+  }
+  const setter = (newValue) => {
+    value = newValue
+    for (const effect of [...subs]) {
+      effect.execute()
     }
-    return [getter, setter]
+  }
+  return [getter, setter]
 }
 
 const subscribe = (effect, subs) => {
-    subs.add(effect)
-    effect.deps.add(subs)
+  subs.add(effect)
+  effect.deps.add(subs)
 }

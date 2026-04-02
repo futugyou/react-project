@@ -1,12 +1,12 @@
 .control-note {
-    color: var(--bs-gray-500);
-    font-size: 12px;
-    line-height: 1;
-    margin-top: 2px;
+  color: var(--bs-gray-500);
+  font-size: 12px;
+  line-height: 1;
+  margin-top: 2px;
 }
 
 .stop-container {
-    position: relative;
-    box-sizing: border-box;
-    font-size: 14px;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 14px;
 }

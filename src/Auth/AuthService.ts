@@ -81,7 +81,7 @@ export class AuthService<TIDToken = JWTIDToken> {
   }
 
   getCodeFromLocation(location: Location): string | null {
-    if (location.toString().indexOf("gitalk") >= 0) {
+    if (location.toString().indexOf('gitalk') >= 0) {
       return null
     }
 
@@ -114,7 +114,7 @@ export class AuthService<TIDToken = JWTIDToken> {
     window.history.replaceState(
       window.history.state,
       'null',
-      base + (newSearch.length ? `?${newSearch}` : '')
+      base + (newSearch.length ? `?${newSearch}` : ''),
     )
   }
 
@@ -147,8 +147,7 @@ export class AuthService<TIDToken = JWTIDToken> {
 
   isPending(): boolean {
     return (
-      window.localStorage.getItem('pkce') !== null &&
-      window.localStorage.getItem('auth') === null
+      window.localStorage.getItem('pkce') !== null && window.localStorage.getItem('auth') === null
     )
   }
 
@@ -160,14 +159,14 @@ export class AuthService<TIDToken = JWTIDToken> {
     this.removeItem('pkce')
     this.removeItem('auth')
     if (shouldEndSession) {
-      const { clientId, provider, logoutEndpoint, redirectUri } = this.props;
+      const { clientId, provider, logoutEndpoint, redirectUri } = this.props
       const query = {
         client_id: clientId,
-        post_logout_redirect_uri: redirectUri
+        post_logout_redirect_uri: redirectUri,
       }
       const url = `${logoutEndpoint || `${provider}/logout`}?${toUrlEncoded(query)}`
       window.location.replace(url)
-      return true;
+      return true
     } else {
       window.location.reload()
       return true
@@ -195,7 +194,7 @@ export class AuthService<TIDToken = JWTIDToken> {
       redirectUri,
       ...(audience && { audience }),
       codeChallenge,
-      codeChallengeMethod: 'S256'
+      codeChallengeMethod: 'S256',
     }
     // Responds with a 302 redirect
     const url = `${authorizeEndpoint || `${provider}/authorize`}?${toUrlEncoded(query)}`
@@ -212,7 +211,7 @@ export class AuthService<TIDToken = JWTIDToken> {
       provider,
       tokenEndpoint,
       redirectUri,
-      autoRefresh = true
+      autoRefresh = true,
     } = this.props
     const grantType = 'authorization_code'
 
@@ -220,13 +219,13 @@ export class AuthService<TIDToken = JWTIDToken> {
       clientId,
       ...(clientSecret ? { clientSecret } : {}),
       redirectUri,
-      grantType
+      grantType,
     }
     if (isRefresh) {
       payload = {
         ...payload,
         grantType: 'refresh_token',
-        refresh_token: code
+        refresh_token: code,
       }
     } else {
       const pkce: PKCECodePair = this.getPkce()
@@ -234,23 +233,23 @@ export class AuthService<TIDToken = JWTIDToken> {
       payload = {
         ...payload,
         code,
-        codeVerifier
+        codeVerifier,
       }
     }
 
     const response = await fetch(`${tokenEndpoint || `${provider}/token`}`, {
       headers: {
         'Content-Type': contentType || 'application/x-www-form-urlencoded',
-        'Authorization': "Basic " + btoa(clientId + ":" + clientSecret || "")
+        Authorization: 'Basic ' + btoa(clientId + ':' + clientSecret || ''),
       },
       method: 'POST',
-      body: toUrlEncoded(payload)
+      body: toUrlEncoded(payload),
     })
 
     this.removeItem('pkce')
     let json = await response.json()
     if (json.error != undefined) {
-      throw Error(json.error + " " + json.error_description)
+      throw Error(json.error + ' ' + json.error_description)
     }
 
     if (isRefresh && !json.refresh_token) {

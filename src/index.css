@@ -13,7 +13,10 @@ html {
 body,
 html,
 .container {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font:
+    14px 'Century Gothic',
+    Futura,
+    sans-serif;
   margin: 0;
   text-align: center;
   place-items: center;
@@ -57,7 +60,7 @@ body {
   flex-direction: column;
 }
 
-[data-style="route-out-container"] {
+[data-style='route-out-container'] {
   flex: 1 1 auto;
   height: 100%;
   /* overflow: hidden;
@@ -116,7 +119,7 @@ ul {
 
 .board-row:after {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
@@ -180,15 +183,15 @@ ul {
   white-space: pre !important;
 }
 
-[data-style="height100"] {
+[data-style='height100'] {
   height: 100%;
 }
 
-[data-style="flex1"] {
+[data-style='flex1'] {
   flex: 1;
 }
 
-[data-style="flex"] {
+[data-style='flex'] {
   display: flex;
   flex-direction: column;
 }

@@ -1,22 +1,22 @@
 .dropdown-toggle.btn.btn-select {
-    border: none;
-    width: 100%;
+  border: none;
+  width: 100%;
 }
 
 .dropdown-toggle.show.btn.btn-select {
-    border: none;
-    width: 100%;
+  border: none;
+  width: 100%;
 }
 
 .dropdown-toggle.show.btn.btn-select:active {
-    border: none;
-    width: 100%;
+  border: none;
+  width: 100%;
 }
 
 /* .dropdown {
     border: 1px solid #ced4da
 } */
 
-ul[class="dropdown-menu show"] {
-    width: 100%;
+ul[class='dropdown-menu show'] {
+  width: 100%;
 }

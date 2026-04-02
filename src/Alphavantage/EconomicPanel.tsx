@@ -1,15 +1,15 @@
-import "./chart.css"
+import './chart.css'
 
-import React from "react"
+import React from 'react'
 
-import { Outlet } from "react-router-dom"
+import { Outlet } from 'react-router-dom'
 
 const EconomicPanel = (props: any) => {
-    return (
-        <>
-            <Outlet />
-        </>
-    )
+  return (
+    <>
+      <Outlet />
+    </>
+  )
 }
 
 export default React.memo(EconomicPanel)

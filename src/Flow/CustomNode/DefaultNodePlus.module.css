@@ -1,32 +1,32 @@
 .nodeDisplayContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 .nodeDisplayLable {
-    font-family: monospace;
-    font-weight: bold;
-    color: white;
-    font-size: 12px;
+  font-family: monospace;
+  font-weight: bold;
+  color: white;
+  font-size: 12px;
 }
 
 .svg {
-    display: block;
-    overflow: visible;
+  display: block;
+  overflow: visible;
 }
 
 .DefaultNodePlusResizerLine {
-    border-style: dashed !important;
+  border-style: dashed !important;
 }
 
 .DefaultNodePlusResizerHandle {
-    width: 8px !important;
-    height: 8px !important;
-    border-radius: 100% !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 100% !important;
 }

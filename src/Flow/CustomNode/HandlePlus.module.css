@@ -1,49 +1,49 @@
 .showSource {
-    background: silver;
+  background: silver;
 }
 
 .hiddenSource {
-    opacity: 0;
-    pointer-events: none !important;
+  opacity: 0;
+  pointer-events: none !important;
 }
 
 .hiddenTarget {
-    opacity: 0;
-    pointer-events: none !important;
+  opacity: 0;
+  pointer-events: none !important;
 }
 
-div:hover>div.hiddenSource {
-    opacity: 1;
-    pointer-events: all !important;
-    background: silver
+div:hover > div.hiddenSource {
+  opacity: 1;
+  pointer-events: all !important;
+  background: silver;
 }
 
 [data-handlepos] {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
-[data-handlepos="right"] {
-    right: -5px;
-    top: 50%;
-    transform: translate(0, -50%);
+[data-handlepos='right'] {
+  right: -5px;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
-[data-handlepos="left"] {
-    top: 50%;
-    left: -5px;
-    transform: translate(0, -50%);
+[data-handlepos='left'] {
+  top: 50%;
+  left: -5px;
+  transform: translate(0, -50%);
 }
 
-[data-handlepos="top"] {
-    left: 50%;
-    top: -5px;
-    transform: translate(-50%, 0);
+[data-handlepos='top'] {
+  left: 50%;
+  top: -5px;
+  transform: translate(-50%, 0);
 }
 
-[data-handlepos="bottom"] {
-    top: auto;
-    left: 50%;
-    bottom: -5px;
-    transform: translate(-50%, 0);
+[data-handlepos='bottom'] {
+  top: auto;
+  left: 50%;
+  bottom: -5px;
+  transform: translate(-50%, 0);
 }

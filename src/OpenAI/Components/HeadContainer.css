@@ -1,60 +1,60 @@
 .playground-header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    border-bottom: 1px solid #ececf1;
-    border-top: 1px solid #ececf1;
-    margin-bottom: 10px;
-    padding-left: 100px !important;
-    justify-content: space-between;
-    position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-bottom: 1px solid #ececf1;
+  border-top: 1px solid #ececf1;
+  margin-bottom: 10px;
+  padding-left: 100px !important;
+  justify-content: space-between;
+  position: relative;
 }
 
 .setting-change-tip {
-    position: absolute !important;
-    width: 520px;
-    margin: auto;
-    top: 10px;
-    left: 0;
-    right: 0;
+  position: absolute !important;
+  width: 520px;
+  margin: auto;
+  top: 10px;
+  left: 0;
+  right: 0;
 }
 
 .playground-header-title {
-    flex: 1 1 100%;
-    font-weight: 700;
-    font-size: 18px;
-    display: flex;
-    text-align: left;
+  flex: 1 1 100%;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  text-align: left;
 }
 
 .playground-header-right {
-    flex: 1;
-    display: flex;
+  flex: 1;
+  display: flex;
 }
 
 .playground-header-select {
-    width: 300px;
-    margin-right: 20px;
+  width: 300px;
+  margin-right: 20px;
 }
 
 .playground-header-save {
-    width: 100px;
-    margin-right: 20px;
-    background-color: #ececf1;
-    color: #353740;
-    font-size: 18px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    border-radius: 5px;
+  width: 100px;
+  margin-right: 20px;
+  background-color: #ececf1;
+  color: #353740;
+  font-size: 18px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
 }
 
 .playground-header-save:hover {
-    background-color: #d8d8f1;
-    cursor: pointer;
+  background-color: #d8d8f1;
+  cursor: pointer;
 }
 
 .playground-header-save span {
-    pointer-events: none;
+  pointer-events: none;
 }

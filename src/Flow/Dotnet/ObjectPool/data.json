@@ -1,610 +1,586 @@
 {
-    "nodes": [
-        {
-            "width": 302,
-            "height": 54,
-            "id": "ObjectPool",
-            "position": {
-                "x": 1044.2474805985037,
-                "y": 1006.3349142691054
-            },
-            "type": "custom",
-            "data": {
-                "id": "ObjectPool",
-                "name": "ObjectPool<T>",
-                "methods": [
-                    "public abstract T Get()",
-                    "public abstract void Return(T obj)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1044.2474805985037,
-                "y": 1006.3349142691054
-            },
-            "dragging": false
-        },
-        {
-            "width": 699,
-            "height": 86,
-            "id": "ObjectPoolProvider",
-            "position": {
-                "x": 1043.0794948697705,
-                "y": 618.788699312945
-            },
-            "type": "custom",
-            "data": {
-                "id": "ObjectPoolProvider",
-                "name": "ObjectPoolProvider",
-                "methods": [
-                    "public ObjectPool<T> Create<T>() where T : class, new()",
-                    "public abstract ObjectPool<T> Create<T>(IPooledObjectPolicy<T> policy)",
-                    "public static ObjectPool<StringBuilder> CreateStringBuilderPool(this ObjectPoolProvider provider)",
-                    " public static ObjectPool<StringBuilder> CreateStringBuilderPool(this ObjectPoolProvider provider, int cap, int maxcap)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1043.0794948697705,
-                "y": 618.788699312945
-            },
-            "dragging": false
-        },
-        {
-            "width": 482,
-            "height": 80,
-            "id": "DefaultObjectPool",
-            "position": {
-                "x": 1379.9911661605843,
-                "y": 1024.5279425903393
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultObjectPool",
-                "name": "DefaultObjectPool<T> ",
-                "parent": "ObjectPool<T>",
-                "methods": [
-                    "public DefaultObjectPool(IPooledObjectPolicy<T> policy, int maximumRetained)"
-                ],
-                "properties": [
-                    "private protected readonly ConcurrentQueue<T> _items",
-                    "private protected T? _fastItem"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1379.9911661605843,
-                "y": 1024.5279425903393
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "DefaultObjectPoolProvider",
-            "position": {
-                "x": 1788.6854203752182,
-                "y": 642.1560474100946
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultObjectPoolProvider",
-                "name": "DefaultObjectPoolProvider",
-                "parent": "ObjectPoolProvider",
-                "properties": [
-                    "public int MaximumRetained { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1788.6854203752182,
-                "y": 642.1560474100946
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "IPooledObjectPolicy",
-            "position": {
-                "x": 1050.2253941767367,
-                "y": 822.2301097506466
-            },
-            "type": "custom",
-            "data": {
-                "id": "IPooledObjectPolicy",
-                "name": "IPooledObjectPolicy<T>",
-                "methods": [
-                    "T Create()",
-                    "bool Return(T obj)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1050.2253941767367,
-                "y": 822.2301097506466
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "PooledObjectPolicy",
-            "position": {
-                "x": 1483.1868284435652,
-                "y": 735.664330646003
-            },
-            "type": "custom",
-            "data": {
-                "id": "PooledObjectPolicy",
-                "name": "PooledObjectPolicy<T>",
-                "parent": "IPooledObjectPolicy<T>",
-                "methods": [
-                    "public abstract T Create()",
-                    "public abstract bool Return(T obj)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "positionAbsolute": {
-                "x": 1483.1868284435652,
-                "y": 735.664330646003
-            },
-            "selected": false,
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "DefaultPooledObjectPolicy",
-            "position": {
-                "x": 1968.075975742986,
-                "y": 729.8640610099178
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultPooledObjectPolicy",
-                "name": "DefaultPooledObjectPolicy<T>",
-                "parent": "PooledObjectPolicy<T>",
-                "methods": [
-                    "public override T Create()",
-                    "public override bool Return(T obj)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1968.075975742986,
-                "y": 729.8640610099178
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 64,
-            "id": "DisposableObjectPool",
-            "position": {
-                "x": 1921.8575917319254,
-                "y": 1032.6772613067694
-            },
-            "type": "custom",
-            "data": {
-                "id": "DisposableObjectPool",
-                "name": "DisposableObjectPool<T>",
-                "parent": "DefaultObjectPool<T>, IDisposable",
-                "properties": [
-                    "private volatile bool _isDisposed"
-                ],
-                "methods": [
-                    "public void Dispose()"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1921.8575917319254,
-                "y": 1032.6772613067694
-            },
-            "dragging": false
-        },
-        {
-            "width": 364,
-            "height": 96,
-            "id": "StringBuilderPooledObjectPolicy",
-            "position": {
-                "x": 1897.9892797229418,
-                "y": 825.1705063454738
-            },
-            "type": "custom",
-            "data": {
-                "id": "StringBuilderPooledObjectPolicy",
-                "name": "StringBuilderPooledObjectPolicy",
-                "parent": "PooledObjectPolicy<StringBuilder>",
-                "properties": [
-                    "public int InitialCapacity { get; set; } = 100",
-                    "public int MaximumRetainedCapacity { get; set; } = 4 * 1024"
-                ],
-                "methods": [
-                    "public override StringBuilder Create()",
-                    "public override bool Return(StringBuilder obj)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1897.9892797229418,
-                "y": 825.1705063454738
-            },
-            "dragging": false
-        },
-        {
-            "width": 446,
-            "height": 96,
-            "id": "DependencyInjectionPooledObjectPolicy",
-            "position": {
-                "x": 1400.7360458803948,
-                "y": 823.13222490965
-            },
-            "type": "custom",
-            "data": {
-                "id": "DependencyInjectionPooledObjectPolicy",
-                "name": "DependencyInjectionPooledObjectPolicy<T,TImpl>",
-                "parent": "IPooledObjectPolicy<T>",
-                "properties": [
-                    "private readonly IServiceProvider _provider",
-                    "private readonly ObjectFactory _factory",
-                    "private readonly bool _isResettable"
-                ],
-                "methods": [
-                    "public DependencyInjectionPooledObjectPolicy(IServiceProvider provider)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1400.7360458803948,
-                "y": 823.13222490965
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IResettable",
-            "position": {
-                "x": 1746.3273922554233,
-                "y": 953.2138410226202
-            },
-            "type": "custom",
-            "data": {
-                "id": "IResettable",
-                "name": "IResettable",
-                "methods": [
-                    "bool TryReset()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1746.3273922554233,
-                "y": 953.2138410226202
-            },
-            "dragging": false,
-            "style": {}
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ObjectPoolProvider",
-            "sourceHandle": "ObjectPoolProviderbottomsource",
-            "target": "ObjectPool",
-            "targetHandle": "ObjectPooltoptarget",
-            "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-ObjectPoolObjectPooltoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultObjectPool",
-            "sourceHandle": "DefaultObjectPoolleftsource",
-            "target": "ObjectPool",
-            "targetHandle": "ObjectPoolrighttarget",
-            "id": "reactflow__edge-DefaultObjectPoolDefaultObjectPoolleftsource-ObjectPoolObjectPoolrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultObjectPoolProvider",
-            "sourceHandle": "DefaultObjectPoolProviderleftsource",
-            "target": "ObjectPoolProvider",
-            "targetHandle": "ObjectPoolProviderrighttarget",
-            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderleftsource-ObjectPoolProviderObjectPoolProviderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultObjectPoolProvider",
-            "sourceHandle": "DefaultObjectPoolProviderbottomsource",
-            "target": "DefaultObjectPool",
-            "targetHandle": "DefaultObjectPooltoptarget",
-            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DefaultObjectPoolDefaultObjectPooltoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ObjectPoolProvider",
-            "sourceHandle": "ObjectPoolProviderbottomsource",
-            "target": "IPooledObjectPolicy",
-            "targetHandle": "IPooledObjectPolicytoptarget",
-            "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-IPooledObjectPolicyIPooledObjectPolicytoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "PooledObjectPolicy",
-            "sourceHandle": "PooledObjectPolicyleftsource",
-            "target": "IPooledObjectPolicy",
-            "targetHandle": "IPooledObjectPolicyrighttarget",
-            "id": "reactflow__edge-PooledObjectPolicyPooledObjectPolicyleftsource-IPooledObjectPolicyIPooledObjectPolicyrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultPooledObjectPolicy",
-            "sourceHandle": "DefaultPooledObjectPolicyleftsource",
-            "target": "PooledObjectPolicy",
-            "targetHandle": "PooledObjectPolicyrighttarget",
-            "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicyrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DisposableObjectPool",
-            "sourceHandle": "DisposableObjectPoolleftsource",
-            "target": "DefaultObjectPool",
-            "targetHandle": "DefaultObjectPoolrighttarget",
-            "id": "reactflow__edge-DisposableObjectPoolDisposableObjectPoolleftsource-DefaultObjectPoolDefaultObjectPoolrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultObjectPoolProvider",
-            "sourceHandle": "DefaultObjectPoolProviderbottomsource",
-            "target": "DisposableObjectPool",
-            "targetHandle": "DisposableObjectPooltoptarget",
-            "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DisposableObjectPoolDisposableObjectPooltoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "StringBuilderPooledObjectPolicy",
-            "sourceHandle": "StringBuilderPooledObjectPolicyleftsource",
-            "target": "PooledObjectPolicy",
-            "targetHandle": "PooledObjectPolicyrighttarget",
-            "id": "reactflow__edge-StringBuilderPooledObjectPolicyStringBuilderPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicyrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DependencyInjectionPooledObjectPolicy",
-            "sourceHandle": "DependencyInjectionPooledObjectPolicyleftsource",
-            "target": "IPooledObjectPolicy",
-            "targetHandle": "IPooledObjectPolicyrighttarget",
-            "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicyleftsource-IPooledObjectPolicyIPooledObjectPolicyrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DependencyInjectionPooledObjectPolicy",
-            "sourceHandle": "DependencyInjectionPooledObjectPolicybottomsource",
-            "target": "IResettable",
-            "targetHandle": "IResettablelefttarget",
-            "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicybottomsource-IResettableIResettablelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultPooledObjectPolicy",
-            "sourceHandle": "DefaultPooledObjectPolicybottomsource",
-            "target": "IResettable",
-            "targetHandle": "IResettablerighttarget",
-            "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicybottomsource-IResettableIResettablerighttarget"
-        }
-    ],
-    "viewport": {
-        "x": -1251.077926052405,
-        "y": -642.0636902161236,
-        "zoom": 1.2743609195387193
+  "nodes": [
+    {
+      "width": 302,
+      "height": 54,
+      "id": "ObjectPool",
+      "position": {
+        "x": 1044.2474805985037,
+        "y": 1006.3349142691054
+      },
+      "type": "custom",
+      "data": {
+        "id": "ObjectPool",
+        "name": "ObjectPool<T>",
+        "methods": ["public abstract T Get()", "public abstract void Return(T obj)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1044.2474805985037,
+        "y": 1006.3349142691054
+      },
+      "dragging": false
+    },
+    {
+      "width": 699,
+      "height": 86,
+      "id": "ObjectPoolProvider",
+      "position": {
+        "x": 1043.0794948697705,
+        "y": 618.788699312945
+      },
+      "type": "custom",
+      "data": {
+        "id": "ObjectPoolProvider",
+        "name": "ObjectPoolProvider",
+        "methods": [
+          "public ObjectPool<T> Create<T>() where T : class, new()",
+          "public abstract ObjectPool<T> Create<T>(IPooledObjectPolicy<T> policy)",
+          "public static ObjectPool<StringBuilder> CreateStringBuilderPool(this ObjectPoolProvider provider)",
+          " public static ObjectPool<StringBuilder> CreateStringBuilderPool(this ObjectPoolProvider provider, int cap, int maxcap)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1043.0794948697705,
+        "y": 618.788699312945
+      },
+      "dragging": false
+    },
+    {
+      "width": 482,
+      "height": 80,
+      "id": "DefaultObjectPool",
+      "position": {
+        "x": 1379.9911661605843,
+        "y": 1024.5279425903393
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultObjectPool",
+        "name": "DefaultObjectPool<T> ",
+        "parent": "ObjectPool<T>",
+        "methods": ["public DefaultObjectPool(IPooledObjectPolicy<T> policy, int maximumRetained)"],
+        "properties": [
+          "private protected readonly ConcurrentQueue<T> _items",
+          "private protected T? _fastItem"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1379.9911661605843,
+        "y": 1024.5279425903393
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "DefaultObjectPoolProvider",
+      "position": {
+        "x": 1788.6854203752182,
+        "y": 642.1560474100946
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultObjectPoolProvider",
+        "name": "DefaultObjectPoolProvider",
+        "parent": "ObjectPoolProvider",
+        "properties": ["public int MaximumRetained { get; set; }"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1788.6854203752182,
+        "y": 642.1560474100946
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "IPooledObjectPolicy",
+      "position": {
+        "x": 1050.2253941767367,
+        "y": 822.2301097506466
+      },
+      "type": "custom",
+      "data": {
+        "id": "IPooledObjectPolicy",
+        "name": "IPooledObjectPolicy<T>",
+        "methods": ["T Create()", "bool Return(T obj)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1050.2253941767367,
+        "y": 822.2301097506466
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "PooledObjectPolicy",
+      "position": {
+        "x": 1483.1868284435652,
+        "y": 735.664330646003
+      },
+      "type": "custom",
+      "data": {
+        "id": "PooledObjectPolicy",
+        "name": "PooledObjectPolicy<T>",
+        "parent": "IPooledObjectPolicy<T>",
+        "methods": ["public abstract T Create()", "public abstract bool Return(T obj)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "positionAbsolute": {
+        "x": 1483.1868284435652,
+        "y": 735.664330646003
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "DefaultPooledObjectPolicy",
+      "position": {
+        "x": 1968.075975742986,
+        "y": 729.8640610099178
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultPooledObjectPolicy",
+        "name": "DefaultPooledObjectPolicy<T>",
+        "parent": "PooledObjectPolicy<T>",
+        "methods": ["public override T Create()", "public override bool Return(T obj)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1968.075975742986,
+        "y": 729.8640610099178
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 64,
+      "id": "DisposableObjectPool",
+      "position": {
+        "x": 1921.8575917319254,
+        "y": 1032.6772613067694
+      },
+      "type": "custom",
+      "data": {
+        "id": "DisposableObjectPool",
+        "name": "DisposableObjectPool<T>",
+        "parent": "DefaultObjectPool<T>, IDisposable",
+        "properties": ["private volatile bool _isDisposed"],
+        "methods": ["public void Dispose()"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1921.8575917319254,
+        "y": 1032.6772613067694
+      },
+      "dragging": false
+    },
+    {
+      "width": 364,
+      "height": 96,
+      "id": "StringBuilderPooledObjectPolicy",
+      "position": {
+        "x": 1897.9892797229418,
+        "y": 825.1705063454738
+      },
+      "type": "custom",
+      "data": {
+        "id": "StringBuilderPooledObjectPolicy",
+        "name": "StringBuilderPooledObjectPolicy",
+        "parent": "PooledObjectPolicy<StringBuilder>",
+        "properties": [
+          "public int InitialCapacity { get; set; } = 100",
+          "public int MaximumRetainedCapacity { get; set; } = 4 * 1024"
+        ],
+        "methods": [
+          "public override StringBuilder Create()",
+          "public override bool Return(StringBuilder obj)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1897.9892797229418,
+        "y": 825.1705063454738
+      },
+      "dragging": false
+    },
+    {
+      "width": 446,
+      "height": 96,
+      "id": "DependencyInjectionPooledObjectPolicy",
+      "position": {
+        "x": 1400.7360458803948,
+        "y": 823.13222490965
+      },
+      "type": "custom",
+      "data": {
+        "id": "DependencyInjectionPooledObjectPolicy",
+        "name": "DependencyInjectionPooledObjectPolicy<T,TImpl>",
+        "parent": "IPooledObjectPolicy<T>",
+        "properties": [
+          "private readonly IServiceProvider _provider",
+          "private readonly ObjectFactory _factory",
+          "private readonly bool _isResettable"
+        ],
+        "methods": ["public DependencyInjectionPooledObjectPolicy(IServiceProvider provider)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1400.7360458803948,
+        "y": 823.13222490965
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IResettable",
+      "position": {
+        "x": 1746.3273922554233,
+        "y": 953.2138410226202
+      },
+      "type": "custom",
+      "data": {
+        "id": "IResettable",
+        "name": "IResettable",
+        "methods": ["bool TryReset()"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1746.3273922554233,
+        "y": 953.2138410226202
+      },
+      "dragging": false,
+      "style": {}
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ObjectPoolProvider",
+      "sourceHandle": "ObjectPoolProviderbottomsource",
+      "target": "ObjectPool",
+      "targetHandle": "ObjectPooltoptarget",
+      "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-ObjectPoolObjectPooltoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultObjectPool",
+      "sourceHandle": "DefaultObjectPoolleftsource",
+      "target": "ObjectPool",
+      "targetHandle": "ObjectPoolrighttarget",
+      "id": "reactflow__edge-DefaultObjectPoolDefaultObjectPoolleftsource-ObjectPoolObjectPoolrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultObjectPoolProvider",
+      "sourceHandle": "DefaultObjectPoolProviderleftsource",
+      "target": "ObjectPoolProvider",
+      "targetHandle": "ObjectPoolProviderrighttarget",
+      "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderleftsource-ObjectPoolProviderObjectPoolProviderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultObjectPoolProvider",
+      "sourceHandle": "DefaultObjectPoolProviderbottomsource",
+      "target": "DefaultObjectPool",
+      "targetHandle": "DefaultObjectPooltoptarget",
+      "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DefaultObjectPoolDefaultObjectPooltoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ObjectPoolProvider",
+      "sourceHandle": "ObjectPoolProviderbottomsource",
+      "target": "IPooledObjectPolicy",
+      "targetHandle": "IPooledObjectPolicytoptarget",
+      "id": "reactflow__edge-ObjectPoolProviderObjectPoolProviderbottomsource-IPooledObjectPolicyIPooledObjectPolicytoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "PooledObjectPolicy",
+      "sourceHandle": "PooledObjectPolicyleftsource",
+      "target": "IPooledObjectPolicy",
+      "targetHandle": "IPooledObjectPolicyrighttarget",
+      "id": "reactflow__edge-PooledObjectPolicyPooledObjectPolicyleftsource-IPooledObjectPolicyIPooledObjectPolicyrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultPooledObjectPolicy",
+      "sourceHandle": "DefaultPooledObjectPolicyleftsource",
+      "target": "PooledObjectPolicy",
+      "targetHandle": "PooledObjectPolicyrighttarget",
+      "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicyrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DisposableObjectPool",
+      "sourceHandle": "DisposableObjectPoolleftsource",
+      "target": "DefaultObjectPool",
+      "targetHandle": "DefaultObjectPoolrighttarget",
+      "id": "reactflow__edge-DisposableObjectPoolDisposableObjectPoolleftsource-DefaultObjectPoolDefaultObjectPoolrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultObjectPoolProvider",
+      "sourceHandle": "DefaultObjectPoolProviderbottomsource",
+      "target": "DisposableObjectPool",
+      "targetHandle": "DisposableObjectPooltoptarget",
+      "id": "reactflow__edge-DefaultObjectPoolProviderDefaultObjectPoolProviderbottomsource-DisposableObjectPoolDisposableObjectPooltoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "StringBuilderPooledObjectPolicy",
+      "sourceHandle": "StringBuilderPooledObjectPolicyleftsource",
+      "target": "PooledObjectPolicy",
+      "targetHandle": "PooledObjectPolicyrighttarget",
+      "id": "reactflow__edge-StringBuilderPooledObjectPolicyStringBuilderPooledObjectPolicyleftsource-PooledObjectPolicyPooledObjectPolicyrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DependencyInjectionPooledObjectPolicy",
+      "sourceHandle": "DependencyInjectionPooledObjectPolicyleftsource",
+      "target": "IPooledObjectPolicy",
+      "targetHandle": "IPooledObjectPolicyrighttarget",
+      "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicyleftsource-IPooledObjectPolicyIPooledObjectPolicyrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DependencyInjectionPooledObjectPolicy",
+      "sourceHandle": "DependencyInjectionPooledObjectPolicybottomsource",
+      "target": "IResettable",
+      "targetHandle": "IResettablelefttarget",
+      "id": "reactflow__edge-DependencyInjectionPooledObjectPolicyDependencyInjectionPooledObjectPolicybottomsource-IResettableIResettablelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultPooledObjectPolicy",
+      "sourceHandle": "DefaultPooledObjectPolicybottomsource",
+      "target": "IResettable",
+      "targetHandle": "IResettablerighttarget",
+      "id": "reactflow__edge-DefaultPooledObjectPolicyDefaultPooledObjectPolicybottomsource-IResettableIResettablerighttarget"
+    }
+  ],
+  "viewport": {
+    "x": -1251.077926052405,
+    "y": -642.0636902161236,
+    "zoom": 1.2743609195387193
+  }
 }

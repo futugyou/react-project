@@ -1,54 +1,54 @@
 .input-container-all {
-    box-align: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    border-color: #c5c5d2;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: none;
-    cursor: default;
-    display: flex;
-    flex-wrap: wrap;
-    box-pack: justify;
-    justify-content: space-between;
-    min-height: 38px;
-    position: relative;
-    transition: all 100ms ease 0s;
-    box-sizing: border-box;
-    outline: 0px !important;
+  box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-color: #c5c5d2;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: none;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  box-pack: justify;
+  justify-content: space-between;
+  min-height: 38px;
+  position: relative;
+  transition: all 100ms ease 0s;
+  box-sizing: border-box;
+  outline: 0px !important;
 }
 
 .input-container-with-existed-items {
-    box-align: center;
-    align-items: center;
-    display: flex;
-    flex: 1 1 0%;
-    flex-wrap: wrap;
-    padding: 2px 8px;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
+  box-align: center;
+  align-items: center;
+  display: flex;
+  flex: 1 1 0%;
+  flex-wrap: wrap;
+  padding: 2px 8px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .input-container {
-    margin: 2px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    visibility: visible;
-    color: #353740;
-    box-sizing: border-box;
-    display: inline-block;
+  margin: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  visibility: visible;
+  color: #353740;
+  box-sizing: border-box;
+  display: inline-block;
 }
 
 .input-item {
-    box-sizing: content-box;
-    width: 2px;
-    background: 0px center;
-    border: 0px;
-    font-size: inherit;
-    opacity: 1;
-    outline: 0px;
-    padding: 0px;
-    color: inherit;
+  box-sizing: content-box;
+  width: 2px;
+  background: 0px center;
+  border: 0px;
+  font-size: inherit;
+  opacity: 1;
+  outline: 0px;
+  padding: 0px;
+  color: inherit;
 }

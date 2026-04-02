@@ -8,5 +8,5 @@ export const authService = new AuthService({
   tokenEndpoint: import.meta.env.REACT_APP_TOKEN,
   redirectUri: import.meta.env.REACT_APP_REDIRECT_URI || window.location.origin,
   autoRefresh: true,
-  scopes: ['openid', 'profile']
-});
+  scopes: ['openid', 'profile'],
+})

@@ -1,787 +1,761 @@
 {
-    "nodes": [
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IStartupValidator",
-            "position": {
-                "x": 601.04736882889,
-                "y": 127.44185761552393
-            },
-            "type": "custom",
-            "data": {
-                "name": "IStartupValidator",
-                "parent": "",
-                "methods": [
-                    "void Validate()"
-                ],
-                "id": "IStartupValidator"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 601.04736882889,
-                "y": 127.44185761552393
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "ConfigurationChangeTokenSource",
-            "position": {
-                "x": -450.56109992553684,
-                "y": 400.4494487721491
-            },
-            "type": "custom",
-            "data": {
-                "name": "ConfigurationChangeTokenSource<TOptions>",
-                "parent": "IOptionsChangeTokenSource<TOptions>",
-                "properties": [
-                    " private readonly IConfiguration _config"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "id": "ConfigurationChangeTokenSource"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -450.56109992553684,
-                "y": 400.4494487721491
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 64,
-            "id": "IOptionsChangeTokenSource",
-            "position": {
-                "x": -450.6739071515325,
-                "y": 294.50635825448643
-            },
-            "type": "custom",
-            "data": {
-                "name": "IOptionsChangeTokenSource<out TOptions>",
-                "properties": [
-                    "string? Name { get; }"
-                ],
-                "methods": [
-                    "IChangeToken GetChangeToken()"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ],
-                "id": "IOptionsChangeTokenSource"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -450.6739071515325,
-                "y": 294.50635825448643
-            },
-            "dragging": false
-        },
-        {
-            "width": 365,
-            "height": 80,
-            "id": "IOptionsMonitor",
-            "position": {
-                "x": -482.31043912547455,
-                "y": 167.69611304152795
-            },
-            "type": "custom",
-            "data": {
-                "name": "IOptionsMonitor<out TOptions>",
-                "properties": [
-                    "TOptions CurrentValue { get; }"
-                ],
-                "methods": [
-                    "TOptions Get(string? name)",
-                    "IDisposable? OnChange(Action<TOptions, string?> listener)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "id": "IOptionsMonitor"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -482.31043912547455,
-                "y": 167.69611304152795
-            },
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 861,
-            "height": 50,
-            "id": "OptionsMonitor",
-            "position": {
-                "x": -42.00399739627494,
-                "y": 214.21546384322556
-            },
-            "type": "custom",
-            "data": {
-                "name": "OptionsMonitor<TOptions>",
-                "parent": "IOptionsMonitor<TOptions>,IDisposable",
-                "properties": [],
-                "methods": [
-                    "public OptionsMonitor(IOptionsFactory<TOptions>, IEnumerable<IOptionsChangeTokenSource<TOptions>>, IOptionsMonitorCache<TOptions>)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -42.00399739627494,
-                "y": 214.21546384322556
-            },
-            "dragging": false,
-            "style": {
-                "width": 861,
-                "height": 50
-            },
-            "resizing": false
-        },
-        {
-            "width": 329,
-            "height": 54,
-            "id": "OptionsManager",
-            "position": {
-                "x": -470.99902099554055,
-                "y": -128.95283751188862
-            },
-            "type": "custom",
-            "data": {
-                "name": "OptionsManager<TOptions>",
-                "parent": "IOptions<TOptions>, IOptionsSnapshot<TOptions>",
-                "properties": [
-                    "private readonly IOptionsFactory<TOptions> _factory",
-                    "private readonly OptionsCache<TOptions> _cache"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "id": "OptionsManager"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -470.99902099554055,
-                "y": -128.95283751188862
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IOptions",
-            "position": {
-                "x": -456.87024590372494,
-                "y": -213.5995813541595
-            },
-            "type": "custom",
-            "data": {
-                "name": "IOptions<out TOptions>",
-                "properties": [
-                    "TOptions Value { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "id": "IOptions"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -456.87024590372494,
-                "y": -213.5995813541595
-            },
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IOptionsFactory",
-            "position": {
-                "x": 32.95340910746478,
-                "y": -214.2434450733476
-            },
-            "type": "custom",
-            "data": {
-                "name": "IOptionsFactory<TOptions>",
-                "methods": [
-                    "TOptions Create(string name)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "id": "IOptionsFactory"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 32.95340910746478,
-                "y": -214.2434450733476
-            },
-            "dragging": false
-        },
-        {
-            "width": 423,
-            "height": 70,
-            "id": "OptionsFactory",
-            "position": {
-                "x": -27.007988452535756,
-                "y": -96.6028387396497
-            },
-            "type": "custom",
-            "data": {
-                "name": "OptionsFactory<TOptions>",
-                "parent": "IOptionsFactory<TOptions>",
-                "properties": [
-                    "private readonly IConfigureOptions<TOptions>[] _setups",
-                    "private readonly IPostConfigureOptions<TOptions>[] _postConfigures",
-                    "private readonly IValidateOptions<TOptions>[] _validations"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "id": "OptionsFactory"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -27.007988452535756,
-                "y": -96.6028387396497
-            },
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 406,
-            "height": 86,
-            "id": "IOptionsMonitorCache",
-            "position": {
-                "x": 71.94028740092278,
-                "y": 91.9266161596079
-            },
-            "type": "custom",
-            "data": {
-                "name": "IOptionsMonitorCache<TOptions>",
-                "methods": [
-                    "TOptions GetOrAdd(string? name, Func<TOptions> createOptions)",
-                    "bool TryAdd(string? name, TOptions options)",
-                    "bool TryRemove(string? name)",
-                    "void Clear()"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IOptionsMonitorCache"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 71.94028740092278,
-                "y": 91.9266161596079
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IConfigureOptions",
-            "position": {
-                "x": 592.7033308795128,
-                "y": -236.8208619851899
-            },
-            "type": "custom",
-            "data": {
-                "name": "IConfigureOptions<in TOptions>",
-                "methods": [
-                    "void Configure(TOptions options)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IConfigureOptions"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 592.7033308795128,
-                "y": -236.8208619851899
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IConfigureNamedOptions",
-            "position": {
-                "x": 593.058932874372,
-                "y": -155.99739797358123
-            },
-            "type": "custom",
-            "data": {
-                "name": "IConfigureNamedOptions<in TOptions>",
-                "parent": "IConfigureOptions<TOptions>",
-                "methods": [
-                    "void Configure(string? name, TOptions options)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IConfigureNamedOptions"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 593.058932874372,
-                "y": -155.99739797358123
-            },
-            "dragging": false
-        },
-        {
-            "width": 319,
-            "height": 52,
-            "id": "IPostConfigureOptions",
-            "position": {
-                "x": 591.4516398840051,
-                "y": -83.99257371565373
-            },
-            "type": "custom",
-            "data": {
-                "name": "IPostConfigureOptions<in TOptions>",
-                "methods": [
-                    "void PostConfigure(string? name, TOptions options)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IPostConfigureOptions"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 591.4516398840051,
-                "y": -83.99257371565373
-            },
-            "dragging": false
-        },
-        {
-            "width": 385,
-            "height": 52,
-            "id": "IValidateOptions",
-            "position": {
-                "x": 588.6554408491227,
-                "y": 3.543898499554203
-            },
-            "type": "custom",
-            "data": {
-                "name": "IValidateOptions<TOptions>",
-                "methods": [
-                    "ValidateOptionsResult Validate(string? name, TOptions options)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IValidateOptions"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 588.6554408491227,
-                "y": 3.543898499554203
-            },
-            "dragging": false
-        },
-        {
-            "width": 753,
-            "height": 144,
-            "id": "OptionsBuilder",
-            "position": {
-                "x": 200.9908960633203,
-                "y": 311.90347847450676
-            },
-            "type": "custom",
-            "data": {
-                "name": "OptionsBuilder<TOptions>",
-                "properties": [
-                    "public string Name { get; }",
-                    "public IServiceCollection Services { get; }"
-                ],
-                "methods": [
-                    "public virtual OptionsBuilder<TOptions> Configure(Action<TOptions> configureOptions)",
-                    "public virtual OptionsBuilder<TOptions> PostConfigure(Action<TOptions> configureOptions)",
-                    "public virtual OptionsBuilder<TOptions> Validate(Func<TOptions, bool> validation)",
-                    " public static OptionsBuilder<TOptions> ValidateOnStart<TOptions>(this OptionsBuilder<TOptions> optionsBuilder)",
-                    " public static OptionsBuilder<TOptions> Bind<TOptions>(this OptionsBuilder<TOptions> optionsBuilder, IConfiguration config)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ],
-                "id": "OptionsBuilder"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 200.9908960633203,
-                "y": 311.90347847450676
-            },
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 427,
-            "height": 96,
-            "id": "UnnamedOptionsManager",
-            "position": {
-                "x": -500.26696847032406,
-                "y": 41.36800884166344
-            },
-            "type": "custom",
-            "data": {
-                "id": "UnnamedOptionsManager",
-                "name": "UnnamedOptionsManager<TOptions>",
-                "parent": "IOptions<TOptions>",
-                "methods": [
-                    "public UnnamedOptionsManager(IOptionsFactory<TOptions> factory)"
-                ],
-                "properties": [
-                    "private readonly IOptionsFactory<TOptions> _factory",
-                    "private volatile object? _syncObj",
-                    "private volatile TOptions? _value"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -500.26696847032406,
-                "y": 41.36800884166344
-            },
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IOptionsSnapshot",
-            "position": {
-                "x": -438.00207052132004,
-                "y": -48.88248890879376
-            },
-            "type": "custom",
-            "data": {
-                "id": "IOptionsSnapshot",
-                "name": "IOptionsSnapshot<out TOptions>",
-                "methods": [
-                    "TOptions Get(string? name)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -438.00207052132004,
-                "y": -48.88248890879376
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsFactory",
-            "sourceHandle": "OptionsFactorytopsource",
-            "target": "IOptionsFactory",
-            "targetHandle": "IOptionsFactorybottomtarget",
-            "id": "reactflow__edge-OptionsFactoryOptionsFactorytopsource-IOptionsFactoryIOptionsFactorybottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsFactory",
-            "sourceHandle": "OptionsFactoryrightsource",
-            "target": "IConfigureOptions",
-            "targetHandle": "IConfigureOptionslefttarget",
-            "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IConfigureOptionsIConfigureOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsFactory",
-            "sourceHandle": "OptionsFactoryrightsource",
-            "target": "IConfigureNamedOptions",
-            "targetHandle": "IConfigureNamedOptionslefttarget",
-            "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IConfigureNamedOptionsIConfigureNamedOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsFactory",
-            "sourceHandle": "OptionsFactoryrightsource",
-            "target": "IPostConfigureOptions",
-            "targetHandle": "IPostConfigureOptionslefttarget",
-            "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IPostConfigureOptionsIPostConfigureOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsFactory",
-            "sourceHandle": "OptionsFactoryrightsource",
-            "target": "IValidateOptions",
-            "targetHandle": "IValidateOptionslefttarget",
-            "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IValidateOptionsIValidateOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsManager",
-            "sourceHandle": "OptionsManagertopsource",
-            "target": "IOptions",
-            "targetHandle": "IOptionsbottomtarget",
-            "id": "reactflow__edge-OptionsManagerOptionsManagertopsource-IOptionsIOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ConfigurationChangeTokenSource",
-            "sourceHandle": "ConfigurationChangeTokenSourcetopsource",
-            "target": "IOptionsChangeTokenSource",
-            "targetHandle": "IOptionsChangeTokenSourcebottomtarget",
-            "id": "reactflow__edge-ConfigurationChangeTokenSourceConfigurationChangeTokenSourcetopsource-IOptionsChangeTokenSourceIOptionsChangeTokenSourcebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IOptionsMonitor",
-            "sourceHandle": "IOptionsMonitorbottomsource",
-            "target": "IOptionsChangeTokenSource",
-            "targetHandle": "IOptionsChangeTokenSourcetoptarget",
-            "id": "reactflow__edge-IOptionsMonitorIOptionsMonitorbottomsource-IOptionsChangeTokenSourceIOptionsChangeTokenSourcetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IOptionsMonitor",
-            "sourceHandle": "IOptionsMonitorrightsource",
-            "target": "IOptionsMonitorCache",
-            "targetHandle": "IOptionsMonitorCachelefttarget",
-            "id": "reactflow__edge-IOptionsMonitorIOptionsMonitorrightsource-IOptionsMonitorCacheIOptionsMonitorCachelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IOptionsMonitor",
-            "sourceHandle": "IOptionsMonitorrightsource",
-            "target": "IOptionsFactory",
-            "targetHandle": "IOptionsFactorylefttarget",
-            "id": "reactflow__edge-IOptionsMonitorIOptionsMonitorrightsource-IOptionsFactoryIOptionsFactorylefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsManager",
-            "sourceHandle": "OptionsManagerrightsource",
-            "target": "IOptionsFactory",
-            "targetHandle": "IOptionsFactorylefttarget",
-            "id": "reactflow__edge-OptionsManagerOptionsManagerrightsource-IOptionsFactoryIOptionsFactorylefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsManager",
-            "sourceHandle": "OptionsManagerrightsource",
-            "target": "IOptionsMonitorCache",
-            "targetHandle": "IOptionsMonitorCachelefttarget",
-            "id": "reactflow__edge-OptionsManagerOptionsManagerrightsource-IOptionsMonitorCacheIOptionsMonitorCachelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "UnnamedOptionsManager",
-            "sourceHandle": "UnnamedOptionsManagertopsource",
-            "target": "IOptionsSnapshot",
-            "targetHandle": "IOptionsSnapshotbottomtarget",
-            "id": "reactflow__edge-UnnamedOptionsManagerUnnamedOptionsManagertopsource-IOptionsSnapshotIOptionsSnapshotbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OptionsMonitor",
-            "sourceHandle": "OptionsMonitorleftsource",
-            "target": "IOptionsMonitor",
-            "targetHandle": "IOptionsMonitorrighttarget",
-            "id": "reactflow__edge-OptionsMonitorOptionsMonitorleftsource-IOptionsMonitorIOptionsMonitorrighttarget"
-        }
-    ],
-    "viewport": {
-        "x": 608.89878026906,
-        "y": 339.7911875084836,
-        "zoom": 1.0608674878335966
+  "nodes": [
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IStartupValidator",
+      "position": {
+        "x": 601.04736882889,
+        "y": 127.44185761552393
+      },
+      "type": "custom",
+      "data": {
+        "name": "IStartupValidator",
+        "parent": "",
+        "methods": ["void Validate()"],
+        "id": "IStartupValidator"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 601.04736882889,
+        "y": 127.44185761552393
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "ConfigurationChangeTokenSource",
+      "position": {
+        "x": -450.56109992553684,
+        "y": 400.4494487721491
+      },
+      "type": "custom",
+      "data": {
+        "name": "ConfigurationChangeTokenSource<TOptions>",
+        "parent": "IOptionsChangeTokenSource<TOptions>",
+        "properties": [" private readonly IConfiguration _config"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "id": "ConfigurationChangeTokenSource"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -450.56109992553684,
+        "y": 400.4494487721491
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 64,
+      "id": "IOptionsChangeTokenSource",
+      "position": {
+        "x": -450.6739071515325,
+        "y": 294.50635825448643
+      },
+      "type": "custom",
+      "data": {
+        "name": "IOptionsChangeTokenSource<out TOptions>",
+        "properties": ["string? Name { get; }"],
+        "methods": ["IChangeToken GetChangeToken()"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ],
+        "id": "IOptionsChangeTokenSource"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -450.6739071515325,
+        "y": 294.50635825448643
+      },
+      "dragging": false
+    },
+    {
+      "width": 365,
+      "height": 80,
+      "id": "IOptionsMonitor",
+      "position": {
+        "x": -482.31043912547455,
+        "y": 167.69611304152795
+      },
+      "type": "custom",
+      "data": {
+        "name": "IOptionsMonitor<out TOptions>",
+        "properties": ["TOptions CurrentValue { get; }"],
+        "methods": [
+          "TOptions Get(string? name)",
+          "IDisposable? OnChange(Action<TOptions, string?> listener)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "id": "IOptionsMonitor"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -482.31043912547455,
+        "y": 167.69611304152795
+      },
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 861,
+      "height": 50,
+      "id": "OptionsMonitor",
+      "position": {
+        "x": -42.00399739627494,
+        "y": 214.21546384322556
+      },
+      "type": "custom",
+      "data": {
+        "name": "OptionsMonitor<TOptions>",
+        "parent": "IOptionsMonitor<TOptions>,IDisposable",
+        "properties": [],
+        "methods": [
+          "public OptionsMonitor(IOptionsFactory<TOptions>, IEnumerable<IOptionsChangeTokenSource<TOptions>>, IOptionsMonitorCache<TOptions>)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -42.00399739627494,
+        "y": 214.21546384322556
+      },
+      "dragging": false,
+      "style": {
+        "width": 861,
+        "height": 50
+      },
+      "resizing": false
+    },
+    {
+      "width": 329,
+      "height": 54,
+      "id": "OptionsManager",
+      "position": {
+        "x": -470.99902099554055,
+        "y": -128.95283751188862
+      },
+      "type": "custom",
+      "data": {
+        "name": "OptionsManager<TOptions>",
+        "parent": "IOptions<TOptions>, IOptionsSnapshot<TOptions>",
+        "properties": [
+          "private readonly IOptionsFactory<TOptions> _factory",
+          "private readonly OptionsCache<TOptions> _cache"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "id": "OptionsManager"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -470.99902099554055,
+        "y": -128.95283751188862
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IOptions",
+      "position": {
+        "x": -456.87024590372494,
+        "y": -213.5995813541595
+      },
+      "type": "custom",
+      "data": {
+        "name": "IOptions<out TOptions>",
+        "properties": ["TOptions Value { get; }"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "id": "IOptions"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -456.87024590372494,
+        "y": -213.5995813541595
+      },
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IOptionsFactory",
+      "position": {
+        "x": 32.95340910746478,
+        "y": -214.2434450733476
+      },
+      "type": "custom",
+      "data": {
+        "name": "IOptionsFactory<TOptions>",
+        "methods": ["TOptions Create(string name)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "id": "IOptionsFactory"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 32.95340910746478,
+        "y": -214.2434450733476
+      },
+      "dragging": false
+    },
+    {
+      "width": 423,
+      "height": 70,
+      "id": "OptionsFactory",
+      "position": {
+        "x": -27.007988452535756,
+        "y": -96.6028387396497
+      },
+      "type": "custom",
+      "data": {
+        "name": "OptionsFactory<TOptions>",
+        "parent": "IOptionsFactory<TOptions>",
+        "properties": [
+          "private readonly IConfigureOptions<TOptions>[] _setups",
+          "private readonly IPostConfigureOptions<TOptions>[] _postConfigures",
+          "private readonly IValidateOptions<TOptions>[] _validations"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "id": "OptionsFactory"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -27.007988452535756,
+        "y": -96.6028387396497
+      },
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 406,
+      "height": 86,
+      "id": "IOptionsMonitorCache",
+      "position": {
+        "x": 71.94028740092278,
+        "y": 91.9266161596079
+      },
+      "type": "custom",
+      "data": {
+        "name": "IOptionsMonitorCache<TOptions>",
+        "methods": [
+          "TOptions GetOrAdd(string? name, Func<TOptions> createOptions)",
+          "bool TryAdd(string? name, TOptions options)",
+          "bool TryRemove(string? name)",
+          "void Clear()"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IOptionsMonitorCache"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 71.94028740092278,
+        "y": 91.9266161596079
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IConfigureOptions",
+      "position": {
+        "x": 592.7033308795128,
+        "y": -236.8208619851899
+      },
+      "type": "custom",
+      "data": {
+        "name": "IConfigureOptions<in TOptions>",
+        "methods": ["void Configure(TOptions options)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IConfigureOptions"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 592.7033308795128,
+        "y": -236.8208619851899
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IConfigureNamedOptions",
+      "position": {
+        "x": 593.058932874372,
+        "y": -155.99739797358123
+      },
+      "type": "custom",
+      "data": {
+        "name": "IConfigureNamedOptions<in TOptions>",
+        "parent": "IConfigureOptions<TOptions>",
+        "methods": ["void Configure(string? name, TOptions options)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IConfigureNamedOptions"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 593.058932874372,
+        "y": -155.99739797358123
+      },
+      "dragging": false
+    },
+    {
+      "width": 319,
+      "height": 52,
+      "id": "IPostConfigureOptions",
+      "position": {
+        "x": 591.4516398840051,
+        "y": -83.99257371565373
+      },
+      "type": "custom",
+      "data": {
+        "name": "IPostConfigureOptions<in TOptions>",
+        "methods": ["void PostConfigure(string? name, TOptions options)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IPostConfigureOptions"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 591.4516398840051,
+        "y": -83.99257371565373
+      },
+      "dragging": false
+    },
+    {
+      "width": 385,
+      "height": 52,
+      "id": "IValidateOptions",
+      "position": {
+        "x": 588.6554408491227,
+        "y": 3.543898499554203
+      },
+      "type": "custom",
+      "data": {
+        "name": "IValidateOptions<TOptions>",
+        "methods": ["ValidateOptionsResult Validate(string? name, TOptions options)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IValidateOptions"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 588.6554408491227,
+        "y": 3.543898499554203
+      },
+      "dragging": false
+    },
+    {
+      "width": 753,
+      "height": 144,
+      "id": "OptionsBuilder",
+      "position": {
+        "x": 200.9908960633203,
+        "y": 311.90347847450676
+      },
+      "type": "custom",
+      "data": {
+        "name": "OptionsBuilder<TOptions>",
+        "properties": [
+          "public string Name { get; }",
+          "public IServiceCollection Services { get; }"
+        ],
+        "methods": [
+          "public virtual OptionsBuilder<TOptions> Configure(Action<TOptions> configureOptions)",
+          "public virtual OptionsBuilder<TOptions> PostConfigure(Action<TOptions> configureOptions)",
+          "public virtual OptionsBuilder<TOptions> Validate(Func<TOptions, bool> validation)",
+          " public static OptionsBuilder<TOptions> ValidateOnStart<TOptions>(this OptionsBuilder<TOptions> optionsBuilder)",
+          " public static OptionsBuilder<TOptions> Bind<TOptions>(this OptionsBuilder<TOptions> optionsBuilder, IConfiguration config)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ],
+        "id": "OptionsBuilder"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 200.9908960633203,
+        "y": 311.90347847450676
+      },
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 427,
+      "height": 96,
+      "id": "UnnamedOptionsManager",
+      "position": {
+        "x": -500.26696847032406,
+        "y": 41.36800884166344
+      },
+      "type": "custom",
+      "data": {
+        "id": "UnnamedOptionsManager",
+        "name": "UnnamedOptionsManager<TOptions>",
+        "parent": "IOptions<TOptions>",
+        "methods": ["public UnnamedOptionsManager(IOptionsFactory<TOptions> factory)"],
+        "properties": [
+          "private readonly IOptionsFactory<TOptions> _factory",
+          "private volatile object? _syncObj",
+          "private volatile TOptions? _value"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -500.26696847032406,
+        "y": 41.36800884166344
+      },
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IOptionsSnapshot",
+      "position": {
+        "x": -438.00207052132004,
+        "y": -48.88248890879376
+      },
+      "type": "custom",
+      "data": {
+        "id": "IOptionsSnapshot",
+        "name": "IOptionsSnapshot<out TOptions>",
+        "methods": ["TOptions Get(string? name)"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -438.00207052132004,
+        "y": -48.88248890879376
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsFactory",
+      "sourceHandle": "OptionsFactorytopsource",
+      "target": "IOptionsFactory",
+      "targetHandle": "IOptionsFactorybottomtarget",
+      "id": "reactflow__edge-OptionsFactoryOptionsFactorytopsource-IOptionsFactoryIOptionsFactorybottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsFactory",
+      "sourceHandle": "OptionsFactoryrightsource",
+      "target": "IConfigureOptions",
+      "targetHandle": "IConfigureOptionslefttarget",
+      "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IConfigureOptionsIConfigureOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsFactory",
+      "sourceHandle": "OptionsFactoryrightsource",
+      "target": "IConfigureNamedOptions",
+      "targetHandle": "IConfigureNamedOptionslefttarget",
+      "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IConfigureNamedOptionsIConfigureNamedOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsFactory",
+      "sourceHandle": "OptionsFactoryrightsource",
+      "target": "IPostConfigureOptions",
+      "targetHandle": "IPostConfigureOptionslefttarget",
+      "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IPostConfigureOptionsIPostConfigureOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsFactory",
+      "sourceHandle": "OptionsFactoryrightsource",
+      "target": "IValidateOptions",
+      "targetHandle": "IValidateOptionslefttarget",
+      "id": "reactflow__edge-OptionsFactoryOptionsFactoryrightsource-IValidateOptionsIValidateOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsManager",
+      "sourceHandle": "OptionsManagertopsource",
+      "target": "IOptions",
+      "targetHandle": "IOptionsbottomtarget",
+      "id": "reactflow__edge-OptionsManagerOptionsManagertopsource-IOptionsIOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ConfigurationChangeTokenSource",
+      "sourceHandle": "ConfigurationChangeTokenSourcetopsource",
+      "target": "IOptionsChangeTokenSource",
+      "targetHandle": "IOptionsChangeTokenSourcebottomtarget",
+      "id": "reactflow__edge-ConfigurationChangeTokenSourceConfigurationChangeTokenSourcetopsource-IOptionsChangeTokenSourceIOptionsChangeTokenSourcebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IOptionsMonitor",
+      "sourceHandle": "IOptionsMonitorbottomsource",
+      "target": "IOptionsChangeTokenSource",
+      "targetHandle": "IOptionsChangeTokenSourcetoptarget",
+      "id": "reactflow__edge-IOptionsMonitorIOptionsMonitorbottomsource-IOptionsChangeTokenSourceIOptionsChangeTokenSourcetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IOptionsMonitor",
+      "sourceHandle": "IOptionsMonitorrightsource",
+      "target": "IOptionsMonitorCache",
+      "targetHandle": "IOptionsMonitorCachelefttarget",
+      "id": "reactflow__edge-IOptionsMonitorIOptionsMonitorrightsource-IOptionsMonitorCacheIOptionsMonitorCachelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IOptionsMonitor",
+      "sourceHandle": "IOptionsMonitorrightsource",
+      "target": "IOptionsFactory",
+      "targetHandle": "IOptionsFactorylefttarget",
+      "id": "reactflow__edge-IOptionsMonitorIOptionsMonitorrightsource-IOptionsFactoryIOptionsFactorylefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsManager",
+      "sourceHandle": "OptionsManagerrightsource",
+      "target": "IOptionsFactory",
+      "targetHandle": "IOptionsFactorylefttarget",
+      "id": "reactflow__edge-OptionsManagerOptionsManagerrightsource-IOptionsFactoryIOptionsFactorylefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsManager",
+      "sourceHandle": "OptionsManagerrightsource",
+      "target": "IOptionsMonitorCache",
+      "targetHandle": "IOptionsMonitorCachelefttarget",
+      "id": "reactflow__edge-OptionsManagerOptionsManagerrightsource-IOptionsMonitorCacheIOptionsMonitorCachelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "UnnamedOptionsManager",
+      "sourceHandle": "UnnamedOptionsManagertopsource",
+      "target": "IOptionsSnapshot",
+      "targetHandle": "IOptionsSnapshotbottomtarget",
+      "id": "reactflow__edge-UnnamedOptionsManagerUnnamedOptionsManagertopsource-IOptionsSnapshotIOptionsSnapshotbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OptionsMonitor",
+      "sourceHandle": "OptionsMonitorleftsource",
+      "target": "IOptionsMonitor",
+      "targetHandle": "IOptionsMonitorrighttarget",
+      "id": "reactflow__edge-OptionsMonitorOptionsMonitorleftsource-IOptionsMonitorIOptionsMonitorrighttarget"
+    }
+  ],
+  "viewport": {
+    "x": 608.89878026906,
+    "y": 339.7911875084836,
+    "zoom": 1.0608674878335966
+  }
 }

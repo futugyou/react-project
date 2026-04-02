@@ -27,6 +27,6 @@ export const removeCodeFromLocation = (location: Location): void => {
   window.history.replaceState(
     window.history.state,
     '',
-    base + (newSearch.length ? `?${newSearch}` : '')
+    base + (newSearch.length ? `?${newSearch}` : ''),
   )
 }

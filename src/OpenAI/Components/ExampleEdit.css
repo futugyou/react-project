@@ -1,164 +1,164 @@
 .edit-container {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    padding: 20px 50px 20px 50px;
-    width: 100%;
-    max-height: 80vh;
-    overflow: auto;
-    border-radius: 5px;
-    font-size: 16px;
-    pointer-events: fill;
-    overflow-x: hidden;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px 50px 20px 50px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: 5px;
+  font-size: 16px;
+  pointer-events: fill;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .edit-header {
-    display: flex;
-    border-bottom: 1px solid #d9d9e3;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    align-items: baseline;
+  display: flex;
+  border-bottom: 1px solid #d9d9e3;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  align-items: baseline;
 }
 
 .edit-header-icon {
-    background-color: #dd5ce5;
-    border-radius: 4px;
-    color: #fff;
-    flex: 0 0 auto;
-    font-size: 24px;
-    line-height: 0px;
-    padding: 15px;
-    height: 54px;
+  background-color: #dd5ce5;
+  border-radius: 4px;
+  color: #fff;
+  flex: 0 0 auto;
+  font-size: 24px;
+  line-height: 0px;
+  padding: 15px;
+  height: 54px;
 }
 
 .edit-header-icon svg {
-    color: #fff;
-    height: 24px;
-    width: 24px;
+  color: #fff;
+  height: 24px;
+  width: 24px;
 }
 
 .edit-header-title-group {
-    flex: 1;
-    margin-left: 10px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  margin-left: 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .edit-header-title {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .edit-header-tags {
-    grid-gap: 6px;
-    display: grid;
-    grid-template-columns: auto auto auto;
+  grid-gap: 6px;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 .edit-tag-item {
-    border: 1px solid #ececf1;
-    border-radius: 4px;
-    color: #565869;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 20px;
-    margin-right: 4px;
-    padding: 1px 6px;
+  border: 1px solid #ececf1;
+  border-radius: 4px;
+  color: #565869;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 4px;
+  padding: 1px 6px;
 }
 
 .edit-header-link {
-    margin-left: 10px;
-    text-align: right;
+  margin-left: 10px;
+  text-align: right;
 }
 
 .edit-header-link a {
-    text-decoration: none;
-    background-color: #10a37f;
-    color: white;
-    padding: 7px 10px;
-    border-radius: 5px;
+  text-decoration: none;
+  background-color: #10a37f;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 5px;
 }
 
 .edit-header-link a:hover {
-    background-color: #32e0b5;
-    color: white;
+  background-color: #32e0b5;
+  color: white;
 }
 
 .edit-body {
-    display: flex;
-    flex: 1;
-    text-align: left;
+  display: flex;
+  flex: 1;
+  text-align: left;
 }
 
 .edit-body-left {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
 }
 
 .edit-item {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .edit-item-header {
-    font-weight: 700;
-    margin-bottom: 10px
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .edit-item-content {
-    background-color: #f7f7f8;
-    border-radius: 4px;
-    color: #202123;
-    font-size: 14px;
-    line-height: 20px;
-    margin-top: 12px;
-    padding: 16px;
-    white-space: pre-wrap;
+  background-color: #f7f7f8;
+  border-radius: 4px;
+  color: #202123;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 12px;
+  padding: 16px;
+  white-space: pre-wrap;
 }
 
 .edit-body-right {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 65%;
-    padding-left: 48px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 65%;
+  padding-left: 48px;
 }
 
 .edit-setting-header {
-    font-weight: 700;
-    margin-bottom: 20px
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .edit-setting-edits {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .edit-setting-container {
-    display: flex;
-    margin-bottom: 10px;
-    flex-direction: column;
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: column;
 }
 
 .edit-setting-label {
-    flex: 1 1 100%;
-    color: #6e6e80;
-    display: inline-block;
-    font-weight: 400;
-    line-height: 28px;
+  flex: 1 1 100%;
+  color: #6e6e80;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 28px;
 }
 
 .edit-setting-text {
-    flex: 1 1 100%;
-    font-feature-settings: "tnum";
-    color: #202123;
-    font-variant-numeric: tabular-nums;
-    font-weight: 400;
-    line-height: 28px;
+  flex: 1 1 100%;
+  font-feature-settings: 'tnum';
+  color: #202123;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  line-height: 28px;
 }
 
 .dropdown-menu {
-    max-height: 50vh;
-    overflow-y: auto;
-    overflow-x: clip;
+  max-height: 50vh;
+  overflow-y: auto;
+  overflow-x: clip;
 }

@@ -1,4 +1,3 @@
-
 import * as R from 'ramda'
 import React from 'react'
 import { fetchImage } from '../../ImageSelector'
@@ -15,7 +14,7 @@ const Parse = (node: any) => {
   const state = {
     status: 'available',
     text: 'available',
-    color: 'red'
+    color: 'red',
   }
 
   return {

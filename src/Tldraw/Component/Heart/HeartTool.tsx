@@ -1,53 +1,50 @@
 import {
-	TLUiToolsContextType,
-	Editor,
-	useTools,
-	TldrawUiMenuItem,
-	useIsToolSelected,
-	StateNode,
-	toRichText,
+  TLUiToolsContextType,
+  Editor,
+  useTools,
+  TldrawUiMenuItem,
+  useIsToolSelected,
+  StateNode,
+  toRichText,
 } from '@tldraw/tldraw'
-
 
 // Check out the custom tool example for a more detailed explanation of the tool class.
 
 const OFFSET = 12
 export class HeartTool extends StateNode {
-	static override id = 'hearter'
+  static override id = 'hearter'
 
-	override onEnter = () => {
-		this.editor.setCursor({ type: 'cross', rotation: 0 })
-	}
+  override onEnter = () => {
+    this.editor.setCursor({ type: 'cross', rotation: 0 })
+  }
 
-	override onPointerDown = () => {
-		const { currentPagePoint } = this.editor.inputs
-		this.editor.createShape({
-			type: 'text',
-			x: currentPagePoint.x - OFFSET,
-			y: currentPagePoint.y - OFFSET,
-			props: { richText: toRichText('❤️') },
-		})
-	}
+  override onPointerDown = () => {
+    const { currentPagePoint } = this.editor.inputs
+    this.editor.createShape({
+      type: 'text',
+      x: currentPagePoint.x - OFFSET,
+      y: currentPagePoint.y - OFFSET,
+      props: { richText: toRichText('❤️') },
+    })
+  }
 }
 
 export const ConfigHeartTool = (editor: Editor, tools: TLUiToolsContextType) => {
-	tools.hearter = {
-		id: 'hearter',
-		icon: 'heart-icon',
-		label: 'Hearter',
-		kbd: 'h',
-		onSelect: () => {
-			editor.setCurrentTool('hearter')
-		},
-	}
+  tools.hearter = {
+    id: 'hearter',
+    icon: 'heart-icon',
+    label: 'Hearter',
+    kbd: 'h',
+    onSelect: () => {
+      editor.setCurrentTool('hearter')
+    },
+  }
 }
 
 export const HeartToolBar = (props: {}) => {
-	const tools = useTools()
+  const tools = useTools()
 
-	const isHearterSelected = useIsToolSelected(tools['hearter'])
+  const isHearterSelected = useIsToolSelected(tools['hearter'])
 
-	return (
-		<TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
-	)
+  return <TldrawUiMenuItem {...tools['hearter']} isSelected={isHearterSelected} />
 }

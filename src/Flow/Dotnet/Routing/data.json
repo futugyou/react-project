@@ -1,1192 +1,1165 @@
 {
-    "nodes": [
-        {
-            "width": 364,
-            "height": 106,
-            "id": "EndpointRoutingMiddleware",
-            "position": {
-                "x": 1194.8041974919026,
-                "y": 381.6158792565738
-            },
-            "type": "custom",
-            "data": {
-                "id": "EndpointRoutingMiddleware",
-                "name": "EndpointRoutingMiddleware",
-                "properties": [
-                    "private readonly MatcherFactory _matcherFactory",
-                    "private readonly EndpointDataSource _endpointDataSource",
-                    "private readonly RoutingMetrics _metrics",
-                    "private readonly RouteOptions _routeOptions",
-                    "private Task<Matcher>? _initializationTask"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "dragging": false,
-            "positionAbsolute": {
-                "x": 1194.8041974919026,
-                "y": 381.6158792565738
-            }
-        },
-        {
-            "width": 440,
-            "height": 42,
-            "id": "MatcherFactory",
-            "position": {
-                "x": 1642.8589257552176,
-                "y": 269.5209520234369
-            },
-            "type": "custom",
-            "data": {
-                "id": "MatcherFactory",
-                "name": "MatcherFactory",
-                "methods": [
-                    "public abstract Matcher CreateMatcher(EndpointDataSource dataSource)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1642.8589257552176,
-                "y": 269.5209520234369
-            },
-            "dragging": false
-        },
-        {
-            "width": 549,
-            "height": 88,
-            "id": "EndpointDataSource",
-            "position": {
-                "x": 1649.237483204885,
-                "y": 586.3365078126343
-            },
-            "type": "custom",
-            "data": {
-                "id": "EndpointDataSource",
-                "name": "EndpointDataSource",
-                "methods": [
-                    "public abstract IChangeToken GetChangeToken()",
-                    "public virtual IReadOnlyList<Endpoint> GetGroupedEndpoints(RouteGroupContext context)"
-                ],
-                "properties": [
-                    "public abstract IReadOnlyList<Endpoint> Endpoints { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1649.237483204885,
-                "y": 586.3365078126343
-            },
-            "dragging": false
-        },
-        {
-            "width": 359,
-            "height": 42,
-            "id": "Matcher",
-            "position": {
-                "x": 1683.8589257552176,
-                "y": 342.63485840437323
-            },
-            "type": "custom",
-            "data": {
-                "id": "Matcher",
-                "name": "Matcher",
-                "methods": [
-                    "public abstract Task MatchAsync(HttpContext httpContext)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1683.8589257552176,
-                "y": 342.63485840437323
-            },
-            "dragging": false
-        },
-        {
-            "width": 423,
-            "height": 152,
-            "id": "RouteOptions",
-            "position": {
-                "x": 724.8236006028751,
-                "y": 460.81972180036917
-            },
-            "type": "custom",
-            "data": {
-                "id": "RouteOptions",
-                "name": "RouteOptions",
-                "properties": [
-                    "internal ICollection<EndpointDataSource> EndpointDataSources",
-                    "public bool LowercaseUrls { get; set; }",
-                    "public bool LowercaseQueryStrings { get; set; }",
-                    "public bool AppendTrailingSlash { get; set; }",
-                    "public bool SuppressCheckForUnhandledSecurityMetadata { get; set; }",
-                    "public IDictionary<string, Type> ConstraintMap"
-                ],
-                "methods": [
-                    "public void SetParameterPolicy<T>(string token)"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 724.8236006028751,
-                "y": 460.81972180036917
-            },
-            "dragging": false
-        },
-        {
-            "width": 692,
-            "height": 104,
-            "id": "IEndpointRouteBuilder",
-            "position": {
-                "x": 1578.0988616010782,
-                "y": 413.50884806163884
-            },
-            "type": "custom",
-            "data": {
-                "id": "IEndpointRouteBuilder",
-                "name": "IEndpointRouteBuilder",
-                "properties": [
-                    "IServiceProvider ServiceProvider { get; }",
-                    "ICollection<EndpointDataSource> DataSources { get; }"
-                ],
-                "methods": [
-                    "IApplicationBuilder CreateApplicationBuilder()",
-                    "internal static RouteEndpointDataSource GetOrAddRouteEndpointDataSource(this IEndpointRouteBuilder endpoints)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1578.0988616010782,
-                "y": 413.50884806163884
-            },
-            "dragging": false
-        },
-        {
-            "width": 324,
-            "height": 74,
-            "id": "Endpoint",
-            "position": {
-                "x": 1761.8815015780667,
-                "y": 751.8460975257315
-            },
-            "type": "custom",
-            "data": {
-                "id": "Endpoint",
-                "name": "Endpoint",
-                "properties": [
-                    "public string? DisplayName { get; }",
-                    "public EndpointMetadataCollection Metadata { get; }",
-                    "public RequestDelegate? RequestDelegate { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1761.8815015780667,
-                "y": 751.8460975257315
-            },
-            "dragging": false
-        },
-        {
-            "width": 323,
-            "height": 74,
-            "id": "EndpointMetadataCollection",
-            "position": {
-                "x": 1763.673744731514,
-                "y": 903.7250821815737
-            },
-            "type": "custom",
-            "data": {
-                "id": "EndpointMetadataCollection",
-                "name": "EndpointMetadataCollection",
-                "parent": "IReadOnlyList<object>",
-                "methods": [
-                    "public T? GetMetadata<T>()",
-                    "public IReadOnlyList<T> GetOrderedMetadata<T>()",
-                    "public T GetRequiredMetadata<T>()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1763.673744731514,
-                "y": 903.7250821815737
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 42,
-            "id": "EndpointMiddleware",
-            "position": {
-                "x": 1228.9496966891365,
-                "y": 705.8922374520813
-            },
-            "type": "custom",
-            "data": {
-                "id": "EndpointMiddleware",
-                "name": "EndpointMiddleware",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "private readonly RouteOptions _routeOptions"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1228.9496966891365,
-                "y": 705.8922374520813
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 74,
-            "id": "IAuthorizeData",
-            "position": {
-                "x": 730.502914659108,
-                "y": 849.0713821483852
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthorizeData",
-                "name": "IAuthorizeData",
-                "properties": [
-                    "string? Policy { get; set; }",
-                    "string? Roles { get; set; }",
-                    "string? AuthenticationSchemes { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 730.502914659108,
-                "y": 849.0713821483852
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 42,
-            "id": "ICorsMetadata",
-            "position": {
-                "x": 1084.8027483420872,
-                "y": 862.403575873304
-            },
-            "type": "custom",
-            "data": {
-                "id": "ICorsMetadata",
-                "name": "ICorsMetadata",
-                "properties": [
-                    "empty"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1084.8027483420872,
-                "y": 862.403575873304
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 42,
-            "id": "IAntiforgeryMetadata",
-            "position": {
-                "x": 1418.3663332290043,
-                "y": 861.6120516576892
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAntiforgeryMetadata",
-                "name": "IAntiforgeryMetadata",
-                "properties": [
-                    "bool RequiresValidation { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1418.3663332290043,
-                "y": 861.6120516576892
-            },
-            "dragging": false
-        },
-        {
-            "width": 691,
-            "height": 74,
-            "id": "RouteEndpointDataSource",
-            "position": {
-                "x": 2293.5838615256826,
-                "y": 516.2334505450091
-            },
-            "type": "custom",
-            "data": {
-                "id": "RouteEndpointDataSource",
-                "name": "RouteEndpointDataSource",
-                "parent": "EndpointDataSource",
-                "methods": [
-                    "public RouteHandlerBuilder AddRequestDelegate(RoutePattern,RequestDelegate,IEnumerable<string>? methods,.....)",
-                    "public RouteHandlerBuilder AddRouteHandler(RoutePattern,Delegate routeHandler,.....)",
-                    "internal RouteEndpointBuilder GetSingleRouteEndpointBuilder()"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": []
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2293.5838615256826,
-                "y": 516.2334505450091
-            },
-            "dragging": false
-        },
-        {
-            "width": 454,
-            "height": 42,
-            "id": "DefaultEndpointRouteBuilder",
-            "position": {
-                "x": 2313.880196861559,
-                "y": 444.477078059463
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultEndpointRouteBuilder",
-                "name": "DefaultEndpointRouteBuilder",
-                "parent": "IEndpointRouteBuilder",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "public DefaultEndpointRouteBuilder(IApplicationBuilder applicationBuilder)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2313.880196861559,
-                "y": 444.477078059463
-            },
-            "dragging": false
-        },
-        {
-            "width": 673,
-            "height": 136,
-            "id": "EndpointBuilder",
-            "position": {
-                "x": 2167.303653021289,
-                "y": 933.7042991427498
-            },
-            "type": "custom",
-            "data": {
-                "id": "EndpointBuilder",
-                "name": "EndpointBuilder",
-                "methods": [
-                    "public abstract Endpoint Build()"
-                ],
-                "properties": [
-                    "public IList<Func<EndpointFilterFactoryContext, EndpointFilterDelegate, EndpointFilterDelegate>> FilterFactories",
-                    "public RequestDelegate? RequestDelegate { get; set; }",
-                    "public string? DisplayName { get; set; }",
-                    "public IList<object> Metadata { get; }",
-                    "public IServiceProvider ApplicationServices { get; init; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2167.303653021289,
-                "y": 933.7042991427498
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 58,
-            "id": "RouteEndpointBuilder",
-            "position": {
-                "x": 2353.252569483321,
-                "y": 847.1674634288479
-            },
-            "type": "custom",
-            "data": {
-                "id": "RouteEndpointBuilder",
-                "name": "RouteEndpointBuilder",
-                "parent": "EndpointBuilder",
-                "properties": [
-                    "public RoutePattern RoutePattern { get; set; }",
-                    "public int Order { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2353.252569483321,
-                "y": 847.1674634288479
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 58,
-            "id": "RouteEndpoint",
-            "position": {
-                "x": 2152.3981123807794,
-                "y": 752.839654310166
-            },
-            "type": "custom",
-            "data": {
-                "id": "RouteEndpoint",
-                "name": "RouteEndpoint",
-                "parent": "Endpoint",
-                "properties": [
-                    "public int Order { get; }",
-                    "public RoutePattern RoutePattern { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2152.3981123807794,
-                "y": 752.839654310166
-            },
-            "dragging": false
-        },
-        {
-            "width": 700,
-            "height": 200,
-            "id": "RoutePattern",
-            "position": {
-                "x": 2787.3987016778183,
-                "y": 703.9668871090615
-            },
-            "type": "custom",
-            "data": {
-                "id": "RoutePattern",
-                "name": "RoutePattern",
-                "properties": [
-                    "public static readonly object RequiredValueAny",
-                    "public IReadOnlyDictionary<string, object?> Defaults { get; }",
-                    "public IReadOnlyDictionary<string, IReadOnlyList<RoutePatternParameterPolicyReference>> ParameterPolicies { get; }",
-                    "public IReadOnlyDictionary<string, object?> RequiredValues { get; }",
-                    "public decimal InboundPrecedence { get; }",
-                    "public decimal OutboundPrecedence { get; }",
-                    "public string? RawText { get; }",
-                    "public IReadOnlyList<RoutePatternParameterPart> Parameters { get; }",
-                    "public IReadOnlyList<RoutePatternPathSegment> PathSegments { get; }"
-                ],
-                "methods": [
-                    "public RoutePatternParameterPart? GetParameter(string name)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2787.3987016778183,
-                "y": 703.9668871090615
-            },
-            "dragging": false
-        },
-        {
-            "width": 550,
-            "height": 138,
-            "id": "RoutePatternFactory",
-            "position": {
-                "x": 2864.130850902792,
-                "y": 937.3181001813836
-            },
-            "type": "custom",
-            "data": {
-                "id": "RoutePatternFactory",
-                "name": "RoutePatternFactory",
-                "methods": [
-                    "public static RoutePattern Parse([StringSyntax(\"Route\")] string pattern)",
-                    "public static RoutePatternPathSegment Segment(IEnumerable<RoutePatternPart> parts)",
-                    "public static RoutePatternLiteralPart LiteralPart(string content)",
-                    "public static RoutePatternSeparatorPart SeparatorPart(string content)",
-                    "public static RoutePatternParameterPart ParameterPart(string parameterName)",
-                    "public static RoutePatternParameterPolicyReference Constraint(object constraint)",
-                    "public static RoutePatternParameterPolicyReference ParameterPolicy(string parameterPolicy)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2864.130850902792,
-                "y": 937.3181001813836
-            },
-            "dragging": false
-        },
-        {
-            "width": 584,
-            "height": 72,
-            "id": "CompositeEndpointDataSource",
-            "position": {
-                "x": 2283.970449488765,
-                "y": 626.0321573080333
-            },
-            "type": "custom",
-            "data": {
-                "id": "CompositeEndpointDataSource",
-                "name": "CompositeEndpointDataSource",
-                "parent": "EndpointDataSource, IDisposable",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public IEnumerable<EndpointDataSource> DataSources"
-                ],
-                "methods": [
-                    "public CompositeEndpointDataSource(IEnumerable<EndpointDataSource> endpointDataSources)"
-                ]
-            },
-            "selected": false,
-            "dragging": false,
-            "positionAbsolute": {
-                "x": 2283.970449488765,
-                "y": 626.0321573080333
-            }
-        },
-        {
-            "width": 320,
-            "height": 42,
-            "id": "DfaMatcherFactory",
-            "position": {
-                "x": 2310.8146755768857,
-                "y": 270.78683335579296
-            },
-            "type": "custom",
-            "data": {
-                "id": "DfaMatcherFactory",
-                "name": "DfaMatcherFactory",
-                "parent": "MatcherFactory",
-                "methods": [
-                    "public DfaMatcherFactory(IServiceProvider services)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2310.8146755768857,
-                "y": 270.78683335579296
-            },
-            "dragging": false
-        },
-        {
-            "width": 797,
-            "height": 88,
-            "id": "DataSourceDependentMatcher",
-            "position": {
-                "x": 2303.056817293631,
-                "y": 335.6075579050897
-            },
-            "type": "custom",
-            "data": {
-                "id": "DataSourceDependentMatcher",
-                "name": "DataSourceDependentMatcher",
-                "parent": "Matcher",
-                "methods": [
-                    "public DataSourceDependentMatcher(EndpointDataSource dataSource,Lifetime lifetime,Func<MatcherBuilder> matcherBuilderFactory)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "private readonly Func<MatcherBuilder> _matcherBuilderFactory",
-                    "private readonly DataSourceDependentCache<Matcher> _cache"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2303.056817293631,
-                "y": 335.6075579050897
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointRoutingMiddleware",
-            "sourceHandle": "EndpointRoutingMiddlewarerightsource",
-            "target": "MatcherFactory",
-            "targetHandle": "MatcherFactorylefttarget",
-            "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarerightsource-MatcherFactoryMatcherFactorylefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointRoutingMiddleware",
-            "sourceHandle": "EndpointRoutingMiddlewarerightsource",
-            "target": "EndpointDataSource",
-            "targetHandle": "EndpointDataSourcelefttarget",
-            "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarerightsource-EndpointDataSourceEndpointDataSourcelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "MatcherFactory",
-            "sourceHandle": "MatcherFactorybottomsource",
-            "target": "Matcher",
-            "targetHandle": "Matchertoptarget",
-            "id": "reactflow__edge-MatcherFactoryMatcherFactorybottomsource-MatcherMatchertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointRoutingMiddleware",
-            "sourceHandle": "EndpointRoutingMiddlewareleftsource",
-            "target": "RouteOptions",
-            "targetHandle": "RouteOptionsrighttarget",
-            "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewareleftsource-RouteOptionsRouteOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IEndpointRouteBuilder",
-            "sourceHandle": "IEndpointRouteBuilderbottomsource",
-            "target": "EndpointDataSource",
-            "targetHandle": "EndpointDataSourcetoptarget",
-            "id": "reactflow__edge-IEndpointRouteBuilderIEndpointRouteBuilderbottomsource-EndpointDataSourceEndpointDataSourcetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointRoutingMiddleware",
-            "sourceHandle": "EndpointRoutingMiddlewarebottomsource",
-            "target": "EndpointMiddleware",
-            "targetHandle": "EndpointMiddlewaretoptarget",
-            "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarebottomsource-EndpointMiddlewareEndpointMiddlewaretoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointMiddleware",
-            "sourceHandle": "EndpointMiddlewareleftsource",
-            "target": "RouteOptions",
-            "targetHandle": "RouteOptionsrighttarget",
-            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewareleftsource-RouteOptionsRouteOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointMiddleware",
-            "sourceHandle": "EndpointMiddlewarebottomsource",
-            "target": "IAuthorizeData",
-            "targetHandle": "IAuthorizeDatatoptarget",
-            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAuthorizeDataIAuthorizeDatatoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointMiddleware",
-            "sourceHandle": "EndpointMiddlewarebottomsource",
-            "target": "ICorsMetadata",
-            "targetHandle": "ICorsMetadatatoptarget",
-            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-ICorsMetadataICorsMetadatatoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointMiddleware",
-            "sourceHandle": "EndpointMiddlewarebottomsource",
-            "target": "IAntiforgeryMetadata",
-            "targetHandle": "IAntiforgeryMetadatatoptarget",
-            "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAntiforgeryMetadataIAntiforgeryMetadatatoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointDataSource",
-            "sourceHandle": "EndpointDataSourcebottomsource",
-            "target": "Endpoint",
-            "targetHandle": "Endpointtoptarget",
-            "id": "reactflow__edge-EndpointDataSourceEndpointDataSourcebottomsource-EndpointEndpointtoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Endpoint",
-            "sourceHandle": "Endpointbottomsource",
-            "target": "EndpointMetadataCollection",
-            "targetHandle": "EndpointMetadataCollectiontoptarget",
-            "id": "reactflow__edge-EndpointEndpointbottomsource-EndpointMetadataCollectionEndpointMetadataCollectiontoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RouteEndpointDataSource",
-            "sourceHandle": "RouteEndpointDataSourceleftsource",
-            "target": "EndpointDataSource",
-            "targetHandle": "EndpointDataSourcerighttarget",
-            "id": "reactflow__edge-RouteEndpointDataSourceRouteEndpointDataSourceleftsource-EndpointDataSourceEndpointDataSourcerighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultEndpointRouteBuilder",
-            "sourceHandle": "DefaultEndpointRouteBuilderleftsource",
-            "target": "IEndpointRouteBuilder",
-            "targetHandle": "IEndpointRouteBuilderrighttarget",
-            "id": "reactflow__edge-DefaultEndpointRouteBuilderDefaultEndpointRouteBuilderleftsource-IEndpointRouteBuilderIEndpointRouteBuilderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EndpointBuilder",
-            "sourceHandle": "EndpointBuilderleftsource",
-            "target": "Endpoint",
-            "targetHandle": "Endpointrighttarget",
-            "id": "reactflow__edge-EndpointBuilderEndpointBuilderleftsource-EndpointEndpointrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RouteEndpointBuilder",
-            "sourceHandle": "RouteEndpointBuilderbottomsource",
-            "target": "EndpointBuilder",
-            "targetHandle": "EndpointBuildertoptarget",
-            "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderbottomsource-EndpointBuilderEndpointBuildertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RouteEndpoint",
-            "sourceHandle": "RouteEndpointleftsource",
-            "target": "Endpoint",
-            "targetHandle": "Endpointrighttarget",
-            "id": "reactflow__edge-RouteEndpointRouteEndpointleftsource-EndpointEndpointrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RouteEndpointBuilder",
-            "sourceHandle": "RouteEndpointBuilderleftsource",
-            "target": "RouteEndpoint",
-            "targetHandle": "RouteEndpointbottomtarget",
-            "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderleftsource-RouteEndpointRouteEndpointbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RouteEndpointBuilder",
-            "sourceHandle": "RouteEndpointBuilderrightsource",
-            "target": "RoutePattern",
-            "targetHandle": "RoutePatternlefttarget",
-            "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderrightsource-RoutePatternRoutePatternlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RoutePatternFactory",
-            "sourceHandle": "RoutePatternFactorytopsource",
-            "target": "RoutePattern",
-            "targetHandle": "RoutePatternbottomtarget",
-            "id": "reactflow__edge-RoutePatternFactoryRoutePatternFactorytopsource-RoutePatternRoutePatternbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CompositeEndpointDataSource",
-            "sourceHandle": "CompositeEndpointDataSourceleftsource",
-            "target": "EndpointDataSource",
-            "targetHandle": "EndpointDataSourcerighttarget",
-            "id": "reactflow__edge-CompositeEndpointDataSourceCompositeEndpointDataSourceleftsource-EndpointDataSourceEndpointDataSourcerighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DfaMatcherFactory",
-            "sourceHandle": "DfaMatcherFactoryleftsource",
-            "target": "MatcherFactory",
-            "targetHandle": "MatcherFactoryrighttarget",
-            "id": "reactflow__edge-DfaMatcherFactoryDfaMatcherFactoryleftsource-MatcherFactoryMatcherFactoryrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DataSourceDependentMatcher",
-            "sourceHandle": "DataSourceDependentMatcherleftsource",
-            "target": "Matcher",
-            "targetHandle": "Matcherrighttarget",
-            "id": "reactflow__edge-DataSourceDependentMatcherDataSourceDependentMatcherleftsource-MatcherMatcherrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DfaMatcherFactory",
-            "sourceHandle": "DfaMatcherFactoryrightsource",
-            "target": "DataSourceDependentMatcher",
-            "targetHandle": "DataSourceDependentMatchertoptarget",
-            "id": "reactflow__edge-DfaMatcherFactoryDfaMatcherFactoryrightsource-DataSourceDependentMatcherDataSourceDependentMatchertoptarget"
-        }
-    ],
-    "viewport": {
-        "x": -328.0189040093612,
-        "y": 80.05274622761772,
-        "zoom": 0.5590962772177516
+  "nodes": [
+    {
+      "width": 364,
+      "height": 106,
+      "id": "EndpointRoutingMiddleware",
+      "position": {
+        "x": 1194.8041974919026,
+        "y": 381.6158792565738
+      },
+      "type": "custom",
+      "data": {
+        "id": "EndpointRoutingMiddleware",
+        "name": "EndpointRoutingMiddleware",
+        "properties": [
+          "private readonly MatcherFactory _matcherFactory",
+          "private readonly EndpointDataSource _endpointDataSource",
+          "private readonly RoutingMetrics _metrics",
+          "private readonly RouteOptions _routeOptions",
+          "private Task<Matcher>? _initializationTask"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1194.8041974919026,
+        "y": 381.6158792565738
+      }
+    },
+    {
+      "width": 440,
+      "height": 42,
+      "id": "MatcherFactory",
+      "position": {
+        "x": 1642.8589257552176,
+        "y": 269.5209520234369
+      },
+      "type": "custom",
+      "data": {
+        "id": "MatcherFactory",
+        "name": "MatcherFactory",
+        "methods": ["public abstract Matcher CreateMatcher(EndpointDataSource dataSource)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1642.8589257552176,
+        "y": 269.5209520234369
+      },
+      "dragging": false
+    },
+    {
+      "width": 549,
+      "height": 88,
+      "id": "EndpointDataSource",
+      "position": {
+        "x": 1649.237483204885,
+        "y": 586.3365078126343
+      },
+      "type": "custom",
+      "data": {
+        "id": "EndpointDataSource",
+        "name": "EndpointDataSource",
+        "methods": [
+          "public abstract IChangeToken GetChangeToken()",
+          "public virtual IReadOnlyList<Endpoint> GetGroupedEndpoints(RouteGroupContext context)"
+        ],
+        "properties": ["public abstract IReadOnlyList<Endpoint> Endpoints { get; }"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1649.237483204885,
+        "y": 586.3365078126343
+      },
+      "dragging": false
+    },
+    {
+      "width": 359,
+      "height": 42,
+      "id": "Matcher",
+      "position": {
+        "x": 1683.8589257552176,
+        "y": 342.63485840437323
+      },
+      "type": "custom",
+      "data": {
+        "id": "Matcher",
+        "name": "Matcher",
+        "methods": ["public abstract Task MatchAsync(HttpContext httpContext)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1683.8589257552176,
+        "y": 342.63485840437323
+      },
+      "dragging": false
+    },
+    {
+      "width": 423,
+      "height": 152,
+      "id": "RouteOptions",
+      "position": {
+        "x": 724.8236006028751,
+        "y": 460.81972180036917
+      },
+      "type": "custom",
+      "data": {
+        "id": "RouteOptions",
+        "name": "RouteOptions",
+        "properties": [
+          "internal ICollection<EndpointDataSource> EndpointDataSources",
+          "public bool LowercaseUrls { get; set; }",
+          "public bool LowercaseQueryStrings { get; set; }",
+          "public bool AppendTrailingSlash { get; set; }",
+          "public bool SuppressCheckForUnhandledSecurityMetadata { get; set; }",
+          "public IDictionary<string, Type> ConstraintMap"
+        ],
+        "methods": ["public void SetParameterPolicy<T>(string token)"],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 724.8236006028751,
+        "y": 460.81972180036917
+      },
+      "dragging": false
+    },
+    {
+      "width": 692,
+      "height": 104,
+      "id": "IEndpointRouteBuilder",
+      "position": {
+        "x": 1578.0988616010782,
+        "y": 413.50884806163884
+      },
+      "type": "custom",
+      "data": {
+        "id": "IEndpointRouteBuilder",
+        "name": "IEndpointRouteBuilder",
+        "properties": [
+          "IServiceProvider ServiceProvider { get; }",
+          "ICollection<EndpointDataSource> DataSources { get; }"
+        ],
+        "methods": [
+          "IApplicationBuilder CreateApplicationBuilder()",
+          "internal static RouteEndpointDataSource GetOrAddRouteEndpointDataSource(this IEndpointRouteBuilder endpoints)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1578.0988616010782,
+        "y": 413.50884806163884
+      },
+      "dragging": false
+    },
+    {
+      "width": 324,
+      "height": 74,
+      "id": "Endpoint",
+      "position": {
+        "x": 1761.8815015780667,
+        "y": 751.8460975257315
+      },
+      "type": "custom",
+      "data": {
+        "id": "Endpoint",
+        "name": "Endpoint",
+        "properties": [
+          "public string? DisplayName { get; }",
+          "public EndpointMetadataCollection Metadata { get; }",
+          "public RequestDelegate? RequestDelegate { get; }"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1761.8815015780667,
+        "y": 751.8460975257315
+      },
+      "dragging": false
+    },
+    {
+      "width": 323,
+      "height": 74,
+      "id": "EndpointMetadataCollection",
+      "position": {
+        "x": 1763.673744731514,
+        "y": 903.7250821815737
+      },
+      "type": "custom",
+      "data": {
+        "id": "EndpointMetadataCollection",
+        "name": "EndpointMetadataCollection",
+        "parent": "IReadOnlyList<object>",
+        "methods": [
+          "public T? GetMetadata<T>()",
+          "public IReadOnlyList<T> GetOrderedMetadata<T>()",
+          "public T GetRequiredMetadata<T>()"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1763.673744731514,
+        "y": 903.7250821815737
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 42,
+      "id": "EndpointMiddleware",
+      "position": {
+        "x": 1228.9496966891365,
+        "y": 705.8922374520813
+      },
+      "type": "custom",
+      "data": {
+        "id": "EndpointMiddleware",
+        "name": "EndpointMiddleware",
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ],
+        "properties": ["private readonly RouteOptions _routeOptions"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1228.9496966891365,
+        "y": 705.8922374520813
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 74,
+      "id": "IAuthorizeData",
+      "position": {
+        "x": 730.502914659108,
+        "y": 849.0713821483852
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthorizeData",
+        "name": "IAuthorizeData",
+        "properties": [
+          "string? Policy { get; set; }",
+          "string? Roles { get; set; }",
+          "string? AuthenticationSchemes { get; set; }"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 730.502914659108,
+        "y": 849.0713821483852
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 42,
+      "id": "ICorsMetadata",
+      "position": {
+        "x": 1084.8027483420872,
+        "y": 862.403575873304
+      },
+      "type": "custom",
+      "data": {
+        "id": "ICorsMetadata",
+        "name": "ICorsMetadata",
+        "properties": ["empty"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1084.8027483420872,
+        "y": 862.403575873304
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 42,
+      "id": "IAntiforgeryMetadata",
+      "position": {
+        "x": 1418.3663332290043,
+        "y": 861.6120516576892
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAntiforgeryMetadata",
+        "name": "IAntiforgeryMetadata",
+        "properties": ["bool RequiresValidation { get; }"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1418.3663332290043,
+        "y": 861.6120516576892
+      },
+      "dragging": false
+    },
+    {
+      "width": 691,
+      "height": 74,
+      "id": "RouteEndpointDataSource",
+      "position": {
+        "x": 2293.5838615256826,
+        "y": 516.2334505450091
+      },
+      "type": "custom",
+      "data": {
+        "id": "RouteEndpointDataSource",
+        "name": "RouteEndpointDataSource",
+        "parent": "EndpointDataSource",
+        "methods": [
+          "public RouteHandlerBuilder AddRequestDelegate(RoutePattern,RequestDelegate,IEnumerable<string>? methods,.....)",
+          "public RouteHandlerBuilder AddRouteHandler(RoutePattern,Delegate routeHandler,.....)",
+          "internal RouteEndpointBuilder GetSingleRouteEndpointBuilder()"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": []
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2293.5838615256826,
+        "y": 516.2334505450091
+      },
+      "dragging": false
+    },
+    {
+      "width": 454,
+      "height": 42,
+      "id": "DefaultEndpointRouteBuilder",
+      "position": {
+        "x": 2313.880196861559,
+        "y": 444.477078059463
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultEndpointRouteBuilder",
+        "name": "DefaultEndpointRouteBuilder",
+        "parent": "IEndpointRouteBuilder",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "methods": ["public DefaultEndpointRouteBuilder(IApplicationBuilder applicationBuilder)"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2313.880196861559,
+        "y": 444.477078059463
+      },
+      "dragging": false
+    },
+    {
+      "width": 673,
+      "height": 136,
+      "id": "EndpointBuilder",
+      "position": {
+        "x": 2167.303653021289,
+        "y": 933.7042991427498
+      },
+      "type": "custom",
+      "data": {
+        "id": "EndpointBuilder",
+        "name": "EndpointBuilder",
+        "methods": ["public abstract Endpoint Build()"],
+        "properties": [
+          "public IList<Func<EndpointFilterFactoryContext, EndpointFilterDelegate, EndpointFilterDelegate>> FilterFactories",
+          "public RequestDelegate? RequestDelegate { get; set; }",
+          "public string? DisplayName { get; set; }",
+          "public IList<object> Metadata { get; }",
+          "public IServiceProvider ApplicationServices { get; init; }"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2167.303653021289,
+        "y": 933.7042991427498
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 58,
+      "id": "RouteEndpointBuilder",
+      "position": {
+        "x": 2353.252569483321,
+        "y": 847.1674634288479
+      },
+      "type": "custom",
+      "data": {
+        "id": "RouteEndpointBuilder",
+        "name": "RouteEndpointBuilder",
+        "parent": "EndpointBuilder",
+        "properties": [
+          "public RoutePattern RoutePattern { get; set; }",
+          "public int Order { get; set; }"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2353.252569483321,
+        "y": 847.1674634288479
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 58,
+      "id": "RouteEndpoint",
+      "position": {
+        "x": 2152.3981123807794,
+        "y": 752.839654310166
+      },
+      "type": "custom",
+      "data": {
+        "id": "RouteEndpoint",
+        "name": "RouteEndpoint",
+        "parent": "Endpoint",
+        "properties": ["public int Order { get; }", "public RoutePattern RoutePattern { get; }"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2152.3981123807794,
+        "y": 752.839654310166
+      },
+      "dragging": false
+    },
+    {
+      "width": 700,
+      "height": 200,
+      "id": "RoutePattern",
+      "position": {
+        "x": 2787.3987016778183,
+        "y": 703.9668871090615
+      },
+      "type": "custom",
+      "data": {
+        "id": "RoutePattern",
+        "name": "RoutePattern",
+        "properties": [
+          "public static readonly object RequiredValueAny",
+          "public IReadOnlyDictionary<string, object?> Defaults { get; }",
+          "public IReadOnlyDictionary<string, IReadOnlyList<RoutePatternParameterPolicyReference>> ParameterPolicies { get; }",
+          "public IReadOnlyDictionary<string, object?> RequiredValues { get; }",
+          "public decimal InboundPrecedence { get; }",
+          "public decimal OutboundPrecedence { get; }",
+          "public string? RawText { get; }",
+          "public IReadOnlyList<RoutePatternParameterPart> Parameters { get; }",
+          "public IReadOnlyList<RoutePatternPathSegment> PathSegments { get; }"
+        ],
+        "methods": ["public RoutePatternParameterPart? GetParameter(string name)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2787.3987016778183,
+        "y": 703.9668871090615
+      },
+      "dragging": false
+    },
+    {
+      "width": 550,
+      "height": 138,
+      "id": "RoutePatternFactory",
+      "position": {
+        "x": 2864.130850902792,
+        "y": 937.3181001813836
+      },
+      "type": "custom",
+      "data": {
+        "id": "RoutePatternFactory",
+        "name": "RoutePatternFactory",
+        "methods": [
+          "public static RoutePattern Parse([StringSyntax(\"Route\")] string pattern)",
+          "public static RoutePatternPathSegment Segment(IEnumerable<RoutePatternPart> parts)",
+          "public static RoutePatternLiteralPart LiteralPart(string content)",
+          "public static RoutePatternSeparatorPart SeparatorPart(string content)",
+          "public static RoutePatternParameterPart ParameterPart(string parameterName)",
+          "public static RoutePatternParameterPolicyReference Constraint(object constraint)",
+          "public static RoutePatternParameterPolicyReference ParameterPolicy(string parameterPolicy)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2864.130850902792,
+        "y": 937.3181001813836
+      },
+      "dragging": false
+    },
+    {
+      "width": 584,
+      "height": 72,
+      "id": "CompositeEndpointDataSource",
+      "position": {
+        "x": 2283.970449488765,
+        "y": 626.0321573080333
+      },
+      "type": "custom",
+      "data": {
+        "id": "CompositeEndpointDataSource",
+        "name": "CompositeEndpointDataSource",
+        "parent": "EndpointDataSource, IDisposable",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": ["public IEnumerable<EndpointDataSource> DataSources"],
+        "methods": [
+          "public CompositeEndpointDataSource(IEnumerable<EndpointDataSource> endpointDataSources)"
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 2283.970449488765,
+        "y": 626.0321573080333
+      }
+    },
+    {
+      "width": 320,
+      "height": 42,
+      "id": "DfaMatcherFactory",
+      "position": {
+        "x": 2310.8146755768857,
+        "y": 270.78683335579296
+      },
+      "type": "custom",
+      "data": {
+        "id": "DfaMatcherFactory",
+        "name": "DfaMatcherFactory",
+        "parent": "MatcherFactory",
+        "methods": ["public DfaMatcherFactory(IServiceProvider services)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2310.8146755768857,
+        "y": 270.78683335579296
+      },
+      "dragging": false
+    },
+    {
+      "width": 797,
+      "height": 88,
+      "id": "DataSourceDependentMatcher",
+      "position": {
+        "x": 2303.056817293631,
+        "y": 335.6075579050897
+      },
+      "type": "custom",
+      "data": {
+        "id": "DataSourceDependentMatcher",
+        "name": "DataSourceDependentMatcher",
+        "parent": "Matcher",
+        "methods": [
+          "public DataSourceDependentMatcher(EndpointDataSource dataSource,Lifetime lifetime,Func<MatcherBuilder> matcherBuilderFactory)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "private readonly Func<MatcherBuilder> _matcherBuilderFactory",
+          "private readonly DataSourceDependentCache<Matcher> _cache"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2303.056817293631,
+        "y": 335.6075579050897
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointRoutingMiddleware",
+      "sourceHandle": "EndpointRoutingMiddlewarerightsource",
+      "target": "MatcherFactory",
+      "targetHandle": "MatcherFactorylefttarget",
+      "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarerightsource-MatcherFactoryMatcherFactorylefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointRoutingMiddleware",
+      "sourceHandle": "EndpointRoutingMiddlewarerightsource",
+      "target": "EndpointDataSource",
+      "targetHandle": "EndpointDataSourcelefttarget",
+      "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarerightsource-EndpointDataSourceEndpointDataSourcelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "MatcherFactory",
+      "sourceHandle": "MatcherFactorybottomsource",
+      "target": "Matcher",
+      "targetHandle": "Matchertoptarget",
+      "id": "reactflow__edge-MatcherFactoryMatcherFactorybottomsource-MatcherMatchertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointRoutingMiddleware",
+      "sourceHandle": "EndpointRoutingMiddlewareleftsource",
+      "target": "RouteOptions",
+      "targetHandle": "RouteOptionsrighttarget",
+      "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewareleftsource-RouteOptionsRouteOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IEndpointRouteBuilder",
+      "sourceHandle": "IEndpointRouteBuilderbottomsource",
+      "target": "EndpointDataSource",
+      "targetHandle": "EndpointDataSourcetoptarget",
+      "id": "reactflow__edge-IEndpointRouteBuilderIEndpointRouteBuilderbottomsource-EndpointDataSourceEndpointDataSourcetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointRoutingMiddleware",
+      "sourceHandle": "EndpointRoutingMiddlewarebottomsource",
+      "target": "EndpointMiddleware",
+      "targetHandle": "EndpointMiddlewaretoptarget",
+      "id": "reactflow__edge-EndpointRoutingMiddlewareEndpointRoutingMiddlewarebottomsource-EndpointMiddlewareEndpointMiddlewaretoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointMiddleware",
+      "sourceHandle": "EndpointMiddlewareleftsource",
+      "target": "RouteOptions",
+      "targetHandle": "RouteOptionsrighttarget",
+      "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewareleftsource-RouteOptionsRouteOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointMiddleware",
+      "sourceHandle": "EndpointMiddlewarebottomsource",
+      "target": "IAuthorizeData",
+      "targetHandle": "IAuthorizeDatatoptarget",
+      "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAuthorizeDataIAuthorizeDatatoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointMiddleware",
+      "sourceHandle": "EndpointMiddlewarebottomsource",
+      "target": "ICorsMetadata",
+      "targetHandle": "ICorsMetadatatoptarget",
+      "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-ICorsMetadataICorsMetadatatoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointMiddleware",
+      "sourceHandle": "EndpointMiddlewarebottomsource",
+      "target": "IAntiforgeryMetadata",
+      "targetHandle": "IAntiforgeryMetadatatoptarget",
+      "id": "reactflow__edge-EndpointMiddlewareEndpointMiddlewarebottomsource-IAntiforgeryMetadataIAntiforgeryMetadatatoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointDataSource",
+      "sourceHandle": "EndpointDataSourcebottomsource",
+      "target": "Endpoint",
+      "targetHandle": "Endpointtoptarget",
+      "id": "reactflow__edge-EndpointDataSourceEndpointDataSourcebottomsource-EndpointEndpointtoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Endpoint",
+      "sourceHandle": "Endpointbottomsource",
+      "target": "EndpointMetadataCollection",
+      "targetHandle": "EndpointMetadataCollectiontoptarget",
+      "id": "reactflow__edge-EndpointEndpointbottomsource-EndpointMetadataCollectionEndpointMetadataCollectiontoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RouteEndpointDataSource",
+      "sourceHandle": "RouteEndpointDataSourceleftsource",
+      "target": "EndpointDataSource",
+      "targetHandle": "EndpointDataSourcerighttarget",
+      "id": "reactflow__edge-RouteEndpointDataSourceRouteEndpointDataSourceleftsource-EndpointDataSourceEndpointDataSourcerighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultEndpointRouteBuilder",
+      "sourceHandle": "DefaultEndpointRouteBuilderleftsource",
+      "target": "IEndpointRouteBuilder",
+      "targetHandle": "IEndpointRouteBuilderrighttarget",
+      "id": "reactflow__edge-DefaultEndpointRouteBuilderDefaultEndpointRouteBuilderleftsource-IEndpointRouteBuilderIEndpointRouteBuilderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EndpointBuilder",
+      "sourceHandle": "EndpointBuilderleftsource",
+      "target": "Endpoint",
+      "targetHandle": "Endpointrighttarget",
+      "id": "reactflow__edge-EndpointBuilderEndpointBuilderleftsource-EndpointEndpointrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RouteEndpointBuilder",
+      "sourceHandle": "RouteEndpointBuilderbottomsource",
+      "target": "EndpointBuilder",
+      "targetHandle": "EndpointBuildertoptarget",
+      "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderbottomsource-EndpointBuilderEndpointBuildertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RouteEndpoint",
+      "sourceHandle": "RouteEndpointleftsource",
+      "target": "Endpoint",
+      "targetHandle": "Endpointrighttarget",
+      "id": "reactflow__edge-RouteEndpointRouteEndpointleftsource-EndpointEndpointrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RouteEndpointBuilder",
+      "sourceHandle": "RouteEndpointBuilderleftsource",
+      "target": "RouteEndpoint",
+      "targetHandle": "RouteEndpointbottomtarget",
+      "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderleftsource-RouteEndpointRouteEndpointbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RouteEndpointBuilder",
+      "sourceHandle": "RouteEndpointBuilderrightsource",
+      "target": "RoutePattern",
+      "targetHandle": "RoutePatternlefttarget",
+      "id": "reactflow__edge-RouteEndpointBuilderRouteEndpointBuilderrightsource-RoutePatternRoutePatternlefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RoutePatternFactory",
+      "sourceHandle": "RoutePatternFactorytopsource",
+      "target": "RoutePattern",
+      "targetHandle": "RoutePatternbottomtarget",
+      "id": "reactflow__edge-RoutePatternFactoryRoutePatternFactorytopsource-RoutePatternRoutePatternbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "CompositeEndpointDataSource",
+      "sourceHandle": "CompositeEndpointDataSourceleftsource",
+      "target": "EndpointDataSource",
+      "targetHandle": "EndpointDataSourcerighttarget",
+      "id": "reactflow__edge-CompositeEndpointDataSourceCompositeEndpointDataSourceleftsource-EndpointDataSourceEndpointDataSourcerighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DfaMatcherFactory",
+      "sourceHandle": "DfaMatcherFactoryleftsource",
+      "target": "MatcherFactory",
+      "targetHandle": "MatcherFactoryrighttarget",
+      "id": "reactflow__edge-DfaMatcherFactoryDfaMatcherFactoryleftsource-MatcherFactoryMatcherFactoryrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DataSourceDependentMatcher",
+      "sourceHandle": "DataSourceDependentMatcherleftsource",
+      "target": "Matcher",
+      "targetHandle": "Matcherrighttarget",
+      "id": "reactflow__edge-DataSourceDependentMatcherDataSourceDependentMatcherleftsource-MatcherMatcherrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DfaMatcherFactory",
+      "sourceHandle": "DfaMatcherFactoryrightsource",
+      "target": "DataSourceDependentMatcher",
+      "targetHandle": "DataSourceDependentMatchertoptarget",
+      "id": "reactflow__edge-DfaMatcherFactoryDfaMatcherFactoryrightsource-DataSourceDependentMatcherDataSourceDependentMatchertoptarget"
+    }
+  ],
+  "viewport": {
+    "x": -328.0189040093612,
+    "y": 80.05274622761772,
+    "zoom": 0.5590962772177516
+  }
 }

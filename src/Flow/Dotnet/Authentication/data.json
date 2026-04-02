@@ -1,1705 +1,1673 @@
 {
-    "nodes": [
-        {
-            "width": 302,
-            "height": 70,
-            "id": "IIdentity",
-            "position": {
-                "x": 685.4108018089319,
-                "y": 641.8338080977634
-            },
-            "type": "custom",
-            "data": {
-                "id": "IIdentity",
-                "name": "IIdentity",
-                "properties": [
-                    "string? Name { get; }",
-                    "string? AuthenticationType { get; }",
-                    "bool IsAuthenticated { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 685.4108018089319,
-                "y": 641.8338080977634
-            },
-            "dragging": false
-        },
-        {
-            "width": 416,
-            "height": 288,
-            "id": "ClaimsIdentity",
-            "position": {
-                "x": 1121.3114515388788,
-                "y": 531.4365979318173
-            },
-            "type": "custom",
-            "data": {
-                "id": "ClaimsIdentity",
-                "name": "ClaimsIdentity",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "parent": "IIdentity",
-                "properties": [
-                    "public const string DefaultIssuer = @\"LOCAL AUTHORITY\"",
-                    "public const string DefaultNameClaimType = ClaimTypes.Name",
-                    "public const string DefaultRoleClaimType = ClaimTypes.Role",
-                    "public ClaimsIdentity? Actor",
-                    "public object? BootstrapContext",
-                    "public virtual IEnumerable<Claim> Claims",
-                    "public string NameClaimType",
-                    "public string RoleClaimType"
-                ],
-                "methods": [
-                    "public virtual ClaimsIdentity Clone()",
-                    "public virtual void AddClaim(Claim claim)",
-                    "public virtual void AddClaims(IEnumerable<Claim?> claims)",
-                    "public virtual bool TryRemoveClaim(Claim? claim)",
-                    "public virtual void RemoveClaim(Claim? claim)",
-                    "public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)",
-                    "public virtual Claim? FindFirst(Predicate<Claim> match)",
-                    "public virtual bool HasClaim(Predicate<Claim> match)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1121.3114515388788,
-                "y": 531.4365979318173
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 86,
-            "id": "GenericIdentity",
-            "position": {
-                "x": 1687.2402336703249,
-                "y": 633.943881618662
-            },
-            "type": "custom",
-            "data": {
-                "id": "GenericIdentity",
-                "name": "GenericIdentity",
-                "parent": "ClaimsIdentity",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public override string Name",
-                    "public override string AuthenticationType",
-                    "public override bool IsAuthenticated",
-                    "public override ClaimsIdentity Clone()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1687.2402336703249,
-                "y": 633.943881618662
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 176,
-            "id": "Claim",
-            "position": {
-                "x": 1177.9900166317407,
-                "y": 307.5689970946054
-            },
-            "type": "custom",
-            "data": {
-                "id": "Claim",
-                "name": "Claim",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public string Issuer",
-                    "public string OriginalIssuer",
-                    "public IDictionary<string, string> Properties",
-                    "public ClaimsIdentity? Subject",
-                    "public string Type",
-                    "public string Value",
-                    "public string ValueType"
-                ],
-                "methods": [
-                    "public virtual Claim Clone()",
-                    "public virtual void WriteTo(BinaryWriter writer)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1177.9900166317407,
-                "y": 307.5689970946054
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "IPrincipal",
-            "position": {
-                "x": 686.9982592731947,
-                "y": 974.4690961363556
-            },
-            "type": "custom",
-            "data": {
-                "id": "IPrincipal",
-                "name": "IPrincipal",
-                "properties": [
-                    "IIdentity? Identity { get; }",
-                    "bool IsInRole(string role);"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 686.9982592731947,
-                "y": 974.4690961363556
-            },
-            "dragging": false
-        },
-        {
-            "width": 543,
-            "height": 256,
-            "id": "ClaimsPrincipal",
-            "position": {
-                "x": 1058.1803345262058,
-                "y": 871.5272793295127
-            },
-            "type": "custom",
-            "data": {
-                "id": "ClaimsPrincipal",
-                "name": "ClaimsPrincipal",
-                "parent": "IPrincipal",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "public static Func<IEnumerable<ClaimsIdentity>, ClaimsIdentity?> PrimaryIdentitySelector",
-                    "public static Func<ClaimsPrincipal> ClaimsPrincipalSelector",
-                    "public virtual void AddIdentity(ClaimsIdentity identity)",
-                    "public virtual void AddIdentities(IEnumerable<ClaimsIdentity> identities)",
-                    "public virtual ClaimsPrincipal Clone()",
-                    "public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)",
-                    "public virtual Claim? FindFirst(Predicate<Claim> match)",
-                    "public virtual bool HasClaim(Predicate<Claim> match)",
-                    "public virtual bool IsInRole(string role)",
-                    "public virtual void WriteTo(BinaryWriter writer)"
-                ],
-                "properties": [
-                    "public virtual IEnumerable<Claim> Claims",
-                    "public static ClaimsPrincipal? Current",
-                    "public virtual IEnumerable<ClaimsIdentity> Identities",
-                    "public virtual System.Security.Principal.IIdentity? Identity"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1058.1803345262058,
-                "y": 871.5272793295127
-            },
-            "dragging": false
-        },
-        {
-            "width": 381,
-            "height": 64,
-            "id": "GenericPrincipal",
-            "position": {
-                "x": 1669.922695974055,
-                "y": 871.9812430006078
-            },
-            "type": "custom",
-            "data": {
-                "id": "GenericPrincipal",
-                "name": "GenericPrincipal",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "parent": "ClaimsPrincipal",
-                "properties": [
-                    "public override IIdentity Identity"
-                ],
-                "methods": [
-                    "public override bool IsInRole([NotNullWhen(true)] string? role)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1669.922695974055,
-                "y": 871.9812430006078
-            },
-            "dragging": false
-        },
-        {
-            "width": 307,
-            "height": 96,
-            "id": "AuthenticationTicket",
-            "position": {
-                "x": 1308.9489855415113,
-                "y": 1758.280860399298
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationTicket",
-                "name": "AuthenticationTicket",
-                "properties": [
-                    "public string AuthenticationScheme { get; }",
-                    "public ClaimsPrincipal Principal { get; }",
-                    "public AuthenticationProperties Properties { get; }"
-                ],
-                "methods": [
-                    "public AuthenticationTicket Clone()"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1308.9489855415113,
-                "y": 1758.280860399298
-            },
-            "dragging": false
-        },
-        {
-            "width": 691,
-            "height": 288,
-            "id": "AuthenticationProperties",
-            "position": {
-                "x": 1699.234050561309,
-                "y": 1585.532316652666
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationProperties",
-                "name": "AuthenticationProperties",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public IDictionary<string, string?> Items { get; }",
-                    "public IDictionary<string, object?> Parameters { get; }",
-                    "public bool IsPersistent",
-                    "public string? RedirectUri",
-                    "public DateTimeOffset? IssuedUtc",
-                    "public DateTimeOffset? ExpiresUtc",
-                    "public bool? AllowRefresh"
-                ],
-                "methods": [
-                    "public string? GetString(string key)",
-                    "public void SetString(string key, string? value)",
-                    "public T? GetParameter<T>(string key)",
-                    "public void SetParameter<T>(string key, T value)",
-                    "public static void StoreTokens(this AuthenticationProperties properties, IEnumerable<AuthenticationToken> tokens)",
-                    "public static string? GetTokenValue(this AuthenticationProperties properties, string tokenName)",
-                    "public static bool UpdateTokenValue(this AuthenticationProperties properties, string tokenName, string tokenValue)",
-                    "public static IEnumerable<AuthenticationToken> GetTokens(this AuthenticationProperties properties)",
-                    "public static Task<string?> GetTokenAsync(this IAuthenticationService auth, HttpContext context, string tokenName)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1699.234050561309,
-                "y": 1585.532316652666
-            },
-            "dragging": false
-        },
-        {
-            "width": 412,
-            "height": 192,
-            "id": "AuthenticateResult",
-            "position": {
-                "x": 716.7300157907608,
-                "y": 1710.919742229374
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticateResult",
-                "name": "AuthenticateResult",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public bool Succeeded => Ticket != null",
-                    "public AuthenticationTicket? Ticket { get; protected set; }",
-                    "public ClaimsPrincipal? Principal => Ticket?.Principal",
-                    "public AuthenticationProperties? Properties { get; protected set; }",
-                    "public Exception? Failure { get; protected set; }",
-                    "public bool None { get; protected set; }"
-                ],
-                "methods": [
-                    "public AuthenticateResult Clone()",
-                    "public static AuthenticateResult Success(AuthenticationTicket ticket)",
-                    "public static AuthenticateResult NoResult()",
-                    "public static AuthenticateResult Fail(Exception failure)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 716.7300157907608,
-                "y": 1710.919742229374
-            },
-            "dragging": false
-        },
-        {
-            "width": 440,
-            "height": 86,
-            "id": "IAuthenticationHandler",
-            "position": {
-                "x": 703.9667767852766,
-                "y": 1511.8665912626388
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationHandler",
-                "name": "IAuthenticationHandler",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)",
-                    "Task<AuthenticateResult> AuthenticateAsync()",
-                    "Task ChallengeAsync(AuthenticationProperties? properties)",
-                    "Task ForbidAsync(AuthenticationProperties? properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 703.9667767852766,
-                "y": 1511.8665912626388
-            },
-            "dragging": false
-        },
-        {
-            "width": 603,
-            "height": 52,
-            "id": "IAuthenticationHandlerProvider",
-            "position": {
-                "x": 690.0061468410386,
-                "y": 1328.8673300873804
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationHandlerProvider",
-                "name": "IAuthenticationHandlerProvider",
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "Task<IAuthenticationHandler?> GetHandlerAsync(HttpContext context, string authenticationScheme)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 690.0061468410386,
-                "y": 1328.8673300873804
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IAuthenticationRequestHandler",
-            "position": {
-                "x": 1291.6235324384418,
-                "y": 1536.8856508756837
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationRequestHandler",
-                "name": "IAuthenticationRequestHandler",
-                "methods": [
-                    "Task<bool> HandleRequestAsync()"
-                ],
-                "parent": "IAuthenticationHandler",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1291.6235324384418,
-                "y": 1536.8856508756837
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 70,
-            "id": "AuthenticationScheme",
-            "position": {
-                "x": 2584.871832931396,
-                "y": 1880.9011691565602
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationScheme",
-                "name": "AuthenticationScheme",
-                "properties": [
-                    "public string Name { get; }",
-                    "public string? DisplayName { get; }",
-                    "public Type HandlerType { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2584.871832931396,
-                "y": 1880.9011691565602
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 96,
-            "id": "AuthenticationSchemeBuilder",
-            "position": {
-                "x": 2584.1177886479536,
-                "y": 1738.8327197031551
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationSchemeBuilder",
-                "name": "AuthenticationSchemeBuilder",
-                "properties": [
-                    "public string Name { get; }",
-                    "public string? DisplayName { get; set; }",
-                    "public Type? HandlerType { get; set; }"
-                ],
-                "methods": [
-                    "public AuthenticationScheme Build()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2584.1177886479536,
-                "y": 1738.8327197031551
-            },
-            "dragging": false
-        },
-        {
-            "width": 492,
-            "height": 198,
-            "id": "IAuthenticationSchemeProvider",
-            "position": {
-                "x": 2293.2973153411035,
-                "y": 1101.0429977883118
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationSchemeProvider",
-                "name": "IAuthenticationSchemeProvider",
-                "methods": [
-                    "Task<IEnumerable<AuthenticationScheme>> GetAllSchemesAsync()",
-                    "Task<AuthenticationScheme?> GetSchemeAsync(string name)",
-                    "Task<AuthenticationScheme?> GetDefaultAuthenticateSchemeAsync()",
-                    "Task<AuthenticationScheme?> GetDefaultChallengeSchemeAsync()",
-                    "Task<AuthenticationScheme?> GetDefaultForbidSchemeAsync()",
-                    "Task<AuthenticationScheme?> GetDefaultSignInSchemeAsync()",
-                    "Task<AuthenticationScheme?> GetDefaultSignOutSchemeAsync()",
-                    "void AddScheme(AuthenticationScheme scheme)",
-                    "bool TryAddScheme(AuthenticationScheme scheme)",
-                    "void RemoveScheme(string name)",
-                    "Task<IEnumerable<AuthenticationScheme>> GetRequestHandlerSchemesAsync()"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2293.2973153411035,
-                "y": 1101.0429977883118
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "AuthenticationToken",
-            "position": {
-                "x": 1699.773740816937,
-                "y": 1903.6621915956953
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationToken",
-                "name": "AuthenticationToken",
-                "properties": [
-                    "public string Name { get; set; }",
-                    "public string Value { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1699.773740816937,
-                "y": 1903.6621915956953
-            },
-            "dragging": false
-        },
-        {
-            "width": 819,
-            "height": 118,
-            "id": "IAuthenticationService",
-            "position": {
-                "x": 1363.1120678634488,
-                "y": 1159.452064289212
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationService",
-                "name": "IAuthenticationService",
-                "properties": [],
-                "methods": [
-                    "Task<AuthenticateResult> AuthenticateAsync(HttpContext context, string? scheme)",
-                    "Task ChallengeAsync(HttpContext context, string? scheme, AuthenticationProperties? properties)",
-                    "Task ForbidAsync(HttpContext context, string? scheme, AuthenticationProperties? properties)",
-                    "Task SignInAsync(HttpContext context, string? scheme, ClaimsPrincipal principal, AuthenticationProperties? properties)",
-                    "Task SignOutAsync(HttpContext context, string? scheme, AuthenticationProperties? properties)",
-                    "public static async Task<string?> GetTokenAsync(this IAuthenticationService auth, HttpContext context, string? scheme, string tokenName)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1363.1120678634488,
-                "y": 1159.452064289212
-            },
-            "dragging": false
-        },
-        {
-            "width": 637,
-            "height": 118,
-            "id": "HttpContext",
-            "position": {
-                "x": 686.1044965895151,
-                "y": 1159.1876351852413
-            },
-            "type": "custom",
-            "data": {
-                "id": "HttpContext",
-                "name": "HttpContext",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "public static Task<AuthenticateResult> AuthenticateAsync(this HttpContext context, string? scheme)",
-                    "public static Task ChallengeAsync(this HttpContext context, string? scheme, AuthenticationProperties?)",
-                    "public static Task ForbidAsync(this HttpContext context, string? scheme, AuthenticationProperties?)",
-                    "public static Task SignInAsync(this HttpContext, string? scheme, ClaimsPrincipal, AuthenticationProperties?)",
-                    "public static Task SignOutAsync(this HttpContext context, string? scheme, AuthenticationProperties?)",
-                    "public static Task<string?> GetTokenAsync(this HttpContext context, string? scheme, string tokenName)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 686.1044965895151,
-                "y": 1159.1876351852413
-            },
-            "dragging": false
-        },
-        {
-            "width": 338,
-            "height": 86,
-            "id": "AuthenticationService",
-            "position": {
-                "x": 1743.4304030166222,
-                "y": 1384.189258920181
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationService",
-                "name": "AuthenticationService",
-                "parent": "IAuthenticationService",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public IAuthenticationSchemeProvider Schemes { get; }",
-                    "public IAuthenticationHandlerProvider Handlers { get; }",
-                    "public IClaimsTransformation Transform { get; }",
-                    "public AuthenticationOptions Options { get; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1743.4304030166222,
-                "y": 1384.189258920181
-            },
-            "dragging": false
-        },
-        {
-            "width": 337,
-            "height": 52,
-            "id": "AuthenticationHandlerProvider",
-            "position": {
-                "x": 823.7054884626425,
-                "y": 1433.1418829851273
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationHandlerProvider",
-                "name": "AuthenticationHandlerProvider",
-                "parent": "IAuthenticationHandlerProvider",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public IAuthenticationSchemeProvider Schemes { get; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 823.7054884626425,
-                "y": 1433.1418829851273
-            },
-            "dragging": false
-        },
-        {
-            "width": 427,
-            "height": 70,
-            "id": "AuthenticationSchemeProvider",
-            "position": {
-                "x": 2325.0437713520687,
-                "y": 1352.896965703809
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationSchemeProvider",
-                "name": "AuthenticationSchemeProvider",
-                "parent": "IAuthenticationSchemeProvider",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "private readonly AuthenticationOptions _options",
-                    "private readonly IDictionary<string, AuthenticationScheme> _schemes",
-                    "private readonly List<AuthenticationScheme> _requestHandlers"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2325.0437713520687,
-                "y": 1352.896965703809
-            },
-            "dragging": false
-        },
-        {
-            "width": 394,
-            "height": 52,
-            "id": "IClaimsTransformation",
-            "position": {
-                "x": 1323.5792686050409,
-                "y": 1329.6416857867969
-            },
-            "type": "custom",
-            "data": {
-                "id": "IClaimsTransformation",
-                "name": "IClaimsTransformation",
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1323.5792686050409,
-                "y": 1329.6416857867969
-            },
-            "dragging": false
-        },
-        {
-            "width": 472,
-            "height": 52,
-            "id": "NoopClaimsTransformation",
-            "position": {
-                "x": 1242.889782196653,
-                "y": 1433.3309484333015
-            },
-            "type": "custom",
-            "data": {
-                "id": "NoopClaimsTransformation",
-                "name": "NoopClaimsTransformation",
-                "parent": "IClaimsTransformation",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "public virtual Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1242.889782196653,
-                "y": 1433.3309484333015
-            },
-            "dragging": false
-        },
-        {
-            "width": 667,
-            "height": 208,
-            "id": "AuthenticationOptions",
-            "position": {
-                "x": 2400.8389715063267,
-                "y": 1481.5401669421558
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationOptions",
-                "name": "AuthenticationOptions",
-                "properties": [
-                    "public IEnumerable<AuthenticationSchemeBuilder> Schemes",
-                    "public IDictionary<string, AuthenticationSchemeBuilder> SchemeMap { get; }",
-                    "public string? DefaultScheme { get; set; }",
-                    "public string? DefaultAuthenticateScheme { get; set; }",
-                    "public string? DefaultSignInScheme { get; set; }",
-                    "public string? DefaultSignOutScheme { get; set; }",
-                    "public string? DefaultChallengeScheme { get; set; }",
-                    "public string? DefaultForbidScheme { get; set; }",
-                    "public bool RequireAuthenticatedSignIn { get; set; }"
-                ],
-                "methods": [
-                    "public void AddScheme(string name, Action<AuthenticationSchemeBuilder> configureBuilder)",
-                    "public void AddScheme<THandler>(string name, string? displayName) where THandler : IAuthenticationHandler"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2400.8389715063267,
-                "y": 1481.5401669421558
-            },
-            "dragging": false
-        },
-        {
-            "width": 351,
-            "height": 52,
-            "id": "IAuthenticationSignOutHandler",
-            "position": {
-                "x": 749.4306702607867,
-                "y": 1640.778664889898
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationSignOutHandler",
-                "name": "IAuthenticationSignOutHandler",
-                "parent": "IAuthenticationHandler",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "Task SignOutAsync(AuthenticationProperties? properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 749.4306702607867,
-                "y": 1640.778664889898
-            },
-            "dragging": false
-        },
-        {
-            "width": 460,
-            "height": 52,
-            "id": "IAuthenticationSignInHandler",
-            "position": {
-                "x": 1182.3294892847139,
-                "y": 1640.5844724530534
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationSignInHandler",
-                "name": "IAuthenticationSignInHandler",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "parent": "IAuthenticationSignOutHandler",
-                "methods": [
-                    "Task SignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1182.3294892847139,
-                "y": 1640.5844724530534
-            },
-            "dragging": false
-        },
-        {
-            "width": 360,
-            "height": 52,
-            "id": "AuthenticationMiddleware",
-            "position": {
-                "x": 2357.0068192470803,
-                "y": 983.7539865028635
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationMiddleware",
-                "name": "AuthenticationMiddleware",
-                "properties": [
-                    "public IAuthenticationSchemeProvider Schemes { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2357.0068192470803,
-                "y": 983.7539865028635
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "IAuthenticationFeature",
-            "position": {
-                "x": 2780.742030140392,
-                "y": 975.2351444316137
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticationFeature",
-                "name": "IAuthenticationFeature",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "PathString OriginalPathBase { get; set; }",
-                    "PathString OriginalPath { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2780.742030140392,
-                "y": 975.2351444316137
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "AuthenticationFeature",
-            "position": {
-                "x": 2779.379671400606,
-                "y": 857.0638913752804
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationFeature",
-                "name": "AuthenticationFeature",
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ],
-                "parent": "IAuthenticationFeature",
-                "properties": [
-                    "public PathString OriginalPathBase { get; set; }",
-                    "public PathString OriginalPath { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2779.379671400606,
-                "y": 857.0638913752804
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IHttpAuthenticationFeature",
-            "position": {
-                "x": 2459.686375547315,
-                "y": 839.2772626739244
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHttpAuthenticationFeature",
-                "name": "IHttpAuthenticationFeature",
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "ClaimsPrincipal? User { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2459.686375547315,
-                "y": 839.2772626739244
-            },
-            "dragging": false
-        },
-        {
-            "width": 311,
-            "height": 52,
-            "id": "IAuthenticateResultFeature",
-            "position": {
-                "x": 2109.300251661423,
-                "y": 838.1264535152527
-            },
-            "type": "custom",
-            "data": {
-                "id": "IAuthenticateResultFeature",
-                "name": "IAuthenticateResultFeature",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "AuthenticateResult? AuthenticateResult { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2109.300251661423,
-                "y": 838.1264535152527
-            },
-            "dragging": false
-        },
-        {
-            "width": 346,
-            "height": 80,
-            "id": "AuthenticationFeatures",
-            "position": {
-                "x": 2286.6667433664993,
-                "y": 687.3712445171504
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationFeatures",
-                "name": "AuthenticationFeatures",
-                "parent": "IAuthenticateResultFeature, IHttpAuthenticationFeature",
-                "methods": [
-                    "public AuthenticationFeatures(AuthenticateResult result)"
-                ],
-                "properties": [
-                    "public AuthenticateResult? AuthenticateResult",
-                    "public ClaimsPrincipal? User"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2286.6667433664993,
-                "y": 687.3712445171504
-            },
-            "dragging": false
-        },
-        {
-            "width": 420,
-            "height": 166,
-            "id": "AuthenticationFlow",
-            "position": {
-                "x": 2246.8765971970993,
-                "y": 426.5835820657835
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationFlow",
-                "name": "AuthenticationFlow",
-                "properties": [
-                    "AuthenticationMiddleware",
-                    "IAuthenticationFeature",
-                    "IAuthenticationSchemeProvider.GetRequestHandlerSchemesAsync()",
-                    "IAuthenticationHandlerProvider.GetHandlerAsync",
-                    "IAuthenticationRequestHandler.HandleRequestAsync",
-                    "IAuthenticationSchemeProvider.GetDefaultAuthenticateSchemeAsync",
-                    "HttpContext.AuthenticateAsync",
-                    "IHttpAuthenticationFeature",
-                    "IAuthenticateResultFeature"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 2246.8765971970993,
-                "y": 426.5835820657835
-            },
-            "dragging": false,
-            "style": {
-                "backgroundColor": "#b8e986"
-            }
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ClaimsIdentity",
-            "sourceHandle": "ClaimsIdentityleftsource",
-            "target": "IIdentity",
-            "targetHandle": "IIdentityrighttarget",
-            "id": "reactflow__edge-ClaimsIdentityClaimsIdentityleftsource-IIdentityIIdentityrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "GenericIdentity",
-            "sourceHandle": "GenericIdentityleftsource",
-            "target": "ClaimsIdentity",
-            "targetHandle": "ClaimsIdentityrighttarget",
-            "id": "reactflow__edge-GenericIdentityGenericIdentityleftsource-ClaimsIdentityClaimsIdentityrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IPrincipal",
-            "sourceHandle": "IPrincipaltopsource",
-            "target": "IIdentity",
-            "targetHandle": "IIdentitybottomtarget",
-            "id": "reactflow__edge-IPrincipalIPrincipaltopsource-IIdentityIIdentitybottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ClaimsPrincipal",
-            "sourceHandle": "ClaimsPrincipalleftsource",
-            "target": "IPrincipal",
-            "targetHandle": "IPrincipalrighttarget",
-            "id": "reactflow__edge-ClaimsPrincipalClaimsPrincipalleftsource-IPrincipalIPrincipalrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ClaimsPrincipal",
-            "sourceHandle": "ClaimsPrincipaltopsource",
-            "target": "ClaimsIdentity",
-            "targetHandle": "ClaimsIdentitybottomtarget",
-            "id": "reactflow__edge-ClaimsPrincipalClaimsPrincipaltopsource-ClaimsIdentityClaimsIdentitybottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ClaimsIdentity",
-            "sourceHandle": "ClaimsIdentitytopsource",
-            "target": "Claim",
-            "targetHandle": "Claimbottomtarget",
-            "id": "reactflow__edge-ClaimsIdentityClaimsIdentitytopsource-ClaimClaimbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "GenericPrincipal",
-            "sourceHandle": "GenericPrincipalleftsource",
-            "target": "ClaimsPrincipal",
-            "targetHandle": "ClaimsPrincipalrighttarget",
-            "id": "reactflow__edge-GenericPrincipalGenericPrincipalleftsource-ClaimsPrincipalClaimsPrincipalrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationTicket",
-            "sourceHandle": "AuthenticationTicketrightsource",
-            "target": "AuthenticationProperties",
-            "targetHandle": "AuthenticationPropertieslefttarget",
-            "id": "reactflow__edge-AuthenticationTicketAuthenticationTicketrightsource-AuthenticationPropertiesAuthenticationPropertieslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticateResult",
-            "sourceHandle": "AuthenticateResultrightsource",
-            "target": "AuthenticationTicket",
-            "targetHandle": "AuthenticationTicketlefttarget",
-            "id": "reactflow__edge-AuthenticateResultAuthenticateResultrightsource-AuthenticationTicketAuthenticationTicketlefttarget",
-            "selected": false
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HttpContext",
-            "sourceHandle": "HttpContextrightsource",
-            "target": "IAuthenticationService",
-            "targetHandle": "IAuthenticationServicelefttarget",
-            "id": "reactflow__edge-HttpContextHttpContextrightsource-IAuthenticationServiceIAuthenticationServicelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationService",
-            "sourceHandle": "AuthenticationServicetopsource",
-            "target": "IAuthenticationService",
-            "targetHandle": "IAuthenticationServicebottomtarget",
-            "id": "reactflow__edge-AuthenticationServiceAuthenticationServicetopsource-IAuthenticationServiceIAuthenticationServicebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IAuthenticationService",
-            "sourceHandle": "IAuthenticationServicerightsource",
-            "target": "IAuthenticationSchemeProvider",
-            "targetHandle": "IAuthenticationSchemeProviderlefttarget",
-            "id": "reactflow__edge-IAuthenticationServiceIAuthenticationServicerightsource-IAuthenticationSchemeProviderIAuthenticationSchemeProviderlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationSchemeProvider",
-            "sourceHandle": "AuthenticationSchemeProvidertopsource",
-            "target": "IAuthenticationSchemeProvider",
-            "targetHandle": "IAuthenticationSchemeProviderbottomtarget",
-            "id": "reactflow__edge-AuthenticationSchemeProviderAuthenticationSchemeProvidertopsource-IAuthenticationSchemeProviderIAuthenticationSchemeProviderbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "NoopClaimsTransformation",
-            "sourceHandle": "NoopClaimsTransformationtopsource",
-            "target": "IClaimsTransformation",
-            "targetHandle": "IClaimsTransformationbottomtarget",
-            "id": "reactflow__edge-NoopClaimsTransformationNoopClaimsTransformationtopsource-IClaimsTransformationIClaimsTransformationbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IAuthenticationRequestHandler",
-            "sourceHandle": "IAuthenticationRequestHandlerleftsource",
-            "target": "IAuthenticationHandler",
-            "targetHandle": "IAuthenticationHandlerrighttarget",
-            "id": "reactflow__edge-IAuthenticationRequestHandlerIAuthenticationRequestHandlerleftsource-IAuthenticationHandlerIAuthenticationHandlerrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationSchemeProvider",
-            "sourceHandle": "AuthenticationSchemeProviderbottomsource",
-            "target": "AuthenticationOptions",
-            "targetHandle": "AuthenticationOptionstoptarget",
-            "id": "reactflow__edge-AuthenticationSchemeProviderAuthenticationSchemeProviderbottomsource-AuthenticationOptionsAuthenticationOptionstoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IAuthenticationSignOutHandler",
-            "sourceHandle": "IAuthenticationSignOutHandlertopsource",
-            "target": "IAuthenticationHandler",
-            "targetHandle": "IAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-IAuthenticationSignOutHandlerIAuthenticationSignOutHandlertopsource-IAuthenticationHandlerIAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IAuthenticationSignInHandler",
-            "sourceHandle": "IAuthenticationSignInHandlerleftsource",
-            "target": "IAuthenticationSignOutHandler",
-            "targetHandle": "IAuthenticationSignOutHandlerrighttarget",
-            "id": "reactflow__edge-IAuthenticationSignInHandlerIAuthenticationSignInHandlerleftsource-IAuthenticationSignOutHandlerIAuthenticationSignOutHandlerrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewarerightsource",
-            "target": "IAuthenticationFeature",
-            "targetHandle": "IAuthenticationFeaturelefttarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarerightsource-IAuthenticationFeatureIAuthenticationFeaturelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationOptions",
-            "sourceHandle": "AuthenticationOptionsbottomsource",
-            "target": "AuthenticationSchemeBuilder",
-            "targetHandle": "AuthenticationSchemeBuildertoptarget",
-            "id": "reactflow__edge-AuthenticationOptionsAuthenticationOptionsbottomsource-AuthenticationSchemeBuilderAuthenticationSchemeBuildertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationSchemeBuilder",
-            "sourceHandle": "AuthenticationSchemeBuilderbottomsource",
-            "target": "AuthenticationScheme",
-            "targetHandle": "AuthenticationSchemetoptarget",
-            "id": "reactflow__edge-AuthenticationSchemeBuilderAuthenticationSchemeBuilderbottomsource-AuthenticationSchemeAuthenticationSchemetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewaretopsource",
-            "target": "IHttpAuthenticationFeature",
-            "targetHandle": "IHttpAuthenticationFeaturebottomtarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewaretopsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationFeatures",
-            "sourceHandle": "AuthenticationFeaturesbottomsource",
-            "target": "IAuthenticateResultFeature",
-            "targetHandle": "IAuthenticateResultFeaturetoptarget",
-            "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturesbottomsource-IAuthenticateResultFeatureIAuthenticateResultFeaturetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewarebottomsource",
-            "target": "IAuthenticationSchemeProvider",
-            "targetHandle": "IAuthenticationSchemeProvidertoptarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarebottomsource-IAuthenticationSchemeProviderIAuthenticationSchemeProvidertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationFeatures",
-            "sourceHandle": "AuthenticationFeaturesbottomsource",
-            "target": "IHttpAuthenticationFeature",
-            "targetHandle": "IHttpAuthenticationFeaturetoptarget",
-            "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturesbottomsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationMiddleware",
-            "sourceHandle": "AuthenticationMiddlewaretopsource",
-            "target": "IAuthenticateResultFeature",
-            "targetHandle": "IAuthenticateResultFeaturebottomtarget",
-            "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewaretopsource-IAuthenticateResultFeatureIAuthenticateResultFeaturebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationFeature",
-            "sourceHandle": "AuthenticationFeaturebottomsource",
-            "target": "IAuthenticationFeature",
-            "targetHandle": "IAuthenticationFeaturetoptarget",
-            "id": "reactflow__edge-AuthenticationFeatureAuthenticationFeaturebottomsource-IAuthenticationFeatureIAuthenticationFeaturetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationHandlerProvider",
-            "sourceHandle": "AuthenticationHandlerProvidertopsource",
-            "target": "IAuthenticationHandlerProvider",
-            "targetHandle": "IAuthenticationHandlerProviderbottomtarget",
-            "id": "reactflow__edge-AuthenticationHandlerProviderAuthenticationHandlerProvidertopsource-IAuthenticationHandlerProviderIAuthenticationHandlerProviderbottomtarget"
-        }
-    ],
-    "viewport": {
-        "x": -86.65600326257356,
-        "y": -113.0837922945816,
-        "zoom": 0.5024509596511528
+  "nodes": [
+    {
+      "width": 302,
+      "height": 70,
+      "id": "IIdentity",
+      "position": {
+        "x": 685.4108018089319,
+        "y": 641.8338080977634
+      },
+      "type": "custom",
+      "data": {
+        "id": "IIdentity",
+        "name": "IIdentity",
+        "properties": [
+          "string? Name { get; }",
+          "string? AuthenticationType { get; }",
+          "bool IsAuthenticated { get; }"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 685.4108018089319,
+        "y": 641.8338080977634
+      },
+      "dragging": false
+    },
+    {
+      "width": 416,
+      "height": 288,
+      "id": "ClaimsIdentity",
+      "position": {
+        "x": 1121.3114515388788,
+        "y": 531.4365979318173
+      },
+      "type": "custom",
+      "data": {
+        "id": "ClaimsIdentity",
+        "name": "ClaimsIdentity",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "parent": "IIdentity",
+        "properties": [
+          "public const string DefaultIssuer = @\"LOCAL AUTHORITY\"",
+          "public const string DefaultNameClaimType = ClaimTypes.Name",
+          "public const string DefaultRoleClaimType = ClaimTypes.Role",
+          "public ClaimsIdentity? Actor",
+          "public object? BootstrapContext",
+          "public virtual IEnumerable<Claim> Claims",
+          "public string NameClaimType",
+          "public string RoleClaimType"
+        ],
+        "methods": [
+          "public virtual ClaimsIdentity Clone()",
+          "public virtual void AddClaim(Claim claim)",
+          "public virtual void AddClaims(IEnumerable<Claim?> claims)",
+          "public virtual bool TryRemoveClaim(Claim? claim)",
+          "public virtual void RemoveClaim(Claim? claim)",
+          "public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)",
+          "public virtual Claim? FindFirst(Predicate<Claim> match)",
+          "public virtual bool HasClaim(Predicate<Claim> match)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1121.3114515388788,
+        "y": 531.4365979318173
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 86,
+      "id": "GenericIdentity",
+      "position": {
+        "x": 1687.2402336703249,
+        "y": 633.943881618662
+      },
+      "type": "custom",
+      "data": {
+        "id": "GenericIdentity",
+        "name": "GenericIdentity",
+        "parent": "ClaimsIdentity",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "public override string Name",
+          "public override string AuthenticationType",
+          "public override bool IsAuthenticated",
+          "public override ClaimsIdentity Clone()"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1687.2402336703249,
+        "y": 633.943881618662
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 176,
+      "id": "Claim",
+      "position": {
+        "x": 1177.9900166317407,
+        "y": 307.5689970946054
+      },
+      "type": "custom",
+      "data": {
+        "id": "Claim",
+        "name": "Claim",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "public string Issuer",
+          "public string OriginalIssuer",
+          "public IDictionary<string, string> Properties",
+          "public ClaimsIdentity? Subject",
+          "public string Type",
+          "public string Value",
+          "public string ValueType"
+        ],
+        "methods": [
+          "public virtual Claim Clone()",
+          "public virtual void WriteTo(BinaryWriter writer)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1177.9900166317407,
+        "y": 307.5689970946054
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "IPrincipal",
+      "position": {
+        "x": 686.9982592731947,
+        "y": 974.4690961363556
+      },
+      "type": "custom",
+      "data": {
+        "id": "IPrincipal",
+        "name": "IPrincipal",
+        "properties": ["IIdentity? Identity { get; }", "bool IsInRole(string role);"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 686.9982592731947,
+        "y": 974.4690961363556
+      },
+      "dragging": false
+    },
+    {
+      "width": 543,
+      "height": 256,
+      "id": "ClaimsPrincipal",
+      "position": {
+        "x": 1058.1803345262058,
+        "y": 871.5272793295127
+      },
+      "type": "custom",
+      "data": {
+        "id": "ClaimsPrincipal",
+        "name": "ClaimsPrincipal",
+        "parent": "IPrincipal",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "methods": [
+          "public static Func<IEnumerable<ClaimsIdentity>, ClaimsIdentity?> PrimaryIdentitySelector",
+          "public static Func<ClaimsPrincipal> ClaimsPrincipalSelector",
+          "public virtual void AddIdentity(ClaimsIdentity identity)",
+          "public virtual void AddIdentities(IEnumerable<ClaimsIdentity> identities)",
+          "public virtual ClaimsPrincipal Clone()",
+          "public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)",
+          "public virtual Claim? FindFirst(Predicate<Claim> match)",
+          "public virtual bool HasClaim(Predicate<Claim> match)",
+          "public virtual bool IsInRole(string role)",
+          "public virtual void WriteTo(BinaryWriter writer)"
+        ],
+        "properties": [
+          "public virtual IEnumerable<Claim> Claims",
+          "public static ClaimsPrincipal? Current",
+          "public virtual IEnumerable<ClaimsIdentity> Identities",
+          "public virtual System.Security.Principal.IIdentity? Identity"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1058.1803345262058,
+        "y": 871.5272793295127
+      },
+      "dragging": false
+    },
+    {
+      "width": 381,
+      "height": 64,
+      "id": "GenericPrincipal",
+      "position": {
+        "x": 1669.922695974055,
+        "y": 871.9812430006078
+      },
+      "type": "custom",
+      "data": {
+        "id": "GenericPrincipal",
+        "name": "GenericPrincipal",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "parent": "ClaimsPrincipal",
+        "properties": ["public override IIdentity Identity"],
+        "methods": ["public override bool IsInRole([NotNullWhen(true)] string? role)"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1669.922695974055,
+        "y": 871.9812430006078
+      },
+      "dragging": false
+    },
+    {
+      "width": 307,
+      "height": 96,
+      "id": "AuthenticationTicket",
+      "position": {
+        "x": 1308.9489855415113,
+        "y": 1758.280860399298
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationTicket",
+        "name": "AuthenticationTicket",
+        "properties": [
+          "public string AuthenticationScheme { get; }",
+          "public ClaimsPrincipal Principal { get; }",
+          "public AuthenticationProperties Properties { get; }"
+        ],
+        "methods": ["public AuthenticationTicket Clone()"],
+        "connects": [
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1308.9489855415113,
+        "y": 1758.280860399298
+      },
+      "dragging": false
+    },
+    {
+      "width": 691,
+      "height": 288,
+      "id": "AuthenticationProperties",
+      "position": {
+        "x": 1699.234050561309,
+        "y": 1585.532316652666
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationProperties",
+        "name": "AuthenticationProperties",
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "public IDictionary<string, string?> Items { get; }",
+          "public IDictionary<string, object?> Parameters { get; }",
+          "public bool IsPersistent",
+          "public string? RedirectUri",
+          "public DateTimeOffset? IssuedUtc",
+          "public DateTimeOffset? ExpiresUtc",
+          "public bool? AllowRefresh"
+        ],
+        "methods": [
+          "public string? GetString(string key)",
+          "public void SetString(string key, string? value)",
+          "public T? GetParameter<T>(string key)",
+          "public void SetParameter<T>(string key, T value)",
+          "public static void StoreTokens(this AuthenticationProperties properties, IEnumerable<AuthenticationToken> tokens)",
+          "public static string? GetTokenValue(this AuthenticationProperties properties, string tokenName)",
+          "public static bool UpdateTokenValue(this AuthenticationProperties properties, string tokenName, string tokenValue)",
+          "public static IEnumerable<AuthenticationToken> GetTokens(this AuthenticationProperties properties)",
+          "public static Task<string?> GetTokenAsync(this IAuthenticationService auth, HttpContext context, string tokenName)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1699.234050561309,
+        "y": 1585.532316652666
+      },
+      "dragging": false
+    },
+    {
+      "width": 412,
+      "height": 192,
+      "id": "AuthenticateResult",
+      "position": {
+        "x": 716.7300157907608,
+        "y": 1710.919742229374
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticateResult",
+        "name": "AuthenticateResult",
+        "connects": [
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public bool Succeeded => Ticket != null",
+          "public AuthenticationTicket? Ticket { get; protected set; }",
+          "public ClaimsPrincipal? Principal => Ticket?.Principal",
+          "public AuthenticationProperties? Properties { get; protected set; }",
+          "public Exception? Failure { get; protected set; }",
+          "public bool None { get; protected set; }"
+        ],
+        "methods": [
+          "public AuthenticateResult Clone()",
+          "public static AuthenticateResult Success(AuthenticationTicket ticket)",
+          "public static AuthenticateResult NoResult()",
+          "public static AuthenticateResult Fail(Exception failure)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 716.7300157907608,
+        "y": 1710.919742229374
+      },
+      "dragging": false
+    },
+    {
+      "width": 440,
+      "height": 86,
+      "id": "IAuthenticationHandler",
+      "position": {
+        "x": 703.9667767852766,
+        "y": 1511.8665912626388
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationHandler",
+        "name": "IAuthenticationHandler",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "methods": [
+          "Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)",
+          "Task<AuthenticateResult> AuthenticateAsync()",
+          "Task ChallengeAsync(AuthenticationProperties? properties)",
+          "Task ForbidAsync(AuthenticationProperties? properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 703.9667767852766,
+        "y": 1511.8665912626388
+      },
+      "dragging": false
+    },
+    {
+      "width": 603,
+      "height": 52,
+      "id": "IAuthenticationHandlerProvider",
+      "position": {
+        "x": 690.0061468410386,
+        "y": 1328.8673300873804
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationHandlerProvider",
+        "name": "IAuthenticationHandlerProvider",
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "methods": [
+          "Task<IAuthenticationHandler?> GetHandlerAsync(HttpContext context, string authenticationScheme)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 690.0061468410386,
+        "y": 1328.8673300873804
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IAuthenticationRequestHandler",
+      "position": {
+        "x": 1291.6235324384418,
+        "y": 1536.8856508756837
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationRequestHandler",
+        "name": "IAuthenticationRequestHandler",
+        "methods": ["Task<bool> HandleRequestAsync()"],
+        "parent": "IAuthenticationHandler",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1291.6235324384418,
+        "y": 1536.8856508756837
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 70,
+      "id": "AuthenticationScheme",
+      "position": {
+        "x": 2584.871832931396,
+        "y": 1880.9011691565602
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationScheme",
+        "name": "AuthenticationScheme",
+        "properties": [
+          "public string Name { get; }",
+          "public string? DisplayName { get; }",
+          "public Type HandlerType { get; }"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2584.871832931396,
+        "y": 1880.9011691565602
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 96,
+      "id": "AuthenticationSchemeBuilder",
+      "position": {
+        "x": 2584.1177886479536,
+        "y": 1738.8327197031551
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationSchemeBuilder",
+        "name": "AuthenticationSchemeBuilder",
+        "properties": [
+          "public string Name { get; }",
+          "public string? DisplayName { get; set; }",
+          "public Type? HandlerType { get; set; }"
+        ],
+        "methods": ["public AuthenticationScheme Build()"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2584.1177886479536,
+        "y": 1738.8327197031551
+      },
+      "dragging": false
+    },
+    {
+      "width": 492,
+      "height": 198,
+      "id": "IAuthenticationSchemeProvider",
+      "position": {
+        "x": 2293.2973153411035,
+        "y": 1101.0429977883118
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationSchemeProvider",
+        "name": "IAuthenticationSchemeProvider",
+        "methods": [
+          "Task<IEnumerable<AuthenticationScheme>> GetAllSchemesAsync()",
+          "Task<AuthenticationScheme?> GetSchemeAsync(string name)",
+          "Task<AuthenticationScheme?> GetDefaultAuthenticateSchemeAsync()",
+          "Task<AuthenticationScheme?> GetDefaultChallengeSchemeAsync()",
+          "Task<AuthenticationScheme?> GetDefaultForbidSchemeAsync()",
+          "Task<AuthenticationScheme?> GetDefaultSignInSchemeAsync()",
+          "Task<AuthenticationScheme?> GetDefaultSignOutSchemeAsync()",
+          "void AddScheme(AuthenticationScheme scheme)",
+          "bool TryAddScheme(AuthenticationScheme scheme)",
+          "void RemoveScheme(string name)",
+          "Task<IEnumerable<AuthenticationScheme>> GetRequestHandlerSchemesAsync()"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2293.2973153411035,
+        "y": 1101.0429977883118
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "AuthenticationToken",
+      "position": {
+        "x": 1699.773740816937,
+        "y": 1903.6621915956953
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationToken",
+        "name": "AuthenticationToken",
+        "properties": ["public string Name { get; set; }", "public string Value { get; set; }"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1699.773740816937,
+        "y": 1903.6621915956953
+      },
+      "dragging": false
+    },
+    {
+      "width": 819,
+      "height": 118,
+      "id": "IAuthenticationService",
+      "position": {
+        "x": 1363.1120678634488,
+        "y": 1159.452064289212
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationService",
+        "name": "IAuthenticationService",
+        "properties": [],
+        "methods": [
+          "Task<AuthenticateResult> AuthenticateAsync(HttpContext context, string? scheme)",
+          "Task ChallengeAsync(HttpContext context, string? scheme, AuthenticationProperties? properties)",
+          "Task ForbidAsync(HttpContext context, string? scheme, AuthenticationProperties? properties)",
+          "Task SignInAsync(HttpContext context, string? scheme, ClaimsPrincipal principal, AuthenticationProperties? properties)",
+          "Task SignOutAsync(HttpContext context, string? scheme, AuthenticationProperties? properties)",
+          "public static async Task<string?> GetTokenAsync(this IAuthenticationService auth, HttpContext context, string? scheme, string tokenName)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1363.1120678634488,
+        "y": 1159.452064289212
+      },
+      "dragging": false
+    },
+    {
+      "width": 637,
+      "height": 118,
+      "id": "HttpContext",
+      "position": {
+        "x": 686.1044965895151,
+        "y": 1159.1876351852413
+      },
+      "type": "custom",
+      "data": {
+        "id": "HttpContext",
+        "name": "HttpContext",
+        "connects": [
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "methods": [
+          "public static Task<AuthenticateResult> AuthenticateAsync(this HttpContext context, string? scheme)",
+          "public static Task ChallengeAsync(this HttpContext context, string? scheme, AuthenticationProperties?)",
+          "public static Task ForbidAsync(this HttpContext context, string? scheme, AuthenticationProperties?)",
+          "public static Task SignInAsync(this HttpContext, string? scheme, ClaimsPrincipal, AuthenticationProperties?)",
+          "public static Task SignOutAsync(this HttpContext context, string? scheme, AuthenticationProperties?)",
+          "public static Task<string?> GetTokenAsync(this HttpContext context, string? scheme, string tokenName)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 686.1044965895151,
+        "y": 1159.1876351852413
+      },
+      "dragging": false
+    },
+    {
+      "width": 338,
+      "height": 86,
+      "id": "AuthenticationService",
+      "position": {
+        "x": 1743.4304030166222,
+        "y": 1384.189258920181
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationService",
+        "name": "AuthenticationService",
+        "parent": "IAuthenticationService",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public IAuthenticationSchemeProvider Schemes { get; }",
+          "public IAuthenticationHandlerProvider Handlers { get; }",
+          "public IClaimsTransformation Transform { get; }",
+          "public AuthenticationOptions Options { get; }"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1743.4304030166222,
+        "y": 1384.189258920181
+      },
+      "dragging": false
+    },
+    {
+      "width": 337,
+      "height": 52,
+      "id": "AuthenticationHandlerProvider",
+      "position": {
+        "x": 823.7054884626425,
+        "y": 1433.1418829851273
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationHandlerProvider",
+        "name": "AuthenticationHandlerProvider",
+        "parent": "IAuthenticationHandlerProvider",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": ["public IAuthenticationSchemeProvider Schemes { get; }"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 823.7054884626425,
+        "y": 1433.1418829851273
+      },
+      "dragging": false
+    },
+    {
+      "width": 427,
+      "height": 70,
+      "id": "AuthenticationSchemeProvider",
+      "position": {
+        "x": 2325.0437713520687,
+        "y": 1352.896965703809
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationSchemeProvider",
+        "name": "AuthenticationSchemeProvider",
+        "parent": "IAuthenticationSchemeProvider",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "private readonly AuthenticationOptions _options",
+          "private readonly IDictionary<string, AuthenticationScheme> _schemes",
+          "private readonly List<AuthenticationScheme> _requestHandlers"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2325.0437713520687,
+        "y": 1352.896965703809
+      },
+      "dragging": false
+    },
+    {
+      "width": 394,
+      "height": 52,
+      "id": "IClaimsTransformation",
+      "position": {
+        "x": 1323.5792686050409,
+        "y": 1329.6416857867969
+      },
+      "type": "custom",
+      "data": {
+        "id": "IClaimsTransformation",
+        "name": "IClaimsTransformation",
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "methods": ["Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1323.5792686050409,
+        "y": 1329.6416857867969
+      },
+      "dragging": false
+    },
+    {
+      "width": 472,
+      "height": 52,
+      "id": "NoopClaimsTransformation",
+      "position": {
+        "x": 1242.889782196653,
+        "y": 1433.3309484333015
+      },
+      "type": "custom",
+      "data": {
+        "id": "NoopClaimsTransformation",
+        "name": "NoopClaimsTransformation",
+        "parent": "IClaimsTransformation",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "methods": [
+          "public virtual Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1242.889782196653,
+        "y": 1433.3309484333015
+      },
+      "dragging": false
+    },
+    {
+      "width": 667,
+      "height": 208,
+      "id": "AuthenticationOptions",
+      "position": {
+        "x": 2400.8389715063267,
+        "y": 1481.5401669421558
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationOptions",
+        "name": "AuthenticationOptions",
+        "properties": [
+          "public IEnumerable<AuthenticationSchemeBuilder> Schemes",
+          "public IDictionary<string, AuthenticationSchemeBuilder> SchemeMap { get; }",
+          "public string? DefaultScheme { get; set; }",
+          "public string? DefaultAuthenticateScheme { get; set; }",
+          "public string? DefaultSignInScheme { get; set; }",
+          "public string? DefaultSignOutScheme { get; set; }",
+          "public string? DefaultChallengeScheme { get; set; }",
+          "public string? DefaultForbidScheme { get; set; }",
+          "public bool RequireAuthenticatedSignIn { get; set; }"
+        ],
+        "methods": [
+          "public void AddScheme(string name, Action<AuthenticationSchemeBuilder> configureBuilder)",
+          "public void AddScheme<THandler>(string name, string? displayName) where THandler : IAuthenticationHandler"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2400.8389715063267,
+        "y": 1481.5401669421558
+      },
+      "dragging": false
+    },
+    {
+      "width": 351,
+      "height": 52,
+      "id": "IAuthenticationSignOutHandler",
+      "position": {
+        "x": 749.4306702607867,
+        "y": 1640.778664889898
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationSignOutHandler",
+        "name": "IAuthenticationSignOutHandler",
+        "parent": "IAuthenticationHandler",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "methods": ["Task SignOutAsync(AuthenticationProperties? properties)"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 749.4306702607867,
+        "y": 1640.778664889898
+      },
+      "dragging": false
+    },
+    {
+      "width": 460,
+      "height": 52,
+      "id": "IAuthenticationSignInHandler",
+      "position": {
+        "x": 1182.3294892847139,
+        "y": 1640.5844724530534
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationSignInHandler",
+        "name": "IAuthenticationSignInHandler",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "parent": "IAuthenticationSignOutHandler",
+        "methods": ["Task SignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1182.3294892847139,
+        "y": 1640.5844724530534
+      },
+      "dragging": false
+    },
+    {
+      "width": 360,
+      "height": 52,
+      "id": "AuthenticationMiddleware",
+      "position": {
+        "x": 2357.0068192470803,
+        "y": 983.7539865028635
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationMiddleware",
+        "name": "AuthenticationMiddleware",
+        "properties": ["public IAuthenticationSchemeProvider Schemes { get; set; }"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2357.0068192470803,
+        "y": 983.7539865028635
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "IAuthenticationFeature",
+      "position": {
+        "x": 2780.742030140392,
+        "y": 975.2351444316137
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticationFeature",
+        "name": "IAuthenticationFeature",
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "PathString OriginalPathBase { get; set; }",
+          "PathString OriginalPath { get; set; }"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2780.742030140392,
+        "y": 975.2351444316137
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "AuthenticationFeature",
+      "position": {
+        "x": 2779.379671400606,
+        "y": 857.0638913752804
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationFeature",
+        "name": "AuthenticationFeature",
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ],
+        "parent": "IAuthenticationFeature",
+        "properties": [
+          "public PathString OriginalPathBase { get; set; }",
+          "public PathString OriginalPath { get; set; }"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2779.379671400606,
+        "y": 857.0638913752804
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IHttpAuthenticationFeature",
+      "position": {
+        "x": 2459.686375547315,
+        "y": 839.2772626739244
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHttpAuthenticationFeature",
+        "name": "IHttpAuthenticationFeature",
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ],
+        "properties": ["ClaimsPrincipal? User { get; set; }"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2459.686375547315,
+        "y": 839.2772626739244
+      },
+      "dragging": false
+    },
+    {
+      "width": 311,
+      "height": 52,
+      "id": "IAuthenticateResultFeature",
+      "position": {
+        "x": 2109.300251661423,
+        "y": 838.1264535152527
+      },
+      "type": "custom",
+      "data": {
+        "id": "IAuthenticateResultFeature",
+        "name": "IAuthenticateResultFeature",
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "properties": ["AuthenticateResult? AuthenticateResult { get; set; }"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2109.300251661423,
+        "y": 838.1264535152527
+      },
+      "dragging": false
+    },
+    {
+      "width": 346,
+      "height": 80,
+      "id": "AuthenticationFeatures",
+      "position": {
+        "x": 2286.6667433664993,
+        "y": 687.3712445171504
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationFeatures",
+        "name": "AuthenticationFeatures",
+        "parent": "IAuthenticateResultFeature, IHttpAuthenticationFeature",
+        "methods": ["public AuthenticationFeatures(AuthenticateResult result)"],
+        "properties": [
+          "public AuthenticateResult? AuthenticateResult",
+          "public ClaimsPrincipal? User"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2286.6667433664993,
+        "y": 687.3712445171504
+      },
+      "dragging": false
+    },
+    {
+      "width": 420,
+      "height": 166,
+      "id": "AuthenticationFlow",
+      "position": {
+        "x": 2246.8765971970993,
+        "y": 426.5835820657835
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationFlow",
+        "name": "AuthenticationFlow",
+        "properties": [
+          "AuthenticationMiddleware",
+          "IAuthenticationFeature",
+          "IAuthenticationSchemeProvider.GetRequestHandlerSchemesAsync()",
+          "IAuthenticationHandlerProvider.GetHandlerAsync",
+          "IAuthenticationRequestHandler.HandleRequestAsync",
+          "IAuthenticationSchemeProvider.GetDefaultAuthenticateSchemeAsync",
+          "HttpContext.AuthenticateAsync",
+          "IHttpAuthenticationFeature",
+          "IAuthenticateResultFeature"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2246.8765971970993,
+        "y": 426.5835820657835
+      },
+      "dragging": false,
+      "style": {
+        "backgroundColor": "#b8e986"
+      }
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ClaimsIdentity",
+      "sourceHandle": "ClaimsIdentityleftsource",
+      "target": "IIdentity",
+      "targetHandle": "IIdentityrighttarget",
+      "id": "reactflow__edge-ClaimsIdentityClaimsIdentityleftsource-IIdentityIIdentityrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "GenericIdentity",
+      "sourceHandle": "GenericIdentityleftsource",
+      "target": "ClaimsIdentity",
+      "targetHandle": "ClaimsIdentityrighttarget",
+      "id": "reactflow__edge-GenericIdentityGenericIdentityleftsource-ClaimsIdentityClaimsIdentityrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IPrincipal",
+      "sourceHandle": "IPrincipaltopsource",
+      "target": "IIdentity",
+      "targetHandle": "IIdentitybottomtarget",
+      "id": "reactflow__edge-IPrincipalIPrincipaltopsource-IIdentityIIdentitybottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ClaimsPrincipal",
+      "sourceHandle": "ClaimsPrincipalleftsource",
+      "target": "IPrincipal",
+      "targetHandle": "IPrincipalrighttarget",
+      "id": "reactflow__edge-ClaimsPrincipalClaimsPrincipalleftsource-IPrincipalIPrincipalrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ClaimsPrincipal",
+      "sourceHandle": "ClaimsPrincipaltopsource",
+      "target": "ClaimsIdentity",
+      "targetHandle": "ClaimsIdentitybottomtarget",
+      "id": "reactflow__edge-ClaimsPrincipalClaimsPrincipaltopsource-ClaimsIdentityClaimsIdentitybottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ClaimsIdentity",
+      "sourceHandle": "ClaimsIdentitytopsource",
+      "target": "Claim",
+      "targetHandle": "Claimbottomtarget",
+      "id": "reactflow__edge-ClaimsIdentityClaimsIdentitytopsource-ClaimClaimbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "GenericPrincipal",
+      "sourceHandle": "GenericPrincipalleftsource",
+      "target": "ClaimsPrincipal",
+      "targetHandle": "ClaimsPrincipalrighttarget",
+      "id": "reactflow__edge-GenericPrincipalGenericPrincipalleftsource-ClaimsPrincipalClaimsPrincipalrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationTicket",
+      "sourceHandle": "AuthenticationTicketrightsource",
+      "target": "AuthenticationProperties",
+      "targetHandle": "AuthenticationPropertieslefttarget",
+      "id": "reactflow__edge-AuthenticationTicketAuthenticationTicketrightsource-AuthenticationPropertiesAuthenticationPropertieslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticateResult",
+      "sourceHandle": "AuthenticateResultrightsource",
+      "target": "AuthenticationTicket",
+      "targetHandle": "AuthenticationTicketlefttarget",
+      "id": "reactflow__edge-AuthenticateResultAuthenticateResultrightsource-AuthenticationTicketAuthenticationTicketlefttarget",
+      "selected": false
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HttpContext",
+      "sourceHandle": "HttpContextrightsource",
+      "target": "IAuthenticationService",
+      "targetHandle": "IAuthenticationServicelefttarget",
+      "id": "reactflow__edge-HttpContextHttpContextrightsource-IAuthenticationServiceIAuthenticationServicelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationService",
+      "sourceHandle": "AuthenticationServicetopsource",
+      "target": "IAuthenticationService",
+      "targetHandle": "IAuthenticationServicebottomtarget",
+      "id": "reactflow__edge-AuthenticationServiceAuthenticationServicetopsource-IAuthenticationServiceIAuthenticationServicebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IAuthenticationService",
+      "sourceHandle": "IAuthenticationServicerightsource",
+      "target": "IAuthenticationSchemeProvider",
+      "targetHandle": "IAuthenticationSchemeProviderlefttarget",
+      "id": "reactflow__edge-IAuthenticationServiceIAuthenticationServicerightsource-IAuthenticationSchemeProviderIAuthenticationSchemeProviderlefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationSchemeProvider",
+      "sourceHandle": "AuthenticationSchemeProvidertopsource",
+      "target": "IAuthenticationSchemeProvider",
+      "targetHandle": "IAuthenticationSchemeProviderbottomtarget",
+      "id": "reactflow__edge-AuthenticationSchemeProviderAuthenticationSchemeProvidertopsource-IAuthenticationSchemeProviderIAuthenticationSchemeProviderbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "NoopClaimsTransformation",
+      "sourceHandle": "NoopClaimsTransformationtopsource",
+      "target": "IClaimsTransformation",
+      "targetHandle": "IClaimsTransformationbottomtarget",
+      "id": "reactflow__edge-NoopClaimsTransformationNoopClaimsTransformationtopsource-IClaimsTransformationIClaimsTransformationbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IAuthenticationRequestHandler",
+      "sourceHandle": "IAuthenticationRequestHandlerleftsource",
+      "target": "IAuthenticationHandler",
+      "targetHandle": "IAuthenticationHandlerrighttarget",
+      "id": "reactflow__edge-IAuthenticationRequestHandlerIAuthenticationRequestHandlerleftsource-IAuthenticationHandlerIAuthenticationHandlerrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationSchemeProvider",
+      "sourceHandle": "AuthenticationSchemeProviderbottomsource",
+      "target": "AuthenticationOptions",
+      "targetHandle": "AuthenticationOptionstoptarget",
+      "id": "reactflow__edge-AuthenticationSchemeProviderAuthenticationSchemeProviderbottomsource-AuthenticationOptionsAuthenticationOptionstoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IAuthenticationSignOutHandler",
+      "sourceHandle": "IAuthenticationSignOutHandlertopsource",
+      "target": "IAuthenticationHandler",
+      "targetHandle": "IAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-IAuthenticationSignOutHandlerIAuthenticationSignOutHandlertopsource-IAuthenticationHandlerIAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IAuthenticationSignInHandler",
+      "sourceHandle": "IAuthenticationSignInHandlerleftsource",
+      "target": "IAuthenticationSignOutHandler",
+      "targetHandle": "IAuthenticationSignOutHandlerrighttarget",
+      "id": "reactflow__edge-IAuthenticationSignInHandlerIAuthenticationSignInHandlerleftsource-IAuthenticationSignOutHandlerIAuthenticationSignOutHandlerrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationMiddleware",
+      "sourceHandle": "AuthenticationMiddlewarerightsource",
+      "target": "IAuthenticationFeature",
+      "targetHandle": "IAuthenticationFeaturelefttarget",
+      "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarerightsource-IAuthenticationFeatureIAuthenticationFeaturelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationOptions",
+      "sourceHandle": "AuthenticationOptionsbottomsource",
+      "target": "AuthenticationSchemeBuilder",
+      "targetHandle": "AuthenticationSchemeBuildertoptarget",
+      "id": "reactflow__edge-AuthenticationOptionsAuthenticationOptionsbottomsource-AuthenticationSchemeBuilderAuthenticationSchemeBuildertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationSchemeBuilder",
+      "sourceHandle": "AuthenticationSchemeBuilderbottomsource",
+      "target": "AuthenticationScheme",
+      "targetHandle": "AuthenticationSchemetoptarget",
+      "id": "reactflow__edge-AuthenticationSchemeBuilderAuthenticationSchemeBuilderbottomsource-AuthenticationSchemeAuthenticationSchemetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationMiddleware",
+      "sourceHandle": "AuthenticationMiddlewaretopsource",
+      "target": "IHttpAuthenticationFeature",
+      "targetHandle": "IHttpAuthenticationFeaturebottomtarget",
+      "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewaretopsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationFeatures",
+      "sourceHandle": "AuthenticationFeaturesbottomsource",
+      "target": "IAuthenticateResultFeature",
+      "targetHandle": "IAuthenticateResultFeaturetoptarget",
+      "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturesbottomsource-IAuthenticateResultFeatureIAuthenticateResultFeaturetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationMiddleware",
+      "sourceHandle": "AuthenticationMiddlewarebottomsource",
+      "target": "IAuthenticationSchemeProvider",
+      "targetHandle": "IAuthenticationSchemeProvidertoptarget",
+      "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewarebottomsource-IAuthenticationSchemeProviderIAuthenticationSchemeProvidertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationFeatures",
+      "sourceHandle": "AuthenticationFeaturesbottomsource",
+      "target": "IHttpAuthenticationFeature",
+      "targetHandle": "IHttpAuthenticationFeaturetoptarget",
+      "id": "reactflow__edge-AuthenticationFeaturesAuthenticationFeaturesbottomsource-IHttpAuthenticationFeatureIHttpAuthenticationFeaturetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationMiddleware",
+      "sourceHandle": "AuthenticationMiddlewaretopsource",
+      "target": "IAuthenticateResultFeature",
+      "targetHandle": "IAuthenticateResultFeaturebottomtarget",
+      "id": "reactflow__edge-AuthenticationMiddlewareAuthenticationMiddlewaretopsource-IAuthenticateResultFeatureIAuthenticateResultFeaturebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationFeature",
+      "sourceHandle": "AuthenticationFeaturebottomsource",
+      "target": "IAuthenticationFeature",
+      "targetHandle": "IAuthenticationFeaturetoptarget",
+      "id": "reactflow__edge-AuthenticationFeatureAuthenticationFeaturebottomsource-IAuthenticationFeatureIAuthenticationFeaturetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationHandlerProvider",
+      "sourceHandle": "AuthenticationHandlerProvidertopsource",
+      "target": "IAuthenticationHandlerProvider",
+      "targetHandle": "IAuthenticationHandlerProviderbottomtarget",
+      "id": "reactflow__edge-AuthenticationHandlerProviderAuthenticationHandlerProvidertopsource-IAuthenticationHandlerProviderIAuthenticationHandlerProviderbottomtarget"
+    }
+  ],
+  "viewport": {
+    "x": -86.65600326257356,
+    "y": -113.0837922945816,
+    "zoom": 0.5024509596511528
+  }
 }

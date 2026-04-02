@@ -4,109 +4,108 @@ import { ExampleModel, DefaultExampleModel } from '../Models/ExampleModel'
 import { useQuery } from '@tanstack/react-query'
 
 const settingPath = 'examples'
-const exampleKey: string = "playground/example"
-const customeExampleKey: string = "playground/customeExample"
+const exampleKey: string = 'playground/example'
+const customeExampleKey: string = 'playground/customeExample'
 
 const getExample = async (exampleName: string) => {
-    const examples = await getAllSystemExamples()
-    const example = examples.find((d: ExampleModel) => d.key == exampleName) ?? DefaultExampleModel
-    return example
+  const examples = await getAllSystemExamples()
+  const example = examples.find((d: ExampleModel) => d.key == exampleName) ?? DefaultExampleModel
+  return example
 }
 
 const getAllSystemExamples = async () => {
-    return getAllExamples(exampleKey, `${openaiserver}${settingPath}`)
+  return getAllExamples(exampleKey, `${openaiserver}${settingPath}`)
 }
-
 
 const getAllExamples = async (localStoragekey: string, path: string) => {
-    let examples = JSON.parse(localStorage.getItem(localStoragekey) ?? "{}")
-    if (examples.date && examples.date < new Date().getTime() || !examples.data) {
-        const options: AxiosRequestConfig = {
-            url: path,
-            method: "GET",
-        }
-
-        let result: ExampleModel[] = []
-        try {
-            const { data, status } = await axios<ExampleModel[]>(options)
-            result = data
-            if (status == 200) {
-                const expiraDate = new Date().setHours(new Date().getHours() + 1)
-                localStorage.setItem(localStoragekey, JSON.stringify({ date: expiraDate, data: data }))
-            }
-        } catch (error) {
-            console.log(error)
-        }
-
-        return result
-    } else {
-        return examples.data
-    }
-}
-
-const getAllCustomExamples = async () => {
-    return getAllExamples(customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
-}
-
-const createSystemExample = async (data: ExampleModel) => {
-    return await createExample(data, exampleKey, `${openaiserver}${settingPath}`)
-}
-
-const createExample = async (data: ExampleModel, localStoragekey: string, path: string) => {
-    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
+  let examples = JSON.parse(localStorage.getItem(localStoragekey) ?? '{}')
+  if ((examples.date && examples.date < new Date().getTime()) || !examples.data) {
     const options: AxiosRequestConfig = {
-        url: path,
-        method: "POST",
-        data: data,
-        headers: {},
+      url: path,
+      method: 'GET',
     }
-
-    options.headers!.Authorization = "Bearer " + jwtToken.access_token
 
     let result: ExampleModel[] = []
-
     try {
-        const { data, status } = await axios<ExampleModel[]>(options)
-        if (status == 200) {
-            localStorage.removeItem(localStoragekey)
-        }
-
-        return data
-    } catch (error: any) {
-        console.log(error)
+      const { data, status } = await axios<ExampleModel[]>(options)
+      result = data
+      if (status == 200) {
+        const expiraDate = new Date().setHours(new Date().getHours() + 1)
+        localStorage.setItem(localStoragekey, JSON.stringify({ date: expiraDate, data: data }))
+      }
+    } catch (error) {
+      console.log(error)
     }
 
     return result
+  } else {
+    return examples.data
+  }
+}
+
+const getAllCustomExamples = async () => {
+  return getAllExamples(customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
+}
+
+const createSystemExample = async (data: ExampleModel) => {
+  return await createExample(data, exampleKey, `${openaiserver}${settingPath}`)
+}
+
+const createExample = async (data: ExampleModel, localStoragekey: string, path: string) => {
+  const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
+  const options: AxiosRequestConfig = {
+    url: path,
+    method: 'POST',
+    data: data,
+    headers: {},
+  }
+
+  options.headers!.Authorization = 'Bearer ' + jwtToken.access_token
+
+  let result: ExampleModel[] = []
+
+  try {
+    const { data, status } = await axios<ExampleModel[]>(options)
+    if (status == 200) {
+      localStorage.removeItem(localStoragekey)
+    }
+
+    return data
+  } catch (error: any) {
+    console.log(error)
+  }
+
+  return result
 }
 
 const createCustomExample = async (data: ExampleModel) => {
-    return await createExample(data, customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
+  return await createExample(data, customeExampleKey, `${openaiserver}${settingPath}?type=custom`)
 }
 
 const useQueryExample = (config = {}) => {
-    const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
-    const options: AxiosRequestConfig = {
-        url: `${openaiserver}${settingPath}`,
-        method: "GET",
-        headers: {},
-    }
+  const jwtToken = JSON.parse(window.localStorage.getItem('auth') || '{}')
+  const options: AxiosRequestConfig = {
+    url: `${openaiserver}${settingPath}`,
+    method: 'GET',
+    headers: {},
+  }
 
-    options.headers!.Authorization = "Bearer " + jwtToken.access_token
+  options.headers!.Authorization = 'Bearer ' + jwtToken.access_token
 
-    const { isLoading, isError, data, refetch, isFetching } = useQuery({
-        queryKey: [`${openaiserver}${settingPath}`],
-        queryFn: () => axios(options).then(x => x.data),
-        ...config,
-    })
+  const { isLoading, isError, data, refetch, isFetching } = useQuery({
+    queryKey: [`${openaiserver}${settingPath}`],
+    queryFn: () => axios(options).then((x) => x.data),
+    ...config,
+  })
 
-    return { data: data as ExampleModel[], isLoading, isFetching, isError, refetch }
+  return { data: data as ExampleModel[], isLoading, isFetching, isError, refetch }
 }
 
 export default {
-    getExample: getExample,
-    getAllExamples: getAllSystemExamples,
-    createExample: createSystemExample,
-    createCustomExample: createCustomExample,
-    getAllCustomExamples: getAllCustomExamples,
-    useQueryExample: useQueryExample,
+  getExample: getExample,
+  getAllExamples: getAllSystemExamples,
+  createExample: createSystemExample,
+  createCustomExample: createCustomExample,
+  getAllCustomExamples: getAllCustomExamples,
+  useQueryExample: useQueryExample,
 }

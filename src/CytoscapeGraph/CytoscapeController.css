@@ -1,53 +1,53 @@
 .layoutController {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    height: 100%;
-    background-color: #c1c0c1;
-    z-index: 310;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 100%;
+  background-color: #c1c0c1;
+  z-index: 310;
 }
 
 .controllerItem {
-    width: 200px;
-    margin-bottom: 10px;
+  width: 200px;
+  margin-bottom: 10px;
 }
 
-.controllerItem>* {
-    width: 100%;
-    margin-bottom: 5px;
+.controllerItem > * {
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .itemDescription {
-    text-align: left;
-    padding-left: 5px;
+  text-align: left;
+  padding-left: 5px;
 }
 
-.itemContent>* {
-    width: 100%;
-    cursor: pointer;
+.itemContent > * {
+  width: 100%;
+  cursor: pointer;
 }
 
 .controllerHead {
-    width: 200px;
-    height: 40px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    font-size: 16px;
-    line-height: 40px;
-    justify-content: space-between;
+  width: 200px;
+  height: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 16px;
+  line-height: 40px;
+  justify-content: space-between;
 }
 
 .itemIcon {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
 
 .itemIcon:hover {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #66615a;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #66615a;
 }

@@ -1,37 +1,37 @@
 .ReaderContainer {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 5;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 .ReaderContainer.fix {
-    /* padding */
-    width: calc(100% - 40px);
-    /* header + padding */
-    height: calc(100% - 105.5px);
-    position: absolute;
-    z-index: 5;
+  /* padding */
+  width: calc(100% - 40px);
+  /* header + padding */
+  height: calc(100% - 105.5px);
+  position: absolute;
+  z-index: 5;
 }
 
 .ReaderClose {
-    position: fixed;
-    right: 40px;
-    z-index: 5;
-    font-size: 20px;
-    border: 1px solid black;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-    margin-top: 20px;
-    line-height: 24px;
-    cursor: pointer;
+  position: fixed;
+  right: 40px;
+  z-index: 5;
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin-top: 20px;
+  line-height: 24px;
+  cursor: pointer;
 }
 
 .ReaderClose:hover {
-    color: silver;
+  color: silver;
 }
 
-.carousel-indicators [data-bs-target].active{
-    background-color: red !important;
+.carousel-indicators [data-bs-target].active {
+  background-color: red !important;
 }

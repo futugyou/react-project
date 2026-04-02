@@ -1,676 +1,665 @@
 {
-    "nodes": [
-        {
-            "width": 371,
-            "height": 74,
-            "id": "StaticFileMiddleware",
-            "position": {
-                "x": 459.20367463389516,
-                "y": 846.3533443288505
-            },
-            "type": "custom",
-            "data": {
-                "id": "StaticFileMiddleware",
-                "name": "StaticFileMiddleware",
-                "properties": [
-                    "private readonly StaticFileOptions _options",
-                    "private readonly IFileProvider _fileProvider",
-                    "private readonly IContentTypeProvider _contentTypeProvider"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "dragging": false,
-            "positionAbsolute": {
-                "x": 459.20367463389516,
-                "y": 846.3533443288505
-            }
-        },
-        {
-            "width": 390,
-            "height": 42,
-            "id": "IContentTypeProvider",
-            "position": {
-                "x": 449.20367463389516,
-                "y": 953.8533443288505
-            },
-            "type": "custom",
-            "data": {
-                "id": "IContentTypeProvider",
-                "name": "IContentTypeProvider",
-                "methods": [
-                    "bool TryGetContentType(string subpath, out string contentType)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 449.20367463389516,
-                "y": 953.8533443288505
-            },
-            "dragging": false
-        },
-        {
-            "width": 381,
-            "height": 42,
-            "id": "FileExtensionContentTypeProvider",
-            "position": {
-                "x": 454.20367463389516,
-                "y": 1034.3533443288507
-            },
-            "type": "custom",
-            "data": {
-                "id": "FileExtensionContentTypeProvider",
-                "name": "FileExtensionContentTypeProvider",
-                "parent": "IContentTypeProvider",
-                "methods": [],
-                "properties": [
-                    "public IDictionary<string, string> Mappings { get; private set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 454.20367463389516,
-                "y": 1034.3533443288507
-            },
-            "dragging": false
-        },
-        {
-            "width": 504,
-            "height": 122,
-            "id": "StaticFileOptions",
-            "position": {
-                "x": 866.5879596942304,
-                "y": 822.8232027142134
-            },
-            "type": "custom",
-            "data": {
-                "id": "StaticFileOptions",
-                "name": "StaticFileOptions",
-                "parent": "SharedOptionsBase",
-                "properties": [
-                    "public IContentTypeProvider ContentTypeProvider { get; set; }",
-                    "public string? DefaultContentType { get; set; }",
-                    "public bool ServeUnknownFileTypes { get; set; }",
-                    "public HttpsCompressionMode HttpsCompression { get; set; }",
-                    "public Action<StaticFileResponseContext> OnPrepareResponse { get; set; }",
-                    "public Func<StaticFileResponseContext, Task> OnPrepareResponseAsync { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 866.5879596942304,
-                "y": 822.8232027142134
-            },
-            "dragging": false
-        },
-        {
-            "width": 363,
-            "height": 90,
-            "id": "SharedOptionsBase",
-            "position": {
-                "x": 1455.5350749495726,
-                "y": 836.3093756829044
-            },
-            "type": "custom",
-            "data": {
-                "id": "SharedOptionsBase",
-                "name": "SharedOptionsBase",
-                "properties": [
-                    "protected SharedOptions SharedOptions { get; private set; }",
-                    "public PathString RequestPath",
-                    "public IFileProvider? FileProvider",
-                    "public bool RedirectToAppendTrailingSlash"
-                ],
-                "methods": [],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1455.5350749495726,
-                "y": 836.3093756829044
-            },
-            "dragging": false
-        },
-        {
-            "width": 331,
-            "height": 74,
-            "id": "SharedOptions",
-            "position": {
-                "x": 1471.5208616125378,
-                "y": 986.2074346662514
-            },
-            "type": "custom",
-            "data": {
-                "id": "SharedOptions",
-                "name": "SharedOptions",
-                "parent": "",
-                "properties": [
-                    "public PathString RequestPath",
-                    "public IFileProvider? FileProvider { get; set; }",
-                    "public bool RedirectToAppendTrailingSlash { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1471.5208616125378,
-                "y": 986.2074346662514
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 58,
-            "id": "StaticFileResponseContext",
-            "position": {
-                "x": 968.9897121607628,
-                "y": 990.1325936262896
-            },
-            "type": "custom",
-            "data": {
-                "id": "StaticFileResponseContext",
-                "name": "StaticFileResponseContext",
-                "properties": [
-                    "public HttpContext Context { get; }",
-                    "public IFileInfo File { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 968.9897121607628,
-                "y": 990.1325936262896
-            },
-            "dragging": false
-        },
-        {
-            "width": 316,
-            "height": 74,
-            "id": "DirectoryBrowserMiddleware",
-            "position": {
-                "x": 479.4548165808708,
-                "y": 1144.8522797661158
-            },
-            "type": "custom",
-            "data": {
-                "id": "DirectoryBrowserMiddleware",
-                "name": "DirectoryBrowserMiddleware",
-                "properties": [
-                    "private readonly DirectoryBrowserOptions _options",
-                    "private readonly IDirectoryFormatter _formatter",
-                    "private readonly IFileProvider _fileProvider"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 479.4548165808708,
-                "y": 1144.8522797661158
-            },
-            "dragging": false
-        },
-        {
-            "width": 304,
-            "height": 42,
-            "id": "DirectoryBrowserOptions",
-            "position": {
-                "x": 968.7211649642256,
-                "y": 1104.4618797161854
-            },
-            "type": "custom",
-            "data": {
-                "id": "DirectoryBrowserOptions",
-                "name": "DirectoryBrowserOptions",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "parent": "SharedOptionsBase",
-                "properties": [
-                    "public IDirectoryFormatter? Formatter { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 968.7211649642256,
-                "y": 1104.4618797161854
-            },
-            "dragging": false
-        },
-        {
-            "width": 502,
-            "height": 42,
-            "id": "IDirectoryFormatter",
-            "position": {
-                "x": 416.9258771504267,
-                "y": 1269.1044837076538
-            },
-            "type": "custom",
-            "data": {
-                "id": "IDirectoryFormatter",
-                "name": "IDirectoryFormatter",
-                "methods": [
-                    "Task GenerateContentAsync(HttpContext context, IEnumerable<IFileInfo> contents)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 416.9258771504267,
-                "y": 1269.1044837076538
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 42,
-            "id": "HtmlDirectoryFormatter",
-            "position": {
-                "x": 964.698106020513,
-                "y": 1268.758857627768
-            },
-            "type": "custom",
-            "data": {
-                "id": "HtmlDirectoryFormatter",
-                "name": "HtmlDirectoryFormatter",
-                "parent": "IDirectoryFormatter",
-                "properties": [
-                    "private readonly HtmlEncoder _htmlEncoder"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 964.698106020513,
-                "y": 1268.758857627768
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 74,
-            "id": "DefaultFilesMiddleware",
-            "position": {
-                "x": 466.1069508662142,
-                "y": 699.9890775084879
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultFilesMiddleware",
-                "name": "DefaultFilesMiddleware",
-                "properties": [
-                    "private readonly DefaultFilesOptions _options",
-                    "private readonly PathString _matchUrl",
-                    "private readonly IFileProvider _fileProvider"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 466.1069508662142,
-                "y": 699.9890775084879
-            },
-            "dragging": false
-        },
-        {
-            "width": 332,
-            "height": 58,
-            "id": "DefaultFilesOptions",
-            "position": {
-                "x": 923.6210215819913,
-                "y": 708.1589716284124
-            },
-            "type": "custom",
-            "data": {
-                "id": "DefaultFilesOptions",
-                "name": "DefaultFilesOptions",
-                "parent": "SharedOptionsBase",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public IList<string> DefaultFileNames { get; set; }",
-                    "\"default.htm\",\"default.html\", \"index.htm\",\"index.html\","
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 923.6210215819913,
-                "y": 708.1589716284124
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 74,
-            "id": "MiddlewareOrder",
-            "position": {
-                "x": 1331.3810820345366,
-                "y": 1155.802883857673
-            },
-            "type": "custom",
-            "data": {
-                "id": "MiddlewareOrder",
-                "name": "MiddlewareOrder",
-                "properties": [
-                    "DefaultFilesMiddleware",
-                    "StaticFileMiddleware",
-                    "DirectoryBrowserMiddleware"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1331.3810820345366,
-                "y": 1155.802883857673
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "StaticFileMiddleware",
-            "sourceHandle": "StaticFileMiddlewarebottomsource",
-            "target": "IContentTypeProvider",
-            "targetHandle": "IContentTypeProvidertoptarget",
-            "id": "reactflow__edge-StaticFileMiddlewareStaticFileMiddlewarebottomsource-IContentTypeProviderIContentTypeProvidertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "FileExtensionContentTypeProvider",
-            "sourceHandle": "FileExtensionContentTypeProvidertopsource",
-            "target": "IContentTypeProvider",
-            "targetHandle": "IContentTypeProviderbottomtarget",
-            "id": "reactflow__edge-FileExtensionContentTypeProviderFileExtensionContentTypeProvidertopsource-IContentTypeProviderIContentTypeProviderbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "StaticFileMiddleware",
-            "sourceHandle": "StaticFileMiddlewarerightsource",
-            "target": "StaticFileOptions",
-            "targetHandle": "StaticFileOptionslefttarget",
-            "id": "reactflow__edge-StaticFileMiddlewareStaticFileMiddlewarerightsource-StaticFileOptionsStaticFileOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "StaticFileOptions",
-            "sourceHandle": "StaticFileOptionsbottomsource",
-            "target": "StaticFileResponseContext",
-            "targetHandle": "StaticFileResponseContexttoptarget",
-            "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsbottomsource-StaticFileResponseContextStaticFileResponseContexttoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "StaticFileOptions",
-            "sourceHandle": "StaticFileOptionsrightsource",
-            "target": "SharedOptionsBase",
-            "targetHandle": "SharedOptionsBaselefttarget",
-            "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DirectoryBrowserOptions",
-            "sourceHandle": "DirectoryBrowserOptionsrightsource",
-            "target": "SharedOptionsBase",
-            "targetHandle": "SharedOptionsBaselefttarget",
-            "id": "reactflow__edge-DirectoryBrowserOptionsDirectoryBrowserOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DirectoryBrowserMiddleware",
-            "sourceHandle": "DirectoryBrowserMiddlewarerightsource",
-            "target": "DirectoryBrowserOptions",
-            "targetHandle": "DirectoryBrowserOptionslefttarget",
-            "id": "reactflow__edge-DirectoryBrowserMiddlewareDirectoryBrowserMiddlewarerightsource-DirectoryBrowserOptionsDirectoryBrowserOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DirectoryBrowserMiddleware",
-            "sourceHandle": "DirectoryBrowserMiddlewarebottomsource",
-            "target": "IDirectoryFormatter",
-            "targetHandle": "IDirectoryFormattertoptarget",
-            "id": "reactflow__edge-DirectoryBrowserMiddlewareDirectoryBrowserMiddlewarebottomsource-IDirectoryFormatterIDirectoryFormattertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HtmlDirectoryFormatter",
-            "sourceHandle": "HtmlDirectoryFormatterleftsource",
-            "target": "IDirectoryFormatter",
-            "targetHandle": "IDirectoryFormatterrighttarget",
-            "id": "reactflow__edge-HtmlDirectoryFormatterHtmlDirectoryFormatterleftsource-IDirectoryFormatterIDirectoryFormatterrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultFilesMiddleware",
-            "sourceHandle": "DefaultFilesMiddlewarerightsource",
-            "target": "DefaultFilesOptions",
-            "targetHandle": "DefaultFilesOptionslefttarget",
-            "id": "reactflow__edge-DefaultFilesMiddlewareDefaultFilesMiddlewarerightsource-DefaultFilesOptionsDefaultFilesOptionslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "SharedOptionsBase",
-            "sourceHandle": "SharedOptionsBasebottomsource",
-            "target": "SharedOptions",
-            "targetHandle": "SharedOptionstoptarget",
-            "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBasebottomsource-SharedOptionsSharedOptionstoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "DefaultFilesOptions",
-            "sourceHandle": "DefaultFilesOptionsrightsource",
-            "target": "SharedOptionsBase",
-            "targetHandle": "SharedOptionsBasetoptarget",
-            "selected": false,
-            "id": "reactflow__edge-DefaultFilesOptionsDefaultFilesOptionsrightsource-SharedOptionsBaseSharedOptionsBasetoptarget"
-        }
-    ],
-    "viewport": {
-        "x": -382.2167502188074,
-        "y": -652.0925494494193,
-        "zoom": 1.1019801075583349
+  "nodes": [
+    {
+      "width": 371,
+      "height": 74,
+      "id": "StaticFileMiddleware",
+      "position": {
+        "x": 459.20367463389516,
+        "y": 846.3533443288505
+      },
+      "type": "custom",
+      "data": {
+        "id": "StaticFileMiddleware",
+        "name": "StaticFileMiddleware",
+        "properties": [
+          "private readonly StaticFileOptions _options",
+          "private readonly IFileProvider _fileProvider",
+          "private readonly IContentTypeProvider _contentTypeProvider"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 459.20367463389516,
+        "y": 846.3533443288505
+      }
+    },
+    {
+      "width": 390,
+      "height": 42,
+      "id": "IContentTypeProvider",
+      "position": {
+        "x": 449.20367463389516,
+        "y": 953.8533443288505
+      },
+      "type": "custom",
+      "data": {
+        "id": "IContentTypeProvider",
+        "name": "IContentTypeProvider",
+        "methods": ["bool TryGetContentType(string subpath, out string contentType)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 449.20367463389516,
+        "y": 953.8533443288505
+      },
+      "dragging": false
+    },
+    {
+      "width": 381,
+      "height": 42,
+      "id": "FileExtensionContentTypeProvider",
+      "position": {
+        "x": 454.20367463389516,
+        "y": 1034.3533443288507
+      },
+      "type": "custom",
+      "data": {
+        "id": "FileExtensionContentTypeProvider",
+        "name": "FileExtensionContentTypeProvider",
+        "parent": "IContentTypeProvider",
+        "methods": [],
+        "properties": ["public IDictionary<string, string> Mappings { get; private set; }"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 454.20367463389516,
+        "y": 1034.3533443288507
+      },
+      "dragging": false
+    },
+    {
+      "width": 504,
+      "height": 122,
+      "id": "StaticFileOptions",
+      "position": {
+        "x": 866.5879596942304,
+        "y": 822.8232027142134
+      },
+      "type": "custom",
+      "data": {
+        "id": "StaticFileOptions",
+        "name": "StaticFileOptions",
+        "parent": "SharedOptionsBase",
+        "properties": [
+          "public IContentTypeProvider ContentTypeProvider { get; set; }",
+          "public string? DefaultContentType { get; set; }",
+          "public bool ServeUnknownFileTypes { get; set; }",
+          "public HttpsCompressionMode HttpsCompression { get; set; }",
+          "public Action<StaticFileResponseContext> OnPrepareResponse { get; set; }",
+          "public Func<StaticFileResponseContext, Task> OnPrepareResponseAsync { get; set; }"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 866.5879596942304,
+        "y": 822.8232027142134
+      },
+      "dragging": false
+    },
+    {
+      "width": 363,
+      "height": 90,
+      "id": "SharedOptionsBase",
+      "position": {
+        "x": 1455.5350749495726,
+        "y": 836.3093756829044
+      },
+      "type": "custom",
+      "data": {
+        "id": "SharedOptionsBase",
+        "name": "SharedOptionsBase",
+        "properties": [
+          "protected SharedOptions SharedOptions { get; private set; }",
+          "public PathString RequestPath",
+          "public IFileProvider? FileProvider",
+          "public bool RedirectToAppendTrailingSlash"
+        ],
+        "methods": [],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1455.5350749495726,
+        "y": 836.3093756829044
+      },
+      "dragging": false
+    },
+    {
+      "width": 331,
+      "height": 74,
+      "id": "SharedOptions",
+      "position": {
+        "x": 1471.5208616125378,
+        "y": 986.2074346662514
+      },
+      "type": "custom",
+      "data": {
+        "id": "SharedOptions",
+        "name": "SharedOptions",
+        "parent": "",
+        "properties": [
+          "public PathString RequestPath",
+          "public IFileProvider? FileProvider { get; set; }",
+          "public bool RedirectToAppendTrailingSlash { get; set; }"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1471.5208616125378,
+        "y": 986.2074346662514
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 58,
+      "id": "StaticFileResponseContext",
+      "position": {
+        "x": 968.9897121607628,
+        "y": 990.1325936262896
+      },
+      "type": "custom",
+      "data": {
+        "id": "StaticFileResponseContext",
+        "name": "StaticFileResponseContext",
+        "properties": ["public HttpContext Context { get; }", "public IFileInfo File { get; }"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 968.9897121607628,
+        "y": 990.1325936262896
+      },
+      "dragging": false
+    },
+    {
+      "width": 316,
+      "height": 74,
+      "id": "DirectoryBrowserMiddleware",
+      "position": {
+        "x": 479.4548165808708,
+        "y": 1144.8522797661158
+      },
+      "type": "custom",
+      "data": {
+        "id": "DirectoryBrowserMiddleware",
+        "name": "DirectoryBrowserMiddleware",
+        "properties": [
+          "private readonly DirectoryBrowserOptions _options",
+          "private readonly IDirectoryFormatter _formatter",
+          "private readonly IFileProvider _fileProvider"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 479.4548165808708,
+        "y": 1144.8522797661158
+      },
+      "dragging": false
+    },
+    {
+      "width": 304,
+      "height": 42,
+      "id": "DirectoryBrowserOptions",
+      "position": {
+        "x": 968.7211649642256,
+        "y": 1104.4618797161854
+      },
+      "type": "custom",
+      "data": {
+        "id": "DirectoryBrowserOptions",
+        "name": "DirectoryBrowserOptions",
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "parent": "SharedOptionsBase",
+        "properties": ["public IDirectoryFormatter? Formatter { get; set; }"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 968.7211649642256,
+        "y": 1104.4618797161854
+      },
+      "dragging": false
+    },
+    {
+      "width": 502,
+      "height": 42,
+      "id": "IDirectoryFormatter",
+      "position": {
+        "x": 416.9258771504267,
+        "y": 1269.1044837076538
+      },
+      "type": "custom",
+      "data": {
+        "id": "IDirectoryFormatter",
+        "name": "IDirectoryFormatter",
+        "methods": [
+          "Task GenerateContentAsync(HttpContext context, IEnumerable<IFileInfo> contents)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 416.9258771504267,
+        "y": 1269.1044837076538
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 42,
+      "id": "HtmlDirectoryFormatter",
+      "position": {
+        "x": 964.698106020513,
+        "y": 1268.758857627768
+      },
+      "type": "custom",
+      "data": {
+        "id": "HtmlDirectoryFormatter",
+        "name": "HtmlDirectoryFormatter",
+        "parent": "IDirectoryFormatter",
+        "properties": ["private readonly HtmlEncoder _htmlEncoder"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 964.698106020513,
+        "y": 1268.758857627768
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 74,
+      "id": "DefaultFilesMiddleware",
+      "position": {
+        "x": 466.1069508662142,
+        "y": 699.9890775084879
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultFilesMiddleware",
+        "name": "DefaultFilesMiddleware",
+        "properties": [
+          "private readonly DefaultFilesOptions _options",
+          "private readonly PathString _matchUrl",
+          "private readonly IFileProvider _fileProvider"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 466.1069508662142,
+        "y": 699.9890775084879
+      },
+      "dragging": false
+    },
+    {
+      "width": 332,
+      "height": 58,
+      "id": "DefaultFilesOptions",
+      "position": {
+        "x": 923.6210215819913,
+        "y": 708.1589716284124
+      },
+      "type": "custom",
+      "data": {
+        "id": "DefaultFilesOptions",
+        "name": "DefaultFilesOptions",
+        "parent": "SharedOptionsBase",
+        "connects": [
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "public IList<string> DefaultFileNames { get; set; }",
+          "\"default.htm\",\"default.html\", \"index.htm\",\"index.html\","
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 923.6210215819913,
+        "y": 708.1589716284124
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 74,
+      "id": "MiddlewareOrder",
+      "position": {
+        "x": 1331.3810820345366,
+        "y": 1155.802883857673
+      },
+      "type": "custom",
+      "data": {
+        "id": "MiddlewareOrder",
+        "name": "MiddlewareOrder",
+        "properties": [
+          "DefaultFilesMiddleware",
+          "StaticFileMiddleware",
+          "DirectoryBrowserMiddleware"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1331.3810820345366,
+        "y": 1155.802883857673
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "StaticFileMiddleware",
+      "sourceHandle": "StaticFileMiddlewarebottomsource",
+      "target": "IContentTypeProvider",
+      "targetHandle": "IContentTypeProvidertoptarget",
+      "id": "reactflow__edge-StaticFileMiddlewareStaticFileMiddlewarebottomsource-IContentTypeProviderIContentTypeProvidertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "FileExtensionContentTypeProvider",
+      "sourceHandle": "FileExtensionContentTypeProvidertopsource",
+      "target": "IContentTypeProvider",
+      "targetHandle": "IContentTypeProviderbottomtarget",
+      "id": "reactflow__edge-FileExtensionContentTypeProviderFileExtensionContentTypeProvidertopsource-IContentTypeProviderIContentTypeProviderbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "StaticFileMiddleware",
+      "sourceHandle": "StaticFileMiddlewarerightsource",
+      "target": "StaticFileOptions",
+      "targetHandle": "StaticFileOptionslefttarget",
+      "id": "reactflow__edge-StaticFileMiddlewareStaticFileMiddlewarerightsource-StaticFileOptionsStaticFileOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "StaticFileOptions",
+      "sourceHandle": "StaticFileOptionsbottomsource",
+      "target": "StaticFileResponseContext",
+      "targetHandle": "StaticFileResponseContexttoptarget",
+      "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsbottomsource-StaticFileResponseContextStaticFileResponseContexttoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "StaticFileOptions",
+      "sourceHandle": "StaticFileOptionsrightsource",
+      "target": "SharedOptionsBase",
+      "targetHandle": "SharedOptionsBaselefttarget",
+      "id": "reactflow__edge-StaticFileOptionsStaticFileOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DirectoryBrowserOptions",
+      "sourceHandle": "DirectoryBrowserOptionsrightsource",
+      "target": "SharedOptionsBase",
+      "targetHandle": "SharedOptionsBaselefttarget",
+      "id": "reactflow__edge-DirectoryBrowserOptionsDirectoryBrowserOptionsrightsource-SharedOptionsBaseSharedOptionsBaselefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DirectoryBrowserMiddleware",
+      "sourceHandle": "DirectoryBrowserMiddlewarerightsource",
+      "target": "DirectoryBrowserOptions",
+      "targetHandle": "DirectoryBrowserOptionslefttarget",
+      "id": "reactflow__edge-DirectoryBrowserMiddlewareDirectoryBrowserMiddlewarerightsource-DirectoryBrowserOptionsDirectoryBrowserOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DirectoryBrowserMiddleware",
+      "sourceHandle": "DirectoryBrowserMiddlewarebottomsource",
+      "target": "IDirectoryFormatter",
+      "targetHandle": "IDirectoryFormattertoptarget",
+      "id": "reactflow__edge-DirectoryBrowserMiddlewareDirectoryBrowserMiddlewarebottomsource-IDirectoryFormatterIDirectoryFormattertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HtmlDirectoryFormatter",
+      "sourceHandle": "HtmlDirectoryFormatterleftsource",
+      "target": "IDirectoryFormatter",
+      "targetHandle": "IDirectoryFormatterrighttarget",
+      "id": "reactflow__edge-HtmlDirectoryFormatterHtmlDirectoryFormatterleftsource-IDirectoryFormatterIDirectoryFormatterrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultFilesMiddleware",
+      "sourceHandle": "DefaultFilesMiddlewarerightsource",
+      "target": "DefaultFilesOptions",
+      "targetHandle": "DefaultFilesOptionslefttarget",
+      "id": "reactflow__edge-DefaultFilesMiddlewareDefaultFilesMiddlewarerightsource-DefaultFilesOptionsDefaultFilesOptionslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "SharedOptionsBase",
+      "sourceHandle": "SharedOptionsBasebottomsource",
+      "target": "SharedOptions",
+      "targetHandle": "SharedOptionstoptarget",
+      "id": "reactflow__edge-SharedOptionsBaseSharedOptionsBasebottomsource-SharedOptionsSharedOptionstoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "DefaultFilesOptions",
+      "sourceHandle": "DefaultFilesOptionsrightsource",
+      "target": "SharedOptionsBase",
+      "targetHandle": "SharedOptionsBasetoptarget",
+      "selected": false,
+      "id": "reactflow__edge-DefaultFilesOptionsDefaultFilesOptionsrightsource-SharedOptionsBaseSharedOptionsBasetoptarget"
+    }
+  ],
+  "viewport": {
+    "x": -382.2167502188074,
+    "y": -652.0925494494193,
+    "zoom": 1.1019801075583349
+  }
 }

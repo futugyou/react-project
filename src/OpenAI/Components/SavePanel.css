@@ -1,85 +1,86 @@
 .save-container {
-    width: 600px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 10px;
-    text-align: left;
-    justify-content: space-around;
-    pointer-events: none;
-    position: relative;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: left;
+  justify-content: space-around;
+  pointer-events: none;
+  position: relative;
 }
 
 .check-message {
-    position: absolute !important;
-    width: 520px;
-    top: 10px;
+  position: absolute !important;
+  width: 520px;
+  top: 10px;
 }
 
 .save-title {
-    font-size: 22px;
-    font-weight: 700;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.save-subtitle {}
+.save-subtitle {
+}
 
 .save-label {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 700;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .save-input {
-    width: 100%;
-    height: 36px;
+  width: 100%;
+  height: 36px;
 }
 
 .save-input input {
-    width: 100%;
-    height: 100%;
-    pointer-events: all;
-    background-clip: padding-box;
-    background-color: #fff;
-    border: 1px solid #c5c5d2;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-size: 18px;
-    line-height: 20px;
+  width: 100%;
+  height: 100%;
+  pointer-events: all;
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid #c5c5d2;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 .save-input input:focus {
-    border-color: #c5c5d2;
-    box-shadow: none;
+  border-color: #c5c5d2;
+  box-shadow: none;
 }
 
 .save-input input:focus-visible {
-    outline-color: #c5c5d2;
-    box-shadow: none;
+  outline-color: #c5c5d2;
+  box-shadow: none;
 }
 
 .save-label-option {
-    font-weight: 400;
-    margin-left: 10px;
-    color: #b8b3b3;
+  font-weight: 400;
+  margin-left: 10px;
+  color: #b8b3b3;
 }
 
 .save-buttons {
-    margin-top: 10px;
-    text-align: right;
+  margin-top: 10px;
+  text-align: right;
 }
 
 .save-buttons button {
-    margin-left: 10px;
-    cursor: pointer;
-    pointer-events: all;
+  margin-left: 10px;
+  cursor: pointer;
+  pointer-events: all;
 }
 
 .save-buttons .btn.btn-secondary:hover {
-    color: #7f8992;
+  color: #7f8992;
 }
 
 .save-buttons .btn.btn-success:hover {
-    color: #2daa70;
+  color: #2daa70;
 }

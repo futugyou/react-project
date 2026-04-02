@@ -1,35 +1,33 @@
 import {
-	BaseBoxShapeTool,
-	Editor,
-	TLUiToolsContextType,
-	useTools,
-	useIsToolSelected,
-	TldrawUiMenuItem,
+  BaseBoxShapeTool,
+  Editor,
+  TLUiToolsContextType,
+  useTools,
+  useIsToolSelected,
+  TldrawUiMenuItem,
 } from '@tldraw/tldraw'
 
 export class EditableShapeTool extends BaseBoxShapeTool {
-	static override id = 'editable-shape'
-	static override initial = 'idle'
-	override shapeType = 'editable-shape' as const
+  static override id = 'editable-shape'
+  static override initial = 'idle'
+  override shapeType = 'editable-shape' as const
 }
 
 export const ConfigEditableTool = (editor: Editor, tools: TLUiToolsContextType) => {
-	tools['editable-shape'] = {
-		id: 'editable-shape',
-		icon: '',
-		label: 'Editable-shape',
-		onSelect: () => {
-			editor.setCurrentTool('editable-shape')
-		},
-	}
+  tools['editable-shape'] = {
+    id: 'editable-shape',
+    icon: '',
+    label: 'Editable-shape',
+    onSelect: () => {
+      editor.setCurrentTool('editable-shape')
+    },
+  }
 }
 
 export const EditableToolBar = (props: {}) => {
-	const tools = useTools()
+  const tools = useTools()
 
-	const iseditableSelected = useIsToolSelected(tools['editable-shape'])
+  const iseditableSelected = useIsToolSelected(tools['editable-shape'])
 
-	return (
-		<TldrawUiMenuItem {...tools['editable-shape']} isSelected={iseditableSelected} />
-	)
+  return <TldrawUiMenuItem {...tools['editable-shape']} isSelected={iseditableSelected} />
 }

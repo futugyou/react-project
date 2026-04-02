@@ -1,6 +1,5 @@
-
-import { useNavigate } from "react-router-dom"
-import SpaceBetween from "@cloudscape-design/components/space-between"
+import { useNavigate } from 'react-router-dom'
+import SpaceBetween from '@cloudscape-design/components/space-between'
 
 import ModeSelect from './ModeSelect'
 import ModelSelect from './ModelSelect'
@@ -16,184 +15,202 @@ import InjectText from './InjectText'
 
 import { PlaygroundModel } from '../Models/PlaygroundModel'
 
-const defaultPalygroundModelChange = (_data: PlaygroundModel) => { }
+const defaultPalygroundModelChange = (_data: PlaygroundModel) => {}
 
 const ParameterPanel = (props: any) => {
-    let playgroundModel: PlaygroundModel = props.data
-    const mode: string = props.mode
-    let setPlaygroundModel = props.onPlaygroundModelChange ?? defaultPalygroundModelChange
+  let playgroundModel: PlaygroundModel = props.data
+  const mode: string = props.mode
+  let setPlaygroundModel = props.onPlaygroundModelChange ?? defaultPalygroundModelChange
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const HandleModeChange = (value: string) => {
-        if (props.onModeChange) {
-            props.onModeChange(value)
-        }
-
-        let path = "/openai/playground"
-        path += ("?mode=" + value.toLocaleLowerCase())
-
-        let search = location.search || ""
-        let p = new URLSearchParams(search)
-
-        if (p.has("model")) {
-            if (path.indexOf("?") > 0) {
-                path += ("&model=" + p.get("model"))
-            } else {
-                path += ("?model=" + p.get("model"))
-            }
-        }
-
-        navigate(path, { replace: true })
+  const HandleModeChange = (value: string) => {
+    if (props.onModeChange) {
+      props.onModeChange(value)
     }
 
-    const handleModelChange = (value: string) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            model: value,
-        })
+    let path = '/openai/playground'
+    path += '?mode=' + value.toLocaleLowerCase()
 
-        let path = "/openai/playground"
-        let search = location.search || ""
-        let p = new URLSearchParams(search)
+    let search = location.search || ''
+    let p = new URLSearchParams(search)
 
-        if (p.has("mode")) {
-            path += ("?mode=" + p.get("mode"))
-        }
-
-        if (path.indexOf("?") > 0) {
-            path += ("&model=" + value)
-        } else {
-            path += ("?model=" + value)
-        }
-
-        navigate(path, { replace: true })
+    if (p.has('model')) {
+      if (path.indexOf('?') > 0) {
+        path += '&model=' + p.get('model')
+      } else {
+        path += '?model=' + p.get('model')
+      }
     }
 
-    const handleTemperatureChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            temperature: +value
-        })
+    navigate(path, { replace: true })
+  }
+
+  const handleModelChange = (value: string) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      model: value,
+    })
+
+    let path = '/openai/playground'
+    let search = location.search || ''
+    let p = new URLSearchParams(search)
+
+    if (p.has('mode')) {
+      path += '?mode=' + p.get('mode')
     }
 
-    const handleMaxTokensChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            responseLength: +value
-        })
+    if (path.indexOf('?') > 0) {
+      path += '&model=' + value
+    } else {
+      path += '?model=' + value
     }
 
-    const handleStopChange = (value: string[]) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            stopSequence: value
-        })
-    }
+    navigate(path, { replace: true })
+  }
 
-    const handleToppChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            top_p: +value
-        })
-    }
+  const handleTemperatureChange = (value: number) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      temperature: +value,
+    })
+  }
 
-    const handleFrequencyPenaltyChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            frequency_penalty: +value
-        })
-    }
+  const handleMaxTokensChange = (value: number) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      responseLength: +value,
+    })
+  }
 
-    const handlePresencePenaltyChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            presence_penalty: +value
-        })
-    }
+  const handleStopChange = (value: string[]) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      stopSequence: value,
+    })
+  }
 
-    const handleBestofChange = (value: number) => {
-        setPlaygroundModel({
-            ...playgroundModel,
-            best_of: +value
-        })
-    }
+  const handleToppChange = (value: number) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      top_p: +value,
+    })
+  }
 
-    const HandleInjectStartChanged = (injectText: string) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                startSequence: injectText,
-            }
-        )
-    }
+  const handleFrequencyPenaltyChange = (value: number) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      frequency_penalty: +value,
+    })
+  }
 
-    const HandleCheckStartChanged = (checked: boolean) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                startSequenceEnabled: checked,
-            }
-        )
-    }
+  const handlePresencePenaltyChange = (value: number) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      presence_penalty: +value,
+    })
+  }
 
-    const HandleInjectRestartChanged = (injectText: string) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                restartSequence: injectText,
-            }
-        )
-    }
+  const handleBestofChange = (value: number) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      best_of: +value,
+    })
+  }
 
-    const HandleCheckRestartChanged = (checked: boolean) => {
-        setPlaygroundModel(
-            {
-                ...playgroundModel,
-                restartSequenceEnabled: checked,
-            }
-        )
-    }
+  const HandleInjectStartChanged = (injectText: string) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      startSequence: injectText,
+    })
+  }
 
-    return (
-        <SpaceBetween size="s" >
-            <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
+  const HandleCheckStartChanged = (checked: boolean) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      startSequenceEnabled: checked,
+    })
+  }
 
-            <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange} ></ModelSelect>
+  const HandleInjectRestartChanged = (injectText: string) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      restartSequence: injectText,
+    })
+  }
 
-            <Temperature temperature={playgroundModel.temperature} onTemperatureChange={handleTemperatureChange} ></Temperature>
+  const HandleCheckRestartChanged = (checked: boolean) => {
+    setPlaygroundModel({
+      ...playgroundModel,
+      restartSequenceEnabled: checked,
+    })
+  }
 
-            {(mode != "Edit") && (<MaxTokens max_tokens={playgroundModel.responseLength} onMaxTokensChange={handleMaxTokensChange} ></MaxTokens>)}
+  return (
+    <SpaceBetween size="s">
+      <ModeSelect mode={mode} onModeChange={HandleModeChange}></ModeSelect>
 
-            {(mode != "Chat" && mode != "Edit") && (<Stop stop={playgroundModel.stopSequence} onStopChange={handleStopChange} ></Stop>)}
+      <ModelSelect model={playgroundModel.model} onModelChange={handleModelChange}></ModelSelect>
 
-            <TopP top_p={playgroundModel.top_p} onToppChange={handleToppChange} ></TopP>
+      <Temperature
+        temperature={playgroundModel.temperature}
+        onTemperatureChange={handleTemperatureChange}
+      ></Temperature>
 
-            {(mode != "Edit") && (<Frequency frequency_penalty={playgroundModel.frequency_penalty} onFrequencyPenaltyChange={handleFrequencyPenaltyChange} ></Frequency>)}
+      {mode != 'Edit' && (
+        <MaxTokens
+          max_tokens={playgroundModel.responseLength}
+          onMaxTokensChange={handleMaxTokensChange}
+        ></MaxTokens>
+      )}
 
-            {(mode != "Edit") && (<Presence presence_penalty={playgroundModel.presence_penalty} onPresencePenaltyChange={handlePresencePenaltyChange} ></Presence>)}
+      {mode != 'Chat' && mode != 'Edit' && (
+        <Stop stop={playgroundModel.stopSequence} onStopChange={handleStopChange}></Stop>
+      )}
 
-            {(mode != "Chat" && mode != "Edit") && (<Bestof best_of={playgroundModel.best_of} onBestofChange={handleBestofChange} ></Bestof>)}
+      <TopP top_p={playgroundModel.top_p} onToppChange={handleToppChange}></TopP>
 
-            {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
-                text={playgroundModel.startSequence}
-                checked={playgroundModel.startSequenceEnabled}
-                label="Inject start text"
-                descript="Text to append after the user's input to format the model for a response."
-                onInjectChanged={HandleInjectStartChanged}
-                onCheckChanged={HandleCheckStartChanged}
-            ></InjectText>)}
+      {mode != 'Edit' && (
+        <Frequency
+          frequency_penalty={playgroundModel.frequency_penalty}
+          onFrequencyPenaltyChange={handleFrequencyPenaltyChange}
+        ></Frequency>
+      )}
 
-            {(mode != "Chat" && mode != "Insert" && mode != "Edit") && (<InjectText
-                text={playgroundModel.restartSequence}
-                checked={playgroundModel.restartSequenceEnabled}
-                label="Inject restart text"
-                descript="Text to append after the model's generation to continue the patterned structure."
-                onInjectChanged={HandleInjectRestartChanged}
-                onCheckChanged={HandleCheckRestartChanged}
-            ></InjectText>)}
-        </SpaceBetween>
-    )
+      {mode != 'Edit' && (
+        <Presence
+          presence_penalty={playgroundModel.presence_penalty}
+          onPresencePenaltyChange={handlePresencePenaltyChange}
+        ></Presence>
+      )}
+
+      {mode != 'Chat' && mode != 'Edit' && (
+        <Bestof best_of={playgroundModel.best_of} onBestofChange={handleBestofChange}></Bestof>
+      )}
+
+      {mode != 'Chat' && mode != 'Insert' && mode != 'Edit' && (
+        <InjectText
+          text={playgroundModel.startSequence}
+          checked={playgroundModel.startSequenceEnabled}
+          label="Inject start text"
+          descript="Text to append after the user's input to format the model for a response."
+          onInjectChanged={HandleInjectStartChanged}
+          onCheckChanged={HandleCheckStartChanged}
+        ></InjectText>
+      )}
+
+      {mode != 'Chat' && mode != 'Insert' && mode != 'Edit' && (
+        <InjectText
+          text={playgroundModel.restartSequence}
+          checked={playgroundModel.restartSequenceEnabled}
+          label="Inject restart text"
+          descript="Text to append after the model's generation to continue the patterned structure."
+          onInjectChanged={HandleInjectRestartChanged}
+          onCheckChanged={HandleCheckRestartChanged}
+        ></InjectText>
+      )}
+    </SpaceBetween>
+  )
 }
 
 export default ParameterPanel

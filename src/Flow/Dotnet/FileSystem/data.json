@@ -1,225 +1,216 @@
 {
-    "nodes": [
-        {
-            "width": 350,
-            "height": 70,
-            "id": "IFileProvider",
-            "type": "custom",
-            "position": {
-                "x": -2.351986867070025,
-                "y": -20.240794746828016
-            },
-            "data": {
-                "name": "IFileProvider",
-                "methods": [
-                    "IFileInfo GetFileInfo(string subpath)",
-                    "IDirectoryContents GetDirectoryContents(string subpath)",
-                    "IChangeToken Watch(string filter)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "id": "IFileProvider"
-            },
-            "positionAbsolute": {
-                "x": -2.351986867070025,
-                "y": -20.240794746828016
-            },
-            "selected": false,
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 302,
-            "height": 144,
-            "id": "IFileInfo",
-            "type": "custom",
-            "position": {
-                "x": 22.63431464569925,
-                "y": 274.7540336644124
-            },
-            "data": {
-                "name": "IFileInfo",
-                "properties": [
-                    "bool Exists { get; }",
-                    "long Length { get; }",
-                    "string? PhysicalPath { get; }",
-                    "string Name { get; }",
-                    "DateTimeOffset LastModified { get; }",
-                    "bool IsDirectory { get; }"
-                ],
-                "methods": [
-                    "Stream CreateReadStream()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "id": "IFileInfo"
-            },
-            "positionAbsolute": {
-                "x": 22.63431464569925,
-                "y": 274.7540336644124
-            },
-            "selected": false,
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 302,
-            "height": 52,
-            "id": "IDirectoryContents",
-            "type": "custom",
-            "position": {
-                "x": 394.99984108916544,
-                "y": 319.89064615834343
-            },
-            "data": {
-                "name": "IDirectoryContents",
-                "parent": "IEnumerable<IFileInfo>",
-                "properties": [
-                    "bool Exists { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "id": "IDirectoryContents"
-            },
-            "positionAbsolute": {
-                "x": 394.99984108916544,
-                "y": 319.89064615834343
-            },
-            "selected": false,
-            "dragging": false,
-            "style": {}
-        },
-        {
-            "width": 463,
-            "height": 80,
-            "id": "IChangeToken",
-            "type": "custom",
-            "position": {
-                "x": 483.04848976417827,
-                "y": -25.334959671585608
-            },
-            "data": {
-                "name": "IChangeToken",
-                "properties": [
-                    "bool HasChanged { get; }",
-                    "bool ActiveChangeCallbacks { get; }"
-                ],
-                "methods": [
-                    "IDisposable RegisterChangeCallback(Action<object?> callback, object? state)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "id": "IChangeToken"
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 483.04848976417827,
-                "y": -25.334959671585608
-            },
-            "dragging": false,
-            "style": {}
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "id": "IDirectoryContents-IFileInfo",
-            "source": "IDirectoryContents",
-            "target": "IFileInfo",
-            "sourceHandle": "IDirectoryContentsleftsource",
-            "targetHandle": "IFileInforighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IFileProvider",
-            "target": "IDirectoryContents",
-            "selected": false,
-            "id": "reactflow__edge-IFileProviderIFileProviderbottomsource-IDirectoryContents",
-            "sourceHandle": "IFileProviderbottomsource",
-            "targetHandle": null
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IFileProvider",
-            "target": "IFileInfo",
-            "selected": false,
-            "id": "reactflow__edge-IFileProviderIFileProviderbottomsource-IFileInfo",
-            "sourceHandle": "IFileProviderbottomsource",
-            "targetHandle": null
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IFileProvider",
-            "target": "IChangeToken",
-            "sourceHandle": "IFileProviderrightsource",
-            "selected": false,
-            "id": "reactflow__edge-IFileProviderIFileProviderrightsource-IChangeTokenIChangeTokenlefttarget",
-            "targetHandle": "IChangeTokenlefttarget"
-        }
-    ],
-    "viewport": {
-        "x": 82.05956000372146,
-        "y": 131.68322380624772,
-        "zoom": 1.6487089601541056
+  "nodes": [
+    {
+      "width": 350,
+      "height": 70,
+      "id": "IFileProvider",
+      "type": "custom",
+      "position": {
+        "x": -2.351986867070025,
+        "y": -20.240794746828016
+      },
+      "data": {
+        "name": "IFileProvider",
+        "methods": [
+          "IFileInfo GetFileInfo(string subpath)",
+          "IDirectoryContents GetDirectoryContents(string subpath)",
+          "IChangeToken Watch(string filter)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "id": "IFileProvider"
+      },
+      "positionAbsolute": {
+        "x": -2.351986867070025,
+        "y": -20.240794746828016
+      },
+      "selected": false,
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 302,
+      "height": 144,
+      "id": "IFileInfo",
+      "type": "custom",
+      "position": {
+        "x": 22.63431464569925,
+        "y": 274.7540336644124
+      },
+      "data": {
+        "name": "IFileInfo",
+        "properties": [
+          "bool Exists { get; }",
+          "long Length { get; }",
+          "string? PhysicalPath { get; }",
+          "string Name { get; }",
+          "DateTimeOffset LastModified { get; }",
+          "bool IsDirectory { get; }"
+        ],
+        "methods": ["Stream CreateReadStream()"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "id": "IFileInfo"
+      },
+      "positionAbsolute": {
+        "x": 22.63431464569925,
+        "y": 274.7540336644124
+      },
+      "selected": false,
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 302,
+      "height": 52,
+      "id": "IDirectoryContents",
+      "type": "custom",
+      "position": {
+        "x": 394.99984108916544,
+        "y": 319.89064615834343
+      },
+      "data": {
+        "name": "IDirectoryContents",
+        "parent": "IEnumerable<IFileInfo>",
+        "properties": ["bool Exists { get; }"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "id": "IDirectoryContents"
+      },
+      "positionAbsolute": {
+        "x": 394.99984108916544,
+        "y": 319.89064615834343
+      },
+      "selected": false,
+      "dragging": false,
+      "style": {}
+    },
+    {
+      "width": 463,
+      "height": 80,
+      "id": "IChangeToken",
+      "type": "custom",
+      "position": {
+        "x": 483.04848976417827,
+        "y": -25.334959671585608
+      },
+      "data": {
+        "name": "IChangeToken",
+        "properties": ["bool HasChanged { get; }", "bool ActiveChangeCallbacks { get; }"],
+        "methods": ["IDisposable RegisterChangeCallback(Action<object?> callback, object? state)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "id": "IChangeToken"
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 483.04848976417827,
+        "y": -25.334959671585608
+      },
+      "dragging": false,
+      "style": {}
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "id": "IDirectoryContents-IFileInfo",
+      "source": "IDirectoryContents",
+      "target": "IFileInfo",
+      "sourceHandle": "IDirectoryContentsleftsource",
+      "targetHandle": "IFileInforighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IFileProvider",
+      "target": "IDirectoryContents",
+      "selected": false,
+      "id": "reactflow__edge-IFileProviderIFileProviderbottomsource-IDirectoryContents",
+      "sourceHandle": "IFileProviderbottomsource",
+      "targetHandle": null
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IFileProvider",
+      "target": "IFileInfo",
+      "selected": false,
+      "id": "reactflow__edge-IFileProviderIFileProviderbottomsource-IFileInfo",
+      "sourceHandle": "IFileProviderbottomsource",
+      "targetHandle": null
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IFileProvider",
+      "target": "IChangeToken",
+      "sourceHandle": "IFileProviderrightsource",
+      "selected": false,
+      "id": "reactflow__edge-IFileProviderIFileProviderrightsource-IChangeTokenIChangeTokenlefttarget",
+      "targetHandle": "IChangeTokenlefttarget"
+    }
+  ],
+  "viewport": {
+    "x": 82.05956000372146,
+    "y": 131.68322380624772,
+    "zoom": 1.6487089601541056
+  }
 }

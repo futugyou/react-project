@@ -1,76 +1,76 @@
 .edit-pg-container {
-    flex-direction: column;
-    flex: 1;
-    display: flex;
+  flex-direction: column;
+  flex: 1;
+  display: flex;
 }
 
 .edit-text-tip {
-    margin: 10px 0 5px 0;
-    text-align: left;
-    font-size: 16px;
+  margin: 10px 0 5px 0;
+  text-align: left;
+  font-size: 16px;
 }
 
 .edit-input-container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
 
 .edit-input-container textarea {
-    flex: 1;
-    font-size: 15px;
-    line-height: 24px;
-    padding: 12px 16px;
-    white-space: pre-wrap;
-    resize: none;
+  flex: 1;
+  font-size: 15px;
+  line-height: 24px;
+  padding: 12px 16px;
+  white-space: pre-wrap;
+  resize: none;
 }
 
 .edit-input-container-left {
-    flex: 1;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .edit-input-container-input {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .edit-input-container-input span,
 .edit-input-container-input Textarea {
-    width: 100% !important;
-    height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .edit-input-container-right {
-    flex: 1;
-    margin-left: 10px;
-    display: flex;
-    background-color: #f7f7f8;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-    padding: 12px 16px;
-    white-space: pre-wrap;
-    text-align: initial;
+  flex: 1;
+  margin-left: 10px;
+  display: flex;
+  background-color: #f7f7f8;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  padding: 12px 16px;
+  white-space: pre-wrap;
+  text-align: initial;
 }
 
 .edit-container-right {
-    display: flex;
-    flex: 1 1;
-    flex-direction: column;
-    margin-left: 10px;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  margin-left: 10px;
 }
 
 .edit-container-right-completion {
-    flex: 1;
-    background-color: #f7f7f8;
-    font-size: 16px;
-    padding: 12px 16px;
-    line-height: 24px;
-    font-weight: 400;
-    white-space: pre-wrap;
-    text-align: initial;
+  flex: 1;
+  background-color: #f7f7f8;
+  font-size: 16px;
+  padding: 12px 16px;
+  line-height: 24px;
+  font-weight: 400;
+  white-space: pre-wrap;
+  text-align: initial;
 }

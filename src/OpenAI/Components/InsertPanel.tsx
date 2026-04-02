@@ -1,58 +1,62 @@
 import './InsertPanel.css'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 
-import Textarea from "@cloudscape-design/components/textarea"
+import Textarea from '@cloudscape-design/components/textarea'
 
 const InsertPanel = (props: any) => {
-    const [showPlaceholder, setShowPlaceholder] = useState(true)
-    const text = props.prompt + (props.suffix ?? "")
-    const [completion, setCompletion] = useState("")
+  const [showPlaceholder, setShowPlaceholder] = useState(true)
+  const text = props.prompt + (props.suffix ?? '')
+  const [completion, setCompletion] = useState('')
 
-    useEffect(() => {
-        if (props.completion && props.completion.length > 0) {
-            setCompletion(props.prompt + props.completion + (props.suffix ?? ""))
-        }
-    }, [props.completion])
+  useEffect(() => {
+    if (props.completion && props.completion.length > 0) {
+      setCompletion(props.prompt + props.completion + (props.suffix ?? ''))
+    }
+  }, [props.completion])
 
-    useEffect(() => {
-        if (text.length > 0) {
-            setShowPlaceholder(false)
-        } else {
-            setShowPlaceholder(true)
-        }
-    }, [props.prompt, props.suffix])
+  useEffect(() => {
+    if (text.length > 0) {
+      setShowPlaceholder(false)
+    } else {
+      setShowPlaceholder(true)
+    }
+  }, [props.prompt, props.suffix])
 
-    const HandleTextChange = (e: any) => {
-        const t: string = e.target.value
-        if (t.length > 0) {
-            setShowPlaceholder(false)
-        } else {
-            setShowPlaceholder(true)
-        }
-
-        if (props.onPromptChange) {
-            props.onPromptChange(t)
-        }
+  const HandleTextChange = (e: any) => {
+    const t: string = e.target.value
+    if (t.length > 0) {
+      setShowPlaceholder(false)
+    } else {
+      setShowPlaceholder(true)
     }
 
-    return (
-        <>
-            <div className="insert-container-left">
-                <Textarea onChange={HandleTextChange} value={text} disabled={props.disabled} rows={1} />
-                {showPlaceholder && (<div className="insert-placeholder">
-                    <div className="insert-placeholder-lg">We're writing to [insert]. Congrats from OpenAI!</div>
-                    <div className="insert-placeholder-md">Use [insert] to indicate where the model should insert text.</div>
-                </div>)}
+    if (props.onPromptChange) {
+      props.onPromptChange(t)
+    }
+  }
+
+  return (
+    <>
+      <div className="insert-container-left">
+        <Textarea onChange={HandleTextChange} value={text} disabled={props.disabled} rows={1} />
+        {showPlaceholder && (
+          <div className="insert-placeholder">
+            <div className="insert-placeholder-lg">
+              We're writing to [insert]. Congrats from OpenAI!
             </div>
-            <div className="insert-container-right">
-                <div className="insert-container-right-completion">
-                    {completion}
-                </div>
-                {props.disabled && props.children}
+            <div className="insert-placeholder-md">
+              Use [insert] to indicate where the model should insert text.
             </div>
-        </>
-    )
+          </div>
+        )}
+      </div>
+      <div className="insert-container-right">
+        <div className="insert-container-right-completion">{completion}</div>
+        {props.disabled && props.children}
+      </div>
+    </>
+  )
 }
 
 export default InsertPanel

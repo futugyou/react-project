@@ -1,1 +1,1 @@
-declare module 'cytoscape-d3-force';
+declare module 'cytoscape-d3-force'

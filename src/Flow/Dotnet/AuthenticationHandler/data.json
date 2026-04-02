@@ -1,1993 +1,1965 @@
 {
-    "nodes": [
-        {
-            "width": 990,
-            "height": 104,
-            "id": "AuthenticationBuilder",
-            "position": {
-                "x": -149.06318885369535,
-                "y": 445.19938117886807
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationBuilder",
-                "name": "AuthenticationBuilder",
-                "properties": [
-                    "public virtual IServiceCollection Services { get; }"
-                ],
-                "methods": [
-                    "public virtual AuthenticationBuilder AddScheme<TOptions, THandler>(string authenticationScheme, string? displayName, Action<TOptions>? configureOptions)",
-                    "public virtual AuthenticationBuilder AddRemoteScheme<TOptions, THandler>(string authenticationScheme, string? displayName, Action<TOptions>? configureOptions)",
-                    "public virtual AuthenticationBuilder AddPolicyScheme(string authenticationScheme, string? displayName, Action<PolicySchemeOptions> configureOptions)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -149.06318885369535,
-                "y": 445.19938117886807
-            },
-            "dragging": false
-        },
-        {
-            "width": 430,
-            "height": 248,
-            "id": "AuthenticationSchemeOptions",
-            "position": {
-                "x": -221.95935908238482,
-                "y": 708.540634478884
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationSchemeOptions",
-                "name": "AuthenticationSchemeOptions",
-                "properties": [
-                    "public string? ClaimsIssuer { get; set; }",
-                    "public object? Events { get; set; }",
-                    "public Type? EventsType { get; set; }",
-                    "public string? ForwardDefault { get; set; }",
-                    "public string? ForwardAuthenticate { get; set; }",
-                    "public string? ForwardChallenge { get; set; }",
-                    "public string? ForwardForbid { get; set; }",
-                    "public string? ForwardSignIn { get; set; }",
-                    "public string? ForwardSignOut { get; set; }",
-                    "public Func<HttpContext, string?>? ForwardDefaultSelector { get; set; }",
-                    "public TimeProvider? TimeProvider { get; set; }"
-                ],
-                "methods": [
-                    "public virtual void Validate()",
-                    "public virtual void Validate(string scheme)"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -221.95935908238482,
-                "y": 708.540634478884
-            },
-            "dragging": false
-        },
-        {
-            "width": 479,
-            "height": 264,
-            "id": "RemoteAuthenticationOptions",
-            "position": {
-                "x": -394.6843577160997,
-                "y": 1390.176067076201
-            },
-            "type": "custom",
-            "data": {
-                "id": "RemoteAuthenticationOptions",
-                "name": "RemoteAuthenticationOptions",
-                "parent": "AuthenticationSchemeOptions",
-                "methods": [
-                    "public override void Validate(string scheme)",
-                    "public override void Validate()"
-                ],
-                "properties": [
-                    "public TimeSpan BackchannelTimeout { get; set; } = TimeSpan.FromSeconds(60)",
-                    "public HttpMessageHandler? BackchannelHttpHandler { get; set; }",
-                    "public HttpClient Backchannel { get; set; } = default!",
-                    "public IDataProtectionProvider? DataProtectionProvider { get; set; }",
-                    "public PathString CallbackPath { get; set; }",
-                    "public PathString AccessDeniedPath { get; set;",
-                    "public string ReturnUrlParameter { get; set; } = \"ReturnUrl\";",
-                    "public string? SignInScheme { get; set; }",
-                    "public TimeSpan RemoteAuthenticationTimeout { get; set; }",
-                    "public new RemoteAuthenticationEvents Events",
-                    "public bool SaveTokens { get; set; }",
-                    "public CookieBuilder CorrelationCookie"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -394.6843577160997,
-                "y": 1390.176067076201
-            },
-            "dragging": false
-        },
-        {
-            "width": 337,
-            "height": 50,
-            "id": "PolicySchemeOptions",
-            "position": {
-                "x": 357.61359288071037,
-                "y": 926.5173532352516
-            },
-            "type": "custom",
-            "data": {
-                "id": "PolicySchemeOptions",
-                "name": "PolicySchemeOptions",
-                "parent": "AuthenticationSchemeOptions",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "properties": []
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 357.61359288071037,
-                "y": 926.5173532352516
-            },
-            "dragging": false,
-            "style": {
-                "width": 337,
-                "height": 50
-            },
-            "resizing": false
-        },
-        {
-            "width": 721,
-            "height": 168,
-            "id": "RemoteAuthenticationHandler",
-            "position": {
-                "x": 1159.6690958363831,
-                "y": 1613.582139273309
-            },
-            "type": "custom",
-            "data": {
-                "id": "RemoteAuthenticationHandler",
-                "name": "RemoteAuthenticationHandler<TOptions>",
-                "parent": "AuthenticationHandler<TOptions>, IAuthenticationRequestHandler",
-                "properties": [
-                    "protected string? SignInScheme",
-                    "protected new RemoteAuthenticationEvents Events"
-                ],
-                "methods": [
-                    "public virtual Task<bool> ShouldHandleRequestAsync()",
-                    "public virtual async Task<bool> HandleRequestAsync()",
-                    "protected abstract Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
-                    "protected virtual void GenerateCorrelationId(AuthenticationProperties properties)",
-                    "protected virtual bool ValidateCorrelationId(AuthenticationProperties properties)",
-                    "protected virtual async Task<HandleRequestResult> HandleAccessDeniedErrorAsync(AuthenticationProperties properties)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1159.6690958363831,
-                "y": 1613.582139273309
-            },
-            "dragging": false
-        },
-        {
-            "width": 497,
-            "height": 408,
-            "id": "AuthenticationHandler",
-            "position": {
-                "x": 878.7946861814751,
-                "y": 449.55661059400177
-            },
-            "type": "custom",
-            "data": {
-                "id": "AuthenticationHandler",
-                "name": "AuthenticationHandler<TOptions>",
-                "parent": "IAuthenticationHandler where TOptions : AuthenticationSchemeOptions, new()",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public AuthenticationScheme Scheme { get; private set; }",
-                    "public TOptions Options { get; private set; }",
-                    "protected HttpContext Context { get; private set; }",
-                    "protected HttpRequest Request",
-                    "protected HttpResponse Response",
-                    "protected PathString OriginalPath",
-                    "protected PathString OriginalPathBase",
-                    "protected UrlEncoder UrlEncoder { get; }",
-                    "protected TimeProvider TimeProvider { get; private set; }",
-                    "protected IOptionsMonitor<TOptions> OptionsMonitor { get; }",
-                    "protected virtual object? Events { get; set; }",
-                    "protected virtual string ClaimsIssuer",
-                    "protected string CurrentUri"
-                ],
-                "methods": [
-                    "protected virtual async Task InitializeEventsAsync()",
-                    "protected virtual Task<object> CreateEventsAsync()",
-                    "protected virtual Task InitializeHandlerAsync()",
-                    "protected string BuildRedirectUri(string targetPath)",
-                    "protected virtual string? ResolveTarget(string? scheme)",
-                    "protected Task<AuthenticateResult> HandleAuthenticateOnceAsync()",
-                    "protected async Task<AuthenticateResult> HandleAuthenticateOnceSafeAsync()",
-                    "protected abstract Task<AuthenticateResult> HandleAuthenticateAsync()",
-                    "protected virtual Task HandleForbiddenAsync(AuthenticationProperties properties)",
-                    "protected virtual Task HandleChallengeAsync(AuthenticationProperties properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 878.7946861814751,
-                "y": 449.55661059400177
-            },
-            "dragging": false
-        },
-        {
-            "width": 501,
-            "height": 58,
-            "id": "SignOutAuthenticationHandler",
-            "position": {
-                "x": 1481.7539139499133,
-                "y": 623.9278375334451
-            },
-            "type": "custom",
-            "data": {
-                "id": "SignOutAuthenticationHandler",
-                "name": "SignOutAuthenticationHandler<TOptions>",
-                "parent": "AuthenticationHandler<TOptions>, IAuthenticationSignOutHandler",
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "public virtual Task SignOutAsync(AuthenticationProperties? properties)",
-                    "protected abstract Task HandleSignOutAsync(AuthenticationProperties? properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1481.7539139499133,
-                "y": 623.9278375334451
-            },
-            "dragging": false
-        },
-        {
-            "width": 610,
-            "height": 58,
-            "id": "SignInAuthenticationHandler",
-            "position": {
-                "x": 1428.5013320799258,
-                "y": 900.5938344080319
-            },
-            "type": "custom",
-            "data": {
-                "id": "SignInAuthenticationHandler",
-                "name": "SignInAuthenticationHandler<TOptions>",
-                "parent": "SignOutAuthenticationHandler<TOptions>, IAuthenticationSignInHandler",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "public virtual Task SignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
-                    "protected abstract Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1428.5013320799258,
-                "y": 900.5938344080319
-            },
-            "dragging": false
-        },
-        {
-            "width": 611,
-            "height": 106,
-            "id": "PolicySchemeHandler",
-            "position": {
-                "x": 745.1863821083718,
-                "y": 892.283404955937
-            },
-            "type": "custom",
-            "data": {
-                "id": "PolicySchemeHandler",
-                "name": "PolicySchemeHandler",
-                "parent": "SignInAuthenticationHandler<PolicySchemeOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "protected override Task HandleChallengeAsync(AuthenticationProperties? properties)",
-                    "protected override Task HandleForbiddenAsync(AuthenticationProperties? properties)",
-                    "protected override Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
-                    "protected override Task HandleSignOutAsync(AuthenticationProperties? properties)",
-                    "protected override Task<AuthenticateResult> HandleAuthenticateAsync()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 745.1863821083718,
-                "y": 892.283404955937
-            },
-            "dragging": false
-        },
-        {
-            "width": 647,
-            "height": 120,
-            "id": "BearerTokenHandler",
-            "position": {
-                "x": 1469.8024075831588,
-                "y": 1000.707229369902
-            },
-            "type": "custom",
-            "data": {
-                "id": "BearerTokenHandler",
-                "name": "BearerTokenHandler",
-                "parent": "SignInAuthenticationHandler<BearerTokenOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "private new BearerTokenEvents Events"
-                ],
-                "methods": [
-                    "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
-                    "protected override Task HandleChallengeAsync(AuthenticationProperties properties)",
-                    "protected override async Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
-                    "protected override Task HandleSignOutAsync(AuthenticationProperties? properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1469.8024075831588,
-                "y": 1000.707229369902
-            },
-            "dragging": false
-        },
-        {
-            "width": 473,
-            "height": 106,
-            "id": "BearerTokenOptions",
-            "position": {
-                "x": 925.8028887699802,
-                "y": 1025.2202668150248
-            },
-            "type": "custom",
-            "data": {
-                "id": "BearerTokenOptions",
-                "name": "BearerTokenOptions",
-                "parent": "AuthenticationSchemeOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public TimeSpan BearerTokenExpiration { get; set; } = TimeSpan.FromHours(1)",
-                    "public TimeSpan RefreshTokenExpiration { get; set; } = TimeSpan.FromDays(14)",
-                    "public ISecureDataFormat<AuthenticationTicket> BearerTokenProtector",
-                    "public ISecureDataFormat<AuthenticationTicket> RefreshTokenProtector",
-                    "public new BearerTokenEvents Events"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 925.8028887699802,
-                "y": 1025.2202668150248
-            },
-            "dragging": false
-        },
-        {
-            "width": 647,
-            "height": 184,
-            "id": "CookieAuthenticationHandler",
-            "position": {
-                "x": 1464.9265887161723,
-                "y": 1157.4676576811114
-            },
-            "type": "custom",
-            "data": {
-                "id": "CookieAuthenticationHandler",
-                "name": "CookieAuthenticationHandler",
-                "parent": "SignInAuthenticationHandler<CookieAuthenticationOptions>",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "protected new CookieAuthenticationEvents Events"
-                ],
-                "methods": [
-                    "protected override Task InitializeHandlerAsync()",
-                    "protected override Task<object> CreateEventsAsync()",
-                    "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
-                    "protected virtual async Task FinishResponseAsync()",
-                    "protected override async Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
-                    "protected override async Task HandleSignOutAsync(AuthenticationProperties? properties)",
-                    "protected override async Task HandleForbiddenAsync(AuthenticationProperties properties)",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1464.9265887161723,
-                "y": 1157.4676576811114
-            },
-            "dragging": false
-        },
-        {
-            "width": 475,
-            "height": 218,
-            "id": "CookieAuthenticationOptions",
-            "position": {
-                "x": 830.1850454101866,
-                "y": 1159.0080937884313
-            },
-            "type": "custom",
-            "data": {
-                "id": "CookieAuthenticationOptions",
-                "name": "CookieAuthenticationOptions",
-                "parent": "AuthenticationSchemeOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public CookieBuilder Cookie",
-                    "public IDataProtectionProvider? DataProtectionProvider { get; set; }",
-                    "public bool SlidingExpiration { get; set; }",
-                    "public PathString LoginPath { get; set; }",
-                    "public PathString LogoutPath { get; set; }",
-                    "public PathString AccessDeniedPath { get; set; }",
-                    "public string ReturnUrlParameter { get; set; }",
-                    "public new CookieAuthenticationEvents Events",
-                    "public ISecureDataFormat<AuthenticationTicket> TicketDataFormat { get; set; }",
-                    "public ICookieManager CookieManager { get; set; }",
-                    "public ITicketStore? SessionStore { get; set; }",
-                    "public TimeSpan ExpireTimeSpan { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 830.1850454101866,
-                "y": 1159.0080937884313
-            },
-            "dragging": false
-        },
-        {
-            "width": 542,
-            "height": 120,
-            "id": "JwtBearerHandler",
-            "position": {
-                "x": 1565.621813144993,
-                "y": 1374.8883509459647
-            },
-            "type": "custom",
-            "data": {
-                "id": "JwtBearerHandler",
-                "name": "JwtBearerHandler",
-                "parent": "AuthenticationHandler<JwtBearerOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "protected new JwtBearerEvents Events"
-                ],
-                "methods": [
-                    "protected override Task<object> CreateEventsAsync()",
-                    "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
-                    "protected override Task HandleForbiddenAsync(AuthenticationProperties properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1565.621813144993,
-                "y": 1374.8883509459647
-            },
-            "dragging": false
-        },
-        {
-            "width": 587,
-            "height": 346,
-            "id": "JwtBearerOptions",
-            "position": {
-                "x": 120.80140666436716,
-                "y": 1093.544986262681
-            },
-            "type": "custom",
-            "data": {
-                "id": "JwtBearerOptions",
-                "name": "JwtBearerOptions",
-                "parent": "AuthenticationSchemeOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public bool RequireHttpsMetadata { get; set; } = true",
-                    "public string MetadataAddress { get; set; }",
-                    "public string? Authority { get; set; }",
-                    "public string? Audience { get; set; }",
-                    "public string Challenge { get; set; } = JwtBearerDefaults.AuthenticationScheme",
-                    "public new JwtBearerEvents Events",
-                    "public HttpMessageHandler? BackchannelHttpHandler { get; set; }",
-                    "public HttpClient Backchannel { get; set; }",
-                    "public TimeSpan BackchannelTimeout { get; set; }",
-                    "public OpenIdConnectConfiguration? Configuration",
-                    "public IConfigurationManager<OpenIdConnectConfiguration>? ConfigurationManager { get; set; }",
-                    "public bool RefreshOnIssuerKeyNotFound { get; set; } = true",
-                    "public IList<TokenHandler> TokenHandlers { get; private set; }",
-                    "public TokenValidationParameters TokenValidationParameters { get; set; }",
-                    "public bool SaveToken { get; set; } = true",
-                    "public bool IncludeErrorDetails { get; set; } = true",
-                    "public bool MapInboundClaims",
-                    "public TimeSpan AutomaticRefreshInterval { get; set; }",
-                    "public TimeSpan RefreshInterval { get; set; }",
-                    "public bool UseSecurityTokenValidators { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 120.80140666436716,
-                "y": 1093.544986262681
-            },
-            "dragging": false
-        },
-        {
-            "width": 948,
-            "height": 200,
-            "id": "OAuthHandler",
-            "position": {
-                "x": 326.26117147936316,
-                "y": 2229.2896226628745
-            },
-            "type": "custom",
-            "data": {
-                "id": "OAuthHandler",
-                "name": "OAuthHandler<TOptions>",
-                "parent": "RemoteAuthenticationHandler<TOptions>",
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "protected HttpClient Backchannel => Options.Backchannel",
-                    "protected new OAuthEvents Events"
-                ],
-                "methods": [
-                    "protected override Task<object> CreateEventsAsync()",
-                    "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
-                    "protected virtual async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)",
-                    "protected virtual async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity identity, AuthenticationProperties properties, OAuthTokenResponse tokens)",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
-                    "protected virtual string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)",
-                    "protected virtual string FormatScope(IEnumerable<string> scopes)",
-                    "protected virtual string FormatScope()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 326.26117147936316,
-                "y": 2229.2896226628745
-            },
-            "dragging": false
-        },
-        {
-            "width": 496,
-            "height": 216,
-            "id": "OAuthOptions",
-            "position": {
-                "x": -233.82323755520656,
-                "y": 2222.4378858743194
-            },
-            "type": "custom",
-            "data": {
-                "id": "OAuthOptions",
-                "name": "OAuthOptions",
-                "parent": "RemoteAuthenticationOptions",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public string ClientId { get; set; }",
-                    "public string ClientSecret { get; set; }",
-                    "public string AuthorizationEndpoint { get; set; }",
-                    "public string TokenEndpoint { get; set; }",
-                    "public string UserInformationEndpoint { get; set; }",
-                    "public new OAuthEvents Events",
-                    "public ClaimActionCollection ClaimActions { get; }",
-                    "public ICollection<string> Scope { get; }",
-                    "public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }",
-                    "public bool UsePkce { get; set; }"
-                ],
-                "methods": [
-                    "public override void Validate()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -233.82323755520656,
-                "y": 2222.4378858743194
-            },
-            "dragging": false
-        },
-        {
-            "width": 969,
-            "height": 232,
-            "id": "OpenIdConnectHandler",
-            "position": {
-                "x": 1202.7370376091687,
-                "y": 1821.6023061641133
-            },
-            "type": "custom",
-            "data": {
-                "id": "OpenIdConnectHandler",
-                "name": "OpenIdConnectHandler",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "parent": "RemoteAuthenticationHandler<OpenIdConnectOptions>, IAuthenticationSignOutHandler",
-                "properties": [
-                    "protected HttpClient Backchannel => Options.Backchannel",
-                    "protected HtmlEncoder HtmlEncoder { get; }",
-                    "protected new OpenIdConnectEvents Events"
-                ],
-                "methods": [
-                    "protected override Task<object> CreateEventsAsync()",
-                    "public override Task<bool> HandleRequestAsync()",
-                    "protected virtual async Task<bool> HandleRemoteSignOutAsync()",
-                    "public virtual async Task SignOutAsync(AuthenticationProperties? properties)",
-                    "protected virtual async Task<bool> HandleSignOutCallbackAsync()",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
-                    "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
-                    "protected virtual async Task<OpenIdConnectMessage> RedeemAuthorizationCodeAsync(OpenIdConnectMessage tokenEndpointRequest)",
-                    "protected virtual async Task<HandleRequestResult> GetUserInformationAsync(OpenIdConnectMessage, JwtSecurityToken, ClaimsPrincipal, AuthenticationProperties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1202.7370376091687,
-                "y": 1821.6023061641133
-            },
-            "dragging": false
-        },
-        {
-            "width": 587,
-            "height": 280,
-            "id": "OpenIdConnectOptions",
-            "position": {
-                "x": 377.604197053089,
-                "y": 1635.5933986873838
-            },
-            "type": "custom",
-            "data": {
-                "id": "OpenIdConnectOptions",
-                "name": "OpenIdConnectOptions",
-                "parent": "RemoteAuthenticationOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "public override void Validate()"
-                ],
-                "properties": [
-                    "public string? Authority { get; set; }",
-                    "public string? ClientId { get; set; }",
-                    "public string? ClientSecret { get; set; }",
-                    "public IConfigurationManager<OpenIdConnectConfiguration>? ConfigurationManager { get; set; }",
-                    "public ClaimActionCollection ClaimActions { get; }",
-                    "public bool RequireHttpsMetadata { get; set; } = true",
-                    "public new OpenIdConnectEvents Events",
-                    "public TimeSpan? MaxAge { get; set; }",
-                    "public OpenIdConnectProtocolValidator ProtocolValidator { get; set; }",
-                    "public OpenIdConnectRedirectBehavior AuthenticationMethod { get; set; }",
-                    "public string ResponseType { get; set; }",
-                    "public string? Prompt { get; set; }",
-                    "public ICollection<string> Scope { get; }",
-                    "......"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 377.604197053089,
-                "y": 1635.5933986873838
-            },
-            "dragging": false
-        },
-        {
-            "width": 808,
-            "height": 74,
-            "id": "FacebookHandler",
-            "position": {
-                "x": 267.1564417279973,
-                "y": 2559.193265802641
-            },
-            "type": "custom",
-            "data": {
-                "id": "FacebookHandler",
-                "name": "FacebookHandler",
-                "parent": "OAuthHandler<FacebookOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [],
-                "methods": [
-                    "protected override async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity, AuthenticationProperties, OAuthTokenResponse)",
-                    "protected override string FormatScope(IEnumerable<string> scopes)",
-                    "protected override string FormatScope()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 267.1564417279973,
-                "y": 2559.193265802641
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 120,
-            "id": "FacebookOptions",
-            "position": {
-                "x": -116.17929296089278,
-                "y": 2536.217014638407
-            },
-            "type": "custom",
-            "data": {
-                "id": "FacebookOptions",
-                "name": "FacebookOptions",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "public override void Validate()"
-                ],
-                "properties": [
-                    "public string AppId",
-                    "public string AppSecret",
-                    "public bool SendAppSecretProof { get; set; }",
-                    "public ICollection<string> Fields { get; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -116.17929296089278,
-                "y": 2536.217014638407
-            },
-            "dragging": false
-        },
-        {
-            "width": 812,
-            "height": 58,
-            "id": "GoogleHandler",
-            "position": {
-                "x": 335.00333779856976,
-                "y": 2697.8224779532993
-            },
-            "type": "custom",
-            "data": {
-                "id": "GoogleHandler",
-                "name": "GoogleHandler",
-                "parent": "OAuthHandler<GoogleOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "protected override async Task<AuthenticationTicket> CreateTicketAsync( ClaimsIdentity, AuthenticationProperties, OAuthTokenResponse)",
-                    "protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 335.00333779856976,
-                "y": 2697.8224779532993
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 50,
-            "id": "GoogleOptions",
-            "position": {
-                "x": -120.64536055642861,
-                "y": 2705.5250812433073
-            },
-            "type": "custom",
-            "data": {
-                "id": "GoogleOptions",
-                "name": "GoogleOptions",
-                "parent": "OAuthOptions",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "properties": [
-                    "public string? AccessType { get; set; }"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -120.64536055642861,
-                "y": 2705.5250812433073
-            },
-            "dragging": false
-        },
-        {
-            "width": 808,
-            "height": 58,
-            "id": "MicrosoftAccountHandler",
-            "position": {
-                "x": 398.3546394435714,
-                "y": 2796.7328911133254
-            },
-            "type": "custom",
-            "data": {
-                "id": "MicrosoftAccountHandler",
-                "name": "MicrosoftAccountHandler",
-                "parent": "OAuthHandler<MicrosoftAccountOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "methods": [
-                    "protected override async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity, AuthenticationProperties, OAuthTokenResponse)",
-                    "protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 398.3546394435714,
-                "y": 2796.7328911133254
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 50,
-            "id": "MicrosoftAccountOptions",
-            "position": {
-                "x": -209.6453605564286,
-                "y": 2805.132891113325
-            },
-            "type": "custom",
-            "data": {
-                "id": "MicrosoftAccountOptions",
-                "name": "MicrosoftAccountOptions",
-                "parent": "OAuthOptions",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "public MicrosoftAccountOptions()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -209.6453605564286,
-                "y": 2805.132891113325
-            },
-            "dragging": false
-        },
-        {
-            "width": 542,
-            "height": 120,
-            "id": "NegotiateHandler",
-            "position": {
-                "x": 998.1606790701173,
-                "y": 1458.0698135650837
-            },
-            "type": "custom",
-            "data": {
-                "id": "NegotiateHandler",
-                "name": "NegotiateHandler",
-                "parent": "AuthenticationHandler<NegotiateOptions>, IAuthenticationRequestHandler",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "protected new NegotiateEvents Events"
-                ],
-                "methods": [
-                    "protected override Task<object> CreateEventsAsync()",
-                    "public async Task<bool> HandleRequestAsync()",
-                    "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 998.1606790701173,
-                "y": 1458.0698135650837
-            },
-            "dragging": false
-        },
-        {
-            "width": 398,
-            "height": 120,
-            "id": "NegotiateOptions",
-            "position": {
-                "x": 539.2693980757151,
-                "y": 1459.4125915359714
-            },
-            "type": "custom",
-            "data": {
-                "id": "NegotiateOptions",
-                "name": "NegotiateOptions",
-                "parent": "AuthenticationSchemeOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public new NegotiateEvents? Events",
-                    "public bool PersistKerberosCredentials { get; set; }",
-                    "public bool PersistNtlmCredentials { get; set; } = true"
-                ],
-                "methods": [
-                    "public void EnableLdap(string domain)",
-                    "public void EnableLdap(Action<LdapSettings> configureSettings)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 539.2693980757151,
-                "y": 1459.4125915359714
-            },
-            "dragging": false
-        },
-        {
-            "width": 853,
-            "height": 120,
-            "id": "TwitterHandler",
-            "position": {
-                "x": 1251.8985105374097,
-                "y": 2088.433203599702
-            },
-            "type": "custom",
-            "data": {
-                "id": "TwitterHandler",
-                "name": "TwitterHandler",
-                "parent": "RemoteAuthenticationHandler<TwitterOptions>",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "protected new TwitterEvents Events"
-                ],
-                "methods": [
-                    "protected override Task<object> CreateEventsAsync()",
-                    "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
-                    "protected virtual async Task<AuthenticationTicket> CreateTicketAsync( ClaimsIdentity, AuthenticationProperties, AccessToken, JsonElement user)",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1251.8985105374097,
-                "y": 2088.433203599702
-            },
-            "dragging": false
-        },
-        {
-            "width": 432,
-            "height": 168,
-            "id": "TwitterOptions",
-            "position": {
-                "x": 686.4985878136092,
-                "y": 2022.5739298154986
-            },
-            "type": "custom",
-            "data": {
-                "id": "TwitterOptions",
-                "name": "TwitterOptions",
-                "parent": "RemoteAuthenticationOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public string? ConsumerKey { get; set; }",
-                    "public string? ConsumerSecret { get; set; }",
-                    "public bool RetrieveUserDetails { get; set; }",
-                    "public ClaimActionCollection ClaimActions { get; }",
-                    "public ISecureDataFormat<RequestToken> StateDataFormat { get; set; }",
-                    "public new TwitterEvents Events",
-                    "public CookieBuilder StateCookie"
-                ],
-                "methods": [
-                    "public override void Validate()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 686.4985878136092,
-                "y": 2022.5739298154986
-            },
-            "dragging": false
-        },
-        {
-            "width": 542,
-            "height": 152,
-            "id": "WsFederationHandler",
-            "position": {
-                "x": 79.42648543089138,
-                "y": 1948.0017300043246
-            },
-            "type": "custom",
-            "data": {
-                "id": "WsFederationHandler",
-                "name": "WsFederationHandler",
-                "parent": "RemoteAuthenticationHandler<WsFederationOptions>, IAuthenticationSignOutHandler",
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "protected new WsFederationEvents Events"
-                ],
-                "methods": [
-                    "protected override Task<object> CreateEventsAsync()",
-                    "public override Task<bool> HandleRequestAsync()",
-                    "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
-                    "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
-                    "public virtual async Task SignOutAsync(AuthenticationProperties? properties)",
-                    "protected virtual async Task<bool> HandleRemoteSignOutAsync()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 79.42648543089138,
-                "y": 1948.0017300043246
-            },
-            "dragging": false
-        },
-        {
-            "width": 570,
-            "height": 232,
-            "id": "WsFederationOptions",
-            "position": {
-                "x": -578.2552873228632,
-                "y": 1899.2687256330464
-            },
-            "type": "custom",
-            "data": {
-                "id": "WsFederationOptions",
-                "name": "WsFederationOptions",
-                "parent": "RemoteAuthenticationOptions",
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ],
-                "properties": [
-                    "public WsFederationConfiguration? Configuration { get; set; }",
-                    "public string? MetadataAddress { get; set; }",
-                    "public IConfigurationManager<WsFederationConfiguration> ConfigurationManager { get; set; }",
-                    "public bool RefreshOnIssuerKeyNotFound { get; set; } = true",
-                    "public bool SkipUnrecognizedRequests { get; set; }",
-                    "public new WsFederationEvents Events",
-                    "public ICollection<TokenHandler> TokenHandlers",
-                    "public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }",
-                    "public TokenValidationParameters TokenValidationParameters",
-                    "public string? Wreply { get; set; }",
-                    "............."
-                ],
-                "methods": [
-                    "public override void Validate()"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -578.2552873228632,
-                "y": 1899.2687256330464
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RemoteAuthenticationOptions",
-            "sourceHandle": "RemoteAuthenticationOptionstopsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsbottomtarget",
-            "id": "reactflow__edge-RemoteAuthenticationOptionsRemoteAuthenticationOptionstopsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "AuthenticationHandler",
-            "sourceHandle": "AuthenticationHandlerleftsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsrighttarget",
-            "id": "reactflow__edge-AuthenticationHandlerAuthenticationHandlerleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "SignInAuthenticationHandler",
-            "sourceHandle": "SignInAuthenticationHandlertopsource",
-            "target": "SignOutAuthenticationHandler",
-            "targetHandle": "SignOutAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-SignInAuthenticationHandlerSignInAuthenticationHandlertopsource-SignOutAuthenticationHandlerSignOutAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "PolicySchemeHandler",
-            "sourceHandle": "PolicySchemeHandlerleftsource",
-            "target": "PolicySchemeOptions",
-            "targetHandle": "PolicySchemeOptionsrighttarget",
-            "id": "reactflow__edge-PolicySchemeHandlerPolicySchemeHandlerleftsource-PolicySchemeOptionsPolicySchemeOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "SignOutAuthenticationHandler",
-            "sourceHandle": "SignOutAuthenticationHandlerleftsource",
-            "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandlerrighttarget",
-            "id": "reactflow__edge-SignOutAuthenticationHandlerSignOutAuthenticationHandlerleftsource-AuthenticationHandlerAuthenticationHandlerrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "BearerTokenHandler",
-            "sourceHandle": "BearerTokenHandlertopsource",
-            "target": "SignInAuthenticationHandler",
-            "targetHandle": "SignInAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-BearerTokenHandlerBearerTokenHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "BearerTokenHandler",
-            "sourceHandle": "BearerTokenHandlerleftsource",
-            "target": "BearerTokenOptions",
-            "targetHandle": "BearerTokenOptionsrighttarget",
-            "id": "reactflow__edge-BearerTokenHandlerBearerTokenHandlerleftsource-BearerTokenOptionsBearerTokenOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "PolicySchemeHandler",
-            "sourceHandle": "PolicySchemeHandlerrightsource",
-            "target": "SignInAuthenticationHandler",
-            "targetHandle": "SignInAuthenticationHandlerlefttarget",
-            "id": "reactflow__edge-PolicySchemeHandlerPolicySchemeHandlerrightsource-SignInAuthenticationHandlerSignInAuthenticationHandlerlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CookieAuthenticationHandler",
-            "sourceHandle": "CookieAuthenticationHandlertopsource",
-            "target": "SignInAuthenticationHandler",
-            "targetHandle": "SignInAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-CookieAuthenticationHandlerCookieAuthenticationHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CookieAuthenticationHandler",
-            "sourceHandle": "CookieAuthenticationHandlerleftsource",
-            "target": "CookieAuthenticationOptions",
-            "targetHandle": "CookieAuthenticationOptionsrighttarget",
-            "id": "reactflow__edge-CookieAuthenticationHandlerCookieAuthenticationHandlerleftsource-CookieAuthenticationOptionsCookieAuthenticationOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "JwtBearerHandler",
-            "sourceHandle": "JwtBearerHandlertopsource",
-            "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-JwtBearerHandlerJwtBearerHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget",
-            "selected": false
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OAuthOptions",
-            "sourceHandle": "OAuthOptionstopsource",
-            "target": "RemoteAuthenticationOptions",
-            "targetHandle": "RemoteAuthenticationOptionsbottomtarget",
-            "id": "reactflow__edge-OAuthOptionsOAuthOptionstopsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OAuthHandler",
-            "sourceHandle": "OAuthHandlerleftsource",
-            "target": "OAuthOptions",
-            "targetHandle": "OAuthOptionsrighttarget",
-            "id": "reactflow__edge-OAuthHandlerOAuthHandlerleftsource-OAuthOptionsOAuthOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RemoteAuthenticationHandler",
-            "sourceHandle": "RemoteAuthenticationHandlertopsource",
-            "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OpenIdConnectHandler",
-            "sourceHandle": "OpenIdConnectHandlerleftsource",
-            "target": "OpenIdConnectOptions",
-            "targetHandle": "OpenIdConnectOptionsrighttarget",
-            "id": "reactflow__edge-OpenIdConnectHandlerOpenIdConnectHandlerleftsource-OpenIdConnectOptionsOpenIdConnectOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OAuthHandler",
-            "sourceHandle": "OAuthHandlerrightsource",
-            "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-OAuthHandlerOAuthHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "FacebookHandler",
-            "sourceHandle": "FacebookHandlertopsource",
-            "target": "OAuthHandler",
-            "targetHandle": "OAuthHandlerbottomtarget",
-            "id": "reactflow__edge-FacebookHandlerFacebookHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "FacebookOptions",
-            "sourceHandle": "FacebookOptionstopsource",
-            "target": "OAuthOptions",
-            "targetHandle": "OAuthOptionsbottomtarget",
-            "id": "reactflow__edge-FacebookOptionsFacebookOptionstopsource-OAuthOptionsOAuthOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "FacebookHandler",
-            "sourceHandle": "FacebookHandlerleftsource",
-            "target": "FacebookOptions",
-            "targetHandle": "FacebookOptionsrighttarget",
-            "id": "reactflow__edge-FacebookHandlerFacebookHandlerleftsource-FacebookOptionsFacebookOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "GoogleHandler",
-            "sourceHandle": "GoogleHandlertopsource",
-            "target": "OAuthHandler",
-            "targetHandle": "OAuthHandlerbottomtarget",
-            "id": "reactflow__edge-GoogleHandlerGoogleHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "GoogleHandler",
-            "sourceHandle": "GoogleHandlerleftsource",
-            "target": "GoogleOptions",
-            "targetHandle": "GoogleOptionsrighttarget",
-            "id": "reactflow__edge-GoogleHandlerGoogleHandlerleftsource-GoogleOptionsGoogleOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "GoogleOptions",
-            "sourceHandle": "GoogleOptionstopsource",
-            "target": "OAuthOptions",
-            "targetHandle": "OAuthOptionsbottomtarget",
-            "id": "reactflow__edge-GoogleOptionsGoogleOptionstopsource-OAuthOptionsOAuthOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "MicrosoftAccountHandler",
-            "sourceHandle": "MicrosoftAccountHandlertopsource",
-            "target": "OAuthHandler",
-            "targetHandle": "OAuthHandlerbottomtarget",
-            "id": "reactflow__edge-MicrosoftAccountHandlerMicrosoftAccountHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "MicrosoftAccountHandler",
-            "sourceHandle": "MicrosoftAccountHandlerleftsource",
-            "target": "MicrosoftAccountOptions",
-            "targetHandle": "MicrosoftAccountOptionsrighttarget",
-            "id": "reactflow__edge-MicrosoftAccountHandlerMicrosoftAccountHandlerleftsource-MicrosoftAccountOptionsMicrosoftAccountOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "MicrosoftAccountOptions",
-            "sourceHandle": "MicrosoftAccountOptionstopsource",
-            "target": "OAuthOptions",
-            "targetHandle": "OAuthOptionsbottomtarget",
-            "id": "reactflow__edge-MicrosoftAccountOptionsMicrosoftAccountOptionstopsource-OAuthOptionsOAuthOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "NegotiateHandler",
-            "sourceHandle": "NegotiateHandlertopsource",
-            "target": "AuthenticationHandler",
-            "targetHandle": "AuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-NegotiateHandlerNegotiateHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "NegotiateHandler",
-            "sourceHandle": "NegotiateHandlerleftsource",
-            "target": "NegotiateOptions",
-            "targetHandle": "NegotiateOptionsrighttarget",
-            "id": "reactflow__edge-NegotiateHandlerNegotiateHandlerleftsource-NegotiateOptionsNegotiateOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "TwitterHandler",
-            "sourceHandle": "TwitterHandlerleftsource",
-            "target": "TwitterOptions",
-            "targetHandle": "TwitterOptionsrighttarget",
-            "id": "reactflow__edge-TwitterHandlerTwitterHandlerleftsource-TwitterOptionsTwitterOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "WsFederationHandler",
-            "sourceHandle": "WsFederationHandlerrightsource",
-            "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-WsFederationHandlerWsFederationHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "WsFederationHandler",
-            "sourceHandle": "WsFederationHandlerleftsource",
-            "target": "WsFederationOptions",
-            "targetHandle": "WsFederationOptionsrighttarget",
-            "id": "reactflow__edge-WsFederationHandlerWsFederationHandlerleftsource-WsFederationOptionsWsFederationOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "WsFederationOptions",
-            "sourceHandle": "WsFederationOptionstopsource",
-            "target": "RemoteAuthenticationOptions",
-            "targetHandle": "RemoteAuthenticationOptionsbottomtarget",
-            "id": "reactflow__edge-WsFederationOptionsWsFederationOptionstopsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "TwitterHandler",
-            "sourceHandle": "TwitterHandlertopsource",
-            "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-TwitterHandlerTwitterHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OpenIdConnectHandler",
-            "sourceHandle": "OpenIdConnectHandlertopsource",
-            "target": "RemoteAuthenticationHandler",
-            "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
-            "id": "reactflow__edge-OpenIdConnectHandlerOpenIdConnectHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "TwitterOptions",
-            "sourceHandle": "TwitterOptionsleftsource",
-            "target": "RemoteAuthenticationOptions",
-            "targetHandle": "RemoteAuthenticationOptionsbottomtarget",
-            "id": "reactflow__edge-TwitterOptionsTwitterOptionsleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "PolicySchemeOptions",
-            "sourceHandle": "PolicySchemeOptionstopsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsrighttarget",
-            "id": "reactflow__edge-PolicySchemeOptionsPolicySchemeOptionstopsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "JwtBearerOptions",
-            "sourceHandle": "JwtBearerOptionstopsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsrighttarget",
-            "id": "reactflow__edge-JwtBearerOptionsJwtBearerOptionstopsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "BearerTokenOptions",
-            "sourceHandle": "BearerTokenOptionsleftsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsrighttarget",
-            "selected": false,
-            "id": "reactflow__edge-BearerTokenOptionsBearerTokenOptionsleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "NegotiateOptions",
-            "sourceHandle": "NegotiateOptionsleftsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsbottomtarget",
-            "id": "reactflow__edge-NegotiateOptionsNegotiateOptionsleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "CookieAuthenticationOptions",
-            "sourceHandle": "CookieAuthenticationOptionsleftsource",
-            "target": "AuthenticationSchemeOptions",
-            "targetHandle": "AuthenticationSchemeOptionsrighttarget",
-            "id": "reactflow__edge-CookieAuthenticationOptionsCookieAuthenticationOptionsleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "JwtBearerHandler",
-            "sourceHandle": "JwtBearerHandlerleftsource",
-            "target": "JwtBearerOptions",
-            "targetHandle": "JwtBearerOptionsrighttarget",
-            "id": "reactflow__edge-JwtBearerHandlerJwtBearerHandlerleftsource-JwtBearerOptionsJwtBearerOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "OpenIdConnectOptions",
-            "sourceHandle": "OpenIdConnectOptionsleftsource",
-            "target": "RemoteAuthenticationOptions",
-            "targetHandle": "RemoteAuthenticationOptionsrighttarget",
-            "id": "reactflow__edge-OpenIdConnectOptionsOpenIdConnectOptionsleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "RemoteAuthenticationHandler",
-            "sourceHandle": "RemoteAuthenticationHandlerleftsource",
-            "target": "RemoteAuthenticationOptions",
-            "targetHandle": "RemoteAuthenticationOptionsrighttarget",
-            "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandlerleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsrighttarget"
-        }
-    ],
-    "viewport": {
-        "x": 451.12956242842364,
-        "y": -369.08306807304825,
-        "zoom": 0.5
+  "nodes": [
+    {
+      "width": 990,
+      "height": 104,
+      "id": "AuthenticationBuilder",
+      "position": {
+        "x": -149.06318885369535,
+        "y": 445.19938117886807
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationBuilder",
+        "name": "AuthenticationBuilder",
+        "properties": ["public virtual IServiceCollection Services { get; }"],
+        "methods": [
+          "public virtual AuthenticationBuilder AddScheme<TOptions, THandler>(string authenticationScheme, string? displayName, Action<TOptions>? configureOptions)",
+          "public virtual AuthenticationBuilder AddRemoteScheme<TOptions, THandler>(string authenticationScheme, string? displayName, Action<TOptions>? configureOptions)",
+          "public virtual AuthenticationBuilder AddPolicyScheme(string authenticationScheme, string? displayName, Action<PolicySchemeOptions> configureOptions)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -149.06318885369535,
+        "y": 445.19938117886807
+      },
+      "dragging": false
+    },
+    {
+      "width": 430,
+      "height": 248,
+      "id": "AuthenticationSchemeOptions",
+      "position": {
+        "x": -221.95935908238482,
+        "y": 708.540634478884
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationSchemeOptions",
+        "name": "AuthenticationSchemeOptions",
+        "properties": [
+          "public string? ClaimsIssuer { get; set; }",
+          "public object? Events { get; set; }",
+          "public Type? EventsType { get; set; }",
+          "public string? ForwardDefault { get; set; }",
+          "public string? ForwardAuthenticate { get; set; }",
+          "public string? ForwardChallenge { get; set; }",
+          "public string? ForwardForbid { get; set; }",
+          "public string? ForwardSignIn { get; set; }",
+          "public string? ForwardSignOut { get; set; }",
+          "public Func<HttpContext, string?>? ForwardDefaultSelector { get; set; }",
+          "public TimeProvider? TimeProvider { get; set; }"
+        ],
+        "methods": [
+          "public virtual void Validate()",
+          "public virtual void Validate(string scheme)"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -221.95935908238482,
+        "y": 708.540634478884
+      },
+      "dragging": false
+    },
+    {
+      "width": 479,
+      "height": 264,
+      "id": "RemoteAuthenticationOptions",
+      "position": {
+        "x": -394.6843577160997,
+        "y": 1390.176067076201
+      },
+      "type": "custom",
+      "data": {
+        "id": "RemoteAuthenticationOptions",
+        "name": "RemoteAuthenticationOptions",
+        "parent": "AuthenticationSchemeOptions",
+        "methods": [
+          "public override void Validate(string scheme)",
+          "public override void Validate()"
+        ],
+        "properties": [
+          "public TimeSpan BackchannelTimeout { get; set; } = TimeSpan.FromSeconds(60)",
+          "public HttpMessageHandler? BackchannelHttpHandler { get; set; }",
+          "public HttpClient Backchannel { get; set; } = default!",
+          "public IDataProtectionProvider? DataProtectionProvider { get; set; }",
+          "public PathString CallbackPath { get; set; }",
+          "public PathString AccessDeniedPath { get; set;",
+          "public string ReturnUrlParameter { get; set; } = \"ReturnUrl\";",
+          "public string? SignInScheme { get; set; }",
+          "public TimeSpan RemoteAuthenticationTimeout { get; set; }",
+          "public new RemoteAuthenticationEvents Events",
+          "public bool SaveTokens { get; set; }",
+          "public CookieBuilder CorrelationCookie"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -394.6843577160997,
+        "y": 1390.176067076201
+      },
+      "dragging": false
+    },
+    {
+      "width": 337,
+      "height": 50,
+      "id": "PolicySchemeOptions",
+      "position": {
+        "x": 357.61359288071037,
+        "y": 926.5173532352516
+      },
+      "type": "custom",
+      "data": {
+        "id": "PolicySchemeOptions",
+        "name": "PolicySchemeOptions",
+        "parent": "AuthenticationSchemeOptions",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "properties": []
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 357.61359288071037,
+        "y": 926.5173532352516
+      },
+      "dragging": false,
+      "style": {
+        "width": 337,
+        "height": 50
+      },
+      "resizing": false
+    },
+    {
+      "width": 721,
+      "height": 168,
+      "id": "RemoteAuthenticationHandler",
+      "position": {
+        "x": 1159.6690958363831,
+        "y": 1613.582139273309
+      },
+      "type": "custom",
+      "data": {
+        "id": "RemoteAuthenticationHandler",
+        "name": "RemoteAuthenticationHandler<TOptions>",
+        "parent": "AuthenticationHandler<TOptions>, IAuthenticationRequestHandler",
+        "properties": [
+          "protected string? SignInScheme",
+          "protected new RemoteAuthenticationEvents Events"
+        ],
+        "methods": [
+          "public virtual Task<bool> ShouldHandleRequestAsync()",
+          "public virtual async Task<bool> HandleRequestAsync()",
+          "protected abstract Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
+          "protected virtual void GenerateCorrelationId(AuthenticationProperties properties)",
+          "protected virtual bool ValidateCorrelationId(AuthenticationProperties properties)",
+          "protected virtual async Task<HandleRequestResult> HandleAccessDeniedErrorAsync(AuthenticationProperties properties)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1159.6690958363831,
+        "y": 1613.582139273309
+      },
+      "dragging": false
+    },
+    {
+      "width": 497,
+      "height": 408,
+      "id": "AuthenticationHandler",
+      "position": {
+        "x": 878.7946861814751,
+        "y": 449.55661059400177
+      },
+      "type": "custom",
+      "data": {
+        "id": "AuthenticationHandler",
+        "name": "AuthenticationHandler<TOptions>",
+        "parent": "IAuthenticationHandler where TOptions : AuthenticationSchemeOptions, new()",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "public AuthenticationScheme Scheme { get; private set; }",
+          "public TOptions Options { get; private set; }",
+          "protected HttpContext Context { get; private set; }",
+          "protected HttpRequest Request",
+          "protected HttpResponse Response",
+          "protected PathString OriginalPath",
+          "protected PathString OriginalPathBase",
+          "protected UrlEncoder UrlEncoder { get; }",
+          "protected TimeProvider TimeProvider { get; private set; }",
+          "protected IOptionsMonitor<TOptions> OptionsMonitor { get; }",
+          "protected virtual object? Events { get; set; }",
+          "protected virtual string ClaimsIssuer",
+          "protected string CurrentUri"
+        ],
+        "methods": [
+          "protected virtual async Task InitializeEventsAsync()",
+          "protected virtual Task<object> CreateEventsAsync()",
+          "protected virtual Task InitializeHandlerAsync()",
+          "protected string BuildRedirectUri(string targetPath)",
+          "protected virtual string? ResolveTarget(string? scheme)",
+          "protected Task<AuthenticateResult> HandleAuthenticateOnceAsync()",
+          "protected async Task<AuthenticateResult> HandleAuthenticateOnceSafeAsync()",
+          "protected abstract Task<AuthenticateResult> HandleAuthenticateAsync()",
+          "protected virtual Task HandleForbiddenAsync(AuthenticationProperties properties)",
+          "protected virtual Task HandleChallengeAsync(AuthenticationProperties properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 878.7946861814751,
+        "y": 449.55661059400177
+      },
+      "dragging": false
+    },
+    {
+      "width": 501,
+      "height": 58,
+      "id": "SignOutAuthenticationHandler",
+      "position": {
+        "x": 1481.7539139499133,
+        "y": 623.9278375334451
+      },
+      "type": "custom",
+      "data": {
+        "id": "SignOutAuthenticationHandler",
+        "name": "SignOutAuthenticationHandler<TOptions>",
+        "parent": "AuthenticationHandler<TOptions>, IAuthenticationSignOutHandler",
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "methods": [
+          "public virtual Task SignOutAsync(AuthenticationProperties? properties)",
+          "protected abstract Task HandleSignOutAsync(AuthenticationProperties? properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1481.7539139499133,
+        "y": 623.9278375334451
+      },
+      "dragging": false
+    },
+    {
+      "width": 610,
+      "height": 58,
+      "id": "SignInAuthenticationHandler",
+      "position": {
+        "x": 1428.5013320799258,
+        "y": 900.5938344080319
+      },
+      "type": "custom",
+      "data": {
+        "id": "SignInAuthenticationHandler",
+        "name": "SignInAuthenticationHandler<TOptions>",
+        "parent": "SignOutAuthenticationHandler<TOptions>, IAuthenticationSignInHandler",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ],
+        "methods": [
+          "public virtual Task SignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
+          "protected abstract Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1428.5013320799258,
+        "y": 900.5938344080319
+      },
+      "dragging": false
+    },
+    {
+      "width": 611,
+      "height": 106,
+      "id": "PolicySchemeHandler",
+      "position": {
+        "x": 745.1863821083718,
+        "y": 892.283404955937
+      },
+      "type": "custom",
+      "data": {
+        "id": "PolicySchemeHandler",
+        "name": "PolicySchemeHandler",
+        "parent": "SignInAuthenticationHandler<PolicySchemeOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "methods": [
+          "protected override Task HandleChallengeAsync(AuthenticationProperties? properties)",
+          "protected override Task HandleForbiddenAsync(AuthenticationProperties? properties)",
+          "protected override Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
+          "protected override Task HandleSignOutAsync(AuthenticationProperties? properties)",
+          "protected override Task<AuthenticateResult> HandleAuthenticateAsync()"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 745.1863821083718,
+        "y": 892.283404955937
+      },
+      "dragging": false
+    },
+    {
+      "width": 647,
+      "height": 120,
+      "id": "BearerTokenHandler",
+      "position": {
+        "x": 1469.8024075831588,
+        "y": 1000.707229369902
+      },
+      "type": "custom",
+      "data": {
+        "id": "BearerTokenHandler",
+        "name": "BearerTokenHandler",
+        "parent": "SignInAuthenticationHandler<BearerTokenOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": ["private new BearerTokenEvents Events"],
+        "methods": [
+          "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
+          "protected override Task HandleChallengeAsync(AuthenticationProperties properties)",
+          "protected override async Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
+          "protected override Task HandleSignOutAsync(AuthenticationProperties? properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1469.8024075831588,
+        "y": 1000.707229369902
+      },
+      "dragging": false
+    },
+    {
+      "width": 473,
+      "height": 106,
+      "id": "BearerTokenOptions",
+      "position": {
+        "x": 925.8028887699802,
+        "y": 1025.2202668150248
+      },
+      "type": "custom",
+      "data": {
+        "id": "BearerTokenOptions",
+        "name": "BearerTokenOptions",
+        "parent": "AuthenticationSchemeOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public TimeSpan BearerTokenExpiration { get; set; } = TimeSpan.FromHours(1)",
+          "public TimeSpan RefreshTokenExpiration { get; set; } = TimeSpan.FromDays(14)",
+          "public ISecureDataFormat<AuthenticationTicket> BearerTokenProtector",
+          "public ISecureDataFormat<AuthenticationTicket> RefreshTokenProtector",
+          "public new BearerTokenEvents Events"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 925.8028887699802,
+        "y": 1025.2202668150248
+      },
+      "dragging": false
+    },
+    {
+      "width": 647,
+      "height": 184,
+      "id": "CookieAuthenticationHandler",
+      "position": {
+        "x": 1464.9265887161723,
+        "y": 1157.4676576811114
+      },
+      "type": "custom",
+      "data": {
+        "id": "CookieAuthenticationHandler",
+        "name": "CookieAuthenticationHandler",
+        "parent": "SignInAuthenticationHandler<CookieAuthenticationOptions>",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": ["protected new CookieAuthenticationEvents Events"],
+        "methods": [
+          "protected override Task InitializeHandlerAsync()",
+          "protected override Task<object> CreateEventsAsync()",
+          "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
+          "protected virtual async Task FinishResponseAsync()",
+          "protected override async Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties? properties)",
+          "protected override async Task HandleSignOutAsync(AuthenticationProperties? properties)",
+          "protected override async Task HandleForbiddenAsync(AuthenticationProperties properties)",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1464.9265887161723,
+        "y": 1157.4676576811114
+      },
+      "dragging": false
+    },
+    {
+      "width": 475,
+      "height": 218,
+      "id": "CookieAuthenticationOptions",
+      "position": {
+        "x": 830.1850454101866,
+        "y": 1159.0080937884313
+      },
+      "type": "custom",
+      "data": {
+        "id": "CookieAuthenticationOptions",
+        "name": "CookieAuthenticationOptions",
+        "parent": "AuthenticationSchemeOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public CookieBuilder Cookie",
+          "public IDataProtectionProvider? DataProtectionProvider { get; set; }",
+          "public bool SlidingExpiration { get; set; }",
+          "public PathString LoginPath { get; set; }",
+          "public PathString LogoutPath { get; set; }",
+          "public PathString AccessDeniedPath { get; set; }",
+          "public string ReturnUrlParameter { get; set; }",
+          "public new CookieAuthenticationEvents Events",
+          "public ISecureDataFormat<AuthenticationTicket> TicketDataFormat { get; set; }",
+          "public ICookieManager CookieManager { get; set; }",
+          "public ITicketStore? SessionStore { get; set; }",
+          "public TimeSpan ExpireTimeSpan { get; set; }"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 830.1850454101866,
+        "y": 1159.0080937884313
+      },
+      "dragging": false
+    },
+    {
+      "width": 542,
+      "height": 120,
+      "id": "JwtBearerHandler",
+      "position": {
+        "x": 1565.621813144993,
+        "y": 1374.8883509459647
+      },
+      "type": "custom",
+      "data": {
+        "id": "JwtBearerHandler",
+        "name": "JwtBearerHandler",
+        "parent": "AuthenticationHandler<JwtBearerOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": ["protected new JwtBearerEvents Events"],
+        "methods": [
+          "protected override Task<object> CreateEventsAsync()",
+          "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
+          "protected override Task HandleForbiddenAsync(AuthenticationProperties properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1565.621813144993,
+        "y": 1374.8883509459647
+      },
+      "dragging": false
+    },
+    {
+      "width": 587,
+      "height": 346,
+      "id": "JwtBearerOptions",
+      "position": {
+        "x": 120.80140666436716,
+        "y": 1093.544986262681
+      },
+      "type": "custom",
+      "data": {
+        "id": "JwtBearerOptions",
+        "name": "JwtBearerOptions",
+        "parent": "AuthenticationSchemeOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public bool RequireHttpsMetadata { get; set; } = true",
+          "public string MetadataAddress { get; set; }",
+          "public string? Authority { get; set; }",
+          "public string? Audience { get; set; }",
+          "public string Challenge { get; set; } = JwtBearerDefaults.AuthenticationScheme",
+          "public new JwtBearerEvents Events",
+          "public HttpMessageHandler? BackchannelHttpHandler { get; set; }",
+          "public HttpClient Backchannel { get; set; }",
+          "public TimeSpan BackchannelTimeout { get; set; }",
+          "public OpenIdConnectConfiguration? Configuration",
+          "public IConfigurationManager<OpenIdConnectConfiguration>? ConfigurationManager { get; set; }",
+          "public bool RefreshOnIssuerKeyNotFound { get; set; } = true",
+          "public IList<TokenHandler> TokenHandlers { get; private set; }",
+          "public TokenValidationParameters TokenValidationParameters { get; set; }",
+          "public bool SaveToken { get; set; } = true",
+          "public bool IncludeErrorDetails { get; set; } = true",
+          "public bool MapInboundClaims",
+          "public TimeSpan AutomaticRefreshInterval { get; set; }",
+          "public TimeSpan RefreshInterval { get; set; }",
+          "public bool UseSecurityTokenValidators { get; set; }"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 120.80140666436716,
+        "y": 1093.544986262681
+      },
+      "dragging": false
+    },
+    {
+      "width": 948,
+      "height": 200,
+      "id": "OAuthHandler",
+      "position": {
+        "x": 326.26117147936316,
+        "y": 2229.2896226628745
+      },
+      "type": "custom",
+      "data": {
+        "id": "OAuthHandler",
+        "name": "OAuthHandler<TOptions>",
+        "parent": "RemoteAuthenticationHandler<TOptions>",
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "protected HttpClient Backchannel => Options.Backchannel",
+          "protected new OAuthEvents Events"
+        ],
+        "methods": [
+          "protected override Task<object> CreateEventsAsync()",
+          "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
+          "protected virtual async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)",
+          "protected virtual async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity identity, AuthenticationProperties properties, OAuthTokenResponse tokens)",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
+          "protected virtual string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)",
+          "protected virtual string FormatScope(IEnumerable<string> scopes)",
+          "protected virtual string FormatScope()"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 326.26117147936316,
+        "y": 2229.2896226628745
+      },
+      "dragging": false
+    },
+    {
+      "width": 496,
+      "height": 216,
+      "id": "OAuthOptions",
+      "position": {
+        "x": -233.82323755520656,
+        "y": 2222.4378858743194
+      },
+      "type": "custom",
+      "data": {
+        "id": "OAuthOptions",
+        "name": "OAuthOptions",
+        "parent": "RemoteAuthenticationOptions",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "properties": [
+          "public string ClientId { get; set; }",
+          "public string ClientSecret { get; set; }",
+          "public string AuthorizationEndpoint { get; set; }",
+          "public string TokenEndpoint { get; set; }",
+          "public string UserInformationEndpoint { get; set; }",
+          "public new OAuthEvents Events",
+          "public ClaimActionCollection ClaimActions { get; }",
+          "public ICollection<string> Scope { get; }",
+          "public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }",
+          "public bool UsePkce { get; set; }"
+        ],
+        "methods": ["public override void Validate()"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -233.82323755520656,
+        "y": 2222.4378858743194
+      },
+      "dragging": false
+    },
+    {
+      "width": 969,
+      "height": 232,
+      "id": "OpenIdConnectHandler",
+      "position": {
+        "x": 1202.7370376091687,
+        "y": 1821.6023061641133
+      },
+      "type": "custom",
+      "data": {
+        "id": "OpenIdConnectHandler",
+        "name": "OpenIdConnectHandler",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "parent": "RemoteAuthenticationHandler<OpenIdConnectOptions>, IAuthenticationSignOutHandler",
+        "properties": [
+          "protected HttpClient Backchannel => Options.Backchannel",
+          "protected HtmlEncoder HtmlEncoder { get; }",
+          "protected new OpenIdConnectEvents Events"
+        ],
+        "methods": [
+          "protected override Task<object> CreateEventsAsync()",
+          "public override Task<bool> HandleRequestAsync()",
+          "protected virtual async Task<bool> HandleRemoteSignOutAsync()",
+          "public virtual async Task SignOutAsync(AuthenticationProperties? properties)",
+          "protected virtual async Task<bool> HandleSignOutCallbackAsync()",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
+          "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
+          "protected virtual async Task<OpenIdConnectMessage> RedeemAuthorizationCodeAsync(OpenIdConnectMessage tokenEndpointRequest)",
+          "protected virtual async Task<HandleRequestResult> GetUserInformationAsync(OpenIdConnectMessage, JwtSecurityToken, ClaimsPrincipal, AuthenticationProperties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1202.7370376091687,
+        "y": 1821.6023061641133
+      },
+      "dragging": false
+    },
+    {
+      "width": 587,
+      "height": 280,
+      "id": "OpenIdConnectOptions",
+      "position": {
+        "x": 377.604197053089,
+        "y": 1635.5933986873838
+      },
+      "type": "custom",
+      "data": {
+        "id": "OpenIdConnectOptions",
+        "name": "OpenIdConnectOptions",
+        "parent": "RemoteAuthenticationOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "methods": ["public override void Validate()"],
+        "properties": [
+          "public string? Authority { get; set; }",
+          "public string? ClientId { get; set; }",
+          "public string? ClientSecret { get; set; }",
+          "public IConfigurationManager<OpenIdConnectConfiguration>? ConfigurationManager { get; set; }",
+          "public ClaimActionCollection ClaimActions { get; }",
+          "public bool RequireHttpsMetadata { get; set; } = true",
+          "public new OpenIdConnectEvents Events",
+          "public TimeSpan? MaxAge { get; set; }",
+          "public OpenIdConnectProtocolValidator ProtocolValidator { get; set; }",
+          "public OpenIdConnectRedirectBehavior AuthenticationMethod { get; set; }",
+          "public string ResponseType { get; set; }",
+          "public string? Prompt { get; set; }",
+          "public ICollection<string> Scope { get; }",
+          "......"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 377.604197053089,
+        "y": 1635.5933986873838
+      },
+      "dragging": false
+    },
+    {
+      "width": 808,
+      "height": 74,
+      "id": "FacebookHandler",
+      "position": {
+        "x": 267.1564417279973,
+        "y": 2559.193265802641
+      },
+      "type": "custom",
+      "data": {
+        "id": "FacebookHandler",
+        "name": "FacebookHandler",
+        "parent": "OAuthHandler<FacebookOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": [],
+        "methods": [
+          "protected override async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity, AuthenticationProperties, OAuthTokenResponse)",
+          "protected override string FormatScope(IEnumerable<string> scopes)",
+          "protected override string FormatScope()"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 267.1564417279973,
+        "y": 2559.193265802641
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 120,
+      "id": "FacebookOptions",
+      "position": {
+        "x": -116.17929296089278,
+        "y": 2536.217014638407
+      },
+      "type": "custom",
+      "data": {
+        "id": "FacebookOptions",
+        "name": "FacebookOptions",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "methods": ["public override void Validate()"],
+        "properties": [
+          "public string AppId",
+          "public string AppSecret",
+          "public bool SendAppSecretProof { get; set; }",
+          "public ICollection<string> Fields { get; }"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -116.17929296089278,
+        "y": 2536.217014638407
+      },
+      "dragging": false
+    },
+    {
+      "width": 812,
+      "height": 58,
+      "id": "GoogleHandler",
+      "position": {
+        "x": 335.00333779856976,
+        "y": 2697.8224779532993
+      },
+      "type": "custom",
+      "data": {
+        "id": "GoogleHandler",
+        "name": "GoogleHandler",
+        "parent": "OAuthHandler<GoogleOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "methods": [
+          "protected override async Task<AuthenticationTicket> CreateTicketAsync( ClaimsIdentity, AuthenticationProperties, OAuthTokenResponse)",
+          "protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 335.00333779856976,
+        "y": 2697.8224779532993
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 50,
+      "id": "GoogleOptions",
+      "position": {
+        "x": -120.64536055642861,
+        "y": 2705.5250812433073
+      },
+      "type": "custom",
+      "data": {
+        "id": "GoogleOptions",
+        "name": "GoogleOptions",
+        "parent": "OAuthOptions",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "properties": ["public string? AccessType { get; set; }"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -120.64536055642861,
+        "y": 2705.5250812433073
+      },
+      "dragging": false
+    },
+    {
+      "width": 808,
+      "height": 58,
+      "id": "MicrosoftAccountHandler",
+      "position": {
+        "x": 398.3546394435714,
+        "y": 2796.7328911133254
+      },
+      "type": "custom",
+      "data": {
+        "id": "MicrosoftAccountHandler",
+        "name": "MicrosoftAccountHandler",
+        "parent": "OAuthHandler<MicrosoftAccountOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "methods": [
+          "protected override async Task<AuthenticationTicket> CreateTicketAsync(ClaimsIdentity, AuthenticationProperties, OAuthTokenResponse)",
+          "protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 398.3546394435714,
+        "y": 2796.7328911133254
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 50,
+      "id": "MicrosoftAccountOptions",
+      "position": {
+        "x": -209.6453605564286,
+        "y": 2805.132891113325
+      },
+      "type": "custom",
+      "data": {
+        "id": "MicrosoftAccountOptions",
+        "name": "MicrosoftAccountOptions",
+        "parent": "OAuthOptions",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ],
+        "methods": ["public MicrosoftAccountOptions()"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -209.6453605564286,
+        "y": 2805.132891113325
+      },
+      "dragging": false
+    },
+    {
+      "width": 542,
+      "height": 120,
+      "id": "NegotiateHandler",
+      "position": {
+        "x": 998.1606790701173,
+        "y": 1458.0698135650837
+      },
+      "type": "custom",
+      "data": {
+        "id": "NegotiateHandler",
+        "name": "NegotiateHandler",
+        "parent": "AuthenticationHandler<NegotiateOptions>, IAuthenticationRequestHandler",
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": ["protected new NegotiateEvents Events"],
+        "methods": [
+          "protected override Task<object> CreateEventsAsync()",
+          "public async Task<bool> HandleRequestAsync()",
+          "protected override async Task<AuthenticateResult> HandleAuthenticateAsync()",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 998.1606790701173,
+        "y": 1458.0698135650837
+      },
+      "dragging": false
+    },
+    {
+      "width": 398,
+      "height": 120,
+      "id": "NegotiateOptions",
+      "position": {
+        "x": 539.2693980757151,
+        "y": 1459.4125915359714
+      },
+      "type": "custom",
+      "data": {
+        "id": "NegotiateOptions",
+        "name": "NegotiateOptions",
+        "parent": "AuthenticationSchemeOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public new NegotiateEvents? Events",
+          "public bool PersistKerberosCredentials { get; set; }",
+          "public bool PersistNtlmCredentials { get; set; } = true"
+        ],
+        "methods": [
+          "public void EnableLdap(string domain)",
+          "public void EnableLdap(Action<LdapSettings> configureSettings)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 539.2693980757151,
+        "y": 1459.4125915359714
+      },
+      "dragging": false
+    },
+    {
+      "width": 853,
+      "height": 120,
+      "id": "TwitterHandler",
+      "position": {
+        "x": 1251.8985105374097,
+        "y": 2088.433203599702
+      },
+      "type": "custom",
+      "data": {
+        "id": "TwitterHandler",
+        "name": "TwitterHandler",
+        "parent": "RemoteAuthenticationHandler<TwitterOptions>",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": ["protected new TwitterEvents Events"],
+        "methods": [
+          "protected override Task<object> CreateEventsAsync()",
+          "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
+          "protected virtual async Task<AuthenticationTicket> CreateTicketAsync( ClaimsIdentity, AuthenticationProperties, AccessToken, JsonElement user)",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1251.8985105374097,
+        "y": 2088.433203599702
+      },
+      "dragging": false
+    },
+    {
+      "width": 432,
+      "height": 168,
+      "id": "TwitterOptions",
+      "position": {
+        "x": 686.4985878136092,
+        "y": 2022.5739298154986
+      },
+      "type": "custom",
+      "data": {
+        "id": "TwitterOptions",
+        "name": "TwitterOptions",
+        "parent": "RemoteAuthenticationOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public string? ConsumerKey { get; set; }",
+          "public string? ConsumerSecret { get; set; }",
+          "public bool RetrieveUserDetails { get; set; }",
+          "public ClaimActionCollection ClaimActions { get; }",
+          "public ISecureDataFormat<RequestToken> StateDataFormat { get; set; }",
+          "public new TwitterEvents Events",
+          "public CookieBuilder StateCookie"
+        ],
+        "methods": ["public override void Validate()"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 686.4985878136092,
+        "y": 2022.5739298154986
+      },
+      "dragging": false
+    },
+    {
+      "width": 542,
+      "height": 152,
+      "id": "WsFederationHandler",
+      "position": {
+        "x": 79.42648543089138,
+        "y": 1948.0017300043246
+      },
+      "type": "custom",
+      "data": {
+        "id": "WsFederationHandler",
+        "name": "WsFederationHandler",
+        "parent": "RemoteAuthenticationHandler<WsFederationOptions>, IAuthenticationSignOutHandler",
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ],
+        "properties": ["protected new WsFederationEvents Events"],
+        "methods": [
+          "protected override Task<object> CreateEventsAsync()",
+          "public override Task<bool> HandleRequestAsync()",
+          "protected override async Task HandleChallengeAsync(AuthenticationProperties properties)",
+          "protected override async Task<HandleRequestResult> HandleRemoteAuthenticateAsync()",
+          "public virtual async Task SignOutAsync(AuthenticationProperties? properties)",
+          "protected virtual async Task<bool> HandleRemoteSignOutAsync()"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 79.42648543089138,
+        "y": 1948.0017300043246
+      },
+      "dragging": false
+    },
+    {
+      "width": 570,
+      "height": 232,
+      "id": "WsFederationOptions",
+      "position": {
+        "x": -578.2552873228632,
+        "y": 1899.2687256330464
+      },
+      "type": "custom",
+      "data": {
+        "id": "WsFederationOptions",
+        "name": "WsFederationOptions",
+        "parent": "RemoteAuthenticationOptions",
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ],
+        "properties": [
+          "public WsFederationConfiguration? Configuration { get; set; }",
+          "public string? MetadataAddress { get; set; }",
+          "public IConfigurationManager<WsFederationConfiguration> ConfigurationManager { get; set; }",
+          "public bool RefreshOnIssuerKeyNotFound { get; set; } = true",
+          "public bool SkipUnrecognizedRequests { get; set; }",
+          "public new WsFederationEvents Events",
+          "public ICollection<TokenHandler> TokenHandlers",
+          "public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }",
+          "public TokenValidationParameters TokenValidationParameters",
+          "public string? Wreply { get; set; }",
+          "............."
+        ],
+        "methods": ["public override void Validate()"]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -578.2552873228632,
+        "y": 1899.2687256330464
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RemoteAuthenticationOptions",
+      "sourceHandle": "RemoteAuthenticationOptionstopsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsbottomtarget",
+      "id": "reactflow__edge-RemoteAuthenticationOptionsRemoteAuthenticationOptionstopsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "AuthenticationHandler",
+      "sourceHandle": "AuthenticationHandlerleftsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsrighttarget",
+      "id": "reactflow__edge-AuthenticationHandlerAuthenticationHandlerleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "SignInAuthenticationHandler",
+      "sourceHandle": "SignInAuthenticationHandlertopsource",
+      "target": "SignOutAuthenticationHandler",
+      "targetHandle": "SignOutAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-SignInAuthenticationHandlerSignInAuthenticationHandlertopsource-SignOutAuthenticationHandlerSignOutAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "PolicySchemeHandler",
+      "sourceHandle": "PolicySchemeHandlerleftsource",
+      "target": "PolicySchemeOptions",
+      "targetHandle": "PolicySchemeOptionsrighttarget",
+      "id": "reactflow__edge-PolicySchemeHandlerPolicySchemeHandlerleftsource-PolicySchemeOptionsPolicySchemeOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "SignOutAuthenticationHandler",
+      "sourceHandle": "SignOutAuthenticationHandlerleftsource",
+      "target": "AuthenticationHandler",
+      "targetHandle": "AuthenticationHandlerrighttarget",
+      "id": "reactflow__edge-SignOutAuthenticationHandlerSignOutAuthenticationHandlerleftsource-AuthenticationHandlerAuthenticationHandlerrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "BearerTokenHandler",
+      "sourceHandle": "BearerTokenHandlertopsource",
+      "target": "SignInAuthenticationHandler",
+      "targetHandle": "SignInAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-BearerTokenHandlerBearerTokenHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "BearerTokenHandler",
+      "sourceHandle": "BearerTokenHandlerleftsource",
+      "target": "BearerTokenOptions",
+      "targetHandle": "BearerTokenOptionsrighttarget",
+      "id": "reactflow__edge-BearerTokenHandlerBearerTokenHandlerleftsource-BearerTokenOptionsBearerTokenOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "PolicySchemeHandler",
+      "sourceHandle": "PolicySchemeHandlerrightsource",
+      "target": "SignInAuthenticationHandler",
+      "targetHandle": "SignInAuthenticationHandlerlefttarget",
+      "id": "reactflow__edge-PolicySchemeHandlerPolicySchemeHandlerrightsource-SignInAuthenticationHandlerSignInAuthenticationHandlerlefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "CookieAuthenticationHandler",
+      "sourceHandle": "CookieAuthenticationHandlertopsource",
+      "target": "SignInAuthenticationHandler",
+      "targetHandle": "SignInAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-CookieAuthenticationHandlerCookieAuthenticationHandlertopsource-SignInAuthenticationHandlerSignInAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "CookieAuthenticationHandler",
+      "sourceHandle": "CookieAuthenticationHandlerleftsource",
+      "target": "CookieAuthenticationOptions",
+      "targetHandle": "CookieAuthenticationOptionsrighttarget",
+      "id": "reactflow__edge-CookieAuthenticationHandlerCookieAuthenticationHandlerleftsource-CookieAuthenticationOptionsCookieAuthenticationOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "JwtBearerHandler",
+      "sourceHandle": "JwtBearerHandlertopsource",
+      "target": "AuthenticationHandler",
+      "targetHandle": "AuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-JwtBearerHandlerJwtBearerHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget",
+      "selected": false
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OAuthOptions",
+      "sourceHandle": "OAuthOptionstopsource",
+      "target": "RemoteAuthenticationOptions",
+      "targetHandle": "RemoteAuthenticationOptionsbottomtarget",
+      "id": "reactflow__edge-OAuthOptionsOAuthOptionstopsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OAuthHandler",
+      "sourceHandle": "OAuthHandlerleftsource",
+      "target": "OAuthOptions",
+      "targetHandle": "OAuthOptionsrighttarget",
+      "id": "reactflow__edge-OAuthHandlerOAuthHandlerleftsource-OAuthOptionsOAuthOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RemoteAuthenticationHandler",
+      "sourceHandle": "RemoteAuthenticationHandlertopsource",
+      "target": "AuthenticationHandler",
+      "targetHandle": "AuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OpenIdConnectHandler",
+      "sourceHandle": "OpenIdConnectHandlerleftsource",
+      "target": "OpenIdConnectOptions",
+      "targetHandle": "OpenIdConnectOptionsrighttarget",
+      "id": "reactflow__edge-OpenIdConnectHandlerOpenIdConnectHandlerleftsource-OpenIdConnectOptionsOpenIdConnectOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OAuthHandler",
+      "sourceHandle": "OAuthHandlerrightsource",
+      "target": "RemoteAuthenticationHandler",
+      "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-OAuthHandlerOAuthHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "FacebookHandler",
+      "sourceHandle": "FacebookHandlertopsource",
+      "target": "OAuthHandler",
+      "targetHandle": "OAuthHandlerbottomtarget",
+      "id": "reactflow__edge-FacebookHandlerFacebookHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "FacebookOptions",
+      "sourceHandle": "FacebookOptionstopsource",
+      "target": "OAuthOptions",
+      "targetHandle": "OAuthOptionsbottomtarget",
+      "id": "reactflow__edge-FacebookOptionsFacebookOptionstopsource-OAuthOptionsOAuthOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "FacebookHandler",
+      "sourceHandle": "FacebookHandlerleftsource",
+      "target": "FacebookOptions",
+      "targetHandle": "FacebookOptionsrighttarget",
+      "id": "reactflow__edge-FacebookHandlerFacebookHandlerleftsource-FacebookOptionsFacebookOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "GoogleHandler",
+      "sourceHandle": "GoogleHandlertopsource",
+      "target": "OAuthHandler",
+      "targetHandle": "OAuthHandlerbottomtarget",
+      "id": "reactflow__edge-GoogleHandlerGoogleHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "GoogleHandler",
+      "sourceHandle": "GoogleHandlerleftsource",
+      "target": "GoogleOptions",
+      "targetHandle": "GoogleOptionsrighttarget",
+      "id": "reactflow__edge-GoogleHandlerGoogleHandlerleftsource-GoogleOptionsGoogleOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "GoogleOptions",
+      "sourceHandle": "GoogleOptionstopsource",
+      "target": "OAuthOptions",
+      "targetHandle": "OAuthOptionsbottomtarget",
+      "id": "reactflow__edge-GoogleOptionsGoogleOptionstopsource-OAuthOptionsOAuthOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "MicrosoftAccountHandler",
+      "sourceHandle": "MicrosoftAccountHandlertopsource",
+      "target": "OAuthHandler",
+      "targetHandle": "OAuthHandlerbottomtarget",
+      "id": "reactflow__edge-MicrosoftAccountHandlerMicrosoftAccountHandlertopsource-OAuthHandlerOAuthHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "MicrosoftAccountHandler",
+      "sourceHandle": "MicrosoftAccountHandlerleftsource",
+      "target": "MicrosoftAccountOptions",
+      "targetHandle": "MicrosoftAccountOptionsrighttarget",
+      "id": "reactflow__edge-MicrosoftAccountHandlerMicrosoftAccountHandlerleftsource-MicrosoftAccountOptionsMicrosoftAccountOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "MicrosoftAccountOptions",
+      "sourceHandle": "MicrosoftAccountOptionstopsource",
+      "target": "OAuthOptions",
+      "targetHandle": "OAuthOptionsbottomtarget",
+      "id": "reactflow__edge-MicrosoftAccountOptionsMicrosoftAccountOptionstopsource-OAuthOptionsOAuthOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "NegotiateHandler",
+      "sourceHandle": "NegotiateHandlertopsource",
+      "target": "AuthenticationHandler",
+      "targetHandle": "AuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-NegotiateHandlerNegotiateHandlertopsource-AuthenticationHandlerAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "NegotiateHandler",
+      "sourceHandle": "NegotiateHandlerleftsource",
+      "target": "NegotiateOptions",
+      "targetHandle": "NegotiateOptionsrighttarget",
+      "id": "reactflow__edge-NegotiateHandlerNegotiateHandlerleftsource-NegotiateOptionsNegotiateOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "TwitterHandler",
+      "sourceHandle": "TwitterHandlerleftsource",
+      "target": "TwitterOptions",
+      "targetHandle": "TwitterOptionsrighttarget",
+      "id": "reactflow__edge-TwitterHandlerTwitterHandlerleftsource-TwitterOptionsTwitterOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "WsFederationHandler",
+      "sourceHandle": "WsFederationHandlerrightsource",
+      "target": "RemoteAuthenticationHandler",
+      "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-WsFederationHandlerWsFederationHandlerrightsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "WsFederationHandler",
+      "sourceHandle": "WsFederationHandlerleftsource",
+      "target": "WsFederationOptions",
+      "targetHandle": "WsFederationOptionsrighttarget",
+      "id": "reactflow__edge-WsFederationHandlerWsFederationHandlerleftsource-WsFederationOptionsWsFederationOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "WsFederationOptions",
+      "sourceHandle": "WsFederationOptionstopsource",
+      "target": "RemoteAuthenticationOptions",
+      "targetHandle": "RemoteAuthenticationOptionsbottomtarget",
+      "id": "reactflow__edge-WsFederationOptionsWsFederationOptionstopsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "TwitterHandler",
+      "sourceHandle": "TwitterHandlertopsource",
+      "target": "RemoteAuthenticationHandler",
+      "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-TwitterHandlerTwitterHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OpenIdConnectHandler",
+      "sourceHandle": "OpenIdConnectHandlertopsource",
+      "target": "RemoteAuthenticationHandler",
+      "targetHandle": "RemoteAuthenticationHandlerbottomtarget",
+      "id": "reactflow__edge-OpenIdConnectHandlerOpenIdConnectHandlertopsource-RemoteAuthenticationHandlerRemoteAuthenticationHandlerbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "TwitterOptions",
+      "sourceHandle": "TwitterOptionsleftsource",
+      "target": "RemoteAuthenticationOptions",
+      "targetHandle": "RemoteAuthenticationOptionsbottomtarget",
+      "id": "reactflow__edge-TwitterOptionsTwitterOptionsleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "PolicySchemeOptions",
+      "sourceHandle": "PolicySchemeOptionstopsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsrighttarget",
+      "id": "reactflow__edge-PolicySchemeOptionsPolicySchemeOptionstopsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "JwtBearerOptions",
+      "sourceHandle": "JwtBearerOptionstopsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsrighttarget",
+      "id": "reactflow__edge-JwtBearerOptionsJwtBearerOptionstopsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "BearerTokenOptions",
+      "sourceHandle": "BearerTokenOptionsleftsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsrighttarget",
+      "selected": false,
+      "id": "reactflow__edge-BearerTokenOptionsBearerTokenOptionsleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "NegotiateOptions",
+      "sourceHandle": "NegotiateOptionsleftsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsbottomtarget",
+      "id": "reactflow__edge-NegotiateOptionsNegotiateOptionsleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "CookieAuthenticationOptions",
+      "sourceHandle": "CookieAuthenticationOptionsleftsource",
+      "target": "AuthenticationSchemeOptions",
+      "targetHandle": "AuthenticationSchemeOptionsrighttarget",
+      "id": "reactflow__edge-CookieAuthenticationOptionsCookieAuthenticationOptionsleftsource-AuthenticationSchemeOptionsAuthenticationSchemeOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "JwtBearerHandler",
+      "sourceHandle": "JwtBearerHandlerleftsource",
+      "target": "JwtBearerOptions",
+      "targetHandle": "JwtBearerOptionsrighttarget",
+      "id": "reactflow__edge-JwtBearerHandlerJwtBearerHandlerleftsource-JwtBearerOptionsJwtBearerOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "OpenIdConnectOptions",
+      "sourceHandle": "OpenIdConnectOptionsleftsource",
+      "target": "RemoteAuthenticationOptions",
+      "targetHandle": "RemoteAuthenticationOptionsrighttarget",
+      "id": "reactflow__edge-OpenIdConnectOptionsOpenIdConnectOptionsleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "RemoteAuthenticationHandler",
+      "sourceHandle": "RemoteAuthenticationHandlerleftsource",
+      "target": "RemoteAuthenticationOptions",
+      "targetHandle": "RemoteAuthenticationOptionsrighttarget",
+      "id": "reactflow__edge-RemoteAuthenticationHandlerRemoteAuthenticationHandlerleftsource-RemoteAuthenticationOptionsRemoteAuthenticationOptionsrighttarget"
+    }
+  ],
+  "viewport": {
+    "x": 451.12956242842364,
+    "y": -369.08306807304825,
+    "zoom": 0.5
+  }
 }

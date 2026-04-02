@@ -1,1314 +1,1299 @@
 {
-    "nodes": [
-        {
-            "width": 385,
-            "height": 80,
-            "id": "IHost",
-            "position": {
-                "x": 659.4291588515687,
-                "y": 901.875316614927
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHost",
-                "name": "IHost",
-                "parent": "IDisposable",
-                "properties": [
-                    "IServiceProvider Services { get; }"
-                ],
-                "methods": [
-                    "Task StartAsync(CancellationToken cancellationToken = default)",
-                    "Task StopAsync(CancellationToken cancellationToken = default)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 659.4291588515687,
-                "y": 901.875316614927
-            },
-            "dragging": false
-        },
-        {
-            "width": 874,
-            "height": 96,
-            "id": "Host",
-            "position": {
-                "x": 306.53741304219204,
-                "y": 1029.272029605232
-            },
-            "type": "custom",
-            "data": {
-                "id": "Host",
-                "name": "Host",
-                "parent": "IHost, IAsyncDisposable",
-                "properties": [
-                    "private IEnumerable<IHostedService>? _hostedServices",
-                    "private IEnumerable<IHostedLifecycleService>? _hostedLifecycleServices",
-                    "private readonly ApplicationLifetime _applicationLifetime"
-                ],
-                "methods": [
-                    "public Host(IServiceProvider, IHostEnvironment, PhysicalFileProvider,IHostApplicationLifetime,ILogger<Host>,IHostLifetime,IOptions<HostOptions>)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 306.53741304219204,
-                "y": 1029.272029605232
-            },
-            "dragging": false
-        },
-        {
-            "width": 840,
-            "height": 144,
-            "id": "IHostBuilder",
-            "position": {
-                "x": -438.9624251978852,
-                "y": 870.6045080548156
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHostBuilder",
-                "name": "IHostBuilder",
-                "properties": [
-                    "IDictionary<object, object> Properties { get; }"
-                ],
-                "methods": [
-                    "IHostBuilder ConfigureHostConfiguration(Action<IConfigurationBuilder> configureDelegate)",
-                    "IHostBuilder ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureDelegate)",
-                    "IHostBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureDelegate)",
-                    "IHostBuilder UseServiceProviderFactory<TContainerBuilder>(Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factory)",
-                    "IHostBuilder ConfigureContainer<TContainerBuilder>(Action<HostBuilderContext, TContainerBuilder> configureDelegate)",
-                    "IHost Build()"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -438.9624251978852,
-                "y": 870.6045080548156
-            },
-            "dragging": false
-        },
-        {
-            "width": 975,
-            "height": 192,
-            "id": "HostBuilder",
-            "position": {
-                "x": -436.1444533858491,
-                "y": 1146.1920764483257
-            },
-            "type": "custom",
-            "data": {
-                "id": "HostBuilder",
-                "name": "HostBuilder",
-                "parent": "IHostBuilder",
-                "properties": [
-                    "private IConfiguration? _hostConfiguration",
-                    "private IConfiguration? _appConfiguration",
-                    "private HostBuilderContext? _hostBuilderContext",
-                    "private HostingEnvironment? _hostingEnvironment",
-                    "private IServiceProvider? _appServices"
-                ],
-                "methods": [
-                    "internal static DiagnosticListener LogHostBuilding(HostApplicationBuilder hostApplicationBuilder)",
-                    "internal static (HostingEnvironment, PhysicalFileProvider) CreateHostingEnvironment(IConfiguration hostConfiguration)",
-                    "internal static void PopulateServiceCollection(IServiceCollection,HostBuilderContext,HostingEnvironment,            PhysicalFileProvider,IConfiguration,Func<IServiceProvider> )",
-                    "internal static IHost ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)",
-                    "internal static string ResolveContentRootPath(string? contentRootPath, string basePath)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -436.1444533858491,
-                "y": 1146.1920764483257
-            },
-            "dragging": false
-        },
-        {
-            "width": 329,
-            "height": 54,
-            "id": "IHostedService",
-            "position": {
-                "x": 869.2530939202645,
-                "y": 1226.2983507688646
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHostedService",
-                "name": "IHostedService",
-                "methods": [
-                    "Task StartAsync(CancellationToken cancellationToken)",
-                    "Task StopAsync(CancellationToken cancellationToken)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 869.2530939202645,
-                "y": 1226.2983507688646
-            },
-            "dragging": false
-        },
-        {
-            "width": 437,
-            "height": 52,
-            "id": "BackgroundService",
-            "position": {
-                "x": 815.3850871879216,
-                "y": 1430.8371908838624
-            },
-            "type": "custom",
-            "data": {
-                "id": "BackgroundService",
-                "name": "BackgroundService",
-                "parent": "IHostedService, IDisposable",
-                "methods": [
-                    "protected abstract Task ExecuteAsync(CancellationToken stoppingToken)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 815.3850871879216,
-                "y": 1430.8371908838624
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 96,
-            "id": "IHostApplicationLifetime",
-            "position": {
-                "x": 570.5576993359787,
-                "y": 1639.1169854689228
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHostApplicationLifetime",
-                "name": "IHostApplicationLifetime",
-                "properties": [
-                    "CancellationToken ApplicationStarted { get; }",
-                    "CancellationToken ApplicationStopping { get; }",
-                    "CancellationToken ApplicationStopped { get; }"
-                ],
-                "methods": [
-                    "void StopApplication()"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 570.5576993359787,
-                "y": 1639.1169854689228
-            },
-            "dragging": false
-        },
-        {
-            "width": 413,
-            "height": 70,
-            "id": "ApplicationLifetime",
-            "position": {
-                "x": 548.230642145682,
-                "y": 1319.7127731339808
-            },
-            "type": "custom",
-            "data": {
-                "id": "ApplicationLifetime",
-                "name": "ApplicationLifetime",
-                "parent": "IHostApplicationLifetime",
-                "methods": [
-                    "public void NotifyStarted()",
-                    "public void NotifyStopped()",
-                    "private static void ExecuteHandlers(CancellationTokenSource cancel)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 548.230642145682,
-                "y": 1319.7127731339808
-            },
-            "dragging": false
-        },
-        {
-            "width": 354,
-            "height": 86,
-            "id": "IHostedLifecycleService",
-            "position": {
-                "x": 1242.4022468968428,
-                "y": 1211.5939053327068
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHostedLifecycleService",
-                "name": "IHostedLifecycleService",
-                "parent": "IHostedService",
-                "methods": [
-                    "Task StartingAsync(CancellationToken cancellationToken)",
-                    "Task StartedAsync(CancellationToken cancellationToken)",
-                    "Task StoppingAsync(CancellationToken cancellationToken)",
-                    "Task StoppedAsync(CancellationToken cancellationToken)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1242.4022468968428,
-                "y": 1211.5939053327068
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 118,
-            "id": "StartAsync",
-            "position": {
-                "x": 1278.9273087936365,
-                "y": 1440.9053344483104
-            },
-            "type": "custom",
-            "data": {
-                "id": "StartAsync",
-                "name": "StartAsync",
-                "properties": [
-                    "IHostLifetime.WaitForStartAsync",
-                    "Services.GetService{IStartupValidator}().Validate()",
-                    "IHostedLifecycleService.StartingAsync",
-                    "IHostedService.Start",
-                    "IHostedLifecycleService.StartedAsync",
-                    "IHostApplicationLifetime.ApplicationStarted"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1278.9273087936365,
-                "y": 1440.9053344483104
-            },
-            "dragging": false,
-            "style": {
-                "backgroundColor": "#b8e986"
-            }
-        },
-        {
-            "width": 302,
-            "height": 118,
-            "id": "StopAsync",
-            "position": {
-                "x": 1282.2819868314648,
-                "y": 1605.8552720612706
-            },
-            "type": "custom",
-            "data": {
-                "id": "StopAsync",
-                "name": "StopAsync",
-                "properties": [
-                    "IHostedLifecycleService.StoppingAsync",
-                    "IHostApplicationLifetime.ApplicationStopping",
-                    "IHostedService.Stop",
-                    "IHostedLifecycleService.StoppedAsync",
-                    "IHostApplicationLifetime.ApplicationStopped",
-                    "IHostLifetime.StopAsync"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1282.2819868314648,
-                "y": 1605.8552720612706
-            },
-            "dragging": false,
-            "style": {
-                "backgroundColor": "#b8e986"
-            }
-        },
-        {
-            "width": 373,
-            "height": 54,
-            "id": "IHostLifetime",
-            "position": {
-                "x": 1224.113244986705,
-                "y": 1040.0094961300392
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHostLifetime",
-                "name": "IHostLifetime",
-                "methods": [
-                    "Task WaitForStartAsync(CancellationToken cancellationToken)",
-                    "Task StopAsync(CancellationToken cancellationToken)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1224.113244986705,
-                "y": 1040.0094961300392
-            },
-            "dragging": false
-        },
-        {
-            "width": 362,
-            "height": 52,
-            "id": "ConsoleLifetime",
-            "position": {
-                "x": 1217.1252207325108,
-                "y": 848.7651373879496
-            },
-            "type": "custom",
-            "data": {
-                "id": "ConsoleLifetime",
-                "name": "ConsoleLifetime",
-                "parent": "IHostLifetime, IDisposable",
-                "properties": [
-                    "private IHostApplicationLifetime ApplicationLifetime { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1217.1252207325108,
-                "y": 848.7651373879496
-            },
-            "dragging": false
-        },
-        {
-            "width": 412,
-            "height": 54,
-            "id": "NullLifetime",
-            "position": {
-                "x": 1142.6231904512163,
-                "y": 917.0942133982577
-            },
-            "type": "custom",
-            "data": {
-                "id": "NullLifetime",
-                "name": "NullLifetime",
-                "parent": "IHostLifetime",
-                "methods": [
-                    "public Task WaitForStartAsync(CancellationToken cancellationToken)",
-                    "public Task StopAsync(CancellationToken cancellationToken)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1142.6231904512163,
-                "y": 917.0942133982577
-            },
-            "dragging": false
-        },
-        {
-            "width": 559,
-            "height": 102,
-            "id": "HostOptions",
-            "position": {
-                "x": 700.1299116324496,
-                "y": 1507.704241886988
-            },
-            "type": "custom",
-            "data": {
-                "id": "HostOptions",
-                "name": "HostOptions",
-                "parent": "",
-                "properties": [
-                    "public TimeSpan StartupTimeout { get; set; } = Timeout.InfiniteTimeSpan",
-                    "public bool ServicesStartConcurrently { get; set; }",
-                    "public bool ServicesStopConcurrently { get; set; }",
-                    "public BackgroundServiceExceptionBehavior BackgroundServiceExceptionBehavior { get; set; }",
-                    "public TimeSpan ShutdownTimeout { get; set; } = TimeSpan.FromSeconds(30)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 700.1299116324496,
-                "y": 1507.704241886988
-            },
-            "dragging": false
-        },
-        {
-            "width": 302,
-            "height": 54,
-            "id": "BackgroundServiceExceptionBehavior",
-            "position": {
-                "x": 911.9019198189062,
-                "y": 1677.8591127756738
-            },
-            "type": "custom",
-            "data": {
-                "id": "BackgroundServiceExceptionBehavior",
-                "name": "BackgroundServiceExceptionBehavior",
-                "properties": [
-                    "StopHost = 0",
-                    "Ignore = 1"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 911.9019198189062,
-                "y": 1677.8591127756738
-            },
-            "dragging": false
-        },
-        {
-            "width": 349,
-            "height": 70,
-            "id": "HostBuilderContext",
-            "position": {
-                "x": -430.8764550420632,
-                "y": 1406.2437032088746
-            },
-            "type": "custom",
-            "data": {
-                "id": "HostBuilderContext",
-                "name": "HostBuilderContext",
-                "properties": [
-                    "public IHostEnvironment HostingEnvironment { get; set; }",
-                    "public IConfiguration Configuration { get; set; }",
-                    "public IDictionary<object, object> Properties { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -430.8764550420632,
-                "y": 1406.2437032088746
-            },
-            "dragging": false
-        },
-        {
-            "width": 818,
-            "height": 144,
-            "id": "IHostApplicationBuilder",
-            "position": {
-                "x": -443.4569564056441,
-                "y": 691.7418380711613
-            },
-            "type": "custom",
-            "data": {
-                "id": "IHostApplicationBuilder",
-                "name": "IHostApplicationBuilder",
-                "properties": [
-                    "IDictionary<object, object> Properties { get; }",
-                    "IConfigurationManager Configuration { get; }",
-                    "IHostEnvironment Environment { get; }",
-                    "ILoggingBuilder Logging { get; }",
-                    "IMetricsBuilder Metrics { get; }",
-                    "IServiceCollection Services { get; }"
-                ],
-                "methods": [
-                    "void ConfigureContainer<TContainerBuilder>(IServiceProviderFactory<TContainerBuilder> factory, Action<TContainerBuilder>? configure)"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -443.4569564056441,
-                "y": 691.7418380711613
-            },
-            "dragging": false
-        },
-        {
-            "width": 435,
-            "height": 54,
-            "id": "HostApplicationBuilder",
-            "position": {
-                "x": 634.2042026272981,
-                "y": 817.7421719548672
-            },
-            "type": "custom",
-            "data": {
-                "id": "HostApplicationBuilder",
-                "name": "HostApplicationBuilder",
-                "parent": "IHostApplicationBuilder",
-                "properties": [],
-                "methods": [
-                    "public HostApplicationBuilder(HostApplicationBuilderSettings? settings)",
-                    "public IHost Build()"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 634.2042026272981,
-                "y": 817.7421719548672
-            },
-            "dragging": false
-        },
-        {
-            "width": 344,
-            "height": 118,
-            "id": "HostApplicationBuilderSettings",
-            "position": {
-                "x": 1232.371830604873,
-                "y": 701.4090771475635
-            },
-            "type": "custom",
-            "data": {
-                "id": "HostApplicationBuilderSettings",
-                "name": "HostApplicationBuilderSettings",
-                "properties": [
-                    "public bool DisableDefaults { get; set; }",
-                    "public string[]? Args { get; set; }",
-                    "public ConfigurationManager? Configuration { get; set; }",
-                    "public string? EnvironmentName { get; set; }",
-                    "public string? ApplicationName { get; set; }",
-                    "public string? ContentRootPath { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1232.371830604873,
-                "y": 701.4090771475635
-            },
-            "dragging": false
-        },
-        {
-            "width": 386,
-            "height": 54,
-            "id": "IServiceFactoryAdapter",
-            "position": {
-                "x": -427.64276073346144,
-                "y": 1533.6755325209338
-            },
-            "type": "custom",
-            "data": {
-                "id": "IServiceFactoryAdapter",
-                "name": "IServiceFactoryAdapter",
-                "properties": [],
-                "methods": [
-                    "object CreateBuilder(IServiceCollection services)",
-                    "IServiceProvider CreateServiceProvider(object containerBuilder)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -427.64276073346144,
-                "y": 1533.6755325209338
-            },
-            "dragging": false
-        },
-        {
-            "width": 966,
-            "height": 112,
-            "id": "ServiceFactoryAdapter",
-            "position": {
-                "x": -425.9725260795006,
-                "y": 1629.7830315900153
-            },
-            "type": "custom",
-            "data": {
-                "id": "ServiceFactoryAdapter",
-                "name": "ServiceFactoryAdapter<TContainerBuilder>",
-                "parent": "IServiceFactoryAdapter",
-                "properties": [
-                    "private IServiceProviderFactory<TContainerBuilder>? _serviceProviderFactory",
-                    "private readonly Func<HostBuilderContext>? _contextResolver",
-                    "private readonly Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>>? _factoryResolver"
-                ],
-                "methods": [
-                    "public ServiceFactoryAdapter(IServiceProviderFactory<TContainerBuilder> serviceProviderFactory)",
-                    "public ServiceFactoryAdapter(Func<HostBuilderContext> contextResolver, Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factoryResolver)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -425.9725260795006,
-                "y": 1629.7830315900153
-            },
-            "dragging": false
-        },
-        {
-            "width": 497,
-            "height": 52,
-            "id": "IConfigureContainerAdapter",
-            "position": {
-                "x": 1.2162961077358432,
-                "y": 1424.462432962942
-            },
-            "type": "custom",
-            "data": {
-                "id": "IConfigureContainerAdapter",
-                "name": "IConfigureContainerAdapter",
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ],
-                "methods": [
-                    "void ConfigureContainer(HostBuilderContext hostContext, object containerBuilder)"
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1.2162961077358432,
-                "y": 1424.462432962942
-            },
-            "dragging": false
-        },
-        {
-            "width": 543,
-            "height": 64,
-            "id": "ConfigureContainerAdapter",
-            "position": {
-                "x": 10.419523929020727,
-                "y": 1511.790747111087
-            },
-            "type": "custom",
-            "data": {
-                "id": "ConfigureContainerAdapter",
-                "name": "ConfigureContainerAdapter<TContainerBuilder>",
-                "parent": "IConfigureContainerAdapter",
-                "properties": [
-                    "private readonly Action<HostBuilderContext, TContainerBuilder> _action"
-                ],
-                "methods": [
-                    "public ConfigureContainerAdapter(Action<HostBuilderContext, TContainerBuilder> action)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 10.419523929020727,
-                "y": 1511.790747111087
-            },
-            "dragging": false
-        },
-        {
-            "width": 652,
-            "height": 70,
-            "id": "HostStatic",
-            "position": {
-                "x": 525.0985202115014,
-                "y": 688.4252479659518
-            },
-            "type": "custom",
-            "data": {
-                "id": "HostStatic",
-                "name": "Host-Static",
-                "properties": [],
-                "methods": [
-                    "public static IHostBuilder CreateDefaultBuilder()",
-                    "public static HostApplicationBuilder CreateApplicationBuilder()",
-                    "public static HostApplicationBuilder CreateEmptyApplicationBuilder(HostApplicationBuilderSettings? settings)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 525.0985202115014,
-                "y": 688.4252479659518
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Host",
-            "sourceHandle": "Hosttopsource",
-            "target": "IHost",
-            "targetHandle": "IHostbottomtarget",
-            "id": "reactflow__edge-HostHosttopsource-IHostIHostbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IHostBuilder",
-            "sourceHandle": "IHostBuilderrightsource",
-            "target": "IHost",
-            "targetHandle": "IHostlefttarget",
-            "id": "reactflow__edge-IHostBuilderIHostBuilderrightsource-IHostIHostlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostBuilder",
-            "sourceHandle": "HostBuildertopsource",
-            "target": "IHostBuilder",
-            "targetHandle": "IHostBuilderbottomtarget",
-            "id": "reactflow__edge-HostBuilderHostBuildertopsource-IHostBuilderIHostBuilderbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Host",
-            "sourceHandle": "Hostbottomsource",
-            "target": "IHostedService",
-            "targetHandle": "IHostedServicetoptarget",
-            "id": "reactflow__edge-HostHostbottomsource-IHostedServiceIHostedServicetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "BackgroundService",
-            "sourceHandle": "BackgroundServicetopsource",
-            "target": "IHostedService",
-            "targetHandle": "IHostedServicebottomtarget",
-            "id": "reactflow__edge-BackgroundServiceBackgroundServicetopsource-IHostedServiceIHostedServicebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Host",
-            "sourceHandle": "Hostbottomsource",
-            "target": "ApplicationLifetime",
-            "targetHandle": "ApplicationLifetimetoptarget",
-            "id": "reactflow__edge-HostHostbottomsource-ApplicationLifetimeApplicationLifetimetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ApplicationLifetime",
-            "sourceHandle": "ApplicationLifetimebottomsource",
-            "target": "IHostApplicationLifetime",
-            "targetHandle": "IHostApplicationLifetimetoptarget",
-            "id": "reactflow__edge-ApplicationLifetimeApplicationLifetimebottomsource-IHostApplicationLifetimeIHostApplicationLifetimetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "IHostedLifecycleService",
-            "sourceHandle": "IHostedLifecycleServiceleftsource",
-            "target": "IHostedService",
-            "targetHandle": "IHostedServicerighttarget",
-            "id": "reactflow__edge-IHostedLifecycleServiceIHostedLifecycleServiceleftsource-IHostedServiceIHostedServicerighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Host",
-            "sourceHandle": "Hostrightsource",
-            "target": "IHostLifetime",
-            "targetHandle": "IHostLifetimelefttarget",
-            "id": "reactflow__edge-HostHostrightsource-IHostLifetimeIHostLifetimelefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ConsoleLifetime",
-            "sourceHandle": "ConsoleLifetimebottomsource",
-            "target": "IHostLifetime",
-            "targetHandle": "IHostLifetimetoptarget",
-            "id": "reactflow__edge-ConsoleLifetimeConsoleLifetimebottomsource-IHostLifetimeIHostLifetimetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "NullLifetime",
-            "sourceHandle": "NullLifetimebottomsource",
-            "target": "IHostLifetime",
-            "targetHandle": "IHostLifetimetoptarget",
-            "id": "reactflow__edge-NullLifetimeNullLifetimebottomsource-IHostLifetimeIHostLifetimetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Host",
-            "sourceHandle": "Hostbottomsource",
-            "target": "HostOptions",
-            "targetHandle": "HostOptionstoptarget",
-            "id": "reactflow__edge-HostHostbottomsource-HostOptionsHostOptionstoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostOptions",
-            "sourceHandle": "HostOptionsbottomsource",
-            "target": "BackgroundServiceExceptionBehavior",
-            "targetHandle": "BackgroundServiceExceptionBehaviortoptarget",
-            "id": "reactflow__edge-HostOptionsHostOptionsbottomsource-BackgroundServiceExceptionBehaviorBackgroundServiceExceptionBehaviortoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostBuilder",
-            "sourceHandle": "HostBuilderbottomsource",
-            "target": "HostBuilderContext",
-            "targetHandle": "HostBuilderContexttoptarget",
-            "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-HostBuilderContextHostBuilderContexttoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "Host",
-            "sourceHandle": "Hostrightsource",
-            "target": "IHostedLifecycleService",
-            "targetHandle": "IHostedLifecycleServicetoptarget",
-            "id": "reactflow__edge-HostHostrightsource-IHostedLifecycleServiceIHostedLifecycleServicetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostApplicationBuilder",
-            "sourceHandle": "HostApplicationBuilderleftsource",
-            "target": "IHostApplicationBuilder",
-            "targetHandle": "IHostApplicationBuilderrighttarget",
-            "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderleftsource-IHostApplicationBuilderIHostApplicationBuilderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostApplicationBuilder",
-            "sourceHandle": "HostApplicationBuilderbottomsource",
-            "target": "IHost",
-            "targetHandle": "IHosttoptarget",
-            "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderbottomsource-IHostIHosttoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostApplicationBuilder",
-            "sourceHandle": "HostApplicationBuilderrightsource",
-            "target": "HostApplicationBuilderSettings",
-            "targetHandle": "HostApplicationBuilderSettingslefttarget",
-            "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderrightsource-HostApplicationBuilderSettingsHostApplicationBuilderSettingslefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostBuilder",
-            "sourceHandle": "HostBuilderbottomsource",
-            "target": "IServiceFactoryAdapter",
-            "targetHandle": "IServiceFactoryAdaptertoptarget",
-            "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-IServiceFactoryAdapterIServiceFactoryAdaptertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ServiceFactoryAdapter",
-            "sourceHandle": "ServiceFactoryAdaptertopsource",
-            "target": "IServiceFactoryAdapter",
-            "targetHandle": "IServiceFactoryAdapterbottomtarget",
-            "id": "reactflow__edge-ServiceFactoryAdapterServiceFactoryAdaptertopsource-IServiceFactoryAdapterIServiceFactoryAdapterbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostBuilder",
-            "sourceHandle": "HostBuilderbottomsource",
-            "target": "IConfigureContainerAdapter",
-            "targetHandle": "IConfigureContainerAdaptertoptarget",
-            "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-IConfigureContainerAdapterIConfigureContainerAdaptertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ConfigureContainerAdapter",
-            "sourceHandle": "ConfigureContainerAdaptertopsource",
-            "target": "IConfigureContainerAdapter",
-            "targetHandle": "IConfigureContainerAdapterbottomtarget",
-            "id": "reactflow__edge-ConfigureContainerAdapterConfigureContainerAdaptertopsource-IConfigureContainerAdapterIConfigureContainerAdapterbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostBuilder",
-            "sourceHandle": "HostBuildertopsource",
-            "target": "Host",
-            "targetHandle": "Hostlefttarget",
-            "selected": false,
-            "id": "reactflow__edge-HostBuilderHostBuildertopsource-HostHostlefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostStatic",
-            "sourceHandle": "HostStaticbottomsource",
-            "target": "HostApplicationBuilder",
-            "targetHandle": "HostApplicationBuildertoptarget",
-            "id": "reactflow__edge-HostStaticHostStaticbottomsource-HostApplicationBuilderHostApplicationBuildertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "HostStatic",
-            "sourceHandle": "HostStaticleftsource",
-            "target": "IHostBuilder",
-            "targetHandle": "IHostBuildertoptarget",
-            "id": "reactflow__edge-HostStaticHostStaticleftsource-IHostBuilderIHostBuildertoptarget"
-        }
-    ],
-    "viewport": {
-        "x": 417.99145681627306,
-        "y": -475.10299134306547,
-        "zoom": 0.766274231863938
+  "nodes": [
+    {
+      "width": 385,
+      "height": 80,
+      "id": "IHost",
+      "position": {
+        "x": 659.4291588515687,
+        "y": 901.875316614927
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHost",
+        "name": "IHost",
+        "parent": "IDisposable",
+        "properties": ["IServiceProvider Services { get; }"],
+        "methods": [
+          "Task StartAsync(CancellationToken cancellationToken = default)",
+          "Task StopAsync(CancellationToken cancellationToken = default)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 659.4291588515687,
+        "y": 901.875316614927
+      },
+      "dragging": false
+    },
+    {
+      "width": 874,
+      "height": 96,
+      "id": "Host",
+      "position": {
+        "x": 306.53741304219204,
+        "y": 1029.272029605232
+      },
+      "type": "custom",
+      "data": {
+        "id": "Host",
+        "name": "Host",
+        "parent": "IHost, IAsyncDisposable",
+        "properties": [
+          "private IEnumerable<IHostedService>? _hostedServices",
+          "private IEnumerable<IHostedLifecycleService>? _hostedLifecycleServices",
+          "private readonly ApplicationLifetime _applicationLifetime"
+        ],
+        "methods": [
+          "public Host(IServiceProvider, IHostEnvironment, PhysicalFileProvider,IHostApplicationLifetime,ILogger<Host>,IHostLifetime,IOptions<HostOptions>)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 306.53741304219204,
+        "y": 1029.272029605232
+      },
+      "dragging": false
+    },
+    {
+      "width": 840,
+      "height": 144,
+      "id": "IHostBuilder",
+      "position": {
+        "x": -438.9624251978852,
+        "y": 870.6045080548156
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHostBuilder",
+        "name": "IHostBuilder",
+        "properties": ["IDictionary<object, object> Properties { get; }"],
+        "methods": [
+          "IHostBuilder ConfigureHostConfiguration(Action<IConfigurationBuilder> configureDelegate)",
+          "IHostBuilder ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureDelegate)",
+          "IHostBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureDelegate)",
+          "IHostBuilder UseServiceProviderFactory<TContainerBuilder>(Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factory)",
+          "IHostBuilder ConfigureContainer<TContainerBuilder>(Action<HostBuilderContext, TContainerBuilder> configureDelegate)",
+          "IHost Build()"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -438.9624251978852,
+        "y": 870.6045080548156
+      },
+      "dragging": false
+    },
+    {
+      "width": 975,
+      "height": 192,
+      "id": "HostBuilder",
+      "position": {
+        "x": -436.1444533858491,
+        "y": 1146.1920764483257
+      },
+      "type": "custom",
+      "data": {
+        "id": "HostBuilder",
+        "name": "HostBuilder",
+        "parent": "IHostBuilder",
+        "properties": [
+          "private IConfiguration? _hostConfiguration",
+          "private IConfiguration? _appConfiguration",
+          "private HostBuilderContext? _hostBuilderContext",
+          "private HostingEnvironment? _hostingEnvironment",
+          "private IServiceProvider? _appServices"
+        ],
+        "methods": [
+          "internal static DiagnosticListener LogHostBuilding(HostApplicationBuilder hostApplicationBuilder)",
+          "internal static (HostingEnvironment, PhysicalFileProvider) CreateHostingEnvironment(IConfiguration hostConfiguration)",
+          "internal static void PopulateServiceCollection(IServiceCollection,HostBuilderContext,HostingEnvironment,            PhysicalFileProvider,IConfiguration,Func<IServiceProvider> )",
+          "internal static IHost ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)",
+          "internal static string ResolveContentRootPath(string? contentRootPath, string basePath)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -436.1444533858491,
+        "y": 1146.1920764483257
+      },
+      "dragging": false
+    },
+    {
+      "width": 329,
+      "height": 54,
+      "id": "IHostedService",
+      "position": {
+        "x": 869.2530939202645,
+        "y": 1226.2983507688646
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHostedService",
+        "name": "IHostedService",
+        "methods": [
+          "Task StartAsync(CancellationToken cancellationToken)",
+          "Task StopAsync(CancellationToken cancellationToken)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 869.2530939202645,
+        "y": 1226.2983507688646
+      },
+      "dragging": false
+    },
+    {
+      "width": 437,
+      "height": 52,
+      "id": "BackgroundService",
+      "position": {
+        "x": 815.3850871879216,
+        "y": 1430.8371908838624
+      },
+      "type": "custom",
+      "data": {
+        "id": "BackgroundService",
+        "name": "BackgroundService",
+        "parent": "IHostedService, IDisposable",
+        "methods": ["protected abstract Task ExecuteAsync(CancellationToken stoppingToken)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 815.3850871879216,
+        "y": 1430.8371908838624
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 96,
+      "id": "IHostApplicationLifetime",
+      "position": {
+        "x": 570.5576993359787,
+        "y": 1639.1169854689228
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHostApplicationLifetime",
+        "name": "IHostApplicationLifetime",
+        "properties": [
+          "CancellationToken ApplicationStarted { get; }",
+          "CancellationToken ApplicationStopping { get; }",
+          "CancellationToken ApplicationStopped { get; }"
+        ],
+        "methods": ["void StopApplication()"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 570.5576993359787,
+        "y": 1639.1169854689228
+      },
+      "dragging": false
+    },
+    {
+      "width": 413,
+      "height": 70,
+      "id": "ApplicationLifetime",
+      "position": {
+        "x": 548.230642145682,
+        "y": 1319.7127731339808
+      },
+      "type": "custom",
+      "data": {
+        "id": "ApplicationLifetime",
+        "name": "ApplicationLifetime",
+        "parent": "IHostApplicationLifetime",
+        "methods": [
+          "public void NotifyStarted()",
+          "public void NotifyStopped()",
+          "private static void ExecuteHandlers(CancellationTokenSource cancel)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 548.230642145682,
+        "y": 1319.7127731339808
+      },
+      "dragging": false
+    },
+    {
+      "width": 354,
+      "height": 86,
+      "id": "IHostedLifecycleService",
+      "position": {
+        "x": 1242.4022468968428,
+        "y": 1211.5939053327068
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHostedLifecycleService",
+        "name": "IHostedLifecycleService",
+        "parent": "IHostedService",
+        "methods": [
+          "Task StartingAsync(CancellationToken cancellationToken)",
+          "Task StartedAsync(CancellationToken cancellationToken)",
+          "Task StoppingAsync(CancellationToken cancellationToken)",
+          "Task StoppedAsync(CancellationToken cancellationToken)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1242.4022468968428,
+        "y": 1211.5939053327068
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 118,
+      "id": "StartAsync",
+      "position": {
+        "x": 1278.9273087936365,
+        "y": 1440.9053344483104
+      },
+      "type": "custom",
+      "data": {
+        "id": "StartAsync",
+        "name": "StartAsync",
+        "properties": [
+          "IHostLifetime.WaitForStartAsync",
+          "Services.GetService{IStartupValidator}().Validate()",
+          "IHostedLifecycleService.StartingAsync",
+          "IHostedService.Start",
+          "IHostedLifecycleService.StartedAsync",
+          "IHostApplicationLifetime.ApplicationStarted"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1278.9273087936365,
+        "y": 1440.9053344483104
+      },
+      "dragging": false,
+      "style": {
+        "backgroundColor": "#b8e986"
+      }
+    },
+    {
+      "width": 302,
+      "height": 118,
+      "id": "StopAsync",
+      "position": {
+        "x": 1282.2819868314648,
+        "y": 1605.8552720612706
+      },
+      "type": "custom",
+      "data": {
+        "id": "StopAsync",
+        "name": "StopAsync",
+        "properties": [
+          "IHostedLifecycleService.StoppingAsync",
+          "IHostApplicationLifetime.ApplicationStopping",
+          "IHostedService.Stop",
+          "IHostedLifecycleService.StoppedAsync",
+          "IHostApplicationLifetime.ApplicationStopped",
+          "IHostLifetime.StopAsync"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1282.2819868314648,
+        "y": 1605.8552720612706
+      },
+      "dragging": false,
+      "style": {
+        "backgroundColor": "#b8e986"
+      }
+    },
+    {
+      "width": 373,
+      "height": 54,
+      "id": "IHostLifetime",
+      "position": {
+        "x": 1224.113244986705,
+        "y": 1040.0094961300392
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHostLifetime",
+        "name": "IHostLifetime",
+        "methods": [
+          "Task WaitForStartAsync(CancellationToken cancellationToken)",
+          "Task StopAsync(CancellationToken cancellationToken)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1224.113244986705,
+        "y": 1040.0094961300392
+      },
+      "dragging": false
+    },
+    {
+      "width": 362,
+      "height": 52,
+      "id": "ConsoleLifetime",
+      "position": {
+        "x": 1217.1252207325108,
+        "y": 848.7651373879496
+      },
+      "type": "custom",
+      "data": {
+        "id": "ConsoleLifetime",
+        "name": "ConsoleLifetime",
+        "parent": "IHostLifetime, IDisposable",
+        "properties": ["private IHostApplicationLifetime ApplicationLifetime { get; }"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1217.1252207325108,
+        "y": 848.7651373879496
+      },
+      "dragging": false
+    },
+    {
+      "width": 412,
+      "height": 54,
+      "id": "NullLifetime",
+      "position": {
+        "x": 1142.6231904512163,
+        "y": 917.0942133982577
+      },
+      "type": "custom",
+      "data": {
+        "id": "NullLifetime",
+        "name": "NullLifetime",
+        "parent": "IHostLifetime",
+        "methods": [
+          "public Task WaitForStartAsync(CancellationToken cancellationToken)",
+          "public Task StopAsync(CancellationToken cancellationToken)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1142.6231904512163,
+        "y": 917.0942133982577
+      },
+      "dragging": false
+    },
+    {
+      "width": 559,
+      "height": 102,
+      "id": "HostOptions",
+      "position": {
+        "x": 700.1299116324496,
+        "y": 1507.704241886988
+      },
+      "type": "custom",
+      "data": {
+        "id": "HostOptions",
+        "name": "HostOptions",
+        "parent": "",
+        "properties": [
+          "public TimeSpan StartupTimeout { get; set; } = Timeout.InfiniteTimeSpan",
+          "public bool ServicesStartConcurrently { get; set; }",
+          "public bool ServicesStopConcurrently { get; set; }",
+          "public BackgroundServiceExceptionBehavior BackgroundServiceExceptionBehavior { get; set; }",
+          "public TimeSpan ShutdownTimeout { get; set; } = TimeSpan.FromSeconds(30)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 700.1299116324496,
+        "y": 1507.704241886988
+      },
+      "dragging": false
+    },
+    {
+      "width": 302,
+      "height": 54,
+      "id": "BackgroundServiceExceptionBehavior",
+      "position": {
+        "x": 911.9019198189062,
+        "y": 1677.8591127756738
+      },
+      "type": "custom",
+      "data": {
+        "id": "BackgroundServiceExceptionBehavior",
+        "name": "BackgroundServiceExceptionBehavior",
+        "properties": ["StopHost = 0", "Ignore = 1"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 911.9019198189062,
+        "y": 1677.8591127756738
+      },
+      "dragging": false
+    },
+    {
+      "width": 349,
+      "height": 70,
+      "id": "HostBuilderContext",
+      "position": {
+        "x": -430.8764550420632,
+        "y": 1406.2437032088746
+      },
+      "type": "custom",
+      "data": {
+        "id": "HostBuilderContext",
+        "name": "HostBuilderContext",
+        "properties": [
+          "public IHostEnvironment HostingEnvironment { get; set; }",
+          "public IConfiguration Configuration { get; set; }",
+          "public IDictionary<object, object> Properties { get; }"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -430.8764550420632,
+        "y": 1406.2437032088746
+      },
+      "dragging": false
+    },
+    {
+      "width": 818,
+      "height": 144,
+      "id": "IHostApplicationBuilder",
+      "position": {
+        "x": -443.4569564056441,
+        "y": 691.7418380711613
+      },
+      "type": "custom",
+      "data": {
+        "id": "IHostApplicationBuilder",
+        "name": "IHostApplicationBuilder",
+        "properties": [
+          "IDictionary<object, object> Properties { get; }",
+          "IConfigurationManager Configuration { get; }",
+          "IHostEnvironment Environment { get; }",
+          "ILoggingBuilder Logging { get; }",
+          "IMetricsBuilder Metrics { get; }",
+          "IServiceCollection Services { get; }"
+        ],
+        "methods": [
+          "void ConfigureContainer<TContainerBuilder>(IServiceProviderFactory<TContainerBuilder> factory, Action<TContainerBuilder>? configure)"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -443.4569564056441,
+        "y": 691.7418380711613
+      },
+      "dragging": false
+    },
+    {
+      "width": 435,
+      "height": 54,
+      "id": "HostApplicationBuilder",
+      "position": {
+        "x": 634.2042026272981,
+        "y": 817.7421719548672
+      },
+      "type": "custom",
+      "data": {
+        "id": "HostApplicationBuilder",
+        "name": "HostApplicationBuilder",
+        "parent": "IHostApplicationBuilder",
+        "properties": [],
+        "methods": [
+          "public HostApplicationBuilder(HostApplicationBuilderSettings? settings)",
+          "public IHost Build()"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 634.2042026272981,
+        "y": 817.7421719548672
+      },
+      "dragging": false
+    },
+    {
+      "width": 344,
+      "height": 118,
+      "id": "HostApplicationBuilderSettings",
+      "position": {
+        "x": 1232.371830604873,
+        "y": 701.4090771475635
+      },
+      "type": "custom",
+      "data": {
+        "id": "HostApplicationBuilderSettings",
+        "name": "HostApplicationBuilderSettings",
+        "properties": [
+          "public bool DisableDefaults { get; set; }",
+          "public string[]? Args { get; set; }",
+          "public ConfigurationManager? Configuration { get; set; }",
+          "public string? EnvironmentName { get; set; }",
+          "public string? ApplicationName { get; set; }",
+          "public string? ContentRootPath { get; set; }"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1232.371830604873,
+        "y": 701.4090771475635
+      },
+      "dragging": false
+    },
+    {
+      "width": 386,
+      "height": 54,
+      "id": "IServiceFactoryAdapter",
+      "position": {
+        "x": -427.64276073346144,
+        "y": 1533.6755325209338
+      },
+      "type": "custom",
+      "data": {
+        "id": "IServiceFactoryAdapter",
+        "name": "IServiceFactoryAdapter",
+        "properties": [],
+        "methods": [
+          "object CreateBuilder(IServiceCollection services)",
+          "IServiceProvider CreateServiceProvider(object containerBuilder)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -427.64276073346144,
+        "y": 1533.6755325209338
+      },
+      "dragging": false
+    },
+    {
+      "width": 966,
+      "height": 112,
+      "id": "ServiceFactoryAdapter",
+      "position": {
+        "x": -425.9725260795006,
+        "y": 1629.7830315900153
+      },
+      "type": "custom",
+      "data": {
+        "id": "ServiceFactoryAdapter",
+        "name": "ServiceFactoryAdapter<TContainerBuilder>",
+        "parent": "IServiceFactoryAdapter",
+        "properties": [
+          "private IServiceProviderFactory<TContainerBuilder>? _serviceProviderFactory",
+          "private readonly Func<HostBuilderContext>? _contextResolver",
+          "private readonly Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>>? _factoryResolver"
+        ],
+        "methods": [
+          "public ServiceFactoryAdapter(IServiceProviderFactory<TContainerBuilder> serviceProviderFactory)",
+          "public ServiceFactoryAdapter(Func<HostBuilderContext> contextResolver, Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factoryResolver)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -425.9725260795006,
+        "y": 1629.7830315900153
+      },
+      "dragging": false
+    },
+    {
+      "width": 497,
+      "height": 52,
+      "id": "IConfigureContainerAdapter",
+      "position": {
+        "x": 1.2162961077358432,
+        "y": 1424.462432962942
+      },
+      "type": "custom",
+      "data": {
+        "id": "IConfigureContainerAdapter",
+        "name": "IConfigureContainerAdapter",
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ],
+        "methods": [
+          "void ConfigureContainer(HostBuilderContext hostContext, object containerBuilder)"
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1.2162961077358432,
+        "y": 1424.462432962942
+      },
+      "dragging": false
+    },
+    {
+      "width": 543,
+      "height": 64,
+      "id": "ConfigureContainerAdapter",
+      "position": {
+        "x": 10.419523929020727,
+        "y": 1511.790747111087
+      },
+      "type": "custom",
+      "data": {
+        "id": "ConfigureContainerAdapter",
+        "name": "ConfigureContainerAdapter<TContainerBuilder>",
+        "parent": "IConfigureContainerAdapter",
+        "properties": ["private readonly Action<HostBuilderContext, TContainerBuilder> _action"],
+        "methods": [
+          "public ConfigureContainerAdapter(Action<HostBuilderContext, TContainerBuilder> action)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 10.419523929020727,
+        "y": 1511.790747111087
+      },
+      "dragging": false
+    },
+    {
+      "width": 652,
+      "height": 70,
+      "id": "HostStatic",
+      "position": {
+        "x": 525.0985202115014,
+        "y": 688.4252479659518
+      },
+      "type": "custom",
+      "data": {
+        "id": "HostStatic",
+        "name": "Host-Static",
+        "properties": [],
+        "methods": [
+          "public static IHostBuilder CreateDefaultBuilder()",
+          "public static HostApplicationBuilder CreateApplicationBuilder()",
+          "public static HostApplicationBuilder CreateEmptyApplicationBuilder(HostApplicationBuilderSettings? settings)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 525.0985202115014,
+        "y": 688.4252479659518
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Host",
+      "sourceHandle": "Hosttopsource",
+      "target": "IHost",
+      "targetHandle": "IHostbottomtarget",
+      "id": "reactflow__edge-HostHosttopsource-IHostIHostbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IHostBuilder",
+      "sourceHandle": "IHostBuilderrightsource",
+      "target": "IHost",
+      "targetHandle": "IHostlefttarget",
+      "id": "reactflow__edge-IHostBuilderIHostBuilderrightsource-IHostIHostlefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostBuilder",
+      "sourceHandle": "HostBuildertopsource",
+      "target": "IHostBuilder",
+      "targetHandle": "IHostBuilderbottomtarget",
+      "id": "reactflow__edge-HostBuilderHostBuildertopsource-IHostBuilderIHostBuilderbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Host",
+      "sourceHandle": "Hostbottomsource",
+      "target": "IHostedService",
+      "targetHandle": "IHostedServicetoptarget",
+      "id": "reactflow__edge-HostHostbottomsource-IHostedServiceIHostedServicetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "BackgroundService",
+      "sourceHandle": "BackgroundServicetopsource",
+      "target": "IHostedService",
+      "targetHandle": "IHostedServicebottomtarget",
+      "id": "reactflow__edge-BackgroundServiceBackgroundServicetopsource-IHostedServiceIHostedServicebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Host",
+      "sourceHandle": "Hostbottomsource",
+      "target": "ApplicationLifetime",
+      "targetHandle": "ApplicationLifetimetoptarget",
+      "id": "reactflow__edge-HostHostbottomsource-ApplicationLifetimeApplicationLifetimetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ApplicationLifetime",
+      "sourceHandle": "ApplicationLifetimebottomsource",
+      "target": "IHostApplicationLifetime",
+      "targetHandle": "IHostApplicationLifetimetoptarget",
+      "id": "reactflow__edge-ApplicationLifetimeApplicationLifetimebottomsource-IHostApplicationLifetimeIHostApplicationLifetimetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "IHostedLifecycleService",
+      "sourceHandle": "IHostedLifecycleServiceleftsource",
+      "target": "IHostedService",
+      "targetHandle": "IHostedServicerighttarget",
+      "id": "reactflow__edge-IHostedLifecycleServiceIHostedLifecycleServiceleftsource-IHostedServiceIHostedServicerighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Host",
+      "sourceHandle": "Hostrightsource",
+      "target": "IHostLifetime",
+      "targetHandle": "IHostLifetimelefttarget",
+      "id": "reactflow__edge-HostHostrightsource-IHostLifetimeIHostLifetimelefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ConsoleLifetime",
+      "sourceHandle": "ConsoleLifetimebottomsource",
+      "target": "IHostLifetime",
+      "targetHandle": "IHostLifetimetoptarget",
+      "id": "reactflow__edge-ConsoleLifetimeConsoleLifetimebottomsource-IHostLifetimeIHostLifetimetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "NullLifetime",
+      "sourceHandle": "NullLifetimebottomsource",
+      "target": "IHostLifetime",
+      "targetHandle": "IHostLifetimetoptarget",
+      "id": "reactflow__edge-NullLifetimeNullLifetimebottomsource-IHostLifetimeIHostLifetimetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Host",
+      "sourceHandle": "Hostbottomsource",
+      "target": "HostOptions",
+      "targetHandle": "HostOptionstoptarget",
+      "id": "reactflow__edge-HostHostbottomsource-HostOptionsHostOptionstoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostOptions",
+      "sourceHandle": "HostOptionsbottomsource",
+      "target": "BackgroundServiceExceptionBehavior",
+      "targetHandle": "BackgroundServiceExceptionBehaviortoptarget",
+      "id": "reactflow__edge-HostOptionsHostOptionsbottomsource-BackgroundServiceExceptionBehaviorBackgroundServiceExceptionBehaviortoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostBuilder",
+      "sourceHandle": "HostBuilderbottomsource",
+      "target": "HostBuilderContext",
+      "targetHandle": "HostBuilderContexttoptarget",
+      "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-HostBuilderContextHostBuilderContexttoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "Host",
+      "sourceHandle": "Hostrightsource",
+      "target": "IHostedLifecycleService",
+      "targetHandle": "IHostedLifecycleServicetoptarget",
+      "id": "reactflow__edge-HostHostrightsource-IHostedLifecycleServiceIHostedLifecycleServicetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostApplicationBuilder",
+      "sourceHandle": "HostApplicationBuilderleftsource",
+      "target": "IHostApplicationBuilder",
+      "targetHandle": "IHostApplicationBuilderrighttarget",
+      "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderleftsource-IHostApplicationBuilderIHostApplicationBuilderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostApplicationBuilder",
+      "sourceHandle": "HostApplicationBuilderbottomsource",
+      "target": "IHost",
+      "targetHandle": "IHosttoptarget",
+      "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderbottomsource-IHostIHosttoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostApplicationBuilder",
+      "sourceHandle": "HostApplicationBuilderrightsource",
+      "target": "HostApplicationBuilderSettings",
+      "targetHandle": "HostApplicationBuilderSettingslefttarget",
+      "id": "reactflow__edge-HostApplicationBuilderHostApplicationBuilderrightsource-HostApplicationBuilderSettingsHostApplicationBuilderSettingslefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostBuilder",
+      "sourceHandle": "HostBuilderbottomsource",
+      "target": "IServiceFactoryAdapter",
+      "targetHandle": "IServiceFactoryAdaptertoptarget",
+      "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-IServiceFactoryAdapterIServiceFactoryAdaptertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ServiceFactoryAdapter",
+      "sourceHandle": "ServiceFactoryAdaptertopsource",
+      "target": "IServiceFactoryAdapter",
+      "targetHandle": "IServiceFactoryAdapterbottomtarget",
+      "id": "reactflow__edge-ServiceFactoryAdapterServiceFactoryAdaptertopsource-IServiceFactoryAdapterIServiceFactoryAdapterbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostBuilder",
+      "sourceHandle": "HostBuilderbottomsource",
+      "target": "IConfigureContainerAdapter",
+      "targetHandle": "IConfigureContainerAdaptertoptarget",
+      "id": "reactflow__edge-HostBuilderHostBuilderbottomsource-IConfigureContainerAdapterIConfigureContainerAdaptertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ConfigureContainerAdapter",
+      "sourceHandle": "ConfigureContainerAdaptertopsource",
+      "target": "IConfigureContainerAdapter",
+      "targetHandle": "IConfigureContainerAdapterbottomtarget",
+      "id": "reactflow__edge-ConfigureContainerAdapterConfigureContainerAdaptertopsource-IConfigureContainerAdapterIConfigureContainerAdapterbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostBuilder",
+      "sourceHandle": "HostBuildertopsource",
+      "target": "Host",
+      "targetHandle": "Hostlefttarget",
+      "selected": false,
+      "id": "reactflow__edge-HostBuilderHostBuildertopsource-HostHostlefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostStatic",
+      "sourceHandle": "HostStaticbottomsource",
+      "target": "HostApplicationBuilder",
+      "targetHandle": "HostApplicationBuildertoptarget",
+      "id": "reactflow__edge-HostStaticHostStaticbottomsource-HostApplicationBuilderHostApplicationBuildertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "HostStatic",
+      "sourceHandle": "HostStaticleftsource",
+      "target": "IHostBuilder",
+      "targetHandle": "IHostBuildertoptarget",
+      "id": "reactflow__edge-HostStaticHostStaticleftsource-IHostBuilderIHostBuildertoptarget"
+    }
+  ],
+  "viewport": {
+    "x": 417.99145681627306,
+    "y": -475.10299134306547,
+    "zoom": 0.766274231863938
+  }
 }

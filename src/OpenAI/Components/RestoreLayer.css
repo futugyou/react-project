@@ -1,53 +1,53 @@
 .restore-layer {
-    display: flex;
-    padding: 10px 20px;
-    background-color: #ececf1;
+  display: flex;
+  padding: 10px 20px;
+  background-color: #ececf1;
 }
 
 .restore-left {
-    margin-right: 20px;
-    padding-top: 10px;
+  margin-right: 20px;
+  padding-top: 10px;
 }
 
 .restore-left svg {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .restore-center {
-    flex: 1;
-    text-align: left;
+  flex: 1;
+  text-align: left;
 }
 
 .restore-right {
-    width: 130px;
-    padding: 10px 0px;
+  width: 130px;
+  padding: 10px 0px;
 }
 
 .restore-center-date {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .restore-center-label {
-    font-size: 16px;
-    font-weight: 500;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .restore-center-btn {
-    padding: 10px 16px;
-    height: 100%;
-    background-color: #10a37f;
-    line-height: 16px;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 18px;
+  padding: 10px 16px;
+  height: 100%;
+  background-color: #10a37f;
+  line-height: 16px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
 }
 
 .restore-center-btn span {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .restore-center-btn:hover {
-    background-color: #1a7f64;
+  background-color: #1a7f64;
 }

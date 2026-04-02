@@ -1,951 +1,935 @@
 {
-    "nodes": [
-        {
-            "width": 443,
-            "height": 90,
-            "id": "ILoggerFactory",
-            "position": {
-                "x": 602.7290172025982,
-                "y": -219.6250765059372
-            },
-            "type": "custom",
-            "data": {
-                "id": "ILoggerFactory",
-                "name": "ILoggerFactory",
-                "parent": "IDisposable",
-                "methods": [
-                    "ILogger CreateLogger(string categoryName)",
-                    "void AddProvider(ILoggerProvider provider)",
-                    "public static ILogger<T> CreateLogger<T>(this ILoggerFactory factory)",
-                    "public static ILogger CreateLogger(this ILoggerFactory factory, Type type)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 602.7290172025982,
-                "y": -219.6250765059372
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 42,
-            "id": "ILoggerProvider",
-            "position": {
-                "x": 771.0776813798657,
-                "y": -28.058470984639627
-            },
-            "type": "custom",
-            "data": {
-                "id": "ILoggerProvider",
-                "name": "ILoggerProvider",
-                "parent": "IDisposable",
-                "methods": [
-                    "ILogger CreateLogger(string categoryName)"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 771.0776813798657,
-                "y": -28.058470984639627
-            },
-            "dragging": false
-        },
-        {
-            "width": 784,
-            "height": 202,
-            "id": "ILogger",
-            "position": {
-                "x": 159.80003027645773,
-                "y": 125.55289559168776
-            },
-            "type": "custom",
-            "data": {
-                "id": "ILogger",
-                "name": "ILogger",
-                "methods": [
-                    "void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)",
-                    "bool IsEnabled(LogLevel logLevel)",
-                    "IDisposable? BeginScope<TState>(TState state)",
-                    "public static IDisposable? BeginScope(this ILogger logger, string messageFormat, params object?[] args)",
-                    "public static void Log(this ILogger logger, LogLevel logLevel, string? message, params object?[] args)",
-                    "public static void LogCritical(this ILogger logger, string? message, params object?[] args)",
-                    "public static void LogError(this ILogger logger, string? message, params object?[] args)",
-                    "public static void LogWarning(this ILogger logger, string? message, params object?[] args)",
-                    "public static void LogInformation(this ILogger logger, string? message, params object?[] args)",
-                    "public static void LogTrace(this ILogger logger, string? message, params object?[] args)",
-                    "public static void LogDebug(this ILogger logger, string? message, params object?[] args)"
-                ],
-                "properties": [],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 159.80003027645773,
-                "y": 125.55289559168776
-            },
-            "dragging": false
-        },
-        {
-            "width": 663,
-            "height": 152,
-            "id": "ILoggingBuilder",
-            "position": {
-                "x": -531.5429040334185,
-                "y": 292.2068309342432
-            },
-            "type": "custom",
-            "data": {
-                "id": "ILoggingBuilder",
-                "name": "ILoggingBuilder",
-                "properties": [
-                    "IServiceCollection Services { get; }"
-                ],
-                "methods": [
-                    "public static ILoggingBuilder AddFilter(this ILoggingBuilder builder, Func<string?, string?, LogLevel, bool> filter)",
-                    "public static ILoggingBuilder SetMinimumLevel(this ILoggingBuilder builder, LogLevel level)",
-                    "public static ILoggingBuilder AddProvider(this ILoggingBuilder builder, ILoggerProvider provider)",
-                    "public static ILoggingBuilder ClearProviders(this ILoggingBuilder builder)",
-                    "public static ILoggingBuilder Configure(this ILoggingBuilder builder, Action<LoggerFactoryOptions> action)",
-                    "public static ILoggingBuilder AddConfiguration(this ILoggingBuilder builder, IConfiguration configuration)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -531.5429040334185,
-                "y": 292.2068309342432
-            },
-            "dragging": false
-        },
-        {
-            "width": 377,
-            "height": 42,
-            "id": "ISupportExternalScope",
-            "position": {
-                "x": 8.929676492285466,
-                "y": -183.50230275361778
-            },
-            "type": "custom",
-            "data": {
-                "id": "ISupportExternalScope",
-                "name": "ISupportExternalScope",
-                "methods": [
-                    "void SetScopeProvider(IExternalScopeProvider scopeProvider)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 8.929676492285466,
-                "y": -183.50230275361778
-            },
-            "dragging": false
-        },
-        {
-            "width": 454,
-            "height": 58,
-            "id": "IExternalScopeProvider",
-            "position": {
-                "x": -531.1774267992769,
-                "y": -195.09926927702867
-            },
-            "type": "custom",
-            "data": {
-                "id": "IExternalScopeProvider",
-                "name": "IExternalScopeProvider",
-                "methods": [
-                    "void ForEachScope<TState>(Action<object?, TState> callback, TState state)",
-                    "IDisposable Push(object? state)"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -531.1774267992769,
-                "y": -195.09926927702867
-            },
-            "dragging": false
-        },
-        {
-            "width": 786,
-            "height": 58,
-            "id": "LoggerMessage",
-            "position": {
-                "x": 165.66641693096722,
-                "y": 369.3766868292977
-            },
-            "type": "custom",
-            "data": {
-                "id": "LoggerMessage",
-                "name": "LoggerMessage",
-                "methods": [
-                    "public static Func<ILogger, IDisposable?> DefineScope(string formatString)",
-                    "public static Action<ILogger, Exception?> Define(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions? options)"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 165.66641693096722,
-                "y": 369.3766868292977
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 74,
-            "id": "LoggerFilterOptions",
-            "position": {
-                "x": -140.4851073736369,
-                "y": -99.78532132751941
-            },
-            "type": "custom",
-            "data": {
-                "id": "LoggerFilterOptions",
-                "name": "LoggerFilterOptions",
-                "properties": [
-                    "public bool CaptureScopes { get; set; }",
-                    "public LogLevel MinLevel { get; set; }",
-                    "public IList<LoggerFilterRule> Rules"
-                ],
-                "connects": [
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -140.4851073736369,
-                "y": -99.78532132751941
-            },
-            "dragging": false
-        },
-        {
-            "width": 400,
-            "height": 42,
-            "id": "LoggerFactoryOptions",
-            "position": {
-                "x": -164.5570875149785,
-                "y": 66.86651473025847
-            },
-            "type": "custom",
-            "data": {
-                "id": "LoggerFactoryOptions",
-                "name": "LoggerFactoryOptions",
-                "properties": [
-                    "public ActivityTrackingOptions ActivityTrackingOptions { get; set; }"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -164.5570875149785,
-                "y": 66.86651473025847
-            },
-            "dragging": false
-        },
-        {
-            "width": 357,
-            "height": 90,
-            "id": "LoggerFilterRule",
-            "position": {
-                "x": -531.738965230121,
-                "y": -80.4429409626534
-            },
-            "type": "custom",
-            "data": {
-                "id": "LoggerFilterRule",
-                "name": "LoggerFilterRule",
-                "methods": [],
-                "properties": [
-                    "public string? ProviderName { get; }",
-                    "public string? CategoryName { get; }",
-                    "public LogLevel? LogLevel { get; }",
-                    "public Func<string?, string?, LogLevel, bool>? Filter { get; }"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -531.738965230121,
-                "y": -80.4429409626534
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 154,
-            "id": "ActivityTrackingOptions",
-            "position": {
-                "x": -536.7123798485956,
-                "y": 102.5379486253951
-            },
-            "type": "custom",
-            "data": {
-                "id": "ActivityTrackingOptions",
-                "name": "ActivityTrackingOptions",
-                "properties": [
-                    "None = 0x0000",
-                    "SpanId = 0x0001",
-                    "TraceId = 0x0002",
-                    "ParentId = 0x0004",
-                    "TraceState = 0x0008",
-                    "TraceFlags = 0x0010",
-                    "Tags = 0x0020",
-                    "Baggage = 0x0040"
-                ],
-                "connects": [
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": -536.7123798485956,
-                "y": 102.5379486253951
-            },
-            "dragging": false
-        },
-        {
-            "width": 434,
-            "height": 104,
-            "id": "LoggerFactory",
-            "position": {
-                "x": 206.80101571200925,
-                "y": -58.715323168848386
-            },
-            "type": "custom",
-            "data": {
-                "id": "LoggerFactory",
-                "name": "LoggerFactory",
-                "parent": "ILoggerFactory",
-                "properties": [
-                    "private LoggerFilterOptions _filterOptions",
-                    "private readonly LoggerFactoryOptions _factoryOptions",
-                    " private IExternalScopeProvider? _scopeProvider"
-                ],
-                "methods": [
-                    "public static ILoggerFactory Create(Action<ILoggingBuilder> configure)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 206.80101571200925,
-                "y": -58.715323168848386
-            },
-            "dragging": false
-        },
-        {
-            "width": 316,
-            "height": 42,
-            "id": "EventSourceLogger ",
-            "position": {
-                "x": 1302.3421177671562,
-                "y": -12.079663799316478
-            },
-            "type": "custom",
-            "data": {
-                "id": "EventSourceLogger ",
-                "name": "EventSourceLogger ",
-                "parent": "ILogger",
-                "properties": [
-                    "private readonly LoggingEventSource _eventSource"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "source"
-                    },
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1302.3421177671562,
-                "y": -12.079663799316478
-            },
-            "dragging": false
-        },
-        {
-            "width": 316,
-            "height": 42,
-            "id": "EventSourceLoggerProvider",
-            "position": {
-                "x": 1303.0349156287114,
-                "y": -248.2636046609952
-            },
-            "type": "custom",
-            "data": {
-                "id": "EventSourceLoggerProvider",
-                "name": "EventSourceLoggerProvider",
-                "parent": "ILoggerProvider",
-                "properties": [
-                    "private readonly LoggingEventSource _eventSource"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "right",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1303.0349156287114,
-                "y": -248.2636046609952
-            },
-            "dragging": false
-        },
-        {
-            "width": 734,
-            "height": 120,
-            "id": "LoggingEventSource",
-            "position": {
-                "x": 1093.2630610106323,
-                "y": -180.59994310973255
-            },
-            "type": "custom",
-            "data": {
-                "id": "LoggingEventSource",
-                "name": "LoggingEventSource",
-                "parent": "EventSource",
-                "properties": [
-                    "private LoggerFilterRule[] _filterSpec",
-                    "private CancellationTokenSource? _cancellationTokenSource"
-                ],
-                "methods": [
-                    "protected override void OnEventCommand(EventCommandEventArgs command)",
-                    "internal void ActivityStart(int ID, int FactoryID, string LoggerName, IEnumerable<KeyValuePair<string, string?>> Arguments)",
-                    "internal unsafe void ActivityStop(int ID, int FactoryID, string LoggerName)"
-                ],
-                "connects": [
-                    {
-                        "position": "top",
-                        "type": "target"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1093.2630610106323,
-                "y": -180.59994310973255
-            },
-            "dragging": false
-        },
-        {
-            "width": 300,
-            "height": 42,
-            "id": "TraceSourceLogger",
-            "position": {
-                "x": 1118.674668133386,
-                "y": 279.07063484190456
-            },
-            "type": "custom",
-            "data": {
-                "id": "TraceSourceLogger",
-                "name": "TraceSourceLogger",
-                "parent": "ILogger",
-                "properties": [
-                    "private readonly TraceSource _traceSource"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "top",
-                        "type": "target"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1118.674668133386,
-                "y": 279.07063484190456
-            },
-            "dragging": false
-        },
-        {
-            "width": 420,
-            "height": 74,
-            "id": "TraceSourceLoggerProvider",
-            "position": {
-                "x": 1172.9248287895693,
-                "y": 101.02900574821706
-            },
-            "type": "custom",
-            "data": {
-                "id": "TraceSourceLoggerProvider",
-                "name": "TraceSourceLoggerProvider",
-                "parent": "ILoggerProvider",
-                "properties": [
-                    "private readonly SourceSwitch _rootSourceSwitch",
-                    "private readonly TraceListener? _rootTraceListener",
-                    "private readonly ConcurrentDictionary<string, TraceSource> _sources"
-                ],
-                "connects": [
-                    {
-                        "position": "left",
-                        "type": "source"
-                    },
-                    {
-                        "position": "bottom",
-                        "type": "source"
-                    }
-                ]
-            },
-            "selected": false,
-            "positionAbsolute": {
-                "x": 1172.9248287895693,
-                "y": 101.02900574821706
-            },
-            "dragging": false
-        }
-    ],
-    "edges": [
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ILoggerFactory",
-            "sourceHandle": "ILoggerFactorybottomsource",
-            "target": "ILogger",
-            "targetHandle": "ILoggertoptarget",
-            "id": "reactflow__edge-ILoggerFactoryILoggerFactorybottomsource-ILoggerILoggertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ILoggerProvider",
-            "sourceHandle": "ILoggerProviderbottomsource",
-            "target": "ILogger",
-            "targetHandle": "ILoggertoptarget",
-            "id": "reactflow__edge-ILoggerProviderILoggerProviderbottomsource-ILoggerILoggertoptarget",
-            "selected": false
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "LoggerFactoryOptions",
-            "sourceHandle": "LoggerFactoryOptionsleftsource",
-            "target": "ActivityTrackingOptions",
-            "targetHandle": "ActivityTrackingOptionsrighttarget",
-            "id": "reactflow__edge-LoggerFactoryOptionsLoggerFactoryOptionsleftsource-ActivityTrackingOptionsActivityTrackingOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "LoggerFilterOptions",
-            "sourceHandle": "LoggerFilterOptionsleftsource",
-            "target": "LoggerFilterRule",
-            "targetHandle": "LoggerFilterRulerighttarget",
-            "id": "reactflow__edge-LoggerFilterOptionsLoggerFilterOptionsleftsource-LoggerFilterRuleLoggerFilterRulerighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ILoggingBuilder",
-            "sourceHandle": "ILoggingBuildertopsource",
-            "target": "LoggerFactoryOptions",
-            "targetHandle": "LoggerFactoryOptionsbottomtarget",
-            "id": "reactflow__edge-ILoggingBuilderILoggingBuildertopsource-LoggerFactoryOptionsLoggerFactoryOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ILoggingBuilder",
-            "sourceHandle": "ILoggingBuildertopsource",
-            "target": "LoggerFilterOptions",
-            "targetHandle": "LoggerFilterOptionsbottomtarget",
-            "id": "reactflow__edge-ILoggingBuilderILoggingBuildertopsource-LoggerFilterOptionsLoggerFilterOptionsbottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "LoggerFactory",
-            "sourceHandle": "LoggerFactorytopsource",
-            "target": "ILoggerFactory",
-            "targetHandle": "ILoggerFactorylefttarget",
-            "id": "reactflow__edge-LoggerFactoryLoggerFactorytopsource-ILoggerFactoryILoggerFactorylefttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ISupportExternalScope",
-            "sourceHandle": "ISupportExternalScopeleftsource",
-            "target": "IExternalScopeProvider",
-            "targetHandle": "IExternalScopeProviderrighttarget",
-            "id": "reactflow__edge-ISupportExternalScopeISupportExternalScopeleftsource-IExternalScopeProviderIExternalScopeProviderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "LoggerFactory",
-            "sourceHandle": "LoggerFactorytopsource",
-            "target": "ISupportExternalScope",
-            "targetHandle": "ISupportExternalScopebottomtarget",
-            "id": "reactflow__edge-LoggerFactoryLoggerFactorytopsource-ISupportExternalScopeISupportExternalScopebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "LoggerFactory",
-            "sourceHandle": "LoggerFactoryleftsource",
-            "target": "LoggerFilterOptions",
-            "targetHandle": "LoggerFilterOptionsrighttarget",
-            "id": "reactflow__edge-LoggerFactoryLoggerFactoryleftsource-LoggerFilterOptionsLoggerFilterOptionsrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "LoggerFactory",
-            "sourceHandle": "LoggerFactoryleftsource",
-            "target": "LoggerFactoryOptions",
-            "targetHandle": "LoggerFactoryOptionstoptarget",
-            "id": "reactflow__edge-LoggerFactoryLoggerFactoryleftsource-LoggerFactoryOptionsLoggerFactoryOptionstoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "ILoggerFactory",
-            "sourceHandle": "ILoggerFactorybottomsource",
-            "target": "ILoggerProvider",
-            "targetHandle": "ILoggerProvidertoptarget",
-            "id": "reactflow__edge-ILoggerFactoryILoggerFactorybottomsource-ILoggerProviderILoggerProvidertoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EventSourceLogger ",
-            "sourceHandle": "EventSourceLogger leftsource",
-            "target": "ILogger",
-            "targetHandle": "ILoggerrighttarget",
-            "id": "reactflow__edge-EventSourceLogger EventSourceLogger leftsource-ILoggerILoggerrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EventSourceLoggerProvider",
-            "sourceHandle": "EventSourceLoggerProviderleftsource",
-            "target": "ILoggerProvider",
-            "targetHandle": "ILoggerProviderrighttarget",
-            "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderleftsource-ILoggerProviderILoggerProviderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EventSourceLoggerProvider",
-            "sourceHandle": "EventSourceLoggerProviderrightsource",
-            "target": "EventSourceLogger ",
-            "targetHandle": "EventSourceLogger righttarget",
-            "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderrightsource-EventSourceLogger EventSourceLogger righttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EventSourceLogger ",
-            "sourceHandle": "EventSourceLogger topsource",
-            "target": "LoggingEventSource",
-            "targetHandle": "LoggingEventSourcebottomtarget",
-            "id": "reactflow__edge-EventSourceLogger EventSourceLogger topsource-LoggingEventSourceLoggingEventSourcebottomtarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "EventSourceLoggerProvider",
-            "sourceHandle": "EventSourceLoggerProviderbottomsource",
-            "target": "LoggingEventSource",
-            "targetHandle": "LoggingEventSourcetoptarget",
-            "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderbottomsource-LoggingEventSourceLoggingEventSourcetoptarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "TraceSourceLogger",
-            "sourceHandle": "TraceSourceLoggerleftsource",
-            "target": "ILogger",
-            "targetHandle": "ILoggerrighttarget",
-            "id": "reactflow__edge-TraceSourceLoggerTraceSourceLoggerleftsource-ILoggerILoggerrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "TraceSourceLoggerProvider",
-            "sourceHandle": "TraceSourceLoggerProviderleftsource",
-            "target": "ILoggerProvider",
-            "targetHandle": "ILoggerProviderrighttarget",
-            "id": "reactflow__edge-TraceSourceLoggerProviderTraceSourceLoggerProviderleftsource-ILoggerProviderILoggerProviderrighttarget"
-        },
-        {
-            "style": {
-                "strokeWidth": 2,
-                "stroke": "black"
-            },
-            "type": "default",
-            "markerEnd": {
-                "type": "arrowclosed",
-                "color": "black"
-            },
-            "source": "TraceSourceLoggerProvider",
-            "sourceHandle": "TraceSourceLoggerProviderbottomsource",
-            "target": "TraceSourceLogger",
-            "targetHandle": "TraceSourceLoggertoptarget",
-            "id": "reactflow__edge-TraceSourceLoggerProviderTraceSourceLoggerProviderbottomsource-TraceSourceLoggerTraceSourceLoggertoptarget"
-        }
-    ],
-    "viewport": {
-        "x": 435.2015949329211,
-        "y": 390.8958982114417,
-        "zoom": 0.6645200553936874
+  "nodes": [
+    {
+      "width": 443,
+      "height": 90,
+      "id": "ILoggerFactory",
+      "position": {
+        "x": 602.7290172025982,
+        "y": -219.6250765059372
+      },
+      "type": "custom",
+      "data": {
+        "id": "ILoggerFactory",
+        "name": "ILoggerFactory",
+        "parent": "IDisposable",
+        "methods": [
+          "ILogger CreateLogger(string categoryName)",
+          "void AddProvider(ILoggerProvider provider)",
+          "public static ILogger<T> CreateLogger<T>(this ILoggerFactory factory)",
+          "public static ILogger CreateLogger(this ILoggerFactory factory, Type type)"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 602.7290172025982,
+        "y": -219.6250765059372
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 42,
+      "id": "ILoggerProvider",
+      "position": {
+        "x": 771.0776813798657,
+        "y": -28.058470984639627
+      },
+      "type": "custom",
+      "data": {
+        "id": "ILoggerProvider",
+        "name": "ILoggerProvider",
+        "parent": "IDisposable",
+        "methods": ["ILogger CreateLogger(string categoryName)"],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 771.0776813798657,
+        "y": -28.058470984639627
+      },
+      "dragging": false
+    },
+    {
+      "width": 784,
+      "height": 202,
+      "id": "ILogger",
+      "position": {
+        "x": 159.80003027645773,
+        "y": 125.55289559168776
+      },
+      "type": "custom",
+      "data": {
+        "id": "ILogger",
+        "name": "ILogger",
+        "methods": [
+          "void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)",
+          "bool IsEnabled(LogLevel logLevel)",
+          "IDisposable? BeginScope<TState>(TState state)",
+          "public static IDisposable? BeginScope(this ILogger logger, string messageFormat, params object?[] args)",
+          "public static void Log(this ILogger logger, LogLevel logLevel, string? message, params object?[] args)",
+          "public static void LogCritical(this ILogger logger, string? message, params object?[] args)",
+          "public static void LogError(this ILogger logger, string? message, params object?[] args)",
+          "public static void LogWarning(this ILogger logger, string? message, params object?[] args)",
+          "public static void LogInformation(this ILogger logger, string? message, params object?[] args)",
+          "public static void LogTrace(this ILogger logger, string? message, params object?[] args)",
+          "public static void LogDebug(this ILogger logger, string? message, params object?[] args)"
+        ],
+        "properties": [],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 159.80003027645773,
+        "y": 125.55289559168776
+      },
+      "dragging": false
+    },
+    {
+      "width": 663,
+      "height": 152,
+      "id": "ILoggingBuilder",
+      "position": {
+        "x": -531.5429040334185,
+        "y": 292.2068309342432
+      },
+      "type": "custom",
+      "data": {
+        "id": "ILoggingBuilder",
+        "name": "ILoggingBuilder",
+        "properties": ["IServiceCollection Services { get; }"],
+        "methods": [
+          "public static ILoggingBuilder AddFilter(this ILoggingBuilder builder, Func<string?, string?, LogLevel, bool> filter)",
+          "public static ILoggingBuilder SetMinimumLevel(this ILoggingBuilder builder, LogLevel level)",
+          "public static ILoggingBuilder AddProvider(this ILoggingBuilder builder, ILoggerProvider provider)",
+          "public static ILoggingBuilder ClearProviders(this ILoggingBuilder builder)",
+          "public static ILoggingBuilder Configure(this ILoggingBuilder builder, Action<LoggerFactoryOptions> action)",
+          "public static ILoggingBuilder AddConfiguration(this ILoggingBuilder builder, IConfiguration configuration)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -531.5429040334185,
+        "y": 292.2068309342432
+      },
+      "dragging": false
+    },
+    {
+      "width": 377,
+      "height": 42,
+      "id": "ISupportExternalScope",
+      "position": {
+        "x": 8.929676492285466,
+        "y": -183.50230275361778
+      },
+      "type": "custom",
+      "data": {
+        "id": "ISupportExternalScope",
+        "name": "ISupportExternalScope",
+        "methods": ["void SetScopeProvider(IExternalScopeProvider scopeProvider)"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 8.929676492285466,
+        "y": -183.50230275361778
+      },
+      "dragging": false
+    },
+    {
+      "width": 454,
+      "height": 58,
+      "id": "IExternalScopeProvider",
+      "position": {
+        "x": -531.1774267992769,
+        "y": -195.09926927702867
+      },
+      "type": "custom",
+      "data": {
+        "id": "IExternalScopeProvider",
+        "name": "IExternalScopeProvider",
+        "methods": [
+          "void ForEachScope<TState>(Action<object?, TState> callback, TState state)",
+          "IDisposable Push(object? state)"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -531.1774267992769,
+        "y": -195.09926927702867
+      },
+      "dragging": false
+    },
+    {
+      "width": 786,
+      "height": 58,
+      "id": "LoggerMessage",
+      "position": {
+        "x": 165.66641693096722,
+        "y": 369.3766868292977
+      },
+      "type": "custom",
+      "data": {
+        "id": "LoggerMessage",
+        "name": "LoggerMessage",
+        "methods": [
+          "public static Func<ILogger, IDisposable?> DefineScope(string formatString)",
+          "public static Action<ILogger, Exception?> Define(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions? options)"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 165.66641693096722,
+        "y": 369.3766868292977
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 74,
+      "id": "LoggerFilterOptions",
+      "position": {
+        "x": -140.4851073736369,
+        "y": -99.78532132751941
+      },
+      "type": "custom",
+      "data": {
+        "id": "LoggerFilterOptions",
+        "name": "LoggerFilterOptions",
+        "properties": [
+          "public bool CaptureScopes { get; set; }",
+          "public LogLevel MinLevel { get; set; }",
+          "public IList<LoggerFilterRule> Rules"
+        ],
+        "connects": [
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -140.4851073736369,
+        "y": -99.78532132751941
+      },
+      "dragging": false
+    },
+    {
+      "width": 400,
+      "height": 42,
+      "id": "LoggerFactoryOptions",
+      "position": {
+        "x": -164.5570875149785,
+        "y": 66.86651473025847
+      },
+      "type": "custom",
+      "data": {
+        "id": "LoggerFactoryOptions",
+        "name": "LoggerFactoryOptions",
+        "properties": ["public ActivityTrackingOptions ActivityTrackingOptions { get; set; }"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -164.5570875149785,
+        "y": 66.86651473025847
+      },
+      "dragging": false
+    },
+    {
+      "width": 357,
+      "height": 90,
+      "id": "LoggerFilterRule",
+      "position": {
+        "x": -531.738965230121,
+        "y": -80.4429409626534
+      },
+      "type": "custom",
+      "data": {
+        "id": "LoggerFilterRule",
+        "name": "LoggerFilterRule",
+        "methods": [],
+        "properties": [
+          "public string? ProviderName { get; }",
+          "public string? CategoryName { get; }",
+          "public LogLevel? LogLevel { get; }",
+          "public Func<string?, string?, LogLevel, bool>? Filter { get; }"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -531.738965230121,
+        "y": -80.4429409626534
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 154,
+      "id": "ActivityTrackingOptions",
+      "position": {
+        "x": -536.7123798485956,
+        "y": 102.5379486253951
+      },
+      "type": "custom",
+      "data": {
+        "id": "ActivityTrackingOptions",
+        "name": "ActivityTrackingOptions",
+        "properties": [
+          "None = 0x0000",
+          "SpanId = 0x0001",
+          "TraceId = 0x0002",
+          "ParentId = 0x0004",
+          "TraceState = 0x0008",
+          "TraceFlags = 0x0010",
+          "Tags = 0x0020",
+          "Baggage = 0x0040"
+        ],
+        "connects": [
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -536.7123798485956,
+        "y": 102.5379486253951
+      },
+      "dragging": false
+    },
+    {
+      "width": 434,
+      "height": 104,
+      "id": "LoggerFactory",
+      "position": {
+        "x": 206.80101571200925,
+        "y": -58.715323168848386
+      },
+      "type": "custom",
+      "data": {
+        "id": "LoggerFactory",
+        "name": "LoggerFactory",
+        "parent": "ILoggerFactory",
+        "properties": [
+          "private LoggerFilterOptions _filterOptions",
+          "private readonly LoggerFactoryOptions _factoryOptions",
+          " private IExternalScopeProvider? _scopeProvider"
+        ],
+        "methods": ["public static ILoggerFactory Create(Action<ILoggingBuilder> configure)"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 206.80101571200925,
+        "y": -58.715323168848386
+      },
+      "dragging": false
+    },
+    {
+      "width": 316,
+      "height": 42,
+      "id": "EventSourceLogger ",
+      "position": {
+        "x": 1302.3421177671562,
+        "y": -12.079663799316478
+      },
+      "type": "custom",
+      "data": {
+        "id": "EventSourceLogger ",
+        "name": "EventSourceLogger ",
+        "parent": "ILogger",
+        "properties": ["private readonly LoggingEventSource _eventSource"],
+        "connects": [
+          {
+            "position": "top",
+            "type": "source"
+          },
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1302.3421177671562,
+        "y": -12.079663799316478
+      },
+      "dragging": false
+    },
+    {
+      "width": 316,
+      "height": 42,
+      "id": "EventSourceLoggerProvider",
+      "position": {
+        "x": 1303.0349156287114,
+        "y": -248.2636046609952
+      },
+      "type": "custom",
+      "data": {
+        "id": "EventSourceLoggerProvider",
+        "name": "EventSourceLoggerProvider",
+        "parent": "ILoggerProvider",
+        "properties": ["private readonly LoggingEventSource _eventSource"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "right",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1303.0349156287114,
+        "y": -248.2636046609952
+      },
+      "dragging": false
+    },
+    {
+      "width": 734,
+      "height": 120,
+      "id": "LoggingEventSource",
+      "position": {
+        "x": 1093.2630610106323,
+        "y": -180.59994310973255
+      },
+      "type": "custom",
+      "data": {
+        "id": "LoggingEventSource",
+        "name": "LoggingEventSource",
+        "parent": "EventSource",
+        "properties": [
+          "private LoggerFilterRule[] _filterSpec",
+          "private CancellationTokenSource? _cancellationTokenSource"
+        ],
+        "methods": [
+          "protected override void OnEventCommand(EventCommandEventArgs command)",
+          "internal void ActivityStart(int ID, int FactoryID, string LoggerName, IEnumerable<KeyValuePair<string, string?>> Arguments)",
+          "internal unsafe void ActivityStop(int ID, int FactoryID, string LoggerName)"
+        ],
+        "connects": [
+          {
+            "position": "top",
+            "type": "target"
+          },
+          {
+            "position": "bottom",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1093.2630610106323,
+        "y": -180.59994310973255
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 42,
+      "id": "TraceSourceLogger",
+      "position": {
+        "x": 1118.674668133386,
+        "y": 279.07063484190456
+      },
+      "type": "custom",
+      "data": {
+        "id": "TraceSourceLogger",
+        "name": "TraceSourceLogger",
+        "parent": "ILogger",
+        "properties": ["private readonly TraceSource _traceSource"],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "top",
+            "type": "target"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1118.674668133386,
+        "y": 279.07063484190456
+      },
+      "dragging": false
+    },
+    {
+      "width": 420,
+      "height": 74,
+      "id": "TraceSourceLoggerProvider",
+      "position": {
+        "x": 1172.9248287895693,
+        "y": 101.02900574821706
+      },
+      "type": "custom",
+      "data": {
+        "id": "TraceSourceLoggerProvider",
+        "name": "TraceSourceLoggerProvider",
+        "parent": "ILoggerProvider",
+        "properties": [
+          "private readonly SourceSwitch _rootSourceSwitch",
+          "private readonly TraceListener? _rootTraceListener",
+          "private readonly ConcurrentDictionary<string, TraceSource> _sources"
+        ],
+        "connects": [
+          {
+            "position": "left",
+            "type": "source"
+          },
+          {
+            "position": "bottom",
+            "type": "source"
+          }
+        ]
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1172.9248287895693,
+        "y": 101.02900574821706
+      },
+      "dragging": false
     }
+  ],
+  "edges": [
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ILoggerFactory",
+      "sourceHandle": "ILoggerFactorybottomsource",
+      "target": "ILogger",
+      "targetHandle": "ILoggertoptarget",
+      "id": "reactflow__edge-ILoggerFactoryILoggerFactorybottomsource-ILoggerILoggertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ILoggerProvider",
+      "sourceHandle": "ILoggerProviderbottomsource",
+      "target": "ILogger",
+      "targetHandle": "ILoggertoptarget",
+      "id": "reactflow__edge-ILoggerProviderILoggerProviderbottomsource-ILoggerILoggertoptarget",
+      "selected": false
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "LoggerFactoryOptions",
+      "sourceHandle": "LoggerFactoryOptionsleftsource",
+      "target": "ActivityTrackingOptions",
+      "targetHandle": "ActivityTrackingOptionsrighttarget",
+      "id": "reactflow__edge-LoggerFactoryOptionsLoggerFactoryOptionsleftsource-ActivityTrackingOptionsActivityTrackingOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "LoggerFilterOptions",
+      "sourceHandle": "LoggerFilterOptionsleftsource",
+      "target": "LoggerFilterRule",
+      "targetHandle": "LoggerFilterRulerighttarget",
+      "id": "reactflow__edge-LoggerFilterOptionsLoggerFilterOptionsleftsource-LoggerFilterRuleLoggerFilterRulerighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ILoggingBuilder",
+      "sourceHandle": "ILoggingBuildertopsource",
+      "target": "LoggerFactoryOptions",
+      "targetHandle": "LoggerFactoryOptionsbottomtarget",
+      "id": "reactflow__edge-ILoggingBuilderILoggingBuildertopsource-LoggerFactoryOptionsLoggerFactoryOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ILoggingBuilder",
+      "sourceHandle": "ILoggingBuildertopsource",
+      "target": "LoggerFilterOptions",
+      "targetHandle": "LoggerFilterOptionsbottomtarget",
+      "id": "reactflow__edge-ILoggingBuilderILoggingBuildertopsource-LoggerFilterOptionsLoggerFilterOptionsbottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "LoggerFactory",
+      "sourceHandle": "LoggerFactorytopsource",
+      "target": "ILoggerFactory",
+      "targetHandle": "ILoggerFactorylefttarget",
+      "id": "reactflow__edge-LoggerFactoryLoggerFactorytopsource-ILoggerFactoryILoggerFactorylefttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ISupportExternalScope",
+      "sourceHandle": "ISupportExternalScopeleftsource",
+      "target": "IExternalScopeProvider",
+      "targetHandle": "IExternalScopeProviderrighttarget",
+      "id": "reactflow__edge-ISupportExternalScopeISupportExternalScopeleftsource-IExternalScopeProviderIExternalScopeProviderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "LoggerFactory",
+      "sourceHandle": "LoggerFactorytopsource",
+      "target": "ISupportExternalScope",
+      "targetHandle": "ISupportExternalScopebottomtarget",
+      "id": "reactflow__edge-LoggerFactoryLoggerFactorytopsource-ISupportExternalScopeISupportExternalScopebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "LoggerFactory",
+      "sourceHandle": "LoggerFactoryleftsource",
+      "target": "LoggerFilterOptions",
+      "targetHandle": "LoggerFilterOptionsrighttarget",
+      "id": "reactflow__edge-LoggerFactoryLoggerFactoryleftsource-LoggerFilterOptionsLoggerFilterOptionsrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "LoggerFactory",
+      "sourceHandle": "LoggerFactoryleftsource",
+      "target": "LoggerFactoryOptions",
+      "targetHandle": "LoggerFactoryOptionstoptarget",
+      "id": "reactflow__edge-LoggerFactoryLoggerFactoryleftsource-LoggerFactoryOptionsLoggerFactoryOptionstoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "ILoggerFactory",
+      "sourceHandle": "ILoggerFactorybottomsource",
+      "target": "ILoggerProvider",
+      "targetHandle": "ILoggerProvidertoptarget",
+      "id": "reactflow__edge-ILoggerFactoryILoggerFactorybottomsource-ILoggerProviderILoggerProvidertoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EventSourceLogger ",
+      "sourceHandle": "EventSourceLogger leftsource",
+      "target": "ILogger",
+      "targetHandle": "ILoggerrighttarget",
+      "id": "reactflow__edge-EventSourceLogger EventSourceLogger leftsource-ILoggerILoggerrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EventSourceLoggerProvider",
+      "sourceHandle": "EventSourceLoggerProviderleftsource",
+      "target": "ILoggerProvider",
+      "targetHandle": "ILoggerProviderrighttarget",
+      "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderleftsource-ILoggerProviderILoggerProviderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EventSourceLoggerProvider",
+      "sourceHandle": "EventSourceLoggerProviderrightsource",
+      "target": "EventSourceLogger ",
+      "targetHandle": "EventSourceLogger righttarget",
+      "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderrightsource-EventSourceLogger EventSourceLogger righttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EventSourceLogger ",
+      "sourceHandle": "EventSourceLogger topsource",
+      "target": "LoggingEventSource",
+      "targetHandle": "LoggingEventSourcebottomtarget",
+      "id": "reactflow__edge-EventSourceLogger EventSourceLogger topsource-LoggingEventSourceLoggingEventSourcebottomtarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "EventSourceLoggerProvider",
+      "sourceHandle": "EventSourceLoggerProviderbottomsource",
+      "target": "LoggingEventSource",
+      "targetHandle": "LoggingEventSourcetoptarget",
+      "id": "reactflow__edge-EventSourceLoggerProviderEventSourceLoggerProviderbottomsource-LoggingEventSourceLoggingEventSourcetoptarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "TraceSourceLogger",
+      "sourceHandle": "TraceSourceLoggerleftsource",
+      "target": "ILogger",
+      "targetHandle": "ILoggerrighttarget",
+      "id": "reactflow__edge-TraceSourceLoggerTraceSourceLoggerleftsource-ILoggerILoggerrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "TraceSourceLoggerProvider",
+      "sourceHandle": "TraceSourceLoggerProviderleftsource",
+      "target": "ILoggerProvider",
+      "targetHandle": "ILoggerProviderrighttarget",
+      "id": "reactflow__edge-TraceSourceLoggerProviderTraceSourceLoggerProviderleftsource-ILoggerProviderILoggerProviderrighttarget"
+    },
+    {
+      "style": {
+        "strokeWidth": 2,
+        "stroke": "black"
+      },
+      "type": "default",
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "black"
+      },
+      "source": "TraceSourceLoggerProvider",
+      "sourceHandle": "TraceSourceLoggerProviderbottomsource",
+      "target": "TraceSourceLogger",
+      "targetHandle": "TraceSourceLoggertoptarget",
+      "id": "reactflow__edge-TraceSourceLoggerProviderTraceSourceLoggerProviderbottomsource-TraceSourceLoggerTraceSourceLoggertoptarget"
+    }
+  ],
+  "viewport": {
+    "x": 435.2015949329211,
+    "y": 390.8958982114417,
+    "zoom": 0.6645200553936874
+  }
 }

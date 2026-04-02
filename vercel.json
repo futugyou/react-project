@@ -1,33 +1,26 @@
 {
-    "routes": [
-        {
-            "src": "/api/push",
-            "dest": "api/push",
-            "methods": [
-                "POST",
-                "OPTIONS",
-                "GET",
-                "PATCH",
-                "DELETE",
-                "PUT"
-            ],
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "*",
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Expose-Headers": "*"
-            }
-        },
-        {
-            "src": "/[^.]+",
-            "dest": "/",
-            "status": 200,
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "*",
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Expose-Headers": "*"
-            }
-        }
-    ]
+  "routes": [
+    {
+      "src": "/api/push",
+      "dest": "api/push",
+      "methods": ["POST", "OPTIONS", "GET", "PATCH", "DELETE", "PUT"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Expose-Headers": "*"
+      }
+    },
+    {
+      "src": "/[^.]+",
+      "dest": "/",
+      "status": 200,
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Expose-Headers": "*"
+      }
+    }
+  ]
 }
