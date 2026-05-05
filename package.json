@@ -29,7 +29,7 @@
     "@uiw/react-color": "^2.10.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "axios": "^1.15.2",
+    "axios": "^1.16.0",
     "buffer": "^6.0.3",
     "cytoscape": "^3.33.3",
     "cytoscape-avsdf": "^1.0.0",
