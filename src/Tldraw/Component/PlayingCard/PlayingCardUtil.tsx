@@ -7,6 +7,7 @@ import {
   T,
   TLShape,
   TLBaseShape,
+  TLIndicatorPath,
 } from 'tldraw'
 
 const PLAYING_CARD_TYPE = 'PlayingCard'
@@ -91,7 +92,9 @@ export class PlayingCardUtil extends BaseBoxShapeUtil<IPlayingCard> {
     )
   }
 
-  indicator(shape: IPlayingCard) {
-    return <rect width={shape.props.w} height={shape.props.h} />
+  getIndicatorPath(shape: IPlayingCard) {
+    const path = new Path2D()
+    path.rect(0, 0, shape.props.w, shape.props.h)
+    return path
   }
 }

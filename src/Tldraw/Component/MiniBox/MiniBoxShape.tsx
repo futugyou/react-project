@@ -1,4 +1,4 @@
-import { BaseBoxShapeUtil, HTMLContainer, TLBaseShape } from '@tldraw/tldraw'
+import { BaseBoxShapeUtil, HTMLContainer, TLBaseShape, TLIndicatorPath } from '@tldraw/tldraw'
 
 export type MiniBoxShape = TLBaseShape<'box', { w: number; h: number; color: string }>
 
@@ -25,7 +25,9 @@ export class MiniBoxShapeUtil extends BaseBoxShapeUtil<MiniBoxShape> {
     )
   }
 
-  indicator(shape: MiniBoxShape) {
-    return <rect width={shape.props.w} height={shape.props.h} />
+  getIndicatorPath(shape: MiniBoxShape) {
+    const path = new Path2D()
+    path.rect(0, 0, shape.props.w, shape.props.h)
+    return path
   }
 }
