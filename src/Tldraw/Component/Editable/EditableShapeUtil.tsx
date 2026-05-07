@@ -24,7 +24,11 @@ export class EditableShapeUtil extends BaseBoxShapeUtil<IMyEditableShape> {
     animal: T.number,
   }
 
-  override canEdit() {
+  override canEdit(shape: IMyEditableShape) {
+    return true
+  }
+
+  override canEditWhileLocked(shape: IMyEditableShape) {
     return true
   }
 
@@ -36,6 +40,7 @@ export class EditableShapeUtil extends BaseBoxShapeUtil<IMyEditableShape> {
     }
   }
 
+  // [2]
   component(shape: IMyEditableShape) {
     const isEditing = this.editor.getEditingShapeId() === shape.id
 
@@ -51,7 +56,6 @@ export class EditableShapeUtil extends BaseBoxShapeUtil<IMyEditableShape> {
         }}
       >
         {ANIMAL_EMOJIS[shape.props.animal]}
-        {/* [c] */}
         {isEditing ? (
           <button
             onClick={() => {
@@ -74,8 +78,10 @@ export class EditableShapeUtil extends BaseBoxShapeUtil<IMyEditableShape> {
     )
   }
 
-  indicator(shape: IMyEditableShape) {
-    return <rect width={shape.props.w} height={shape.props.h} />
+  getIndicatorPath(shape: IMyEditableShape) {
+    const path = new Path2D()
+    path.rect(0, 0, shape.props.w, shape.props.h)
+    return path
   }
 
   override onEditEnd(shape: IMyEditableShape) {

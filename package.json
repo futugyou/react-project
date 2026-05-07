@@ -67,8 +67,7 @@
     "use-immer": "^0.11.0",
     "uuid": "^14.0.0",
     "y-utility": "^0.1.4",
-    "y-websocket": "^3.0.0",
-    "yjs": "^13.6.30"
+    "y-websocket": "^3.0.0"
   },
   "devDependencies": {
     "@types/cytoscape-avsdf": "^1.0.4",
@@ -87,6 +86,6 @@
     "@types/uuid": "^11.0.0",
     "@vitejs/plugin-react-swc": "^4.3.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10"
+    "vite": "^8.0.11"
   }
 }

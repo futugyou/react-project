@@ -7,7 +7,6 @@ import {
   TLResizeInfo,
   TLShape,
   getColorValue,
-  getDefaultColorTheme,
   resizeBox,
 } from 'tldraw'
 import { cardShapeMigrations } from './card-shape-migrations'
@@ -27,10 +26,11 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
   static override type = CARD_TYPE
   static override props = cardShapeProps
   static override migrations = cardShapeMigrations
-  override isAspectRatioLocked(_shape: ICardShape) {
+
+  override isAspectRatioLocked(shape: ICardShape) {
     return false
   }
-  override canResize(_shape: ICardShape) {
+  override canResize(shape: ICardShape) {
     return true
   }
 
@@ -51,8 +51,11 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
   }
 
   component(shape: ICardShape) {
-    const bounds = this.editor.getShapeGeometry(shape).bounds
-    const theme = getDefaultColorTheme({ isDarkMode: this.editor.user.getIsDarkMode() })
+    const { editor } = this
+    const bounds = editor.getShapeGeometry(shape).bounds
+    const theme = editor.getCurrentTheme()
+    const colors = theme.colors[editor.getColorMode()]
+    const { color } = shape.props
 
     const [count, setCount] = useState(0)
 
@@ -66,8 +69,8 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
           alignItems: 'center',
           justifyContent: 'center',
           pointerEvents: 'all',
-          backgroundColor: getColorValue(theme, shape.props.color, 'semi'),
-          color: getColorValue(theme, shape.props.color, 'solid'),
+          backgroundColor: getColorValue(colors, color, 'semi'),
+          color: getColorValue(colors, color, 'solid'),
         }}
       >
         <h2>Clicks: {count}</h2>
@@ -81,8 +84,10 @@ export class CardShapeUtil extends ShapeUtil<ICardShape> {
     )
   }
 
-  indicator(shape: ICardShape) {
-    return <rect width={shape.props.w} height={shape.props.h} />
+  getIndicatorPath(shape: ICardShape) {
+    const path = new Path2D()
+    path.rect(0, 0, shape.props.w, shape.props.h)
+    return path
   }
 
   override onResize(shape: ICardShape, info: TLResizeInfo<ICardShape>) {

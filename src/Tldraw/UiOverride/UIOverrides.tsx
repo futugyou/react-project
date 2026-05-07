@@ -17,8 +17,6 @@ import { CustomMainMenu } from './CustomMainMenu'
 import { CustomQuickActions } from './CustomQuickActions'
 import { CustomToolbar } from './CustomToolbar'
 import { CustomZoomMenu } from './CustomZoomMenu'
-import { CustomBrush } from './CustomBrush'
-import { CustomScribble } from './CustomScribble'
 
 import CountComponent from './CountComponent'
 import ScreenshotBox from '../Component/Screenshot/ScreenshotBox'
@@ -100,8 +98,6 @@ export const CustomeComponents: TLComponents = {
   // KeyboardShortcutsDialog: CustomKeyboardShortcutsDialog,
   MainMenu: CustomMainMenu,
   QuickActions: CustomQuickActions,
-  Brush: CustomBrush,
-  Scribble: CustomScribble,
   InFrontOfTheCanvas: ScreenshotBox,
   OnTheCanvas: CountComponent,
   ZoomMenu: CustomZoomMenu,

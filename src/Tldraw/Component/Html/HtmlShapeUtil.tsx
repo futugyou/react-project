@@ -1,4 +1,10 @@
-import { HTMLContainer, BaseBoxShapeUtil, TLBaseShape, TLShape } from '@tldraw/tldraw'
+import {
+  HTMLContainer,
+  BaseBoxShapeUtil,
+  TLBaseShape,
+  TLShape,
+  TLIndicatorPath,
+} from '@tldraw/tldraw'
 
 const DANGEROUS_HTML_TYPE = 'html'
 
@@ -8,9 +14,6 @@ declare module 'tldraw' {
   }
 }
 
-// There's a guide at the bottom of this page!
-
-// [1]
 export type IDangerousHtmlShape = TLShape<typeof DANGEROUS_HTML_TYPE>
 
 export class HtmlShapeUtil extends BaseBoxShapeUtil<IDangerousHtmlShape> {
@@ -35,5 +38,11 @@ export class HtmlShapeUtil extends BaseBoxShapeUtil<IDangerousHtmlShape> {
 
   override indicator(shape: IDangerousHtmlShape) {
     return <rect width={shape.props.w} height={shape.props.h} />
+  }
+
+  getIndicatorPath(shape: IDangerousHtmlShape) {
+    const path = new Path2D()
+    path.rect(0, 0, shape.props.w, shape.props.h)
+    return path
   }
 }
