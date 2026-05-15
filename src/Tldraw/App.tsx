@@ -111,21 +111,19 @@ const App = () => {
   }
 
   return (
-    <div style={{ inset: 0 }}>
-      <Tldraw
-        onMount={handleMount}
-        shapeUtils={CustomeShapes}
-        tools={CustomTools}
-        components={CustomeComponents}
-        overrides={UIOverrides}
-        store={store}
-        assetUrls={CustomAssetUrls}
-        onUiEvent={handleUiEvent}
-      >
-        <SneakyFloatyHook />
-        <MetaUi />
-      </Tldraw>
-    </div>
+    <Tldraw
+      onMount={handleMount}
+      shapeUtils={CustomeShapes}
+      tools={CustomTools}
+      components={CustomeComponents}
+      overrides={UIOverrides}
+      store={store}
+      assetUrls={CustomAssetUrls}
+      onUiEvent={handleUiEvent}
+    >
+      <SneakyFloatyHook />
+      <MetaUi />
+    </Tldraw>
   )
 }
 
