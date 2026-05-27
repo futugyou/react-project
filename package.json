@@ -37,7 +37,7 @@
     "cytoscape-expand-collapse": "^4.1.1",
     "cytoscape-fcose": "^2.2.0",
     "cytoscape-grid-guide": "^2.3.3",
-    "dayjs": "^1.11.20",
+    "dayjs": "^1.11.21",
     "fluid-framework": "^2.101.1",
     "framer-motion": "^12.40.0",
     "html-to-image": "^1.11.13",
