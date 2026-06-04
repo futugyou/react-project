@@ -12,8 +12,8 @@
   "dependencies": {
     "@canvasjs/stockcharts": "^1.15.24",
     "@cloudscape-design/board-components": "^3.0.188",
-    "@cloudscape-design/component-toolkit": "^1.0.0-beta.163",
-    "@cloudscape-design/components": "^3.0.1306",
+    "@cloudscape-design/component-toolkit": "^1.0.0-beta.164",
+    "@cloudscape-design/components": "^3.0.1307",
     "@cloudscape-design/global-styles": "^1.0.59",
     "@excalidraw/excalidraw": "^0.18.1",
     "@excalidraw/mermaid-to-excalidraw": "^2.2.2",
