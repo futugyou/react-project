@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@canvasjs/stockcharts": "^1.16.6",
-    "@cloudscape-design/board-components": "^3.0.211",
+    "@cloudscape-design/board-components": "^3.0.212",
     "@cloudscape-design/component-toolkit": "^1.0.0-beta.173",
-    "@cloudscape-design/components": "^3.0.1336",
-    "@cloudscape-design/global-styles": "^1.0.63",
+    "@cloudscape-design/components": "^3.0.1340",
+    "@cloudscape-design/global-styles": "^1.0.65",
     "@excalidraw/excalidraw": "^0.18.1",
     "@excalidraw/mermaid-to-excalidraw": "^2.2.2",
     "@fluidframework/azure-client": "^2.112.0",
