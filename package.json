@@ -39,7 +39,7 @@
     "cytoscape-grid-guide": "^2.3.3",
     "dayjs": "^1.11.21",
     "fluid-framework": "^2.113.1",
-    "framer-motion": "^12.43.0",
+    "framer-motion": "^13.0.0",
     "html-to-image": "^1.11.13",
     "idb-keyval": "^6.3.0",
     "immer": "^11.1.11",
