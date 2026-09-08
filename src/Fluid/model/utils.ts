@@ -41,7 +41,7 @@ const connectionConfig: AzureClientProps = {
 const client = new AzureClient(connectionConfig)
 
 export const createContainer = async () => {
-  const { container, services } = await client.createContainer(containerSchema as any, '2')
+  const { container, services } = await client.createContainer(containerSchema as any, '2' as any)
   const id = await container.attach()
   return { container, services, id }
 }
@@ -53,7 +53,7 @@ export const getContainer = async (containerId: string) => {
     const { container, services } = await client.getContainer(
       containerId,
       containerSchema as any,
-      '2',
+      '2' as any,
     )
     if (container.connectionState !== ConnectionState.Connected) {
       await new Promise<void>((resolve) => {
