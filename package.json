@@ -16,7 +16,7 @@
     "@cloudscape-design/components": "^3.0.1404",
     "@cloudscape-design/global-styles": "^1.0.71",
     "@excalidraw/excalidraw": "^0.18.1",
-    "@excalidraw/mermaid-to-excalidraw": "^2.2.2",
+    "@excalidraw/mermaid-to-excalidraw": "^2.3.0",
     "@fluidframework/azure-client": "^3.6.0",
     "@fluidframework/cell": "^3.6.0",
     "@fluidframework/test-client-utils": "^1.4.0",
