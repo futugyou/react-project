@@ -60,7 +60,7 @@
     "react-reader": "^2.0.15",
     "react-reconciler": "^0.34.0",
     "react-router-dom": "^7.18.4",
-    "react-simple-animate": "^3.5.3",
+    "react-simple-animate": "^4.1.0",
     "reactflow": "^11.11.4",
     "sha.js": "^2.4.12",
     "styled-components": "^6.6.0",
